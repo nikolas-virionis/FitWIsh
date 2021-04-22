@@ -1070,17 +1070,17 @@ svg circle {
         <!--JavaScript-->
         <script>
         //literally all variables declaration ->
-        var btype, resultBeginning, c, c2, c3, c4, resultBeginning2, day, dd, mm, yyyy, contentArray10 = localStorage.getItem("contentArray10"), contentArray11 = localStorage.getItem("contentArray11"), contentArray12 = localStorage.getItem("contentArray12"), contentArray13 = localStorage.getItem("contentArray13"), contentArray14 = localStorage.getItem("contentArray14"), contentArray15 = localStorage.getItem("contentArray15"), contentArray16 = localStorage.getItem("contentArray16"), contentArray17 = localStorage.getItem("contentArray17"), contentArray18 = localStorage.getItem("contentArray18"), contentArray19 = localStorage.getItem("contentArray19"), contentArray110 = localStorage.getItem("contentArray110"), contentArray111 = localStorage.getItem("contentArray111"), contentArray112 = localStorage.getItem("contentArray112"), contentArray113 = localStorage.getItem("contentArray113"), contentArray114 = localStorage.getItem("contentArray114"), contentArray115 = localStorage.getItem("contentArray115"), contentArray116 = localStorage.getItem("contentArray116"), contentArray117 = localStorage.getItem("contentArray117"), contentArray118 = localStorage.getItem("contentArray118"), contentArray119 = localStorage.getItem("contentArray119"), contentArray120 = localStorage.getItem("contentArray120"), contentArray121 = localStorage.getItem("contentArray121"), contentArray122 = localStorage.getItem("contentArray122"), contentArray123 = localStorage.getItem("contentArray123"), contentArray124 = localStorage.getItem("contentArray124"), contentArray125 = localStorage.getItem("contentArray125"), contentArray21 = localStorage.getItem("contentArray21"), contentArray22 = localStorage.getItem("contentArray22"), contentArray23 = localStorage.getItem("contentArray23"), contentArray24 = localStorage.getItem("contentArray24"), contentArray25 = localStorage.getItem("contentArray25"), contentArray20 = localStorage.getItem("contentArray20"), contentArray26 = localStorage.getItem("contentArray26"), contentArray27 = localStorage.getItem("contentArray27"), contentArray28 = localStorage.getItem("contentArray28"), contentArray29 = localStorage.getItem("contentArray29"), contentArray210 = localStorage.getItem("contentArray210"), contentArray211 = localStorage.getItem("contentArray211"), contentArray212 = localStorage.getItem("contentArray212"), contentArray213 = localStorage.getItem("contentArray213"), contentArray214 = localStorage.getItem("contentArray214"), contentArray215 = localStorage.getItem("contentArray215"), contentArray216 = localStorage.getItem("contentArray216"), contentArray217 = localStorage.getItem("contentArray217"), contentArray218 = localStorage.getItem("contentArray218"), contentArray219 = localStorage.getItem("contentArray219"), contentArray220 = localStorage.getItem("contentArray220"), contentArray221 = localStorage.getItem("contentArray221"), contentArray222 = localStorage.getItem("contentArray222"), contentArray223 = localStorage.getItem("contentArray223"), contentArray224 = localStorage.getItem("contentArray224"), contentArray225 = localStorage.getItem("contentArray225"), triesMade, tryNumber, counter = 0, ttttt, metricDefault, metricVerify = 0, imperialDefault, metricNoDefault, rpossibilities, defaultUnit, colorDownload = "#1F3B4D", backgroundColorDownload = "#12232A", done, processing, diagnosis, langleftnav, alreadyInPage, local, differentPage = 0, backupGenderImg = '<br><br><br><br><br><span style="font-size: 40px; font-variant:all-caps; color:white; display: grid; place-items: center;">Select a gender to see the reference Image', weightManagementProgramFinalResult, language, theme, emailLinkFunc, downloadLinkFunc, emotionans, emotionreturn, emotion, idealweight1, idealweight2, idealweight0, weightstring, weight, heightstring, height, unit, deltapp, bodyy, aaa, aaaa, heightfeetstring, heightinchstring, heightfeet, heightinch, weightfloat, weight1, weight2, bbgwp, bbgw0, xx1, xx2, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, x16, x17, x18, x19, x20, x21, x22, x23, x24, x25, x26, x27, x28, x29, x30, x31, x32, xx24, xx25, xx26, xx27, xx28, xx29, xx30, xx31, xx32, x34, x35, x36, x37, x38, x39, x40, x41, x42, x43, x44, x45, x46, x47, x48, x49, x50, bodyreturn, emailaddrreturn, genderreturn, unitreturn, goalreturn, bodyimgreturn, goalimgreturn, xercisereturn, healthyreturn, cheatreturn, mealsreturn, confirmWriteEmail, cbody, cbodyc, ccbody, bodycc, ccbodycc, bodyc, c, bmr, bmrl, bmrll, bmrlll, bbgw1, bbgw2, subject, message, urll, redirectemail, element, addup1, addup2, addup3, addup4, addup5, addup6, emailaddrreturnfinal, name, agest, age, bodyage, languageValue = 1, fullresult = "", ttt = 0, firstAlert = "DISCLAIMER: This is not a medical nor nutritionist advice and not only does not exclude a medical consultation, but also, me as this code creator, encourage and support YOU to get to see your doctor for anything YOU think YOU should improve in YOUR health life. Peace!", bmi_state = "", gender = "", bope = "", bodyp = 0, bodyps = parseFloat(bodyp), bodypt = "", bodytp = "", bodytype = "", idealweight = "", idealWeight00 = 0, idealweight10 = parseFloat(idealweight1), idealweight20 = parseFloat(idealweight2), idealWeight000 = parseFloat(idealWeight00), deltap = 0, bmi = 0, b = 0, bgoal = 0, bbgoal = 0, bbgw3 = 0, bbgw4 = 0, bbgw00 = 0, bbgw0p = 0, noEmailNeeded = 0, wrongEmailCount = 0, bodyresult = "", bbg = "", bbgw = "";
+        var btype, resultBeginning, contentArrayJSON, contentArrayJSONget = localStorage.getItem('contentArray'), contentArray = JSON.parse(contentArrayJSONget) ?? [], idUser, c, c2, c3, c4, resultBeginning2, day, dd, mm, yyyy, triesMade, tryNumber, counter = 0, ttttt, metricDefault, metricVerify = 0, imperialDefault, metricNoDefault, rpossibilities, defaultUnit, colorDownload = "#1F3B4D", backgroundColorDownload = "#12232A", done, processing, diagnosis, langleftnav, alreadyInPage, local, differentPage = 0, backupGenderImg = '<br><br><br><br><br><span style="font-size: 40px; font-variant:all-caps; color:white; display: grid; place-items: center;">Select a gender to see the reference Image', weightManagementProgramFinalResult, language, theme, emailLinkFunc, downloadLinkFunc, emotionans, emotionreturn, emotion, idealweight1, idealweight2, idealweight0, weightstring, weight, heightstring, height, unit, deltapp, bodyy, aaa, aaaa, heightfeetstring, heightinchstring, heightfeet, heightinch, weightfloat, weight1, weight2, bbgwp, bbgw0, xx1, xx2, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, x16, x17, x18, x19, x20, x21, x22, x23, x24, x25, x26, x27, x28, x29, x30, x31, x32, xx24, xx25, xx26, xx27, xx28, xx29, xx30, xx31, xx32, x34, x35, x36, x37, x38, x39, x40, x41, x42, x43, x44, x45, x46, x47, x48, x49, x50, bodyreturn, emailaddrreturn, genderreturn, unitreturn, goalreturn, bodyimgreturn, goalimgreturn, xercisereturn, healthyreturn, cheatreturn, mealsreturn, confirmWriteEmail, cbody, cbodyc, ccbody, bodycc, ccbodycc, bodyc, c, bmr, bmrl, bmrll, bmrlll, bbgw1, bbgw2, subject, message, urll, redirectemail, element, addup1, addup2, addup3, addup4, addup5, addup6, emailaddrreturnfinal, name, agest, age, bodyage, languageValue = 1, fullresult = "", ttt = 0, firstAlert = "DISCLAIMER: This is not a medical nor nutritionist advice and not only does not exclude a medical consultation, but also, me as this code creator, encourage and support YOU to get to see your doctor for anything YOU think YOU should improve in YOUR health life. Peace!", bmi_state = "", gender = "", bope = "", bodyp = 0, bodyps = parseFloat(bodyp), bodypt = "", bodytp = "", bodytype = "", idealweight = "", idealWeight00 = 0, idealweight10 = parseFloat(idealweight1), idealweight20 = parseFloat(idealweight2), idealWeight000 = parseFloat(idealWeight00), deltap = 0, bmi = 0, b = 0, bgoal = 0, bbgoal = 0, bbgw3 = 0, bbgw4 = 0, bbgw00 = 0, bbgw0p = 0, noEmailNeeded = 0, wrongEmailCount = 0, bodyresult = "", bbg = "", bbgw = "";
         unitSystem('metric');
         english();
-        if (contentArray10 == null && contentArray20 == null || contentArray10 == "null" && contentArray20 == "null") {
+        if (contentArray.length == 0) {
             if (navigator.language[0] == "e" && navigator.language[1] == "n") english(); 
             else if(navigator.language[0] == "p" && navigator.language[1] == "t") português();
             else if(navigator.language[0] == "f" && navigator.language[1] == "r") français();
             else if(navigator.language[0] == "e" && navigator.language[1] == "s") español();
             themeTypeDark();
         }
-        else if (contentArray10 == 1 && contentArray20 != 2) {
+        else if (contentArray.length == 1) {
             firstPageH1.style.display = "none";
             firstPageH12nd.style.display = "block";
             firstPageBtnStart.style.display = "none";
@@ -1089,14 +1089,14 @@ svg circle {
             firstPageBtnSeePrev.style.display = "block";
             firstPageBtnDelete.style.display = "block";
             triesMade = 1;
-            if (contentArray14 == "english" || contentArray14 == null || contentArray14 == undefined || contentArray14 == 'null' || contentArray14 == 'undefined') english();
-            else if (contentArray14 == "português")  português();
-            else if (contentArray14 == "français")  français();
-            else if (contentArray14 == "español")  español();
-            if (contentArray15 == "dark" || contentArray15 == null || contentArray15 == undefined || contentArray15 == 'null' || contentArray15 == 'undefined')  themeTypeDark();
-            else if (contentArray15 == "light")  themeTypeLight();
+            if (contentArray[0].language == "english" || contentArray[0].language == null || contentArray[0].language == undefined) english();
+            else if (contentArray[0].language == "português")  português();
+            else if (contentArray[0].language == "français")  français();
+            else if (contentArray[0].language == "español")  español();
+            if (contentArray[0].theme == "dark" || contentArray[0].theme == null || contentArray[0].theme == undefined)  themeTypeDark();
+            else if (contentArray[0].theme == "light")  themeTypeLight();
         }
-        else if (contentArray10 == 1 && contentArray20 == 2) {
+        else if (contentArray.length == 2) {
             triesMade = 2;
             firstPageH1.style.display = "none";
             firstPageH13rd.style.display = "block";
@@ -1104,155 +1104,152 @@ svg circle {
             firstPageBtnOverwrite.style.display = "block";
             firstPageBtnSeeAll.style.display = "block";
             firstPageBtnDelete.style.display = "block";
-            if (contentArray24 == "english" || contentArray24 == null || contentArray24 == undefined || contentArray24 == 'null' || contentArray24 == 'undefined' || navigator.language[0] == "e" && navigator.language[1] == "n"){
+            if (contentArray[1].language == "english" || contentArray[1].language == null || contentArray[1].language == undefined || navigator.language[0] == "e" && navigator.language[1] == "n"){
                 english();
-                if (!(contentArray11.toLowerCase() == contentArray21.toLowerCase())) {
-                    firstPageH13rd.innerHTML = `We detected that you have already tried our test twice, once as ${contentArray11} made in ${contentArray125}, and once as ${contentArray21} made in ${contentArray225}. Choose what you would like to do below`;
-                    firstPageBtn1stTry.value = `See the test made by ${contentArray11}`;
-                    firstPageBtn2ndTry.value = `See the test made by ${contentArray21}`;
-                    firstPageBtn1stTryOverwrite.value = `Overwrite test made by ${contentArray11}`;
-                    firstPageBtn2ndTryOverwrite.value = `Overwrite test made by ${contentArray21}`;
+                if (!(contentArray[0].name.toLowerCase() == contentArray[1].name.toLowerCase())) {
+                    firstPageH13rd.innerHTML = `We detected that you have already tried our test twice, once as ${contentArray[0].name} made in ${contentArray[0].day}, and once as ${contentArray[1].name} made in ${contentArray[1].day}. Choose what you would like to do below`;
+                    firstPageBtn1stTry.value = `See the test made by ${contentArray[0].name}`;
+                    firstPageBtn2ndTry.value = `See the test made by ${contentArray[1].name}`;
+                    firstPageBtn1stTryOverwrite.value = `Overwrite test made by ${contentArray[0].name}`;
+                    firstPageBtn2ndTryOverwrite.value = `Overwrite test made by ${contentArray[1].name}`;
                 } 
                 else {
-                    firstPageH13rd.innerHTML = `We detected that you have already tried our test twice as ${contentArray11}, once made in ${contentArray125}, and once made in ${contentArray225}. Choose what you would like to do below`;
-                    firstPageBtn1stTry.value = `See the test made in ${contentArray125}`;
-                    firstPageBtn2ndTry.value = `See the test made in ${contentArray225}`;
-                    firstPageBtn1stTryOverwrite.value = `Overwrite test made in ${contentArray125}`;
-                    firstPageBtn2ndTryOverwrite.value = `Overwrite test made in ${contentArray225}`;
+                    firstPageH13rd.innerHTML = `We detected that you have already tried our test twice as ${contentArray[0].name}, once made in ${contentArray[0].day}, and once made in ${contentArray[1].day}. Choose what you would like to do below`;
+                    firstPageBtn1stTry.value = `See the test made in ${contentArray[0].day}`;
+                    firstPageBtn2ndTry.value = `See the test made in ${contentArray[1].day}`;
+                    firstPageBtn1stTryOverwrite.value = `Overwrite test made in ${contentArray[0].day}`;
+                    firstPageBtn2ndTryOverwrite.value = `Overwrite test made in ${contentArray[1].day}`;
                 }
             }
-            else if (contentArray24 == "português" || navigator.language[0] == "p" && navigator.language[1] == "t") {
+            else if (contentArray[1].language == "português" || navigator.language[0] == "p" && navigator.language[1] == "t") {
                 português();
-                if (!(contentArray11.toLowerCase() == contentArray21.toLowerCase())) {
-                    firstPageH13rd.innerHTML = `Detectamos que você já tentou nosso teste duas vezes, uma vez como ${contentArray11} feito em ${contentArray125}, e uma vez como ${contentArray21} feito em ${contentArray225}. Escolha o que você gostaria de fazer abaixo`;
-                    firstPageBtn1stTry.value = `Ver o teste feito por ${contentArray11}`;
-                    firstPageBtn2ndTry.value = `Ver o teste feito por ${contentArray21}`;
-                    firstPageBtn1stTryOverwrite.value = `Sobrescrever o teste de ${contentArray11}`;
-                    firstPageBtn2ndTryOverwrite.value = `Sobrescrever o teste de ${contentArray21}`;
+                if (!(contentArray[0].name.toLowerCase() == contentArray[1].name.toLowerCase())) {
+                    firstPageH13rd.innerHTML = `Detectamos que você já tentou nosso teste duas vezes, uma vez como ${contentArray[0].name} feito em ${contentArray[0].day}, e uma vez como ${contentArray[1].name} feito em ${contentArray[1].day}. Escolha o que você gostaria de fazer abaixo`;
+                    firstPageBtn1stTry.value = `Ver o teste feito por ${contentArray[0].name}`;
+                    firstPageBtn2ndTry.value = `Ver o teste feito por ${contentArray[1].name}`;
+                    firstPageBtn1stTryOverwrite.value = `Sobrescrever o teste de ${contentArray[0].name}`;
+                    firstPageBtn2ndTryOverwrite.value = `Sobrescrever o teste de ${contentArray[1].name}`;
                 } 
                 else {
-                    firstPageH13rd.innerHTML = `Detectamos que você já tentou nosso teste duas vezes como ${contentArray11}, uma vez feito em ${contentArray125}, e uma vez feito em ${contentArray225}. Escolha o que você gostaria de fazer abaixo`;
-                    firstPageBtn1stTry.value = `Ver o teste feito em ${contentArray125}`;
-                    firstPageBtn2ndTry.value = `Ver o teste feito em ${contentArray225}`;
-                    firstPageBtn1stTryOverwrite.value = `Sobrescrever o teste de ${contentArray125}`;
-                    firstPageBtn2ndTryOverwrite.value = `Sobrescrever o teste de ${contentArray225}`;
+                    firstPageH13rd.innerHTML = `Detectamos que você já tentou nosso teste duas vezes como ${contentArray[0].name}, uma vez feito em ${contentArray[0].day}, e uma vez feito em ${contentArray[1].day}. Escolha o que você gostaria de fazer abaixo`;
+                    firstPageBtn1stTry.value = `Ver o teste feito em ${contentArray[0].day}`;
+                    firstPageBtn2ndTry.value = `Ver o teste feito em ${contentArray[1].day}`;
+                    firstPageBtn1stTryOverwrite.value = `Sobrescrever o teste de ${contentArray[0].day}`;
+                    firstPageBtn2ndTryOverwrite.value = `Sobrescrever o teste de ${contentArray[1].day}`;
                 }
             }
-            else if (contentArray24 == "français" || navigator.language[0] == "f" && navigator.language[1] == "r") {
+            else if (contentArray[1].language == "français" || navigator.language[0] == "f" && navigator.language[1] == "r") {
                 français();
-                if (!(contentArray11.toLowerCase() == contentArray21.toLowerCase())) {
-                    firstPageH13rd.innerHTML = `Nous avons détecté que vous avez déjà essayé notre test deux fois, une fois comme ${contentArray11} fabriqué en ${contentArray125}, et une fois comme ${contentArray21} fabriqué en ${contentArray225}. Choisissez ce que vous souhaitez faire ci-dessous`;
-                    firstPageBtn1stTry.value = `Voir le test ${contentArray11}`;
-                    firstPageBtn2ndTry.value = `Voir le test ${contentArray21}`;
-                    firstPageBtn1stTryOverwrite.value = `Écraser le test ${contentArray11}`;
-                    firstPageBtn2ndTryOverwrite.value = `Écraser le test ${contentArray21}`;
+                if (!(contentArray[0].name.toLowerCase() == contentArray[1].name.toLowerCase())) {
+                    firstPageH13rd.innerHTML = `Nous avons détecté que vous avez déjà essayé notre test deux fois, une fois comme ${contentArray[0].name} fabriqué en ${contentArray[0].day}, et une fois comme ${contentArray[1].name} fabriqué en ${contentArray[1].day}. Choisissez ce que vous souhaitez faire ci-dessous`;
+                    firstPageBtn1stTry.value = `Voir le test ${contentArray[0].name}`;
+                    firstPageBtn2ndTry.value = `Voir le test ${contentArray[1].name}`;
+                    firstPageBtn1stTryOverwrite.value = `Écraser le test ${contentArray[0].name}`;
+                    firstPageBtn2ndTryOverwrite.value = `Écraser le test ${contentArray[1].name}`;
                 } 
                 else {
-                    firstPageH13rd.innerHTML = `Nous avons détecté que vous avez déjà essayé notre test deux fois plus ${contentArray11}, une fois fait en ${contentArray125}, et une fois fait en ${contentArray225}. Choisissez ce que vous souhaitez faire ci-dessous`;
-                    firstPageBtn1stTry.value = `Voir le test réalisé en ${contentArray125}`;
-                    firstPageBtn2ndTry.value = `Voir le test réalisé en ${contentArray225}`;
-                    firstPageBtn1stTryOverwrite.value = `Écraser le test dans ${contentArray125}`;
-                    firstPageBtn2ndTryOverwrite.value = `Écraser le test dans ${contentArray225}`;
+                    firstPageH13rd.innerHTML = `Nous avons détecté que vous avez déjà essayé notre test deux fois plus ${contentArray[0].name}, une fois fait en ${contentArray[0].day}, et une fois fait en ${contentArray[1].day}. Choisissez ce que vous souhaitez faire ci-dessous`;
+                    firstPageBtn1stTry.value = `Voir le test réalisé en ${contentArray[0].day}`;
+                    firstPageBtn2ndTry.value = `Voir le test réalisé en ${contentArray[1].day}`;
+                    firstPageBtn1stTryOverwrite.value = `Écraser le test dans ${contentArray[0].day}`;
+                    firstPageBtn2ndTryOverwrite.value = `Écraser le test dans ${contentArray[1].day}`;
                 }
             }
-            else if (contentArray24 == "español" || navigator.language[0] == "e" && navigator.language[1] == "s") {
+            else if (contentArray[1].language == "español" || navigator.language[0] == "e" && navigator.language[1] == "s") {
                 español();
-                if (!(contentArray11.toLowerCase() == contentArray21.toLowerCase())) {
-                    firstPageH13rd.innerHTML = `Detectamos que ya ha realizado nuestra prueba dos veces, una vez como ${contentArray11} hecho en ${contentArray125}, y una vez como ${contentArray21} hecho en ${contentArray225}. Elija lo que le gustaría hacer a continuación`;
-                    firstPageBtn1stTry.value = `Ver la prueba de ${contentArray11}`;
-                    firstPageBtn2ndTry.value = `Ver la prueba de ${contentArray21}`;
-                    firstPageBtn1stTryOverwrite.value = `Sobrescribir la prueba de ${contentArray11}`;
-                    firstPageBtn2ndTryOverwrite.value = `Sobrescribir la prueba de ${contentArray21}`;
+                if (!(contentArray[0].name.toLowerCase() == contentArray[1].name.toLowerCase())) {
+                    firstPageH13rd.innerHTML = `Detectamos que ya ha realizado nuestra prueba dos veces, una vez como ${contentArray[0].name} hecho en ${contentArray[0].day}, y una vez como ${contentArray[1].name} hecho en ${contentArray[1].day}. Elija lo que le gustaría hacer a continuación`;
+                    firstPageBtn1stTry.value = `Ver la prueba de ${contentArray[0].name}`;
+                    firstPageBtn2ndTry.value = `Ver la prueba de ${contentArray[1].name}`;
+                    firstPageBtn1stTryOverwrite.value = `Sobrescribir la prueba de ${contentArray[0].name}`;
+                    firstPageBtn2ndTryOverwrite.value = `Sobrescribir la prueba de ${contentArray[1].name}`;
                 } 
                 else {
-                    firstPageH13rd.innerHTML = `Detectamos que ya ha realizado nuestra prueba dos veces más ${contentArray11}, una vez hecho en ${contentArray125}, y una vez hecho en ${contentArray225}. Elija lo que le gustaría hacer a continuación`;
-                    firstPageBtn1stTry.value = `Ver la prueba de ${contentArray125}`;
-                    firstPageBtn2ndTry.value = `Ver la prueba de ${contentArray225}`;
-                    firstPageBtn1stTryOverwrite.value = `Sobrescribir la prueba de ${contentArray125}`;
-                    firstPageBtn2ndTryOverwrite.value = `Sobrescribir la prueba de ${contentArray225}`;
+                    firstPageH13rd.innerHTML = `Detectamos que ya ha realizado nuestra prueba dos veces más ${contentArray[0].name}, una vez hecho en ${contentArray[0].day}, y una vez hecho en ${contentArray[1].day}. Elija lo que le gustaría hacer a continuación`;
+                    firstPageBtn1stTry.value = `Ver la prueba de ${contentArray[0].day}`;
+                    firstPageBtn2ndTry.value = `Ver la prueba de ${contentArray[1].day}`;
+                    firstPageBtn1stTryOverwrite.value = `Sobrescribir la prueba de ${contentArray[0].day}`;
+                    firstPageBtn2ndTryOverwrite.value = `Sobrescribir la prueba de ${contentArray[1].day}`;
                 }
             }
-            if (contentArray25 == "dark" || contentArray25 == null || contentArray25 == undefined || contentArray25 == 'null' || contentArray25 == 'undefined') themeTypeDark();
-            else if (contentArray25 == "light") themeTypeLight();
+            if (contentArray[1].theme == "dark" || contentArray[1].theme == null || contentArray[1].theme == undefined) themeTypeDark();
+            else if (contentArray[1].theme == "light") themeTypeLight();
         }
         const enterFuncMid = (event, blur, focus) => {
             if(event.key === "Enter"){
                 document.getElementById(blur).blur();
                 document.getElementById(focus).focus();
             }
-            else{
-                alert("oi")
-            }
         }
         const enterFunc = (event) => {
             if (event.key === "Enter") nextPageInterpreter();
         }
         function numberBtnsOverwriteEn() {
-            if (!(contentArray11.toLowerCase() == contentArray21.toLowerCase())) {
-                    firstPageH13rd.innerHTML = `We detected that you have already tried our test twice, once as ${contentArray11} made in ${contentArray125}, and once as ${contentArray21} made in ${contentArray225}. Choose what you would like to do below`;
-                    firstPageBtn1stTry.value = `See the test made by ${contentArray11}`;
-                    firstPageBtn2ndTry.value = `See the test made by ${contentArray21}`;
-                    firstPageBtn1stTryOverwrite.value = `Overwrite test made by ${contentArray11}`;
-                    firstPageBtn2ndTryOverwrite.value = `Overwrite test made by ${contentArray21}`;
+            if (!(contentArray[0].name.toLowerCase() == contentArray[1].name.toLowerCase())) {
+                    firstPageH13rd.innerHTML = `We detected that you have already tried our test twice, once as ${contentArray[0].name} made in ${contentArray[0].day}, and once as ${contentArray[1].name} made in ${contentArray[1].day}. Choose what you would like to do below`;
+                    firstPageBtn1stTry.value = `See the test made by ${contentArray[0].name}`;
+                    firstPageBtn2ndTry.value = `See the test made by ${contentArray[1].name}`;
+                    firstPageBtn1stTryOverwrite.value = `Overwrite test made by ${contentArray[0].name}`;
+                    firstPageBtn2ndTryOverwrite.value = `Overwrite test made by ${contentArray[1].name}`;
                 } 
                 else {
-                    firstPageH13rd.innerHTML = `We detected that you have already tried our test twice as ${contentArray11}, once made in ${contentArray125}, and once made in ${contentArray225}. Choose what you would like to do below`;
-                    firstPageBtn1stTry.value = `See the test made in ${contentArray125}`;
-                    firstPageBtn2ndTry.value = `See the test made in ${contentArray225}`;
-                    firstPageBtn1stTryOverwrite.value = `Overwrite test made in ${contentArray125}`;
-                    firstPageBtn2ndTryOverwrite.value = `Overwrite test made in ${contentArray225}`;
+                    firstPageH13rd.innerHTML = `We detected that you have already tried our test twice as ${contentArray[0].name}, once made in ${contentArray[0].day}, and once made in ${contentArray[1].day}. Choose what you would like to do below`;
+                    firstPageBtn1stTry.value = `See the test made in ${contentArray[0].day}`;
+                    firstPageBtn2ndTry.value = `See the test made in ${contentArray[1].day}`;
+                    firstPageBtn1stTryOverwrite.value = `Overwrite test made in ${contentArray[0].day}`;
+                    firstPageBtn2ndTryOverwrite.value = `Overwrite test made in ${contentArray[1].day}`;
                 }
             }
             function numberBtnsOverwritePt(){
-                if (!(contentArray11.toLowerCase() == contentArray21.toLowerCase())) {
-                    firstPageH13rd.innerHTML = `Detectamos que você já tentou nosso teste duas vezes, uma vez como ${contentArray11} feito em ${contentArray125}, e uma vez como ${contentArray21} feito em ${contentArray225}. Escolha o que você gostaria de fazer abaixo`;
-                    firstPageBtn1stTry.value = `Ver o teste feito por ${contentArray11}`;
-                    firstPageBtn2ndTry.value = `Ver o teste feito por ${contentArray21}`;
-                    firstPageBtn1stTryOverwrite.value = `Sobrescrever o teste de ${contentArray11}`;
-                    firstPageBtn2ndTryOverwrite.value = `Sobrescrever o teste de ${contentArray21}`;
+                if (!(contentArray[0].name.toLowerCase() == contentArray[1].name.toLowerCase())) {
+                    firstPageH13rd.innerHTML = `Detectamos que você já tentou nosso teste duas vezes, uma vez como ${contentArray[0].name} feito em ${contentArray[0].day}, e uma vez como ${contentArray[1].name} feito em ${contentArray[1].day}. Escolha o que você gostaria de fazer abaixo`;
+                    firstPageBtn1stTry.value = `Ver o teste feito por ${contentArray[0].name}`;
+                    firstPageBtn2ndTry.value = `Ver o teste feito por ${contentArray[1].name}`;
+                    firstPageBtn1stTryOverwrite.value = `Sobrescrever o teste de ${contentArray[0].name}`;
+                    firstPageBtn2ndTryOverwrite.value = `Sobrescrever o teste de ${contentArray[1].name}`;
                 } 
                 else {
-                    firstPageH13rd.innerHTML = `Detectamos que você já tentou nosso teste duas vezes como ${contentArray11}, uma vez feito em ${contentArray125}, e uma vez feito em ${contentArray225}. Escolha o que você gostaria de fazer abaixo`;
-                    firstPageBtn1stTry.value = `Ver o teste feito em ${contentArray125}`;
-                    firstPageBtn2ndTry.value = `Ver o teste feito em ${contentArray225}`;
-                    firstPageBtn1stTryOverwrite.value = `Sobrescrever o teste de ${contentArray125}`;
-                    firstPageBtn2ndTryOverwrite.value = `Sobrescrever o teste de ${contentArray225}`;
+                    firstPageH13rd.innerHTML = `Detectamos que você já tentou nosso teste duas vezes como ${contentArray[0].name}, uma vez feito em ${contentArray[0].day}, e uma vez feito em ${contentArray[1].day}. Escolha o que você gostaria de fazer abaixo`;
+                    firstPageBtn1stTry.value = `Ver o teste feito em ${contentArray[0].day}`;
+                    firstPageBtn2ndTry.value = `Ver o teste feito em ${contentArray[1].day}`;
+                    firstPageBtn1stTryOverwrite.value = `Sobrescrever o teste de ${contentArray[0].day}`;
+                    firstPageBtn2ndTryOverwrite.value = `Sobrescrever o teste de ${contentArray[1].day}`;
                 }
             }
             function numberBtnsOverwriteFr(){
-                if (!(contentArray11.toLowerCase() == contentArray21.toLowerCase())) {
-                    firstPageH13rd.innerHTML = `Nous avons détecté que vous avez déjà essayé notre test deux fois, une fois comme ${contentArray11} fabriqué en ${contentArray125}, et une fois comme ${contentArray21} fabriqué en ${contentArray225}. Choisissez ce que vous souhaitez faire ci-dessous`;
-                    firstPageBtn1stTry.value = `Voir le test ${contentArray11}`;
-                    firstPageBtn2ndTry.value = `Voir le test ${contentArray21}`;
-                    firstPageBtn1stTryOverwrite.value = `Écraser le test ${contentArray11}`;
-                    firstPageBtn2ndTryOverwrite.value = `Écraser le test ${contentArray21}`;
+                if (!(contentArray[0].name.toLowerCase() == contentArray[1].name.toLowerCase())) {
+                    firstPageH13rd.innerHTML = `Nous avons détecté que vous avez déjà essayé notre test deux fois, une fois comme ${contentArray[0].name} fabriqué en ${contentArray[0].day}, et une fois comme ${contentArray[1].name} fabriqué en ${contentArray[1].day}. Choisissez ce que vous souhaitez faire ci-dessous`;
+                    firstPageBtn1stTry.value = `Voir le test ${contentArray[0].name}`;
+                    firstPageBtn2ndTry.value = `Voir le test ${contentArray[1].name}`;
+                    firstPageBtn1stTryOverwrite.value = `Écraser le test ${contentArray[0].name}`;
+                    firstPageBtn2ndTryOverwrite.value = `Écraser le test ${contentArray[1].name}`;
                 } 
                 else {
-                    firstPageH13rd.innerHTML = `Nous avons détecté que vous avez déjà essayé notre test deux fois plus ${contentArray11}, une fois fait en ${contentArray125}, et une fois fait en ${contentArray225}. Choisissez ce que vous souhaitez faire ci-dessous`;
-                    firstPageBtn1stTry.value = `Voir le test réalisé en ${contentArray125}`;
-                    firstPageBtn2ndTry.value = `Voir le test réalisé en ${contentArray225}`;
-                    firstPageBtn1stTryOverwrite.value = `Écraser le test dans ${contentArray125}`;
-                    firstPageBtn2ndTryOverwrite.value = `Écraser le test dans ${contentArray225}`;
+                    firstPageH13rd.innerHTML = `Nous avons détecté que vous avez déjà essayé notre test deux fois plus ${contentArray[0].name}, une fois fait en ${contentArray[0].day}, et une fois fait en ${contentArray[1].day}. Choisissez ce que vous souhaitez faire ci-dessous`;
+                    firstPageBtn1stTry.value = `Voir le test réalisé en ${contentArray[0].day}`;
+                    firstPageBtn2ndTry.value = `Voir le test réalisé en ${contentArray[1].day}`;
+                    firstPageBtn1stTryOverwrite.value = `Écraser le test dans ${contentArray[0].day}`;
+                    firstPageBtn2ndTryOverwrite.value = `Écraser le test dans ${contentArray[1].day}`;
                 }
             }
             function numberBtnsOverwriteEs(){
-                if (!(contentArray11.toLowerCase() == contentArray21.toLowerCase())) {
-                    firstPageH13rd.innerHTML = `Detectamos que ya ha realizado nuestra prueba dos veces, una vez como ${contentArray11} hecho en ${contentArray125}, y una vez como ${contentArray21} hecho en ${contentArray225}. Elija lo que le gustaría hacer a continuación`;
-                    firstPageBtn1stTry.value = `Ver la prueba de ${contentArray11}`;
-                    firstPageBtn2ndTry.value = `Ver la prueba de ${contentArray21}`;
-                    firstPageBtn1stTryOverwrite.value = `Sobrescribir la prueba de ${contentArray11}`;
-                    firstPageBtn2ndTryOverwrite.value = `Sobrescribir la prueba de ${contentArray21}`;
+                if (!(contentArray[0].name.toLowerCase() == contentArray[1].name.toLowerCase())) {
+                    firstPageH13rd.innerHTML = `Detectamos que ya ha realizado nuestra prueba dos veces, una vez como ${contentArray[0].name} hecho en ${contentArray[0].day}, y una vez como ${contentArray[1].name} hecho en ${contentArray[1].day}. Elija lo que le gustaría hacer a continuación`;
+                    firstPageBtn1stTry.value = `Ver la prueba de ${contentArray[0].name}`;
+                    firstPageBtn2ndTry.value = `Ver la prueba de ${contentArray[1].name}`;
+                    firstPageBtn1stTryOverwrite.value = `Sobrescribir la prueba de ${contentArray[0].name}`;
+                    firstPageBtn2ndTryOverwrite.value = `Sobrescribir la prueba de ${contentArray[1].name}`;
                 } 
                 else {
-                    firstPageH13rd.innerHTML = `Detectamos que ya ha realizado nuestra prueba dos veces más ${contentArray11}, una vez hecho en ${contentArray125}, y una vez hecho en ${contentArray225}. Elija lo que le gustaría hacer a continuación`;
-                    firstPageBtn1stTry.value = `Ver la prueba de ${contentArray125}`;
-                    firstPageBtn2ndTry.value = `Ver la prueba de ${contentArray225}`;
-                    firstPageBtn1stTryOverwrite.value = `Sobrescribir la prueba de ${contentArray125}`;
-                    firstPageBtn2ndTryOverwrite.value = `Sobrescribir la prueba de ${contentArray225}`;
+                    firstPageH13rd.innerHTML = `Detectamos que ya ha realizado nuestra prueba dos veces más ${contentArray[0].name}, una vez hecho en ${contentArray[0].day}, y una vez hecho en ${contentArray[1].day}. Elija lo que le gustaría hacer a continuación`;
+                    firstPageBtn1stTry.value = `Ver la prueba de ${contentArray[0].day}`;
+                    firstPageBtn2ndTry.value = `Ver la prueba de ${contentArray[1].day}`;
+                    firstPageBtn1stTryOverwrite.value = `Sobrescribir la prueba de ${contentArray[0].day}`;
+                    firstPageBtn2ndTryOverwrite.value = `Sobrescribir la prueba de ${contentArray[1].day}`;
                 }
             }
         function english() {
-            if (contentArray10 != null && contentArray10 != 'null' && contentArray20 != null && contentArray20 != 'null') numberBtnsOverwriteEn();
+            if (contentArray.length == 2) numberBtnsOverwriteEn();
             language = "english";
             languageValue = 1;
             firstPageBtnSeePrev.innerHTML = "Hide Previous Test";
@@ -1261,7 +1258,7 @@ svg circle {
             idHowToTxt1.innerHTML = "First, if you haven't already, check the theme and language that you prefer in the three bar button on the left. Then answer the test... candidly, yes, I know, its harsh but this is crucial for this to be as helpful as it can to you, then in some time from now you can repeat this test and compare the numbers.";
             idHowToTxt2.innerHTML = "Well, we are going to evaluate you in a comprehensive way and tell you the distance to your goals in your path to them, then you can come back to this very site and redo the test, having up to two previous test results stored locally and safely in your computer.";
             firstPageH1.innerHTML = "We are glad you gave us a chance to help you achieve the body of your dreams, press start to continue";
-            firstPageH12nd.innerHTML = `We detected that you have already tried our test once as ${contentArray11}, made in ${contentArray125}. Choose what you would like to do below`;
+            if (contentArray.length > 0) firstPageH12nd.innerHTML = `We detected that you have already tried our test once as ${contentArray[0].name}, made in ${contentArray[0].day}. Choose what you would like to do below`;
             firstPageBtnStart.value = `Start`;
             firstPageBtnDifferent.value = `Do a Different Test`;
             firstPageBtnOverwrite.value = `Overwrite one Previous Test`;
@@ -1410,7 +1407,7 @@ svg circle {
             returnUpdatedValues();
         }
         function português() {
-            if (contentArray10 != null && contentArray10 != 'null' && contentArray20 != null && contentArray20 != 'null') numberBtnsOverwritePt();
+            if (contentArray.length == 2) numberBtnsOverwritePt();
             language = "português";
             languageValue = 2;
             firstPageBtnSeePrev.innerHTML = "Ocultar Teste Anterior";
@@ -1419,7 +1416,7 @@ svg circle {
             idHowToTxt1.innerHTML = "Primeiro, se ainda não o fez, verifique o tema e o idioma de sua preferência no botão de três barras à esquerda. Então responda o teste ... francamente, sim, eu sei, é duro, mas isso é crucial para ser o mais útil possível para você, então em algum tempo você pode repetir este teste e comparar os números.";
             idHowToTxt2.innerHTML = "Bem, vamos avaliá-lo de uma forma compreensiva e dizer-lhe a distância de seus objetivos em seu caminho até eles, então você pode voltar a este mesmo site e refazer o teste, tendo até dois resultados de testes anteriores armazenados localmente e com segurança em seu computador.";
             firstPageH1.innerHTML = "Estamos felizes por você ter nos dado a chance de ajudá-lo a alcançar o corpo dos seus sonhos, pressione iniciar para continuar";
-            firstPageH12nd.innerHTML = `Detectamos que você já tentou nosso teste uma vez como ${contentArray11}, feito em ${contentArray125}. Escolha o que você gostaria de fazer abaixo`;
+            if (contentArray.length > 0) firstPageH12nd.innerHTML = `Detectamos que você já tentou nosso teste uma vez como ${contentArray[0].name}, feito em ${contentArray[0].day}. Escolha o que você gostaria de fazer abaixo`;
             firstPageBtnStart.value = `Iniciar`;
             firstPageBtnDifferent.value = `Fazer um novo Teste`;
             firstPageBtnOverwrite.value = `Sobrescrever um Teste Anterior`;
@@ -1568,7 +1565,7 @@ svg circle {
             returnUpdatedValues();
         }
         function français() {
-            if (contentArray10 != null && contentArray10 != 'null' && contentArray20 != null && contentArray20 != 'null') numberBtnsOverwriteFr();
+            if (contentArray.length == 2) numberBtnsOverwriteFr();
             language = "français";
             languageValue = 3;
             firstPageBtnSeePrev.innerHTML = "Masquer le test précédent";
@@ -1577,7 +1574,7 @@ svg circle {
             idHowToTxt1.innerHTML = "Tout d'abord, si vous ne l'avez pas déjà fait, vérifiez le thème et la langue que vous préférez dans le bouton à trois barres sur la gauche. Alors répondez au test ... franchement, oui, je sais, c'est dur, mais c'est crucial pour que cela vous soit aussi utile que possible, puis dans un certain temps, vous pourrez répéter ce test et comparer les chiffres.";
             idHowToTxt2.innerHTML = "Eh bien, nous allons vous évaluer de manière complète et vous indiquer la distance qui vous sépare de vos objectifs sur votre chemin vers eux, puis vous pouvez revenir sur ce site même et refaire le test, en ayant jusqu'à deux résultats de test précédents stockés localement et en toute sécurité dans votre ordinateur.";
             firstPageH1.innerHTML = "Nous sommes heureux que vous nous ayez donné une chance de vous aider à réaliser le corps de vos rêves, appuyez sur Début pour continuer";
-            firstPageH12nd.innerHTML = `Nous avons détecté que vous avez déjà essayé notre test une fois car ${contentArray11}, fabriqué en ${contentArray125}. Choisissez ce que vous souhaitez faire ci-dessous`;
+            if (contentArray.length > 0) firstPageH12nd.innerHTML = `Nous avons détecté que vous avez déjà essayé notre test une fois car ${contentArray[0].name}, fabriqué en ${contentArray[0].day}. Choisissez ce que vous souhaitez faire ci-dessous`;
             firstPageBtnStart.value = `Début`;
             firstPageBtnDifferent.value = `Faites un nouveau test`;
             firstPageBtnOverwrite.value = `Écraser un test précédent`;
@@ -1726,7 +1723,7 @@ svg circle {
             returnUpdatedValues();
         }
         function español() {
-            if (contentArray10 != null && contentArray10 != 'null' && contentArray20 != null && contentArray20 != 'null') numberBtnsOverwriteEs();
+            if (contentArray.length == 2) numberBtnsOverwriteEs();
             language = "español";
             languageValue = 4;
             firstPageBtnSeePrev.innerHTML = "Ocultar Prueba Anterior";
@@ -1735,7 +1732,7 @@ svg circle {
             idHowToTxt1.innerHTML = "Primero, si aún no lo ha hecho, marque el tema y el idioma que prefiera en el botón de tres barras a la izquierda. Luego responda la prueba ... con franqueza, sí, lo sé, es duro, pero esto es crucial para que esto sea lo más útil posible para usted, luego, en algún momento a partir de ahora, puede repetir esta prueba y comparar los números.";
             idHowToTxt2.innerHTML = "Bueno, lo evaluaremos de manera integral y le diremos la distancia a sus objetivos en su camino hacia ellos, luego puede regresar a este mismo sitio y rehacer la prueba, teniendo hasta dos resultados de pruebas anteriores almacenados localmente y de forma segura en su computadora.";
             firstPageH1.innerHTML = "Nos alegra que nos haya brindado la oportunidad de ayudarlo a lograr el cuerpo de sus sueños, presione comenzar para continuar";
-            firstPageH12nd.innerHTML = `Detectamos que ya ha realizado nuestra prueba una vez como ${contentArray11}, hecho en ${contentArray125}. Elija lo que le gustaría hacer a continuación`;
+            if (contentArray.length > 0) firstPageH12nd.innerHTML = `Detectamos que ya ha realizado nuestra prueba una vez como ${contentArray[0].name}, hecho en ${contentArray[0].day}. Elija lo que le gustaría hacer a continuación`;
             firstPageBtnStart.value = `Comienzo`;
             firstPageBtnDifferent.value = `Hacer una nueva prueba`;
             firstPageBtnOverwrite.value = `Sobrescribir una prueba anterior`;
@@ -2003,117 +2000,44 @@ svg circle {
             document.getElementById("downloadLinkColor").style.color = "lightgreen";
             document.getElementById("emailLinkColor").style.color = "pink";
             }
+            const setLocalData = (idParameter) => {
+                idUser = idParameter;
+                contentArray.push({
+                    idUser,
+                    name,
+                    emailaddrreturn,
+                    age,
+                    language,
+                    theme,
+                    genderreturn,
+                    resultBeginning2,
+                    btype,
+                    bodypt,
+                    bbg,
+                    bodyage,
+                    bodytp,
+                    cbody,
+                    ccbodycc,
+                    cbodyc,
+                    ccbody,
+                    bodycc,
+                    bodyc,
+                    emotionans,
+                    bmrl,
+                    bmrll,
+                    bmrlll,
+                    bmrllll,
+                    bmrlllll,
+                    day
+                });
+                contentArrayJSON = JSON.stringify(contentArray);
+                localStorage.setItem('contentArray', contentArrayJSON);
+            }
         function storage() {
-                if (tryNumber == 1) {
-                    contentArray10 = 1;
-                    contentArray11 = name;
-                    contentArray12 = emailaddrreturn;
-                    contentArray13 = age;
-                    contentArray14 = language;
-                    contentArray15 = theme;
-                    contentArray16 = genderreturn;
-                    contentArray17 = resultBeginning2;
-                    contentArray18 = btype;
-                    contentArray19 = bodypt;
-                    contentArray110 = bbg;
-                    contentArray111 = bodyage;
-                    contentArray112 = bodytp;
-                    contentArray113 = cbody;
-                    contentArray114 = ccbodycc;
-                    contentArray115 = cbodyc;
-                    contentArray116 = ccbody;
-                    contentArray117 = bodycc;
-                    contentArray118 = bodyc;
-                    contentArray119 = emotionans;
-                    contentArray120 = bmrl;
-                    contentArray121 = bmrll;
-                    contentArray122 = bmrlll;
-                    contentArray123 = bmrllll;
-                    contentArray124 = bmrlllll;
-                    contentArray125 = day;
-                    localStorage.setItem("contentArray10", contentArray10);
-                    localStorage.setItem("contentArray11", contentArray11);
-                    localStorage.setItem("contentArray12", contentArray12);
-                    localStorage.setItem("contentArray13", contentArray13);
-                    localStorage.setItem("contentArray14", contentArray14);
-                    localStorage.setItem("contentArray15", contentArray15);
-                    localStorage.setItem("contentArray16", contentArray16);
-                    localStorage.setItem("contentArray17", contentArray17);
-                    localStorage.setItem("contentArray18", contentArray18);
-                    localStorage.setItem("contentArray19", contentArray19);
-                    localStorage.setItem("contentArray110", contentArray110);
-                    localStorage.setItem("contentArray111", contentArray111);
-                    localStorage.setItem("contentArray112", contentArray112)
-                    localStorage.setItem("contentArray113", contentArray113);
-                    localStorage.setItem("contentArray114", contentArray114);
-                    localStorage.setItem("contentArray115", contentArray115);
-                    localStorage.setItem("contentArray116", contentArray116);
-                    localStorage.setItem("contentArray117", contentArray117);
-                    localStorage.setItem("contentArray118", contentArray118);
-                    localStorage.setItem("contentArray119", contentArray119);
-                    localStorage.setItem("contentArray120", contentArray120);
-                    localStorage.setItem("contentArray121", contentArray121);
-                    localStorage.setItem("contentArray122", contentArray122);
-                    localStorage.setItem("contentArray123", contentArray123);
-                    localStorage.setItem("contentArray124", contentArray124);
-                    localStorage.setItem("contentArray125", contentArray125);
-                }
-                else if (tryNumber == 2) {
-                    contentArray20 = 2;
-                    contentArray21 = name;
-                    contentArray22 = emailaddrreturn;
-                    contentArray23 = age;
-                    contentArray24 = language;
-                    contentArray25 = theme;
-                    contentArray26 = genderreturn;
-                    contentArray27 = resultBeginning2;
-                    contentArray28 = btype;
-                    contentArray29 = bodypt;
-                    contentArray210 = bbg;
-                    contentArray211 = bodyage;
-                    contentArray212 = bodytp;
-                    contentArray213 = cbody;
-                    contentArray214 = ccbodycc;
-                    contentArray215 = cbodyc;
-                    contentArray216 = ccbody;
-                    contentArray217 = bodycc;
-                    contentArray218 = bodyc;
-                    contentArray219 = emotionans;
-                    contentArray220 = bmrl;
-                    contentArray221 = bmrll;
-                    contentArray222 = bmrlll;
-                    contentArray223 = bmrllll;
-                    contentArray224 = bmrlllll;
-                    contentArray225 = day;
-                    localStorage.setItem("contentArray20", contentArray20);
-                    localStorage.setItem("contentArray21", contentArray21);
-                    localStorage.setItem("contentArray22", contentArray22);
-                    localStorage.setItem("contentArray23", contentArray23);
-                    localStorage.setItem("contentArray24", contentArray24);
-                    localStorage.setItem("contentArray25", contentArray25);
-                    localStorage.setItem("contentArray26", contentArray26);
-                    localStorage.setItem("contentArray27", contentArray27);
-                    localStorage.setItem("contentArray28", contentArray28);
-                    localStorage.setItem("contentArray29", contentArray29);
-                    localStorage.setItem("contentArray210", contentArray210);
-                    localStorage.setItem("contentArray211", contentArray211);
-                    localStorage.setItem("contentArray212", contentArray212)
-                    localStorage.setItem("contentArray213", contentArray213);
-                    localStorage.setItem("contentArray214", contentArray214);
-                    localStorage.setItem("contentArray215", contentArray215);
-                    localStorage.setItem("contentArray216", contentArray216);
-                    localStorage.setItem("contentArray217", contentArray217);
-                    localStorage.setItem("contentArray218", contentArray218);
-                    localStorage.setItem("contentArray219", contentArray219);
-                    localStorage.setItem("contentArray220", contentArray220);
-                    localStorage.setItem("contentArray221", contentArray221);
-                    localStorage.setItem("contentArray222", contentArray222);
-                    localStorage.setItem("contentArray223", contentArray223);
-                    localStorage.setItem("contentArray224", contentArray224);
-                    localStorage.setItem("contentArray225", contentArray225);
-                }
+                if (tryNumber == 1) setLocalData(1);
+                else if (tryNumber == 2) setLocalData(2);
                 else{
-                    alert("Sorry, there has been a mistake, try to answer again pelase");
+                    console.error('Error 404');
                     window.location.reload();
                 }
             }
@@ -2123,9 +2047,9 @@ svg circle {
                 idFooter.style.display = "none";
                 buttonFirst.style.display = "block";
                 finalResultH3Id.style.display = "block";
-                finalResultH3Id.innerHTML = `${contentArray17} ${contentArray11}</big>, ${contentArray18} <br> ${contentArray19}${contentArray110}<br><br>${contentArray111}<br><br>${contentArray112}<br><br>${contentArray113}<br><br>${contentArray114}<br><br>${contentArray115}<br><br>${contentArray116}<br><br>${contentArray117}<br><br>${contentArray118}<br><br>${contentArray119}<br><br>${contentArray120}<br><br><br>`;
+                finalResultH3Id.innerHTML = `${contentArray[0].resultBeginning2} ${contentArray[0].name}</big>, ${contentArray[0].btype} <br> ${contentArray[0].bodypt}${contentArray[0].bbg}<br><br>${contentArray[0].bodyage}<br><br>${contentArray[0].bodytp}<br><br>${contentArray[0].cbody}<br><br>${contentArray[0].ccbodycc}<br><br>${contentArray[0].cbodyc}<br><br>${contentArray[0].ccbody}<br><br>${contentArray[0].bodycc}<br><br>${contentArray[0].bodyc}<br><br>${contentArray[0].emotionans}<br><br>${contentArray[0].bmrl}<br><br><br>`;
                 finalResultH4Id.style.display = "block";
-                finalResultH4Id.innerHTML = `<i>${contentArray121}<br><br>${contentArray122}<br><br>${contentArray123}<br><br>${contentArray124}</i><br><br><br>`;
+                finalResultH4Id.innerHTML = `<i>${contentArray[0].bmrll}<br><br>${contentArray[0].bmrlll}<br><br>${contentArray[0].bmrllll}<br><br>${contentArray[0].bmrlllll}</i><br><br><br>`;
                 idFooter.style.position = "relative"
                 idFooter.style.marginBottom = "0";
                 idFooter.style.display = "block";
@@ -2135,9 +2059,9 @@ svg circle {
                 idFooter.style.display = "none";
                 buttonFirst.style.display = "block";
                 finalResultH3Id.style.display = "block";
-                finalResultH3Id.innerHTML = `${contentArray27} ${contentArray21}</big>, ${contentArray28} <br> ${contentArray29}${contentArray210}<br><br>${contentArray211}<br><br>${contentArray212}<br><br>${contentArray213}<br><br>${contentArray214}<br><br>${contentArray215}<br><br>${contentArray216}<br><br>${contentArray217}<br><br>${contentArray218}<br><br>${contentArray219}<br><br>${contentArray220}<br><br><br>`;
+                finalResultH3Id.innerHTML = `${contentArray[1].resultBeginning2} ${contentArray[1].name}</big>, ${contentArray[1].btype} <br> ${contentArray[1].bodypt}${contentArray[1].bbg}<br><br>${contentArray[1].bodyage}<br><br>${contentArray[1].bodytp}<br><br>${contentArray[1].cbody}<br><br>${contentArray[1].ccbodycc}<br><br>${contentArray[1].cbodyc}<br><br>${contentArray[1].ccbody}<br><br>${contentArray[1].bodycc}<br><br>${contentArray[1].bodyc}<br><br>${contentArray[1].emotionans}<br><br>${contentArray[1].bmrl}<br><br><br>`;
                 finalResultH4Id.style.display = "block";
-                finalResultH4Id.innerHTML = `<i>${contentArray221}<br><br>${contentArray222}<br><br>${contentArray223}<br><br>${contentArray224}</i><br><br><br>`;
+                finalResultH4Id.innerHTML = `<i>${contentArray[1].bmrll}<br><br>${contentArray[1].bmrlll}<br><br>${contentArray[1].bmrllll}<br><br>${contentArray[1].bmrlllll}</i><br><br><br>`;
                 idFooter.style.position = "relative"
                 idFooter.style.marginBottom = "0";
                 idFooter.style.display = "block";
@@ -2155,37 +2079,14 @@ svg circle {
         }
         function overwriteTest2(paramas) {
             if (paramas == 1) {
-                if (language == "english") var confirmOverwrite = confirm(`Are you sure you want to overwrite the test made as ${contentArray11}? It will be forever destroyed.`);
-                else if(language == "português") var confirmOverwrite = confirm(`Tem certeza que deseja sobrescrever o teste feito por ${contentArray11}? Esse teste será destruido para sempre.`);
-                else if(language == "français") var confirmOverwrite = confirm(`Voulez-vous vraiment remplacer le test effectué comme ${contentArray11}? Il sera détruit à jamais.`);
-                else if(language == "español") var confirmOverwrite = confirm(`¿Estás seguro de que quieres sobrescribir la prueba realizada como ${contentArray11}? Será destruido para siempre.`);
+                if (language == "english") var confirmOverwrite = confirm(`Are you sure you want to overwrite the test made as ${contentArray[0].name}? It will be forever destroyed.`);
+                else if(language == "português") var confirmOverwrite = confirm(`Tem certeza que deseja sobrescrever o teste feito por ${contentArray[0].name}? Esse teste será destruido para sempre.`);
+                else if(language == "français") var confirmOverwrite = confirm(`Voulez-vous vraiment remplacer le test effectué comme ${contentArray[0].name}? Il sera détruit à jamais.`);
+                else if(language == "español") var confirmOverwrite = confirm(`¿Estás seguro de que quieres sobrescribir la prueba realizada como ${contentArray[0].name}? Será destruido para siempre.`);
                 if (confirmOverwrite == true) {
-                    localStorage.removeItem("contentArray10");
-                    localStorage.removeItem("contentArray11");
-                    localStorage.removeItem("contentArray12");
-                    localStorage.removeItem("contentArray13");
-                    localStorage.removeItem("contentArray14");
-                    localStorage.removeItem("contentArray15");
-                    localStorage.removeItem("contentArray16");
-                    localStorage.removeItem("contentArray17");
-                    localStorage.removeItem("contentArray18");
-                    localStorage.removeItem("contentArray19");
-                    localStorage.removeItem("contentArray110");
-                    localStorage.removeItem("contentArray111");
-                    localStorage.removeItem("contentArray112");
-                    localStorage.removeItem("contentArray113");
-                    localStorage.removeItem("contentArray114");
-                    localStorage.removeItem("contentArray115");
-                    localStorage.removeItem("contentArray116");
-                    localStorage.removeItem("contentArray117");
-                    localStorage.removeItem("contentArray118");
-                    localStorage.removeItem("contentArray119");
-                    localStorage.removeItem("contentArray120");
-                    localStorage.removeItem("contentArray121");
-                    localStorage.removeItem("contentArray122");
-                    localStorage.removeItem("contentArray123");
-                    localStorage.removeItem("contentArray124");
-                    localStorage.removeItem("contentArray125");
+                    contentArray.shift();
+                    contentArrayJSON = JSON.stringify(contentArray);
+                    localStorage.setItem('contentArray', contentArrayJSON);
                     start1stTry();
                     firstPageBtn1stTry.style.display = "none";
                     firstPageBtn1stTryOverwrite.style.display = "none";
@@ -2198,74 +2099,28 @@ svg circle {
                 }
             }
             else if (paramas == 2) {
-                if (language == "english") var confirmOverwrite = confirm(`Are you sure you want to overwrite the test made as ${contentArray21}? It will be forever destroyed.`);
-                else if(language == "português") var confirmOverwrite = confirm(`Tem certeza que deseja sobrescrever o teste feito por ${contentArray21}? Esse teste será destruido para sempre.`);
-                else if(language == "français") var confirmOverwrite = confirm(`Voulez-vous vraiment remplacer le test effectué comme ${contentArray21}? Il sera détruit à jamais.`);
-                else if(language == "español") var confirmOverwrite = confirm(`¿Estás seguro de que quieres sobrescribir la prueba realizada como ${contentArray21}? Será destruido para siempre.`);
+                if (language == "english") var confirmOverwrite = confirm(`Are you sure you want to overwrite the test made as ${contentArray[1].name}? It will be forever destroyed.`);
+                else if(language == "português") var confirmOverwrite = confirm(`Tem certeza que deseja sobrescrever o teste feito por ${contentArray[1].name}? Esse teste será destruido para sempre.`);
+                else if(language == "français") var confirmOverwrite = confirm(`Voulez-vous vraiment remplacer le test effectué comme ${contentArray[1].name}? Il sera détruit à jamais.`);
+                else if(language == "español") var confirmOverwrite = confirm(`¿Estás seguro de que quieres sobrescribir la prueba realizada como ${contentArray[1].name}? Será destruido para siempre.`);
                 if (confirmOverwrite == true) {
-                    localStorage.removeItem("contentArray20");
-                    localStorage.removeItem("contentArray21");
-                    localStorage.removeItem("contentArray22");
-                    localStorage.removeItem("contentArray23");
-                    localStorage.removeItem("contentArray24");
-                    localStorage.removeItem("contentArray25");
-                    localStorage.removeItem("contentArray26");
-                    localStorage.removeItem("contentArray27");
-                    localStorage.removeItem("contentArray28");
-                    localStorage.removeItem("contentArray29");
-                    localStorage.removeItem("contentArray210");
-                    localStorage.removeItem("contentArray211");
-                    localStorage.removeItem("contentArray212");
-                    localStorage.removeItem("contentArray213");
-                    localStorage.removeItem("contentArray214");
-                    localStorage.removeItem("contentArray215");
-                    localStorage.removeItem("contentArray216");
-                    localStorage.removeItem("contentArray217");
-                    localStorage.removeItem("contentArray218");
-                    localStorage.removeItem("contentArray219");
-                    localStorage.removeItem("contentArray220");
-                    localStorage.removeItem("contentArray221");
-                    localStorage.removeItem("contentArray222");
-                    localStorage.removeItem("contentArray223");
-                    localStorage.removeItem("contentArray224");
-                    localStorage.removeItem("contentArray225");
+                    contentArray.pop();
+                    contentArrayJSON = JSON.stringify(contentArray);
+                    localStorage.setItem('contentArray', contentArrayJSON);
                     start2ndTry();
                 }
             }
         }
         function overwriteTest() {
             if (triesMade == 1) {
-                if (language == "english") var confirmOverwrite = confirm(`Are you sure you want to overwrite the test made as ${contentArray11}? It will be forever destroyed.`);
-                else if(language == "português") var confirmOverwrite = confirm(`Tem certeza que deseja sobrescrever o teste feito por ${contentArray11}? Esse teste será destruido para sempre.`);
-                else if(language == "français") var confirmOverwrite = confirm(`Voulez-vous vraiment remplacer le test effectué comme ${contentArray11}? Il sera détruit à jamais.`);
-                else if(language == "español") var confirmOverwrite = confirm(`¿Estás seguro de que quieres sobrescribir la prueba realizada como ${contentArray11}? Será destruido para siempre.`);
+                if (language == "english") var confirmOverwrite = confirm(`Are you sure you want to overwrite the test made as ${contentArray[0].name}? It will be forever destroyed.`);
+                else if(language == "português") var confirmOverwrite = confirm(`Tem certeza que deseja sobrescrever o teste feito por ${contentArray[0].name}? Esse teste será destruido para sempre.`);
+                else if(language == "français") var confirmOverwrite = confirm(`Voulez-vous vraiment remplacer le test effectué comme ${contentArray[0].name}? Il sera détruit à jamais.`);
+                else if(language == "español") var confirmOverwrite = confirm(`¿Estás seguro de que quieres sobrescribir la prueba realizada como ${contentArray[0].name}? Será destruido para siempre.`);
                 if (confirmOverwrite == true) {
-                    localStorage.removeItem("contentArray10");
-                    localStorage.removeItem("contentArray11");
-                    localStorage.removeItem("contentArray12");
-                    localStorage.removeItem("contentArray13");
-                    localStorage.removeItem("contentArray14");
-                    localStorage.removeItem("contentArray15");
-                    localStorage.removeItem("contentArray16");
-                    localStorage.removeItem("contentArray17");
-                    localStorage.removeItem("contentArray18");
-                    localStorage.removeItem("contentArray19");
-                    localStorage.removeItem("contentArray110");
-                    localStorage.removeItem("contentArray111");
-                    localStorage.removeItem("contentArray112");
-                    localStorage.removeItem("contentArray113");
-                    localStorage.removeItem("contentArray114");
-                    localStorage.removeItem("contentArray115");
-                    localStorage.removeItem("contentArray116");
-                    localStorage.removeItem("contentArray117");
-                    localStorage.removeItem("contentArray118");
-                    localStorage.removeItem("contentArray119");
-                    localStorage.removeItem("contentArray120");
-                    localStorage.removeItem("contentArray121");
-                    localStorage.removeItem("contentArray122");
-                    localStorage.removeItem("contentArray123");
-                    localStorage.removeItem("contentArray124");
-                    localStorage.removeItem("contentArray125");
+                    contentArray.shift();
+                    contentArrayJSON = JSON.stringify(contentArray);
+                    localStorage.setItem('contentArray', contentArrayJSON);
                     start1stTry();
                 }
             } 
@@ -2282,59 +2137,8 @@ svg circle {
                 else if(language == "français") var deletePrevTests = confirm("Voulez-vous vraiment supprimer tous les tests?");
                 else if(language == "español") var deletePrevTests = confirm("¿Estás seguro de que quieres eliminar todas las pruebas?");
             if (deletePrevTests == true) {
-                    localStorage.removeItem("contentArray10");
-                    localStorage.removeItem("contentArray11");
-                    localStorage.removeItem("contentArray12");
-                    localStorage.removeItem("contentArray13");
-                    localStorage.removeItem("contentArray14");
-                    localStorage.removeItem("contentArray15");
-                    localStorage.removeItem("contentArray16");
-                    localStorage.removeItem("contentArray17");
-                    localStorage.removeItem("contentArray18");
-                    localStorage.removeItem("contentArray19");
-                    localStorage.removeItem("contentArray110");
-                    localStorage.removeItem("contentArray111");
-                    localStorage.removeItem("contentArray112");
-                    localStorage.removeItem("contentArray113");
-                    localStorage.removeItem("contentArray114");
-                    localStorage.removeItem("contentArray115");
-                    localStorage.removeItem("contentArray116");
-                    localStorage.removeItem("contentArray117");
-                    localStorage.removeItem("contentArray118");
-                    localStorage.removeItem("contentArray119");
-                    localStorage.removeItem("contentArray120");
-                    localStorage.removeItem("contentArray121");
-                    localStorage.removeItem("contentArray122");
-                    localStorage.removeItem("contentArray123");
-                    localStorage.removeItem("contentArray124");
-                    localStorage.removeItem("contentArray125");
-                    localStorage.removeItem("contentArray20");
-                    localStorage.removeItem("contentArray21");
-                    localStorage.removeItem("contentArray22");
-                    localStorage.removeItem("contentArray23");
-                    localStorage.removeItem("contentArray24");
-                    localStorage.removeItem("contentArray25");
-                    localStorage.removeItem("contentArray26");
-                    localStorage.removeItem("contentArray27");
-                    localStorage.removeItem("contentArray28");
-                    localStorage.removeItem("contentArray29");
-                    localStorage.removeItem("contentArray210");
-                    localStorage.removeItem("contentArray211");
-                    localStorage.removeItem("contentArray212");
-                    localStorage.removeItem("contentArray213");
-                    localStorage.removeItem("contentArray214");
-                    localStorage.removeItem("contentArray215");
-                    localStorage.removeItem("contentArray216");
-                    localStorage.removeItem("contentArray217");
-                    localStorage.removeItem("contentArray218");
-                    localStorage.removeItem("contentArray219");
-                    localStorage.removeItem("contentArray220");
-                    localStorage.removeItem("contentArray221");
-                    localStorage.removeItem("contentArray222");
-                    localStorage.removeItem("contentArray223");
-                    localStorage.removeItem("contentArray224");
-                    localStorage.removeItem("contentArray225");
-                window.location.reload();
+                    localStorage.removeItem('contentArray');
+                    window.location.reload();
             } 
         }
         function hidePrevTests() {
