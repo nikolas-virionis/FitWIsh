@@ -846,8 +846,8 @@ svg circle {
             <input type="button" class="button pageDisplayNone" id="firstPageBtn1stTryOverwrite"  onclick="overwriteTest2(1);" value="Overwrite Test made as ">
             <input type="button" class="button pageDisplayNone" id="firstPageBtn2ndTryOverwrite"  onclick="overwriteTest2(2);" value="Overwrite Test made as ">
             <span class="firstPageBtns">
-            <input type="button" class="button" id="firstPageBtnStart" onclick="start1stTry();" value="Start">
-            <input type="button" class="button pageDisplayNone" id="firstPageBtnDifferent"  onclick="start2ndTry();" value="Do a Different Test">
+            <input type="button" class="button" id="firstPageBtnStart" onclick="startNewTry(1);" value="Start">
+            <input type="button" class="button pageDisplayNone" id="firstPageBtnDifferent"  onclick="startNewTry(2);" value="Do a Different Test">
             <input type="button" class="button pageDisplayNone" id="firstPageBtnOverwrite"  onclick="overwriteTest();" value="Overwrite one Previous Test">
             <input type="button" class="button pageDisplayNone" id="firstPageBtnDelete"  onclick="deleteTests();" value="Delete All Previous Tests Made">
             <input type="button" class="button pageDisplayNone" id="firstPageBtnSeePrev"  onclick="seePrevTest();" value="See the Previous Test Result">
@@ -881,12 +881,12 @@ svg circle {
                     Sooner than you'd expect, you'll be used to looking just as good as you want, and healthier too!
                 </p>
         <br><br><br></strong>
-        <strong id="idLoginSubmit" class="pageDisplayNone"><label class="label" for="name" ><h1><b><i class="classHeading headingTextInputId" id="headingTextInputIdName" onkeypress="enterFuncMid(event, 'headingTextInputIdName', 'headingTextInputIdAge');">Name:</i></b></h1></label>
+        <strong id="idLoginSubmit" class="pageDisplayNone"><label class="label" for="name" ><h1><b><i class="classHeading headingTextInputId" id="headingTextInputIdName" onkeyup="enterFuncMid(event, 'headingTextInputIdName', 'headingTextInputIdAge');">Name:</i></b></h1></label>
         <input  class="textInputClass" type="text" required placeholder="Name Example: Nick" name="name" id="name"/>
-        <label class="label" for="agest"><h1><b><i class="classHeading headingTextInputId" id="headingTextInputIdAge" onkeypress="enterFuncMid(event, 'headingTextInputIdAge', 'headingTextInputIdEmail');">Age:</i></b></h1></label>
+        <label class="label" for="agest"><h1><b><i class="classHeading headingTextInputId" id="headingTextInputIdAge" onkeyup="enterFuncMid(event, 'headingTextInputIdAge', 'headingTextInputIdEmail');">Age:</i></b></h1></label>
         <input  class="textInputClass" type="number" step="1" placeholder="Age Example: 24" name="agest" id="agest" required />
         <label class="label" for="email"><h1><b><i class="classHeading headingTextInputId" id="headingTextInputIdEmail">Email:</i></b></h1></label>
-        <input  class="textInputClass" type="email" placeholder="Example: name.lastname@email.com" name="email" id="email" required onkeypress="enterFunc(event);"/>
+        <input  class="textInputClass" type="email" placeholder="Example: name.lastname@email.com" name="email" id="email" required onkeyup="enterFunc(event);"/>
         </strong>
         <strong id="idGenderUnitSubmit" class="pageDisplayNone"><br><br>
   <b><b><h1 class="classHeading headingObjInputId" id="headingObjInputIdGender"><i>Gender:</i></h1></b></b><a><input class="buttonHalfWidth button button35vw" id="colorChangeIdMale" onmouseover='hoverColorChangeFunc("colorChangeIdMale")'  onmouseout='hoverOutColorChangeFunc("hoverColorVarMale", "colorChangeIdMale")'  onclick=" returnEmailAddr(); changeColor2(xx1, 'colorChangeIdMale', xx2, 'colorChangeIdFemale'); male(); returnGender('colorChangeIdMale'); validate();" type="button" value="Male" /></a>
@@ -897,15 +897,15 @@ svg circle {
 <strong id="idDataSubmit" class="pageDisplayNone">
 <span id="metricDataInputId">
     <label class="label" for="weightMetric"><h1><b><i class="classHeading headingTextInputId" id="headingTextInputIdWeightMetric">Weight:</i></b></h1></label>
-    <input  class="textInputClass" type="number" placeholder="Example: 80.5" name="weightMetric" id="weightMetric" required onkeypress="enterFuncMid(event, 'weightMetric', 'heightMetric');" /><br>
+    <input  class="textInputClass" type="number" placeholder="Example: 80.5" name="weightMetric" id="weightMetric" required onkeyup="enterFuncMid(event, 'weightMetric', 'heightMetric');" /><br>
     <label  class="label" for="heightMetric" ><h1><b><i class="classHeading headingTextInputId" id="headingTextInputIdHeightMetric">Height:</i></b></h1></label>
-    <input  class="textInputClass" type="number" required placeholder="Example: 1.85" name="heightMetric" id="heightMetric" onkeypress="enterFunc(event);"/><br>
+    <input  class="textInputClass" type="number" required placeholder="Example: 1.85" name="heightMetric" id="heightMetric" onkeyup="enterFunc(event);"/><br>
     </span>
     <span id="imperialDataInputId" class="pageDisplayNone">
     <label class="label" for="weightImperial"><h1><b><i class="classHeading headingTextInputId" id="headingTextInputIdWeightImperial">Weight:</i></b></h1></label>
-    <input  class="textInputClass" type="number" placeholder="Example: 200.5" name="weightImperial" id="weightImperial" required onkeypress="enterFuncMid(event, 'weightImperial', 'heightImperial');" /><br>
+    <input  class="textInputClass" type="number" placeholder="Example: 200.5" name="weightImperial" id="weightImperial" required onkeyup="enterFuncMid(event, 'weightImperial', 'heightImperial');" /><br>
     <label  class="label" for="heightImperial" ><h1><b><i class="classHeading headingTextInputId" id="headingTextInputIdHeightImperial">Height:</i></b></h1></label>
-    <input  class="textInputClass" type="number" required placeholder="Example: 70" name="heightImperial" id="heightImperial" onkeypress="enterFunc(event);"/><br>
+    <input  class="textInputClass" type="number" required placeholder="Example: 70" name="heightImperial" id="heightImperial" onkeyup="enterFunc(event);"/><br>
     </span></strong>
         <strong id="idGoalSubmit" class="pageDisplayNone margin15vhSubmit"><b><h1 class="classHeading headingObjInputId" id="headingObjInputIdGoal"><i>Goal:</i></h1></b> <input class="buttonHalfWidth button btnFont25"  id="colorChangeIdBulk" onmouseover='hoverColorChangeFunc("colorChangeIdBulk")' onclick="bodyGoalFunction('bulking'); changeColor4(x7, 'colorChangeIdBulk', x8, 'colorChangeIdCut', x9, 'colorChangeIdMuscle', x10, 'colorChangeIdSurp'); returnGoal('colorChangeIdBulk');" onmouseout='hoverOutColorChangeFunc("hoverColorVarBulk", "colorChangeIdBulk")'  type="button" value="Bulking" >
   <input class="buttonHalfWidth button btnFont25" id="colorChangeIdCut" onmouseover='hoverColorChangeFunc("colorChangeIdCut")' onmouseout='hoverOutColorChangeFunc("hoverColorVarCut", "colorChangeIdCut")'  onclick="bodyGoalFunction('cutting'); changeColor4(x7, 'colorChangeIdCut', x8, 'colorChangeIdMuscle', x9, 'colorChangeIdSurp', x10, 'colorChangeIdBulk'); returnGoal('colorChangeIdCut');" type="button" value="Cutting">
@@ -1070,10 +1070,13 @@ svg circle {
         <!--JavaScript-->
         <script>
         //literally all variables declaration ->
-        var btype, resultBeginning, contentArrayJSON, contentArrayJSONget = localStorage.getItem('contentArray'), contentArray = JSON.parse(contentArrayJSONget) ?? [], idUser, c, c2, c3, c4, resultBeginning2, day, dd, mm, yyyy, triesMade, tryNumber, counter = 0, ttttt, metricDefault, metricVerify = 0, imperialDefault, metricNoDefault, rpossibilities, defaultUnit, colorDownload = "#1F3B4D", backgroundColorDownload = "#12232A", done, processing, diagnosis, langleftnav, alreadyInPage, local, differentPage = 0, backupGenderImg = '<br><br><br><br><br><span style="font-size: 40px; font-variant:all-caps; color:white; display: grid; place-items: center;">Select a gender to see the reference Image', weightManagementProgramFinalResult, language, theme, emailLinkFunc, downloadLinkFunc, emotionans, emotionreturn, emotion, idealweight1, idealweight2, idealweight0, weightstring, weight, heightstring, height, unit, deltapp, bodyy, aaa, aaaa, heightfeetstring, heightinchstring, heightfeet, heightinch, weightfloat, weight1, weight2, bbgwp, bbgw0, xx1, xx2, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, x16, x17, x18, x19, x20, x21, x22, x23, x24, x25, x26, x27, x28, x29, x30, x31, x32, xx24, xx25, xx26, xx27, xx28, xx29, xx30, xx31, xx32, x34, x35, x36, x37, x38, x39, x40, x41, x42, x43, x44, x45, x46, x47, x48, x49, x50, bodyreturn, emailaddrreturn, genderreturn, unitreturn, goalreturn, bodyimgreturn, goalimgreturn, xercisereturn, healthyreturn, cheatreturn, mealsreturn, confirmWriteEmail, cbody, cbodyc, ccbody, bodycc, ccbodycc, bodyc, c, bmr, bmrl, bmrll, bmrlll, bbgw1, bbgw2, subject, message, urll, redirectemail, element, addup1, addup2, addup3, addup4, addup5, addup6, emailaddrreturnfinal, name, agest, age, bodyage, languageValue = 1, fullresult = "", ttt = 0, firstAlert = "DISCLAIMER: This is not a medical nor nutritionist advice and not only does not exclude a medical consultation, but also, me as this code creator, encourage and support YOU to get to see your doctor for anything YOU think YOU should improve in YOUR health life. Peace!", bmi_state = "", gender = "", bope = "", bodyp = 0, bodyps = parseFloat(bodyp), bodypt = "", bodytp = "", bodytype = "", idealweight = "", idealWeight00 = 0, idealweight10 = parseFloat(idealweight1), idealweight20 = parseFloat(idealweight2), idealWeight000 = parseFloat(idealWeight00), deltap = 0, bmi = 0, b = 0, bgoal = 0, bbgoal = 0, bbgw3 = 0, bbgw4 = 0, bbgw00 = 0, bbgw0p = 0, noEmailNeeded = 0, wrongEmailCount = 0, bodyresult = "", bbg = "", bbgw = "";
+        var btype, buttonQuerySelector = document.querySelectorAll('.button'), resultBeginning, contentArrayJSON, contentArrayJSONget = localStorage.getItem('contentArray'), contentArray = JSON.parse(contentArrayJSONget) ?? [], idUser, c, c2, c3, c4, resultBeginning2, day, dd, mm, yyyy, triesMade, tryNumber, counter = 0, ttttt, metricDefault, metricVerify = 0, imperialDefault, metricNoDefault, rpossibilities, defaultUnit, colorDownload = "#1F3B4D", backgroundColorDownload = "#12232A", done, processing, diagnosis, langleftnav, alreadyInPage, local, differentPage = 0, backupGenderImg = '<br><br><br><br><br><span style="font-size: 40px; font-variant:all-caps; color:white; display: grid; place-items: center;">Select a gender to see the reference Image', weightManagementProgramFinalResult, language, theme, emailLinkFunc, downloadLinkFunc, emotionans, emotionreturn, emotion, idealweight1, idealweight2, idealweight0, weightstring, weight, heightstring, height, unit, deltapp, bodyy, aaa, aaaa, heightfeetstring, heightinchstring, heightfeet, heightinch, weightfloat, weight1, weight2, bbgwp, bbgw0, xx1, xx2, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, x16, x17, x18, x19, x20, x21, x22, x23, x24, x25, x26, x27, x28, x29, x30, x31, x32, xx24, xx25, xx26, xx27, xx28, xx29, xx30, xx31, xx32, x34, x35, x36, x37, x38, x39, x40, x41, x42, x43, x44, x45, x46, x47, x48, x49, x50, bodyreturn, emailaddrreturn, genderreturn, unitreturn, goalreturn, bodyimgreturn, goalimgreturn, xercisereturn, healthyreturn, cheatreturn, mealsreturn, confirmWriteEmail, cbody, cbodyc, ccbody, bodycc, ccbodycc, bodyc, c, bmr, bmrl, bmrll, bmrlll, bbgw1, bbgw2, subject, message, urll, redirectemail, element, addup1, addup2, addup3, addup4, addup5, addup6, emailaddrreturnfinal, name, agest, age, bodyage, languageValue = 1, fullresult = "", ttt = 0, firstAlert = "DISCLAIMER: This is not a medical nor nutritionist advice and not only does not exclude a medical consultation, but also, me as this code creator, encourage and support YOU to get to see your doctor for anything YOU think YOU should improve in YOUR health life. Peace!", bmi_state = "", gender = "", bope = "", bodyp = 0, bodyps = parseFloat(bodyp), bodypt = "", bodytp = "", bodytype = "", idealweight = "", idealWeight00 = 0, idealweight10 = parseFloat(idealweight1), idealweight20 = parseFloat(idealweight2), idealWeight000 = parseFloat(idealWeight00), deltap = 0, bmi = 0, b = 0, bgoal = 0, bbgoal = 0, bbgw3 = 0, bbgw4 = 0, bbgw00 = 0, bbgw0p = 0, noEmailNeeded = 0, wrongEmailCount = 0, bodyresult = "", bbg = "", bbgw = "";
         unitSystem('metric');
         english();
-        document.addEventListener('keypress', event => (event.key === "Enter" && idDataSubmit.style.display === "none") ? nextPageInterpreter() : true);
+        document.addEventListener('keypress', event => (event.key === "Enter" && idDataSubmit.style.display === "none" && idLoginSubmit.style.display === "none") ? nextPageInterpreter() : true);
+        buttonQuerySelector.forEach(item =>{
+           item.addEventListener('keypress', event => (event.key === "Enter" && idDataSubmit.style.display === "none" && idLoginSubmit.style.display === "none") ? nextPageInterpreter() : true);
+        });
         if (contentArray.length == 0) {
             if (navigator.language[0] == "e" && navigator.language[1] == "n") english(); 
             else if(navigator.language[0] == "p" && navigator.language[1] == "t") português();
@@ -1090,11 +1093,11 @@ svg circle {
             firstPageBtnSeePrev.style.display = "block";
             firstPageBtnDelete.style.display = "block";
             triesMade = 1;
-            if (contentArray[0].language == "english" || contentArray[0].language == null || contentArray[0].language == undefined) english();
+            if (contentArray[0].language == "english" || contentArray[0].language == null) english();
             else if (contentArray[0].language == "português")  português();
             else if (contentArray[0].language == "français")  français();
             else if (contentArray[0].language == "español")  español();
-            if (contentArray[0].theme == "dark" || contentArray[0].theme == null || contentArray[0].theme == undefined)  themeTypeDark();
+            if (contentArray[0].theme == "dark" || contentArray[0].theme == null)  themeTypeDark();
             else if (contentArray[0].theme == "light")  themeTypeLight();
         }
         else if (contentArray.length == 2) {
@@ -1105,7 +1108,7 @@ svg circle {
             firstPageBtnOverwrite.style.display = "block";
             firstPageBtnSeeAll.style.display = "block";
             firstPageBtnDelete.style.display = "block";
-            if (contentArray[1].language == "english" || contentArray[1].language == null || contentArray[1].language == undefined || navigator.language[0] == "e" && navigator.language[1] == "n"){
+            if (contentArray[1].language == "english" || contentArray[1].language == null || navigator.language[0] == "e" && navigator.language[1] == "n"){
                 english();
                 if (!(contentArray[0].name.toLowerCase() == contentArray[1].name.toLowerCase())) {
                     firstPageH13rd.innerHTML = `We detected that you have already tried our test twice, once as ${contentArray[0].name} made in ${contentArray[0].day}, and once as ${contentArray[1].name} made in ${contentArray[1].day}. Choose what you would like to do below`;
@@ -1173,7 +1176,7 @@ svg circle {
                     firstPageBtn2ndTryOverwrite.value = `Sobrescribir la prueba de ${contentArray[1].day}`;
                 }
             }
-            if (contentArray[1].theme == "dark" || contentArray[1].theme == null || contentArray[1].theme == undefined) themeTypeDark();
+            if (contentArray[1].theme == "dark" || contentArray[1].theme == null) themeTypeDark();
             else if (contentArray[1].theme == "light") themeTypeLight();
         }
         const enterFuncMid = (event, blur, focus) => {
@@ -2032,14 +2035,7 @@ svg circle {
                 contentArrayJSON = JSON.stringify(contentArray);
                 localStorage.setItem('contentArray', contentArrayJSON);
             }
-        function storage() {
-                if (tryNumber == 1) setLocalData(1);
-                else if (tryNumber == 2) setLocalData(2);
-                else{
-                    console.error('Error 404');
-                    window.location.reload();
-                }
-            }
+        const storage = () => tryNumber == 1 ? setLocalData(1) : setLocalData(2);
         function showPrevTestResult(resultTry) {
             if (resultTry == 1) {
                 clearScreen();
@@ -2066,15 +2062,10 @@ svg circle {
                 idFooter.style.display = "block";
             }
         }
-        function start1stTry() {
+        const startNewTry = tryN => {
             firstPage();
             titleMid();
-            tryNumber = 1;
-        }
-        function start2ndTry() {
-            firstPage();
-            titleMid();
-            tryNumber = 2;
+            tryNumber = tryN;
         }
         function overwriteTest2(paramas) {
             if (paramas == 1) {
@@ -2086,7 +2077,7 @@ svg circle {
                     contentArray.shift();
                     contentArrayJSON = JSON.stringify(contentArray);
                     localStorage.setItem('contentArray', contentArrayJSON);
-                    start1stTry();
+                    startNewTry(1);
                     firstPageBtn1stTry.style.display = "none";
                     firstPageBtn1stTryOverwrite.style.display = "none";
                     firstPageBtn2ndTry.style.display = "none";
@@ -2106,7 +2097,7 @@ svg circle {
                     contentArray.pop();
                     contentArrayJSON = JSON.stringify(contentArray);
                     localStorage.setItem('contentArray', contentArrayJSON);
-                    start2ndTry();
+                    startNewTry(2);
                 }
             }
         }
@@ -2120,7 +2111,7 @@ svg circle {
                     contentArray.shift();
                     contentArrayJSON = JSON.stringify(contentArray);
                     localStorage.setItem('contentArray', contentArrayJSON);
-                    start1stTry();
+                    startNewTry(1);
                 }
             } 
             else if(triesMade == 2) {
@@ -3080,7 +3071,7 @@ svg circle {
             if (noEmailNeeded === 0){
                 if (validateEmail(emailaddrreturn)) {} 
                 else {
-                    if (emailaddrreturn == "" || emailaddrreturn == "undefined"){
+                    if (emailaddrreturn == "" || emailaddrreturn == undefined){
                         if(languageValue == 1){
                             alert("No Email Written in the Email Field");
                             confirmWriteEmail = confirm("Are you sure you don't want to write your email and receive a sum up later? If You Don't Just Click OK, and if you want to write your email Click Cancel!");
@@ -3827,8 +3818,8 @@ svg circle {
                 names();
                 resultTransition();
                 clearScreen();
-                linkTitlea.href = "";
-                titleLink.href = "";
+                linkTitlea.removeAttribute('href');
+                titleLink.removeAttribute('href');
                 idFooter.style.display = "none";
                 rightsidebarButton.style.display = "none";
                 leftsidebarButton.style.display = "none";
@@ -3837,32 +3828,6 @@ svg circle {
                 mm = String(day.getMonth() + 1).padStart(2, '0'); //January is 0!
                 yyyy = day.getFullYear();
                 day = `${dd}/${mm}/${yyyy}`;
-                // 0  idUser
-                // 1  name      
-                // 2  email        
-                // 3  age        
-                // 4  language      
-                // 5  theme      
-                // 6  gender      
-                // 7  resultBeginning      
-                // 8  btype      
-                // 9  bodypt      
-                // 10 bbg       
-                // 11 bodyage       
-                // 12 bodytp       
-                // 13 cbody       
-                // 14 ccbodycc    
-                // 15 cbodyc       
-                // 16 ccbody       
-                // 17 bodycc       
-                // 18 bodyc       
-                // 19 emotionans       
-                // 20 bmrl       
-                // 21 bmrll       
-                // 22 bmrlll       
-                // 23 bmrllll    
-                // 24 bmrlllll       
-                // 25 date    
                 if (bodytype == "ecto"){
                         if (bope == "bulking") bodyp += 0;
                         else if(bope == "cutting") bodyp += 1;
@@ -4631,6 +4596,8 @@ svg circle {
                     if (counter == 100) {
                         clearInterval();
                         ttttt = setInterval(tttt, 1);
+                    linkTitlea.setAttribute('href', "");
+                    titleLink.setAttribute('href', "");
                     } else {
                         counter += 1;
                         num.textContent = counter + "%"
@@ -4645,33 +4612,33 @@ svg circle {
             } 
             function tttt(){
                     if (ttt > 1500000) clearInterval(ttttt)
-                    if (ttt == 100){
+                    if (ttt == 1000){
                         idBar.style.display = "none";
                         finalResultH3Id.style.display = "block";
                         finalResultH3Id.innerHTML = resultBeginning;
                         finalResultH3Id.innerHTML += `${name}</big>, ${btype}`;
                     }
                     ttt += 1;
-                    if (ttt == 1500) finalResultH3Id.innerHTML +=`${bodypt}${bbg}<br><br>`;
-                    if (ttt == 2000) finalResultH3Id.innerHTML +=`${bodyage}<br><br>`;
-                    if (ttt == 3000) finalResultH3Id.innerHTML +=`${bodytp}<br><br>`;
-                    if (ttt == 4000) finalResultH3Id.innerHTML +=`${cbody}<br><br>`;
-                    if (ttt == 5000) finalResultH3Id.innerHTML +=`${ccbodycc}<br><br>`;
-                    if (ttt == 6000) finalResultH3Id.innerHTML +=`${cbodyc}<br><br>`;
-                    if (ttt == 7000) finalResultH3Id.innerHTML +=`${ccbody}<br><br>`;
-                    if (ttt == 8000) finalResultH3Id.innerHTML +=`${bodycc}<br><br>${bodyc}<br><br>`;
-                    if (ttt == 10000 && emotion == "yes") finalResultH3Id.innerHTML +=`${emotionans}<br><br>`;  
-                    if (ttt == 11000) finalResultH3Id.innerHTML +=`${bmrl}<br><br><br>`;
-                    if (ttt == 12000){
+                    if (ttt == 150000) finalResultH3Id.innerHTML +=`${bodypt}${bbg}<br><br>`;
+                    if (ttt == 200000) finalResultH3Id.innerHTML +=`${bodyage}<br><br>`;
+                    if (ttt == 300000) finalResultH3Id.innerHTML +=`${bodytp}<br><br>`;
+                    if (ttt == 400000) finalResultH3Id.innerHTML +=`${cbody}<br><br>`;
+                    if (ttt == 500000) finalResultH3Id.innerHTML +=`${ccbodycc}<br><br>`;
+                    if (ttt == 600000) finalResultH3Id.innerHTML +=`${cbodyc}<br><br>`;
+                    if (ttt == 700000) finalResultH3Id.innerHTML +=`${ccbody}<br><br>`;
+                    if (ttt == 800000) finalResultH3Id.innerHTML +=`${bodycc}<br><br>${bodyc}<br><br>`;
+                    if (ttt == 1000000 && emotion == "yes") finalResultH3Id.innerHTML +=`${emotionans}<br><br>`;  
+                    if (ttt == 1100000) finalResultH3Id.innerHTML +=`${bmrl}<br><br><br>`;
+                    if (ttt == 1200000){
                         finalResultH4Id.innerHTML = "";
                         finalResultH4Id.style.display = "block";
                         finalResultH4Id.innerHTML += `<i>${bmrll}<br><br>${bmrlll}<br><br>${bmrllll}<br><br>${bmrlllll}</i><br><br><br>`;
                     }
-                    if (ttt == 13000){
+                    if (ttt == 1300000){
                         finalResultH2Id.style.display = "block";
-                        if (!(noEmailNeeded === 0 || emailaddrreturnfinal != "" && emailaddrreturnfinal != "undefined" || emailaddrreturn != "" && emailaddrreturn != "undefined")) emailLinkColor.innerHTML = ``;
+                        if (!(noEmailNeeded === 0 || emailaddrreturnfinal != "" && emailaddrreturnfinal != undefined || emailaddrreturn != "" && emailaddrreturn != undefined)) emailLinkColor.innerHTML = ``;
                     }
-                    if (ttt == 14000) {
+                    if (ttt == 1400000) {
                         idFooter.style.position = "relative"
                         idFooter.style.marginBottom = "0";
                         idFooter.style.display = "block";
