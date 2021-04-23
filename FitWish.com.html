@@ -989,8 +989,8 @@ svg circle {
   <input onmouseover='hoverColorChangeFunc("colorChangeId5Meals")'  onmouseout='hoverOutColorChangeFunc("hoverColorVar5Meals", "colorChangeId5Meals")'  class="button buttonFullWidth btnFont25" id="colorChangeId5Meals" onclick="cc16(); changeColor4(x7, 'colorChangeId5Meals', x8, 'colorChangeId4Meals', x9, 'colorChangeId3Meals', x10, 'colorChangeId2Meals'); returnMeals('colorChangeId5Meals');" type="button" value="5 or 6 meals a day">
 </strong>
 <strong id="idEmotionSubmit" class="pageDisplayNone margin15vhSubmit">
-  <b><b><h2 class="classHeading headingObjInputId" id="headingObjInputIdEmotion"><i>Emotion-based Overeating<h5>(When experiencing sadness, happiness, boredom, loneliness, stress, dissapointment, concern, etc.)</h5></i></h2></b></b><a><input class="buttonHalfWidth button button35vw" id="colorChangeIdEmoYes" onmouseover='hoverColorChangeFunc("colorChangeIdEmoYes")'  onmouseout='hoverOutColorChangeFunc("hoverColorVarEmoYes", "colorChangeIdEmoYes")'  onclick="changeColor2(xx1, 'colorChangeIdEmoYes', xx2, 'colorChangeIdEmoNo'); emoYes(); returnEmotion('colorChangeIdEmoYes');" type="button" value="Yes" /></a>
-  <input class="buttonHalfWidth button button35vw"  onmouseout='hoverOutColorChangeFunc("hoverColorVarEmoNo", "colorChangeIdEmoNo")'  id="colorChangeIdEmoNo" onmouseover='hoverColorChangeFunc("colorChangeIdEmoNo")' onclick="emoNo(); changeColor2(xx2, 'colorChangeIdEmoNo', xx1, 'colorChangeIdEmoYes'); returnEmotion('colorChangeIdEmoNo');" type="button" value="No"></strong>
+  <b><b><h2 class="classHeading headingObjInputId" id="headingObjInputIdEmotion"><i>Emotion-based Overeating<h5>(When experiencing sadness, happiness, boredom, loneliness, stress, dissapointment, concern, etc.)</h5></i></h2></b></b><a><input class="buttonHalfWidth button button35vw" id="colorChangeIdEmoYes" onmouseover='hoverColorChangeFunc("colorChangeIdEmoYes")'  onmouseout='hoverOutColorChangeFunc("hoverColorVarEmoYes", "colorChangeIdEmoYes")'  onclick="changeColor2(xx1, 'colorChangeIdEmoYes', xx2, 'colorChangeIdEmoNo'); emoFunc('yes'); returnEmotion('colorChangeIdEmoYes');" type="button" value="Yes" /></a>
+  <input class="buttonHalfWidth button button35vw"  onmouseout='hoverOutColorChangeFunc("hoverColorVarEmoNo", "colorChangeIdEmoNo")'  id="colorChangeIdEmoNo" onmouseover='hoverColorChangeFunc("colorChangeIdEmoNo")' onclick="emoFunc('no'); changeColor2(xx2, 'colorChangeIdEmoNo', xx1, 'colorChangeIdEmoYes'); returnEmotion('colorChangeIdEmoNo');" type="button" value="No"></strong>
 <h3 id="finalResultH3Id">
 </h3>
 <big><h4 id="finalResultH4Id">
@@ -1073,6 +1073,7 @@ svg circle {
         var btype, resultBeginning, contentArrayJSON, contentArrayJSONget = localStorage.getItem('contentArray'), contentArray = JSON.parse(contentArrayJSONget) ?? [], idUser, c, c2, c3, c4, resultBeginning2, day, dd, mm, yyyy, triesMade, tryNumber, counter = 0, ttttt, metricDefault, metricVerify = 0, imperialDefault, metricNoDefault, rpossibilities, defaultUnit, colorDownload = "#1F3B4D", backgroundColorDownload = "#12232A", done, processing, diagnosis, langleftnav, alreadyInPage, local, differentPage = 0, backupGenderImg = '<br><br><br><br><br><span style="font-size: 40px; font-variant:all-caps; color:white; display: grid; place-items: center;">Select a gender to see the reference Image', weightManagementProgramFinalResult, language, theme, emailLinkFunc, downloadLinkFunc, emotionans, emotionreturn, emotion, idealweight1, idealweight2, idealweight0, weightstring, weight, heightstring, height, unit, deltapp, bodyy, aaa, aaaa, heightfeetstring, heightinchstring, heightfeet, heightinch, weightfloat, weight1, weight2, bbgwp, bbgw0, xx1, xx2, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, x16, x17, x18, x19, x20, x21, x22, x23, x24, x25, x26, x27, x28, x29, x30, x31, x32, xx24, xx25, xx26, xx27, xx28, xx29, xx30, xx31, xx32, x34, x35, x36, x37, x38, x39, x40, x41, x42, x43, x44, x45, x46, x47, x48, x49, x50, bodyreturn, emailaddrreturn, genderreturn, unitreturn, goalreturn, bodyimgreturn, goalimgreturn, xercisereturn, healthyreturn, cheatreturn, mealsreturn, confirmWriteEmail, cbody, cbodyc, ccbody, bodycc, ccbodycc, bodyc, c, bmr, bmrl, bmrll, bmrlll, bbgw1, bbgw2, subject, message, urll, redirectemail, element, addup1, addup2, addup3, addup4, addup5, addup6, emailaddrreturnfinal, name, agest, age, bodyage, languageValue = 1, fullresult = "", ttt = 0, firstAlert = "DISCLAIMER: This is not a medical nor nutritionist advice and not only does not exclude a medical consultation, but also, me as this code creator, encourage and support YOU to get to see your doctor for anything YOU think YOU should improve in YOUR health life. Peace!", bmi_state = "", gender = "", bope = "", bodyp = 0, bodyps = parseFloat(bodyp), bodypt = "", bodytp = "", bodytype = "", idealweight = "", idealWeight00 = 0, idealweight10 = parseFloat(idealweight1), idealweight20 = parseFloat(idealweight2), idealWeight000 = parseFloat(idealWeight00), deltap = 0, bmi = 0, b = 0, bgoal = 0, bbgoal = 0, bbgw3 = 0, bbgw4 = 0, bbgw00 = 0, bbgw0p = 0, noEmailNeeded = 0, wrongEmailCount = 0, bodyresult = "", bbg = "", bbgw = "";
         unitSystem('metric');
         english();
+        document.addEventListener('keypress', event => (event.key === "Enter" && idDataSubmit.style.display === "none") ? nextPageInterpreter() : true);
         if (contentArray.length == 0) {
             if (navigator.language[0] == "e" && navigator.language[1] == "n") english(); 
             else if(navigator.language[0] == "p" && navigator.language[1] == "t") português();
@@ -1181,9 +1182,7 @@ svg circle {
                 document.getElementById(focus).focus();
             }
         }
-        const enterFunc = (event) => {
-            if (event.key === "Enter") nextPageInterpreter();
-        }
+        const enterFunc = event => {if (event.key === "Enter") nextPageInterpreter();}
         function numberBtnsOverwriteEn() {
             if (!(contentArray[0].name.toLowerCase() == contentArray[1].name.toLowerCase())) {
                     firstPageH13rd.innerHTML = `We detected that you have already tried our test twice, once as ${contentArray[0].name} made in ${contentArray[0].day}, and once as ${contentArray[1].name} made in ${contentArray[1].day}. Choose what you would like to do below`;
@@ -2000,7 +1999,7 @@ svg circle {
             document.getElementById("downloadLinkColor").style.color = "lightgreen";
             document.getElementById("emailLinkColor").style.color = "pink";
             }
-            const setLocalData = (idParameter) => {
+            const setLocalData = idParameter => {
                 idUser = idParameter;
                 contentArray.push({
                     idUser,
@@ -2683,9 +2682,8 @@ svg circle {
                 else if (c4 == 4) colorChangeId5Meals.style.backgroundColor = "#7395AE";
             }
             img = document.createElement("img");
-            //2 functions about emotional overeating
-            const emoYes = () => {emotion = "yes"}
-            const emoNo = () => {emotion = "no"}
+            //1 func about emotional overeating
+            const emoFunc = binary => emotion = binary;
             //2 functions about gender 
             function male(){
                 gender = "male";
@@ -2703,7 +2701,7 @@ svg circle {
                 src = document.getElementById("bodyImageId");
                 src.appendChild(img);
             }
-            const bodyGoalFunction = (bbtype) => {bope = bbtype;}
+            const bodyGoalFunction = bbtype => bope = bbtype;
             //in case the person does not know their body type
             function nop(){
                 if(languageValue == 1)alert("Copy the first link to a 10-minute video explaining it: https://www.youtube.com/watch?v=iW6QeqA_iD4&t=446s          or take a Google test on this link: https://www.bodybuilding.com/fun/becker3.htm             But basically ecto does not have much ease in gaining muscle nor fat, meso has ease in gaining muscle and losing fat and endo has ease to gain both. And btw you can click on the body type you are without having to rerun the code");
@@ -3023,7 +3021,7 @@ svg circle {
                     x32.style.backgroundColor = "teal";
                 }
             }
-            const bbbb = (bbbb) => {b = bbbb;}
+            const bbbb = bbbb => b = bbbb;
              // age conditionals function
             function bGoal(bbgoalbb){
                 bgoal = bbgoalbb;
@@ -3060,19 +3058,19 @@ svg circle {
                 }
             }
         // return values of all the buttons
-        const returnBody = (idBody) => {bodyreturn = document.getElementById(idBody).value;}
-        const returnEmailAddr = () => {emailaddrreturn = document.getElementById("email").value;}
-        const returnEmailAddrFinal = () => {emailaddrreturnfinal = document.getElementById("email").value;}
-        const returnGender = (idGender) => {genderreturn = document.getElementById(idGender).value;}
-        const returnUnit = (idUnit) => {unitreturn = document.getElementById(idUnit).value;}
-        const returnGoal = (idGoal) => {goalreturn = document.getElementById(idGoal).value;}
-        const returnBodyImg = (idBodyimg) => {bodyimgreturn = document.getElementById(idBodyimg).value;}
-        const returnGoalImg = (idGoalImg) => {goalimgreturn = document.getElementById(idGoalImg).value;}
-        const returnXercise = (idXercise) => {xercisereturn = document.getElementById(idXercise).value;}
-        const returnHealthy = (idHealthy) => {healthyreturn = document.getElementById(idHealthy).value;}
-        const returnCheat = (idCheat) => {cheatreturn = document.getElementById(idCheat).value;}
-        const returnMeals = (idMeals) => {mealsreturn = document.getElementById(idMeals).value;}
-        const returnEmotion = (idEmotion) => {emotionreturn = document.getElementById(idEmotion).value;}
+        const returnBody = idBody => bodyreturn = document.getElementById(idBody).value;
+        const returnEmailAddr = () => emailaddrreturn = document.getElementById("email").value;
+        const returnEmailAddrFinal = () => emailaddrreturnfinal = document.getElementById("email").value;
+        const returnGender = idGender => genderreturn = document.getElementById(idGender).value;
+        const returnUnit = idUnit => unitreturn = document.getElementById(idUnit).value;
+        const returnGoal = idGoal => goalreturn = document.getElementById(idGoal).value;
+        const returnBodyImg = idBodyimg => bodyimgreturn = document.getElementById(idBodyimg).value;
+        const returnGoalImg = idGoalImg => goalimgreturn = document.getElementById(idGoalImg).value;
+        const returnXercise = idXercise => xercisereturn = document.getElementById(idXercise).value;
+        const returnHealthy = idHealthy => healthyreturn = document.getElementById(idHealthy).value;
+        const returnCheat = idCheat => cheatreturn = document.getElementById(idCheat).value;
+        const returnMeals = idMeals => mealsreturn = document.getElementById(idMeals).value;
+        const returnEmotion = idEmotion => emotionreturn = document.getElementById(idEmotion).value;
         //email process functions 
         function validateEmail(email) {
             const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
