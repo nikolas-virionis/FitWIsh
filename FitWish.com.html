@@ -801,7 +801,7 @@ svg circle {
     <body id="bodyBgColorId">
         <div class="sideBarButtons" onclick="openNav();" id="leftsidebarButton">&#9776;</div>
         <div class="sideBarButtons pageDisplayNone" onclick="rightNavInterpreter();" id="rightsidebarButton"><span id="rightsidebarSymbol">&sect;</span></div>
-        <div id="linkTitle"><a id="linkTitlea" href=""><img id="imageLogo" src="https://www.pngkey.com/png/full/211-2118619_healthy-army-communities-healthy-apple-logo.png"></a>
+        <div id="linkTitle" title="FitWish Home Page"><a id="linkTitlea" href=""><img id="imageLogo" src="https://www.pngkey.com/png/full/211-2118619_healthy-army-communities-healthy-apple-logo.png"></a>
             <a id="titleLink" href=""><h1 class="classHeading" id="headingObjInputIdHead"><i>FitWish</i></h1>
             </a></div>
         <div id="myLeftSidenav" class="leftsidenav">
@@ -1074,7 +1074,7 @@ svg circle {
         unitSystem('metric');
         english();
         document.addEventListener('keypress', event => (event.key === "Enter" && idDataSubmit.style.display === "none" && idLoginSubmit.style.display === "none") ? nextPageInterpreter() : true);
-        buttonQuerySelector.forEach(item =>{
+        buttonQuerySelector.forEach(item => {
            item.addEventListener('keypress', event => (event.key === "Enter" && idDataSubmit.style.display === "none" && idLoginSubmit.style.display === "none") ? nextPageInterpreter() : true);
         });
         if (contentArray.length == 0) {
@@ -1254,6 +1254,7 @@ svg circle {
             if (contentArray.length == 2) numberBtnsOverwriteEn();
             language = "english";
             languageValue = 1;
+            linkTitle.title = "FitWish Home Page";
             firstPageBtnSeePrev.innerHTML = "Hide Previous Test";
             idHowToH2.innerHTML = "What you will do";
             idHowToH3.innerHTML = "What we will do";
@@ -1412,6 +1413,7 @@ svg circle {
             if (contentArray.length == 2) numberBtnsOverwritePt();
             language = "português";
             languageValue = 2;
+            linkTitle.title = "Página inicial do FitWish";
             firstPageBtnSeePrev.innerHTML = "Ocultar Teste Anterior";
             idHowToH2.innerHTML = "O que você vai fazer";
             idHowToH3.innerHTML = "O que nós vamos fazer";
@@ -1570,6 +1572,7 @@ svg circle {
             if (contentArray.length == 2) numberBtnsOverwriteFr();
             language = "français";
             languageValue = 3;
+            linkTitle.title = "Page d'accueil FitWish";
             firstPageBtnSeePrev.innerHTML = "Masquer le test précédent";
             idHowToH2.innerHTML = "Que vas tu faire";
             idHowToH3.innerHTML = "Qu'allons nous faire";
@@ -1728,6 +1731,7 @@ svg circle {
             if (contentArray.length == 2) numberBtnsOverwriteEs();
             language = "español";
             languageValue = 4;
+            linkTitle.title = "Página de inicio de FitWish";
             firstPageBtnSeePrev.innerHTML = "Ocultar Prueba Anterior";
             idHowToH2.innerHTML = "Qué harás";
             idHowToH3.innerHTML = "Lo que haremos";
@@ -2036,7 +2040,7 @@ svg circle {
                 localStorage.setItem('contentArray', contentArrayJSON);
             }
         const storage = () => tryNumber == 1 ? setLocalData(1) : setLocalData(2);
-        function showPrevTestResult(resultTry) {
+        const showPrevTestResult = resultTry => {
             if (resultTry == 1) {
                 clearScreen();
                 idFooter.style.display = "none";
@@ -2067,7 +2071,7 @@ svg circle {
             titleMid();
             tryNumber = tryN;
         }
-        function overwriteTest2(paramas) {
+        const overwriteTest2 = paramas => {
             if (paramas == 1) {
                 if (language == "english") var confirmOverwrite = confirm(`Are you sure you want to overwrite the test made as ${contentArray[0].name}? It will be forever destroyed.`);
                 else if(language == "português") var confirmOverwrite = confirm(`Tem certeza que deseja sobrescrever o teste feito por ${contentArray[0].name}? Esse teste será destruido para sempre.`);
@@ -2167,7 +2171,7 @@ svg circle {
             idHowToPage.style.display = "none";
             idHowToHeading.style.display = "none";
         }
-        function firstPage() {
+        const firstPage = () => {
             if (differentPage != 1) {
                 pageSwitcher(1);
                 closeNav();
@@ -2185,7 +2189,7 @@ svg circle {
                 rightNavInterpreter();
             }
         }
-        function clearScreen(){
+        const clearScreen = () => {
             closeNav();
             closeRightNav();
             idFirstSubmit.style.display = "none";
@@ -2327,7 +2331,7 @@ svg circle {
             else if(bope == "muscle") returnGoal('colorChangeIdMuscle');
         }
         //functions that decides which language the whole code is gonna be in
-        function pageSwitcher(numpage) {
+        const pageSwitcher = numpage => {
             titleMid();
             if (differentPage == numpage) alert(alreadyInPage);
             else {
@@ -2590,7 +2594,7 @@ svg circle {
         //disclaimer button callable function 
         const disclaimer = () => alert(firstAlert);
         //functions that define the color change when the cursor is on or out of a button
-            function hoverColorChangeFunc(f){
+            const hoverColorChangeFunc = f => {
                 var f = document.getElementById(f);
                 f.style.backgroundColor = "#2ECC71";
             }
@@ -2701,7 +2705,7 @@ svg circle {
                 else if (languageValue == 4)alert("Copie el primer enlace a un video de 10 minutos que lo explique: https://www.youtube.com/watch?v=iW6QeqA_iD4&t=446s          o haz una prueba de Google en este enlace: https://www.bodybuilding.com/fun/becker3.htm             Pero básicamente ecto no tiene mucha facilidad para ganar músculo ni grasa, meso tiene facilidad para ganar músculo y perder grasa y endo tiene facilidad para ganar ambos. Y, por cierto, puede hacer clic en el tipo de cuerpo que tiene sin tener que volver a ejecutar el código.");  
             }
             // body type
-            function bodyType(bodytt){
+            const bodyType = bodytt => {
                 bodytype = bodytt;
                 if (languageValue == 1){
                     if (bodytype == 'ecto') btype = "since you are an ectomorph, you gotta have in mind that you naturally have a condition that makes you skinnier, having less fat but also less muscle.";
@@ -3014,7 +3018,7 @@ svg circle {
             }
             const bbbb = bbbb => b = bbbb;
              // age conditionals function
-            function bGoal(bbgoalbb){
+            const bGoal = bbgoalbb => {
                 bgoal = bbgoalbb;
                 if (age >= 15 && age <= 40 || age < 15 && age >= 10 &&  bgoal > 3 || age > 40 && age <= 50 && bgoal > 2 || age > 50 && age <= 60 && bgoal > 3 || age > 60 && bgoal > 4){}
                 else{
@@ -3063,7 +3067,7 @@ svg circle {
         const returnMeals = idMeals => mealsreturn = document.getElementById(idMeals).value;
         const returnEmotion = idEmotion => emotionreturn = document.getElementById(idEmotion).value;
         //email process functions 
-        function validateEmail(email) {
+        const validateEmail = email => {
             const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             return re.test(email);
         }
@@ -4612,33 +4616,33 @@ svg circle {
             } 
             function tttt(){
                     if (ttt > 1500000) clearInterval(ttttt)
-                    if (ttt == 1000){
+                    if (ttt == 100){
                         idBar.style.display = "none";
                         finalResultH3Id.style.display = "block";
                         finalResultH3Id.innerHTML = resultBeginning;
                         finalResultH3Id.innerHTML += `${name}</big>, ${btype}`;
                     }
                     ttt += 1;
-                    if (ttt == 150000) finalResultH3Id.innerHTML +=`${bodypt}${bbg}<br><br>`;
-                    if (ttt == 200000) finalResultH3Id.innerHTML +=`${bodyage}<br><br>`;
-                    if (ttt == 300000) finalResultH3Id.innerHTML +=`${bodytp}<br><br>`;
-                    if (ttt == 400000) finalResultH3Id.innerHTML +=`${cbody}<br><br>`;
-                    if (ttt == 500000) finalResultH3Id.innerHTML +=`${ccbodycc}<br><br>`;
-                    if (ttt == 600000) finalResultH3Id.innerHTML +=`${cbodyc}<br><br>`;
-                    if (ttt == 700000) finalResultH3Id.innerHTML +=`${ccbody}<br><br>`;
-                    if (ttt == 800000) finalResultH3Id.innerHTML +=`${bodycc}<br><br>${bodyc}<br><br>`;
-                    if (ttt == 1000000 && emotion == "yes") finalResultH3Id.innerHTML +=`${emotionans}<br><br>`;  
-                    if (ttt == 1100000) finalResultH3Id.innerHTML +=`${bmrl}<br><br><br>`;
-                    if (ttt == 1200000){
+                    if (ttt == 1500) finalResultH3Id.innerHTML +=`${bodypt}${bbg}<br><br>`;
+                    if (ttt == 2000) finalResultH3Id.innerHTML +=`${bodyage}<br><br>`;
+                    if (ttt == 3000) finalResultH3Id.innerHTML +=`${bodytp}<br><br>`;
+                    if (ttt == 4000) finalResultH3Id.innerHTML +=`${cbody}<br><br>`;
+                    if (ttt == 5000) finalResultH3Id.innerHTML +=`${ccbodycc}<br><br>`;
+                    if (ttt == 6000) finalResultH3Id.innerHTML +=`${cbodyc}<br><br>`;
+                    if (ttt == 7000) finalResultH3Id.innerHTML +=`${ccbody}<br><br>`;
+                    if (ttt == 8000) finalResultH3Id.innerHTML +=`${bodycc}<br><br>${bodyc}<br><br>`;
+                    if (ttt == 10000 && emotion == "yes") finalResultH3Id.innerHTML +=`${emotionans}<br><br>`;  
+                    if (ttt == 11000) finalResultH3Id.innerHTML +=`${bmrl}<br><br><br>`;
+                    if (ttt == 12000){
                         finalResultH4Id.innerHTML = "";
                         finalResultH4Id.style.display = "block";
                         finalResultH4Id.innerHTML += `<i>${bmrll}<br><br>${bmrlll}<br><br>${bmrllll}<br><br>${bmrlllll}</i><br><br><br>`;
                     }
-                    if (ttt == 1300000){
+                    if (ttt == 13000){
                         finalResultH2Id.style.display = "block";
                         if (!(noEmailNeeded === 0 || emailaddrreturnfinal != "" && emailaddrreturnfinal != undefined || emailaddrreturn != "" && emailaddrreturn != undefined)) emailLinkColor.innerHTML = ``;
                     }
-                    if (ttt == 1400000) {
+                    if (ttt == 14000) {
                         idFooter.style.position = "relative"
                         idFooter.style.marginBottom = "0";
                         idFooter.style.display = "block";
