@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Exercising</title>
+        <!--CSS-->
+     <link rel="stylesheet" href="./assets/css/style.css">
+        <link rel="stylesheet" href="./assets/css/exercise.css">
+     <script src="./assets/js/exercise.js" defer></script>
+    </head>
+    <!--HTML questions and basic structure-->
+    <body id="bodyBgColorId">
+        <div class="sideBarButtons" onclick="openNav();" id="leftsidebarButton">&#9776;</div>
+        <div class="sideBarButtons pageDisplayNone" onclick="rightNavInterpreter();" id="rightsidebarButton"><span id="rightsidebarSymbol">&sect;</span></div>
+        <div id="linkTitle" title="FitWish Home Page"><a id="linkTitlea" href=""><img id="imageLogo" src="https://www.pngkey.com/png/full/211-2118619_healthy-army-communities-healthy-apple-logo.png"></a>
+            <a id="titleLink" href=""><h1 class="classHeading" id="headingObjInputIdHead"><i>FitWish</i></h1>
+            </a></div>
+        <div id="myLeftSidenav" class="leftsidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <span id="languageInput">Language:</span><br>
+            <a href="javascript:english();"><img class="nationFlag" src="https://grid.gograph.com/flag-usuk-eps-vector_gg64260913.jpg"><span class="nationName"><span class="nationNameRed">En</span><span class="nationNameWhite">gli</span><span class="nationNameBlue">sh</span></a></span>
+            <a href="javascript:português();"><img class="nationFlag" src="https://portuguessemmisterio.files.wordpress.com/2018/12/Bandeiras_Brazil_e_Portugal.png"><span class="nationName"><span class="nationNameGreen">Por</span><span class="nationNameRed">tu</span><span class="nationNameYellow">guês</span></a></span>
+            <a href="javascript:français();"><img class="nationFlag" src="https://upload.wikimedia.org/wikipedia/commons/6/62/Flag_of_France.png"><span class="nationName"><span class="nationNameBlue">Fr</span><span class="nationNameWhite">an</span><span class="nationNameRed">çais</span></a></span>
+            <a href="javascript:español();"><img class="nationFlag" src="https://www.countryflags.com/wp-content/uploads/spain-flag-png-large.png"><span class="nationName"><span class="nationNameYellow">Es</span><span class="nationNameRed">pa</span><span class="nationNameYellow">ñol</span></a></span>
+            <li onclick="themeTypeDark();" id="darkThemeButton" class="listnav">Dark Theme (default)</li>
+            <li onclick="themeTypeLight();" id="lightThemeButton" class="listnav">Light Theme</li>
+            <li onclick="" id="pagesNavId" class="listnav">Pages/Sections(&sect;)</li>
+            <li onclick="disclaimer();" id="disclaimerId">DISCLAIMER</li>
+            <li onclick="about();" id="aboutId" class="listnav2">About</li>
+            <li onclick="contact();" id="contactId" class="listnav2">Contact</li>
+            <li onclick="howTo();" id="howItWorksId" class="listnav2">How it Works</li>
+        </div>
+        <div id="myRightSidenav" class="rightsidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="rightNavInterpreter()">&times;</a>
+            <span id="pageId">Pages:</span><br>
+            <ul id="listRightNav">
+            <li onclick="pageSwitcher(1);" id="introPageId">Introduction</li>
+            <li onclick="pageSwitcher(2);" id="loginPageId">Login</li>
+            <li onclick="pageSwitcher(3);" id="genderUnitPageId">Gender/Unit</li>
+            <li onclick="pageSwitcher(4);" id="dataPageId">Weight/Height</li>
+            <li onclick="pageSwitcher(5);" id="goalPageId">Goal</li>
+            <li onclick="pageSwitcher(6);" id="bodyTypePageId">Body Type</li>
+            <li onclick="pageSwitcher(7);" id="bodyImagePageId">Body Fat Evaluation</li>
+            <li onclick="pageSwitcher(8);" id="xercisePageId">Exercise Evaluation</li>
+            <li onclick="pageSwitcher(9);" id="healthyPageId">Healthy Meals</li>
+            <li onclick="pageSwitcher(10);" id="cheatPageId">Cheat Meals</li>
+            <li onclick="pageSwitcher(11);" id="mealsPageId">Meals/Day</li>
+            <li onclick="pageSwitcher(12);" id="emotionPageId">Emotion-based Overeating</li>
+        </ul>
+        </div>
+<strong id="idXerciseSubmit" class="pageDisplayNone margin15vhSubmit">
+  <b><h1 class="classHeading headingObjInputId" id="headingObjInputIdXercise"><i>High intensity exercise frequency:</i></h1></b> <input onmouseover='hoverColorChangeFunc("colorChangeIdNoneXercise")'   onmouseout='hoverOutColorChangeFunc("hoverColorVarNoneXercise", "colorChangeIdNoneXercise")' class="button buttonQuarterWidth" id="colorChangeIdNoneXercise" onclick="ccccccccc(); changeColor4(x7, 'colorChangeIdNoneXercise', x8, 'colorChangeIdHighXercise', x9, 'colorChangeIdMidXercise', x10, 'colorChangeIdLowXercise')" type="button" value="None">
+  <input  onmouseover='hoverColorChangeFunc("colorChangeIdLowXercise")' onmouseout='hoverOutColorChangeFunc("hoverColorVarLowXercise", "colorChangeIdLowXercise")'  class="button buttonThreeQuartersWidth btnFont25" id="colorChangeIdLowXercise" onclick="cc2(); changeColor4(x7, 'colorChangeIdLowXercise', x8, 'colorChangeIdNoneXercise', x9, 'colorChangeIdHighXercise', x10, 'colorChangeIdMidXercise'); returnXercise('colorChangeIdLowXercise');" type="button" value="1-2 times a week">
+  <input  onmouseover='hoverColorChangeFunc("colorChangeIdMidXercise")'  onmouseout='hoverOutColorChangeFunc("hoverColorVarMidXercise", "colorChangeIdMidXercise")' class="button buttonFullWidth btnFont25" id="colorChangeIdMidXercise" onclick="cc3(); changeColor4(x7, 'colorChangeIdMidXercise', x8, 'colorChangeIdLowXercise', x9, 'colorChangeIdNoneXercise', x10, 'colorChangeIdHighXercise'); returnXercise('colorChangeIdMidXercise');" type="button" value="3-4 times a week">
+  <input onmouseover='hoverColorChangeFunc("colorChangeIdHighXercise")'  onmouseout='hoverOutColorChangeFunc("hoverColorVarHighXercise", "colorChangeIdHighXercise")'  class="button buttonFullWidth btnFont25" id="colorChangeIdHighXercise" onclick="cc4(); changeColor4(x7, 'colorChangeIdHighXercise', x8, 'colorChangeIdMidXercise', x9, 'colorChangeIdLowXercise', x10, 'colorChangeIdNoneXercise'); returnXercise('colorChangeIdHighXercise');" type="button" value="5 or more times a week">
+</strong>
+<div id="footerDiv">
+<div class="footer" id="idFooter"><a id="footerlink" class="classFooter" href="https://www.LinkedIn.com/in/nikolas-barcha-virionis-b71228199/" target="_blank"><i>
+            FitWish &copy; Copyright 2021<br></a><a class="classFooter" href="https://www.LinkedIn.com/in/nikolas-barcha-virionis-b71228199/" target="_blank"><p id="allRights"><ins>All Rights Reserved</ins></p></i></a>
+        </div></div>
+<input type="button" name="prev" onclick="prevPageInterpreter();" id="buttonPrev" class="button pageDisplayNone btnNextPrev" value="Previous">
+<input type="button" name="next" onclick="nextPageInterpreter();" id="buttonNext" class="button btnNextPrev pageDisplayNone" value="Next">
+<input type="button" name="result" onclick="returnEmailAddrFinal(); ages(); result();" id="buttonResult" class="button resultButton pageDisplayNone" value="Result">    
+<div id="buttonsId">
+<div id="pageBtnsId">
+<input type="button" name="home" onclick="firstPage(); titleMid();" id="buttonHome" class="button aboutContactBtn pageDisplayNone" value="Home Page">    
+<input type="button" name="attempt" onclick="firstPageLogin();" id="buttonFirst" class="button aboutContactBtn pageDisplayNone" value="Attempt's Menu">    
+<input type="button" name="about" onclick="about();" id="buttonAbout" class="button aboutContactBtn" value="About">
+<input type="button" name="contact" onclick="contact();" id="buttonContact" class="button aboutContactBtn" value="Contact"></div></div>
+</body>
+</html>
