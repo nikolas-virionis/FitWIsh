@@ -1,0 +1,804 @@
+@import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@200&display=swap");
+@import url("https://fonts.googleapis.com/css2family=Lemonada&display=swap");
+/*scrollbar properties*/
+::-webkit-scrollbar {
+  width: 1.2vw;
+  height: 1.2vw;
+}
+::-webkit-scrollbar-track {
+  border-radius: 1000px;
+  background: none;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 1000px;
+  background-color: silver;
+}
+body::-webkit-scrollbar-thumb:hover {
+  background-color: darkgray;
+}
+::-webkit-scrollbar-corner {
+  background: none;
+  border-radius: 20px;
+}
+/*writable places placeholder properties*/
+input::placeholder {
+  color: #1f3b4d;
+  opacity: 85;
+}
+/*link properties*/
+#emaillink a:link {
+  color: pink;
+  cursor: pointer;
+}
+#emaillink a:visited {
+  color: pink;
+  cursor: pointer;
+}
+#emaillink a:hover {
+  color: green;
+  cursor: pointer;
+}
+#emaillink a:active {
+  color: white;
+  cursor: pointer;
+}
+#finallink a:link {
+  color: rgb(12, 243, 243);
+  cursor: pointer;
+}
+#finallink a:visited {
+  color: deeppink;
+  cursor: pointer;
+}
+#finallink a:hover {
+  color: red;
+  cursor: pointer;
+}
+#finallink a:active {
+  color: lightgreen;
+  cursor: pointer;
+}
+/*body image's properties*/
+#bodyImageId {
+  display: grid;
+  place-items: center;
+}
+/*core buttons properties according to with and function*/
+.button {
+  border: none;
+  color: rgba(1, 1, 1);
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: Quicksand;
+  display: inline-block;
+  height: 8vh;
+  background-color: teal;
+}
+.buttonFullWidth {
+  width: 100%;
+}
+.buttonHalfWidth {
+  width: 50%;
+  float: left;
+}
+.resultButton {
+  border-style: outset;
+  text-decoration: underline;
+  border-radius: 2vw;
+  height: 8vh;
+  cursor: progress;
+  font-family: Quicksand;
+  font-size: 2vw;
+  background-color: #32bf84;
+  color: black;
+  position: absolute;
+  width: 120px;
+  text-align: center;
+}
+.buttonQuarterWidth {
+  width: 25%;
+  float: left;
+}
+.buttonTenthWidth {
+  width: 10.95vw;
+  float: left;
+}
+.buttonThreeQuartersWidth {
+  width: 75%;
+  float: left;
+}
+/*input headings' properties*/
+.classHeading {
+  text-align: center;
+  font-style: oblique;
+  font-family: Quicksand;
+}
+.headingObjInputId {
+  border-style: outset;
+  border-radius: 4vw;
+  border-color: seagreen;
+  border-width: 0.5vw;
+  background-color: #9dbcd4;
+}
+.headingTextInputId {
+  color: #ddd;
+  display: grid;
+  place-items: center;
+}
+.textInputClass {
+  width: 99%;
+  text-align: center;
+  font-size: 3vw;
+  border-style: inset;
+  border-radius: 3vw;
+  border-color: rgba(100, 255, 255);
+  background-color: #9dbcd4;
+  font-family: Quicksand;
+  height: 6vh;
+}
+/*footer copyright properties*/
+.footer {
+  width: 100%;
+  height: 75px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #333;
+  font-variant: small-caps;
+  color: #fff;
+  text-align: center;
+  padding-top: 5vh;
+  font-family: serif;
+}
+#buttonPrev,
+#buttonNext,
+#buttonResult {
+  position: absolute;
+  bottom: 16.9vh;
+}
+.firstHeading {
+  color: rgba(255, 255, 255);
+}
+.leftsidenav {
+  left: 0;
+}
+.leftsidenav,
+.rightsidenav {
+  height: 100vh;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 2vh;
+}
+.rightsidenav {
+  right: 0;
+}
+.genderCenterNav {
+  height: 0;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 10vh;
+  left: 15vw;
+  background-color: #333;
+  overflow-x: hidden;
+  transition: 0.1s;
+  padding-top: 10vh;
+  border-radius: 1vw;
+}
+:is(.leftsidenav, .rightsidenav) li {
+  padding: 6px 6px 6px 8px;
+  font-size: 2.355vw;
+  color: #818181;
+  transition: 0.05s;
+}
+:is(.leftsidenav, .genderCenterNav, .rightsidenav) a {
+  padding: 8px 8px 8px 30px;
+  text-decoration: none;
+  font-size: 2.355vw;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+:is(.leftsidenav, .genderCenterNav, .rightsidenav) :is(a, li):hover {
+  color: #f1f1f1;
+  cursor: pointer;
+}
+
+:is(.leftsidenav, .genderCenterNav, .rightsidenav) .closebtn {
+  position: absolute;
+  top: 0;
+  right: 1.5vw;
+  font-size: 6vh;
+  margin-left: 5vw;
+}
+@media screen and (max-height: 450px) {
+  .leftsidenav {
+    padding-top: 15px;
+  }
+  .leftsidenav a {
+    font-size: 18px;
+  }
+}
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: #f1f1f1;
+}
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+}
+.container .bar {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #f9f9f9;
+}
+.bar::before {
+  content: "";
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: inset -10px -10px 50px #ffffffb2,
+    inset 10px 10px 50px rgba(94, 104, 121, 0.945);
+}
+svg {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  fill: none;
+}
+svg circle {
+  stroke: #083be6;
+  stroke-width: 0;
+  stroke-dashoffset: 500px;
+  stroke-dasharray: 1200px;
+  transform-origin: center;
+  transform: scale(1);
+  animation: bar 24s ease-in-out forwards;
+}
+.number {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2.6em;
+  font-family: monospace;
+  color: #000;
+}
+.config {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 11px;
+  font-family: cursive;
+  color: #000;
+  letter-spacing: 1px;
+  text-align: center;
+  max-height: 0;
+}
+@keyframes bar {
+  0% {
+    stroke-dashoffset: -800px;
+  }
+  100% {
+    stroke-dashoffset: calc(500px - (500px * 90) / 100);
+    stroke-width: 40px;
+  }
+}
+.aboutContactBtn {
+  background: none;
+  color: #ddd;
+  width: auto;
+  text-align: center;
+  display: block;
+  text-decoration: underline;
+  font-size: 0.55em;
+  font-weight: 100;
+}
+:is(.aboutContactBtn, .contactClass):hover {
+  color: white;
+}
+.contactAboutBtn {
+  background: none;
+  color: #1f3b4d;
+  width: auto;
+  text-align: center;
+  display: block;
+  text-decoration: underline;
+  font-size: 0.55em;
+  font-weight: 100;
+}
+.contactAboutBtn:hover {
+  color: black;
+}
+.dropCap:first-letter {
+  float: left;
+  font-size: 5vw;
+  line-height: 0.65;
+  margin: 0.1em 0.1em 0.1em 0;
+}
+#bodyBgColorId {
+  background-color: #12232a;
+  color: #1f3b4d;
+}
+.sideBarButtons {
+  font-size: 3.5vw;
+  cursor: pointer;
+  color: white;
+}
+#leftsidebarButton {
+  float: left;
+}
+#rightsidebarButton {
+  float: right;
+  margin-right: 1%;
+}
+#rightsidebarSymbol {
+  font-size: 3vw;
+}
+#languageInput {
+  color: white;
+  font-size: 4vw;
+}
+#linkTitle {
+  display: flex;
+  margin-left: 40%;
+  text-decoration: none;
+  margin-right: 1vw;
+}
+#imageLogo {
+  float: left;
+  width: 4vw;
+  height: 10vh;
+  margin-left: 37.5%;
+  margin-top: 1.5vh;
+}
+#titleLink {
+  text-decoration: none;
+  margin-left: 1.5%;
+}
+#headingObjInputIdHead {
+  border: none;
+  background: none;
+  color: aliceblue;
+  place-items: left;
+  font-size: 2.3em;
+}
+.nationFlag {
+  height: 4vh;
+  width: 4vw;
+}
+.nationName {
+  font-size: 3.5vw;
+}
+.nationNameRed {
+  color: red;
+}
+.nationNameBlue {
+  color: #3e79b8;
+}
+.nationNameGreen {
+  color: green;
+}
+.nationNameWhite {
+  color: white;
+}
+.nationNameYellow {
+  color: yellow;
+}
+.listnav {
+  font-size: 1.45em;
+}
+#disclaimerId {
+  font-size: 1.3em;
+}
+.listnav2 {
+  font-size: 1.45em;
+  list-style-type: circle;
+}
+#pagesNavId {
+  font-size: 1.3em;
+}
+#pageId {
+  color: white;
+  font-size: 2.5vw;
+}
+#planId {
+  display: grid;
+  place-items: center;
+  color: aqua;
+  float: left;
+  margin-left: 43%;
+}
+#checkImgId {
+  height: 12.5vh;
+  margin-left: 23%;
+}
+#planLeftSector {
+  float: left;
+  position: absolute;
+  left: 5.5%;
+  top: 20%;
+}
+#planLeftSectorImg1 {
+  height: 15vh;
+  margin-top: 25%;
+  margin-left: 2vw;
+  float: left;
+}
+#planLeftSectorImg2 {
+  height: 18vh;
+  float: left;
+  margin-top: 15%;
+  margin-left: 2.5vw;
+}
+#planLeftSectorImg3 {
+  height: 10vh;
+  position: absolute;
+  top: 85%;
+  left: 42.5%;
+}
+#blueArrow {
+  width: 30vw;
+  float: left;
+  margin-top: 1%;
+  margin-left: 24%;
+  position: absolute;
+  left: 9.25%;
+}
+#planRightSector {
+  display: flex;
+  margin-left: 65.5%;
+}
+#planRightSectorImg1 {
+  float: left;
+  margin-top: 12.5%;
+  height: 17.5vh;
+  margin-left: 0;
+}
+#planRightSectorImg2 {
+  float: left;
+  height: 22.5vh;
+  margin-top: 10%;
+  margin-left: 0;
+}
+.planTxt {
+  max-width: 32%;
+  float: left;
+  text-align: center;
+  font-size: 2.2vw;
+}
+#idBadHabits {
+  color: azure;
+}
+#idPlanMsg {
+  color: cyan;
+}
+#idGoodHabits {
+  color: gold;
+}
+.pageDisplayNone {
+  display: none;
+}
+#idLoginSubmit {
+  margin-top: -2vh;
+}
+#idGenderUnitSubmit {
+  margin-top: 2vh;
+}
+#idDataSubmit {
+  margin-top: 8vh;
+  width: 100vw;
+}
+#idBodyTypeSubmit {
+  margin-top: 12vh;
+}
+#idImageSubmit {
+  margin-top: 11vh;
+}
+.margin15vhSubmit {
+  margin-top: 15vh;
+}
+#idMealsSubmit {
+  margin-top: 10vh;
+}
+#showImgBtn {
+  color: azure;
+  background-color: #32bf84;
+}
+#referenceImgTxt {
+  display: grid;
+  place-items: center;
+  color: azure;
+  font-size: 2.5vw;
+}
+#weightMetric,
+#heightMetric,
+#weightImperial,
+#heightImperial {
+  height: 60px;
+}
+#headingTextInputIdHeightMetric,
+#headingTextInputIdHeightImperial {
+  margin-top: 5vh;
+}
+.button35vw {
+  font-size: 3.5vw;
+}
+.btnFont25 {
+  font-size: 2.5vw;
+}
+#colorChangeIdMeso {
+  font-size: 3.3vw;
+}
+#colorChangeIdEndo {
+  font-size: 3.4vw;
+}
+#imgShowBtn {
+  display: grid;
+  place-items: center;
+}
+#colorChangeIdNoneXercise,
+#colorChangeIdNoneHealthy,
+#colorChangeIdNoneCheat {
+  font-size: 2vw;
+}
+#finalResultH3Id {
+  color: azure;
+  font-family: Quicksand, sans-serif;
+  font-weight: 200;
+}
+#emailLinkColor {
+  color: pink;
+  font-weight: 100px;
+}
+#downloadLinkColor {
+  color: lightgreen;
+  font-weight: 100px;
+}
+#idAboutHeading,
+#idContactHeading,
+#idHowToHeading {
+  align-items: center;
+  text-align: center;
+  font-size: 2em;
+  font-family: Quicksand;
+  color: azure;
+  margin-top: -8.5vh;
+  position: absolute;
+}
+#idAboutHeading {
+  left: 42.5%;
+}
+#idContactHeading {
+  left: 42%;
+}
+#idHowToHeading {
+  left: 37.5%;
+}
+#sectionTxtAbout {
+  font-size: 2vw;
+}
+#sectionTxtContact {
+  font-size: 2.5vw;
+}
+#idAboutH2 {
+  margin-left: 40%;
+}
+.aboutTxt {
+  width: 42%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+#aboutTxt1 {
+  float: left;
+  margin-right: 0;
+}
+#aboutTxt2 {
+  float: right;
+  margin-left: 0;
+  font-size: 1.1em;
+}
+#pageBtnsId {
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 3vw;
+  font-size: 2em;
+  font-family: Quicksand;
+}
+.margin7Class {
+  margin: 6vh;
+}
+#aboutImg1 {
+  height: 20vh;
+  margin-left: -15%;
+}
+#aboutImg2 {
+  height: 25vh;
+}
+#contactImg1,
+#contactImg2 {
+  float: left;
+  height: 10vh;
+}
+#idContactH2 {
+  margin-left: 37.5%;
+}
+.contactClass {
+  font-size: 4vw;
+  color: #ddd;
+}
+.btnNextPrev {
+  background-color: brown;
+  color: burlywood;
+  position: absolute;
+  width: 100px;
+  text-align: center;
+}
+#buttonNext,
+#buttonResult {
+  right: 0;
+}
+#buttonPrev {
+  left: 0;
+}
+#idBar {
+  align-items: center;
+  text-align: center;
+}
+#divPushCircleId {
+  background-color: #12232a;
+  height: 30%;
+  width: 39.5%;
+  float: left;
+}
+.bar {
+  float: left;
+}
+#footerDiv {
+  width: 100vw;
+}
+.classFooter {
+  text-decoration: none;
+  color: #fff;
+}
+#colorChangeIdNoIdea {
+  font-size: 2.5vw;
+}
+#idFirstSubmit {
+  text-align: center;
+  align-items: center;
+}
+.firstPageH1setItem {
+  margin-top: 10vh;
+  color: azure;
+  align-items: center;
+  width: 50vw;
+}
+.firstPageBtns {
+  display: grid;
+  place-items: center;
+}
+.firstPageBtns .button {
+  font-size: 1.6em;
+  border-radius: 1vw;
+  transition: 0.3s;
+}
+#firstPageBtnStart {
+  color: azure;
+  min-width: 10vw;
+  min-height: 10vh;
+}
+.firstPageBtns .button:hover {
+  text-decoration: underline;
+}
+#idFirstSubmit span {
+  display: grid;
+  place-items: center;
+}
+#firstPageBtnDelete {
+  background-color: red;
+  color: white;
+}
+#firstPageBtnDelete:hover {
+  color: black;
+}
+#firstPageBtn1stTry,
+#firstPageBtn2ndTry {
+  font-size: 0.75em;
+  text-align: center;
+  background-color: orangered;
+  color: azure;
+  border-radius: 1vw;
+  top: 30vh;
+  width: 21vw;
+  height: 10vh;
+  position: absolute;
+}
+:is(#firstPageBtn1stTry, #firstPageBtn2ndTry):hover {
+  color: black;
+}
+#firstPageBtn1stTry {
+  left: 3vw;
+}
+#firstPageBtn2ndTry {
+  right: 3vw;
+}
+#firstPageBtn1stTryOverwrite,
+#firstPageBtn2ndTryOverwrite {
+  font-size: 0.75em;
+  text-align: center;
+  background-color: orangered;
+  color: azure;
+  border-radius: 1vw;
+  top: 40vh;
+  width: 21vw;
+  height: 10vh;
+  position: absolute;
+}
+:is(#firstPageBtn1stTryOverwrite, #firstPageBtn2ndTryOverwrite):hover {
+  color: black;
+}
+#firstPageBtn1stTryOverwrite {
+  left: 3vw;
+}
+#firstPageBtn2ndTryOverwrite {
+  right: 3vw;
+}
+#howYouWork,
+#howWeWork {
+  width: 45vw;
+  font-size: 2em;
+  align-items: center;
+  text-align: center;
+}
+#howYouWork {
+  float: left;
+  margin-left: 2vw;
+}
+#howWeWork {
+  float: right;
+  margin-right: 2vw;
+}
+#idHowToTxt1,
+#idHowToTxt2 {
+  font-size: 0.7em;
+  margin-top: 6vh;
+  max-width: 42.5vw;
+}
+#idHowToHeading {
+  margin-top: -6vh;
+}
+#idHowToImg1 {
+  height: 25vh;
+}
+#idHowToImg2 {
+  height: 20vh;
+}
+#firstPageH12nd,
+#firstPageH13rd {
+  margin-top: 0;
+}

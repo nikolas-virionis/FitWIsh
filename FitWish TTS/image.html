@@ -1,113 +1,225 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Image self diagnosis</title>
-        <!--CSS-->
-     <link rel="stylesheet" href="./assets/css/style.css">
-        <link rel="stylesheet" href="./assets/css/image.css">
-     <script src="./assets/js/image.js" defer></script>
-    </head>
-    <!--HTML questions and basic structure-->
-    <body id="bodyBgColorId">
-        <div class="sideBarButtons" onclick="openNav();" id="leftsidebarButton">&#9776;</div>
-        <div class="sideBarButtons pageDisplayNone" onclick="rightNavInterpreter();" id="rightsidebarButton"><span id="rightsidebarSymbol">&sect;</span></div>
-        <div id="linkTitle" title="FitWish Home Page"><a id="linkTitlea" href=""><img id="imageLogo" src="https://www.pngkey.com/png/full/211-2118619_healthy-army-communities-healthy-apple-logo.png"></a>
-            <a id="titleLink" href=""><h1 class="classHeading" id="headingObjInputIdHead"><i>FitWish</i></h1>
-            </a></div>
-        <div id="myLeftSidenav" class="leftsidenav">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <span id="languageInput">Language:</span><br>
-            <a href="javascript:english();"><img class="nationFlag" src="https://grid.gograph.com/flag-usuk-eps-vector_gg64260913.jpg"><span class="nationName"><span class="nationNameRed">En</span><span class="nationNameWhite">gli</span><span class="nationNameBlue">sh</span></a></span>
-            <a href="javascript:português();"><img class="nationFlag" src="https://portuguessemmisterio.files.wordpress.com/2018/12/Bandeiras_Brazil_e_Portugal.png"><span class="nationName"><span class="nationNameGreen">Por</span><span class="nationNameRed">tu</span><span class="nationNameYellow">guês</span></a></span>
-            <a href="javascript:français();"><img class="nationFlag" src="https://upload.wikimedia.org/wikipedia/commons/6/62/Flag_of_France.png"><span class="nationName"><span class="nationNameBlue">Fr</span><span class="nationNameWhite">an</span><span class="nationNameRed">çais</span></a></span>
-            <a href="javascript:español();"><img class="nationFlag" src="https://www.countryflags.com/wp-content/uploads/spain-flag-png-large.png"><span class="nationName"><span class="nationNameYellow">Es</span><span class="nationNameRed">pa</span><span class="nationNameYellow">ñol</span></a></span>
-            <li onclick="themeTypeDark();" id="darkThemeButton" class="listnav">Dark Theme (default)</li>
-            <li onclick="themeTypeLight();" id="lightThemeButton" class="listnav">Light Theme</li>
-            <li onclick="" id="pagesNavId" class="listnav">Pages/Sections(&sect;)</li>
-            <li onclick="disclaimer();" id="disclaimerId">DISCLAIMER</li>
-            <li onclick="about();" id="aboutId" class="listnav2">About</li>
-            <li onclick="contact();" id="contactId" class="listnav2">Contact</li>
-            <li onclick="howTo();" id="howItWorksId" class="listnav2">How it Works</li>
-        </div>
-        <div id="myRightSidenav" class="rightsidenav">
-            <a href="javascript:void(0)" class="closebtn" onclick="rightNavInterpreter()">&times;</a>
-            <span id="pageId">Pages:</span><br>
-            <ul id="listRightNav">
-            <li onclick="pageSwitcher(1);" id="introPageId">Introduction</li>
-            <li onclick="pageSwitcher(2);" id="loginPageId">Login</li>
-            <li onclick="pageSwitcher(3);" id="genderUnitPageId">Gender/Unit</li>
-            <li onclick="pageSwitcher(4);" id="dataPageId">Weight/Height</li>
-            <li onclick="pageSwitcher(5);" id="goalPageId">Goal</li>
-            <li onclick="pageSwitcher(6);" id="bodyTypePageId">Body Type</li>
-            <li onclick="pageSwitcher(7);" id="bodyImagePageId">Body Fat Evaluation</li>
-            <li onclick="pageSwitcher(8);" id="xercisePageId">Exercise Evaluation</li>
-            <li onclick="pageSwitcher(9);" id="healthyPageId">Healthy Meals</li>
-            <li onclick="pageSwitcher(10);" id="cheatPageId">Cheat Meals</li>
-            <li onclick="pageSwitcher(11);" id="mealsPageId">Meals/Day</li>
-            <li onclick="pageSwitcher(12);" id="emotionPageId">Emotion-based Overeating</li>
-        </ul>
-        </div>
-<strong id="idImageSubmit">
-<b><h1 class="classHeading headingObjInputId" id="headingObjInputIdBodyImage"><i>Which one of these you think represent you the most?</i></h1></b><br> <input  onmouseover='hoverColorChangeFunc("colorChangeIdBody1")' onmouseout='hoverOutColorChangeFunc("hoverColorVarBody1", "colorChangeIdBody1")'  class="buttonTenthWidth button btnFont25" id="colorChangeIdBody1" onclick="bbbb(1); changeColor9(x15, 'colorChangeIdBody1', x16, 
-    'colorChangeIdBody9', x17, 'colorChangeIdBody8', x18, 'colorChangeIdBody7', x19, 'colorChangeIdBody6', x20, 'colorChangeIdBody5', x21, 'colorChangeIdBody4', x22, 'colorChangeIdBody3', x23, 'colorChangeIdBody2'); returnBodyImg('colorChangeIdBody1');" type="button" value="1">
-  <input onmouseover='hoverColorChangeFunc("colorChangeIdBody2")'  onmouseout='hoverOutColorChangeFunc("hoverColorVarBody2", "colorChangeIdBody2")' class="buttonTenthWidth button btnFont25" id="colorChangeIdBody2" onclick="bbbb(2); changeColor9(x15, 'colorChangeIdBody2', x16, 'colorChangeIdBody1', x17, 
-    'colorChangeIdBody9', x18, 'colorChangeIdBody8', x19, 'colorChangeIdBody7', x20, 'colorChangeIdBody6', x21, 'colorChangeIdBody5', x22, 'colorChangeIdBody4', x23, 'colorChangeIdBody3'); returnBodyImg('colorChangeIdBody2');" type="button" value="2">
-  <input onmouseover='hoverColorChangeFunc("colorChangeIdBody3")'  onmouseout='hoverOutColorChangeFunc("hoverColorVarBody3", "colorChangeIdBody3")' class="buttonTenthWidth button btnFont25" id="colorChangeIdBody3" onclick="bbbb(3); changeColor9(x15, 'colorChangeIdBody3', x16, 'colorChangeIdBody2', x17, 
-  'colorChangeIdBody1', x18, 'colorChangeIdBody9', x19, 'colorChangeIdBody8', x20, 'colorChangeIdBody7', x21, 'colorChangeIdBody6', x22, 'colorChangeIdBody5', x23, 'colorChangeIdBody4'); returnBodyImg('colorChangeIdBody3');" type="button" value="3">
-  <input onmouseover='hoverColorChangeFunc("colorChangeIdBody4")'  onmouseout='hoverOutColorChangeFunc("hoverColorVarBody4", "colorChangeIdBody4")'  class="button buttonTenthWidth btnFont25" id="colorChangeIdBody4" onclick="bbbb(4); changeColor9(x15, 'colorChangeIdBody4', x16, 'colorChangeIdBody3', x17, 
-  'colorChangeIdBody2', x18, 'colorChangeIdBody1', x19, 'colorChangeIdBody9', x20, 'colorChangeIdBody8', x21, 'colorChangeIdBody7', x22, 'colorChangeIdBody6', x23, 'colorChangeIdBody5'); returnBodyImg('colorChangeIdBody4');" type="button" value="4">
-  <input onmouseover='hoverColorChangeFunc("colorChangeIdBody5")'  onmouseout='hoverOutColorChangeFunc("hoverColorVarBody5", "colorChangeIdBody5")'  class="button buttonTenthWidth btnFont25" id="colorChangeIdBody5" onclick="bbbb(5); changeColor9(x15, 'colorChangeIdBody5', x16, 'colorChangeIdBody4', x17, 
-  'colorChangeIdBody3', x18, 'colorChangeIdBody2', x19, 'colorChangeIdBody1', x20, 'colorChangeIdBody9', x21, 'colorChangeIdBody8', x22, 'colorChangeIdBody7', x23, 'colorChangeIdBody6'); returnBodyImg('colorChangeIdBody5');" type="button" value="5">
-  <input onmouseover='hoverColorChangeFunc("colorChangeIdBody6")'  onmouseout='hoverOutColorChangeFunc("hoverColorVarBody6", "colorChangeIdBody6")'  class="button buttonTenthWidth btnFont25" id="colorChangeIdBody6" onclick="bbbb(6); changeColor9(x15, 'colorChangeIdBody6', x16, 'colorChangeIdBody5', x17, 
-  'colorChangeIdBody4', x18, 'colorChangeIdBody3', x19, 'colorChangeIdBody2', x20, 'colorChangeIdBody1', x21, 'colorChangeIdBody9', x22, 'colorChangeIdBody8', x23, 'colorChangeIdBody7'); returnBodyImg('colorChangeIdBody6');" type="button" value="6">
-  <input  onmouseover='hoverColorChangeFunc("colorChangeIdBody7")'  onmouseout='hoverOutColorChangeFunc("hoverColorVarBody7", "colorChangeIdBody7")' class="button buttonTenthWidth btnFont25" id="colorChangeIdBody7" onclick="bbbb(7); changeColor9(x15, 'colorChangeIdBody7', x16, 'colorChangeIdBody6', x17, 
-  'colorChangeIdBody5', x18, 'colorChangeIdBody4', x19, 'colorChangeIdBody3', x20, 'colorChangeIdBody2', x21, 'colorChangeIdBody1', x22, 'colorChangeIdBody9', x23, 'colorChangeIdBody8'); returnBodyImg('colorChangeIdBody7');" type="button" value="7">
-  <input onmouseover='hoverColorChangeFunc("colorChangeIdBody8")'   onmouseout='hoverOutColorChangeFunc("hoverColorVarBody8", "colorChangeIdBody8")' class="button buttonTenthWidth btnFont25" id="colorChangeIdBody8" onclick="bbbb(8); changeColor9(x15, 'colorChangeIdBody8', x16, 'colorChangeIdBody7', x17, 
-  'colorChangeIdBody6', x18, 'colorChangeIdBody5', x19, 'colorChangeIdBody4', x20, 'colorChangeIdBody3', x21, 'colorChangeIdBody2', x22, 'colorChangeIdBody1', x23, 'colorChangeIdBody9'); returnBodyImg('colorChangeIdBody8');" type="button" value="8">
-  <input onmouseover='hoverColorChangeFunc("colorChangeIdBody9")'   onmouseout='hoverOutColorChangeFunc("hoverColorVarBody9", "colorChangeIdBody9")' class="button buttonTenthWidth btnFont25" id="colorChangeIdBody9" onclick="bbbb(9); changeColor9(x15, 'colorChangeIdBody9', x16, 'colorChangeIdBody8', x17, 
-  'colorChangeIdBody7', x18, 'colorChangeIdBody6', x19, 'colorChangeIdBody5', x20, 'colorChangeIdBody4', x21, 'colorChangeIdBody3', x22, 'colorChangeIdBody2', x23, 'colorChangeIdBody1'); returnBodyImg('colorChangeIdBody9');" type="button" value="9">
-<br><br>
-<b><h1 class="classHeading headingObjInputId" id="headingObjInputIdGoalImage"><i>Which one of these you think represent your goal the most?</i></h1></b><br> <input   onmouseout='hoverOutColorChangeFunc("hoverColorVarGoal1", "colorChangeIdGoal1")' onmouseover='hoverColorChangeFunc("colorChangeIdGoal1")' class="button buttonTenthWidth btnFont25" id="colorChangeIdGoal1" onclick="bGoal(1); changeColor10(xx24, 'colorChangeIdGoal1', xx25, 'colorChangeIdGoal9', xx26, 'colorChangeIdGoal8', xx27, 'colorChangeIdGoal7', xx28, 'colorChangeIdGoal6', xx29, 'colorChangeIdGoal5', xx30, 'colorChangeIdGoal4', xx31, 'colorChangeIdGoal3',  xx32, 'colorChangeIdGoal2'); returnGoalImg('colorChangeIdGoal1')" type="button" value="1">
-  <input  onmouseover='hoverColorChangeFunc("colorChangeIdGoal2")'  onmouseout='hoverOutColorChangeFunc("hoverColorVarGoal2", "colorChangeIdGoal2")' class="button buttonTenthWidth btnFont25" id="colorChangeIdGoal2" onclick="bGoal(2); changeColor10(xx24, 'colorChangeIdGoal2', xx25, 'colorChangeIdGoal1', xx26, 'colorChangeIdGoal9', xx27, 'colorChangeIdGoal8', xx28, 
-    'colorChangeIdGoal7', xx29, 'colorChangeIdGoal6', xx30, 'colorChangeIdGoal5', xx31, 'colorChangeIdGoal4', xx32, 'colorChangeIdGoal3'); returnGoalImg('colorChangeIdGoal2')" type="button" value="2">
-  <input  onmouseover='hoverColorChangeFunc("colorChangeIdGoal3")'  onmouseout='hoverOutColorChangeFunc("hoverColorVarGoal3", "colorChangeIdGoal3")' class="button buttonTenthWidth btnFont25" id="colorChangeIdGoal3" onclick="bGoal(3); changeColor10(xx24, 'colorChangeIdGoal3', xx25, 'colorChangeIdGoal2', xx26, 'colorChangeIdGoal1', xx27, 'colorChangeIdGoal9', xx28, 
-    'colorChangeIdGoal8', xx29, 'colorChangeIdGoal7', xx30, 'colorChangeIdGoal6', xx31, 'colorChangeIdGoal5', xx32, 'colorChangeIdGoal4'); returnGoalImg('colorChangeIdGoal3')" type="button" value="3">
-  <input  onmouseover='hoverColorChangeFunc("colorChangeIdGoal4")' onmouseout='hoverOutColorChangeFunc("hoverColorVarGoal4", "colorChangeIdGoal4")'  class="button buttonTenthWidth btnFont25" id="colorChangeIdGoal4" onclick="bGoal(4); changeColor10(xx24, 'colorChangeIdGoal4', xx25, 'colorChangeIdGoal3', xx26, 'colorChangeIdGoal2', xx27, 'colorChangeIdGoal1', xx28, 
-    'colorChangeIdGoal9', xx29, 'colorChangeIdGoal8', xx30, 'colorChangeIdGoal7', xx31, 'colorChangeIdGoal6', xx32, 'colorChangeIdGoal5'); returnGoalImg('colorChangeIdGoal4')" type="button" value="4">
-  <input  onmouseover='hoverColorChangeFunc("colorChangeIdGoal5")' onmouseout='hoverOutColorChangeFunc("hoverColorVarGoal5", "colorChangeIdGoal5")'  class="button buttonTenthWidth btnFont25" id="colorChangeIdGoal5" onclick="bGoal(5); changeColor10(xx24, 'colorChangeIdGoal5', xx25, 'colorChangeIdGoal4', xx26, 'colorChangeIdGoal3', xx27, 'colorChangeIdGoal2', xx28, 
-  'colorChangeIdGoal1', xx29, 'colorChangeIdGoal9', xx30, 'colorChangeIdGoal8', xx31, 'colorChangeIdGoal7', xx32, 'colorChangeIdGoal6'); returnGoalImg('colorChangeIdGoal5')" type="button" value="5">
-  <input  onmouseover='hoverColorChangeFunc("colorChangeIdGoal6")'  onmouseout='hoverOutColorChangeFunc("hoverColorVarGoal6", "colorChangeIdGoal6")' class="button buttonTenthWidth btnFont25" id="colorChangeIdGoal6" onclick="bGoal(6); changeColor10(xx24, 'colorChangeIdGoal6', xx25, 'colorChangeIdGoal5', xx26, 'colorChangeIdGoal4', xx27, 'colorChangeIdGoal3', xx28, 
-  'colorChangeIdGoal2', xx29, 'colorChangeIdGoal1', xx30, 'colorChangeIdGoal9', xx31, 'colorChangeIdGoal8', xx32, 'colorChangeIdGoal7'); returnGoalImg('colorChangeIdGoal6')" type="button" value="6">
-  <input  onmouseover='hoverColorChangeFunc("colorChangeIdGoal7")'  onmouseout='hoverOutColorChangeFunc("hoverColorVarGoal7", "colorChangeIdGoal7")' class="button buttonTenthWidth btnFont25" id="colorChangeIdGoal7" onclick="bGoal(7); changeColor10(xx24, 'colorChangeIdGoal7', xx25, 'colorChangeIdGoal6', xx26, 'colorChangeIdGoal5', xx27, 'colorChangeIdGoal4', xx28, 
-  'colorChangeIdGoal3', xx29, 'colorChangeIdGoal2', xx30, 'colorChangeIdGoal1', xx31, 'colorChangeIdGoal9', xx32, 'colorChangeIdGoal8'); returnGoalImg('colorChangeIdGoal7')" type="button" value="7">
-  <input  onmouseover='hoverColorChangeFunc("colorChangeIdGoal8")' onmouseout='hoverOutColorChangeFunc("hoverColorVarGoal8", "colorChangeIdGoal8")'  class="button buttonTenthWidth btnFont25" id="colorChangeIdGoal8" onclick="bGoal(8); changeColor10(xx24, 'colorChangeIdGoal8', xx25, 'colorChangeIdGoal7', xx26, 'colorChangeIdGoal6', xx27, 'colorChangeIdGoal5', xx28, 
-    'colorChangeIdGoal4', xx29, 'colorChangeIdGoal3', xx30, 'colorChangeIdGoal2', xx31, 'colorChangeIdGoal1', xx32, 'colorChangeIdGoal9'); returnGoalImg('colorChangeIdGoal8')" type="button" value="8">
-  <input  onmouseover='hoverColorChangeFunc("colorChangeIdGoal9")' onmouseout='hoverOutColorChangeFunc("hoverColorVarGoal9", "colorChangeIdGoal9")'  class="button buttonTenthWidth btnFont25" id="colorChangeIdGoal9" onclick="bGoal(9); changeColor10(xx24, 'colorChangeIdGoal9', xx25, 'colorChangeIdGoal8', xx26, 'colorChangeIdGoal7', xx27, 'colorChangeIdGoal6', xx28,
-    'colorChangeIdGoal5', xx29, 'colorChangeIdGoal4', xx30, 'colorChangeIdGoal3', xx31, 'colorChangeIdGoal2', xx32, 'colorChangeIdGoal1'); returnGoalImg('colorChangeIdGoal9')" type="button" value="9">
-<br><br><br><br>
-<div id="imgShowBtn">
-<button class="button" id="showImgBtn" onclick="openGenderCenterNav();">&#9776; Show Image</button></div>
-<div id="myGenderCenterNav" class="genderCenterNav" >
-    <div id="referenceImgTxt">Reference Image:</div>
-    <div id="bodyImageId"></div>
-    <div id="backupReferenceImg"></div>
-    <a href="javascript:void(0)" class="closebtn" onclick="closeGenderCenterNav()">&times;</a>
-</div></strong>
-<div id="footerDiv">
-<div class="footer" id="idFooter"><a id="footerlink" class="classFooter" href="https://www.LinkedIn.com/in/nikolas-barcha-virionis-b71228199/" target="_blank"><i>
-            FitWish &copy; Copyright 2021<br></a><a class="classFooter" href="https://www.LinkedIn.com/in/nikolas-barcha-virionis-b71228199/" target="_blank"><p id="allRights"><ins>All Rights Reserved</ins></p></i></a>
-        </div></div>
-<input type="button" name="prev" onclick="prevPageInterpreter();" id="buttonPrev" class="button pageDisplayNone btnNextPrev" value="Previous">
-<input type="button" name="next" onclick="nextPageInterpreter();" id="buttonNext" class="button btnNextPrev pageDisplayNone" value="Next">
-<input type="button" name="result" onclick="returnEmailAddrFinal(); ages(); result();" id="buttonResult" class="button resultButton pageDisplayNone" value="Result">    
-<div id="buttonsId">
-<div id="pageBtnsId">
-<input type="button" name="home" onclick="firstPage(); titleMid();" id="buttonHome" class="button aboutContactBtn pageDisplayNone" value="Home Page">    
-<input type="button" name="attempt" onclick="firstPageLogin();" id="buttonFirst" class="button aboutContactBtn pageDisplayNone" value="Attempt's Menu">    
-<input type="button" name="about" onclick="about();" id="buttonAbout" class="button aboutContactBtn" value="About">
-<input type="button" name="contact" onclick="contact();" id="buttonContact" class="button aboutContactBtn" value="Contact"></div></div>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image self diagnosis</title>
+  <!--CSS-->
+  <link rel="shortcut icon"
+    href="https://www.pngkey.com/png/full/211-2118619_healthy-army-communities-healthy-apple-logo.png"
+    type="image/x-icon">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/image.css">
+  <script src="./assets/js/image.js" defer></script>
+</head>
+<!--HTML questions and basic structure-->
+
+<body id="bodyBgColorId">
+  <div class="sideBarButtons" onclick="openNav();" id="leftsidebarButton">&#9776;</div>
+  <div class="sideBarButtons" onclick="rightNavInterpreter();" id="rightsidebarButton"><span
+      id="rightsidebarSymbol">&sect;</span></div>
+  <div id="linkTitle" title="FitWish Home Page"><a id="linkTitlea" href=""><img id="imageLogo"
+        src="https://www.pngkey.com/png/full/211-2118619_healthy-army-communities-healthy-apple-logo.png"></a>
+    <a id="titleLink" href="">
+      <h1 class="classHeading" id="headingObjInputIdHead"><i>FitWish</i></h1>
+    </a>
+  </div>
+  <div id="myLeftSidenav" class="leftsidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <span id="languageInput">Language:</span><br>
+    <a href="javascript:english();"><img class="nationFlag"
+        src="https://grid.gograph.com/flag-usuk-eps-vector_gg64260913.jpg"><span class="nationName"><span
+          class="nationNameRed">En</span><span class="nationNameWhite">gli</span><span
+          class="nationNameBlue">sh</span></a></span>
+    <a href="javascript:português();"><img class="nationFlag"
+        src="https://portuguessemmisterio.files.wordpress.com/2018/12/Bandeiras_Brazil_e_Portugal.png"><span
+        class="nationName"><span class="nationNameGreen">Por</span><span class="nationNameRed">tu</span><span
+          class="nationNameYellow">guês</span></a></span>
+    <a href="javascript:français();"><img class="nationFlag"
+        src="https://upload.wikimedia.org/wikipedia/commons/6/62/Flag_of_France.png"><span class="nationName"><span
+          class="nationNameBlue">Fr</span><span class="nationNameWhite">an</span><span
+          class="nationNameRed">çais</span></a></span>
+    <a href="javascript:español();"><img class="nationFlag"
+        src="https://www.countryflags.com/wp-content/uploads/spain-flag-png-large.png"><span class="nationName"><span
+          class="nationNameYellow">Es</span><span class="nationNameRed">pa</span><span
+          class="nationNameYellow">ñol</span></a></span>
+    <li onclick="themeTypeDark();" id="darkThemeButton" class="listnav">Dark Theme (default)</li>
+    <li onclick="themeTypeLight();" id="lightThemeButton" class="listnav">Light Theme</li>
+    <li onclick="" id="pagesNavId" class="listnav">Pages/Sections(&sect;)</li>
+    <li onclick="disclaimer();" id="disclaimerId">DISCLAIMER</li>
+    <li onclick="about();" id="aboutId" class="listnav2">About</li>
+    <li onclick="contact();" id="contactId" class="listnav2">Contact</li>
+    <li onclick="howTo();" id="howItWorksId" class="listnav2">How it Works</li>
+  </div>
+  <div id="myRightSidenav" class="rightsidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="rightNavInterpreter()">&times;</a>
+    <span id="pageId">Pages:</span><br>
+    <ul id="listRightNav">
+      <li onclick="pageSwitcher(1);" id="introPageId">Introduction</li>
+      <li onclick="pageSwitcher(2);" id="loginPageId">Login</li>
+      <li onclick="pageSwitcher(3);" id="genderUnitPageId">Gender/Unit</li>
+      <li onclick="pageSwitcher(4);" id="dataPageId">Weight/Height</li>
+      <li onclick="pageSwitcher(5);" id="goalPageId">Goal</li>
+      <li onclick="pageSwitcher(6);" id="bodyTypePageId">Body Type</li>
+      <li onclick="pageSwitcher(7);" id="bodyImagePageId">Body Fat Evaluation</li>
+      <li onclick="pageSwitcher(8);" id="xercisePageId">Exercise Evaluation</li>
+      <li onclick="pageSwitcher(9);" id="healthyPageId">Healthy Meals</li>
+      <li onclick="pageSwitcher(10);" id="cheatPageId">Cheat Meals</li>
+      <li onclick="pageSwitcher(11);" id="mealsPageId">Meals/Day</li>
+      <li onclick="pageSwitcher(12);" id="emotionPageId">Emotion-based Overeating</li>
+    </ul>
+  </div>
+  <strong id="idImageSubmit">
+    <b>
+      <h1 class="classHeading headingObjInputId" id="headingObjInputIdBodyImage"><i>Which one of these you think
+          represent you the most?</i></h1>
+    </b><br> <input onmouseover='hoverColorChangeFunc("colorChangeIdBody1")'
+      onmouseout='hoverOutColorChangeFunc("hoverColorVarBody1", "colorChangeIdBody1")'
+      class="buttonTenthWidth button btnFont25" id="colorChangeIdBody1"
+      onclick="bbbb(1); changeColor9(x15, 'colorChangeIdBody1', x16, 
+    'colorChangeIdBody9', x17, 'colorChangeIdBody8', x18, 'colorChangeIdBody7', x19, 'colorChangeIdBody6', x20, 'colorChangeIdBody5', x21, 'colorChangeIdBody4', x22, 'colorChangeIdBody3', x23, 'colorChangeIdBody2'); returnBodyImg('colorChangeIdBody1');"
+      type="button" value="1">
+    <input onmouseover='hoverColorChangeFunc("colorChangeIdBody2")'
+      onmouseout='hoverOutColorChangeFunc("hoverColorVarBody2", "colorChangeIdBody2")'
+      class="buttonTenthWidth button btnFont25" id="colorChangeIdBody2"
+      onclick="bbbb(2); changeColor9(x15, 'colorChangeIdBody2', x16, 'colorChangeIdBody1', x17, 
+    'colorChangeIdBody9', x18, 'colorChangeIdBody8', x19, 'colorChangeIdBody7', x20, 'colorChangeIdBody6', x21, 'colorChangeIdBody5', x22, 'colorChangeIdBody4', x23, 'colorChangeIdBody3'); returnBodyImg('colorChangeIdBody2');"
+      type="button" value="2">
+    <input onmouseover='hoverColorChangeFunc("colorChangeIdBody3")'
+      onmouseout='hoverOutColorChangeFunc("hoverColorVarBody3", "colorChangeIdBody3")'
+      class="buttonTenthWidth button btnFont25" id="colorChangeIdBody3"
+      onclick="bbbb(3); changeColor9(x15, 'colorChangeIdBody3', x16, 'colorChangeIdBody2', x17, 
+  'colorChangeIdBody1', x18, 'colorChangeIdBody9', x19, 'colorChangeIdBody8', x20, 'colorChangeIdBody7', x21, 'colorChangeIdBody6', x22, 'colorChangeIdBody5', x23, 'colorChangeIdBody4'); returnBodyImg('colorChangeIdBody3');"
+      type="button" value="3">
+    <input onmouseover='hoverColorChangeFunc("colorChangeIdBody4")'
+      onmouseout='hoverOutColorChangeFunc("hoverColorVarBody4", "colorChangeIdBody4")'
+      class="button buttonTenthWidth btnFont25" id="colorChangeIdBody4"
+      onclick="bbbb(4); changeColor9(x15, 'colorChangeIdBody4', x16, 'colorChangeIdBody3', x17, 
+  'colorChangeIdBody2', x18, 'colorChangeIdBody1', x19, 'colorChangeIdBody9', x20, 'colorChangeIdBody8', x21, 'colorChangeIdBody7', x22, 'colorChangeIdBody6', x23, 'colorChangeIdBody5'); returnBodyImg('colorChangeIdBody4');"
+      type="button" value="4">
+    <input onmouseover='hoverColorChangeFunc("colorChangeIdBody5")'
+      onmouseout='hoverOutColorChangeFunc("hoverColorVarBody5", "colorChangeIdBody5")'
+      class="button buttonTenthWidth btnFont25" id="colorChangeIdBody5"
+      onclick="bbbb(5); changeColor9(x15, 'colorChangeIdBody5', x16, 'colorChangeIdBody4', x17, 
+  'colorChangeIdBody3', x18, 'colorChangeIdBody2', x19, 'colorChangeIdBody1', x20, 'colorChangeIdBody9', x21, 'colorChangeIdBody8', x22, 'colorChangeIdBody7', x23, 'colorChangeIdBody6'); returnBodyImg('colorChangeIdBody5');"
+      type="button" value="5">
+    <input onmouseover='hoverColorChangeFunc("colorChangeIdBody6")'
+      onmouseout='hoverOutColorChangeFunc("hoverColorVarBody6", "colorChangeIdBody6")'
+      class="button buttonTenthWidth btnFont25" id="colorChangeIdBody6"
+      onclick="bbbb(6); changeColor9(x15, 'colorChangeIdBody6', x16, 'colorChangeIdBody5', x17, 
+  'colorChangeIdBody4', x18, 'colorChangeIdBody3', x19, 'colorChangeIdBody2', x20, 'colorChangeIdBody1', x21, 'colorChangeIdBody9', x22, 'colorChangeIdBody8', x23, 'colorChangeIdBody7'); returnBodyImg('colorChangeIdBody6');"
+      type="button" value="6">
+    <input onmouseover='hoverColorChangeFunc("colorChangeIdBody7")'
+      onmouseout='hoverOutColorChangeFunc("hoverColorVarBody7", "colorChangeIdBody7")'
+      class="button buttonTenthWidth btnFont25" id="colorChangeIdBody7"
+      onclick="bbbb(7); changeColor9(x15, 'colorChangeIdBody7', x16, 'colorChangeIdBody6', x17, 
+  'colorChangeIdBody5', x18, 'colorChangeIdBody4', x19, 'colorChangeIdBody3', x20, 'colorChangeIdBody2', x21, 'colorChangeIdBody1', x22, 'colorChangeIdBody9', x23, 'colorChangeIdBody8'); returnBodyImg('colorChangeIdBody7');"
+      type="button" value="7">
+    <input onmouseover='hoverColorChangeFunc("colorChangeIdBody8")'
+      onmouseout='hoverOutColorChangeFunc("hoverColorVarBody8", "colorChangeIdBody8")'
+      class="button buttonTenthWidth btnFont25" id="colorChangeIdBody8"
+      onclick="bbbb(8); changeColor9(x15, 'colorChangeIdBody8', x16, 'colorChangeIdBody7', x17, 
+  'colorChangeIdBody6', x18, 'colorChangeIdBody5', x19, 'colorChangeIdBody4', x20, 'colorChangeIdBody3', x21, 'colorChangeIdBody2', x22, 'colorChangeIdBody1', x23, 'colorChangeIdBody9'); returnBodyImg('colorChangeIdBody8');"
+      type="button" value="8">
+    <input onmouseover='hoverColorChangeFunc("colorChangeIdBody9")'
+      onmouseout='hoverOutColorChangeFunc("hoverColorVarBody9", "colorChangeIdBody9")'
+      class="button buttonTenthWidth btnFont25" id="colorChangeIdBody9"
+      onclick="bbbb(9); changeColor9(x15, 'colorChangeIdBody9', x16, 'colorChangeIdBody8', x17, 
+  'colorChangeIdBody7', x18, 'colorChangeIdBody6', x19, 'colorChangeIdBody5', x20, 'colorChangeIdBody4', x21, 'colorChangeIdBody3', x22, 'colorChangeIdBody2', x23, 'colorChangeIdBody1'); returnBodyImg('colorChangeIdBody9');"
+      type="button" value="9">
+    <br><br>
+    <b>
+      <h1 class="classHeading headingObjInputId" id="headingObjInputIdGoalImage"><i>Which one of these you think
+          represent your goal the most?</i></h1>
+    </b><br> <input onmouseout='hoverOutColorChangeFunc("hoverColorVarGoal1", "colorChangeIdGoal1")'
+      onmouseover='hoverColorChangeFunc("colorChangeIdGoal1")' class="button buttonTenthWidth btnFont25"
+      id="colorChangeIdGoal1"
+      onclick="bGoal(1); changeColor10(xx24, 'colorChangeIdGoal1', xx25, 'colorChangeIdGoal9', xx26, 'colorChangeIdGoal8', xx27, 'colorChangeIdGoal7', xx28, 'colorChangeIdGoal6', xx29, 'colorChangeIdGoal5', xx30, 'colorChangeIdGoal4', xx31, 'colorChangeIdGoal3',  xx32, 'colorChangeIdGoal2'); returnGoalImg('colorChangeIdGoal1')"
+      type="button" value="1">
+    <input onmouseover='hoverColorChangeFunc("colorChangeIdGoal2")'
+      onmouseout='hoverOutColorChangeFunc("hoverColorVarGoal2", "colorChangeIdGoal2")'
+      class="button buttonTenthWidth btnFont25" id="colorChangeIdGoal2"
+      onclick="bGoal(2); changeColor10(xx24, 'colorChangeIdGoal2', xx25, 'colorChangeIdGoal1', xx26, 'colorChangeIdGoal9', xx27, 'colorChangeIdGoal8', xx28, 
+    'colorChangeIdGoal7', xx29, 'colorChangeIdGoal6', xx30, 'colorChangeIdGoal5', xx31, 'colorChangeIdGoal4', xx32, 'colorChangeIdGoal3'); returnGoalImg('colorChangeIdGoal2')"
+      type="button" value="2">
+    <input onmouseover='hoverColorChangeFunc("colorChangeIdGoal3")'
+      onmouseout='hoverOutColorChangeFunc("hoverColorVarGoal3", "colorChangeIdGoal3")'
+      class="button buttonTenthWidth btnFont25" id="colorChangeIdGoal3"
+      onclick="bGoal(3); changeColor10(xx24, 'colorChangeIdGoal3', xx25, 'colorChangeIdGoal2', xx26, 'colorChangeIdGoal1', xx27, 'colorChangeIdGoal9', xx28, 
+    'colorChangeIdGoal8', xx29, 'colorChangeIdGoal7', xx30, 'colorChangeIdGoal6', xx31, 'colorChangeIdGoal5', xx32, 'colorChangeIdGoal4'); returnGoalImg('colorChangeIdGoal3')"
+      type="button" value="3">
+    <input onmouseover='hoverColorChangeFunc("colorChangeIdGoal4")'
+      onmouseout='hoverOutColorChangeFunc("hoverColorVarGoal4", "colorChangeIdGoal4")'
+      class="button buttonTenthWidth btnFont25" id="colorChangeIdGoal4"
+      onclick="bGoal(4); changeColor10(xx24, 'colorChangeIdGoal4', xx25, 'colorChangeIdGoal3', xx26, 'colorChangeIdGoal2', xx27, 'colorChangeIdGoal1', xx28, 
+    'colorChangeIdGoal9', xx29, 'colorChangeIdGoal8', xx30, 'colorChangeIdGoal7', xx31, 'colorChangeIdGoal6', xx32, 'colorChangeIdGoal5'); returnGoalImg('colorChangeIdGoal4')"
+      type="button" value="4">
+    <input onmouseover='hoverColorChangeFunc("colorChangeIdGoal5")'
+      onmouseout='hoverOutColorChangeFunc("hoverColorVarGoal5", "colorChangeIdGoal5")'
+      class="button buttonTenthWidth btnFont25" id="colorChangeIdGoal5"
+      onclick="bGoal(5); changeColor10(xx24, 'colorChangeIdGoal5', xx25, 'colorChangeIdGoal4', xx26, 'colorChangeIdGoal3', xx27, 'colorChangeIdGoal2', xx28, 
+  'colorChangeIdGoal1', xx29, 'colorChangeIdGoal9', xx30, 'colorChangeIdGoal8', xx31, 'colorChangeIdGoal7', xx32, 'colorChangeIdGoal6'); returnGoalImg('colorChangeIdGoal5')"
+      type="button" value="5">
+    <input onmouseover='hoverColorChangeFunc("colorChangeIdGoal6")'
+      onmouseout='hoverOutColorChangeFunc("hoverColorVarGoal6", "colorChangeIdGoal6")'
+      class="button buttonTenthWidth btnFont25" id="colorChangeIdGoal6"
+      onclick="bGoal(6); changeColor10(xx24, 'colorChangeIdGoal6', xx25, 'colorChangeIdGoal5', xx26, 'colorChangeIdGoal4', xx27, 'colorChangeIdGoal3', xx28, 
+  'colorChangeIdGoal2', xx29, 'colorChangeIdGoal1', xx30, 'colorChangeIdGoal9', xx31, 'colorChangeIdGoal8', xx32, 'colorChangeIdGoal7'); returnGoalImg('colorChangeIdGoal6')"
+      type="button" value="6">
+    <input onmouseover='hoverColorChangeFunc("colorChangeIdGoal7")'
+      onmouseout='hoverOutColorChangeFunc("hoverColorVarGoal7", "colorChangeIdGoal7")'
+      class="button buttonTenthWidth btnFont25" id="colorChangeIdGoal7"
+      onclick="bGoal(7); changeColor10(xx24, 'colorChangeIdGoal7', xx25, 'colorChangeIdGoal6', xx26, 'colorChangeIdGoal5', xx27, 'colorChangeIdGoal4', xx28, 
+  'colorChangeIdGoal3', xx29, 'colorChangeIdGoal2', xx30, 'colorChangeIdGoal1', xx31, 'colorChangeIdGoal9', xx32, 'colorChangeIdGoal8'); returnGoalImg('colorChangeIdGoal7')"
+      type="button" value="7">
+    <input onmouseover='hoverColorChangeFunc("colorChangeIdGoal8")'
+      onmouseout='hoverOutColorChangeFunc("hoverColorVarGoal8", "colorChangeIdGoal8")'
+      class="button buttonTenthWidth btnFont25" id="colorChangeIdGoal8"
+      onclick="bGoal(8); changeColor10(xx24, 'colorChangeIdGoal8', xx25, 'colorChangeIdGoal7', xx26, 'colorChangeIdGoal6', xx27, 'colorChangeIdGoal5', xx28, 
+    'colorChangeIdGoal4', xx29, 'colorChangeIdGoal3', xx30, 'colorChangeIdGoal2', xx31, 'colorChangeIdGoal1', xx32, 'colorChangeIdGoal9'); returnGoalImg('colorChangeIdGoal8')"
+      type="button" value="8">
+    <input onmouseover='hoverColorChangeFunc("colorChangeIdGoal9")'
+      onmouseout='hoverOutColorChangeFunc("hoverColorVarGoal9", "colorChangeIdGoal9")'
+      class="button buttonTenthWidth btnFont25" id="colorChangeIdGoal9"
+      onclick="bGoal(9); changeColor10(xx24, 'colorChangeIdGoal9', xx25, 'colorChangeIdGoal8', xx26, 'colorChangeIdGoal7', xx27, 'colorChangeIdGoal6', xx28,
+    'colorChangeIdGoal5', xx29, 'colorChangeIdGoal4', xx30, 'colorChangeIdGoal3', xx31, 'colorChangeIdGoal2', xx32, 'colorChangeIdGoal1'); returnGoalImg('colorChangeIdGoal9')"
+      type="button" value="9">
+    <br><br><br><br>
+    <div id="imgShowBtn">
+      <button class="button" id="showImgBtn" onclick="openGenderCenterNav();">&#9776; Show Image</button>
+    </div>
+    <div id="myGenderCenterNav" class="genderCenterNav" style="display: none;">
+      <div id="referenceImgTxt">Reference Image:</div>
+      <div id="bodyImageId"></div>
+      <div id="backupReferenceImg"></div>
+      <a href="javascript:void(0)" class="closebtn" onclick="closeGenderCenterNav()">&times;</a>
+    </div>
+  </strong>
+  <div id="footerDiv">
+    <div class="footer" id="idFooter"><a id="footerlink" class="classFooter"
+        href="https://www.LinkedIn.com/in/nikolas-barcha-virionis-b71228199/" target="_blank"><i>
+          FitWish &copy; Copyright 2021<br></a><a class="classFooter"
+        href="https://www.LinkedIn.com/in/nikolas-barcha-virionis-b71228199/" target="_blank">
+        <p id="allRights"><ins>All Rights Reserved</ins></p></i>
+      </a>
+    </div>
+  </div>
+  <input type="button" name="prev" onclick="prevPageInterpreter();" id="buttonPrev" class="button btnNextPrev"
+    value="Previous">
+  <input type="button" name="next" onclick="nextPageInterpreter();" id="buttonNext" class="button btnNextPrev"
+    value="Next">
+  <div id="buttonsId">
+    <div id="pageBtnsId">
+      <input type="button" name="home" onclick="window.location.href = 'intro.html';" id="buttonHome"
+        class="button aboutContactBtn" value="Home Page">
+      <input type="button" name="about" onclick="about();" id="buttonAbout" class="button aboutContactBtn"
+        value="About">
+      <input type="button" name="contact" onclick="contact();" id="buttonContact" class="button aboutContactBtn"
+        value="Contact">
+    </div>
+  </div>
 </body>
+
 </html>

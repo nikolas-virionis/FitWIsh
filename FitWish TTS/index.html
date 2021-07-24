@@ -12,15 +12,21 @@
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200&display=swap" rel="stylesheet">
     <!--CSS-->
+    <link rel="shortcut icon"
+        href="https://www.pngkey.com/png/full/211-2118619_healthy-army-communities-healthy-apple-logo.png"
+        type="image/x-icon">
+    <link rel="shortcut icon"
+        href="https://www.pngkey.com/png/full/211-2118619_healthy-army-communities-healthy-apple-logo.png"
+        type="image/x-icon">
     <link rel="stylesheet" href="./assets/css/style.css">
-        <link rel="stylesheet" href="./assets/css/index.css">
+    <link rel="stylesheet" href="./assets/css/index.css">
     <script src="./assets/js/index.js"></script>
 </head>
 <!--HTML questions and basic structure-->
 
 <body id="bodyBgColorId">
     <div class="sideBarButtons" onclick="openNav();" id="leftsidebarButton">&#9776;</div>
-    <div class="sideBarButtons pageDisplayNone" onclick="rightNavInterpreter();" id="rightsidebarButton"><span
+    <div class="sideBarButtons" onclick="rightNavInterpreter();" id="rightsidebarButton"><span
             id="rightsidebarSymbol">&sect;</span></div>
     <div id="linkTitle" title="FitWish Home Page"><a id="linkTitlea" href=""><img id="imageLogo"
                 src="https://www.pngkey.com/png/full/211-2118619_healthy-army-communities-healthy-apple-logo.png"></a>
@@ -79,37 +85,39 @@
                 body of your dreams, press start to continue</h1>
         </span>
         <span>
-            <h1 id="firstPageH12nd" class="firstPageH1setItem pageDisplayNone">We detected that you have already tried
+            <h1 id="firstPageH12nd" class="firstPageH1setItem" style="display: none;">We detected that you have already
+                tried
                 our test once as . <br> Do you want to</h1>
         </span>
         <span>
-            <h1 id="firstPageH13rd" class="firstPageH1setItem pageDisplayNone">We detected that you have already tried
+            <h1 id="firstPageH13rd" class="firstPageH1setItem" style="display: none;">We detected that you have already
+                tried
                 our test twice. <br> Do you want to</h1>
         </span>
-        <input type="button" class="button pageDisplayNone" id="firstPageBtn1stTry" onclick="showPrevTestResult(1);"
-            value="See Result from test as ">
-        <input type="button" class="button pageDisplayNone" id="firstPageBtn2ndTry" onclick="showPrevTestResult(2);"
-            value="See Result from test as ">
-        <input type="button" class="button pageDisplayNone" id="firstPageBtn1stTryOverwrite"
-            onclick="overwriteTest2(1);" value="Overwrite Test made as ">
-        <input type="button" class="button pageDisplayNone" id="firstPageBtn2ndTryOverwrite"
-            onclick="overwriteTest2(2);" value="Overwrite Test made as ">
+        <input type="button" class="button" id="firstPageBtn1stTry" onclick="showPrevTestResult(1);"
+            value="See Result from test as " style="display: none;">
+        <input type="button" class="button" id="firstPageBtn2ndTry" onclick="showPrevTestResult(2);"
+            value="See Result from test as " style="display: none;">
+        <input type="button" class="button" id="firstPageBtn1stTryOverwrite" onclick="overwriteTest2(1);"
+            value="Overwrite Test made as " style="display: none;">
+        <input type="button" class="button" id="firstPageBtn2ndTryOverwrite" onclick="overwriteTest2(2);"
+            value="Overwrite Test made as " style="display: none;">
         <span class="firstPageBtns">
             <input type="button" class="button" id="firstPageBtnStart" onclick="startNewTry(1);" value="Start">
-            <input type="button" class="button pageDisplayNone" id="firstPageBtnDifferent" onclick="startNewTry(2);"
-                value="Do a Different Test">
-            <input type="button" class="button pageDisplayNone" id="firstPageBtnOverwrite" onclick="overwriteTest();"
-                value="Overwrite one Previous Test">
-            <input type="button" class="button pageDisplayNone" id="firstPageBtnDelete" onclick="deleteTests();"
-                value="Delete All Previous Tests Made">
-            <input type="button" class="button pageDisplayNone" id="firstPageBtnSeePrev" onclick="seePrevTest();"
-                value="See the Previous Test Result">
-            <input type="button" class="button pageDisplayNone" id="firstPageBtnSeeAll" onclick="seeAllTests();"
-                value="See All Previous Tests">
-            <input type="button" class="button pageDisplayNone" id="firstPageBtnHideAll" onclick="hideAllTests();"
-                value="Hide All Previous Tests">
-            <input type="button" class="button pageDisplayNone" id="firstPageBtnHidePrev" onclick="hidePrevTests();"
-                value="Hide Previous Test">
+            <input type="button" class="button" id="firstPageBtnDifferent" style="display: none;"
+                onclick="startNewTry(2);" value="Do a Different Test">
+            <input type="button" class="button" id="firstPageBtnOverwrite" onclick="overwriteTest();"
+                value="Overwrite one Previous Test" style="display: none;">
+            <input type="button" class="button" id="firstPageBtnDelete" onclick="deleteTests();"
+                value="Delete All Previous Tests Made" style="display: none;">
+            <input type="button" class="button" id="firstPageBtnSeePrev" onclick="seePrevTest();"
+                value="See the Previous Test Result" style="display: none;">
+            <input type="button" class="button" id="firstPageBtnSeeAll" onclick="seeAllTests();"
+                value="See All Previous Tests" style="display: none;">
+            <input type="button" class="button" style="display: none;" id="firstPageBtnHideAll"
+                onclick="hideAllTests();" value="Hide All Previous Tests">
+            <input type="button" class="button" style="display: none;" id="firstPageBtnHidePrev"
+                onclick="hidePrevTests();" value="Hide Previous Test">
         </span>
     </strong>
     <div id="footerDiv">
@@ -121,18 +129,10 @@
             </a>
         </div>
     </div>
-    <input type="button" name="prev" onclick="prevPageInterpreter();" id="buttonPrev"
-        class="button pageDisplayNone btnNextPrev" value="Previous">
-    <input type="button" name="next" onclick="nextPageInterpreter();" id="buttonNext"
-        class="button btnNextPrev pageDisplayNone" value="Next">
-    <input type="button" name="result" onclick="returnEmailAddrFinal(); ages(); result();" id="buttonResult"
-        class="button resultButton pageDisplayNone" value="Result">
     <div id="buttonsId">
         <div id="pageBtnsId">
-            <input type="button" name="home" onclick="firstPage(); titleMid();" id="buttonHome"
-                class="button aboutContactBtn pageDisplayNone" value="Home Page">
             <input type="button" name="attempt" onclick="firstPageLogin();" id="buttonFirst"
-                class="button aboutContactBtn pageDisplayNone" value="Attempt's Menu">
+                class="button aboutContactBtn" value="Attempt's Menu">
             <input type="button" name="about" onclick="about();" id="buttonAbout" class="button aboutContactBtn"
                 value="About">
             <input type="button" name="contact" onclick="contact();" id="buttonContact" class="button aboutContactBtn"

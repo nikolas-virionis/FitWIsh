@@ -1,0 +1,90 @@
+#idFirstSubmit {
+  text-align: center;
+  align-items: center;
+}
+.firstPageH1setItem {
+  margin-top: 14vh;
+  color: azure;
+  align-items: center;
+  width: 50vw;
+}
+.firstPageBtns {
+  display: grid;
+  place-items: center;
+}
+.firstPageBtns .button {
+  font-size: 1.6em;
+  border-radius: 1vw;
+  transition: 0.3s;
+}
+#firstPageBtnStart {
+  color: azure;
+  min-width: 10vw;
+  min-height: 10vh;
+}
+.firstPageBtns .button:hover {
+  text-decoration: underline;
+}
+#idFirstSubmit span {
+  display: grid;
+  place-items: center;
+}
+#firstPageBtnDelete {
+  background-color: red;
+  color: white;
+}
+#firstPageBtnDelete:hover {
+  color: black;
+}
+#firstPageBtn1stTry,
+#firstPageBtn2ndTry {
+  font-size: 0.75em;
+  text-align: center;
+  background-color: orangered;
+  color: azure;
+  border-radius: 1vw;
+  top: 30vh;
+  width: 21vw;
+  height: 10vh;
+  position: absolute;
+}
+:is(#firstPageBtn1stTry, #firstPageBtn2ndTry):hover {
+  color: black;
+}
+#firstPageBtn1stTry {
+  left: 3vw;
+}
+#firstPageBtn2ndTry {
+  right: 3vw;
+}
+#firstPageBtn1stTryOverwrite,
+#firstPageBtn2ndTryOverwrite {
+  font-size: 0.75em;
+  text-align: center;
+  background-color: orangered;
+  color: azure;
+  border-radius: 1vw;
+  top: 40vh;
+  width: 21vw;
+  height: 10vh;
+  position: absolute;
+}
+:is(#firstPageBtn1stTryOverwrite, #firstPageBtn2ndTryOverwrite):hover {
+  color: black;
+}
+#firstPageBtn1stTryOverwrite {
+  left: 3vw;
+}
+#firstPageBtn2ndTryOverwrite {
+  right: 3vw;
+}
+
+#firstPageH12nd,
+#firstPageH13rd {
+  margin-top: 0;
+}
+
+#titleLink {
+  margin-top: 2.5vh;
+  margin-left: 1vw;
+}

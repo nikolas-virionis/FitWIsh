@@ -5,22 +5,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Result</title>
+    <title>Data sending confirmation</title>
     <!--CSS-->
     <link rel="shortcut icon"
         href="https://www.pngkey.com/png/full/211-2118619_healthy-army-communities-healthy-apple-logo.png"
         type="image/x-icon">
     <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="stylesheet" href="./assets/css/result.css">
-
-    <script src="./assets/js/result.js" defer></script>
+    <link rel="stylesheet" href="./assets/css/check.css">
+    <script src="./assets/js/emotion.js" defer></script>
 </head>
 <!--HTML questions and basic structure-->
 
 <body id="bodyBgColorId">
     <div class="sideBarButtons" onclick="openNav();" id="leftsidebarButton">&#9776;</div>
-    <div class="sideBarButtons" onclick="rightNavInterpreter();" id="rightsidebarButton"><span
-            id="rightsidebarSymbol">&sect;</span></div>
     <div id="linkTitle" title="FitWish Home Page"><a id="linkTitlea" href=""><img id="imageLogo"
                 src="https://www.pngkey.com/png/full/211-2118619_healthy-army-communities-healthy-apple-logo.png"></a>
         <a id="titleLink" href="">
@@ -48,53 +45,23 @@
                     class="nationNameYellow">ñol</span></a></span>
         <li onclick="themeTypeDark();" id="darkThemeButton" class="listnav">Dark Theme (default)</li>
         <li onclick="themeTypeLight();" id="lightThemeButton" class="listnav">Light Theme</li>
-        <li onclick="" id="pagesNavId" class="listnav">Pages/Sections(&sect;)</li>
         <li onclick="disclaimer();" id="disclaimerId">DISCLAIMER</li>
-        <li onclick="about();" id="aboutId" class="listnav2">About</li>
-        <li onclick="contact();" id="contactId" class="listnav2">Contact</li>
-        <li onclick="howTo();" id="howItWorksId" class="listnav2">How it Works</li>
     </div>
-    <div id="myRightSidenav" class="rightsidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="rightNavInterpreter()">&times;</a>
-        <span id="pageId">Pages:</span><br>
-        <ul id="listRightNav">
-            <li onclick="pageSwitcher(1);" id="introPageId">Introduction</li>
-            <li onclick="pageSwitcher(2);" id="loginPageId">Login</li>
-            <li onclick="pageSwitcher(3);" id="genderUnitPageId">Gender/Unit</li>
-            <li onclick="pageSwitcher(4);" id="dataPageId">Weight/Height</li>
-            <li onclick="pageSwitcher(5);" id="goalPageId">Goal</li>
-            <li onclick="pageSwitcher(6);" id="bodyTypePageId">Body Type</li>
-            <li onclick="pageSwitcher(7);" id="bodyImagePageId">Body Fat Evaluation</li>
-            <li onclick="pageSwitcher(8);" id="xercisePageId">Exercise Evaluation</li>
-            <li onclick="pageSwitcher(9);" id="healthyPageId">Healthy Meals</li>
-            <li onclick="pageSwitcher(10);" id="cheatPageId">Cheat Meals</li>
-            <li onclick="pageSwitcher(11);" id="mealsPageId">Meals/Day</li>
-            <li onclick="pageSwitcher(12);" id="emotionPageId">Emotion-based Overeating</li>
-        </ul>
-        <h3 id="finalResultH3Id">
-        </h3>
-        <big>
-            <h4 id="finalResultH4Id">
-            </h4>
-        </big>
-        <h2 id="finalResultH2Id">
-            <a class="emaillink" id="emailLinkColor" href="javascript:sendConfirm();"><big>Want to have a email sent to
-                    you with the main result data? Click here!!</big></a><br>
-            <a class="downlink" id="downloadLinkColor"
-                href="javascript:downloadData(weightManagementProgramFinalResult, downloadResult);"><big>Want to have a
-                    new document with all this last pages data? Click here!!</big></a>
-        </h2>
-    </div>
-    <div class="container" id="idBar">
-        <div id="divPushCircleId"></div>
-        <div class="bar">
-            <svg>
-                <circle cx="50%" cy="50%" r="50%"></circle>
-            </svg>
-            <h1 class="number">0%</h1>
-            <h4 class="config" id="h4Config">Processing</h4>
-        </div>
-    </div>
+    <strong id="idCheckSubmit" class="margin15vhSubmit">
+        <b><b>
+                <h2 class="classHeading headingObjInputId" id="headingObjInputIdEmotion"><i>Are you sure you want to see
+                        the results?<h5>
+                            The data inputted cannot be changed after this</h5></i></h2>
+            </b></b><a><input class="buttonHalfWidth button button35vw" id="colorChangeIdCheckYes"
+                onmouseover='hoverColorChangeFunc("colorChangeIdCheckYes")'
+                onmouseout='hoverOutColorChangeFunc("hoverColorVarCheckYes", "colorChangeIdCheckYes")'
+                onclick="changeColor2(xx1, 'colorChangeIdCheckYes', xx2, 'colorChangeIdCheckNo'); CheckFunc('yes'); returnCheck('colorChangeIdCheckYes');"
+                type="button" value="Yes" /></a>
+        <input class="buttonHalfWidth button button35vw"
+            onmouseout='hoverOutColorChangeFunc("hoverColorVarCheckNo", "colorChangeIdCheckNo")'
+            id="colorChangeIdCheckNo" onmouseover='hoverColorChangeFunc("colorChangeIdCheckNo")'
+            onclick="CheckFunc('no'); changeColor2(xx2, 'colorChangeIdCheckNo', xx1, 'colorChangeIdCheckYes'); returnCheck('colorChangeIdCheckNo');"
+            type="button" value="No"></strong>
     <div id="footerDiv">
         <div class="footer" id="idFooter"><a id="footerlink" class="classFooter"
                 href="https://www.LinkedIn.com/in/nikolas-barcha-virionis-b71228199/" target="_blank"><i>
@@ -102,16 +69,6 @@
                 href="https://www.LinkedIn.com/in/nikolas-barcha-virionis-b71228199/" target="_blank">
                 <p id="allRights"><ins>All Rights Reserved</ins></p></i>
             </a>
-        </div>
-    </div>
-    <div id="buttonsId">
-        <div id="pageBtnsId">
-            <input type="button" name="attempt" onclick="firstPageLogin();" id="buttonFirst"
-                class="button aboutContactBtn" value="Attempt's Menu">
-            <input type="button" name="about" onclick="about();" id="buttonAbout" class="button aboutContactBtn"
-                value="About">
-            <input type="button" name="contact" onclick="contact();" id="buttonContact" class="button aboutContactBtn"
-                value="Contact">
         </div>
     </div>
 </body>

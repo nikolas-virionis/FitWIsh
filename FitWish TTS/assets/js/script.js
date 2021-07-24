@@ -1572,8 +1572,8 @@ const firstPage = () => {
     idAboutHeading.style.display = "none";
     rightsidebarButton.style.display = "block";
     idFirstSubmit.style.display = "none";
-    linkTitlea.href = "javascript:firstPage(); titleMid();";
-    titleLink.href = "javascript:firstPage(); titleMid();";
+    linkTitlea.href = "javascript:window.location.href = 'index.html';";
+    titleLink.href = "javascript:window.location.href = 'index.html';";
     pagesNavId.onclick = rightNavInterpreter;
     pagesNavId.onclick();
     rightNavInterpreter();

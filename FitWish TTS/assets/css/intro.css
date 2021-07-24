@@ -1,0 +1,79 @@
+#planId {
+  display: grid;
+  place-items: center;
+  color: aqua;
+  float: left;
+  margin-left: 43%;
+}
+#checkImgId {
+  height: 12.5vh;
+  margin-left: 23%;
+}
+#planLeftSector {
+  float: left;
+  position: absolute;
+  left: 5.5%;
+  top: 20%;
+}
+#planLeftSectorImg1 {
+  height: 15vh;
+  margin-top: 25%;
+  margin-left: 2vw;
+  float: left;
+}
+#planLeftSectorImg2 {
+  height: 18vh;
+  float: left;
+  margin-top: 15%;
+  margin-left: 2.5vw;
+}
+#planLeftSectorImg3 {
+  height: 10vh;
+  position: absolute;
+  top: 85%;
+  left: 42.5%;
+}
+#blueArrow {
+  width: 30vw;
+  float: left;
+  margin-top: 1%;
+  margin-left: 24%;
+  position: absolute;
+  left: 9.25%;
+}
+#planRightSector {
+  display: flex;
+  margin-left: 65.5%;
+}
+#planRightSectorImg1 {
+  float: left;
+  margin-top: 12.5%;
+  height: 17.5vh;
+  margin-left: 0;
+}
+#planRightSectorImg2 {
+  float: left;
+  height: 22.5vh;
+  margin-top: 10%;
+  margin-left: 0;
+}
+.planTxt {
+  max-width: 32%;
+  float: left;
+  text-align: center;
+  font-size: 2.2vw;
+}
+#idBadHabits {
+  color: azure;
+}
+#idPlanMsg {
+  color: cyan;
+}
+#idGoodHabits {
+  color: gold;
+}
+
+#titleLink {
+  margin-top: 2.5vh;
+  margin-left: 1vw;
+}

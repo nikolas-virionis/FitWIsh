@@ -1,50 +1,13 @@
-.aboutContactBtn {
-  background: none;
-  color: #ddd;
-  width: auto;
-  text-align: center;
-  display: block;
-  text-decoration: underline;
-  font-size: 0.55em;
-  font-weight: 100;
-}
-:is(.aboutContactBtn, .contactClass):hover {
-  color: white;
-}
-.contactAboutBtn {
-  background: none;
-  color: #1f3b4d;
-  width: auto;
-  text-align: center;
-  display: block;
-  text-decoration: underline;
-  font-size: 0.55em;
-  font-weight: 100;
-}
-.contactAboutBtn:hover {
-  color: black;
-}
 .dropCap:first-letter {
   float: left;
   font-size: 5vw;
   line-height: 0.65;
   margin: 0.1em 0.1em 0.1em 0;
 }
-#idAboutHeading,
-#idContactHeading,
-#idHowToHeading {
-  align-items: center;
-  text-align: center;
-  font-size: 2em;
-  font-family: Quicksand;
-  color: azure;
-  margin-top: -8.5vh;
-  position: absolute;
-}
 #idAboutHeading {
-  left: 42.5%;
+  margin-left: 45vw;
+  margin-top: -7vh;
 }
-
 #sectionTxtAbout {
   font-size: 2vw;
 }
@@ -72,4 +35,36 @@
 }
 #aboutImg2 {
   height: 25vh;
+}
+
+.margin7Class {
+  margin: 6vh;
+}
+
+#linkTitle {
+  display: flex;
+  margin-left: 4vw;
+  margin-top: 0;
+  text-decoration: none;
+  margin-right: 1vw;
+}
+
+#titleLink {
+  margin-top: 1vh;
+}
+
+#imageLogo {
+  float: left;
+  width: 3vw;
+  height: 7vh;
+  margin-left: 37.5%;
+  margin-top: 0;
+}
+
+#headingObjInputIdHead {
+  border: none;
+  background: none;
+  color: aliceblue;
+  place-items: left;
+  font-size: 1.35em;
 }

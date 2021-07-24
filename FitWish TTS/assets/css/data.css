@@ -1,0 +1,48 @@
+#idDataSubmit {
+  margin-top: 8vh;
+  width: 100vw;
+}
+
+#weightMetric,
+#heightMetric,
+#weightImperial,
+#heightImperial {
+  height: 60px;
+}
+
+#headingTextInputIdHeightMetric,
+#headingTextInputIdHeightImperial {
+  margin-top: 5vh;
+}
+
+#titleLink {
+  margin-top: 2.5vh;
+  margin-left: 1vw;
+}
+input::placeholder {
+  color: #1f3b4d;
+  opacity: 85;
+}
+#metricDataInputId,
+#imperialDataInputId {
+  text-align: center;
+  display: block;
+  place-items: center;
+  margin-top: 8vh;
+}
+.headingTextInputId {
+  color: #ddd;
+  display: grid;
+  place-items: center;
+}
+.textInputClass {
+  width: 99%;
+  text-align: center;
+  font-size: 3vw;
+  border-style: inset;
+  border-radius: 3vw;
+  border-color: rgba(100, 255, 255);
+  background-color: #9dbcd4;
+  font-family: Quicksand;
+  height: 6vh;
+}
