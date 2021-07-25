@@ -5,15 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Numeric data</title>
+    <title>Result</title>
     <!--CSS-->
     <link rel="shortcut icon"
         href="https://www.pngkey.com/png/full/211-2118619_healthy-army-communities-healthy-apple-logo.png"
         type="image/x-icon">
     <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="stylesheet" href="./assets/css/data.css">
+    <link rel="stylesheet" href="./assets/css/previousResult.css">
+
     <script src="./assets/js/script.js" defer></script>
-    <script src="./assets/js/data.js" defer></script>
+    <script src="./assets/js/previousResult.js" defer></script>
 </head>
 <!--HTML questions and basic structure-->
 
@@ -71,36 +72,25 @@
             <li onclick="pageSwitcher(11);" id="mealsPageId">Meals/Day</li>
             <li onclick="pageSwitcher(12);" id="emotionPageId">Emotion-based Overeating</li>
         </ul>
+        <h3 id="finalResultH3Id"></h3>
+        <strong>
+            <h4 id="finalResultH4Id"></h4>
+        </strong>
+        <h2 id="finalResultH2Id">
+            <a class="emaillink" id="emailLinkColor" href="javascript:sendConfirm();">
+                <strong>
+                    Want to have a email sent to you with the main result data? Click here!!
+                </strong>
+            </a>
+            <br>
+            <a class="downlink" id="downloadLinkColor"
+                href="javascript:downloadData(weightManagementProgramFinalResult, downloadResult);">
+                <strong>
+                    Want to have a new document with all this last pages data? Click here!!
+                </strong>
+            </a>
+        </h2>
     </div>
-    <strong id="idDataSubmit">
-        <span id="metricDataInputId">
-            <label class="label" for="weightMetric">
-                <h1><b><i class="classHeading headingTextInputId" id="headingTextInputIdWeightMetric">Weight:</i></b>
-                </h1>
-            </label>
-            <input class="textInputClass" type="number" placeholder="Example: 80.5" name="weightMetric"
-                id="weightMetric" required onkeyup="enterFuncMid(event, 'weightMetric', 'heightMetric');" /><br>
-            <label class="label" for="heightMetric">
-                <h1><b><i class="classHeading headingTextInputId" id="headingTextInputIdHeightMetric">Height:</i></b>
-                </h1>
-            </label>
-            <input class="textInputClass" type="number" required placeholder="Example: 1.85" name="heightMetric"
-                id="heightMetric" onkeyup="enterFunc(event);" /><br>
-        </span>
-        <span id="imperialDataInputId" style="display: none;">
-            <label class="label" for="weightImperial">
-                <h1><b><i class="classHeading headingTextInputId" id="headingTextInputIdWeightImperial">Weight:</i></b>
-                </h1>
-            </label>
-            <input class="textInputClass" type="number" placeholder="Example: 200.5" name="weightImperial"
-                id="weightImperial" required onkeyup="enterFuncMid(event, 'weightImperial', 'heightImperial');" /><br>
-            <label class="label" for="heightImperial">
-                <h1><b><i class="classHeading headingTextInputId" id="headingTextInputIdHeightImperial">Height:</i></b>
-                </h1>
-            </label>
-            <input class="textInputClass" type="number" required placeholder="Example: 70" name="heightImperial"
-                id="heightImperial" onkeyup="enterFunc(event);" /><br>
-        </span></strong>
     <div id="footerDiv">
         <div class="footer" id="idFooter"><a id="footerlink" class="classFooter"
                 href="https://www.LinkedIn.com/in/nikolas-barcha-virionis-b71228199/" target="_blank"><i>
@@ -110,10 +100,16 @@
             </a>
         </div>
     </div>
-    <input type="button" name="prev" onclick="prevPageInterpreter();" id="buttonPrev" class="button btnNextPrev"
-        value="Previous">
-    <input type="button" name="next" onclick="nextPageInterpreter();" id="buttonNext" class="button btnNextPrev"
-        value="Next">
+    <div id="buttonsId">
+        <div id="pageBtnsId">
+            <input type="button" name="attempt" onclick="firstPageLogin();" id="buttonFirst"
+                class="button aboutContactBtn" value="Attempt's Menu">
+            <input type="button" name="about" onclick="about();" id="buttonAbout" class="button aboutContactBtn"
+                value="About">
+            <input type="button" name="contact" onclick="contact();" id="buttonContact" class="button aboutContactBtn"
+                value="Contact">
+        </div>
+    </div>
 </body>
 
 </html>

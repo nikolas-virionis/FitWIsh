@@ -1,5 +1,5 @@
 var btype,
-  buttonQuerySelector = document.querySelectorAll(".button"),
+  buttons = document.querySelectorAll(".button"),
   resultBeginning,
   contentArray = JSON.parse(localStorage.getItem("contentArray")) ?? [],
   idUser,
@@ -27,10 +27,8 @@ var btype,
   done,
   processing,
   diagnosis,
-  langleftnav,
   alreadyInPage,
   local,
-  differentPage = 0,
   backupGenderImg =
     '<br><br><br><br><br><span style="font-size: 40px; font-variant:all-caps; color:white; display: grid; place-items: center;">Select a gender to see the reference Image',
   weightManagementProgramFinalResult,
@@ -41,27 +39,17 @@ var btype,
   emotionans,
   emotionreturn,
   emotion,
-  idealweight1,
-  idealweight2,
-  idealweight0,
-  weightstring,
+  baseIdealWeight,
+  topIdealWeight,
   weight,
-  heightstring,
   height,
   unit,
-  deltapp,
-  bodyy,
-  aaa,
-  aaaa,
-  heightfeetstring,
-  heightinchstring,
-  heightfeet,
-  heightinch,
-  weightfloat,
-  weight1,
-  weight2,
-  bbgwp,
-  bbgw0,
+  advicedWeight,
+  idealBodyFat,
+  idealWeightMsgPunctuation,
+  idealWeightMsgBmiState,
+  bodyFatPercentage,
+  bodyFat,
   bodyreturn,
   emailaddrreturn,
   genderreturn,
@@ -74,20 +62,18 @@ var btype,
   cheatreturn,
   mealsreturn,
   confirmWriteEmail,
-  cbody,
-  cbodyc,
-  ccbody,
-  bodycc,
-  ccbodycc,
-  bodyc,
-  c,
+  exerciseAdvice,
+  healthyAdvice,
+  cheatAdvice,
+  mealsAdvice,
+  goalAdvice,
+  goalAdvice2,
   bmr,
-  bmrl,
-  bmrll,
-  bmrlll,
-  bbgw1,
-  bbgw2,
-  element,
+  calorieIntakeAdvice,
+  calorieCounterLink,
+  caloriesLink,
+  baseBodyFat,
+  topBodyFat,
   addup1,
   addup2,
   addup3,
@@ -106,30 +92,24 @@ var btype,
   bmi_state = "",
   gender = "",
   goal = "",
-  bodyp = 0,
-  bodyps = parseFloat(bodyp),
-  bodypt = "",
-  bodytp = "",
+  bodyTypeAdvantage = 0,
+  bodyTypeAdvantageAdvice = "",
+  finalIdealWeightMsg = "",
   bodytype = "",
-  idealweight = "",
-  idealWeight00 = 0,
-  idealweight10 = parseFloat(idealweight1),
-  idealweight20 = parseFloat(idealweight2),
-  idealWeight000 = parseFloat(idealWeight00),
-  deltap = 0,
+  idealWeightMsg = "",
+  idealWeight,
+  idealWeightDistance = 0,
   bmi = 0,
   currentBody = 0,
   goalBody = 0,
   goalBodyDistance = 0,
-  bbgw3 = 0,
-  bbgw4 = 0,
-  bbgw00 = 0,
-  bbgw0p = 0,
+  goalBaseBodyFat = 0,
+  goalTopBodyFat = 0,
+  suggestedBodyFat = 0,
+  idealBodyFatPercentage = 0,
   noEmailNeeded = 0,
   wrongEmailCount = 0,
-  bodyresult = "",
-  goalDistance = "",
-  bbgw = "";
+  goalDistance = "";
 unitSystem("metric");
 english();
 document.addEventListener("keypress", (event) =>
@@ -139,7 +119,7 @@ document.addEventListener("keypress", (event) =>
     ? nextPageInterpreter()
     : true
 );
-buttonQuerySelector.forEach((item) => {
+buttons.forEach((item) => {
   item.addEventListener("keypress", (event) =>
     event.key === "Enter" &&
     idDataSubmit.style.display === "none" &&
@@ -1301,22 +1281,22 @@ const setLocalData = (idParameter) => {
     genderreturn,
     resultBeginning2,
     btype,
-    bodypt,
+    bodyTypeAdvantageAdvice,
     goalDistance,
     ageAdvice,
-    bodytp,
-    cbody,
-    ccbodycc,
-    cbodyc,
-    ccbody,
-    bodycc,
-    bodyc,
+    finalIdealWeightMsg,
+    exerciseAdvice,
+    goalAdvice,
+    healthyAdvice,
+    cheatAdvice,
+    mealsAdvice,
+    goalAdvice2,
     emotionans,
-    bmrl,
-    bmrll,
-    bmrlll,
-    bmrllll,
-    bmrlllll,
+    calorieIntakeAdvice,
+    calorieCounterLink,
+    caloriesLink,
+    exerciseCaloriesLink,
+    fitnessAppsLink,
     day,
   });
   localStorage.setItem("contentArray", JSON.stringify(contentArray));
@@ -1328,9 +1308,9 @@ const showPrevTestResult = (resultTry) => {
     idFooter.style.display = "none";
     buttonFirst.style.display = "block";
     finalResultH3Id.style.display = "block";
-    finalResultH3Id.innerHTML = `${contentArray[0].resultBeginning2} ${contentArray[0].inputName}</big>, ${contentArray[0].btype} <br> ${contentArray[0].bodypt}${contentArray[0].goalDistance}<br><br>${contentArray[0].ageAdvice}<br><br>${contentArray[0].bodytp}<br><br>${contentArray[0].cbody}<br><br>${contentArray[0].ccbodycc}<br><br>${contentArray[0].cbodyc}<br><br>${contentArray[0].ccbody}<br><br>${contentArray[0].bodycc}<br><br>${contentArray[0].bodyc}<br><br>${contentArray[0].emotionans}<br><br>${contentArray[0].bmrl}<br><br><br>`;
+    finalResultH3Id.innerHTML = `${contentArray[0].resultBeginning2} ${contentArray[0].inputName}</big>, ${contentArray[0].btype} <br> ${contentArray[0].bodyTypeAdvantageAdvice}${contentArray[0].goalDistance}<br><br>${contentArray[0].ageAdvice}<br><br>${contentArray[0].finalIdealWeightMsg}<br><br>${contentArray[0].exerciseAdvice}<br><br>${contentArray[0].goalAdvice}<br><br>${contentArray[0].healthyAdvice}<br><br>${contentArray[0].cheatAdvice}<br><br>${contentArray[0].mealsAdvice}<br><br>${contentArray[0].goalAdvice2}<br><br>${contentArray[0].emotionans}<br><br>${contentArray[0].calorieIntakeAdvice}<br><br><br>`;
     finalResultH4Id.style.display = "block";
-    finalResultH4Id.innerHTML = `<i>${contentArray[0].bmrll}<br><br>${contentArray[0].bmrlll}<br><br>${contentArray[0].bmrllll}<br><br>${contentArray[0].bmrlllll}</i><br><br><br>`;
+    finalResultH4Id.innerHTML = `<i>${contentArray[0].calorieCounterLink}<br><br>${contentArray[0].caloriesLink}<br><br>${contentArray[0].exerciseCaloriesLink}<br><br>${contentArray[0].fitnessAppsLink}</i><br><br><br>`;
     idFooter.style.position = "relative";
     idFooter.style.marginBottom = "0";
     idFooter.style.display = "block";
@@ -1339,18 +1319,17 @@ const showPrevTestResult = (resultTry) => {
     idFooter.style.display = "none";
     buttonFirst.style.display = "block";
     finalResultH3Id.style.display = "block";
-    finalResultH3Id.innerHTML = `${contentArray[1].resultBeginning2} ${contentArray[1].inputName}</big>, ${contentArray[1].btype} <br> ${contentArray[1].bodypt}${contentArray[1].goalDistance}<br><br>${contentArray[1].ageAdvice}<br><br>${contentArray[1].bodytp}<br><br>${contentArray[1].cbody}<br><br>${contentArray[1].ccbodycc}<br><br>${contentArray[1].cbodyc}<br><br>${contentArray[1].ccbody}<br><br>${contentArray[1].bodycc}<br><br>${contentArray[1].bodyc}<br><br>${contentArray[1].emotionans}<br><br>${contentArray[1].bmrl}<br><br><br>`;
+    finalResultH3Id.innerHTML = `${contentArray[1].resultBeginning2} ${contentArray[1].inputName}</big>, ${contentArray[1].btype} <br> ${contentArray[1].bodyTypeAdvantageAdvice}${contentArray[1].goalDistance}<br><br>${contentArray[1].ageAdvice}<br><br>${contentArray[1].finalIdealWeightMsg}<br><br>${contentArray[1].exerciseAdvice}<br><br>${contentArray[1].goalAdvice}<br><br>${contentArray[1].healthyAdvice}<br><br>${contentArray[1].cheatAdvice}<br><br>${contentArray[1].mealsAdvice}<br><br>${contentArray[1].goalAdvice2}<br><br>${contentArray[1].emotionans}<br><br>${contentArray[1].calorieIntakeAdvice}<br><br><br>`;
     finalResultH4Id.style.display = "block";
-    finalResultH4Id.innerHTML = `<i>${contentArray[1].bmrll}<br><br>${contentArray[1].bmrlll}<br><br>${contentArray[1].bmrllll}<br><br>${contentArray[1].bmrlllll}</i><br><br><br>`;
+    finalResultH4Id.innerHTML = `<i>${contentArray[1].calorieCounterLink}<br><br>${contentArray[1].caloriesLink}<br><br>${contentArray[1].exerciseCaloriesLink}<br><br>${contentArray[1].fitnessAppsLink}</i><br><br><br>`;
     idFooter.style.position = "relative";
     idFooter.style.marginBottom = "0";
     idFooter.style.display = "block";
   }
 };
 const startNewTry = (tryN) => {
-  firstPage();
-  titleMid();
   tryNumber = tryN;
+  window.location.href = "intro.html";
 };
 const overwriteTest2 = (paramas) => {
   if (paramas == 1) {
@@ -1484,8 +1463,6 @@ function hideAllTests() {
   firstPageBtnDelete.style.display = "block";
 }
 function firstPageLogin() {
-  clearScreen();
-  titleMid();
   buttonFirst.style.display = "none";
   idFooter.style.display = "block";
   idFooter.style.position = "absolute";
@@ -1659,253 +1636,37 @@ function returnUpdatedValues() {
   else if (goal == "muscle") returnGoal("colorChangeIdMuscle");
 }
 const pageSwitcher = (numpage) => {
-  titleMid();
   if (differentPage == numpage) alert(alreadyInPage);
   else {
     if (numpage == 1) {
-      idIntroSubmit.style.display = "block";
-      idLoginSubmit.style.display = "none";
-      idGenderUnitSubmit.style.display = "none";
-      idDataSubmit.style.display = "none";
-      idGoalSubmit.style.display = "none";
-      idBodyTypeSubmit.style.display = "none";
-      idImageSubmit.style.display = "none";
-      idXerciseSubmit.style.display = "none";
-      idHealthySubmit.style.display = "none";
-      idCheatSubmit.style.display = "none";
-      idMealsSubmit.style.display = "none";
-      idEmotionSubmit.style.display = "none";
-      buttonNext.style.display = "block";
-      buttonResult.style.display = "none";
-      buttonPrev.style.display = "none";
-      differentPage = 1;
+
     } else if (numpage == 2) {
-      idIntroSubmit.style.display = "none";
-      idLoginSubmit.style.display = "block";
-      idGenderUnitSubmit.style.display = "none";
-      idDataSubmit.style.display = "none";
-      idGoalSubmit.style.display = "none";
-      idBodyTypeSubmit.style.display = "none";
-      idImageSubmit.style.display = "none";
-      idXerciseSubmit.style.display = "none";
-      idHealthySubmit.style.display = "none";
-      idCheatSubmit.style.display = "none";
-      idMealsSubmit.style.display = "none";
-      idEmotionSubmit.style.display = "none";
-      buttonNext.style.display = "block";
-      buttonResult.style.display = "none";
-      buttonPrev.style.display = "block";
-      differentPage = 2;
+      
     } else if (numpage == 3) {
-      idIntroSubmit.style.display = "none";
-      idLoginSubmit.style.display = "none";
-      idGenderUnitSubmit.style.display = "block";
-      idDataSubmit.style.display = "none";
-      idGoalSubmit.style.display = "none";
-      idBodyTypeSubmit.style.display = "none";
-      idImageSubmit.style.display = "none";
-      idXerciseSubmit.style.display = "none";
-      idHealthySubmit.style.display = "none";
-      idCheatSubmit.style.display = "none";
-      idMealsSubmit.style.display = "none";
-      idEmotionSubmit.style.display = "none";
-      buttonNext.style.display = "block";
-      buttonResult.style.display = "none";
-      buttonPrev.style.display = "block";
-      differentPage = 3;
+      
     } else if (numpage == 4) {
-      idIntroSubmit.style.display = "none";
-      idLoginSubmit.style.display = "none";
-      idGenderUnitSubmit.style.display = "none";
-      idDataSubmit.style.display = "block";
-      idGoalSubmit.style.display = "none";
-      idBodyTypeSubmit.style.display = "none";
-      idImageSubmit.style.display = "none";
-      idXerciseSubmit.style.display = "none";
-      idHealthySubmit.style.display = "none";
-      idCheatSubmit.style.display = "none";
-      idMealsSubmit.style.display = "none";
-      idEmotionSubmit.style.display = "none";
-      buttonNext.style.display = "block";
-      buttonResult.style.display = "none";
-      buttonPrev.style.display = "block";
-      differentPage = 4;
+      
     } else if (numpage == 5) {
-      idIntroSubmit.style.display = "none";
-      idLoginSubmit.style.display = "none";
-      idGenderUnitSubmit.style.display = "none";
-      idDataSubmit.style.display = "none";
-      idGoalSubmit.style.display = "block";
-      idBodyTypeSubmit.style.display = "none";
-      idImageSubmit.style.display = "none";
-      idXerciseSubmit.style.display = "none";
-      idHealthySubmit.style.display = "none";
-      idCheatSubmit.style.display = "none";
-      idMealsSubmit.style.display = "none";
-      idEmotionSubmit.style.display = "none";
-      buttonNext.style.display = "block";
-      buttonResult.style.display = "none";
-      buttonPrev.style.display = "block";
-      differentPage = 5;
+      
     } else if (numpage == 6) {
-      idIntroSubmit.style.display = "none";
-      idLoginSubmit.style.display = "none";
-      idGenderUnitSubmit.style.display = "none";
-      idDataSubmit.style.display = "none";
-      idGoalSubmit.style.display = "none";
-      idBodyTypeSubmit.style.display = "block";
-      idImageSubmit.style.display = "none";
-      idXerciseSubmit.style.display = "none";
-      idHealthySubmit.style.display = "none";
-      idCheatSubmit.style.display = "none";
-      idMealsSubmit.style.display = "none";
-      idEmotionSubmit.style.display = "none";
-      buttonNext.style.display = "block";
-      buttonResult.style.display = "none";
-      buttonPrev.style.display = "block";
-      differentPage = 6;
+      
     } else if (numpage == 7) {
-      idIntroSubmit.style.display = "none";
-      idLoginSubmit.style.display = "none";
-      idGenderUnitSubmit.style.display = "none";
-      idDataSubmit.style.display = "none";
-      idGoalSubmit.style.display = "none";
-      idBodyTypeSubmit.style.display = "none";
-      idImageSubmit.style.display = "block";
-      idXerciseSubmit.style.display = "none";
-      idHealthySubmit.style.display = "none";
-      idCheatSubmit.style.display = "none";
-      idMealsSubmit.style.display = "none";
-      idEmotionSubmit.style.display = "none";
-      buttonNext.style.display = "block";
-      buttonResult.style.display = "none";
-      buttonPrev.style.display = "block";
-      differentPage = 7;
+      
     } else if (numpage == 8) {
-      idIntroSubmit.style.display = "none";
-      idLoginSubmit.style.display = "none";
-      idGenderUnitSubmit.style.display = "none";
-      idDataSubmit.style.display = "none";
-      idGoalSubmit.style.display = "none";
-      idBodyTypeSubmit.style.display = "none";
-      idImageSubmit.style.display = "none";
-      idXerciseSubmit.style.display = "block";
-      idHealthySubmit.style.display = "none";
-      idCheatSubmit.style.display = "none";
-      idMealsSubmit.style.display = "none";
-      idEmotionSubmit.style.display = "none";
-      buttonNext.style.display = "block";
-      buttonResult.style.display = "none";
-      buttonPrev.style.display = "block";
-      differentPage = 8;
+      
     } else if (numpage == 9) {
-      idIntroSubmit.style.display = "none";
-      idLoginSubmit.style.display = "none";
-      idGenderUnitSubmit.style.display = "none";
-      idDataSubmit.style.display = "none";
-      idGoalSubmit.style.display = "none";
-      idBodyTypeSubmit.style.display = "none";
-      idImageSubmit.style.display = "none";
-      idXerciseSubmit.style.display = "none";
-      idHealthySubmit.style.display = "block";
-      idCheatSubmit.style.display = "none";
-      idMealsSubmit.style.display = "none";
-      idEmotionSubmit.style.display = "none";
-      buttonNext.style.display = "block";
-      buttonResult.style.display = "none";
-      buttonPrev.style.display = "block";
-      differentPage = 9;
+      
     } else if (numpage == 10) {
-      idIntroSubmit.style.display = "none";
-      idLoginSubmit.style.display = "none";
-      idGenderUnitSubmit.style.display = "none";
-      idDataSubmit.style.display = "none";
-      idGoalSubmit.style.display = "none";
-      idBodyTypeSubmit.style.display = "none";
-      idImageSubmit.style.display = "none";
-      idXerciseSubmit.style.display = "none";
-      idHealthySubmit.style.display = "none";
-      idCheatSubmit.style.display = "block";
-      idMealsSubmit.style.display = "none";
-      idEmotionSubmit.style.display = "none";
-      buttonNext.style.display = "block";
-      buttonResult.style.display = "none";
-      buttonPrev.style.display = "block";
-      differentPage = 10;
+      
     } else if (numpage == 11) {
-      idIntroSubmit.style.display = "none";
-      idLoginSubmit.style.display = "none";
-      idGenderUnitSubmit.style.display = "none";
-      idDataSubmit.style.display = "none";
-      idGoalSubmit.style.display = "none";
-      idBodyTypeSubmit.style.display = "none";
-      idImageSubmit.style.display = "none";
-      idXerciseSubmit.style.display = "none";
-      idHealthySubmit.style.display = "none";
-      idCheatSubmit.style.display = "none";
-      idMealsSubmit.style.display = "block";
-      idEmotionSubmit.style.display = "none";
-      buttonNext.style.display = "block";
-      buttonResult.style.display = "none";
-      buttonPrev.style.display = "block";
-      differentPage = 11;
+      
     } else if (numpage == 12) {
-      idIntroSubmit.style.display = "none";
-      idLoginSubmit.style.display = "none";
-      idGenderUnitSubmit.style.display = "none";
-      idDataSubmit.style.display = "none";
-      idGoalSubmit.style.display = "none";
-      idBodyTypeSubmit.style.display = "none";
-      idImageSubmit.style.display = "none";
-      idXerciseSubmit.style.display = "none";
-      idHealthySubmit.style.display = "none";
-      idCheatSubmit.style.display = "none";
-      idMealsSubmit.style.display = "none";
-      idEmotionSubmit.style.display = "block";
-      buttonNext.style.display = "none";
-      buttonResult.style.display = "block";
-      buttonPrev.style.display = "block";
-      differentPage = 12;
+      
     }
   }
-  if (differentPage == 1) {
-    buttonAbout.style.display = "block";
-    buttonContact.style.display = "block";
-    buttonHome.style.display = "none";
-    if (triesMade > 0) buttonFirst.style.display = "block";
-  } else {
-    buttonAbout.style.display = "none";
-    buttonContact.style.display = "none";
-    buttonHome.style.display = "none";
-    buttonFirst.style.display = "none";
-  }
 };
-function nextPageInterpreter() {
-  if (differentPage == 1) pageSwitcher(2);
-  else if (differentPage == 2) pageSwitcher(3);
-  else if (differentPage == 3) pageSwitcher(4);
-  else if (differentPage == 4) pageSwitcher(5);
-  else if (differentPage == 5) pageSwitcher(6);
-  else if (differentPage == 6) pageSwitcher(7);
-  else if (differentPage == 7) pageSwitcher(8);
-  else if (differentPage == 8) pageSwitcher(9);
-  else if (differentPage == 9) pageSwitcher(10);
-  else if (differentPage == 10) pageSwitcher(11);
-  else if (differentPage == 11) pageSwitcher(12);
-}
-function prevPageInterpreter() {
-  if (differentPage == 2) pageSwitcher(1);
-  else if (differentPage == 3) pageSwitcher(2);
-  else if (differentPage == 4) pageSwitcher(3);
-  else if (differentPage == 5) pageSwitcher(4);
-  else if (differentPage == 6) pageSwitcher(5);
-  else if (differentPage == 7) pageSwitcher(6);
-  else if (differentPage == 8) pageSwitcher(7);
-  else if (differentPage == 9) pageSwitcher(8);
-  else if (differentPage == 10) pageSwitcher(9);
-  else if (differentPage == 11) pageSwitcher(10);
-  else if (differentPage == 12) pageSwitcher(11);
-}
+const nextPageInterpreter = () => pageSwitcher(differentPage - 1);
+const prevPageInterpreter = () => pageSwitcher(differentPage + 1);
 //disclaimer button callable function
 const disclaimer = () => alert(firstAlert);
 //functions that define the color change when the cursor is on or out of a button
@@ -2172,46 +1933,46 @@ function unitSystem(unitSys) {
 function idealWeight(lbs, lb) {
   if (gender == "male") {
     if (bodytype == "ecto") {
-      idealweight1 = 18.5 * height ** 2;
-      idealweight2 = 22 * height ** 2;
+      baseIdealWeight = 18.5 * height ** 2;
+      topIdealWeight = 22 * height ** 2;
     } else if (bodytype == "meso") {
-      idealweight1 = 20 * height ** 2;
-      idealweight2 = 24 * height ** 2;
+      baseIdealWeight = 20 * height ** 2;
+      topIdealWeight = 24 * height ** 2;
     } else if (bodytype == "endo") {
-      idealweight1 = 22 * height ** 2;
-      idealweight2 = 24.9 * height ** 2;
+      baseIdealWeight = 22 * height ** 2;
+      topIdealWeight = 24.9 * height ** 2;
     }
   } else if (gender == "female") {
     if (bodytype == "ecto") {
-      idealweight1 = 16.5 * height ** 2;
-      idealweight2 = 22 * height ** 2;
+      baseIdealWeight = 16.5 * height ** 2;
+      topIdealWeight = 22 * height ** 2;
     } else if (bodytype == "meso") {
-      idealweight1 = 18.5 * height ** 2;
-      idealweight2 = 22 * height ** 2;
+      baseIdealWeight = 18.5 * height ** 2;
+      topIdealWeight = 22 * height ** 2;
     }
     if (bodytype == "endo") {
-      idealweight1 = 20 * height ** 2;
-      idealweight2 = 24 * height ** 2;
+      baseIdealWeight = 20 * height ** 2;
+      topIdealWeight = 24 * height ** 2;
     }
   }
   if (goal == "bulking")
-    idealWeight000 += ((3 * idealweight2 + idealweight1) / 4).toFixed(1);
+    idealWeight = ((3 * topIdealWeight + baseIdealWeight) / 4).toFixed(1);
   else if (goal == "cutting")
-    idealWeight000 += ((2.5 * idealweight1 + idealweight2) / 3.5).toFixed(1);
+    idealWeight = ((2.5 * baseIdealWeight + topIdealWeight) / 3.5).toFixed(1);
   else if (goal == "surplus")
-    idealWeight000 += ((idealweight1 + idealweight2) / 2).toFixed(1);
+    idealWeight = ((baseIdealWeight + topIdealWeight) / 2).toFixed(1);
   else if (goal == "muscle")
-    idealWeight000 += ((idealweight1 + 2 * idealweight2) / 3).toFixed(1);
+    idealWeight = ((baseIdealWeight + 2 * topIdealWeight) / 3).toFixed(1);
   if (goal == "bulking" || goal == "cutting" || goal == "surplus")
-    deltap += (weight - idealWeight000).toFixed(1);
-  else if (goal == "muscle") deltap += (idealWeight000 - weight).toFixed(1);
+    idealWeightDistance = (weight - idealWeight).toFixed(1);
+  else if (goal == "muscle") idealWeightDistance = (idealWeight - weight).toFixed(1);
   if (
     bmi_state == "underweight" ||
     bmi_state == "abaixo do peso" ||
     bmi_state == "poids insuffisant" ||
     bmi_state == "bajo peso"
   )
-    deltapp += (18.5 * height ** 2 - weight).toFixed(1);
+    advicedWeight = (18.5 * height ** 2 - weight).toFixed(1);
   else if (
     bmi_state == "normal/healthy" ||
     bmi_state == "overweight" ||
@@ -2226,7 +1987,7 @@ function idealWeight(lbs, lb) {
     bmi_state == "exceso de peso" ||
     bmi_state == "obeso"
   )
-    deltapp += (weight - 24.9 * height ** 2).toFixed(1);
+    advicedWeight = (weight - 24.9 * height ** 2).toFixed(1);
   if (
     bmi_state != "normal/healthy" &&
     bmi_state != "normal/saudável" &&
@@ -2234,38 +1995,38 @@ function idealWeight(lbs, lb) {
     bmi_state != "normal / saludable"
   ) {
     if (languageValue == 1) {
-      aaa = ", and ";
-      aaaa = lbs + " distant from a normal&healthy state.";
+      idealWeightMsgPunctuation = ", and ";
+      idealWeightMsgBmiState = lbs + " distant from a normal&healthy state.";
       if (bmi_state == "underweight")
-        deltapp = (18.5 * height ** 2 - weight).toFixed(1);
+        advicedWeight = (18.5 * height ** 2 - weight).toFixed(1);
       else if (bmi_state == "overweight" || bmi_state == "obese")
-        deltapp = ((weight - 24.9 * height ** 2) * lb).toFixed(1);
+        advicedWeight = ((weight - 24.9 * height ** 2) * lb).toFixed(1);
     } else if (languageValue == 2) {
-      aaa = ", e ";
-      aaaa = lbs + " distante de um estado normal e saudável .";
+      idealWeightMsgPunctuation = ", e ";
+      idealWeightMsgBmiState = lbs + " distante de um estado normal e saudável .";
       if (
         bmi_state == "underweight" ||
         bmi_state == "abaixo do peso" ||
         bmi_state == "poids insuffisant" ||
         bmi_state == "bajo peso"
       )
-        deltapp = (18.5 * height ** 2 - weight).toFixed(1);
+        advicedWeight = (18.5 * height ** 2 - weight).toFixed(1);
       else if (bmi_state == "sobrepeso" || bmi_state == "obeso")
-        deltapp = ((weight - 24.9 * height ** 2) * lb).toFixed(1);
+        advicedWeight = ((weight - 24.9 * height ** 2) * lb).toFixed(1);
     } else if (languageValue == 3) {
-      aaa = ", et ";
-      aaaa = lbs + " éloigné d'un état normal et sain.";
+      idealWeightMsgPunctuation = ", et ";
+      idealWeightMsgBmiState = lbs + " éloigné d'un état normal et sain.";
       if (bmi_state == "poids insuffisant")
-        deltapp = (18.5 * height ** 2 - weight).toFixed(1);
+        advicedWeight = (18.5 * height ** 2 - weight).toFixed(1);
       else if (bmi_state == "en surpoids" || bmi_state == "obèse")
-        deltapp = ((weight - 24.9 * height ** 2) * lb).toFixed(1);
+        advicedWeight = ((weight - 24.9 * height ** 2) * lb).toFixed(1);
     } else if (languageValue == 4) {
-      aaa = ", y ";
-      aaaa = lbs + " distante de un estado normal y saludable.";
+      idealWeightMsgPunctuation = ", y ";
+      idealWeightMsgBmiState = lbs + " distante de un estado normal y saludable.";
       if (bmi_state == "bajo peso")
-        deltapp = (18.5 * height ** 2 - weight).toFixed(1);
+        advicedWeight = (18.5 * height ** 2 - weight).toFixed(1);
       else if (bmi_state == "exceso de peso" || bmi_state == "obeso")
-        deltapp = ((weight - 24.9 * height ** 2) * lb).toFixed(1);
+        advicedWeight = ((weight - 24.9 * height ** 2) * lb).toFixed(1);
     }
   } else if (
     bmi_state == "normal/healthy" ||
@@ -2273,172 +2034,63 @@ function idealWeight(lbs, lb) {
     bmi_state == "normal / sain" ||
     bmi_state == "normal / saludable"
   ) {
-    aaa = ".";
-    aaaa = "";
-    deltapp = "";
+    idealWeightMsgPunctuation = ".";
+    idealWeightMsgBmiState = "";
+    advicedWeight = "";
   }
-  bodyy = (bbgw0p * idealWeight000).toFixed(1);
+  idealBodyFat = (idealBodyFatPercentage * idealWeight).toFixed(1);
   if (languageValue == 1) {
-    idealweight +=
-      "Your ideal weight is, approximately, <big style='font-family: Kaushan Script, cursive;' >";
-    idealweight += (idealWeight000 * lb).toFixed(1);
-    idealweight += lbs;
-    idealweight +=
-      "</big>, being between the range of <big style='font-family: Kaushan Script, cursive;' >";
-    idealweight += (idealweight1 * lb).toFixed(1);
-    idealweight += lbs;
-    idealweight +=
-      "</big> and <big style='font-family: Kaushan Script, cursive;' >";
-    idealweight += (idealweight2 * lb).toFixed(1);
-    idealweight += lbs;
-    idealweight +=
-      "</big>, and therefore you are <big style='font-family: Kaushan Script, cursive;' >";
-    idealweight += (deltap * lb).toFixed(1);
-    idealweight += lbs;
-    idealweight +=
-      "</big> apart from your ideal body, which has <big style='font-family: Kaushan Script, cursive;' >";
-    idealweight += (((bodyy * 10) / 1000) * lb).toFixed(1);
-    idealweight += lbs;
-    idealweight +=
-      "</big> of fat, and therefore, your ideal body fat percentage is <big style='font-family: Kaushan Script, cursive;' >";
-    idealweight += (bbgw0p * 10) / 10;
-    idealweight +=
-      "%</big>, as long as your current weight is <big style='font-family: Kaushan Script, cursive;' >";
-    idealweight += (weight * lb).toFixed(1);
-    idealweight += lbs;
-    idealweight +=
-      "</big>, <big style='font-family: Kaushan Script, cursive;' >";
-    idealweight += (((bbgwp * weight) / 100) * lb).toFixed(1);
-    idealweight += lbs;
-    idealweight +=
-      "</big> of which equals fat, and thus, your body fat percentage, right now, is around <big style='font-family: Kaushan Script, cursive;' >";
-    idealweight += bbgwp;
-    idealweight +=
-      "%</big>, and according to WHO's body mass index, you are currently <big style='font-family: Kaushan Script, cursive;' >";
-    idealweight += bmi_state;
-    idealweight += "</big>";
+    idealWeightMsg = `Your ideal weight is, approximately, <big style='font-family: Kaushan Script, cursive;' >${
+      (idealWeight * lb).toFixed(1) + lbs}</big>, being between the range of <big style='font-family: Kaushan Script, cursive;' >${
+      (baseIdealWeight * lb).toFixed(1) + lbs}</big> and <big style='font-family: Kaushan Script, cursive;' >${
+      (topIdealWeight * lb).toFixed(1) + lbs}</big>, and therefore you are <big style='font-family: Kaushan Script, cursive;' >${
+      (idealWeightDistance * lb).toFixed(1)+ lbs}</big> apart from your ideal body, which has <big style='font-family: Kaushan Script, cursive;' >${
+      (((idealBodyFat * 10) / 1000) * lb).toFixed(1)+ lbs}</big> of fat, and therefore, your ideal body fat percentage is <big style='font-family: Kaushan Script, cursive;' >${
+      (idealBodyFatPercentage * 10) / 10}%</big>, as long as your current weight is <big style='font-family: Kaushan Script, cursive;' >${
+      (weight * lb).toFixed(1) + lbs}</big>, <big style='font-family: Kaushan Script, cursive;' >${
+      (((bodyFatPercentage * weight) / 100) * lb).toFixed(1) + lbs}</big> of which equals fat, and thus, your body fat percentage, right now, is around <big style='font-family: Kaushan Script, cursive;' >${
+      bodyFatPercentage}%</big>, and according to WHO's body mass index, you are currently <big style='font-family: Kaushan Script, cursive;' >${
+      bmi_state}</big>`;
   } else if (languageValue == 2) {
-    idealweight +=
-      "Seu peso ideal é, aproximadamente, <big style='font-family: Kaushan Script, cursive;' >";
-    idealweight += (idealWeight000 * lb).toFixed(1);
-    idealweight += lbs;
-    idealweight +=
-      "</big>, sendo entre <big style='font-family: Kaushan Script, cursive;' >";
-    idealweight += (idealweight1 * lb).toFixed(1);
-    idealweight += lbs;
-    idealweight +=
-      "</big> e <big style='font-family: Kaushan Script, cursive;' >";
-    idealweight += (idealweight2 * lb).toFixed(1);
-    idealweight += lbs;
-    idealweight +=
-      "</big>, e assim você está <big style='font-family: Kaushan Script, cursive;' >";
-    idealweight += (deltap * lb).toFixed(1);
-    idealweight += lbs;
-    idealweight +=
-      "</big> distante do seu corpo ideal, que tem <big style='font-family: Kaushan Script, cursive;' >";
-    idealweight += (((bodyy * 10) / 1000) * lb).toFixed(1);
-    idealweight += lbs;
-    idealweight +=
-      "</big> de gordura, e assim, seu percentual de gordura ideal é <big style='font-family: Kaushan Script, cursive;' >";
-    idealweight += (bbgw0p * 10) / 10;
-    idealweight +=
-      "%</big>, já que seu peso atual é <big style='font-family: Kaushan Script, cursive;' >";
-    idealweight += (weight * lb).toFixed(1);
-    idealweight += lbs;
-    idealweight +=
-      "</big>, <big style='font-family: Kaushan Script, cursive;' >";
-    idealweight += (((bbgwp * weight) / 100) * lb).toFixed(1);
-    idealweight += lbs;
-    idealweight +=
-      "</big> desse de gordura e dessa forma seu percentual de gordura, agora, é, aproximadamente, <big style='font-family: Kaushan Script, cursive;' >";
-    idealweight += bbgwp;
-    idealweight +=
-      "%</big>, e de acordo com o indice de massa corporal da OMS você esta atualmente em <big style='font-family: Kaushan Script, cursive;' >";
-    idealweight += bmi_state;
-    idealweight += "</big>";
-  } else if (languageValue == 3) {
-    idealweight +=
-      "Votre poids idéal est, environ, <big style='font-family: Kaushan Script, cursive;' >";
-    idealweight += (idealWeight000 * lb).toFixed(1);
-    idealweight += lbs;
-    idealweight +=
-      "</big>, se situant entre la gamme de <big style='font-family: Kaushan Script, cursive;' >";
-    idealweight += (idealweight1 * lb).toFixed(1);
-    idealweight += lbs;
-    idealweight +=
-      "</big> et <big style='font-family: Kaushan Script, cursive;' >";
-    idealweight += (idealweight2 * lb).toFixed(1);
-    idealweight += lbs;
-    idealweight +=
-      "</big>, et donc tu es <big style='font-family: Kaushan Script, cursive;' >";
-    idealweight += (deltap * lb).toFixed(1);
-    idealweight += lbs;
-    idealweight +=
-      "</big> en dehors de votre corps idéal, qui a  <big style='font-family: Kaushan Script, cursive;' >";
-    idealweight += (((bodyy * 10) / 1000) * lb).toFixed(1);
-    idealweight += lbs;
-    idealweight +=
-      "</big> de graisse, et par conséquent, votre pourcentage de graisse corporelle idéal est <big style='font-family: Kaushan Script, cursive;' >";
-    idealweight += (bbgw0p * 10) / 10;
-    idealweight +=
-      "%</big>, tant que votre poids actuel est <big style='font-family: Kaushan Script, cursive;' >";
-    idealweight += (weight * lb).toFixed(1);
-    idealweight += lbs;
-    idealweight +=
-      "</big>, <big style='font-family: Kaushan Script, cursive;' >";
-    idealweight += (((bbgwp * weight) / 100) * lb).toFixed(1);
-    idealweight += lbs;
-    idealweight +=
-      "</big> don't est égal à la graisse, et donc, votre pourcentage de graisse corporelle, actuellement, est d'environ <big style='font-family: Kaushan Script, cursive;' >";
-    idealweight += bbgwp;
-    idealweight +=
-      "%</big>, et selon l'indice de masse corporelle de l'OMS, vous êtes actuellement <big style='font-family: Kaushan Script, cursive;' >";
-    idealweight += bmi_state;
-    idealweight += "</big>";
+    idealWeightMsg = `Seu peso ideal é, aproximadamente, <big style='font-family: Kaushan Script, cursive;' >${
+      (idealWeight * lb).toFixed(1) + lbs}</big>, sendo entre <big style='font-family: Kaushan Script, cursive;' >${
+      (baseIdealWeight * lb).toFixed(1) + lbs}</big> e <big style='font-family: Kaushan Script, cursive;' >${
+      (topIdealWeight * lb).toFixed(1) + lbs}</big>, e assim você está <big style='font-family: Kaushan Script, cursive;' >${
+      (idealWeightDistance * lb).toFixed(1)+ lbs}</big> distante do seu corpo ideal, que tem <big style='font-family: Kaushan Script, cursive;' >${
+      (((idealBodyFat * 10) / 1000) * lb).toFixed(1)+ lbs}</big> de gordura, e assim, seu percentual de gordura ideal é <big style='font-family: Kaushan Script, cursive;' >${
+      (idealBodyFatPercentage * 10) / 10}%</big>, já que seu peso atual é <big style='font-family: Kaushan Script, cursive;' >${
+      (weight * lb).toFixed(1) + lbs}</big>, <big style='font-family: Kaushan Script, cursive;' >${
+      (((bodyFatPercentage * weight) / 100) * lb).toFixed(1) + lbs}</big> desse de gordura e dessa forma seu percentual de gordura, agora, é, aproximadamente, <big style='font-family: Kaushan Script, cursive;' >${
+      bodyFatPercentage}%</big>, e de acordo com o indice de massa corporal da OMS você esta atualmente em <big style='font-family: Kaushan Script, cursive;' >${
+      bmi_state}</big>`;
+    } else if (languageValue == 3) {
+    idealWeightMsg = `Votre poids idéal est, environ, <big style='font-family: Kaushan Script, cursive;' >${
+      (idealWeight * lb).toFixed(1) + lbs}</big>, se situant entre la gamme de <big style='font-family: Kaushan Script, cursive;' >${
+      (baseIdealWeight * lb).toFixed(1) + lbs}</big> et <big style='font-family: Kaushan Script, cursive;' >${
+      (topIdealWeight * lb).toFixed(1) + lbs}</big>, et donc tu es <big style='font-family: Kaushan Script, cursive;' >${
+      (idealWeightDistance * lb).toFixed(1)+ lbs}</big> en dehors de votre corps idéal, qui a <big style='font-family: Kaushan Script, cursive;' >${
+      (((idealBodyFat * 10) / 1000) * lb).toFixed(1)+ lbs}</big> de graisse, et par conséquent, votre pourcentage de graisse corporelle idéal est <big style='font-family: Kaushan Script, cursive;' >${
+      (idealBodyFatPercentage * 10) / 10}%</big>, tant que votre poids actuel est <big style='font-family: Kaushan Script, cursive;' >${
+      (weight * lb).toFixed(1) + lbs}</big>, <big style='font-family: Kaushan Script, cursive;' >${
+      (((bodyFatPercentage * weight) / 100) * lb).toFixed(1) + lbs}</big> don't est égal à la graisse, et donc, votre pourcentage de graisse corporelle, actuellement, est d'environ <big style='font-family: Kaushan Script, cursive;' >${
+      bodyFatPercentage}%</big>, et selon l'indice de masse corporelle de l'OMS, vous êtes actuellement <big style='font-family: Kaushan Script, cursive;' >${
+      bmi_state}</big>`;
   } else if (languageValue == 4) {
-    idealweight +=
-      "Tu peso ideal es, aproximadamente, <big style='font-family: Kaushan Script, cursive;' >";
-    idealweight += (idealWeight000 * lb).toFixed(1);
-    idealweight += lbs;
-    idealweight +=
-      "</big>, estar entre el rango de <big style='font-family: Kaushan Script, cursive;' >";
-    idealweight += (idealweight1 * lb).toFixed(1);
-    idealweight += lbs;
-    idealweight +=
-      "</big> y <big style='font-family: Kaushan Script, cursive;' >";
-    idealweight += (idealweight2 * lb).toFixed(1);
-    idealweight += lbs;
-    idealweight +=
-      "</big>, y por lo tanto eres <big style='font-family: Kaushan Script, cursive;' >";
-    idealweight += (deltap * lb).toFixed(1);
-    idealweight += lbs;
-    idealweight +=
-      "</big> aparte de tu cuerpo ideal, que tiene <big style='font-family: Kaushan Script, cursive;' >";
-    idealweight += (((bodyy * 10) / 1000) * lb).toFixed(1);
-    idealweight += lbs;
-    idealweight +=
-      "</big> de grasa y, por lo tanto, su porcentaje ideal de grasa corporal es <big style='font-family: Kaushan Script, cursive;' >";
-    idealweight += (bbgw0p * 10) / 10;
-    idealweight +=
-      "%</big>, siempre que su peso actual sea <big style='font-family: Kaushan Script, cursive;' >";
-    idealweight += (weight * lb).toFixed(1);
-    idealweight += lbs;
-    idealweight +=
-      "</big>, <big style='font-family: Kaushan Script, cursive;' >";
-    idealweight += (((bbgwp * weight) / 100) * lb).toFixed(1);
-    idealweight += lbs;
-    idealweight +=
-      "</big> de los cuales es igual a grasa y, por lo tanto, su porcentaje de grasa corporal, en este momento, es de alrededor <big style='font-family: Kaushan Script, cursive;' >";
-    idealweight += bbgwp;
-    idealweight +=
-      "%</big>, y según el índice de masa corporal de la OMS, actualmente <big style='font-family: Kaushan Script, cursive;' >";
-    idealweight += bmi_state;
-    idealweight += "</big>";
+    idealWeightMsg = `Tu peso ideal es, aproximadamente, <big style='font-family: Kaushan Script, cursive;' >${
+      (idealWeight * lb).toFixed(1) + lbs}</big>, estar entre el rango de <big style='font-family: Kaushan Script, cursive;' >${
+      (baseIdealWeight * lb).toFixed(1) + lbs}</big> y <big style='font-family: Kaushan Script, cursive;' >${
+      (topIdealWeight * lb).toFixed(1) + lbs}</big>, y por lo tanto eres <big style='font-family: Kaushan Script, cursive;' >${
+      (idealWeightDistance * lb).toFixed(1)+ lbs}</big> aparte de tu cuerpo ideal, que tiene <big style='font-family: Kaushan Script, cursive;' >${
+      (((idealBodyFat * 10) / 1000) * lb).toFixed(1)+ lbs}</big> de grasa y, por lo tanto, su porcentaje ideal de grasa corporal es <big style='font-family: Kaushan Script, cursive;' >${
+      (idealBodyFatPercentage * 10) / 10}%</big>, siempre que su peso actual sea <big style='font-family: Kaushan Script, cursive;' >${
+      (weight * lb).toFixed(1) + lbs}</big>, <big style='font-family: Kaushan Script, cursive;' >${
+      (((bodyFatPercentage * weight) / 100) * lb).toFixed(1) + lbs}</big> de los cuales es igual a grasa y, por lo tanto, su porcentaje de grasa corporal, en este momento, es de alrededor <big style='font-family: Kaushan Script, cursive;' >${
+      bodyFatPercentage}%</big>, y según el índice de masa corporal de la OMS, actualmente <big style='font-family: Kaushan Script, cursive;' >${
+      bmi_state}</big>`;
   }
-  idealweight += aaa;
-  idealweight += deltapp;
-  idealweight += aaaa;
-  bodytp += idealweight;
+  finalIdealWeightMsg += idealWeightMsgPunctuation;
+  finalIdealWeightMsg += advicedWeight;
+  finalIdealWeightMsg += idealWeightMsgBmiState;
 }
 // function of color change at click - btw the number is of how many button per question
 // and the 10 isnt really 10 buttons, its also 9 but the structures between them both are different
@@ -2706,7 +2358,7 @@ const setMeals = (food) => (meals = food);
 // file name according to the language
 // functions to download file with result
 function downloadData(filename, text) {
-  element = document.createElement("a");
+  let element = document.createElement("a");
   element.setAttribute(
     "href",
     "data:text/html;charset=utf-8," + encodeURIComponent(text)
@@ -2747,21 +2399,21 @@ function sendEmail() {
       unit == "metric"
         ? `${weight}kg \n\n`
         : `${(weight * 2.205).toFixed(2)}lbs \n\n`
-    } Current fat percentage: ${bbgwp}% \n\nIdeal weight range: ${
+    } Current fat percentage: ${bodyFatPercentage}% \n\nIdeal weight range: ${
       unit == "metric"
-        ? `${idealweight1.toFixed(1)}kg to ${idealweight2.toFixed(
+        ? `${baseIdealWeight.toFixed(1)}kg to ${topIdealWeight.toFixed(
             1
           )}kg\n\nPerfect/ideal approximate weight: ${parseFloat(
-            idealWeight000
+            idealWeight
           ).toFixed(1)}kg\n\n`
-        : `${(idealweight1 * 2.205).toFixed(1)}lbs to ${(
-            idealweight2 * 2.205
+        : `${(baseIdealWeight * 2.205).toFixed(1)}lbs to ${(
+            topIdealWeight * 2.205
           ).toFixed(1)}lbs\n\n
-        Perfect/ideal approximate weight: ${(idealWeight000 * 2.205).toFixed(
+        Perfect/ideal approximate weight: ${(idealWeight * 2.205).toFixed(
           1
         )}lbs\n\n`
     }
-    Goal's fat percentage: ${(bbgw0p * 10) / 10}% \n\n
+    Goal's fat percentage: ${(idealBodyFatPercentage * 10) / 10}% \n\n
     Exercise Situation: ${
       exercise == 1
         ? "No Exercise \n\nExercise Advice: Start to Gradually Workout all the way up to 5-6 days/week \n\n"
@@ -2803,19 +2455,19 @@ function sendEmail() {
       unit == "metric"
         ? `${weight}kg \n\n`
         : `${(weight * 2.205).toFixed(2)}lbs \n\n`
-    } Percentual de Gordura Atual: ${bbgwp}% \n\nVariação de peso ideal: ${
+    } Percentual de Gordura Atual: ${bodyFatPercentage}% \n\nVariação de peso ideal: ${
       unit == "metric"
-        ? `${idealweight1.toFixed(1)}kg até ${idealweight2.toFixed(
+        ? `${baseIdealWeight.toFixed(1)}kg até ${topIdealWeight.toFixed(
             1
-          )}kg\n\nAproximado peso ideal: ${parseFloat(idealWeight000).toFixed(
+          )}kg\n\nAproximado peso ideal: ${parseFloat(idealWeight).toFixed(
             1
           )}kg\n\n`
-        : `${(idealweight1 * 2.205).toFixed(1)}lbs até ${(
-            idealweight2 * 2.205
+        : `${(baseIdealWeight * 2.205).toFixed(1)}lbs até ${(
+            topIdealWeight * 2.205
           ).toFixed(1)}lbs\n\n
-        Aproximado peso ideal: ${(idealWeight000 * 2.205).toFixed(1)}lbs\n\n`
+        Aproximado peso ideal: ${(idealWeight * 2.205).toFixed(1)}lbs\n\n`
     }
-    Percentual de Gordura do seu Objetivo: ${(bbgw0p * 10) / 10}% \n\n
+    Percentual de Gordura do seu Objetivo: ${(idealBodyFatPercentage * 10) / 10}% \n\n
     Situação de Exercício: ${
       exercise == 1
         ? "Nenhum \n\nConselho de Exercício: Comece a treinar gradualmente até 5-6 dias / semana \n\n"
@@ -2858,21 +2510,21 @@ function sendEmail() {
       unit == "metric"
         ? `${weight}kg \n\n`
         : `${(weight * 2.205).toFixed(2)}lbs \n\n`
-    } Pourcentage de graisse actuel: ${bbgwp}% \n\nGamme de poids idéale: ${
+    } Pourcentage de graisse actuel: ${bodyFatPercentage}% \n\nGamme de poids idéale: ${
       unit == "metric"
-        ? `${idealweight1.toFixed(1)}kg à ${idealweight2.toFixed(
+        ? `${baseIdealWeight.toFixed(1)}kg à ${topIdealWeight.toFixed(
             1
           )}kg\n\nPoids approximatif parfait / idéal: ${parseFloat(
-            idealWeight000
+            idealWeight
           ).toFixed(1)}kg\n\n`
-        : `${(idealweight1 * 2.205).toFixed(1)}lbs à ${(
-            idealweight2 * 2.205
+        : `${(baseIdealWeight * 2.205).toFixed(1)}lbs à ${(
+            topIdealWeight * 2.205
           ).toFixed(1)}lbs\n\n
-        Poids approximatif parfait / idéal: ${(idealWeight000 * 2.205).toFixed(
+        Poids approximatif parfait / idéal: ${(idealWeight * 2.205).toFixed(
           1
         )}lbs\n\n`
     }
-    Pourcentage de graisse de l'objectif: ${(bbgw0p * 10) / 10}% \n\n
+    Pourcentage de graisse de l'objectif: ${(idealBodyFatPercentage * 10) / 10}% \n\n
     Situation d'exercice: ${
       exercise == 1
         ? "Aucun exercice \n\nConseils d'exercice: Commencez à vous entraîner progressivement jusqu'à 5-6 jours / semaine \n\n"
@@ -2915,21 +2567,21 @@ function sendEmail() {
       unit == "metric"
         ? `${weight}kg \n\n`
         : `${(weight * 2.205).toFixed(2)}lbs \n\n`
-    } Porcentaje de grasa actual: ${bbgwp}% \n\nRango de peso ideal: ${
+    } Porcentaje de grasa actual: ${bodyFatPercentage}% \n\nRango de peso ideal: ${
       unit == "metric"
-        ? `${idealweight1.toFixed(1)}kg a ${idealweight2.toFixed(
+        ? `${baseIdealWeight.toFixed(1)}kg a ${topIdealWeight.toFixed(
             1
           )}kg\n\nPeso aproximado perfecto / ideal: ${parseFloat(
-            idealWeight000
+            idealWeight
           ).toFixed(1)}kg\n\n`
-        : `${(idealweight1 * 2.205).toFixed(1)}lbs a ${(
-            idealweight2 * 2.205
+        : `${(baseIdealWeight * 2.205).toFixed(1)}lbs a ${(
+            topIdealWeight * 2.205
           ).toFixed(1)}lbs\n\n
-        Peso aproximado perfecto / ideal: ${(idealWeight000 * 2.205).toFixed(
+        Peso aproximado perfecto / ideal: ${(idealWeight * 2.205).toFixed(
           1
         )}lbs\n\n`
     }
-    Porcentaje de grasa del objetivo: ${(bbgw0p * 10) / 10}% \n\n
+    Porcentaje de grasa del objetivo: ${(idealBodyFatPercentage * 10) / 10}% \n\n
     Situación del ejercicio: ${
       exercise == 1
         ? "No ejercicio \n\nConsejos de ejercicio: Comience a entrenar gradualmente hasta 5-6 días a la semana \n\n"
@@ -3127,503 +2779,503 @@ function result() {
   yyyy = day.getFullYear();
   day = `${dd}/${mm}/${yyyy}`;
   if (bodytype == "ecto") {
-    if (goal == "bulking") bodyp += 0;
-    else if (goal == "cutting") bodyp += 1;
-    else if (goal == "surplus") bodyp += 2;
-    else if (goal == "muscle") bodyp += 0;
+    if (goal == "bulking") bodyTypeAdvantage = 0;
+    else if (goal == "cutting") bodyTypeAdvantage = 1;
+    else if (goal == "surplus") bodyTypeAdvantage = 2;
+    else if (goal == "muscle") bodyTypeAdvantage = 0;
     if (languageValue == 1) {
-      if (bodyp == 2)
-        bodypt +=
+      if (bodyTypeAdvantage == 2)
+        bodyTypeAdvantageAdvice =
           " Although it may be easier for your body type since you lose fat easier, but you still gotta grind for it!";
-      else if (bodyp == 1)
-        bodypt +=
+      else if (bodyTypeAdvantage == 1)
+        bodyTypeAdvantageAdvice =
           " It can get tough for your body type for the muscle-up part, but still totally doable!";
-      else if (bodyp == 0)
-        bodypt +=
+      else if (bodyTypeAdvantage == 0)
+        bodyTypeAdvantageAdvice =
           " I know, it is more difficult for your body type but still let´s do it, it will be harder to keep but still, you'll get there!";
     } else if (languageValue == 2) {
-      if (bodyp == 2)
-        bodypt +=
+      if (bodyTypeAdvantage == 2)
+        bodyTypeAdvantageAdvice =
           " Embora possa ser mais fácil para o seu tipo de corpo, já que você perde gordura com mais facilidade, você ainda precisa trabalhar para isso!";
-      else if (bodyp == 1)
-        bodypt +=
+      else if (bodyTypeAdvantage == 1)
+        bodyTypeAdvantageAdvice =
           " Pode ser difícil para o seu tipo de corpo na parte muscular, mas ainda assim é totalmente factível!";
-      else if (bodyp == 0)
-        bodypt +=
+      else if (bodyTypeAdvantage == 0)
+        bodyTypeAdvantageAdvice =
           " Eu sei, é mais difícil para o seu tipo de corpo mas ainda vamos fazer, vai ser mais difícil de manter mas mesmo assim, você vai chegar lá!";
     } else if (languageValue == 3) {
-      if (bodyp == 2)
-        bodypt +=
+      if (bodyTypeAdvantage == 2)
+        bodyTypeAdvantageAdvice =
           " Bien que cela puisse être plus facile pour votre type de corps, car vous perdez de la graisse plus facilement, mais vous devez quand même moudre pour cela!";
-      else if (bodyp == 1)
-        bodypt +=
+      else if (bodyTypeAdvantage == 1)
+        bodyTypeAdvantageAdvice =
           " Cela peut être difficile pour votre type de corps pour la partie musculaire, mais cela reste tout à fait faisable!";
-      else if (bodyp == 0)
-        bodypt +=
+      else if (bodyTypeAdvantage == 0)
+        bodyTypeAdvantageAdvice =
           " Je sais, c'est plus difficile pour votre type de corps mais faisons-le quand même, ce sera plus difficile à garder mais quand même, vous y arriverez!";
     } else if (languageValue == 4) {
-      if (bodyp == 2)
-        bodypt +=
+      if (bodyTypeAdvantage == 2)
+        bodyTypeAdvantageAdvice =
           " Aunque puede ser más fácil para tu tipo de cuerpo, ya que pierdes grasa más fácilmente, ¡aún así tienes que esforzarte!";
-      else if (bodyp == 1)
-        bodypt +=
+      else if (bodyTypeAdvantage == 1)
+        bodyTypeAdvantageAdvice =
           " Puede ser difícil para tu tipo de cuerpo para la parte de músculos, ¡pero aún así es totalmente factible!";
-      else if (bodyp == 0)
-        bodypt +=
+      else if (bodyTypeAdvantage == 0)
+        bodyTypeAdvantageAdvice =
           " Lo sé, es más difícil para tu tipo de cuerpo, pero aún así hagámoslo, será más difícil de mantener, pero aún así, ¡lo lograrás!";
     }
   } else if (bodytype == "meso") {
-    if (goal == "bulking") bodyp += 2;
-    else if (goal == "cutting") bodyp += 2;
-    else if (goal == "surplus") bodyp += 1;
-    else if (goal == "muscle") bodyp += 2;
+    if (goal == "bulking") bodyTypeAdvantage = 2;
+    else if (goal == "cutting") bodyTypeAdvantage = 2;
+    else if (goal == "surplus") bodyTypeAdvantage = 1;
+    else if (goal == "muscle") bodyTypeAdvantage = 2;
     if (languageValue == 1) {
-      if (bodyp == 2)
-        bodypt +=
+      if (bodyTypeAdvantage == 2)
+        bodyTypeAdvantageAdvice =
           " Yeah, got it, 'for me its easier' yada yada yada. Well, it's supposed to, but if you don't concentrate and engage on your goal, sorry bro, but if it happens it will take a lot longer, so focus and you will get there.";
-      else if (bodyp == 1)
-        bodypt +=
+      else if (bodyTypeAdvantage == 1)
+        bodyTypeAdvantageAdvice =
           " It can get difficult for your body type for the muscle-up part, but still totally doable!";
-      else if (bodyp == 0) bodypt += " That shouldn't happen! Sry.";
+      else if (bodyTypeAdvantage == 0) bodyTypeAdvantageAdvice = " That shouldn't happen! Sry.";
     } else if (languageValue == 2) {
-      if (bodyp == 2)
-        bodypt +=
+      if (bodyTypeAdvantage == 2)
+        bodyTypeAdvantageAdvice =
           " Sim, entendi, 'para mim é mais fácil' blá blá blá. Bem, é suposto que sim, mas se você não se concentrar e se engajar no seu objetivo, desculpe mano, mas se acontecer vai demorar muito mais, então foque e você vai chegar lá.";
-      else if (bodyp == 1)
-        bodypt +=
+      else if (bodyTypeAdvantage == 1)
+        bodyTypeAdvantageAdvice =
           " It can get difficult for your body type for the muscle-up part, but still totally doable!";
-      else if (bodyp == 0) bodypt += " Isso não deveria acontecer! Desculpa.";
+      else if (bodyTypeAdvantage == 0) bodyTypeAdvantageAdvice = " Isso não deveria acontecer! Desculpa.";
     } else if (languageValue == 3) {
-      if (bodyp == 2)
-        bodypt +=
+      if (bodyTypeAdvantage == 2)
+        bodyTypeAdvantageAdvice =
           " Ouais, compris, «pour moi, c'est plus facile» yada yada yada. Eh bien, c'est censé le faire, mais si vous ne vous concentrez pas et ne vous engagez pas sur votre objectif, désolé mon frère, mais si cela arrive, cela prendra beaucoup plus de temps, alors concentrez-vous et vous y arriverez.";
-      else if (bodyp == 1)
-        bodypt +=
+      else if (bodyTypeAdvantage == 1)
+        bodyTypeAdvantageAdvice =
           " Cela peut devenir difficile pour votre type de corps pour la partie musculaire, mais cela reste tout à fait faisable!";
-      else if (bodyp == 0) bodypt += " Cela ne devrait pas arriver! Pardon.";
+      else if (bodyTypeAdvantage == 0) bodyTypeAdvantageAdvice = " Cela ne devrait pas arriver! Pardon.";
     } else if (languageValue == 4) {
-      if (bodyp == 2)
-        bodypt +=
+      if (bodyTypeAdvantage == 2)
+        bodyTypeAdvantageAdvice =
           " Sí, lo tengo, 'para mí es más fácil' yada yada yada. Bueno, se supone que debe hacerlo, pero si no te concentras y te comprometes con tu objetivo, lo siento hermano, pero si sucede, tomará mucho más tiempo, así que concéntrate y llegarás allí..";
-      else if (bodyp == 1)
-        bodypt +=
+      else if (bodyTypeAdvantage == 1)
+        bodyTypeAdvantageAdvice =
           " Puede ser difícil para tu tipo de cuerpo para la parte de los músculos, ¡pero aún así es totalmente factible!";
-      else if (bodyp == 0) bodypt += " ¡Eso no debería suceder! Lo siento.";
+      else if (bodyTypeAdvantage == 0) bodyTypeAdvantageAdvice = " ¡Eso no debería suceder! Lo siento.";
     }
   } else if (bodytype == "endo") {
-    if (goal == "bulking") bodyp += 2;
-    else if (goal == "cutting") bodyp += 0;
-    else if (goal == "surplus") bodyp += 1;
-    else if (goal == "muscle") bodyp += 2;
+    if (goal == "bulking") bodyTypeAdvantage = 2;
+    else if (goal == "cutting") bodyTypeAdvantage = 0;
+    else if (goal == "surplus") bodyTypeAdvantage = 1;
+    else if (goal == "muscle") bodyTypeAdvantage = 2;
     if (languageValue == 1) {
-      if (bodyp == 2)
-        bodypt +=
+      if (bodyTypeAdvantage == 2)
+        bodyTypeAdvantageAdvice =
           " For your body type it may be easier, due to the ease you have to gain muscle, but, still, you gotta grind to accomplish it!";
-      else if (bodyp == 1)
-        bodypt +=
+      else if (bodyTypeAdvantage == 1)
+        bodyTypeAdvantageAdvice =
           " It can get difficult for your body type for the muscle-up part, but still totally doable!";
-      else if (bodyp == 0)
-        bodypt +=
+      else if (bodyTypeAdvantage == 0)
+        bodyTypeAdvantageAdvice =
           " I know, it is more difficult for your body type but still let´s do it, it will be harder to maintain but still you'll get there! I'm with you in that, I'm an endomorph that craves to cut too.";
     } else if (languageValue == 2) {
-      if (bodyp == 2)
-        bodypt +=
+      if (bodyTypeAdvantage == 2)
+        bodyTypeAdvantageAdvice =
           " Para o seu tipo de corpo pode ser mais fácil, devido à facilidade que você tem para ganhar músculos, mas, ainda assim, é preciso trincar para conseguir!";
-      else if (bodyp == 1)
-        bodypt +=
+      else if (bodyTypeAdvantage == 1)
+        bodyTypeAdvantageAdvice =
           " Pode ser difícil para o seu tipo de corpo na parte muscular, mas ainda assim é totalmente factível!";
-      else if (bodyp == 0)
-        bodypt +=
+      else if (bodyTypeAdvantage == 0)
+        bodyTypeAdvantageAdvice =
           " Eu sei, é mais difícil para o seu tipo de corpo, mas mesmo assim vamos fazer, será mais difícil de manter, mas você vai chegar lá! Estou com você nisso, sou um endomorfo que anseia secar também.";
     } else if (languageValue == 3) {
-      if (bodyp == 2)
-        bodypt +=
+      if (bodyTypeAdvantage == 2)
+        bodyTypeAdvantageAdvice =
           " Pour votre type de corps, cela peut être plus facile, en raison de la facilité don't vous disposez pour gagner du muscle, mais, quand même, vous devez broyer pour y parvenir!";
-      else if (bodyp == 1)
-        bodypt +=
+      else if (bodyTypeAdvantage == 1)
+        bodyTypeAdvantageAdvice =
           " Cela peut devenir difficile pour votre type de corps pour la partie musculaire, mais cela reste tout à fait faisable!";
-      else if (bodyp == 0)
-        bodypt +=
+      else if (bodyTypeAdvantage == 0)
+        bodyTypeAdvantageAdvice =
           " Je sais, c'est plus difficile pour votre type de corps mais faisons-le quand même, ce sera plus difficile à entretenir mais vous y arriverez quand même! Je suis avec toi, je suis un endomorphe qui aspire aussi à couper.";
     } else if (languageValue == 4) {
-      if (bodyp == 2)
-        bodypt +=
+      if (bodyTypeAdvantage == 2)
+        bodyTypeAdvantageAdvice =
           " Para tu tipo de cuerpo puede ser más fácil, debido a la facilidad que tienes para ganar músculo, pero, aún así, ¡tienes que esforzarte para lograrlo!";
-      else if (bodyp == 1)
-        bodypt +=
+      else if (bodyTypeAdvantage == 1)
+        bodyTypeAdvantageAdvice =
           " Puede ser difícil para tu tipo de cuerpo para la parte de los músculos, ¡pero aún así es totalmente factible!";
-      else if (bodyp == 0)
-        bodypt +=
+      else if (bodyTypeAdvantage == 0)
+        bodyTypeAdvantageAdvice =
           " Lo sé, es más difícil para tu tipo de cuerpo, pero aún así hagámoslo, será más difícil de mantener, ¡pero aún así llegarás! Estoy contigo en eso, soy un endomorfo que también anhela secar.";
     }
   }
   if (currentBody == 1) {
     if (gender == "male") {
-      bbgw1 = weight * 0.04;
-      bbgw2 = weight * 0.05;
-      bbgwp = 4.5;
+      baseBodyFat = weight * 0.04;
+      topBodyFat = weight * 0.05;
+      bodyFatPercentage = 4.5;
     } else if (gender == "female") {
-      bbgw1 = weight * 0.12;
-      bbgw2 = weight * 0.14;
-      bbgwp = 13;
+      baseBodyFat = weight * 0.12;
+      topBodyFat = weight * 0.14;
+      bodyFatPercentage = 13;
     }
-    if (goal == "bulking") bbgw0 = ((bbgw2 + bbgw1) / 2).toFixed(1);
-    else if (goal == "cutting") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
-    else if (goal == "surplus") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
-    else if (goal == "muscle") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
+    if (goal == "bulking") bodyFat = ((topBodyFat + baseBodyFat) / 2).toFixed(1);
+    else if (goal == "cutting") bodyFat = ((baseBodyFat + topBodyFat) / 2).toFixed(1);
+    else if (goal == "surplus") bodyFat = ((baseBodyFat + topBodyFat) / 2).toFixed(1);
+    else if (goal == "muscle") bodyFat = ((baseBodyFat + topBodyFat) / 2).toFixed(1);
   } else if (currentBody == 2) {
     if (gender == "male") {
-      bbgw1 = weight * 0.06;
-      bbgw2 = weight * 0.07;
-      bbgwp = 6.5;
+      baseBodyFat = weight * 0.06;
+      topBodyFat = weight * 0.07;
+      bodyFatPercentage = 6.5;
     } else if (gender == "female") {
-      bbgw1 = weight * 0.15;
-      bbgw2 = weight * 0.17;
-      bbgwp = 16;
+      baseBodyFat = weight * 0.15;
+      topBodyFat = weight * 0.17;
+      bodyFatPercentage = 16;
     }
-    if (goal == "bulking") bbgw0 = ((bbgw2 + bbgw1) / 2).toFixed(1);
-    else if (goal == "cutting") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
-    else if (goal == "surplus") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
-    else if (goal == "muscle") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
+    if (goal == "bulking") bodyFat = ((topBodyFat + baseBodyFat) / 2).toFixed(1);
+    else if (goal == "cutting") bodyFat = ((baseBodyFat + topBodyFat) / 2).toFixed(1);
+    else if (goal == "surplus") bodyFat = ((baseBodyFat + topBodyFat) / 2).toFixed(1);
+    else if (goal == "muscle") bodyFat = ((baseBodyFat + topBodyFat) / 2).toFixed(1);
   } else if (currentBody == 3) {
     if (gender == "male") {
-      bbgw1 = weight * 0.08;
-      bbgw2 = weight * 0.1;
-      bbgwp = 9;
+      baseBodyFat = weight * 0.08;
+      topBodyFat = weight * 0.1;
+      bodyFatPercentage = 9;
     } else if (gender == "female") {
-      bbgw1 = weight * 0.18;
-      bbgw2 = weight * 0.2;
-      bbgwp = 19;
+      baseBodyFat = weight * 0.18;
+      topBodyFat = weight * 0.2;
+      bodyFatPercentage = 19;
     }
-    if (goal == "bulking") bbgw0 = ((bbgw2 + bbgw1) / 2).toFixed(1);
-    else if (goal == "cutting") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
-    else if (goal == "surplus") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
-    else if (goal == "muscle") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
+    if (goal == "bulking") bodyFat = ((topBodyFat + baseBodyFat) / 2).toFixed(1);
+    else if (goal == "cutting") bodyFat = ((baseBodyFat + topBodyFat) / 2).toFixed(1);
+    else if (goal == "surplus") bodyFat = ((baseBodyFat + topBodyFat) / 2).toFixed(1);
+    else if (goal == "muscle") bodyFat = ((baseBodyFat + topBodyFat) / 2).toFixed(1);
   } else if (currentBody == 4) {
     if (gender == "male") {
-      bbgw1 = weight * 0.11;
-      bbgw2 = weight * 0.12;
-      bbgwp = 11.5;
+      baseBodyFat = weight * 0.11;
+      topBodyFat = weight * 0.12;
+      bodyFatPercentage = 11.5;
     } else if (gender == "female") {
-      bbgw1 = weight * 0.21;
-      bbgw2 = weight * 0.23;
-      bbgwp = 22;
+      baseBodyFat = weight * 0.21;
+      topBodyFat = weight * 0.23;
+      bodyFatPercentage = 22;
     }
-    if (goal == "bulking") bbgw0 = ((bbgw2 + bbgw1) / 2).toFixed(1);
-    else if (goal == "cutting") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
-    else if (goal == "surplus") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
-    else if (goal == "muscle") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
+    if (goal == "bulking") bodyFat = ((topBodyFat + baseBodyFat) / 2).toFixed(1);
+    else if (goal == "cutting") bodyFat = ((baseBodyFat + topBodyFat) / 2).toFixed(1);
+    else if (goal == "surplus") bodyFat = ((baseBodyFat + topBodyFat) / 2).toFixed(1);
+    else if (goal == "muscle") bodyFat = ((baseBodyFat + topBodyFat) / 2).toFixed(1);
   } else if (currentBody == 5) {
     if (gender == "male") {
-      bbgw1 = weight * 0.13;
-      bbgw2 = weight * 0.15;
-      bbgwp = 14;
+      baseBodyFat = weight * 0.13;
+      topBodyFat = weight * 0.15;
+      bodyFatPercentage = 14;
     } else if (gender == "female") {
-      bbgw1 = weight * 0.24;
-      bbgw2 = weight * 0.26;
-      bbgwp = 25;
+      baseBodyFat = weight * 0.24;
+      topBodyFat = weight * 0.26;
+      bodyFatPercentage = 25;
     }
-    if (goal == "bulking") bbgw0 = ((bbgw2 + bbgw1) / 2).toFixed(1);
-    else if (goal == "cutting") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
-    else if (goal == "surplus") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
-    else if (goal == "muscle") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
+    if (goal == "bulking") bodyFat = ((topBodyFat + baseBodyFat) / 2).toFixed(1);
+    else if (goal == "cutting") bodyFat = ((baseBodyFat + topBodyFat) / 2).toFixed(1);
+    else if (goal == "surplus") bodyFat = ((baseBodyFat + topBodyFat) / 2).toFixed(1);
+    else if (goal == "muscle") bodyFat = ((baseBodyFat + topBodyFat) / 2).toFixed(1);
   } else if (currentBody == 6) {
     if (gender == "male") {
-      bbgw1 = weight * 0.16;
-      bbgw2 = weight * 0.19;
-      bbgwp = 17.5;
+      baseBodyFat = weight * 0.16;
+      topBodyFat = weight * 0.19;
+      bodyFatPercentage = 17.5;
     } else if (gender == "female") {
-      bbgw1 = weight * 0.27;
-      bbgw2 = weight * 0.29;
-      bbgwp = 28;
+      baseBodyFat = weight * 0.27;
+      topBodyFat = weight * 0.29;
+      bodyFatPercentage = 28;
     }
-    if (goal == "bulking") bbgw0 = ((bbgw2 + bbgw1) / 2).toFixed(1);
-    else if (goal == "cutting") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
-    else if (goal == "surplus") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
-    else if (goal == "muscle") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
+    if (goal == "bulking") bodyFat = ((topBodyFat + baseBodyFat) / 2).toFixed(1);
+    else if (goal == "cutting") bodyFat = ((baseBodyFat + topBodyFat) / 2).toFixed(1);
+    else if (goal == "surplus") bodyFat = ((baseBodyFat + topBodyFat) / 2).toFixed(1);
+    else if (goal == "muscle") bodyFat = ((baseBodyFat + topBodyFat) / 2).toFixed(1);
   } else if (currentBody == 7) {
     if (gender == "male") {
-      bbgw1 = weight * 0.2;
-      bbgw2 = weight * 0.24;
-      bbgwp = 22;
+      baseBodyFat = weight * 0.2;
+      topBodyFat = weight * 0.24;
+      bodyFatPercentage = 22;
     } else if (gender == "female") {
-      bbgw1 = weight * 0.3;
-      bbgw2 = weight * 0.35;
-      bbgwp = 32.5;
+      baseBodyFat = weight * 0.3;
+      topBodyFat = weight * 0.35;
+      bodyFatPercentage = 32.5;
     }
-    if (goal == "bulking") bbgw0 = ((bbgw2 + bbgw1) / 2).toFixed(1);
-    else if (goal == "cutting") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
-    else if (goal == "surplus") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
-    else if (goal == "muscle") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
+    if (goal == "bulking") bodyFat = ((topBodyFat + baseBodyFat) / 2).toFixed(1);
+    else if (goal == "cutting") bodyFat = ((baseBodyFat + topBodyFat) / 2).toFixed(1);
+    else if (goal == "surplus") bodyFat = ((baseBodyFat + topBodyFat) / 2).toFixed(1);
+    else if (goal == "muscle") bodyFat = ((baseBodyFat + topBodyFat) / 2).toFixed(1);
   } else if (currentBody == 8) {
     if (gender == "male") {
-      bbgw1 = weight * 0.25;
-      bbgw2 = weight * 0.3;
-      bbgwp = 27.5;
+      baseBodyFat = weight * 0.25;
+      topBodyFat = weight * 0.3;
+      bodyFatPercentage = 27.5;
     } else if (gender == "female") {
-      bbgw1 = weight * 0.36;
-      bbgw2 = weight * 0.4;
-      bbgwp = 38;
+      baseBodyFat = weight * 0.36;
+      topBodyFat = weight * 0.4;
+      bodyFatPercentage = 38;
     }
-    if (goal == "bulking") bbgw0 = ((bbgw2 + bbgw1) / 2).toFixed(1);
-    else if (goal == "cutting") bbgw0 = ((bbgw2 + bbgw1) / 2).toFixed(1);
-    else if (goal == "surplus") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
-    else if (goal == "muscle") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
+    if (goal == "bulking") bodyFat = ((topBodyFat + baseBodyFat) / 2).toFixed(1);
+    else if (goal == "cutting") bodyFat = ((topBodyFat + baseBodyFat) / 2).toFixed(1);
+    else if (goal == "surplus") bodyFat = ((baseBodyFat + topBodyFat) / 2).toFixed(1);
+    else if (goal == "muscle") bodyFat = ((baseBodyFat + topBodyFat) / 2).toFixed(1);
   } else if (currentBody == 9) {
     if (gender == "male") {
-      bbgw1 = weight * 0.35;
-      bbgw2 = weight * 0.4;
-      bbgwp = 37.5;
+      baseBodyFat = weight * 0.35;
+      topBodyFat = weight * 0.4;
+      bodyFatPercentage = 37.5;
     } else if (gender == "female") {
-      bbgw1 = weight * 0.5;
-      bbgw2 = weight * 0.5;
-      bbgwp = 50;
+      baseBodyFat = weight * 0.5;
+      topBodyFat = weight * 0.5;
+      bodyFatPercentage = 50;
     }
-    if (goal == "bulking") bbgw0 = ((bbgw2 + bbgw1) / 2).toFixed(1);
-    else if (goal == "cutting") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
-    else if (goal == "surplus") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
-    else if (goal == "muscle") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
+    if (goal == "bulking") bodyFat = ((topBodyFat + baseBodyFat) / 2).toFixed(1);
+    else if (goal == "cutting") bodyFat = ((baseBodyFat + topBodyFat) / 2).toFixed(1);
+    else if (goal == "surplus") bodyFat = ((baseBodyFat + topBodyFat) / 2).toFixed(1);
+    else if (goal == "muscle") bodyFat = ((baseBodyFat + topBodyFat) / 2).toFixed(1);
   }
   if (goalBody == 1) {
     if (gender == "male") {
-      bbgw3 += idealWeight000 * 0.04;
-      bbgw4 += idealWeight000 * 0.05;
-      if (goal == "bulking") bbgw0p += ((3 * 5 + 4) / 4).toFixed(1);
-      else if (goal == "cutting") bbgw0p += ((2.5 * 4 + 5) / 3.5).toFixed(1);
-      else if (goal == "surplus") bbgw0p += ((4 + 5) / 2).toFixed(1);
-      else if (goal == "muscle") bbgw0p += ((4 + 2 * 5) / 3).toFixed(1);
+      goalBaseBodyFat = idealWeight * 0.04;
+      goalTopBodyFat = idealWeight * 0.05;
+      if (goal == "bulking") idealBodyFatPercentage = ((3 * 5 + 4) / 4).toFixed(1);
+      else if (goal == "cutting") idealBodyFatPercentage = ((2.5 * 4 + 5) / 3.5).toFixed(1);
+      else if (goal == "surplus") idealBodyFatPercentage = ((4 + 5) / 2).toFixed(1);
+      else if (goal == "muscle") idealBodyFatPercentage = ((4 + 2 * 5) / 3).toFixed(1);
     } else if (gender == "female") {
-      bbgw3 += idealWeight000 * 0.12;
-      bbgw4 += idealWeight000 * 0.14;
-      if (goal == "bulking") bbgw0p += ((3 * 14 + 12) / 4).toFixed(1);
-      else if (goal == "cutting") bbgw0p += ((2.5 * 12 + 14) / 3.5).toFixed(1);
-      else if (goal == "surplus") bbgw0p += ((12 + 14) / 2).toFixed(1);
-      else if (goal == "muscle") bbgw0p += ((12 + 2 * 14) / 3).toFixed(1);
+      goalBaseBodyFat = idealWeight * 0.12;
+      goalTopBodyFat = idealWeight * 0.14;
+      if (goal == "bulking") idealBodyFatPercentage = ((3 * 14 + 12) / 4).toFixed(1);
+      else if (goal == "cutting") idealBodyFatPercentage = ((2.5 * 12 + 14) / 3.5).toFixed(1);
+      else if (goal == "surplus") idealBodyFatPercentage = ((12 + 14) / 2).toFixed(1);
+      else if (goal == "muscle") idealBodyFatPercentage = ((12 + 2 * 14) / 3).toFixed(1);
     }
-    if (goal == "bulking") bbgw00 += ((3 * bbgw4 + bbgw3) / 4).toFixed(1);
+    if (goal == "bulking") suggestedBodyFat = ((3 * goalTopBodyFat + goalBaseBodyFat) / 4).toFixed(1);
     else if (goal == "cutting")
-      bbgw00 += ((2.5 * bbgw3 + bbgw4) / 3.5).toFixed(1);
-    else if (goal == "surplus") bbgw00 += ((bbgw3 + bbgw4) / 2).toFixed(1);
-    else if (goal == "muscle") bbgw00 += ((bbgw3 + 2 * bbgw4) / 3).toFixed(1);
+      suggestedBodyFat = ((2.5 * goalBaseBodyFat + goalTopBodyFat) / 3.5).toFixed(1);
+    else if (goal == "surplus") suggestedBodyFat = ((goalBaseBodyFat + goalTopBodyFat) / 2).toFixed(1);
+    else if (goal == "muscle") suggestedBodyFat = ((goalBaseBodyFat + 2 * goalTopBodyFat) / 3).toFixed(1);
   } else if (goalBody == 2) {
     if (gender == "male") {
-      bbgw3 += idealWeight000 * 0.06;
-      bbgw4 += idealWeight000 * 0.07;
-      if (goal == "bulking") bbgw0p += ((3 * 7 + 6) / 4).toFixed(1);
-      else if (goal == "cutting") bbgw0p += ((2.5 * 6 + 7) / 3.5).toFixed(1);
-      else if (goal == "surplus") bbgw0p += ((6 + 7) / 2).toFixed(1);
-      else if (goal == "muscle") bbgw0p += ((6 + 2 * 7) / 3).toFixed(1);
+      goalBaseBodyFat = idealWeight * 0.06;
+      goalTopBodyFat = idealWeight * 0.07;
+      if (goal == "bulking") idealBodyFatPercentage = ((3 * 7 + 6) / 4).toFixed(1);
+      else if (goal == "cutting") idealBodyFatPercentage = ((2.5 * 6 + 7) / 3.5).toFixed(1);
+      else if (goal == "surplus") idealBodyFatPercentage = ((6 + 7) / 2).toFixed(1);
+      else if (goal == "muscle") idealBodyFatPercentage = ((6 + 2 * 7) / 3).toFixed(1);
     } else if (gender == "female") {
-      bbgw3 += idealWeight000 * 0.15;
-      bbgw4 += idealWeight000 * 0.17;
-      if (goal == "bulking") bbgw0p += ((3 * 17 + 15) / 4).toFixed(1);
-      else if (goal == "cutting") bbgw0p += ((2.5 * 15 + 17) / 3.5).toFixed(1);
-      else if (goal == "surplus") bbgw0p += ((15 + 17) / 2).toFixed(1);
-      else if (goal == "muscle") bbgw0p += ((15 + 2 * 17) / 3).toFixed(1);
+      goalBaseBodyFat = idealWeight * 0.15;
+      goalTopBodyFat = idealWeight * 0.17;
+      if (goal == "bulking") idealBodyFatPercentage = ((3 * 17 + 15) / 4).toFixed(1);
+      else if (goal == "cutting") idealBodyFatPercentage = ((2.5 * 15 + 17) / 3.5).toFixed(1);
+      else if (goal == "surplus") idealBodyFatPercentage = ((15 + 17) / 2).toFixed(1);
+      else if (goal == "muscle") idealBodyFatPercentage = ((15 + 2 * 17) / 3).toFixed(1);
     }
-    if (goal == "bulking") bbgw00 += ((3 * bbgw4 + bbgw3) / 4).toFixed(1);
+    if (goal == "bulking") suggestedBodyFat = ((3 * goalTopBodyFat + goalBaseBodyFat) / 4).toFixed(1);
     else if (goal == "cutting")
-      bbgw00 += ((2.5 * bbgw3 + bbgw4) / 3.5).toFixed(1);
-    else if (goal == "surplus") bbgw00 += ((bbgw3 + bbgw4) / 2).toFixed(1);
-    else if (goal == "muscle") bbgw00 += ((bbgw3 + 2 * bbgw4) / 3).toFixed(1);
+      suggestedBodyFat = ((2.5 * goalBaseBodyFat + goalTopBodyFat) / 3.5).toFixed(1);
+    else if (goal == "surplus") suggestedBodyFat = ((goalBaseBodyFat + goalTopBodyFat) / 2).toFixed(1);
+    else if (goal == "muscle") suggestedBodyFat = ((goalBaseBodyFat + 2 * goalTopBodyFat) / 3).toFixed(1);
   } else if (goalBody == 3) {
     if (gender == "male") {
-      bbgw3 += idealWeight000 * 0.08;
-      bbgw4 += idealWeight000 * 0.1;
-      if (goal == "bulking") bbgw0p += ((3 * 10 + 8) / 4).toFixed(1);
-      else if (goal == "cutting") bbgw0p += ((2.5 * 8 + 10) / 3.5).toFixed(1);
-      else if (goal == "surplus") bbgw0p += ((8 + 10) / 2).toFixed(1);
-      else if (goal == "muscle") bbgw0p += ((8 + 2 * 10) / 3).toFixed(1);
+      goalBaseBodyFat = idealWeight * 0.08;
+      goalTopBodyFat = idealWeight * 0.1;
+      if (goal == "bulking") idealBodyFatPercentage = ((3 * 10 + 8) / 4).toFixed(1);
+      else if (goal == "cutting") idealBodyFatPercentage = ((2.5 * 8 + 10) / 3.5).toFixed(1);
+      else if (goal == "surplus") idealBodyFatPercentage = ((8 + 10) / 2).toFixed(1);
+      else if (goal == "muscle") idealBodyFatPercentage = ((8 + 2 * 10) / 3).toFixed(1);
     } else if (gender == "female") {
-      bbgw3 += idealWeight000 * 0.18;
-      bbgw4 += idealWeight000 * 0.2;
-      if (goal == "bulking") bbgw0p += ((3 * 20 + 18) / 4).toFixed(1);
-      else if (goal == "cutting") bbgw0p += ((2.5 * 18 + 20) / 3.5).toFixed(1);
-      else if (goal == "surplus") bbgw0p += ((18 + 20) / 2).toFixed(1);
-      else if (goal == "muscle") bbgw0p += ((18 + 2 * 20) / 3).toFixed(1);
+      goalBaseBodyFat = idealWeight * 0.18;
+      goalTopBodyFat = idealWeight * 0.2;
+      if (goal == "bulking") idealBodyFatPercentage = ((3 * 20 + 18) / 4).toFixed(1);
+      else if (goal == "cutting") idealBodyFatPercentage = ((2.5 * 18 + 20) / 3.5).toFixed(1);
+      else if (goal == "surplus") idealBodyFatPercentage = ((18 + 20) / 2).toFixed(1);
+      else if (goal == "muscle") idealBodyFatPercentage = ((18 + 2 * 20) / 3).toFixed(1);
     }
-    if (goal == "bulking") bbgw00 += ((3 * bbgw4 + bbgw3) / 4).toFixed(1);
+    if (goal == "bulking") suggestedBodyFat = ((3 * goalTopBodyFat + goalBaseBodyFat) / 4).toFixed(1);
     else if (goal == "cutting")
-      bbgw00 += ((2.5 * bbgw3 + bbgw4) / 3.5).toFixed(1);
-    else if (goal == "surplus") bbgw00 += ((bbgw3 + bbgw4) / 2).toFixed(1);
-    else if (goal == "muscle") bbgw00 += ((bbgw3 + 2 * bbgw4) / 3).toFixed(1);
+      suggestedBodyFat = ((2.5 * goalBaseBodyFat + goalTopBodyFat) / 3.5).toFixed(1);
+    else if (goal == "surplus") suggestedBodyFat = ((goalBaseBodyFat + goalTopBodyFat) / 2).toFixed(1);
+    else if (goal == "muscle") suggestedBodyFat = ((goalBaseBodyFat + 2 * goalTopBodyFat) / 3).toFixed(1);
   } else if (goalBody == 4) {
     if (gender == "male") {
-      bbgw3 += idealWeight000 * 0.11;
-      bbgw4 += idealWeight000 * 0.12;
-      if (goal == "bulking") bbgw0p += ((3 * 12 + 11) / 4).toFixed(1);
-      else if (goal == "cutting") bbgw0p += ((2.5 * 11 + 12) / 3.5).toFixed(1);
-      else if (goal == "surplus") bbgw0p += ((11 + 12) / 2).toFixed(1);
-      else if (goal == "muscle") bbgw0p += ((11 + 2 * 12) / 3).toFixed(1);
+      goalBaseBodyFat = idealWeight * 0.11;
+      goalTopBodyFat = idealWeight * 0.12;
+      if (goal == "bulking") idealBodyFatPercentage = ((3 * 12 + 11) / 4).toFixed(1);
+      else if (goal == "cutting") idealBodyFatPercentage = ((2.5 * 11 + 12) / 3.5).toFixed(1);
+      else if (goal == "surplus") idealBodyFatPercentage = ((11 + 12) / 2).toFixed(1);
+      else if (goal == "muscle") idealBodyFatPercentage = ((11 + 2 * 12) / 3).toFixed(1);
     } else if (gender == "female") {
-      bbgw3 += idealWeight000 * 0.21;
-      bbgw4 += idealWeight000 * 0.23;
-      if (goal == "bulking") bbgw0p += ((3 * 23 + 21) / 4).toFixed(1);
-      else if (goal == "cutting") bbgw0p += ((2.5 * 21 + 23) / 3.5).toFixed(1);
-      else if (goal == "surplus") bbgw0p += ((21 + 23) / 2).toFixed(1);
-      else if (goal == "muscle") bbgw0p += ((21 + 2 * 23) / 3).toFixed(1);
+      goalBaseBodyFat = idealWeight * 0.21;
+      goalTopBodyFat = idealWeight * 0.23;
+      if (goal == "bulking") idealBodyFatPercentage = ((3 * 23 + 21) / 4).toFixed(1);
+      else if (goal == "cutting") idealBodyFatPercentage = ((2.5 * 21 + 23) / 3.5).toFixed(1);
+      else if (goal == "surplus") idealBodyFatPercentage = ((21 + 23) / 2).toFixed(1);
+      else if (goal == "muscle") idealBodyFatPercentage = ((21 + 2 * 23) / 3).toFixed(1);
     }
-    if (goal == "bulking") bbgw00 += ((3 * bbgw4 + bbgw3) / 4).toFixed(1);
+    if (goal == "bulking") suggestedBodyFat = ((3 * goalTopBodyFat + goalBaseBodyFat) / 4).toFixed(1);
     else if (goal == "cutting")
-      bbgw00 += ((2.5 * bbgw3 + bbgw4) / 3.5).toFixed(1);
-    else if (goal == "surplus") bbgw00 += ((bbgw3 + bbgw4) / 2).toFixed(1);
-    else if (goal == "muscle") bbgw00 += ((bbgw3 + 2 * bbgw4) / 3).toFixed(1);
+      suggestedBodyFat = ((2.5 * goalBaseBodyFat + goalTopBodyFat) / 3.5).toFixed(1);
+    else if (goal == "surplus") suggestedBodyFat = ((goalBaseBodyFat + goalTopBodyFat) / 2).toFixed(1);
+    else if (goal == "muscle") suggestedBodyFat = ((goalBaseBodyFat + 2 * goalTopBodyFat) / 3).toFixed(1);
   } else if (goalBody == 5) {
     if (gender == "male") {
-      bbgw3 += idealWeight000 * 0.13;
-      bbgw4 += idealWeight000 * 0.15;
-      if (goal == "bulking") bbgw0p += ((3 * 15 + 13) / 4).toFixed(1);
-      else if (goal == "cutting") bbgw0p += ((2.5 * 13 + 15) / 3.5).toFixed(1);
-      else if (goal == "surplus") bbgw0p += ((13 + 15) / 2).toFixed(1);
-      else if (goal == "muscle") bbgw0p += ((13 + 2 * 15) / 3).toFixed(1);
+      goalBaseBodyFat = idealWeight * 0.13;
+      goalTopBodyFat = idealWeight * 0.15;
+      if (goal == "bulking") idealBodyFatPercentage = ((3 * 15 + 13) / 4).toFixed(1);
+      else if (goal == "cutting") idealBodyFatPercentage = ((2.5 * 13 + 15) / 3.5).toFixed(1);
+      else if (goal == "surplus") idealBodyFatPercentage = ((13 + 15) / 2).toFixed(1);
+      else if (goal == "muscle") idealBodyFatPercentage = ((13 + 2 * 15) / 3).toFixed(1);
     } else if (gender == "female") {
-      bbgw3 += idealWeight000 * 0.24;
-      bbgw4 += idealWeight000 * 0.26;
-      if (goal == "bulking") bbgw0p += ((3 * 26 + 24) / 4).toFixed(1);
-      else if (goal == "cutting") bbgw0p += ((2.5 * 24 + 26) / 3.5).toFixed(1);
-      else if (goal == "surplus") bbgw0p += ((24 + 26) / 2).toFixed(1);
-      else if (goal == "muscle") bbgw0p += ((24 + 2 * 26) / 3).toFixed(1);
+      goalBaseBodyFat = idealWeight * 0.24;
+      goalTopBodyFat = idealWeight * 0.26;
+      if (goal == "bulking") idealBodyFatPercentage = ((3 * 26 + 24) / 4).toFixed(1);
+      else if (goal == "cutting") idealBodyFatPercentage = ((2.5 * 24 + 26) / 3.5).toFixed(1);
+      else if (goal == "surplus") idealBodyFatPercentage = ((24 + 26) / 2).toFixed(1);
+      else if (goal == "muscle") idealBodyFatPercentage = ((24 + 2 * 26) / 3).toFixed(1);
     }
-    if (goal == "bulking") bbgw00 += ((3 * bbgw4 + bbgw3) / 4).toFixed(1);
+    if (goal == "bulking") suggestedBodyFat = ((3 * goalTopBodyFat + goalBaseBodyFat) / 4).toFixed(1);
     else if (goal == "cutting")
-      bbgw00 += ((2.5 * bbgw3 + bbgw4) / 3.5).toFixed(1);
-    else if (goal == "surplus") bbgw00 += ((bbgw3 + bbgw4) / 2).toFixed(1);
-    else if (goal == "muscle") bbgw00 += ((bbgw3 + 2 * bbgw4) / 3).toFixed(1);
+      suggestedBodyFat = ((2.5 * goalBaseBodyFat + goalTopBodyFat) / 3.5).toFixed(1);
+    else if (goal == "surplus") suggestedBodyFat = ((goalBaseBodyFat + goalTopBodyFat) / 2).toFixed(1);
+    else if (goal == "muscle") suggestedBodyFat = ((goalBaseBodyFat + 2 * goalTopBodyFat) / 3).toFixed(1);
   } else if (goalBody == 6) {
     if (gender == "male") {
-      bbgw3 += idealWeight000 * 0.16;
-      bbgw4 += idealWeight000 * 0.19;
-      if (goal == "bulking") bbgw0p += ((3 * 19 + 16) / 4).toFixed(1);
-      else if (goal == "cutting") bbgw0p += ((2.5 * 16 + 19) / 3.5).toFixed(1);
-      else if (goal == "surplus") bbgw0p += ((16 + 19) / 2).toFixed(1);
-      else if (goal == "muscle") bbgw0p += ((16 + 2 * 19) / 3).toFixed(1);
+      goalBaseBodyFat = idealWeight * 0.16;
+      goalTopBodyFat = idealWeight * 0.19;
+      if (goal == "bulking") idealBodyFatPercentage = ((3 * 19 + 16) / 4).toFixed(1);
+      else if (goal == "cutting") idealBodyFatPercentage = ((2.5 * 16 + 19) / 3.5).toFixed(1);
+      else if (goal == "surplus") idealBodyFatPercentage = ((16 + 19) / 2).toFixed(1);
+      else if (goal == "muscle") idealBodyFatPercentage = ((16 + 2 * 19) / 3).toFixed(1);
     } else if (gender == "female") {
-      bbgw3 += idealWeight000 * 0.27;
-      bbgw4 += idealWeight000 * 0.29;
-      if (goal == "bulking") bbgw0p += ((3 * 29 + 27) / 4).toFixed(1);
-      else if (goal == "cutting") bbgw0p += ((2.5 * 27 + 29) / 3.5).toFixed(1);
-      else if (goal == "surplus") bbgw0p += ((27 + 29) / 2).toFixed(1);
-      else if (goal == "muscle") bbgw0p += ((27 + 2 * 29) / 3).toFixed(1);
+      goalBaseBodyFat = idealWeight * 0.27;
+      goalTopBodyFat = idealWeight * 0.29;
+      if (goal == "bulking") idealBodyFatPercentage = ((3 * 29 + 27) / 4).toFixed(1);
+      else if (goal == "cutting") idealBodyFatPercentage = ((2.5 * 27 + 29) / 3.5).toFixed(1);
+      else if (goal == "surplus") idealBodyFatPercentage = ((27 + 29) / 2).toFixed(1);
+      else if (goal == "muscle") idealBodyFatPercentage = ((27 + 2 * 29) / 3).toFixed(1);
     }
-    if (goal == "bulking") bbgw00 += ((3 * bbgw4 + bbgw3) / 4).toFixed(1);
+    if (goal == "bulking") suggestedBodyFat = ((3 * goalTopBodyFat + goalBaseBodyFat) / 4).toFixed(1);
     else if (goal == "cutting")
-      bbgw00 += ((2.5 * bbgw3 + bbgw4) / 3.5).toFixed(1);
-    else if (goal == "surplus") bbgw00 += ((bbgw3 + bbgw4) / 2).toFixed(1);
-    else if (goal == "muscle") bbgw00 += ((bbgw3 + 2 * bbgw4) / 3).toFixed(1);
+      suggestedBodyFat = ((2.5 * goalBaseBodyFat + goalTopBodyFat) / 3.5).toFixed(1);
+    else if (goal == "surplus") suggestedBodyFat = ((goalBaseBodyFat + goalTopBodyFat) / 2).toFixed(1);
+    else if (goal == "muscle") suggestedBodyFat = ((goalBaseBodyFat + 2 * goalTopBodyFat) / 3).toFixed(1);
   } else if (goalBody == 7) {
     if (gender == "male") {
-      bbgw3 += idealWeight000 * 0.2;
-      bbgw4 += idealWeight000 * 0.24;
-      if (goal == "bulking") bbgw0p += ((3 * 24 + 20) / 4).toFixed(1);
-      else if (goal == "cutting") bbgw0p += ((2.5 * 20 + 24) / 3.5).toFixed(1);
-      else if (goal == "surplus") bbgw0p += ((20 + 24) / 2).toFixed(1);
-      else if (goal == "muscle") bbgw0p += ((20 + 2 * 24) / 3).toFixed(1);
+      goalBaseBodyFat = idealWeight * 0.2;
+      goalTopBodyFat = idealWeight * 0.24;
+      if (goal == "bulking") idealBodyFatPercentage = ((3 * 24 + 20) / 4).toFixed(1);
+      else if (goal == "cutting") idealBodyFatPercentage = ((2.5 * 20 + 24) / 3.5).toFixed(1);
+      else if (goal == "surplus") idealBodyFatPercentage = ((20 + 24) / 2).toFixed(1);
+      else if (goal == "muscle") idealBodyFatPercentage = ((20 + 2 * 24) / 3).toFixed(1);
     } else if (gender == "female") {
-      bbgw3 += idealWeight000 * 0.3;
-      bbgw4 += idealWeight000 * 0.35;
-      if (goal == "bulking") bbgw0p += ((3 * 35 + 30) / 4).toFixed(1);
-      else if (goal == "cutting") bbgw0p += ((2.5 * 30 + 35) / 3.5).toFixed(1);
-      else if (goal == "surplus") bbgw0p += ((30 + 35) / 2).toFixed(1);
-      else if (goal == "muscle") bbgw0p += ((30 + 2 * 35) / 3).toFixed(1);
+      goalBaseBodyFat = idealWeight * 0.3;
+      goalTopBodyFat = idealWeight * 0.35;
+      if (goal == "bulking") idealBodyFatPercentage = ((3 * 35 + 30) / 4).toFixed(1);
+      else if (goal == "cutting") idealBodyFatPercentage = ((2.5 * 30 + 35) / 3.5).toFixed(1);
+      else if (goal == "surplus") idealBodyFatPercentage = ((30 + 35) / 2).toFixed(1);
+      else if (goal == "muscle") idealBodyFatPercentage = ((30 + 2 * 35) / 3).toFixed(1);
     }
-    if (goal == "bulking") bbgw00 += ((3 * bbgw4 + bbgw3) / 4).toFixed(1);
+    if (goal == "bulking") suggestedBodyFat = ((3 * goalTopBodyFat + goalBaseBodyFat) / 4).toFixed(1);
     else if (goal == "cutting")
-      bbgw00 += ((2.5 * bbgw3 + bbgw4) / 3.5).toFixed(1);
-    else if (goal == "surplus") bbgw00 += ((bbgw3 + bbgw4) / 2).toFixed(1);
-    else if (goal == "muscle") bbgw00 += ((bbgw3 + 2 * bbgw4) / 3).toFixed(1);
+      suggestedBodyFat = ((2.5 * goalBaseBodyFat + goalTopBodyFat) / 3.5).toFixed(1);
+    else if (goal == "surplus") suggestedBodyFat = ((goalBaseBodyFat + goalTopBodyFat) / 2).toFixed(1);
+    else if (goal == "muscle") suggestedBodyFat = ((goalBaseBodyFat + 2 * goalTopBodyFat) / 3).toFixed(1);
   } else if (goalBody == 8) {
     if (gender == "male") {
-      bbgw3 += idealWeight000 * 0.25;
-      bbgw4 += idealWeight000 * 0.3;
-      if (goal == "bulking") bbgw0p += ((3 * 30 + 25) / 4).toFixed(1);
-      else if (goal == "cutting") bbgw0p += ((2.5 * 25 + 30) / 3.5).toFixed(1);
-      else if (goal == "surplus") bbgw0p += ((25 + 30) / 2).toFixed(1);
-      else if (goal == "muscle") bbgw0p += ((25 + 2 * 30) / 3).toFixed(1);
+      goalBaseBodyFat = idealWeight * 0.25;
+      goalTopBodyFat = idealWeight * 0.3;
+      if (goal == "bulking") idealBodyFatPercentage = ((3 * 30 + 25) / 4).toFixed(1);
+      else if (goal == "cutting") idealBodyFatPercentage = ((2.5 * 25 + 30) / 3.5).toFixed(1);
+      else if (goal == "surplus") idealBodyFatPercentage = ((25 + 30) / 2).toFixed(1);
+      else if (goal == "muscle") idealBodyFatPercentage = ((25 + 2 * 30) / 3).toFixed(1);
     } else if (gender == "female") {
-      bbgw3 += idealWeight000 * 0.36;
-      bbgw4 += idealWeight000 * 0.4;
-      if (goal == "bulking") bbgw0p += ((3 * 40 + 36) / 4).toFixed(1);
-      else if (goal == "cutting") bbgw0p += ((2.5 * 36 + 40) / 3.5).toFixed(1);
-      else if (goal == "surplus") bbgw0p += ((36 + 40) / 2).toFixed(1);
-      else if (goal == "muscle") bbgw0p += ((36 + 2 * 40) / 3).toFixed(1);
+      goalBaseBodyFat = idealWeight * 0.36;
+      goalTopBodyFat = idealWeight * 0.4;
+      if (goal == "bulking") idealBodyFatPercentage = ((3 * 40 + 36) / 4).toFixed(1);
+      else if (goal == "cutting") idealBodyFatPercentage = ((2.5 * 36 + 40) / 3.5).toFixed(1);
+      else if (goal == "surplus") idealBodyFatPercentage = ((36 + 40) / 2).toFixed(1);
+      else if (goal == "muscle") idealBodyFatPercentage = ((36 + 2 * 40) / 3).toFixed(1);
     }
-    if (goal == "bulking") bbgw00 += ((3 * bbgw4 + bbgw3) / 4).toFixed(1);
+    if (goal == "bulking") suggestedBodyFat = ((3 * goalTopBodyFat + goalBaseBodyFat) / 4).toFixed(1);
     else if (goal == "cutting")
-      bbgw00 += ((2.5 * bbgw3 + bbgw4) / 3.5).toFixed(1);
-    else if (goal == "surplus") bbgw00 += ((bbgw3 + bbgw4) / 2).toFixed(1);
-    else if (goal == "muscle") bbgw00 += ((bbgw3 + 2 * bbgw4) / 3).toFixed(1);
+      suggestedBodyFat = ((2.5 * goalBaseBodyFat + goalTopBodyFat) / 3.5).toFixed(1);
+    else if (goal == "surplus") suggestedBodyFat = ((goalBaseBodyFat + goalTopBodyFat) / 2).toFixed(1);
+    else if (goal == "muscle") suggestedBodyFat = ((goalBaseBodyFat + 2 * goalTopBodyFat) / 3).toFixed(1);
   } else if (goalBody == 9) {
     if (gender == "male") {
-      bbgw3 += idealWeight000 * 0.35;
-      bbgw4 += idealWeight000 * 0.4;
-      if (goal == "bulking") bbgw0p += ((3 * 40 + 35) / 4).toFixed(1);
-      else if (goal == "cutting") bbgw0p += ((2.5 * 35 + 40) / 3.5).toFixed(1);
-      else if (goal == "surplus") bbgw0p += ((35 + 40) / 2).toFixed(1);
-      else if (goal == "muscle") bbgw0p += ((35 + 2 * 40) / 3).toFixed(1);
+      goalBaseBodyFat = idealWeight * 0.35;
+      goalTopBodyFat = idealWeight * 0.4;
+      if (goal == "bulking") idealBodyFatPercentage = ((3 * 40 + 35) / 4).toFixed(1);
+      else if (goal == "cutting") idealBodyFatPercentage = ((2.5 * 35 + 40) / 3.5).toFixed(1);
+      else if (goal == "surplus") idealBodyFatPercentage = ((35 + 40) / 2).toFixed(1);
+      else if (goal == "muscle") idealBodyFatPercentage = ((35 + 2 * 40) / 3).toFixed(1);
     } else if (gender == "female") {
-      bbgw3 += idealWeight000 * 0.5;
-      bbgw4 += idealWeight000 * 0.5;
-      if (goal == "bulking") bbgw0p += ((3 * 50 + 50) / 4).toFixed(1);
-      else if (goal == "cutting") bbgw0p += ((2.5 * 50 + 50) / 3.5).toFixed(1);
-      else if (goal == "surplus") bbgw0p += ((50 + 50) / 2).toFixed(1);
-      else if (goal == "muscle") bbgw0p += ((50 + 2 * 50) / 3).toFixed(1);
+      goalBaseBodyFat = idealWeight * 0.5;
+      goalTopBodyFat = idealWeight * 0.5;
+      if (goal == "bulking") idealBodyFatPercentage = ((3 * 50 + 50) / 4).toFixed(1);
+      else if (goal == "cutting") idealBodyFatPercentage = ((2.5 * 50 + 50) / 3.5).toFixed(1);
+      else if (goal == "surplus") idealBodyFatPercentage = ((50 + 50) / 2).toFixed(1);
+      else if (goal == "muscle") idealBodyFatPercentage = ((50 + 2 * 50) / 3).toFixed(1);
     }
-    if (goal == "bulking") bbgw00 += ((3 * bbgw4 + bbgw3) / 4).toFixed(1);
+    if (goal == "bulking") suggestedBodyFat = ((3 * goalTopBodyFat + goalBaseBodyFat) / 4).toFixed(1);
     else if (goal == "cutting")
-      bbgw00 += ((2.5 * bbgw3 + bbgw4) / 3.5).toFixed(1);
-    else if (goal == "surplus") bbgw00 += ((bbgw3 + bbgw4) / 2).toFixed(1);
-    else if (goal == "muscle") bbgw00 += ((bbgw3 + 2 * bbgw4) / 3).toFixed(1);
+      suggestedBodyFat = ((2.5 * goalBaseBodyFat + goalTopBodyFat) / 3.5).toFixed(1);
+    else if (goal == "surplus") suggestedBodyFat = ((goalBaseBodyFat + goalTopBodyFat) / 2).toFixed(1);
+    else if (goal == "muscle") suggestedBodyFat = ((goalBaseBodyFat + 2 * goalTopBodyFat) / 3).toFixed(1);
   }
   if (unit == "metric") {
     weight = parseFloat(weightMetric.value);
     height = parseFloat(heightMetric.value);
-    bmi += weight / height ** 2;
+    bmi = weight / height ** 2;
     if (languageValue == 1) {
-      if (bmi < 18.5) bmi_state += "underweight";
-      else if (bmi >= 18.5 && bmi <= 24.9) bmi_state += "normal/healthy";
-      else if (bmi >= 25 && bmi <= 30) bmi_state += "overweight";
-      else if (bmi > 30) bmi_state += "obese";
+      if (bmi < 18.5) bmi_state = "underweight";
+      else if (bmi >= 18.5 && bmi <= 24.9) bmi_state = "normal/healthy";
+      else if (bmi >= 25 && bmi <= 30) bmi_state = "overweight";
+      else if (bmi > 30) bmi_state = "obese";
     } else if (languageValue == 2) {
-      if (bmi < 18.5) bmi_state += "abaixo do peso";
-      else if (bmi >= 18.5 && bmi <= 24.9) bmi_state += "normal/saudável";
-      else if (bmi >= 25 && bmi <= 30) bmi_state += "sobrepeso";
-      else if (bmi > 30) bmi_state += "obeso";
+      if (bmi < 18.5) bmi_state = "abaixo do peso";
+      else if (bmi >= 18.5 && bmi <= 24.9) bmi_state = "normal/saudável";
+      else if (bmi >= 25 && bmi <= 30) bmi_state = "sobrepeso";
+      else if (bmi > 30) bmi_state = "obeso";
     } else if (languageValue == 3) {
-      if (bmi < 18.5) bmi_state += "poids insuffisant";
-      else if (bmi >= 18.5 && bmi <= 24.9) bmi_state += "normal / sain";
-      else if (bmi >= 25 && bmi <= 30) bmi_state += "en surpoids";
-      else if (bmi > 30) bmi_state += "obèse";
+      if (bmi < 18.5) bmi_state = "poids insuffisant";
+      else if (bmi >= 18.5 && bmi <= 24.9) bmi_state = "normal / sain";
+      else if (bmi >= 25 && bmi <= 30) bmi_state = "en surpoids";
+      else if (bmi > 30) bmi_state = "obèse";
     } else if (languageValue == 4) {
-      if (bmi < 18.5) bmi_state += "bajo peso";
-      else if (bmi >= 18.5 && bmi <= 24.9) bmi_state += "normal / saludable";
-      else if (bmi >= 25 && bmi <= 30) bmi_state += "exceso de peso";
-      else if (bmi > 30) bmi_state += "obeso";
+      if (bmi < 18.5) bmi_state = "bajo peso";
+      else if (bmi >= 18.5 && bmi <= 24.9) bmi_state = "normal / saludable";
+      else if (bmi >= 25 && bmi <= 30) bmi_state = "exceso de peso";
+      else if (bmi > 30) bmi_state = "obeso";
     }
     idealWeight("kg", 1);
   } else if (unit == "imperial") {
     weight = Number((parseFloat(weightImperial.value) / 2.205).toFixed(1));
     height = parseFloat(heightImperial.value) / 39.37;
-    bmi += weight / height ** 2;
+    bmi = weight / height ** 2;
     if (languageValue == 1) {
-      if (bmi < 18.5) bmi_state += "underweight";
-      else if (bmi >= 18.5 && bmi <= 24.9) bmi_state += "normal/healthy";
-      else if (bmi >= 25 && bmi <= 30) bmi_state += "overweight";
-      else if (bmi > 30) bmi_state += "obese";
+      if (bmi < 18.5) bmi_state = "underweight";
+      else if (bmi >= 18.5 && bmi <= 24.9) bmi_state = "normal/healthy";
+      else if (bmi >= 25 && bmi <= 30) bmi_state = "overweight";
+      else if (bmi > 30) bmi_state = "obese";
     } else if (languageValue == 2) {
-      if (bmi < 18.5) bmi_state += "abaixo do peso";
-      else if (bmi >= 18.5 && bmi <= 24.9) bmi_state += "normal/saudável";
-      else if (bmi >= 25 && bmi <= 30) bmi_state += "sobrepeso";
-      else if (bmi > 30) bmi_state += "obeso";
+      if (bmi < 18.5) bmi_state = "abaixo do peso";
+      else if (bmi >= 18.5 && bmi <= 24.9) bmi_state = "normal/saudável";
+      else if (bmi >= 25 && bmi <= 30) bmi_state = "sobrepeso";
+      else if (bmi > 30) bmi_state = "obeso";
     } else if (languageValue == 3) {
-      if (bmi < 18.5) bmi_state += "poids insuffisant";
-      else if (bmi >= 18.5 && bmi <= 24.9) bmi_state += "normal / sain";
-      else if (bmi >= 25 && bmi <= 30) bmi_state += "en surpoids";
-      else if (bmi > 30) bmi_state += "obèse";
+      if (bmi < 18.5) bmi_state = "poids insuffisant";
+      else if (bmi >= 18.5 && bmi <= 24.9) bmi_state = "normal / sain";
+      else if (bmi >= 25 && bmi <= 30) bmi_state = "en surpoids";
+      else if (bmi > 30) bmi_state = "obèse";
     } else if (languageValue == 4) {
-      if (bmi < 18.5) bmi_state += "bajo peso";
-      else if (bmi >= 18.5 && bmi <= 24.9) bmi_state += "normal / saludable";
-      else if (bmi >= 25 && bmi <= 30) bmi_state += "exceso de peso";
-      else if (bmi > 30) bmi_state += "obeso";
+      if (bmi < 18.5) bmi_state = "bajo peso";
+      else if (bmi >= 18.5 && bmi <= 24.9) bmi_state = "normal / saludable";
+      else if (bmi >= 25 && bmi <= 30) bmi_state = "exceso de peso";
+      else if (bmi > 30) bmi_state = "obeso";
     }
     idealWeight("lbs", 2.205);
   }
@@ -3631,7 +3283,7 @@ function result() {
     if (gender == "male") {
       bmr = (10 * weight + 625 * height - 5 * age + 5).toFixed(1) + "kcal";
       if (goal == "bulking")
-        bmrl =
+        calorieIntakeAdvice =
           "Since you trying to bulk, you should try to get a small calorie intake surplus, like 100-300 kcal above your basal metabolic rate, which is basically how many calories you burn for your basal body functions, a day, such as breathing, circulation and cell production, is <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. A good slice of that amount of intake calories would be better being proteins, fruits and vegetables, besides good and lower glycemic index rate carbohydrates, mainly before your workouts, that will play a huge role in this path of yours. You should try to get a whole day calorie intake from about <big style='font-family: Kaushan Script, cursive;' >" +
@@ -3640,7 +3292,7 @@ function result() {
           ((10 * weight + 625 * height - 5 * age + 5) * 1.15).toFixed(0) +
           "kcal</big> besides the calories you burn through exercises.";
       else if (goal == "cutting")
-        bmrl =
+        calorieIntakeAdvice =
           "Since you are trying to cut, you should have a decent calorie deficit, nothing much but 250-500kcal under your basal metabolic rate would be fine, this rate is basically how many calories you burn for your basal body functions, such as breathing, circulation and cell production a day, is <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. A good slice of that amount of intake calories would be better being proteins, fruits and vegetables, besides a decent amount of low calorie and low glycemic index rate carbohydrates, and you'd better consider some brown rice, wholemeal pasta and sweet potato. You should try to get a whole day calorie intake from about <big style='font-family: Kaushan Script, cursive;' >" +
@@ -3649,7 +3301,7 @@ function result() {
           ((10 * weight + 625 * height - 5 * age + 5) * 0.8).toFixed(0) +
           "kcal</big> besides the calories you burn through exercises. Also you have to have in mind that a good catalyst to all this is training, you can eat more as soon as you burn through exercise, always maintaining that same calorie intake deficit.";
       else if (goal == "surplus")
-        bmrl =
+        calorieIntakeAdvice =
           "Since you are trying to lose weight, you should have a decent calorie deficit, nothing much but 250-500kcal under your basal metabolic rate would be fine, this rate is basically how many calories you burn for your basal body functions, a day, such as breathing, circulation and cell production, is <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. A good slice of that amount of intake calories would be better being proteins, fruits and vegetables, besides a decent amount of low calorie and low glycemic index rate carbohydrates, and you'd better consider some brown rice, wholemeal pasta and sweet potato. You should try to get a whole day calorie intake from about <big style='font-family: Kaushan Script, cursive;' >" +
@@ -3658,7 +3310,7 @@ function result() {
           ((10 * weight + 625 * height - 5 * age + 5) * 0.8).toFixed(0) +
           "kcal</big> besides the calories you burn through exercises.";
       else if (goal == "muscle")
-        bmrl =
+        calorieIntakeAdvice =
           "Since you trying to gain weight through mostly muscle, you should try to get a decent calorie intake surplus, like 250-450 kcal above your basal metabolic rate, which is basically how many calories you burn for your basal body functions, a day, such as breathing, circulation and cell production, is <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. A good slice of that amount of intake calories would be better being proteins, fruits and vegetables, besides good and lower glycemic index rate carbohydrates, mainly before your workouts, that will play a huge role in this path of yours, once you will get muscle and weight in general you gotta workout, mainly in the gym. You should try to get a whole day calorie intake from about <big style='font-family: Kaushan Script, cursive;' >" +
@@ -3669,7 +3321,7 @@ function result() {
     } else if (gender == "female") {
       bmr = (10 * weight + 625 * height - 5 * age - 161).toFixed(1) + "kcal";
       if (goal == "bulking")
-        bmrl =
+        calorieIntakeAdvice =
           "Since you trying to bulk, you should try to get a small calorie intake surplus, like 100-300 kcal above your basal metabolic rate, which is basically how many calories you burn for your basal body functions, a day, such as breathing, circulation and cell production, is <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. A good slice of that amount of intake calories would be better being proteins, fruits and vegetables, besides good and lower glycemic index rate carbohydrates, mainly before your workouts, that will play a huge role in this path of yours. You should try to get a whole day calorie intake from about <big style='font-family: Kaushan Script, cursive;' >" +
@@ -3678,7 +3330,7 @@ function result() {
           ((10 * weight + 625 * height - 5 * age + 5) * 1.1).toFixed(0) +
           "kcal</big> besides the calories you burn through exercises.";
       else if (goal == "cutting")
-        bmrl =
+        calorieIntakeAdvice =
           "Since you are trying to cut, you should have a decent calorie deficit, nothing much but 250-500kcal under your basal metabolic rate would be fine, this rate is basically how many calories you burn for your basal body functions, a day, such as breathing, circulation and cell production, is <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. A good slice of that amount of intake calories would be better being proteins, fruits and vegetables, besides a decent amount of low calorie and low glycemic index rate carbohydrates, and you'd better consider some brown rice, wholemeal pasta and sweet potato. You should try to get a whole day calorie intake from about <big style='font-family: Kaushan Script, cursive;' >" +
@@ -3687,7 +3339,7 @@ function result() {
           ((10 * weight + 625 * height - 5 * age + 5) * 0.75).toFixed(0) +
           "kcal</big> besides the calories you burn through exercises. Also you have to have in mind that a good catalyst to all this is training, you can eat more as soon as you burn through exercise, always maintaining that same calorie intake deficit.";
       else if (goal == "surplus")
-        bmrl =
+        calorieIntakeAdvice =
           "Since you are trying to lose weight, you should have a decent calorie deficit, nothing much but 250-500kcal under your basal metabolic rate would be fine, this rate is basically how many calories you burn for your basal body functions, a day, such as breathing, circulation and cell production, is <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. A good slice of that amount of intake calories would be better being proteins, fruits and vegetables, besides a decent amount of low calorie and low glycemic index rate carbohydrates, and you'd better consider some brown rice, wholemeal pasta and sweet potato. You should try to get a whole day calorie intake from about <big style='font-family: Kaushan Script, cursive;' >" +
@@ -3696,7 +3348,7 @@ function result() {
           ((10 * weight + 625 * height - 5 * age + 5) * 0.8).toFixed(0) +
           "kcal</big> besides the calories you burn through exercises.";
       else if (goal == "muscle")
-        bmrl =
+        calorieIntakeAdvice =
           "Since you trying to gain weight through mostly muscle, you should try to get a decent calorie intake surplus, like 250-450 kcal above your basal metabolic rate, which is basically how many calories you burn for your basal body functions, a day, such as breathing, circulation and cell production, is <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. A good slice of that amount of intake calories would be better being proteins, fruits and vegetables, besides good and lower glycemic index rate carbohydrates, mainly before your workouts, that will play a huge role in this path of yours, once you will get muscle and weight in general you gotta workout, mainly in the gym. You should try to get a whole day calorie intake from about <big style='font-family: Kaushan Script, cursive;' >" +
@@ -3709,7 +3361,7 @@ function result() {
     if (gender == "male") {
       bmr = (10 * weight + 625 * height - 5 * age + 5).toFixed(1) + "kcal";
       if (goal == "bulking")
-        bmrl =
+        calorieIntakeAdvice =
           "Já que você está tentando aumentar o volume, deve tentar obter um pequeno excedente de ingestão de calorias, como 100-300 kcal acima de sua taxa metabólica basal, que é basicamente quantas calorias você queima para as funções corporais basais, por dia, como respiração, circulação e a produção de células, é <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. Uma boa parte dessascalorias ingeridas ficaria melhor sendo proteínas, frutas e vegetais, além de carboidratos bons e com índice glicêmico mais baixo, principalmente antes dos treinos, que vão desempenhar um grande papel neste seu caminho. Você deve tentar obter uma ingestão de calorias para um dia inteiro de cerca de <big style='font-family: Kaushan Script, cursive;' >" +
@@ -3718,7 +3370,7 @@ function result() {
           ((10 * weight + 625 * height - 5 * age + 5) * 1.15).toFixed(0) +
           "kcal</big> além das calorias que você queima com os exercícios.";
       else if (goal == "cutting")
-        bmrl =
+        calorieIntakeAdvice =
           "Já que você está tentando secar, você deve ter um déficit calórico decente, nada além de 250-500kcal abaixo de sua taxa metabólica basal seria bom, esta taxa é basicamente quantas calorias você queima para suas funções corporais basais, como respiração, circulação e a produção de células por dia, é <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. Uma boa parte dessascalorias ingeridas seria melhor sendo proteínas, frutas e vegetais, além de uma quantidade decente de carboidratos de baixa caloria e baixo índice glicêmico, e é melhor considerar um pouco de arroz integral, macarrão integral e batata doce. Você deve tentar obter uma ingestão de calorias para um dia inteiro de cerca de <big style='font-family: Kaushan Script, cursive;' >" +
@@ -3727,7 +3379,7 @@ function result() {
           ((10 * weight + 625 * height - 5 * age + 5) * 0.8).toFixed(0) +
           "kcal</big> além das calorias que você queima com os exercícios. Também é preciso ter em mente que um bom catalisador para tudo isso é o treinamento, você pode comer mais assim que se queimar com o exercício, mantendo sempre esse mesmo déficit calórico.";
       else if (goal == "surplus")
-        bmrl =
+        calorieIntakeAdvice =
           "Já que você está tentando perder peso, você deve ter um déficit calórico decente, nada além de 250-500kcal abaixo de sua taxa metabólica basal seria bom, esta taxa é basicamente quantas calorias você queima para suas funções corporais basais, por dia, tal como respiração, circulação e produção de células, é <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. Uma boa parte dessascalorias ingeridas seria melhor sendo proteínas, frutas e vegetais, além de uma quantidade decente de carboidratos de baixa caloria e baixo índice glicêmico, e é melhor considerar um pouco de arroz integral, macarrão integral e batata doce. Você deve tentar obter uma ingestão de calorias para um dia inteiro de cerca de <big style='font-family: Kaushan Script, cursive;' >" +
@@ -3736,7 +3388,7 @@ function result() {
           ((10 * weight + 625 * height - 5 * age + 5) * 0.8).toFixed(0) +
           "kcal</big> além das calorias que você queima com os exercícios.";
       else if (goal == "muscle")
-        bmrl =
+        calorieIntakeAdvice =
           "Já que você está tentando ganhar peso principalmente através dos músculos, você deve tentar obter um excedente de ingestão de calorias decente, como 250-450 kcal acima de sua taxa metabólica basal, que é basicamente quantas calorias você queima para suas funções corporais basais, por dia, como como respiração, circulação e produção de células, é <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. Uma boa parte dessascalorias ingeridas ficaria melhor sendo proteínas, frutas e vegetais, além de carboidratos bons e com índice glicêmico mais baixo, principalmente antes dos treinos, que terão um grande papel nesse seu caminho, pois você vai ganhar músculos. e peso em geral você tem que treinar, principalmente na academia. Você deve tentar obter uma ingestão de calorias para um dia inteiro de cerca de <big style='font-family: Kaushan Script, cursive;' >" +
@@ -3747,7 +3399,7 @@ function result() {
     } else if (gender == "female") {
       bmr = (10 * weight + 625 * height - 5 * age - 161).toFixed(1) + "kcal";
       if (goal == "bulking")
-        bmrl =
+        calorieIntakeAdvice =
           "Já que você está tentando aumentar o volume, deve tentar obter um pequeno excedente de ingestão de calorias, como 100-300 kcal acima de sua taxa metabólica basal, que é basicamente quantas calorias você queima para as funções corporais basais, por dia, como respiração, circulação e a produção de células, é <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. Uma boa parte dessascalorias ingeridas ficaria melhor sendo proteínas, frutas e vegetais, além de carboidratos bons e com índice glicêmico mais baixo, principalmente antes dos treinos, que vão desempenhar um grande papel neste seu caminho. Você deve tentar obter uma ingestão de calorias para um dia inteiro de cerca de <big style='font-family: Kaushan Script, cursive;' >" +
@@ -3756,7 +3408,7 @@ function result() {
           ((10 * weight + 625 * height - 5 * age + 5) * 1.1).toFixed(0) +
           "kcal</big> além das calorias que você queima com os exercícios.";
       else if (goal == "cutting")
-        bmrl =
+        calorieIntakeAdvice =
           "Já que você está tentando secar, você deve ter um déficit calórico decente, nada além de 250-500kcal abaixo de sua taxa metabólica basal, esta taxa é basicamente quantas calorias você queima para suas funções corporais basais, por dia, como respiração, circulação e produção de células, é <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. Uma boa parte dessascalorias ingeridas seria melhor sendo proteínas, frutas e vegetais, além de uma quantidade decente de carboidratos de baixa caloria e baixo índice glicêmico, e é melhor considerar um pouco de arroz integral, macarrão integral e batata doce. Você deve tentar obter uma ingestão de calorias para um dia inteiro de cerca de <big style='font-family: Kaushan Script, cursive;' >" +
@@ -3765,7 +3417,7 @@ function result() {
           ((10 * weight + 625 * height - 5 * age + 5) * 0.75).toFixed(0) +
           "kcal</big> além das calorias que você queima com os exercícios. Também é preciso ter em mente que um bom catalisador para tudo isso é o treinamento, você pode comer mais assim que se queimar com o exercício, mantendo sempre esse mesmo déficit calórico.";
       else if (goal == "surplus")
-        bmrl =
+        calorieIntakeAdvice =
           "Já que você está tentando perder peso, você deve ter um déficit calórico decente, nada além de 250-500kcal abaixo de sua taxa metabólica basal seria bom, esta taxa é basicamente quantas calorias você queima para suas funções corporais basais, por dia, tal como respiração, circulação e produção de células, é <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. Uma boa parte dessascalorias ingeridas seria melhor sendo proteínas, frutas e vegetais, além de uma quantidade decente de carboidratos de baixa caloria e baixo índice glicêmico, e é melhor considerar um pouco de arroz integral, macarrão integral e batata doce. Você deve tentar obter uma ingestão de calorias para um dia inteiro de cerca de <big style='font-family: Kaushan Script, cursive;' >" +
@@ -3774,7 +3426,7 @@ function result() {
           ((10 * weight + 625 * height - 5 * age + 5) * 0.8).toFixed(0) +
           "kcal</big> além das calorias que você queima com os exercícios.";
       else if (goal == "muscle")
-        bmrl =
+        calorieIntakeAdvice =
           "Já que você está tentando ganhar peso principalmente através dos músculos, você deve tentar obter um excedente de ingestão de calorias decente, como 250-450 kcal acima de sua taxa metabólica basal, que é basicamente quantas calorias você queima para suas funções corporais basais, por dia, como como respiração, circulação e produção de células, é <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. Uma boa parte dessascalorias ingeridas ficaria melhor sendo proteínas, frutas e vegetais, além de carboidratos bons e com índice glicêmico mais baixo, principalmente antes dos treinos, que terão um grande papel nesse seu caminho, pois você vai ganhar músculos. e peso em geral você tem que treinar, principalmente na academia. Você deve tentar obter uma ingestão de calorias para um dia inteiro de cerca de <big style='font-family: Kaushan Script, cursive;' >" +
@@ -3787,7 +3439,7 @@ function result() {
     if (gender == "male") {
       bmr = (10 * weight + 625 * height - 5 * age + 5).toFixed(1) + "kcal";
       if (goal == "bulking")
-        bmrl =
+        calorieIntakeAdvice =
           "Puisque vous essayez de prendre du volume, vous devriez essayer d'obtenir un petit surplus d'apport calorique, comme 100 à 300 kcal au-dessus de votre taux métabolique de base, qui correspond essentiellement au nombre de calories que vous brûlez pour les fonctions basales de votre corps, par jour, comme la respiration, la circulation. et la production cellulaire, est <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. Une bonne part de cette quantité de calories d'apport serait préférable d'être des protéines, des fruits et des légumes, en plus des glucides à indice glycémique bon et inférieur, principalement avant vos entraînements, qui joueront un rôle énorme dans votre chemin. Vous devriez essayer d'obtenir un apport calorique d'une journée entière d'environ <big style='font-family: Kaushan Script, cursive;' >" +
@@ -3796,7 +3448,7 @@ function result() {
           ((10 * weight + 625 * height - 5 * age + 5) * 1.15).toFixed(0) +
           "kcal</big> en plus des calories que vous brûlez grâce aux exercices.";
       else if (goal == "cutting")
-        bmrl =
+        calorieIntakeAdvice =
           "Puisque vous essayez de couper, vous devriez avoir un déficit calorique décent, rien de plus que 250-500kcal sous votre taux métabolique basal serait bien, ce taux est essentiellement le nombre de calories que vous brûlez pour vos fonctions corporelles basales, telles que la respiration, la circulation et la production de cellules par jour est <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. Une bonne part de cette quantité de calories serait mieux constituée de protéines, de fruits et de légumes, en plus d'une quantité décente de glucides à faible teneur en calories et à faible indice glycémique, et vous feriez mieux d'envisager du riz brun, des pâtes complètes et des patates douces. Vous devriez essayer d'obtenir un apport calorique d'une journée entière d'environ <big style='font-family: Kaushan Script, cursive;' >" +
@@ -3805,7 +3457,7 @@ function result() {
           ((10 * weight + 625 * height - 5 * age + 5) * 0.8).toFixed(0) +
           "kcal</big> en plus des calories que vous brûlez grâce aux exercices. Vous devez également garder à l'esprit qu'un bon catalyseur de tout cela est l'entraînement, vous pouvez manger plus dès que vous brûlez en faisant de l'exercice, en maintenant toujours le même déficit calorique.";
       else if (goal == "surplus")
-        bmrl =
+        calorieIntakeAdvice =
           "Puisque vous essayez de perdre du poids, vous devriez avoir un déficit calorique décent, rien de plus que 250-500kcal sous votre taux métabolique basal serait bien, ce taux est essentiellement le nombre de calories que vous brûlez pour vos fonctions corporelles basales, un jour, tel comme la respiration, la circulation et la production de cellules, est <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. Une bonne part de cette quantité de calories serait mieux constituée de protéines, de fruits et de légumes, en plus d'une quantité décente de glucides à faible teneur en calories et à faible indice glycémique, et vous feriez mieux d'envisager du riz brun, des pâtes complètes et des patates douces. Vous devriez essayer d'obtenir un apport calorique d'une journée entière d'environ <big style='font-family: Kaushan Script, cursive;' >" +
@@ -3814,7 +3466,7 @@ function result() {
           ((10 * weight + 625 * height - 5 * age + 5) * 0.8).toFixed(0) +
           "kcal</big> en plus des calories que vous brûlez grâce aux exercices.";
       else if (goal == "muscle")
-        bmrl =
+        calorieIntakeAdvice =
           "Puisque vous essayez de prendre du poids principalement par vos muscles, vous devriez essayer d'obtenir un excédent calorique décent, comme 250 à 450 kcal au-dessus de votre taux métabolique de base, qui correspond essentiellement au nombre de calories que vous brûlez pour vos fonctions corporelles basales, par jour, par exemple. comme la respiration, la circulation et la production de cellules, est <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. Une bonne part de cette quantité de calories d'apport serait préférable d'être des protéines, des fruits et des légumes, en plus des glucides à indice glycémique bon et inférieur, principalement avant vos entraînements, qui joueront un rôle énorme dans votre chemin, une fois que vous aurez du muscle. et le poids en général, vous devez vous entraîner, principalement dans le gymnase. Vous devriez essayer d'obtenir un apport calorique d'une journée entière d'environ <big style='font-family: Kaushan Script, cursive;' >" +
@@ -3825,7 +3477,7 @@ function result() {
     } else if (gender == "female") {
       bmr = (10 * weight + 625 * height - 5 * age - 161).toFixed(1) + "kcal";
       if (goal == "bulking")
-        bmrl =
+        calorieIntakeAdvice =
           "Puisque vous essayez de prendre du volume, vous devriez essayer d'obtenir un petit surplus d'apport calorique, comme 100 à 300 kcal au-dessus de votre taux métabolique de base, qui correspond essentiellement au nombre de calories que vous brûlez pour les fonctions basales de votre corps, par jour, comme la respiration, la circulation. et la production cellulaire, est <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. Une bonne part de cette quantité de calories d'apport serait préférable d'être des protéines, des fruits et des légumes, en plus des glucides à indice glycémique bon et inférieur, principalement avant vos entraînements, qui joueront un rôle énorme dans votre chemin. Vous devriez essayer d'obtenir un apport calorique d'une journée entière d'environ <big style='font-family: Kaushan Script, cursive;' >" +
@@ -3834,7 +3486,7 @@ function result() {
           ((10 * weight + 625 * height - 5 * age + 5) * 1.1).toFixed(0) +
           "kcal</big> en plus des calories que vous brûlez grâce aux exercices.";
       else if (goal == "cutting")
-        bmrl =
+        calorieIntakeAdvice =
           "Puisque vous essayez de réduire, vous devriez avoir un déficit calorique décent, rien de plus que 250-500kcal sous votre taux métabolique basal serait bien, ce taux est fondamentalement le nombre de calories que vous brûlez pour vos fonctions corporelles basales, par jour, comme la respiration, la circulation et la production de cellules, <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. Une bonne part de cette quantité de calories serait mieux constituée de protéines, de fruits et de légumes, en plus d'une quantité décente de glucides à faible teneur en calories et à faible indice glycémique, et vous feriez mieux d'envisager du riz brun, des pâtes complètes et des patates douces. Vous devriez essayer d'obtenir un apport calorique d'une journée entière d'environ <big style='font-family: Kaushan Script, cursive;' >" +
@@ -3843,7 +3495,7 @@ function result() {
           ((10 * weight + 625 * height - 5 * age + 5) * 0.75).toFixed(0) +
           "kcal</big> en plus des calories que vous brûlez grâce aux exercices. Vous devez également garder à l'esprit qu'un bon catalyseur de tout cela est l'entraînement, vous pouvez manger plus dès que vous brûlez en faisant de l'exercice, en maintenant toujours le même déficit calorique.";
       else if (goal == "surplus")
-        bmrl =
+        calorieIntakeAdvice =
           "Puisque vous essayez de perdre du poids, vous devriez avoir un déficit calorique décent, rien de plus que 250-500kcal sous votre taux métabolique basal serait bien, ce taux est essentiellement le nombre de calories que vous brûlez pour vos fonctions corporelles basales, un jour, tel comme la respiration, la circulation et la production de cellules, est <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. Une bonne part de cette quantité de calories serait mieux constituée de protéines, de fruits et de légumes, en plus d'une quantité décente de glucides à faible teneur en calories et à faible indice glycémique, et vous feriez mieux d'envisager du riz brun, des pâtes complètes et des patates douces. Vous devriez essayer d'obtenir un apport calorique d'une journée entière d'environ <big style='font-family: Kaushan Script, cursive;' >" +
@@ -3852,7 +3504,7 @@ function result() {
           ((10 * weight + 625 * height - 5 * age + 5) * 0.8).toFixed(0) +
           "kcal</big> en plus des calories que vous brûlez grâce aux exercices.";
       else if (goal == "muscle")
-        bmrl =
+        calorieIntakeAdvice =
           "Puisque vous essayez de prendre du poids principalement par vos muscles, vous devriez essayer d'obtenir un excédent calorique décent, comme 250 à 450 kcal au-dessus de votre taux métabolique de base, qui correspond essentiellement au nombre de calories que vous brûlez pour vos fonctions corporelles basales, par jour, par exemple. comme la respiration, la circulation et la production de cellules, est <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. Une bonne part de cette quantité de calories d'apport serait préférable d'être des protéines, des fruits et des légumes, en plus des glucides à indice glycémique bon et inférieur, principalement avant vos entraînements, qui joueront un rôle énorme dans votre chemin, une fois que vous aurez du muscle. et le poids en général, vous devez vous entraîner, principalement dans le gymnase. Vous devriez essayer d'obtenir un apport calorique d'une journée entière d'environ <big style='font-family: Kaushan Script, cursive;' >" +
@@ -3865,7 +3517,7 @@ function result() {
     if (gender == "male") {
       bmr = (10 * weight + 625 * height - 5 * age + 5).toFixed(1) + "kcal";
       if (goal == "bulking")
-        bmrl =
+        calorieIntakeAdvice =
           "Dado que está tratando de aumentar el volumen, debe intentar obtener un pequeño excedente de ingesta de calorías, como 100-300 kcal por encima de su tasa metabólica basal, que es básicamente la cantidad de calorías que quema para las funciones basales del cuerpo, al día, como la respiración, la circulación. y la producción de células, es <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. Una buena porción de esa cantidad de calorías ingeridas sería mejor si fueran proteínas, frutas y verduras, además de carbohidratos buenos y de menor índice glucémico, principalmente antes de tus entrenamientos, que jugarán un papel muy importante en este camino tuyo. Debería intentar obtener una ingesta de calorías de un día <big style='font-family: Kaushan Script, cursive;' >" +
@@ -3874,7 +3526,7 @@ function result() {
           ((10 * weight + 625 * height - 5 * age + 5) * 1.15).toFixed(0) +
           "kcal</big> además de las calorías que quema con los ejercicios.";
       else if (goal == "cutting")
-        bmrl =
+        calorieIntakeAdvice =
           "Ya que está tratando de reducir, debe tener un déficit de calorías decente, nada más que 250-500 kcal por debajo de su tasa metabólica basal estaría bien, esta tasa es básicamente la cantidad de calorías que quema para las funciones basales del cuerpo, como la respiración, la circulación. y la producción de células al día, es <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. Una buena porción de esa cantidad de calorías ingeridas sería mejor si fueran proteínas, frutas y verduras, además de una cantidad decente de carbohidratos bajos en calorías y con índice glucémico bajo, y es mejor que considere un poco de arroz integral, pasta integral y batata. Debería intentar obtener una ingesta de calorías de un día <big style='font-family: Kaushan Script, cursive;' >" +
@@ -3883,7 +3535,7 @@ function result() {
           ((10 * weight + 625 * height - 5 * age + 5) * 0.8).toFixed(0) +
           "kcal</big> además de las calorías que quema con los ejercicios. También debes tener en cuenta que un buen catalizador de todo esto es el entrenamiento, puedes comer más en cuanto te quemas a través del ejercicio, manteniendo siempre ese mismo déficit de ingesta calórica.";
       else if (goal == "surplus")
-        bmrl =
+        calorieIntakeAdvice =
           "Dado que está tratando de perder peso, debe tener un déficit de calorías decente, nada más que 250-500 kcal por debajo de su tasa metabólica basal estaría bien, esta tasa es básicamente la cantidad de calorías que quema para sus funciones corporales basales, un día, por ejemplo. como respiración, circulación y producción celular, es <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. Una buena porción de esa cantidad de calorías ingeridas sería mejor si fueran proteínas, frutas y verduras, además de una cantidad decente de carbohidratos bajos en calorías y con índice glucémico bajo, y es mejor que considere un poco de arroz integral, pasta integral y batata. Debería intentar obtener una ingesta de calorías de un día <big style='font-family: Kaushan Script, cursive;' >" +
@@ -3892,7 +3544,7 @@ function result() {
           ((10 * weight + 625 * height - 5 * age + 5) * 0.8).toFixed(0) +
           "kcal</big> además de las calorías que quema con los ejercicios.";
       else if (goal == "muscle")
-        bmrl =
+        calorieIntakeAdvice =
           "Dado que intenta ganar peso principalmente a través de los músculos, debe tratar de obtener un excedente de ingesta de calorías decente, como 250-450 kcal por encima de su tasa metabólica basal, que es básicamente la cantidad de calorías que quema para las funciones basales del cuerpo, un día, por ejemplo. como respiración, circulación y producción celular, es <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. Una buena porción de esa cantidad de calorías ingeridas sería mejor si fueran proteínas, frutas y verduras, además de carbohidratos buenos y de índice glucémico más bajo, principalmente antes de tus entrenamientos, que jugarán un papel muy importante en este camino tuyo, una vez que obtengas músculo. y peso en general tienes que hacer ejercicio, principalmente en el gimnasio. Debería intentar obtener una ingesta de calorías de un día <big style='font-family: Kaushan Script, cursive;' >" +
@@ -3903,7 +3555,7 @@ function result() {
     } else if (gender == "female") {
       bmr = (10 * weight + 625 * height - 5 * age - 161).toFixed(1) + "kcal";
       if (goal == "bulking")
-        bmrl =
+        calorieIntakeAdvice =
           "Dado que está tratando de aumentar el volumen, debe intentar obtener un pequeño excedente de ingesta de calorías, como 100-300 kcal por encima de su tasa metabólica basal, que es básicamente la cantidad de calorías que quema para las funciones basales del cuerpo, al día, como la respiración, la circulación. y la producción de células, es <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. Una buena porción de esa cantidad de calorías ingeridas sería mejor si fueran proteínas, frutas y verduras, además de carbohidratos buenos y de menor índice glucémico, principalmente antes de tus entrenamientos, que jugarán un papel muy importante en este camino tuyo. Debería intentar obtener una ingesta de calorías de un día <big style='font-family: Kaushan Script, cursive;' >" +
@@ -3912,7 +3564,7 @@ function result() {
           ((10 * weight + 625 * height - 5 * age + 5) * 1.1).toFixed(0) +
           "kcal</big> además de las calorías que quema con los ejercicios.";
       else if (goal == "cutting")
-        bmrl =
+        calorieIntakeAdvice =
           "Dado que está tratando de reducir, debe tener un déficit de calorías decente, nada más que 250-500 kcal por debajo de su tasa metabólica basal estaría bien, esta tasa es básicamente la cantidad de calorías que quema para sus funciones corporales basales, un día, como la respiración, la circulación y la producción celular, es <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. Una buena porción de esa cantidad de calorías ingeridas sería mejor si fueran proteínas, frutas y verduras, además de una cantidad decente de carbohidratos bajos en calorías y con índice glucémico bajo, y es mejor que considere un poco de arroz integral, pasta integral y batata. Debería intentar obtener una ingesta de calorías de un día <big style='font-family: Kaushan Script, cursive;' >" +
@@ -3921,7 +3573,7 @@ function result() {
           ((10 * weight + 625 * height - 5 * age + 5) * 0.75).toFixed(0) +
           "kcal</big> además de las calorías que quema con los ejercicios. También debes tener en cuenta que un buen catalizador de todo esto es el entrenamiento, puedes comer más en cuanto te quemas a través del ejercicio, manteniendo siempre ese mismo déficit de ingesta calórica.";
       else if (goal == "surplus")
-        bmrl =
+        calorieIntakeAdvice =
           "Dado que está tratando de perder peso, debe tener un déficit de calorías decente, nada más que 250-500 kcal por debajo de su tasa metabólica basal estaría bien, esta tasa es básicamente la cantidad de calorías que quema para sus funciones corporales basales, un día, por ejemplo. como respiración, circulación y producción celular, es <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. Una buena porción de esa cantidad de calorías ingeridas sería mejor si fueran proteínas, frutas y verduras, además de una cantidad decente de carbohidratos bajos en calorías y con índice glucémico bajo, y es mejor que considere un poco de arroz integral, pasta integral y batata. Debería intentar obtener una ingesta de calorías de un día <big style='font-family: Kaushan Script, cursive;' >" +
@@ -3930,7 +3582,7 @@ function result() {
           ((10 * weight + 625 * height - 5 * age + 5) * 0.8).toFixed(0) +
           "kcal</big> además de las calorías que quema con los ejercicios.";
       else if (goal == "muscle")
-        bmrl =
+        calorieIntakeAdvice =
           "Dado que intenta ganar peso principalmente a través de los músculos, debe tratar de obtener un excedente de ingesta de calorías decente, como 250-450 kcal por encima de su tasa metabólica basal, que es básicamente la cantidad de calorías que quema para las funciones basales del cuerpo, un día, por ejemplo. como respiración, circulación y producción celular, es <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. Una buena porción de esa cantidad de calorías ingeridas sería mejor si fueran proteínas, frutas y verduras, además de carbohidratos buenos y de índice glucémico más bajo, principalmente antes de tus entrenamientos, que jugarán un papel muy importante en este camino tuyo, una vez que obtengas músculo. y peso en general tienes que hacer ejercicio, principalmente en el gimnasio. Debería intentar obtener una ingesta de calorías de un día <big style='font-family: Kaushan Script, cursive;' >" +
@@ -3941,427 +3593,427 @@ function result() {
     }
   }
   if (languageValue == 1) {
-    bmrll =
+    calorieCounterLink =
       '<a id="finallink" href="https://www.webmd.com/diet/healthtool-food-calorie-counter" target="_blank" >Link to a whole food health tool</a>';
-    bmrlll =
+    caloriesLink =
       '<a id="finallink" href="https://www.calories.info/food/candy-sweets" target="_blank" >Link to a food calorie by general group</a>';
-    bmrllll =
+    exerciseCaloriesLink =
       '<a id="finallink" href="https://www.health.harvard.edu/diet-and-weight-loss/calories-burned-in-30-minutes-of-leisure-and-routine-activities" target="_blank">Link to a Harvard page about exercise calories</a>';
-    bmrlllll =
+    fitnessAppsLink =
       "<a id='finallink' href='https://www.healthline.com/health/fitness-exercise/top-iphone-android-apps' target='_blank'>Link to best apps for workout advice</a>";
     if (exercise == 1)
-      cbody =
+      exerciseAdvice =
         " Well, it does not matter what is your goal, your current weight, nor your body type, if you don't exercise, it will be basically impossible for you to reach your goal. It can be run, cycling, powerlifting, or any high-intensity workout you want to do, because it helps you to grow on muscle, burn calories, get rid of water surplus your body can store, plus a lot of health improvements exercising can provide you. The recommended is at least 3-4 times a week, but of course that if you, for example, workout 5 times a week, it won't be bad it will actually help you more, so you know what to do!";
     else if (exercise == 2)
-      cbody =
+      exerciseAdvice =
         " Well, I suppose, sometimes, you wonder why are you stagnant in the body you're and that you don't like. I can tell you. You are working out too little. Yeah I get it, but it's necessary for you, to get a healthier and prettier body, at least 3-4 high-intensity workouts a week, if you do more, it will still be good and, as a matter of fact, it will be better.";
     else if (exercise == 3)
-      cbody =
+      exerciseAdvice =
         " Well, you already do the minimal workout frequency for a diet plan, but if you still feel like more can be done in the path of your dream body, you're totally right, then you can do 5, 6 or, if you really want to do this, 7 times a week, the more the better. ";
     else if (exercise == 4)
-      cbody =
+      exerciseAdvice =
         " Well, that's good. you already do more workouts than required for a regular diet plan. If you want to elevate it even more try doing 7 heavy workouts a week, besides a good diet food plan.";
     if (healthy == 1)
-      cbodyc =
+      healthyAdvice =
         " I probably shouldn't believe you, but I will. Please, you have to have complete meals, nutrient wise, besides healthy food in it like salad, good protein, choosing cleverly between 'similar options', for example, on weekdays choose chicken breast over red meat. But on weekends don't put everything to lose but free yourself to eat something you like more. Well, you still gotta combine that with good training and workouts to maximize your health and fitness gains.";
     else if (healthy == 2)
-      cbodyc =
+      healthyAdvice =
         " That's ok, but still, you need more healthy and complete, nutrient wise, meal days a week, like salad, good protein, choosing cleverly between 'similar options', for example, on weekdays choose chicken breast over red meat. But on weekends don't put everything to lose but free yourself to eat something you like more. Well, you still gotta combine that with good training and workouts to maximize your health and fitness gains.";
     else if (healthy == 3)
-      cbodyc =
+      healthyAdvice =
         " You have a decent frequency of good meal days a week but I think that you can complete 5 days a week of it, this way you will have more nutrients on your blood, and then you are going to start seeing the effects on your body shortly. Well, you still gotta combine that with good training and workouts to maximize your health and fitness gains.";
     else if (healthy == 4)
-      cbodyc =
+      healthyAdvice =
         " It's good that you have a good healthy meal day frequency, this will help you a lot on your path to your body goal. Well, you still gotta combine that with good training and workouts to maximize your health and fitness gains.";
     if (cheat == 1)
-      ccbody =
+      cheatAdvice =
         " It's good that you have a practically null cheat meal regularity, this will be helpful in your path to your body goal.";
     else if (cheat == 2)
-      ccbody =
+      cheatAdvice =
         " You have a decent frequency cheat meal days a week but I think that you can shorten it to 1 cheat meal day a week of it, this way you will have more ease on maintaining your diet plan and sustaining it you are going to start seeing the effects on your body shortly.";
     else if (cheat == 3)
-      ccbody =
+      cheatAdvice =
         " That's ok, but still, you need to shorten the number of cheat meals you eat try to only do it on weekends and when you feel like it, try doing it only on Sundays. But on weekends don't put everything to lose but free yourself to eat something you like more.";
     else if (cheat == 4)
-      ccbody =
+      cheatAdvice =
         " You need to gradually shorten the number of cheat meals you eat, because that enormous amount of cheat meals are not good at all for your health, therefore try doing it only on Fridays, Saturdays, and Sundays, then when you feel like it, try to only do it on weekends and when you feel like it, try doing it only on Sundays. But on weekends don't put everything to lose but free yourself to eat something you like more.";
     if (meals == 1)
-      bodycc =
+      mealsAdvice =
         " I know how that goes, you think, and i did too, that if you eat less you lose fat, but that is not necessarily the case. If you eat the right amount of the right food 5-6 times a day you will lose more fat and if you maintain a good protein ingestion in every meal, you will also make more muscle out of it.";
     else if (meals == 2)
-      bodycc =
+      mealsAdvice =
         " I know how that goes, you think, and i did too, that if you eat less you lose fat, but that is not necessarily the case. If you eat the right amount of the right food 5-6 times a day you will lose more fat and if you maintain a good protein ingestion in every meal, you will also make more muscle out of it.";
     else if (meals == 3)
-      bodycc =
+      mealsAdvice =
         " Your eating frequency is decent but you should try to eat at least once more through the day, and always eating healthy with a good portion of proteins and moderate portions of carbohydrates";
     else if (meals == 4)
-      bodycc =
+      mealsAdvice =
         " That's ideal, always eat healthy with 3-hour intervals for better muscle gain and fat loss.";
-    goalBodyDistance += currentBody - bgoal;
+    goalBodyDistance = currentBody - bgoal;
     if (goalBodyDistance == 1)
-      goalDistance +=
+      goalDistance =
         " Also, you are really close to your goal, which means that with focus and determination your run towards your goal will be short!";
     else if (goalBodyDistance == 2)
-      goalDistance +=
+      goalDistance =
         " Also, you are close to your goal, which means that with focus and determination your run towards your goal will be short!";
     else if (goalBodyDistance == 3)
-      goalDistance +=
+      goalDistance =
         " Also, you are not far from your goal, take ownership of your path and you'll get there soon!";
     else if (goalBodyDistance == 4)
-      goalDistance +=
+      goalDistance =
         " It will be a bit difficult but with focus, besides the right training and diet, you'll get there!";
     else if (goalBodyDistance == 5)
-      goalDistance +=
+      goalDistance =
         " It will be difficult but with focus, besides the right training and diet, you'll get there!";
     else if (goalBodyDistance == 6)
-      goalDistance +=
+      goalDistance =
         " This is gonna be a long, but well rewarding, run, that requires a lot of will, determination, and focus!";
     else if (goalBodyDistance == 7)
-      goalDistance +=
+      goalDistance =
         " This is gonna be a long, but well rewarding, run, that requires a lot of will, determination, and focus!";
     else if (goalBodyDistance == 8)
-      goalDistance +=
+      goalDistance =
         " This is gonna be a long, but well rewarding, run, that requires a lot of will, determination, and focus!";
     if (goal == "bulking") {
-      ccbodycc =
+      goalAdvice =
         " Since you are trying to bulk, you should focus the most on weight training, better with an instructor but it works anyway. Try increasing the weights and decreasing the movement speed. At your will for losing weight try some exercises like running, cycling, and so on. ";
-      bodyc =
+      goalAdvice2 =
         " For bulking, You should eat well, a lot of protein, a good portion of carbohydrates. And you should always try to have a slight calorie intake surplus. Your menu varies between eggs, protein shakes, chicken, meat and so on. Besides salads, fruits and vegetables.";
     }
     if (goal == "cutting") {
-      ccbodycc =
+      goalAdvice =
         " Since you are trying to cut, you should focus on weight training, better with an instructor but it works anyway, for having the athletic shape, and also some exercises like running, cycling, and so on. Try increasing the weights and decreasing the movement speed, while in the gym workout, and try to increase the difficulty of the aerobic exercises gradually, every workout day.";
-      bodyc =
+      goalAdvice2 =
         " For cutting, You should eat in a controlled way, but with a good portion of proteins, not much carbohydrates and of course our loved ones: salad, fruits and vegetables. But you should have a calorie intake deficit. ";
     }
     if (goal == "surplus") {
-      ccbodycc =
+      goalAdvice =
         " Since you are trying to lose weight, you should focus on weight training and aerobic exercises, better with an instructor but it works anyway, for having the better shape. Try increasing the weights and decreasing the movement speed, while in the gym workout, and try to increase the difficulty of the aerobic exercises gradually, every workout day.";
-      bodyc =
+      goalAdvice2 =
         " For losing weight, You should eat in a controlled way, but with a decent portion of proteins, not much carbohydrates and of course our loved ones: salad, fruits and vegetables. But you should have a calorie intake deficit. ";
     }
     if (goal == "muscle") {
-      ccbodycc =
+      goalAdvice =
         " Since you are trying to muscle-up, you should focus on weight training, better with an instructor but it works anyway, for having the better shape. Try increasing the weights and decreasing the movement speed, while in the gym workout.";
-      bodyc =
+      goalAdvice2 =
         " For gaining weight, You should eat in a controlled way, but with a good portion of proteins and carbohydrates, and of course our loved ones: salad, fruits and vegetables. But you should have a calorie intake deficit.";
     }
   } else if (languageValue == 2) {
-    bmrll =
+    calorieCounterLink =
       '<a id="finallink" href="https://www.webmd.com/diet/healthtool-food-calorie-counter" target="_blank" >Link a uma ferramenta de saúde alimentar completa</a>';
-    bmrlll =
+    caloriesLink =
       '<a id="finallink" href="https://www.calories.info/food/candy-sweets" target="_blank" >Link a uma caloria alimentar por grupo geral</a>';
-    bmrllll =
+    exerciseCaloriesLink =
       '<a id="finallink" href="https://www.health.harvard.edu/diet-and-weight-loss/calories-burned-in-30-minutes-of-leisure-and-routine-activities" target="_blank">Link a uma página de Harvard sobre calorias de exercícios</a>';
-    bmrlllll =
+    fitnessAppsLink =
       "<a id='finallink' href='https://www.healthline.com/health/fitness-exercise/top-iphone-android-apps' target='_blank'>Link para os melhores aplicativos para conselhos de treino</a>";
     if (exercise == 1)
-      cbody =
+      exerciseAdvice =
         " Bem, não importa qual é a sua meta, seu peso atual, nem seu tipo de corpo, se você não se exercitar, será basicamente impossível atingir sua meta. Pode ser corrida, ciclismo, levantamento de peso ou qualquer treino de alta intensidade que você queira fazer, porque ajuda a aumentar os músculos, queimar calorias, se livrar do excesso de água que seu corpo pode armazenar, além de muitas melhorias para a saúde que os exercícios podem te fornecer. O recomendado é pelo menos 3-4 vezes por semana, mas é claro que se você, por exemplo, treinar 5 vezes por semana, não será ruim, na verdade irá ajudá-lo mais, então você sabe o que fazer!";
     else if (exercise == 2)
-      cbody =
+      exerciseAdvice =
         " Bem, suponho que, às vezes, você se pergunte por que está estagnado no corpo que está e de que não gosta. Eu posso te contar. Você está malhando muito pouco. Sim, entendi, mas é necessário para você ter um corpo mais saudável e bonito, pelo menos 3-4 treinos de alta intensidade por semana, se você fizer mais, ainda será bom e, na verdade, é será melhor.";
     else if (exercise == 3)
-      cbody =
+      exerciseAdvice =
         " Bem, você já faz a frequência mínima de treino para um plano de dieta, mas se ainda sente que mais pode ser feito no caminho do seu corpo de sonho, você está totalmente certo, então você pode fazer 5, 6 ou, se você realmente quero fazer isso, 7 vezes por semana, quanto mais, melhor. ";
     else if (exercise == 4)
-      cbody =
+      exerciseAdvice =
         " Bem, isso é bom. você já faz mais exercícios do que o necessário para um plano de dieta regular. Se quiser elevá-la ainda mais experimente fazer 7 treinos pesados por semana, além de um bom plano alimentar dietético.";
     if (healthy == 1)
-      cbodyc =
+      healthyAdvice =
         " Eu provavelmente não deveria acreditar em você, mas vou. Por favor, você tem que fazer refeições completas, em termos de nutrientes, além de alimentos saudáveis como salada, boa proteína, escolhendo habilmente entre 'opções semelhantes', por exemplo, nos dias de semana prefira peito de frango à carne vermelha. Mas nos finais de semana não coloque tudo a perder, mas libere-se para comer o que você gosta mais. Bem, você ainda precisa combinar isso com um bom treinamento e exercícios para maximizar seus ganhos de saúde e fitness.";
     else if (healthy == 2)
-      cbodyc =
+      healthyAdvice =
         " Tudo bem, mas ainda assim, você precisa de refeições mais saudáveis e completas, em termos de nutrientes, dias de refeição por semana, como salada, boa proteína, escolher habilmente entre 'opções semelhantes', por exemplo, nos dias de semana escolha peito de frango em vez de carne vermelha. Mas nos finais de semana não coloque tudo a perder, mas libere-se para comer o que você gosta mais. Bem, você ainda precisa combinar isso com um bom treinamento e exercícios para maximizar seus ganhos de saúde e fitness.";
     else if (healthy == 3)
-      cbodyc =
+      healthyAdvice =
         " Você tem uma frequência decente de bons dias de refeição por semana, mas eu acho que você pode completar 5 dias por semana, assim você terá mais nutrientes no seu sangue, e então você começará a ver os efeitos no seu corpo em breve . Bem, você ainda precisa combinar isso com um bom treinamento e exercícios para maximizar seus ganhos de saúde e fitness.";
     else if (healthy == 4)
-      cbodyc =
+      healthyAdvice =
         " É bom que você tenha uma boa frequência de refeições saudáveis, isso vai te ajudar muito no seu caminho para o seu objetivo corporal. Bem, você ainda precisa combinar isso com um bom treinamento e exercícios para maximizar seus ganhos de saúde e fitness.";
     if (cheat == 1)
-      ccbody =
+      cheatAdvice =
         " É bom que você tenha uma regularidade de refeição de trapaça praticamente nula, isso será útil em seu caminho para seu objetivo corporal.";
     else if (cheat == 2)
-      ccbody =
+      cheatAdvice =
         " Você tem uma frequência decente de refeições diárias por semana, mas acho que pode encurtá-la para 1 refeição diária normal por semana, dessa forma você terá mais facilidade em manter seu plano de dieta e sustentá-lo, você começará a ver o efeitos em seu corpo em breve.";
     else if (cheat == 3)
-      ccbody =
+      cheatAdvice =
         " Tudo bem, mas ainda assim, você precisa encurtar o número de cheats que você faz, tente fazer apenas nos finais de semana e quando quiser, tente fazer apenas aos domingos. Mas nos finais de semana não coloque tudo a perder, mas libere-se para comer o que você gosta mais.";
     else if (cheat == 4)
-      ccbody =
+      cheatAdvice =
         " Você precisa diminuir gradativamente o número de refeições casuais que você faz, porque essa quantidade enorme de refeições casuais não faz bem à sua saúde, portanto, tente fazê-lo apenas às sextas, sábados e domingos, então quando tiver vontade, tente para fazer apenas nos finais de semana e quando quiser, tente fazer apenas aos domingos. Mas nos finais de semana não coloque tudo a perder, mas libere-se para comer o que você gosta mais.";
     if (meals == 1)
-      bodycc =
+      mealsAdvice =
         " Sei o que acontece, você pensa, e eu também, que se comer menos perderá gordura, mas não é necessariamente o caso. Se você comer a quantidade certa da comida certa 5-6 vezes ao dia, perderá mais gordura e se mantiver uma boa ingestão de proteína em todas as refeições, também ganhará mais músculos.";
     else if (meals == 2)
-      bodycc =
+      mealsAdvice =
         " Sei o que acontece, você pensa, e eu também, que se comer menos perderá gordura, mas não é necessariamente o caso. Se você comer a quantidade certa da comida certa 5-6 vezes ao dia, perderá mais gordura e se mantiver uma boa ingestão de proteína em todas as refeições, também ganhará mais músculos.";
     else if (meals == 3)
-      bodycc =
+      mealsAdvice =
         " Sua frequência alimentar é decente, mas você deve tentar comer pelo menos mais uma vez ao longo do dia, e sempre comendo saudável com uma boa porção de proteínas e porções moderadas de carboidratos";
     else if (meals == 4)
-      bodycc =
+      mealsAdvice =
         " Isso é ideal, sempre alimente-se de forma saudável com intervalos de 3 horas para melhor ganho muscular e perda de gordura.";
-    goalBodyDistance += currentBody - bgoal;
+    goalBodyDistance = currentBody - bgoal;
     if (goalBodyDistance == 1)
-      goalDistance +=
+      goalDistance =
         " Além disso, você está muito perto de seu objetivo, o que significa que com foco e determinação sua corrida em direção ao objetivo será curta!";
     else if (goalBodyDistance == 2)
-      goalDistance +=
+      goalDistance =
         " Além disso, você está perto de seu objetivo, o que significa que com foco e determinação sua corrida em direção ao objetivo será curta!";
     else if (goalBodyDistance == 3)
-      goalDistance +=
+      goalDistance =
         " Além disso, você não está longe de seu objetivo, tome posse de seu caminho e você chegará lá em breve!";
     else if (goalBodyDistance == 4)
-      goalDistance +=
+      goalDistance =
         " Vai ser um pouco difícil, mas com foco, além do treino e da dieta corretos, você vai chegar lá!";
     else if (goalBodyDistance == 5)
-      goalDistance +=
+      goalDistance =
         " Vai ser difícil, mas com foco, além do treino e da dieta corretos, você vai chegar lá!";
     else if (goalBodyDistance == 6)
-      goalDistance +=
+      goalDistance =
         " Vai ser uma corrida longa, mas bem recompensadora, que exige muita vontade, determinação e foco!";
     else if (goalBodyDistance == 7)
-      goalDistance +=
+      goalDistance =
         " Vai ser uma corrida longa, mas bem recompensadora, que exige muita vontade, determinação e foco!";
     else if (goalBodyDistance == 8)
-      goalDistance +=
+      goalDistance =
         " Vai ser uma corrida longa, mas bem recompensadora, que exige muita vontade, determinação e foco!";
     if (goal == "bulking") {
-      ccbodycc =
+      goalAdvice =
         " Já que você está tentando ganhar massa, você deve se concentrar mais no treinamento com pesos, melhor com um instrutor, mas funciona de qualquer maneira. Experimente aumentar os pesos e diminuir a velocidade do movimento. Quando desejar, para perder peso, experimente alguns exercícios como corrida, ciclismo e assim por diante. ";
-      bodyc =
+      goalAdvice2 =
         " Para aumentar, você deve comer bem, muita proteína, uma boa porção de carboidratos. E você deve sempre tentar ter um pequeno excedente de ingestão de calorias. Seu menu varia entre ovos, shakes de proteína, frango, carne e assim por diante. Além de saladas, frutas e vegetais.";
     }
     if (goal == "cutting") {
-      ccbodycc =
+      goalAdvice =
         " Já que você está tentando secar, você deve focar no treinamento com pesos, melhor com um instrutor, mas funciona mesmo assim, para ter a forma atlética, e também alguns exercícios como corrida, ciclismo e assim por diante. Experimente aumentar os pesos e diminuir a velocidade do movimento, durante a malhação, e tente aumentar a dificuldade dos exercícios aeróbicos gradativamente, a cada dia de treino.";
-      bodyc =
+      goalAdvice2 =
         " Para secar, deve comer de forma controlada, mas com uma boa porção de proteínas, não muito carbohidratos e claro os nossos entes queridos: salada, fruta e vegetais. Mas você deve ter um déficit de ingestão de calorias. ";
     }
     if (goal == "surplus") {
-      ccbodycc =
+      goalAdvice =
         " Já que você está tentando emagrecer, você deve focar no musculação e exercícios aeróbicos, melhor com um instrutor, mas funciona mesmo assim, para ter uma melhor forma. Experimente aumentar os pesos e diminuir a velocidade do movimento, durante a ginástica, e tente aumentar a dificuldade dos exercícios aeróbicos gradativamente, a cada dia de treino.";
-      bodyc =
+      goalAdvice2 =
         " Para emagrecer, deve comer de forma controlada, mas com uma porção decente de proteínas, sem muitos carbohidratos e claro os nossos entes queridos: salada, fruta e vegetais. Mas você deve ter um déficit de ingestão calórica. ";
     }
     if (goal == "muscle") {
-      ccbodycc =
+      goalAdvice =
         " Já que você está tentando ganhar músculos, você deve se concentrar no treinamento com pesos, melhor com um instrutor, mas funciona de qualquer maneira, para ter a melhor forma. Experimente aumentar os pesos e diminuir a velocidade do movimento, durante o treino de ginásio.";
-      bodyc =
+      goalAdvice2 =
         " Para ganhar peso, você deve comer de forma controlada, mas com uma boa porção de proteínas e carboidratos e, claro, nossos entes queridos: salada, frutas e vegetais. Mas você deve ter um déficit de ingestão calórica.";
     }
   } else if (languageValue == 3) {
-    bmrll =
+    calorieCounterLink =
       '<a id="finallink" href="https://www.webmd.com/diet/healthtool-food-calorie-counter" target="_blank" >Link vers un outil de santé alimentaire complet</a>';
-    bmrlll =
+    caloriesLink =
       '<a id="finallink" href="https://www.calories.info/food/candy-sweets" target="_blank" >Link vers une calorie alimentaire par groupe général</a>';
-    bmrllll =
+    exerciseCaloriesLink =
       "<a id='finallink' href='https://www.health.harvard.edu/diet-and-weight-loss/calories-burned-in-30-minutes-of-leisure-and-routine-activities' target='_blank'>Link vers une page de Harvard sur les calories d'exercice</a>";
-    bmrlllll =
+    fitnessAppsLink =
       "<a id='finallink' href='https://www.healthline.com/health/fitness-exercise/top-iphone-android-apps' target='_blank'>Lien vers les meilleures applications pour obtenir des conseils d'entraînement</a>";
     if (exercise == 1)
-      cbody =
+      exerciseAdvice =
         " Eh bien, peu importe votre objectif, votre poids actuel ou votre type de corps, si vous ne faites pas d'exercice, il vous sera pratiquement impossible d'atteindre votre objectif. Il peut s'agir de course, de cyclisme, de dynamophilie ou de tout entraînement de haute intensité que vous souhaitez faire, car il vous aide à développer vos muscles, à brûler des calories, à vous débarrasser du surplus d'eau que votre corps peut stocker, ainsi que de nombreuses améliorations de la santé que l'exercice peut vous fournir. Le recommandé est au moins 3 à 4 fois par semaine, mais bien sûr, si vous vous entraînez, par exemple, 5 fois par semaine, ce ne sera pas mal, cela vous aidera davantage, alors vous savez quoi faire!";
     else if (exercise == 2)
-      cbody =
+      exerciseAdvice =
         " Eh bien, je suppose que parfois, vous vous demandez pourquoi vous stagnez dans le corps que vous et que vous n'aimez pas. Je peux vous dire. Vous travaillez trop peu. Ouais je comprends, mais c'est nécessaire pour toi, pour avoir un corps plus sain et plus joli, au moins 3-4 séances d'entraînement de haute intensité par semaine, si tu en fais plus, ce sera toujours bon et, en fait, ça sera mieux.";
     else if (exercise == 3)
-      cbody =
+      exerciseAdvice =
         " Eh bien, vous faites déjà la fréquence minimale d'entraînement pour un régime alimentaire, mais si vous pensez toujours que plus peut être fait sur le chemin de votre corps de rêve, vous avez tout à fait raison, alors vous pouvez faire 5, 6 ou, si vous vraiment veulent faire cela, 7 fois par semaine, plus il y en a, mieux c'est. ";
     else if (exercise == 4)
-      cbody =
+      exerciseAdvice =
         " Bon, c'est bien. vous faites déjà plus de séances d'entraînement que nécessaire pour un régime alimentaire régulier. Si vous voulez l'augmenter encore plus, essayez de faire 7 séances d'entraînement intensives par semaine, en plus d'un bon régime alimentaire.";
     if (healthy == 1)
-      cbodyc =
+      healthyAdvice =
         " Je ne devrais probablement pas te croire, mais je le ferai. S'il vous plaît, vous devez avoir des repas complets, en termes de nutriments, en plus des aliments sains comme une salade, de bonnes protéines, en choisissant intelligemment entre des options similaires '', par exemple, en semaine, choisissez la poitrine de poulet plutôt que la viande rouge. Mais le week-end, ne mettez pas tout à perdre mais libérez-vous pour manger quelque chose que vous aimez plus. Eh bien, vous devez toujours combiner cela avec un bon entraînement et des séances d'entraînement pour maximiser vos gains de santé et de forme physique.";
     else if (healthy == 2)
-      cbodyc =
+      healthyAdvice =
         " Ce n'est pas grave, mais vous avez quand même besoin de repas plus sains et complets, en termes de nutriments, chaque semaine, comme une salade, de bonnes protéines, en choisissant intelligemment entre des options similaires '', par exemple, en semaine, choisissez la poitrine de poulet plutôt que la viande rouge. Mais le week-end, ne mettez pas tout à perdre mais libérez-vous pour manger quelque chose que vous aimez plus. Eh bien, vous devez toujours combiner cela avec un bon entraînement et des séances d'entraînement pour maximiser vos gains de santé et de forme physique.";
     else if (healthy == 3)
-      cbodyc =
+      healthyAdvice =
         " Vous avez une fréquence décente de bons repas jours par semaine, mais je pense que vous pouvez en terminer 5 jours par semaine, de cette façon, vous aurez plus de nutriments dans votre sang, et ensuite vous allez commencer à voir les effets sur votre corps sous peu. . Eh bien, vous devez toujours combiner cela avec un bon entraînement et des séances d'entraînement pour maximiser vos gains de santé et de forme physique.";
     else if (healthy == 4)
-      cbodyc =
+      healthyAdvice =
         " Il est bon que vous ayez une bonne fréquence quotidienne de repas sains, cela vous aidera beaucoup sur votre chemin vers votre objectif corporel. Eh bien, vous devez toujours combiner cela avec un bon entraînement et des séances d'entraînement pour maximiser vos gains de santé et de forme physique.";
     if (cheat == 1)
-      ccbody =
+      cheatAdvice =
         " Il est bon que vous ayez une régularité de repas malsains pratiquement nulle, cela vous sera utile sur votre chemin vers votre objectif corporel.";
     else if (cheat == 2)
-      ccbody =
+      cheatAdvice =
         " Vous avez une fréquence de repas de triche décente jours par semaine, mais je pense que vous pouvez le raccourcir à 1 repas de triche par semaine, de cette façon, vous aurez plus de facilité à maintenir votre régime alimentaire et à le maintenir, vous allez commencer à voir le effets sur votre corps sous peu.";
     else if (cheat == 3)
-      ccbody =
+      cheatAdvice =
         " C'est correct, mais quand même, vous devez réduire le nombre de repas de triche que vous mangez, essayez de ne le faire que le week-end et lorsque vous en avez envie, essayez de le faire uniquement le dimanche. Mais le week-end, ne mettez pas tout à perdre mais libérez-vous pour manger quelque chose que vous aimez plus.";
     else if (cheat == 4)
-      ccbody =
+      cheatAdvice =
         " Vous devez réduire progressivement le nombre de repas de triche que vous mangez, car cette énorme quantité de repas de triche n'est pas du tout bonne pour votre santé, essayez donc de le faire uniquement les vendredis, samedis et dimanches, puis quand vous en avez envie, essayez pour ne le faire que le week-end et quand vous en avez envie, essayez de le faire uniquement le dimanche. Mais le week-end, ne mettez pas tout à perdre mais libérez-vous pour manger quelque chose que vous aimez plus.";
     if (meals == 1)
-      bodycc =
+      mealsAdvice =
         " Je sais comment ça se passe, vous pensez, et moi aussi, que si vous mangez moins, vous perdez du gras, mais ce n'est pas forcément le cas. Si vous mangez la bonne quantité de la bonne nourriture 5 à 6 fois par jour, vous perdrez plus de graisse et si vous maintenez une bonne ingestion de protéines à chaque repas, vous en tirerez également plus de muscle..";
     else if (meals == 2)
-      bodycc =
+      mealsAdvice =
         " Je sais comment ça se passe, vous pensez, et moi aussi, que si vous mangez moins, vous perdez du gras, mais ce n'est pas forcément le cas. Si vous mangez la bonne quantité de la bonne nourriture 5 à 6 fois par jour, vous perdrez plus de graisse et si vous maintenez une bonne ingestion de protéines à chaque repas, vous en tirerez également plus de muscle..";
     else if (meals == 3)
-      bodycc =
+      mealsAdvice =
         " Votre fréquence d'alimentation est correcte, mais vous devriez essayer de manger au moins une fois de plus dans la journée et toujours manger sainement avec une bonne portion de protéines et des portions modérées de glucides.";
     else if (meals == 4)
-      bodycc =
+      mealsAdvice =
         " C'est idéal, mangez toujours sainement avec des intervalles de 3 heures pour un meilleur gain musculaire et une meilleure perte de graisse.";
-    goalBodyDistance += currentBody - bgoal;
+    goalBodyDistance = currentBody - bgoal;
     if (goalBodyDistance == 1)
-      goalDistance +=
+      goalDistance =
         " De plus, vous êtes très proche de votre objectif, ce qui signifie qu'avec concentration et détermination, votre course vers votre objectif sera courte!";
     else if (goalBodyDistance == 2)
-      goalDistance +=
+      goalDistance =
         " De plus, vous êtes proche de votre objectif, ce qui signifie qu'avec de la concentration et de la détermination, votre course vers votre objectif sera courte!";
     else if (goalBodyDistance == 3)
-      goalDistance +=
+      goalDistance =
         " Aussi, vous n'êtes pas loin de votre objectif, prenez en main votre chemin et vous y arriverez bientôt!";
     else if (goalBodyDistance == 4)
-      goalDistance +=
+      goalDistance =
         " Ce sera un peu difficile mais avec de la concentration, en plus du bon entraînement et du bon régime, vous y arriverez!";
     else if (goalBodyDistance == 5)
-      goalDistance +=
+      goalDistance =
         " Ce sera difficile mais avec de la concentration, en plus du bon entraînement et du bon régime, vous y arriverez!";
     else if (goalBodyDistance == 6)
-      goalDistance +=
+      goalDistance =
         " Ce sera une course longue, mais bien enrichissante, qui demandera beaucoup de volonté, de détermination et de concentration!";
     else if (goalBodyDistance == 7)
-      goalDistance +=
+      goalDistance =
         " Ce sera une course longue, mais bien enrichissante, qui demandera beaucoup de volonté, de détermination et de concentration!";
     else if (goalBodyDistance == 8)
-      goalDistance +=
+      goalDistance =
         " Ce sera une course longue, mais bien enrichissante, qui demandera beaucoup de volonté, de détermination et de concentration!";
     if (goal == "bulking") {
-      ccbodycc =
+      goalAdvice =
         " Puisque vous essayez de prendre du volume, vous devriez vous concentrer le plus sur la musculation, mieux avec un instructeur, mais cela fonctionne quand même. Essayez d'augmenter les poids et de réduire la vitesse de déplacement. À votre guise pour perdre du poids, essayez des exercices comme la course à pied, le cyclisme, etc. ";
-      bodyc =
+      goalAdvice2 =
         " Pour le gonflement, vous devez bien manger, beaucoup de protéines, une bonne portion de glucides. Et vous devriez toujours essayer d'avoir un léger surplus d'apport calorique. Votre menu varie entre les œufs, les boissons protéinées, le poulet, la viande, etc. Outre les salades, les fruits et légumes.";
     }
     if (goal == "cutting") {
-      ccbodycc =
+      goalAdvice =
         " Puisque vous essayez de couper, vous devriez vous concentrer sur la musculation, mieux avec un instructeur mais cela fonctionne quand même, pour avoir la forme athlétique, et aussi certains exercices comme la course, le cyclisme, etc. Essayez d'augmenter les poids et de réduire la vitesse de mouvement, pendant que vous vous entraînez au gymnase, et essayez d'augmenter progressivement la difficulté des exercices d'aérobie, chaque jour d'entraînement.";
-      bodyc =
+      goalAdvice2 =
         " Pour la découpe, il faut manger de manière contrôlée, mais avec une bonne portion de protéines, peu de glucides et bien sûr nos proches: salade, fruits et légumes. Mais vous devriez avoir un déficit calorique. ";
     }
     if (goal == "surplus") {
-      ccbodycc =
+      goalAdvice =
         " Puisque vous essayez de perdre du poids, vous devriez vous concentrer sur la musculation et les exercices d'aérobie, mieux avec un instructeur mais cela fonctionne quand même, pour avoir la meilleure forme. Essayez d'augmenter les poids et de réduire la vitesse de mouvement, pendant que vous vous entraînez au gymnase, et essayez d'augmenter progressivement la difficulté des exercices d'aérobie, chaque jour d'entraînement.";
-      bodyc =
+      goalAdvice2 =
         " Pour perdre du poids, vous devez manger de manière contrôlée, mais avec une bonne portion de protéines, pas beaucoup de glucides et bien sûr nos proches: salade, fruits et légumes. Mais vous devriez avoir un déficit calorique. ";
     }
     if (goal == "muscle") {
-      ccbodycc =
+      goalAdvice =
         " Puisque vous essayez de vous muscler, vous devriez vous concentrer sur la musculation, mieux avec un instructeur mais cela fonctionne quand même, pour avoir la meilleure forme. Essayez d'augmenter les poids et de réduire la vitesse de mouvement pendant que vous vous entraînez au gymnase.";
-      bodyc =
+      goalAdvice2 =
         " Pour prendre du poids, vous devez manger de manière contrôlée, mais avec une bonne portion de protéines et de glucides, et bien sûr nos proches: salade, fruits et légumes. Mais vous devriez avoir un déficit calorique.";
     }
   } else if (languageValue == 4) {
-    bmrll =
+    calorieCounterLink =
       '<a id="finallink" href="https://www.webmd.com/diet/healthtool-food-calorie-counter" target="_blank" >Link a una herramienta de salud alimentaria integral</a>';
-    bmrlll =
+    caloriesLink =
       '<a id="finallink" href="https://www.calories.info/food/candy-sweets" target="_blank" >Link a una caloría alimentaria por grupo general</a>';
-    bmrllll =
+    exerciseCaloriesLink =
       '<a id="finallink" href="https://www.health.harvard.edu/diet-and-weight-loss/calories-burned-in-30-minutes-of-leisure-and-routine-activities" target="_blank">Link a una página de Harvard sobre las calorías del ejercicio</a>';
-    bmrlllll =
+    fitnessAppsLink =
       "<a id='finallink' href='https://www.healthline.com/health/fitness-exercise/top-iphone-android-apps' target='_blank'>Link a las mejores aplicaciones para obtener consejos sobre ejercicios</a>";
     if (exercise == 1)
-      cbody =
+      exerciseAdvice =
         " Bueno, no importa cuál sea tu objetivo, tu peso actual ni tu tipo de cuerpo, si no haces ejercicio, será básicamente imposible que lo alcance. Puede ser correr, andar en bicicleta, levantar pesas o cualquier entrenamiento de alta intensidad que desee hacer, ya que le ayuda a desarrollar músculo, quemar calorías, eliminar el exceso de agua que su cuerpo puede almacenar, además de muchas mejoras para la salud que puede hacer el ejercicio. proporcionarle. Lo recomendado es al menos 3-4 veces a la semana, pero por supuesto que si, por ejemplo, haces ejercicio 5 veces a la semana, no será malo, en realidad te ayudará más, ¡así que sabes qué hacer!";
     else if (exercise == 2)
-      cbody =
+      exerciseAdvice =
         " Bueno, supongo que a veces te preguntas por qué estás estancado en el cuerpo que eres y que no te gusta. Te puedo decir. Está haciendo muy poco ejercicio. Sí, lo entiendo, pero es necesario para ti, para tener un cuerpo más sano y bonito, al menos 3-4 entrenamientos de alta intensidad a la semana, si haces más, seguirá siendo bueno y, de hecho, será será mejor.";
     else if (exercise == 3)
-      cbody =
+      exerciseAdvice =
         " Bueno, ya tiene la frecuencia mínima de entrenamiento para un plan de dieta, pero si todavía siente que se puede hacer más en el camino del cuerpo de sus sueños, tiene toda la razón, entonces puede hacer 5, 6 o, si realmente lo desea. quiero hacer esto, 7 veces a la semana, cuanto más, mejor. ";
     else if (exercise == 4)
-      cbody =
+      exerciseAdvice =
         " Bueno, eso es bueno. ya haces más entrenamientos de los necesarios para un plan de dieta regular. Si quieres elevarlo aún más intenta hacer 7 entrenamientos pesados a la semana, además de un buen plan alimenticio dietético.";
     if (healthy == 1)
-      cbodyc =
+      healthyAdvice =
         " Probablemente no debería creerte, pero lo haré. Por favor, debe tener comidas completas, en cuanto a nutrientes, además de alimentos saludables como ensaladas, buenas proteínas, eligiendo inteligentemente entre 'opciones similares', por ejemplo, los días de semana elija pechuga de pollo sobre carne roja. Pero los fines de semana no pongas todo para perder, sino libérate para comer algo que te guste más. Bueno, aún debes combinar eso con un buen entrenamiento y entrenamientos para maximizar tus ganancias de salud y estado físico.";
     else if (healthy == 2)
-      cbodyc =
+      healthyAdvice =
         " Está bien, pero aún así, necesita días de comida a la semana más saludables y completos, en cuanto a nutrientes, como ensalada, buenas proteínas, eligiendo inteligentemente entre 'opciones similares', por ejemplo, los días de semana elija pechuga de pollo en lugar de carne roja. Pero los fines de semana no pongas todo para perder, sino libérate para comer algo que te guste más. Bueno, aún debes combinar eso con un buen entrenamiento y entrenamientos para maximizar tus ganancias de salud y estado físico.";
     else if (healthy == 3)
-      cbodyc =
+      healthyAdvice =
         " Tienes una frecuencia decente de buenos días de comida a la semana, pero creo que puedes completar 5 días a la semana, de esta manera tendrás más nutrientes en tu sangre y luego comenzarás a ver los efectos en tu cuerpo en breve. . Bueno, aún debes combinar eso con un buen entrenamiento y entrenamientos para maximizar tus ganancias de salud y estado físico.";
     else if (healthy == 4)
-      cbodyc =
+      healthyAdvice =
         " Es bueno que tengas una buena frecuencia diaria de comidas saludables, esto te ayudará mucho en tu camino hacia tu objetivo corporal. Bueno, aún debes combinar eso con un buen entrenamiento y entrenamientos para maximizar tus ganancias de salud y estado físico.";
     if (cheat == 1)
-      ccbody =
+      cheatAdvice =
         " Es bueno que tengas una regularidad de comidas poco saludables que sea prácticamente nula, esto te será útil en tu camino hacia tu meta corporal.";
     else if (cheat == 2)
-      ccbody =
+      cheatAdvice =
         " Tiene una frecuencia decente para hacer trampas los días de la semana, pero creo que puede acortarla a 1 comida trampa al día a la semana, de esta manera tendrá más facilidad para mantener su plan de dieta y mantenerlo, comenzará a ver el efectos en su cuerpo en breve.";
     else if (cheat == 3)
-      ccbody =
+      cheatAdvice =
         " Eso está bien, pero aún así, debes acortar la cantidad de comidas trampa que comes, intenta hacerlo solo los fines de semana y, cuando te apetezca, intenta hacerlo solo los domingos. Pero los fines de semana no pongas todo para perder, sino libérate para comer algo que te guste más.";
     else if (cheat == 4)
-      ccbody =
+      cheatAdvice =
         " Necesita acortar gradualmente la cantidad de comidas trampa que come, porque esa enorme cantidad de comidas trampa no es nada bueno para su salud, por lo tanto, intente hacerlo solo los viernes, sábados y domingos, luego, cuando lo desee, intente a hacerlo solo los fines de semana y cuando te apetezca, intenta hacerlo solo los domingos. Pero los fines de semana no pongas todo para perder, sino libérate para comer algo que te guste más.";
     if (meals == 1)
-      bodycc =
+      mealsAdvice =
         " Sé cómo va eso, piensas, y yo también, que si comes menos pierdes grasa, pero ese no es necesariamente el caso. Si come la cantidad correcta de la comida adecuada 5-6 veces al día, perderá más grasa y si mantiene una buena ingesta de proteínas en cada comida, también hará más músculo con ella.";
     else if (meals == 2)
-      bodycc =
+      mealsAdvice =
         " Sé cómo va eso, piensas, y yo también, que si comes menos pierdes grasa, pero ese no es necesariamente el caso. Si come la cantidad correcta de la comida adecuada 5-6 veces al día, perderá más grasa y si mantiene una buena ingesta de proteínas en cada comida, también hará más músculo con ella.";
     else if (meals == 3)
-      bodycc =
+      mealsAdvice =
         " Su frecuencia de alimentación es decente, pero debe intentar comer al menos una vez más durante el día, y siempre comer sano con una buena porción de proteínas y porciones moderadas de carbohidratos.";
     else if (meals == 4)
-      bodycc =
+      mealsAdvice =
         " Eso es ideal, siempre coma sano con intervalos de 3 horas para una mejor ganancia muscular y pérdida de grasa..";
-    goalBodyDistance += currentBody - bgoal;
+    goalBodyDistance = currentBody - bgoal;
     if (goalBodyDistance == 1)
-      goalDistance +=
+      goalDistance =
         " Además, estás muy cerca de tu objetivo, lo que significa que con concentración y determinación, ¡tu carrera hacia tu objetivo será corta!";
     else if (goalBodyDistance == 2)
-      goalDistance +=
+      goalDistance =
         " Además, estás cerca de tu objetivo, lo que significa que con concentración y determinación, ¡tu carrera hacia tu objetivo será corta!";
     else if (goalBodyDistance == 3)
-      goalDistance +=
+      goalDistance =
         " Además, no está lejos de su objetivo, tome posesión de su camino y ¡llegará pronto!";
     else if (goalBodyDistance == 4)
-      goalDistance +=
+      goalDistance =
         " Será un poco difícil, pero con concentración, además del entrenamiento y la dieta adecuados, ¡lo lograrás!";
     else if (goalBodyDistance == 5)
-      goalDistance +=
+      goalDistance =
         " Será difícil, pero con concentración, además del entrenamiento y la dieta adecuados, ¡lo lograrás!";
     else if (goalBodyDistance == 6)
-      goalDistance +=
+      goalDistance =
         " ¡Esta será una carrera larga, pero gratificante, que requiere mucha voluntad, determinación y concentración!";
     else if (goalBodyDistance == 7)
-      goalDistance +=
+      goalDistance =
         " ¡Esta será una carrera larga, pero gratificante, que requiere mucha voluntad, determinación y concentración!";
     else if (goalBodyDistance == 8)
-      goalDistance +=
+      goalDistance =
         " ¡Esta será una carrera larga, pero gratificante, que requiere mucha voluntad, determinación y concentración!";
     if (goal == "bulking") {
-      ccbodycc =
+      goalAdvice =
         " Dado que está tratando de aumentar el volumen, debe concentrarse más en el entrenamiento con pesas, mejor con un instructor, pero de todos modos funciona. Intente aumentar los pesos y disminuir la velocidad de movimiento. Si desea perder peso, pruebe algunos ejercicios como correr, andar en bicicleta, etc. ";
-      bodyc =
+      goalAdvice2 =
         " Para aumentar el volumen, debes comer bien, mucha proteína, una buena porción de carbohidratos. Y siempre debe intentar tener un ligero exceso de ingesta calórica. Su menú varía entre huevos, batidos de proteínas, pollo, carne, etc. Además de ensaladas, frutas y verduras.";
     }
     if (goal == "cutting") {
-      ccbodycc =
+      goalAdvice =
         " Ya que estás tratando desecar, debes enfocarte en el entrenamiento con pesas, mejor con un instructor pero de todos modos funciona, para tener la forma atlética, y también algunos ejercicios como correr, andar en bicicleta, etc. Intente aumentar los pesos y disminuir la velocidad de movimiento, mientras está en el gimnasio, e intente aumentar la dificultad de los ejercicios aeróbicos gradualmente, todos los días de entrenamiento.";
-      bodyc =
+      goalAdvice2 =
         " Parasecar, conviene comer de forma controlada, pero con una buena porción de proteínas, poco carbohidratos y por supuesto nuestros seres queridos: ensalada, frutas y verduras. Pero deberías tener un déficit de ingesta de calorías.. ";
     }
     if (goal == "surplus") {
-      ccbodycc =
+      goalAdvice =
         " Ya que estás tratando de perder peso, debes concentrarte en el entrenamiento con pesas y ejercicios aeróbicos, mejor con un instructor pero de todos modos funciona, para tener la mejor forma. Intente aumentar los pesos y disminuir la velocidad de movimiento, mientras está en el gimnasio, y trate de aumentar la dificultad de los ejercicios aeróbicos gradualmente, todos los días de entrenamiento.";
-      bodyc =
+      goalAdvice2 =
         " Para adelgazar, conviene comer de forma controlada, pero con una buena porción de proteínas, poco carbohidratos y por supuesto nuestros seres queridos: ensalada, frutas y verduras. Pero debería tener un déficit de ingesta de calorías. ";
     }
     if (goal == "muscle") {
-      ccbodycc =
+      goalAdvice =
         " Ya que estás tratando de hacer musculación, debes concentrarte en el entrenamiento con pesas, mejor con un instructor pero de todos modos funciona, para tener la mejor forma. Intente aumentar los pesos y disminuir la velocidad de movimiento, mientras hace ejercicio en el gimnasio.";
-      bodyc =
+      goalAdvice2 =
         " Para subir de peso, conviene comer de forma controlada, pero con una buena porción de proteínas y carbohidratos, y por supuesto de nuestros seres queridos: ensalada, frutas y verduras. Pero deberías tener un déficit de ingesta de calorías..";
     }
   }
@@ -4378,10 +4030,10 @@ function result() {
   else if (languageValue == 4)
     downloadResult +=
       '<h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">¡Bueno! <big style="font-family: Kaushan Script, cursive;">';
-  downloadResult += `${inputName}</big><br>${btype}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${bodypt}${goalDistance}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${ageAdvice}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${bodytp}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${cbody}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${ccbodycc}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${cbodyc}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${ccbody}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${bodycc}${bodyc}</h3>`;
+  downloadResult += `${inputName}</big><br>${btype}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${bodyTypeAdvantageAdvice}${goalDistance}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${ageAdvice}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${finalIdealWeightMsg}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${exerciseAdvice}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${goalAdvice}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${healthyAdvice}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${cheatAdvice}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${mealsAdvice}${goalAdvice2}</h3>`;
   if (emotion == "yes")
     downloadResult += `<br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${emotionans}</h3>`;
-  downloadResult += `<br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${bmrl}</h3><br><h4><i>${bmrll}</i></h4><br><h4><i>${bmrlll}</i></h4><br><h4><i>${bmrllll}</i></h4><br><h4><i>${bmrlllll}</i></h4></span>`;
+  downloadResult += `<br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${calorieIntakeAdvice}</h3><br><h4><i>${calorieCounterLink}</i></h4><br><h4><i>${caloriesLink}</i></h4><br><h4><i>${exerciseCaloriesLink}</i></h4><br><h4><i>${fitnessAppsLink}</i></h4></span>`;
   storage();
 }
 function resultTransition() {
@@ -4434,22 +4086,22 @@ function resultTime() {
     finalResultH3Id.innerHTML += `${inputName}</big>, ${btype}`;
   }
   timeGaps += 1;
-  if (timeGaps == 1500) finalResultH3Id.innerHTML += `${bodypt}${goalDistance}<br><br>`;
+  if (timeGaps == 1500) finalResultH3Id.innerHTML += `${bodyTypeAdvantageAdvice}${goalDistance}<br><br>`;
   if (timeGaps == 2000) finalResultH3Id.innerHTML += `${ageAdvice}<br><br>`;
-  if (timeGaps == 3000) finalResultH3Id.innerHTML += `${bodytp}<br><br>`;
-  if (timeGaps == 4000) finalResultH3Id.innerHTML += `${cbody}<br><br>`;
-  if (timeGaps == 5000) finalResultH3Id.innerHTML += `${ccbodycc}<br><br>`;
-  if (timeGaps == 6000) finalResultH3Id.innerHTML += `${cbodyc}<br><br>`;
-  if (timeGaps == 7000) finalResultH3Id.innerHTML += `${ccbody}<br><br>`;
+  if (timeGaps == 3000) finalResultH3Id.innerHTML += `${finalIdealWeightMsg}<br><br>`;
+  if (timeGaps == 4000) finalResultH3Id.innerHTML += `${exerciseAdvice}<br><br>`;
+  if (timeGaps == 5000) finalResultH3Id.innerHTML += `${goalAdvice}<br><br>`;
+  if (timeGaps == 6000) finalResultH3Id.innerHTML += `${healthyAdvice}<br><br>`;
+  if (timeGaps == 7000) finalResultH3Id.innerHTML += `${cheatAdvice}<br><br>`;
   if (timeGaps == 8000)
-    finalResultH3Id.innerHTML += `${bodycc}<br><br>${bodyc}<br><br>`;
+    finalResultH3Id.innerHTML += `${mealsAdvice}<br><br>${goalAdvice2}<br><br>`;
   if (timeGaps == 10000 && emotion == "yes")
     finalResultH3Id.innerHTML += `${emotionans}<br><br>`;
-  if (timeGaps == 11000) finalResultH3Id.innerHTML += `${bmrl}<br><br><br>`;
+  if (timeGaps == 11000) finalResultH3Id.innerHTML += `${calorieIntakeAdvice}<br><br><br>`;
   if (timeGaps == 12000) {
     finalResultH4Id.innerHTML = "";
     finalResultH4Id.style.display = "block";
-    finalResultH4Id.innerHTML += `<i>${bmrll}<br><br>${bmrlll}<br><br>${bmrllll}<br><br>${bmrlllll}</i><br><br><br>`;
+    finalResultH4Id.innerHTML += `<i>${calorieCounterLink}<br><br>${caloriesLink}<br><br>${exerciseCaloriesLink}<br><br>${fitnessAppsLink}</i><br><br><br>`;
   }
   if (timeGaps == 13000) {
     finalResultH2Id.style.display = "block";
