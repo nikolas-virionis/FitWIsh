@@ -15,7 +15,7 @@ var btype,
   triesMade,
   tryNumber,
   counter = 0,
-  ttttt,
+  timeInterval,
   metricDefault,
   metricVerify = 0,
   imperialDefault,
@@ -95,17 +95,17 @@ var btype,
   addup5,
   addup6,
   emailaddrreturnfinal,
-  name,
+  inputName,
   age,
   ageAdvice,
   languageValue = 1,
   fullresult = "",
-  ttt = 0,
+  timeGaps = 0,
   firstAlert =
     "DISCLAIMER: This is not a medical nor nutritionist advice and not only does not exclude a medical consultation, but also, me as this code creator, encourage and support YOU to get to see your doctor for anything YOU think YOU should improve in YOUR health life. Peace!",
   bmi_state = "",
   gender = "",
-  bope = "",
+  goal = "",
   bodyp = 0,
   bodyps = parseFloat(bodyp),
   bodypt = "",
@@ -128,7 +128,7 @@ var btype,
   noEmailNeeded = 0,
   wrongEmailCount = 0,
   bodyresult = "",
-  bbg = "",
+  goalDistance = "",
   bbgw = "";
 unitSystem("metric");
 english();
@@ -190,16 +190,16 @@ if (contentArray.length == 0) {
     english();
     if (
       !(
-        contentArray[0].name.toLowerCase() == contentArray[1].name.toLowerCase()
+        contentArray[0].inputName.toLowerCase() == contentArray[1].inputName.toLowerCase()
       )
     ) {
-      firstPageH13rd.innerHTML = `We detected that you have already tried our test twice, once as ${contentArray[0].name} made in ${contentArray[0].day}, and once as ${contentArray[1].name} made in ${contentArray[1].day}. Choose what you would like to do below`;
-      firstPageBtn1stTry.value = `See the test made by ${contentArray[0].name}`;
-      firstPageBtn2ndTry.value = `See the test made by ${contentArray[1].name}`;
-      firstPageBtn1stTryOverwrite.value = `Overwrite test made by ${contentArray[0].name}`;
-      firstPageBtn2ndTryOverwrite.value = `Overwrite test made by ${contentArray[1].name}`;
+      firstPageH13rd.innerHTML = `We detected that you have already tried our test twice, once as ${contentArray[0].inputName} made in ${contentArray[0].day}, and once as ${contentArray[1].inputName} made in ${contentArray[1].day}. Choose what you would like to do below`;
+      firstPageBtn1stTry.value = `See the test made by ${contentArray[0].inputName}`;
+      firstPageBtn2ndTry.value = `See the test made by ${contentArray[1].inputName}`;
+      firstPageBtn1stTryOverwrite.value = `Overwrite test made by ${contentArray[0].inputName}`;
+      firstPageBtn2ndTryOverwrite.value = `Overwrite test made by ${contentArray[1].inputName}`;
     } else {
-      firstPageH13rd.innerHTML = `We detected that you have already tried our test twice as ${contentArray[0].name}, once made in ${contentArray[0].day}, and once made in ${contentArray[1].day}. Choose what you would like to do below`;
+      firstPageH13rd.innerHTML = `We detected that you have already tried our test twice as ${contentArray[0].inputName}, once made in ${contentArray[0].day}, and once made in ${contentArray[1].day}. Choose what you would like to do below`;
       firstPageBtn1stTry.value = `See the test made in ${contentArray[0].day}`;
       firstPageBtn2ndTry.value = `See the test made in ${contentArray[1].day}`;
       firstPageBtn1stTryOverwrite.value = `Overwrite test made in ${contentArray[0].day}`;
@@ -212,16 +212,16 @@ if (contentArray.length == 0) {
     português();
     if (
       !(
-        contentArray[0].name.toLowerCase() == contentArray[1].name.toLowerCase()
+        contentArray[0].inputName.toLowerCase() == contentArray[1].inputName.toLowerCase()
       )
     ) {
-      firstPageH13rd.innerHTML = `Detectamos que você já tentou nosso teste duas vezes, uma vez como ${contentArray[0].name} feito em ${contentArray[0].day}, e uma vez como ${contentArray[1].name} feito em ${contentArray[1].day}. Escolha o que você gostaria de fazer abaixo`;
-      firstPageBtn1stTry.value = `Ver o teste feito por ${contentArray[0].name}`;
-      firstPageBtn2ndTry.value = `Ver o teste feito por ${contentArray[1].name}`;
-      firstPageBtn1stTryOverwrite.value = `Sobrescrever o teste de ${contentArray[0].name}`;
-      firstPageBtn2ndTryOverwrite.value = `Sobrescrever o teste de ${contentArray[1].name}`;
+      firstPageH13rd.innerHTML = `Detectamos que você já tentou nosso teste duas vezes, uma vez como ${contentArray[0].inputName} feito em ${contentArray[0].day}, e uma vez como ${contentArray[1].inputName} feito em ${contentArray[1].day}. Escolha o que você gostaria de fazer abaixo`;
+      firstPageBtn1stTry.value = `Ver o teste feito por ${contentArray[0].inputName}`;
+      firstPageBtn2ndTry.value = `Ver o teste feito por ${contentArray[1].inputName}`;
+      firstPageBtn1stTryOverwrite.value = `Sobrescrever o teste de ${contentArray[0].inputName}`;
+      firstPageBtn2ndTryOverwrite.value = `Sobrescrever o teste de ${contentArray[1].inputName}`;
     } else {
-      firstPageH13rd.innerHTML = `Detectamos que você já tentou nosso teste duas vezes como ${contentArray[0].name}, uma vez feito em ${contentArray[0].day}, e uma vez feito em ${contentArray[1].day}. Escolha o que você gostaria de fazer abaixo`;
+      firstPageH13rd.innerHTML = `Detectamos que você já tentou nosso teste duas vezes como ${contentArray[0].inputName}, uma vez feito em ${contentArray[0].day}, e uma vez feito em ${contentArray[1].day}. Escolha o que você gostaria de fazer abaixo`;
       firstPageBtn1stTry.value = `Ver o teste feito em ${contentArray[0].day}`;
       firstPageBtn2ndTry.value = `Ver o teste feito em ${contentArray[1].day}`;
       firstPageBtn1stTryOverwrite.value = `Sobrescrever o teste de ${contentArray[0].day}`;
@@ -234,17 +234,17 @@ if (contentArray.length == 0) {
     français();
     if (
       !(
-        contentArray?.[0]?.name?.toLowerCase() ==
-        contentArray?.[1]?.name?.toLowerCase()
+        contentArray?.[0]?.inputName?.toLowerCase() ==
+        contentArray?.[1]?.inputName?.toLowerCase()
       )
     ) {
-      firstPageH13rd.innerHTML = `Nous avons détecté que vous avez déjà essayé notre test deux fois, une fois comme ${contentArray[0].name} fabriqué en ${contentArray[0].day}, et une fois comme ${contentArray[1].name} fabriqué en ${contentArray[1].day}. Choisissez ce que vous souhaitez faire ci-dessous`;
-      firstPageBtn1stTry.value = `Voir le test ${contentArray[0].name}`;
-      firstPageBtn2ndTry.value = `Voir le test ${contentArray[1].name}`;
-      firstPageBtn1stTryOverwrite.value = `Écraser le test ${contentArray[0].name}`;
-      firstPageBtn2ndTryOverwrite.value = `Écraser le test ${contentArray[1].name}`;
+      firstPageH13rd.innerHTML = `Nous avons détecté que vous avez déjà essayé notre test deux fois, une fois comme ${contentArray[0].inputName} fabriqué en ${contentArray[0].day}, et une fois comme ${contentArray[1].inputName} fabriqué en ${contentArray[1].day}. Choisissez ce que vous souhaitez faire ci-dessous`;
+      firstPageBtn1stTry.value = `Voir le test ${contentArray[0].inputName}`;
+      firstPageBtn2ndTry.value = `Voir le test ${contentArray[1].inputName}`;
+      firstPageBtn1stTryOverwrite.value = `Écraser le test ${contentArray[0].inputName}`;
+      firstPageBtn2ndTryOverwrite.value = `Écraser le test ${contentArray[1].inputName}`;
     } else {
-      firstPageH13rd.innerHTML = `Nous avons détecté que vous avez déjà essayé notre test deux fois plus ${contentArray[0].name}, une fois fait en ${contentArray[0].day}, et une fois fait en ${contentArray[1].day}. Choisissez ce que vous souhaitez faire ci-dessous`;
+      firstPageH13rd.innerHTML = `Nous avons détecté que vous avez déjà essayé notre test deux fois plus ${contentArray[0].inputName}, une fois fait en ${contentArray[0].day}, et une fois fait en ${contentArray[1].day}. Choisissez ce que vous souhaitez faire ci-dessous`;
       firstPageBtn1stTry.value = `Voir le test réalisé en ${contentArray[0].day}`;
       firstPageBtn2ndTry.value = `Voir le test réalisé en ${contentArray[1].day}`;
       firstPageBtn1stTryOverwrite.value = `Écraser le test dans ${contentArray[0].day}`;
@@ -257,16 +257,16 @@ if (contentArray.length == 0) {
     español();
     if (
       !(
-        contentArray[0].name.toLowerCase() == contentArray[1].name.toLowerCase()
+        contentArray[0].inputName.toLowerCase() == contentArray[1].inputName.toLowerCase()
       )
     ) {
-      firstPageH13rd.innerHTML = `Detectamos que ya ha realizado nuestra prueba dos veces, una vez como ${contentArray[0].name} hecho en ${contentArray[0].day}, y una vez como ${contentArray[1].name} hecho en ${contentArray[1].day}. Elija lo que le gustaría hacer a continuación`;
-      firstPageBtn1stTry.value = `Ver la prueba de ${contentArray[0].name}`;
-      firstPageBtn2ndTry.value = `Ver la prueba de ${contentArray[1].name}`;
-      firstPageBtn1stTryOverwrite.value = `Sobrescribir la prueba de ${contentArray[0].name}`;
-      firstPageBtn2ndTryOverwrite.value = `Sobrescribir la prueba de ${contentArray[1].name}`;
+      firstPageH13rd.innerHTML = `Detectamos que ya ha realizado nuestra prueba dos veces, una vez como ${contentArray[0].inputName} hecho en ${contentArray[0].day}, y una vez como ${contentArray[1].inputName} hecho en ${contentArray[1].day}. Elija lo que le gustaría hacer a continuación`;
+      firstPageBtn1stTry.value = `Ver la prueba de ${contentArray[0].inputName}`;
+      firstPageBtn2ndTry.value = `Ver la prueba de ${contentArray[1].inputName}`;
+      firstPageBtn1stTryOverwrite.value = `Sobrescribir la prueba de ${contentArray[0].inputName}`;
+      firstPageBtn2ndTryOverwrite.value = `Sobrescribir la prueba de ${contentArray[1].inputName}`;
     } else {
-      firstPageH13rd.innerHTML = `Detectamos que ya ha realizado nuestra prueba dos veces más ${contentArray[0].name}, una vez hecho en ${contentArray[0].day}, y una vez hecho en ${contentArray[1].day}. Elija lo que le gustaría hacer a continuación`;
+      firstPageH13rd.innerHTML = `Detectamos que ya ha realizado nuestra prueba dos veces más ${contentArray[0].inputName}, una vez hecho en ${contentArray[0].day}, y una vez hecho en ${contentArray[1].day}. Elija lo que le gustaría hacer a continuación`;
       firstPageBtn1stTry.value = `Ver la prueba de ${contentArray[0].day}`;
       firstPageBtn2ndTry.value = `Ver la prueba de ${contentArray[1].day}`;
       firstPageBtn1stTryOverwrite.value = `Sobrescribir la prueba de ${contentArray[0].day}`;
@@ -288,15 +288,15 @@ const enterFunc = (event) => {
 };
 function numberBtnsOverwriteEn() {
   if (
-    !(contentArray[0].name.toLowerCase() == contentArray[1].name.toLowerCase())
+    !(contentArray[0].inputName.toLowerCase() == contentArray[1].inputName.toLowerCase())
   ) {
-    firstPageH13rd.innerHTML = `We detected that you have already tried our test twice, once as ${contentArray[0].name} made in ${contentArray[0].day}, and once as ${contentArray[1].name} made in ${contentArray[1].day}. Choose what you would like to do below`;
-    firstPageBtn1stTry.value = `See the test made by ${contentArray[0].name}`;
-    firstPageBtn2ndTry.value = `See the test made by ${contentArray[1].name}`;
-    firstPageBtn1stTryOverwrite.value = `Overwrite test made by ${contentArray[0].name}`;
-    firstPageBtn2ndTryOverwrite.value = `Overwrite test made by ${contentArray[1].name}`;
+    firstPageH13rd.innerHTML = `We detected that you have already tried our test twice, once as ${contentArray[0].inputName} made in ${contentArray[0].day}, and once as ${contentArray[1].inputName} made in ${contentArray[1].day}. Choose what you would like to do below`;
+    firstPageBtn1stTry.value = `See the test made by ${contentArray[0].inputName}`;
+    firstPageBtn2ndTry.value = `See the test made by ${contentArray[1].inputName}`;
+    firstPageBtn1stTryOverwrite.value = `Overwrite test made by ${contentArray[0].inputName}`;
+    firstPageBtn2ndTryOverwrite.value = `Overwrite test made by ${contentArray[1].inputName}`;
   } else {
-    firstPageH13rd.innerHTML = `We detected that you have already tried our test twice as ${contentArray[0].name}, once made in ${contentArray[0].day}, and once made in ${contentArray[1].day}. Choose what you would like to do below`;
+    firstPageH13rd.innerHTML = `We detected that you have already tried our test twice as ${contentArray[0].inputName}, once made in ${contentArray[0].day}, and once made in ${contentArray[1].day}. Choose what you would like to do below`;
     firstPageBtn1stTry.value = `See the test made in ${contentArray[0].day}`;
     firstPageBtn2ndTry.value = `See the test made in ${contentArray[1].day}`;
     firstPageBtn1stTryOverwrite.value = `Overwrite test made in ${contentArray[0].day}`;
@@ -305,15 +305,15 @@ function numberBtnsOverwriteEn() {
 }
 function numberBtnsOverwritePt() {
   if (
-    !(contentArray[0].name.toLowerCase() == contentArray[1].name.toLowerCase())
+    !(contentArray[0].inputName.toLowerCase() == contentArray[1].inputName.toLowerCase())
   ) {
-    firstPageH13rd.innerHTML = `Detectamos que você já tentou nosso teste duas vezes, uma vez como ${contentArray[0].name} feito em ${contentArray[0].day}, e uma vez como ${contentArray[1].name} feito em ${contentArray[1].day}. Escolha o que você gostaria de fazer abaixo`;
-    firstPageBtn1stTry.value = `Ver o teste feito por ${contentArray[0].name}`;
-    firstPageBtn2ndTry.value = `Ver o teste feito por ${contentArray[1].name}`;
-    firstPageBtn1stTryOverwrite.value = `Sobrescrever o teste de ${contentArray[0].name}`;
-    firstPageBtn2ndTryOverwrite.value = `Sobrescrever o teste de ${contentArray[1].name}`;
+    firstPageH13rd.innerHTML = `Detectamos que você já tentou nosso teste duas vezes, uma vez como ${contentArray[0].inputName} feito em ${contentArray[0].day}, e uma vez como ${contentArray[1].inputName} feito em ${contentArray[1].day}. Escolha o que você gostaria de fazer abaixo`;
+    firstPageBtn1stTry.value = `Ver o teste feito por ${contentArray[0].inputName}`;
+    firstPageBtn2ndTry.value = `Ver o teste feito por ${contentArray[1].inputName}`;
+    firstPageBtn1stTryOverwrite.value = `Sobrescrever o teste de ${contentArray[0].inputName}`;
+    firstPageBtn2ndTryOverwrite.value = `Sobrescrever o teste de ${contentArray[1].inputName}`;
   } else {
-    firstPageH13rd.innerHTML = `Detectamos que você já tentou nosso teste duas vezes como ${contentArray[0].name}, uma vez feito em ${contentArray[0].day}, e uma vez feito em ${contentArray[1].day}. Escolha o que você gostaria de fazer abaixo`;
+    firstPageH13rd.innerHTML = `Detectamos que você já tentou nosso teste duas vezes como ${contentArray[0].inputName}, uma vez feito em ${contentArray[0].day}, e uma vez feito em ${contentArray[1].day}. Escolha o que você gostaria de fazer abaixo`;
     firstPageBtn1stTry.value = `Ver o teste feito em ${contentArray[0].day}`;
     firstPageBtn2ndTry.value = `Ver o teste feito em ${contentArray[1].day}`;
     firstPageBtn1stTryOverwrite.value = `Sobrescrever o teste de ${contentArray[0].day}`;
@@ -322,15 +322,15 @@ function numberBtnsOverwritePt() {
 }
 function numberBtnsOverwriteFr() {
   if (
-    !(contentArray[0].name.toLowerCase() == contentArray[1].name.toLowerCase())
+    !(contentArray[0].inputName.toLowerCase() == contentArray[1].inputName.toLowerCase())
   ) {
-    firstPageH13rd.innerHTML = `Nous avons détecté que vous avez déjà essayé notre test deux fois, une fois comme ${contentArray[0].name} fabriqué en ${contentArray[0].day}, et une fois comme ${contentArray[1].name} fabriqué en ${contentArray[1].day}. Choisissez ce que vous souhaitez faire ci-dessous`;
-    firstPageBtn1stTry.value = `Voir le test ${contentArray[0].name}`;
-    firstPageBtn2ndTry.value = `Voir le test ${contentArray[1].name}`;
-    firstPageBtn1stTryOverwrite.value = `Écraser le test ${contentArray[0].name}`;
-    firstPageBtn2ndTryOverwrite.value = `Écraser le test ${contentArray[1].name}`;
+    firstPageH13rd.innerHTML = `Nous avons détecté que vous avez déjà essayé notre test deux fois, une fois comme ${contentArray[0].inputName} fabriqué en ${contentArray[0].day}, et une fois comme ${contentArray[1].inputName} fabriqué en ${contentArray[1].day}. Choisissez ce que vous souhaitez faire ci-dessous`;
+    firstPageBtn1stTry.value = `Voir le test ${contentArray[0].inputName}`;
+    firstPageBtn2ndTry.value = `Voir le test ${contentArray[1].inputName}`;
+    firstPageBtn1stTryOverwrite.value = `Écraser le test ${contentArray[0].inputName}`;
+    firstPageBtn2ndTryOverwrite.value = `Écraser le test ${contentArray[1].inputName}`;
   } else {
-    firstPageH13rd.innerHTML = `Nous avons détecté que vous avez déjà essayé notre test deux fois plus ${contentArray[0].name}, une fois fait en ${contentArray[0].day}, et une fois fait en ${contentArray[1].day}. Choisissez ce que vous souhaitez faire ci-dessous`;
+    firstPageH13rd.innerHTML = `Nous avons détecté que vous avez déjà essayé notre test deux fois plus ${contentArray[0].inputName}, une fois fait en ${contentArray[0].day}, et une fois fait en ${contentArray[1].day}. Choisissez ce que vous souhaitez faire ci-dessous`;
     firstPageBtn1stTry.value = `Voir le test réalisé en ${contentArray[0].day}`;
     firstPageBtn2ndTry.value = `Voir le test réalisé en ${contentArray[1].day}`;
     firstPageBtn1stTryOverwrite.value = `Écraser le test dans ${contentArray[0].day}`;
@@ -339,15 +339,15 @@ function numberBtnsOverwriteFr() {
 }
 function numberBtnsOverwriteEs() {
   if (
-    !(contentArray[0].name.toLowerCase() == contentArray[1].name.toLowerCase())
+    !(contentArray[0].inputName.toLowerCase() == contentArray[1].inputName.toLowerCase())
   ) {
-    firstPageH13rd.innerHTML = `Detectamos que ya ha realizado nuestra prueba dos veces, una vez como ${contentArray[0].name} hecho en ${contentArray[0].day}, y una vez como ${contentArray[1].name} hecho en ${contentArray[1].day}. Elija lo que le gustaría hacer a continuación`;
-    firstPageBtn1stTry.value = `Ver la prueba de ${contentArray[0].name}`;
-    firstPageBtn2ndTry.value = `Ver la prueba de ${contentArray[1].name}`;
-    firstPageBtn1stTryOverwrite.value = `Sobrescribir la prueba de ${contentArray[0].name}`;
-    firstPageBtn2ndTryOverwrite.value = `Sobrescribir la prueba de ${contentArray[1].name}`;
+    firstPageH13rd.innerHTML = `Detectamos que ya ha realizado nuestra prueba dos veces, una vez como ${contentArray[0].inputName} hecho en ${contentArray[0].day}, y una vez como ${contentArray[1].inputName} hecho en ${contentArray[1].day}. Elija lo que le gustaría hacer a continuación`;
+    firstPageBtn1stTry.value = `Ver la prueba de ${contentArray[0].inputName}`;
+    firstPageBtn2ndTry.value = `Ver la prueba de ${contentArray[1].inputName}`;
+    firstPageBtn1stTryOverwrite.value = `Sobrescribir la prueba de ${contentArray[0].inputName}`;
+    firstPageBtn2ndTryOverwrite.value = `Sobrescribir la prueba de ${contentArray[1].inputName}`;
   } else {
-    firstPageH13rd.innerHTML = `Detectamos que ya ha realizado nuestra prueba dos veces más ${contentArray[0].name}, una vez hecho en ${contentArray[0].day}, y una vez hecho en ${contentArray[1].day}. Elija lo que le gustaría hacer a continuación`;
+    firstPageH13rd.innerHTML = `Detectamos que ya ha realizado nuestra prueba dos veces más ${contentArray[0].inputName}, una vez hecho en ${contentArray[0].day}, y una vez hecho en ${contentArray[1].day}. Elija lo que le gustaría hacer a continuación`;
     firstPageBtn1stTry.value = `Ver la prueba de ${contentArray[0].day}`;
     firstPageBtn2ndTry.value = `Ver la prueba de ${contentArray[1].day}`;
     firstPageBtn1stTryOverwrite.value = `Sobrescribir la prueba de ${contentArray[0].day}`;
@@ -369,7 +369,7 @@ function english() {
   firstPageH1.innerHTML =
     "We are glad you gave us a chance to help you achieve the body of your dreams, press start to continue";
   if (contentArray.length > 0)
-    firstPageH12nd.innerHTML = `We detected that you have already tried our test once as ${contentArray[0].name}, made in ${contentArray[0].day}. Choose what you would like to do below`;
+    firstPageH12nd.innerHTML = `We detected that you have already tried our test once as ${contentArray[0].inputName}, made in ${contentArray[0].day}. Choose what you would like to do below`;
   firstPageBtnStart.value = `Start`;
   firstPageBtnDifferent.value = `Do a Different Test`;
   firstPageBtnOverwrite.value = `Overwrite one Previous Test`;
@@ -753,7 +753,7 @@ function français() {
   firstPageH1.innerHTML =
     "Nous sommes heureux que vous nous ayez donné une chance de vous aider à réaliser le corps de vos rêves, appuyez sur Début pour continuer";
   if (contentArray.length > 0)
-    firstPageH12nd.innerHTML = `Nous avons détecté que vous avez déjà essayé notre test une fois car ${contentArray[0].name}, fabriqué en ${contentArray[0].day}. Choisissez ce que vous souhaitez faire ci-dessous`;
+    firstPageH12nd.innerHTML = `Nous avons détecté que vous avez déjà essayé notre test une fois car ${contentArray[0].inputName}, fabriqué en ${contentArray[0].day}. Choisissez ce que vous souhaitez faire ci-dessous`;
   firstPageBtnStart.value = `Début`;
   firstPageBtnDifferent.value = `Faites un nouveau test`;
   firstPageBtnOverwrite.value = `Écraser un test précédent`;
@@ -953,7 +953,7 @@ function español() {
   firstPageH1.innerHTML =
     "Nos alegra que nos haya brindado la oportunidad de ayudarlo a lograr el cuerpo de sus sueños, presione comenzar para continuar";
   if (contentArray.length > 0)
-    firstPageH12nd.innerHTML = `Detectamos que ya ha realizado nuestra prueba una vez como ${contentArray[0].name}, hecho en ${contentArray[0].day}. Elija lo que le gustaría hacer a continuación`;
+    firstPageH12nd.innerHTML = `Detectamos que ya ha realizado nuestra prueba una vez como ${contentArray[0].inputName}, hecho en ${contentArray[0].day}. Elija lo que le gustaría hacer a continuación`;
   firstPageBtnStart.value = `Comienzo`;
   firstPageBtnDifferent.value = `Hacer una nueva prueba`;
   firstPageBtnOverwrite.value = `Sobrescribir una prueba anterior`;
@@ -1293,7 +1293,7 @@ const setLocalData = (idParameter) => {
   idUser = idParameter;
   contentArray.push({
     idUser,
-    name,
+    inputName,
     emailaddrreturn,
     age,
     language,
@@ -1302,7 +1302,7 @@ const setLocalData = (idParameter) => {
     resultBeginning2,
     btype,
     bodypt,
-    bbg,
+    goalDistance,
     ageAdvice,
     bodytp,
     cbody,
@@ -1328,7 +1328,7 @@ const showPrevTestResult = (resultTry) => {
     idFooter.style.display = "none";
     buttonFirst.style.display = "block";
     finalResultH3Id.style.display = "block";
-    finalResultH3Id.innerHTML = `${contentArray[0].resultBeginning2} ${contentArray[0].name}</big>, ${contentArray[0].btype} <br> ${contentArray[0].bodypt}${contentArray[0].bbg}<br><br>${contentArray[0].ageAdvice}<br><br>${contentArray[0].bodytp}<br><br>${contentArray[0].cbody}<br><br>${contentArray[0].ccbodycc}<br><br>${contentArray[0].cbodyc}<br><br>${contentArray[0].ccbody}<br><br>${contentArray[0].bodycc}<br><br>${contentArray[0].bodyc}<br><br>${contentArray[0].emotionans}<br><br>${contentArray[0].bmrl}<br><br><br>`;
+    finalResultH3Id.innerHTML = `${contentArray[0].resultBeginning2} ${contentArray[0].inputName}</big>, ${contentArray[0].btype} <br> ${contentArray[0].bodypt}${contentArray[0].goalDistance}<br><br>${contentArray[0].ageAdvice}<br><br>${contentArray[0].bodytp}<br><br>${contentArray[0].cbody}<br><br>${contentArray[0].ccbodycc}<br><br>${contentArray[0].cbodyc}<br><br>${contentArray[0].ccbody}<br><br>${contentArray[0].bodycc}<br><br>${contentArray[0].bodyc}<br><br>${contentArray[0].emotionans}<br><br>${contentArray[0].bmrl}<br><br><br>`;
     finalResultH4Id.style.display = "block";
     finalResultH4Id.innerHTML = `<i>${contentArray[0].bmrll}<br><br>${contentArray[0].bmrlll}<br><br>${contentArray[0].bmrllll}<br><br>${contentArray[0].bmrlllll}</i><br><br><br>`;
     idFooter.style.position = "relative";
@@ -1339,7 +1339,7 @@ const showPrevTestResult = (resultTry) => {
     idFooter.style.display = "none";
     buttonFirst.style.display = "block";
     finalResultH3Id.style.display = "block";
-    finalResultH3Id.innerHTML = `${contentArray[1].resultBeginning2} ${contentArray[1].name}</big>, ${contentArray[1].btype} <br> ${contentArray[1].bodypt}${contentArray[1].bbg}<br><br>${contentArray[1].ageAdvice}<br><br>${contentArray[1].bodytp}<br><br>${contentArray[1].cbody}<br><br>${contentArray[1].ccbodycc}<br><br>${contentArray[1].cbodyc}<br><br>${contentArray[1].ccbody}<br><br>${contentArray[1].bodycc}<br><br>${contentArray[1].bodyc}<br><br>${contentArray[1].emotionans}<br><br>${contentArray[1].bmrl}<br><br><br>`;
+    finalResultH3Id.innerHTML = `${contentArray[1].resultBeginning2} ${contentArray[1].inputName}</big>, ${contentArray[1].btype} <br> ${contentArray[1].bodypt}${contentArray[1].goalDistance}<br><br>${contentArray[1].ageAdvice}<br><br>${contentArray[1].bodytp}<br><br>${contentArray[1].cbody}<br><br>${contentArray[1].ccbodycc}<br><br>${contentArray[1].cbodyc}<br><br>${contentArray[1].ccbody}<br><br>${contentArray[1].bodycc}<br><br>${contentArray[1].bodyc}<br><br>${contentArray[1].emotionans}<br><br>${contentArray[1].bmrl}<br><br><br>`;
     finalResultH4Id.style.display = "block";
     finalResultH4Id.innerHTML = `<i>${contentArray[1].bmrll}<br><br>${contentArray[1].bmrlll}<br><br>${contentArray[1].bmrllll}<br><br>${contentArray[1].bmrlllll}</i><br><br><br>`;
     idFooter.style.position = "relative";
@@ -1356,19 +1356,19 @@ const overwriteTest2 = (paramas) => {
   if (paramas == 1) {
     if (language == "english")
       var confirmOverwrite = confirm(
-        `Are you sure you want to overwrite the test made as ${contentArray[0].name}? It will be forever destroyed.`
+        `Are you sure you want to overwrite the test made as ${contentArray[0].inputName}? It will be forever destroyed.`
       );
     else if (language == "português")
       var confirmOverwrite = confirm(
-        `Tem certeza que deseja sobrescrever o teste feito por ${contentArray[0].name}? Esse teste será destruido para sempre.`
+        `Tem certeza que deseja sobrescrever o teste feito por ${contentArray[0].inputName}? Esse teste será destruido para sempre.`
       );
     else if (language == "français")
       var confirmOverwrite = confirm(
-        `Voulez-vous vraiment remplacer le test effectué comme ${contentArray[0].name}? Il sera détruit à jamais.`
+        `Voulez-vous vraiment remplacer le test effectué comme ${contentArray[0].inputName}? Il sera détruit à jamais.`
       );
     else if (language == "español")
       var confirmOverwrite = confirm(
-        `¿Estás seguro de que quieres sobrescribir la prueba realizada como ${contentArray[0].name}? Será destruido para siempre.`
+        `¿Estás seguro de que quieres sobrescribir la prueba realizada como ${contentArray[0].inputName}? Será destruido para siempre.`
       );
     if (confirmOverwrite == true) {
       contentArray.shift();
@@ -1386,19 +1386,19 @@ const overwriteTest2 = (paramas) => {
   } else if (paramas == 2) {
     if (language == "english")
       var confirmOverwrite = confirm(
-        `Are you sure you want to overwrite the test made as ${contentArray[1].name}? It will be forever destroyed.`
+        `Are you sure you want to overwrite the test made as ${contentArray[1].inputName}? It will be forever destroyed.`
       );
     else if (language == "português")
       var confirmOverwrite = confirm(
-        `Tem certeza que deseja sobrescrever o teste feito por ${contentArray[1].name}? Esse teste será destruido para sempre.`
+        `Tem certeza que deseja sobrescrever o teste feito por ${contentArray[1].inputName}? Esse teste será destruido para sempre.`
       );
     else if (language == "français")
       var confirmOverwrite = confirm(
-        `Voulez-vous vraiment remplacer le test effectué comme ${contentArray[1].name}? Il sera détruit à jamais.`
+        `Voulez-vous vraiment remplacer le test effectué comme ${contentArray[1].inputName}? Il sera détruit à jamais.`
       );
     else if (language == "español")
       var confirmOverwrite = confirm(
-        `¿Estás seguro de que quieres sobrescribir la prueba realizada como ${contentArray[1].name}? Será destruido para siempre.`
+        `¿Estás seguro de que quieres sobrescribir la prueba realizada como ${contentArray[1].inputName}? Será destruido para siempre.`
       );
     if (confirmOverwrite == true) {
       contentArray.pop();
@@ -1411,19 +1411,19 @@ function overwriteTest() {
   if (triesMade == 1) {
     if (language == "english")
       var confirmOverwrite = confirm(
-        `Are you sure you want to overwrite the test made as ${contentArray[0].name}? It will be forever destroyed.`
+        `Are you sure you want to overwrite the test made as ${contentArray[0].inputName}? It will be forever destroyed.`
       );
     else if (language == "português")
       var confirmOverwrite = confirm(
-        `Tem certeza que deseja sobrescrever o teste feito por ${contentArray[0].name}? Esse teste será destruido para sempre.`
+        `Tem certeza que deseja sobrescrever o teste feito por ${contentArray[0].inputName}? Esse teste será destruido para sempre.`
       );
     else if (language == "français")
       var confirmOverwrite = confirm(
-        `Voulez-vous vraiment remplacer le test effectué comme ${contentArray[0].name}? Il sera détruit à jamais.`
+        `Voulez-vous vraiment remplacer le test effectué comme ${contentArray[0].inputName}? Il sera détruit à jamais.`
       );
     else if (language == "español")
       var confirmOverwrite = confirm(
-        `¿Estás seguro de que quieres sobrescribir la prueba realizada como ${contentArray[0].name}? Será destruido para siempre.`
+        `¿Estás seguro de que quieres sobrescribir la prueba realizada como ${contentArray[0].inputName}? Será destruido para siempre.`
       );
     if (confirmOverwrite == true) {
       contentArray.shift();
@@ -1653,10 +1653,10 @@ function returnUpdatedValues() {
     returnBody("colorChangeIdEndo");
     bodyType("endo");
   }
-  if (bope == "bulking") returnGoal("colorChangeIdBulk");
-  else if (bope == "cutting") returnGoal("colorChangeIdCut");
-  else if (bope == "surplus") returnGoal("colorChangeIdSurp");
-  else if (bope == "muscle") returnGoal("colorChangeIdMuscle");
+  if (goal == "bulking") returnGoal("colorChangeIdBulk");
+  else if (goal == "cutting") returnGoal("colorChangeIdCut");
+  else if (goal == "surplus") returnGoal("colorChangeIdSurp");
+  else if (goal == "muscle") returnGoal("colorChangeIdMuscle");
 }
 const pageSwitcher = (numpage) => {
   titleMid();
@@ -1925,12 +1925,12 @@ function hoverOutColorChangeFunc(g, gg) {
     colorChangeIdMetric.style.backgroundColor = "#7395AE";
   else if (unit == "imperial")
     colorChangeIdImperial.style.backgroundColor = "#7395AE";
-  if (bope == "bulking") colorChangeIdBulk.style.backgroundColor = "#7395AE";
-  else if (bope == "cutting")
+  if (goal == "bulking") colorChangeIdBulk.style.backgroundColor = "#7395AE";
+  else if (goal == "cutting")
     colorChangeIdCut.style.backgroundColor = "#7395AE";
-  else if (bope == "surplus")
+  else if (goal == "surplus")
     colorChangeIdSurp.style.backgroundColor = "#7395AE";
-  else if (bope == "muscle")
+  else if (goal == "muscle")
     colorChangeIdMuscle.style.backgroundColor = "#7395AE";
   if (bodytype == "ecto") colorChangeIdEcto.style.backgroundColor = "#7395AE";
   else if (bodytype == "meso")
@@ -2091,7 +2091,7 @@ function setImg(link) {
   src = document.getElementById("bodyImageId");
   src.appendChild(img);
 }
-const bodyGoalFunction = (bbtype) => (bope = bbtype);
+const bodyGoalFunction = (bbtype) => (goal = bbtype);
 //in case the person does not know their body type
 function nop() {
   if (languageValue == 1)
@@ -2194,17 +2194,17 @@ function idealWeight(lbs, lb) {
       idealweight2 = 24 * height ** 2;
     }
   }
-  if (bope == "bulking")
+  if (goal == "bulking")
     idealWeight000 += ((3 * idealweight2 + idealweight1) / 4).toFixed(1);
-  else if (bope == "cutting")
+  else if (goal == "cutting")
     idealWeight000 += ((2.5 * idealweight1 + idealweight2) / 3.5).toFixed(1);
-  else if (bope == "surplus")
+  else if (goal == "surplus")
     idealWeight000 += ((idealweight1 + idealweight2) / 2).toFixed(1);
-  else if (bope == "muscle")
+  else if (goal == "muscle")
     idealWeight000 += ((idealweight1 + 2 * idealweight2) / 3).toFixed(1);
-  if (bope == "bulking" || bope == "cutting" || bope == "surplus")
+  if (goal == "bulking" || goal == "cutting" || goal == "surplus")
     deltap += (weight - idealWeight000).toFixed(1);
-  else if (bope == "muscle") deltap += (idealWeight000 - weight).toFixed(1);
+  else if (goal == "muscle") deltap += (idealWeight000 - weight).toFixed(1);
   if (
     bmi_state == "underweight" ||
     bmi_state == "abaixo do peso" ||
@@ -2965,44 +2965,44 @@ function sendEmail() {
     }Estado de IMC: ${bmi_state}\n\nTasa metabólica basal: ${bmr}\n\nRango de ingesta calórica recomendado: `;
   }
   if (gender == "male") {
-    if (bope == "bulking") {
+    if (goal == "bulking") {
       message += ((10 * weight + 625 * height - 5 * age + 5) * 1.1).toFixed(0);
       message += addup5;
       message += ((10 * weight + 625 * height - 5 * age + 5) * 1.15).toFixed(0);
       message += addup6;
-    } else if (bope == "cutting") {
+    } else if (goal == "cutting") {
       message += ((10 * weight + 625 * height - 5 * age + 5) * 0.7).toFixed(0);
       message += addup5;
       message += ((10 * weight + 625 * height - 5 * age + 5) * 0.8).toFixed(0);
       message += addup6;
-    } else if (bope == "surplus") {
+    } else if (goal == "surplus") {
       message += ((10 * weight + 625 * height - 5 * age + 5) * 0.7).toFixed(0);
       message += addup5;
       message += ((10 * weight + 625 * height - 5 * age + 5) * 0.8).toFixed(0);
       message += addup6;
-    } else if (bope == "muscle") {
+    } else if (goal == "muscle") {
       message += ((10 * weight + 625 * height - 5 * age + 5) * 1.1).toFixed(0);
       message += addup5;
       message += ((10 * weight + 625 * height - 5 * age + 5) * 1.15).toFixed(0);
       message += addup6;
     }
   } else if (gender == "female") {
-    if (bope == "bulking") {
+    if (goal == "bulking") {
       message += ((10 * weight + 625 * height - 5 * age + 5) * 1.05).toFixed(0);
       message += addup5;
       message += ((10 * weight + 625 * height - 5 * age + 5) * 1.1).toFixed(0);
       message += addup6;
-    } else if (bope == "cutting") {
+    } else if (goal == "cutting") {
       message += ((10 * weight + 625 * height - 5 * age + 5) * 0.65).toFixed(0);
       message += addup5;
       message += ((10 * weight + 625 * height - 5 * age + 5) * 0.75).toFixed(0);
       message += addup6;
-    } else if (bope == "surplus") {
+    } else if (goal == "surplus") {
       message += ((10 * weight + 625 * height - 5 * age + 5) * 0.7).toFixed(0);
       message += addup5;
       message += ((10 * weight + 625 * height - 5 * age + 5) * 0.8).toFixed(0);
       message += addup6;
-    } else if (bope == "muscle") {
+    } else if (goal == "muscle") {
       message += ((10 * weight + 625 * height - 5 * age + 5) * 1.1).toFixed(0);
       message += addup5;
       message += ((10 * weight + 625 * height - 5 * age + 5) * 1.15).toFixed(0);
@@ -3127,10 +3127,10 @@ function result() {
   yyyy = day.getFullYear();
   day = `${dd}/${mm}/${yyyy}`;
   if (bodytype == "ecto") {
-    if (bope == "bulking") bodyp += 0;
-    else if (bope == "cutting") bodyp += 1;
-    else if (bope == "surplus") bodyp += 2;
-    else if (bope == "muscle") bodyp += 0;
+    if (goal == "bulking") bodyp += 0;
+    else if (goal == "cutting") bodyp += 1;
+    else if (goal == "surplus") bodyp += 2;
+    else if (goal == "muscle") bodyp += 0;
     if (languageValue == 1) {
       if (bodyp == 2)
         bodypt +=
@@ -3173,10 +3173,10 @@ function result() {
           " Lo sé, es más difícil para tu tipo de cuerpo, pero aún así hagámoslo, será más difícil de mantener, pero aún así, ¡lo lograrás!";
     }
   } else if (bodytype == "meso") {
-    if (bope == "bulking") bodyp += 2;
-    else if (bope == "cutting") bodyp += 2;
-    else if (bope == "surplus") bodyp += 1;
-    else if (bope == "muscle") bodyp += 2;
+    if (goal == "bulking") bodyp += 2;
+    else if (goal == "cutting") bodyp += 2;
+    else if (goal == "surplus") bodyp += 1;
+    else if (goal == "muscle") bodyp += 2;
     if (languageValue == 1) {
       if (bodyp == 2)
         bodypt +=
@@ -3211,10 +3211,10 @@ function result() {
       else if (bodyp == 0) bodypt += " ¡Eso no debería suceder! Lo siento.";
     }
   } else if (bodytype == "endo") {
-    if (bope == "bulking") bodyp += 2;
-    else if (bope == "cutting") bodyp += 0;
-    else if (bope == "surplus") bodyp += 1;
-    else if (bope == "muscle") bodyp += 2;
+    if (goal == "bulking") bodyp += 2;
+    else if (goal == "cutting") bodyp += 0;
+    else if (goal == "surplus") bodyp += 1;
+    else if (goal == "muscle") bodyp += 2;
     if (languageValue == 1) {
       if (bodyp == 2)
         bodypt +=
@@ -3267,10 +3267,10 @@ function result() {
       bbgw2 = weight * 0.14;
       bbgwp = 13;
     }
-    if (bope == "bulking") bbgw0 = ((bbgw2 + bbgw1) / 2).toFixed(1);
-    else if (bope == "cutting") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
-    else if (bope == "surplus") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
-    else if (bope == "muscle") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
+    if (goal == "bulking") bbgw0 = ((bbgw2 + bbgw1) / 2).toFixed(1);
+    else if (goal == "cutting") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
+    else if (goal == "surplus") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
+    else if (goal == "muscle") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
   } else if (currentBody == 2) {
     if (gender == "male") {
       bbgw1 = weight * 0.06;
@@ -3281,10 +3281,10 @@ function result() {
       bbgw2 = weight * 0.17;
       bbgwp = 16;
     }
-    if (bope == "bulking") bbgw0 = ((bbgw2 + bbgw1) / 2).toFixed(1);
-    else if (bope == "cutting") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
-    else if (bope == "surplus") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
-    else if (bope == "muscle") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
+    if (goal == "bulking") bbgw0 = ((bbgw2 + bbgw1) / 2).toFixed(1);
+    else if (goal == "cutting") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
+    else if (goal == "surplus") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
+    else if (goal == "muscle") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
   } else if (currentBody == 3) {
     if (gender == "male") {
       bbgw1 = weight * 0.08;
@@ -3295,10 +3295,10 @@ function result() {
       bbgw2 = weight * 0.2;
       bbgwp = 19;
     }
-    if (bope == "bulking") bbgw0 = ((bbgw2 + bbgw1) / 2).toFixed(1);
-    else if (bope == "cutting") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
-    else if (bope == "surplus") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
-    else if (bope == "muscle") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
+    if (goal == "bulking") bbgw0 = ((bbgw2 + bbgw1) / 2).toFixed(1);
+    else if (goal == "cutting") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
+    else if (goal == "surplus") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
+    else if (goal == "muscle") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
   } else if (currentBody == 4) {
     if (gender == "male") {
       bbgw1 = weight * 0.11;
@@ -3309,10 +3309,10 @@ function result() {
       bbgw2 = weight * 0.23;
       bbgwp = 22;
     }
-    if (bope == "bulking") bbgw0 = ((bbgw2 + bbgw1) / 2).toFixed(1);
-    else if (bope == "cutting") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
-    else if (bope == "surplus") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
-    else if (bope == "muscle") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
+    if (goal == "bulking") bbgw0 = ((bbgw2 + bbgw1) / 2).toFixed(1);
+    else if (goal == "cutting") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
+    else if (goal == "surplus") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
+    else if (goal == "muscle") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
   } else if (currentBody == 5) {
     if (gender == "male") {
       bbgw1 = weight * 0.13;
@@ -3323,10 +3323,10 @@ function result() {
       bbgw2 = weight * 0.26;
       bbgwp = 25;
     }
-    if (bope == "bulking") bbgw0 = ((bbgw2 + bbgw1) / 2).toFixed(1);
-    else if (bope == "cutting") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
-    else if (bope == "surplus") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
-    else if (bope == "muscle") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
+    if (goal == "bulking") bbgw0 = ((bbgw2 + bbgw1) / 2).toFixed(1);
+    else if (goal == "cutting") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
+    else if (goal == "surplus") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
+    else if (goal == "muscle") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
   } else if (currentBody == 6) {
     if (gender == "male") {
       bbgw1 = weight * 0.16;
@@ -3337,10 +3337,10 @@ function result() {
       bbgw2 = weight * 0.29;
       bbgwp = 28;
     }
-    if (bope == "bulking") bbgw0 = ((bbgw2 + bbgw1) / 2).toFixed(1);
-    else if (bope == "cutting") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
-    else if (bope == "surplus") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
-    else if (bope == "muscle") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
+    if (goal == "bulking") bbgw0 = ((bbgw2 + bbgw1) / 2).toFixed(1);
+    else if (goal == "cutting") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
+    else if (goal == "surplus") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
+    else if (goal == "muscle") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
   } else if (currentBody == 7) {
     if (gender == "male") {
       bbgw1 = weight * 0.2;
@@ -3351,10 +3351,10 @@ function result() {
       bbgw2 = weight * 0.35;
       bbgwp = 32.5;
     }
-    if (bope == "bulking") bbgw0 = ((bbgw2 + bbgw1) / 2).toFixed(1);
-    else if (bope == "cutting") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
-    else if (bope == "surplus") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
-    else if (bope == "muscle") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
+    if (goal == "bulking") bbgw0 = ((bbgw2 + bbgw1) / 2).toFixed(1);
+    else if (goal == "cutting") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
+    else if (goal == "surplus") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
+    else if (goal == "muscle") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
   } else if (currentBody == 8) {
     if (gender == "male") {
       bbgw1 = weight * 0.25;
@@ -3365,10 +3365,10 @@ function result() {
       bbgw2 = weight * 0.4;
       bbgwp = 38;
     }
-    if (bope == "bulking") bbgw0 = ((bbgw2 + bbgw1) / 2).toFixed(1);
-    else if (bope == "cutting") bbgw0 = ((bbgw2 + bbgw1) / 2).toFixed(1);
-    else if (bope == "surplus") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
-    else if (bope == "muscle") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
+    if (goal == "bulking") bbgw0 = ((bbgw2 + bbgw1) / 2).toFixed(1);
+    else if (goal == "cutting") bbgw0 = ((bbgw2 + bbgw1) / 2).toFixed(1);
+    else if (goal == "surplus") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
+    else if (goal == "muscle") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
   } else if (currentBody == 9) {
     if (gender == "male") {
       bbgw1 = weight * 0.35;
@@ -3379,200 +3379,200 @@ function result() {
       bbgw2 = weight * 0.5;
       bbgwp = 50;
     }
-    if (bope == "bulking") bbgw0 = ((bbgw2 + bbgw1) / 2).toFixed(1);
-    else if (bope == "cutting") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
-    else if (bope == "surplus") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
-    else if (bope == "muscle") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
+    if (goal == "bulking") bbgw0 = ((bbgw2 + bbgw1) / 2).toFixed(1);
+    else if (goal == "cutting") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
+    else if (goal == "surplus") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
+    else if (goal == "muscle") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
   }
   if (goalBody == 1) {
     if (gender == "male") {
       bbgw3 += idealWeight000 * 0.04;
       bbgw4 += idealWeight000 * 0.05;
-      if (bope == "bulking") bbgw0p += ((3 * 5 + 4) / 4).toFixed(1);
-      else if (bope == "cutting") bbgw0p += ((2.5 * 4 + 5) / 3.5).toFixed(1);
-      else if (bope == "surplus") bbgw0p += ((4 + 5) / 2).toFixed(1);
-      else if (bope == "muscle") bbgw0p += ((4 + 2 * 5) / 3).toFixed(1);
+      if (goal == "bulking") bbgw0p += ((3 * 5 + 4) / 4).toFixed(1);
+      else if (goal == "cutting") bbgw0p += ((2.5 * 4 + 5) / 3.5).toFixed(1);
+      else if (goal == "surplus") bbgw0p += ((4 + 5) / 2).toFixed(1);
+      else if (goal == "muscle") bbgw0p += ((4 + 2 * 5) / 3).toFixed(1);
     } else if (gender == "female") {
       bbgw3 += idealWeight000 * 0.12;
       bbgw4 += idealWeight000 * 0.14;
-      if (bope == "bulking") bbgw0p += ((3 * 14 + 12) / 4).toFixed(1);
-      else if (bope == "cutting") bbgw0p += ((2.5 * 12 + 14) / 3.5).toFixed(1);
-      else if (bope == "surplus") bbgw0p += ((12 + 14) / 2).toFixed(1);
-      else if (bope == "muscle") bbgw0p += ((12 + 2 * 14) / 3).toFixed(1);
+      if (goal == "bulking") bbgw0p += ((3 * 14 + 12) / 4).toFixed(1);
+      else if (goal == "cutting") bbgw0p += ((2.5 * 12 + 14) / 3.5).toFixed(1);
+      else if (goal == "surplus") bbgw0p += ((12 + 14) / 2).toFixed(1);
+      else if (goal == "muscle") bbgw0p += ((12 + 2 * 14) / 3).toFixed(1);
     }
-    if (bope == "bulking") bbgw00 += ((3 * bbgw4 + bbgw3) / 4).toFixed(1);
-    else if (bope == "cutting")
+    if (goal == "bulking") bbgw00 += ((3 * bbgw4 + bbgw3) / 4).toFixed(1);
+    else if (goal == "cutting")
       bbgw00 += ((2.5 * bbgw3 + bbgw4) / 3.5).toFixed(1);
-    else if (bope == "surplus") bbgw00 += ((bbgw3 + bbgw4) / 2).toFixed(1);
-    else if (bope == "muscle") bbgw00 += ((bbgw3 + 2 * bbgw4) / 3).toFixed(1);
+    else if (goal == "surplus") bbgw00 += ((bbgw3 + bbgw4) / 2).toFixed(1);
+    else if (goal == "muscle") bbgw00 += ((bbgw3 + 2 * bbgw4) / 3).toFixed(1);
   } else if (goalBody == 2) {
     if (gender == "male") {
       bbgw3 += idealWeight000 * 0.06;
       bbgw4 += idealWeight000 * 0.07;
-      if (bope == "bulking") bbgw0p += ((3 * 7 + 6) / 4).toFixed(1);
-      else if (bope == "cutting") bbgw0p += ((2.5 * 6 + 7) / 3.5).toFixed(1);
-      else if (bope == "surplus") bbgw0p += ((6 + 7) / 2).toFixed(1);
-      else if (bope == "muscle") bbgw0p += ((6 + 2 * 7) / 3).toFixed(1);
+      if (goal == "bulking") bbgw0p += ((3 * 7 + 6) / 4).toFixed(1);
+      else if (goal == "cutting") bbgw0p += ((2.5 * 6 + 7) / 3.5).toFixed(1);
+      else if (goal == "surplus") bbgw0p += ((6 + 7) / 2).toFixed(1);
+      else if (goal == "muscle") bbgw0p += ((6 + 2 * 7) / 3).toFixed(1);
     } else if (gender == "female") {
       bbgw3 += idealWeight000 * 0.15;
       bbgw4 += idealWeight000 * 0.17;
-      if (bope == "bulking") bbgw0p += ((3 * 17 + 15) / 4).toFixed(1);
-      else if (bope == "cutting") bbgw0p += ((2.5 * 15 + 17) / 3.5).toFixed(1);
-      else if (bope == "surplus") bbgw0p += ((15 + 17) / 2).toFixed(1);
-      else if (bope == "muscle") bbgw0p += ((15 + 2 * 17) / 3).toFixed(1);
+      if (goal == "bulking") bbgw0p += ((3 * 17 + 15) / 4).toFixed(1);
+      else if (goal == "cutting") bbgw0p += ((2.5 * 15 + 17) / 3.5).toFixed(1);
+      else if (goal == "surplus") bbgw0p += ((15 + 17) / 2).toFixed(1);
+      else if (goal == "muscle") bbgw0p += ((15 + 2 * 17) / 3).toFixed(1);
     }
-    if (bope == "bulking") bbgw00 += ((3 * bbgw4 + bbgw3) / 4).toFixed(1);
-    else if (bope == "cutting")
+    if (goal == "bulking") bbgw00 += ((3 * bbgw4 + bbgw3) / 4).toFixed(1);
+    else if (goal == "cutting")
       bbgw00 += ((2.5 * bbgw3 + bbgw4) / 3.5).toFixed(1);
-    else if (bope == "surplus") bbgw00 += ((bbgw3 + bbgw4) / 2).toFixed(1);
-    else if (bope == "muscle") bbgw00 += ((bbgw3 + 2 * bbgw4) / 3).toFixed(1);
+    else if (goal == "surplus") bbgw00 += ((bbgw3 + bbgw4) / 2).toFixed(1);
+    else if (goal == "muscle") bbgw00 += ((bbgw3 + 2 * bbgw4) / 3).toFixed(1);
   } else if (goalBody == 3) {
     if (gender == "male") {
       bbgw3 += idealWeight000 * 0.08;
       bbgw4 += idealWeight000 * 0.1;
-      if (bope == "bulking") bbgw0p += ((3 * 10 + 8) / 4).toFixed(1);
-      else if (bope == "cutting") bbgw0p += ((2.5 * 8 + 10) / 3.5).toFixed(1);
-      else if (bope == "surplus") bbgw0p += ((8 + 10) / 2).toFixed(1);
-      else if (bope == "muscle") bbgw0p += ((8 + 2 * 10) / 3).toFixed(1);
+      if (goal == "bulking") bbgw0p += ((3 * 10 + 8) / 4).toFixed(1);
+      else if (goal == "cutting") bbgw0p += ((2.5 * 8 + 10) / 3.5).toFixed(1);
+      else if (goal == "surplus") bbgw0p += ((8 + 10) / 2).toFixed(1);
+      else if (goal == "muscle") bbgw0p += ((8 + 2 * 10) / 3).toFixed(1);
     } else if (gender == "female") {
       bbgw3 += idealWeight000 * 0.18;
       bbgw4 += idealWeight000 * 0.2;
-      if (bope == "bulking") bbgw0p += ((3 * 20 + 18) / 4).toFixed(1);
-      else if (bope == "cutting") bbgw0p += ((2.5 * 18 + 20) / 3.5).toFixed(1);
-      else if (bope == "surplus") bbgw0p += ((18 + 20) / 2).toFixed(1);
-      else if (bope == "muscle") bbgw0p += ((18 + 2 * 20) / 3).toFixed(1);
+      if (goal == "bulking") bbgw0p += ((3 * 20 + 18) / 4).toFixed(1);
+      else if (goal == "cutting") bbgw0p += ((2.5 * 18 + 20) / 3.5).toFixed(1);
+      else if (goal == "surplus") bbgw0p += ((18 + 20) / 2).toFixed(1);
+      else if (goal == "muscle") bbgw0p += ((18 + 2 * 20) / 3).toFixed(1);
     }
-    if (bope == "bulking") bbgw00 += ((3 * bbgw4 + bbgw3) / 4).toFixed(1);
-    else if (bope == "cutting")
+    if (goal == "bulking") bbgw00 += ((3 * bbgw4 + bbgw3) / 4).toFixed(1);
+    else if (goal == "cutting")
       bbgw00 += ((2.5 * bbgw3 + bbgw4) / 3.5).toFixed(1);
-    else if (bope == "surplus") bbgw00 += ((bbgw3 + bbgw4) / 2).toFixed(1);
-    else if (bope == "muscle") bbgw00 += ((bbgw3 + 2 * bbgw4) / 3).toFixed(1);
+    else if (goal == "surplus") bbgw00 += ((bbgw3 + bbgw4) / 2).toFixed(1);
+    else if (goal == "muscle") bbgw00 += ((bbgw3 + 2 * bbgw4) / 3).toFixed(1);
   } else if (goalBody == 4) {
     if (gender == "male") {
       bbgw3 += idealWeight000 * 0.11;
       bbgw4 += idealWeight000 * 0.12;
-      if (bope == "bulking") bbgw0p += ((3 * 12 + 11) / 4).toFixed(1);
-      else if (bope == "cutting") bbgw0p += ((2.5 * 11 + 12) / 3.5).toFixed(1);
-      else if (bope == "surplus") bbgw0p += ((11 + 12) / 2).toFixed(1);
-      else if (bope == "muscle") bbgw0p += ((11 + 2 * 12) / 3).toFixed(1);
+      if (goal == "bulking") bbgw0p += ((3 * 12 + 11) / 4).toFixed(1);
+      else if (goal == "cutting") bbgw0p += ((2.5 * 11 + 12) / 3.5).toFixed(1);
+      else if (goal == "surplus") bbgw0p += ((11 + 12) / 2).toFixed(1);
+      else if (goal == "muscle") bbgw0p += ((11 + 2 * 12) / 3).toFixed(1);
     } else if (gender == "female") {
       bbgw3 += idealWeight000 * 0.21;
       bbgw4 += idealWeight000 * 0.23;
-      if (bope == "bulking") bbgw0p += ((3 * 23 + 21) / 4).toFixed(1);
-      else if (bope == "cutting") bbgw0p += ((2.5 * 21 + 23) / 3.5).toFixed(1);
-      else if (bope == "surplus") bbgw0p += ((21 + 23) / 2).toFixed(1);
-      else if (bope == "muscle") bbgw0p += ((21 + 2 * 23) / 3).toFixed(1);
+      if (goal == "bulking") bbgw0p += ((3 * 23 + 21) / 4).toFixed(1);
+      else if (goal == "cutting") bbgw0p += ((2.5 * 21 + 23) / 3.5).toFixed(1);
+      else if (goal == "surplus") bbgw0p += ((21 + 23) / 2).toFixed(1);
+      else if (goal == "muscle") bbgw0p += ((21 + 2 * 23) / 3).toFixed(1);
     }
-    if (bope == "bulking") bbgw00 += ((3 * bbgw4 + bbgw3) / 4).toFixed(1);
-    else if (bope == "cutting")
+    if (goal == "bulking") bbgw00 += ((3 * bbgw4 + bbgw3) / 4).toFixed(1);
+    else if (goal == "cutting")
       bbgw00 += ((2.5 * bbgw3 + bbgw4) / 3.5).toFixed(1);
-    else if (bope == "surplus") bbgw00 += ((bbgw3 + bbgw4) / 2).toFixed(1);
-    else if (bope == "muscle") bbgw00 += ((bbgw3 + 2 * bbgw4) / 3).toFixed(1);
+    else if (goal == "surplus") bbgw00 += ((bbgw3 + bbgw4) / 2).toFixed(1);
+    else if (goal == "muscle") bbgw00 += ((bbgw3 + 2 * bbgw4) / 3).toFixed(1);
   } else if (goalBody == 5) {
     if (gender == "male") {
       bbgw3 += idealWeight000 * 0.13;
       bbgw4 += idealWeight000 * 0.15;
-      if (bope == "bulking") bbgw0p += ((3 * 15 + 13) / 4).toFixed(1);
-      else if (bope == "cutting") bbgw0p += ((2.5 * 13 + 15) / 3.5).toFixed(1);
-      else if (bope == "surplus") bbgw0p += ((13 + 15) / 2).toFixed(1);
-      else if (bope == "muscle") bbgw0p += ((13 + 2 * 15) / 3).toFixed(1);
+      if (goal == "bulking") bbgw0p += ((3 * 15 + 13) / 4).toFixed(1);
+      else if (goal == "cutting") bbgw0p += ((2.5 * 13 + 15) / 3.5).toFixed(1);
+      else if (goal == "surplus") bbgw0p += ((13 + 15) / 2).toFixed(1);
+      else if (goal == "muscle") bbgw0p += ((13 + 2 * 15) / 3).toFixed(1);
     } else if (gender == "female") {
       bbgw3 += idealWeight000 * 0.24;
       bbgw4 += idealWeight000 * 0.26;
-      if (bope == "bulking") bbgw0p += ((3 * 26 + 24) / 4).toFixed(1);
-      else if (bope == "cutting") bbgw0p += ((2.5 * 24 + 26) / 3.5).toFixed(1);
-      else if (bope == "surplus") bbgw0p += ((24 + 26) / 2).toFixed(1);
-      else if (bope == "muscle") bbgw0p += ((24 + 2 * 26) / 3).toFixed(1);
+      if (goal == "bulking") bbgw0p += ((3 * 26 + 24) / 4).toFixed(1);
+      else if (goal == "cutting") bbgw0p += ((2.5 * 24 + 26) / 3.5).toFixed(1);
+      else if (goal == "surplus") bbgw0p += ((24 + 26) / 2).toFixed(1);
+      else if (goal == "muscle") bbgw0p += ((24 + 2 * 26) / 3).toFixed(1);
     }
-    if (bope == "bulking") bbgw00 += ((3 * bbgw4 + bbgw3) / 4).toFixed(1);
-    else if (bope == "cutting")
+    if (goal == "bulking") bbgw00 += ((3 * bbgw4 + bbgw3) / 4).toFixed(1);
+    else if (goal == "cutting")
       bbgw00 += ((2.5 * bbgw3 + bbgw4) / 3.5).toFixed(1);
-    else if (bope == "surplus") bbgw00 += ((bbgw3 + bbgw4) / 2).toFixed(1);
-    else if (bope == "muscle") bbgw00 += ((bbgw3 + 2 * bbgw4) / 3).toFixed(1);
+    else if (goal == "surplus") bbgw00 += ((bbgw3 + bbgw4) / 2).toFixed(1);
+    else if (goal == "muscle") bbgw00 += ((bbgw3 + 2 * bbgw4) / 3).toFixed(1);
   } else if (goalBody == 6) {
     if (gender == "male") {
       bbgw3 += idealWeight000 * 0.16;
       bbgw4 += idealWeight000 * 0.19;
-      if (bope == "bulking") bbgw0p += ((3 * 19 + 16) / 4).toFixed(1);
-      else if (bope == "cutting") bbgw0p += ((2.5 * 16 + 19) / 3.5).toFixed(1);
-      else if (bope == "surplus") bbgw0p += ((16 + 19) / 2).toFixed(1);
-      else if (bope == "muscle") bbgw0p += ((16 + 2 * 19) / 3).toFixed(1);
+      if (goal == "bulking") bbgw0p += ((3 * 19 + 16) / 4).toFixed(1);
+      else if (goal == "cutting") bbgw0p += ((2.5 * 16 + 19) / 3.5).toFixed(1);
+      else if (goal == "surplus") bbgw0p += ((16 + 19) / 2).toFixed(1);
+      else if (goal == "muscle") bbgw0p += ((16 + 2 * 19) / 3).toFixed(1);
     } else if (gender == "female") {
       bbgw3 += idealWeight000 * 0.27;
       bbgw4 += idealWeight000 * 0.29;
-      if (bope == "bulking") bbgw0p += ((3 * 29 + 27) / 4).toFixed(1);
-      else if (bope == "cutting") bbgw0p += ((2.5 * 27 + 29) / 3.5).toFixed(1);
-      else if (bope == "surplus") bbgw0p += ((27 + 29) / 2).toFixed(1);
-      else if (bope == "muscle") bbgw0p += ((27 + 2 * 29) / 3).toFixed(1);
+      if (goal == "bulking") bbgw0p += ((3 * 29 + 27) / 4).toFixed(1);
+      else if (goal == "cutting") bbgw0p += ((2.5 * 27 + 29) / 3.5).toFixed(1);
+      else if (goal == "surplus") bbgw0p += ((27 + 29) / 2).toFixed(1);
+      else if (goal == "muscle") bbgw0p += ((27 + 2 * 29) / 3).toFixed(1);
     }
-    if (bope == "bulking") bbgw00 += ((3 * bbgw4 + bbgw3) / 4).toFixed(1);
-    else if (bope == "cutting")
+    if (goal == "bulking") bbgw00 += ((3 * bbgw4 + bbgw3) / 4).toFixed(1);
+    else if (goal == "cutting")
       bbgw00 += ((2.5 * bbgw3 + bbgw4) / 3.5).toFixed(1);
-    else if (bope == "surplus") bbgw00 += ((bbgw3 + bbgw4) / 2).toFixed(1);
-    else if (bope == "muscle") bbgw00 += ((bbgw3 + 2 * bbgw4) / 3).toFixed(1);
+    else if (goal == "surplus") bbgw00 += ((bbgw3 + bbgw4) / 2).toFixed(1);
+    else if (goal == "muscle") bbgw00 += ((bbgw3 + 2 * bbgw4) / 3).toFixed(1);
   } else if (goalBody == 7) {
     if (gender == "male") {
       bbgw3 += idealWeight000 * 0.2;
       bbgw4 += idealWeight000 * 0.24;
-      if (bope == "bulking") bbgw0p += ((3 * 24 + 20) / 4).toFixed(1);
-      else if (bope == "cutting") bbgw0p += ((2.5 * 20 + 24) / 3.5).toFixed(1);
-      else if (bope == "surplus") bbgw0p += ((20 + 24) / 2).toFixed(1);
-      else if (bope == "muscle") bbgw0p += ((20 + 2 * 24) / 3).toFixed(1);
+      if (goal == "bulking") bbgw0p += ((3 * 24 + 20) / 4).toFixed(1);
+      else if (goal == "cutting") bbgw0p += ((2.5 * 20 + 24) / 3.5).toFixed(1);
+      else if (goal == "surplus") bbgw0p += ((20 + 24) / 2).toFixed(1);
+      else if (goal == "muscle") bbgw0p += ((20 + 2 * 24) / 3).toFixed(1);
     } else if (gender == "female") {
       bbgw3 += idealWeight000 * 0.3;
       bbgw4 += idealWeight000 * 0.35;
-      if (bope == "bulking") bbgw0p += ((3 * 35 + 30) / 4).toFixed(1);
-      else if (bope == "cutting") bbgw0p += ((2.5 * 30 + 35) / 3.5).toFixed(1);
-      else if (bope == "surplus") bbgw0p += ((30 + 35) / 2).toFixed(1);
-      else if (bope == "muscle") bbgw0p += ((30 + 2 * 35) / 3).toFixed(1);
+      if (goal == "bulking") bbgw0p += ((3 * 35 + 30) / 4).toFixed(1);
+      else if (goal == "cutting") bbgw0p += ((2.5 * 30 + 35) / 3.5).toFixed(1);
+      else if (goal == "surplus") bbgw0p += ((30 + 35) / 2).toFixed(1);
+      else if (goal == "muscle") bbgw0p += ((30 + 2 * 35) / 3).toFixed(1);
     }
-    if (bope == "bulking") bbgw00 += ((3 * bbgw4 + bbgw3) / 4).toFixed(1);
-    else if (bope == "cutting")
+    if (goal == "bulking") bbgw00 += ((3 * bbgw4 + bbgw3) / 4).toFixed(1);
+    else if (goal == "cutting")
       bbgw00 += ((2.5 * bbgw3 + bbgw4) / 3.5).toFixed(1);
-    else if (bope == "surplus") bbgw00 += ((bbgw3 + bbgw4) / 2).toFixed(1);
-    else if (bope == "muscle") bbgw00 += ((bbgw3 + 2 * bbgw4) / 3).toFixed(1);
+    else if (goal == "surplus") bbgw00 += ((bbgw3 + bbgw4) / 2).toFixed(1);
+    else if (goal == "muscle") bbgw00 += ((bbgw3 + 2 * bbgw4) / 3).toFixed(1);
   } else if (goalBody == 8) {
     if (gender == "male") {
       bbgw3 += idealWeight000 * 0.25;
       bbgw4 += idealWeight000 * 0.3;
-      if (bope == "bulking") bbgw0p += ((3 * 30 + 25) / 4).toFixed(1);
-      else if (bope == "cutting") bbgw0p += ((2.5 * 25 + 30) / 3.5).toFixed(1);
-      else if (bope == "surplus") bbgw0p += ((25 + 30) / 2).toFixed(1);
-      else if (bope == "muscle") bbgw0p += ((25 + 2 * 30) / 3).toFixed(1);
+      if (goal == "bulking") bbgw0p += ((3 * 30 + 25) / 4).toFixed(1);
+      else if (goal == "cutting") bbgw0p += ((2.5 * 25 + 30) / 3.5).toFixed(1);
+      else if (goal == "surplus") bbgw0p += ((25 + 30) / 2).toFixed(1);
+      else if (goal == "muscle") bbgw0p += ((25 + 2 * 30) / 3).toFixed(1);
     } else if (gender == "female") {
       bbgw3 += idealWeight000 * 0.36;
       bbgw4 += idealWeight000 * 0.4;
-      if (bope == "bulking") bbgw0p += ((3 * 40 + 36) / 4).toFixed(1);
-      else if (bope == "cutting") bbgw0p += ((2.5 * 36 + 40) / 3.5).toFixed(1);
-      else if (bope == "surplus") bbgw0p += ((36 + 40) / 2).toFixed(1);
-      else if (bope == "muscle") bbgw0p += ((36 + 2 * 40) / 3).toFixed(1);
+      if (goal == "bulking") bbgw0p += ((3 * 40 + 36) / 4).toFixed(1);
+      else if (goal == "cutting") bbgw0p += ((2.5 * 36 + 40) / 3.5).toFixed(1);
+      else if (goal == "surplus") bbgw0p += ((36 + 40) / 2).toFixed(1);
+      else if (goal == "muscle") bbgw0p += ((36 + 2 * 40) / 3).toFixed(1);
     }
-    if (bope == "bulking") bbgw00 += ((3 * bbgw4 + bbgw3) / 4).toFixed(1);
-    else if (bope == "cutting")
+    if (goal == "bulking") bbgw00 += ((3 * bbgw4 + bbgw3) / 4).toFixed(1);
+    else if (goal == "cutting")
       bbgw00 += ((2.5 * bbgw3 + bbgw4) / 3.5).toFixed(1);
-    else if (bope == "surplus") bbgw00 += ((bbgw3 + bbgw4) / 2).toFixed(1);
-    else if (bope == "muscle") bbgw00 += ((bbgw3 + 2 * bbgw4) / 3).toFixed(1);
+    else if (goal == "surplus") bbgw00 += ((bbgw3 + bbgw4) / 2).toFixed(1);
+    else if (goal == "muscle") bbgw00 += ((bbgw3 + 2 * bbgw4) / 3).toFixed(1);
   } else if (goalBody == 9) {
     if (gender == "male") {
       bbgw3 += idealWeight000 * 0.35;
       bbgw4 += idealWeight000 * 0.4;
-      if (bope == "bulking") bbgw0p += ((3 * 40 + 35) / 4).toFixed(1);
-      else if (bope == "cutting") bbgw0p += ((2.5 * 35 + 40) / 3.5).toFixed(1);
-      else if (bope == "surplus") bbgw0p += ((35 + 40) / 2).toFixed(1);
-      else if (bope == "muscle") bbgw0p += ((35 + 2 * 40) / 3).toFixed(1);
+      if (goal == "bulking") bbgw0p += ((3 * 40 + 35) / 4).toFixed(1);
+      else if (goal == "cutting") bbgw0p += ((2.5 * 35 + 40) / 3.5).toFixed(1);
+      else if (goal == "surplus") bbgw0p += ((35 + 40) / 2).toFixed(1);
+      else if (goal == "muscle") bbgw0p += ((35 + 2 * 40) / 3).toFixed(1);
     } else if (gender == "female") {
       bbgw3 += idealWeight000 * 0.5;
       bbgw4 += idealWeight000 * 0.5;
-      if (bope == "bulking") bbgw0p += ((3 * 50 + 50) / 4).toFixed(1);
-      else if (bope == "cutting") bbgw0p += ((2.5 * 50 + 50) / 3.5).toFixed(1);
-      else if (bope == "surplus") bbgw0p += ((50 + 50) / 2).toFixed(1);
-      else if (bope == "muscle") bbgw0p += ((50 + 2 * 50) / 3).toFixed(1);
+      if (goal == "bulking") bbgw0p += ((3 * 50 + 50) / 4).toFixed(1);
+      else if (goal == "cutting") bbgw0p += ((2.5 * 50 + 50) / 3.5).toFixed(1);
+      else if (goal == "surplus") bbgw0p += ((50 + 50) / 2).toFixed(1);
+      else if (goal == "muscle") bbgw0p += ((50 + 2 * 50) / 3).toFixed(1);
     }
-    if (bope == "bulking") bbgw00 += ((3 * bbgw4 + bbgw3) / 4).toFixed(1);
-    else if (bope == "cutting")
+    if (goal == "bulking") bbgw00 += ((3 * bbgw4 + bbgw3) / 4).toFixed(1);
+    else if (goal == "cutting")
       bbgw00 += ((2.5 * bbgw3 + bbgw4) / 3.5).toFixed(1);
-    else if (bope == "surplus") bbgw00 += ((bbgw3 + bbgw4) / 2).toFixed(1);
-    else if (bope == "muscle") bbgw00 += ((bbgw3 + 2 * bbgw4) / 3).toFixed(1);
+    else if (goal == "surplus") bbgw00 += ((bbgw3 + bbgw4) / 2).toFixed(1);
+    else if (goal == "muscle") bbgw00 += ((bbgw3 + 2 * bbgw4) / 3).toFixed(1);
   }
   if (unit == "metric") {
     weight = parseFloat(weightMetric.value);
@@ -3630,7 +3630,7 @@ function result() {
   if (languageValue == 1) {
     if (gender == "male") {
       bmr = (10 * weight + 625 * height - 5 * age + 5).toFixed(1) + "kcal";
-      if (bope == "bulking")
+      if (goal == "bulking")
         bmrl =
           "Since you trying to bulk, you should try to get a small calorie intake surplus, like 100-300 kcal above your basal metabolic rate, which is basically how many calories you burn for your basal body functions, a day, such as breathing, circulation and cell production, is <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
@@ -3639,7 +3639,7 @@ function result() {
           "kcal</big> to about <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * age + 5) * 1.15).toFixed(0) +
           "kcal</big> besides the calories you burn through exercises.";
-      else if (bope == "cutting")
+      else if (goal == "cutting")
         bmrl =
           "Since you are trying to cut, you should have a decent calorie deficit, nothing much but 250-500kcal under your basal metabolic rate would be fine, this rate is basically how many calories you burn for your basal body functions, such as breathing, circulation and cell production a day, is <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
@@ -3648,7 +3648,7 @@ function result() {
           "kcal</big> to about <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * age + 5) * 0.8).toFixed(0) +
           "kcal</big> besides the calories you burn through exercises. Also you have to have in mind that a good catalyst to all this is training, you can eat more as soon as you burn through exercise, always maintaining that same calorie intake deficit.";
-      else if (bope == "surplus")
+      else if (goal == "surplus")
         bmrl =
           "Since you are trying to lose weight, you should have a decent calorie deficit, nothing much but 250-500kcal under your basal metabolic rate would be fine, this rate is basically how many calories you burn for your basal body functions, a day, such as breathing, circulation and cell production, is <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
@@ -3657,7 +3657,7 @@ function result() {
           "kcal</big> to about <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * age + 5) * 0.8).toFixed(0) +
           "kcal</big> besides the calories you burn through exercises.";
-      else if (bope == "muscle")
+      else if (goal == "muscle")
         bmrl =
           "Since you trying to gain weight through mostly muscle, you should try to get a decent calorie intake surplus, like 250-450 kcal above your basal metabolic rate, which is basically how many calories you burn for your basal body functions, a day, such as breathing, circulation and cell production, is <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
@@ -3668,7 +3668,7 @@ function result() {
           "kcal</big> besides the calories you burn through exercises.";
     } else if (gender == "female") {
       bmr = (10 * weight + 625 * height - 5 * age - 161).toFixed(1) + "kcal";
-      if (bope == "bulking")
+      if (goal == "bulking")
         bmrl =
           "Since you trying to bulk, you should try to get a small calorie intake surplus, like 100-300 kcal above your basal metabolic rate, which is basically how many calories you burn for your basal body functions, a day, such as breathing, circulation and cell production, is <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
@@ -3677,7 +3677,7 @@ function result() {
           "kcal</big> to about <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * age + 5) * 1.1).toFixed(0) +
           "kcal</big> besides the calories you burn through exercises.";
-      else if (bope == "cutting")
+      else if (goal == "cutting")
         bmrl =
           "Since you are trying to cut, you should have a decent calorie deficit, nothing much but 250-500kcal under your basal metabolic rate would be fine, this rate is basically how many calories you burn for your basal body functions, a day, such as breathing, circulation and cell production, is <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
@@ -3686,7 +3686,7 @@ function result() {
           "kcal</big> to about <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * age + 5) * 0.75).toFixed(0) +
           "kcal</big> besides the calories you burn through exercises. Also you have to have in mind that a good catalyst to all this is training, you can eat more as soon as you burn through exercise, always maintaining that same calorie intake deficit.";
-      else if (bope == "surplus")
+      else if (goal == "surplus")
         bmrl =
           "Since you are trying to lose weight, you should have a decent calorie deficit, nothing much but 250-500kcal under your basal metabolic rate would be fine, this rate is basically how many calories you burn for your basal body functions, a day, such as breathing, circulation and cell production, is <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
@@ -3695,7 +3695,7 @@ function result() {
           "kcal</big> to about <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * age + 5) * 0.8).toFixed(0) +
           "kcal</big> besides the calories you burn through exercises.";
-      else if (bope == "muscle")
+      else if (goal == "muscle")
         bmrl =
           "Since you trying to gain weight through mostly muscle, you should try to get a decent calorie intake surplus, like 250-450 kcal above your basal metabolic rate, which is basically how many calories you burn for your basal body functions, a day, such as breathing, circulation and cell production, is <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
@@ -3708,7 +3708,7 @@ function result() {
   } else if (languageValue == 2) {
     if (gender == "male") {
       bmr = (10 * weight + 625 * height - 5 * age + 5).toFixed(1) + "kcal";
-      if (bope == "bulking")
+      if (goal == "bulking")
         bmrl =
           "Já que você está tentando aumentar o volume, deve tentar obter um pequeno excedente de ingestão de calorias, como 100-300 kcal acima de sua taxa metabólica basal, que é basicamente quantas calorias você queima para as funções corporais basais, por dia, como respiração, circulação e a produção de células, é <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
@@ -3717,7 +3717,7 @@ function result() {
           "kcal</big> a <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * age + 5) * 1.15).toFixed(0) +
           "kcal</big> além das calorias que você queima com os exercícios.";
-      else if (bope == "cutting")
+      else if (goal == "cutting")
         bmrl =
           "Já que você está tentando secar, você deve ter um déficit calórico decente, nada além de 250-500kcal abaixo de sua taxa metabólica basal seria bom, esta taxa é basicamente quantas calorias você queima para suas funções corporais basais, como respiração, circulação e a produção de células por dia, é <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
@@ -3726,7 +3726,7 @@ function result() {
           "kcal</big> a <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * age + 5) * 0.8).toFixed(0) +
           "kcal</big> além das calorias que você queima com os exercícios. Também é preciso ter em mente que um bom catalisador para tudo isso é o treinamento, você pode comer mais assim que se queimar com o exercício, mantendo sempre esse mesmo déficit calórico.";
-      else if (bope == "surplus")
+      else if (goal == "surplus")
         bmrl =
           "Já que você está tentando perder peso, você deve ter um déficit calórico decente, nada além de 250-500kcal abaixo de sua taxa metabólica basal seria bom, esta taxa é basicamente quantas calorias você queima para suas funções corporais basais, por dia, tal como respiração, circulação e produção de células, é <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
@@ -3735,7 +3735,7 @@ function result() {
           "kcal</big> a <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * age + 5) * 0.8).toFixed(0) +
           "kcal</big> além das calorias que você queima com os exercícios.";
-      else if (bope == "muscle")
+      else if (goal == "muscle")
         bmrl =
           "Já que você está tentando ganhar peso principalmente através dos músculos, você deve tentar obter um excedente de ingestão de calorias decente, como 250-450 kcal acima de sua taxa metabólica basal, que é basicamente quantas calorias você queima para suas funções corporais basais, por dia, como como respiração, circulação e produção de células, é <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
@@ -3746,7 +3746,7 @@ function result() {
           "kcal</big> além das calorias que você queima com os exercícios.";
     } else if (gender == "female") {
       bmr = (10 * weight + 625 * height - 5 * age - 161).toFixed(1) + "kcal";
-      if (bope == "bulking")
+      if (goal == "bulking")
         bmrl =
           "Já que você está tentando aumentar o volume, deve tentar obter um pequeno excedente de ingestão de calorias, como 100-300 kcal acima de sua taxa metabólica basal, que é basicamente quantas calorias você queima para as funções corporais basais, por dia, como respiração, circulação e a produção de células, é <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
@@ -3755,7 +3755,7 @@ function result() {
           "kcal</big> a <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * age + 5) * 1.1).toFixed(0) +
           "kcal</big> além das calorias que você queima com os exercícios.";
-      else if (bope == "cutting")
+      else if (goal == "cutting")
         bmrl =
           "Já que você está tentando secar, você deve ter um déficit calórico decente, nada além de 250-500kcal abaixo de sua taxa metabólica basal, esta taxa é basicamente quantas calorias você queima para suas funções corporais basais, por dia, como respiração, circulação e produção de células, é <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
@@ -3764,7 +3764,7 @@ function result() {
           "kcal</big> a <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * age + 5) * 0.75).toFixed(0) +
           "kcal</big> além das calorias que você queima com os exercícios. Também é preciso ter em mente que um bom catalisador para tudo isso é o treinamento, você pode comer mais assim que se queimar com o exercício, mantendo sempre esse mesmo déficit calórico.";
-      else if (bope == "surplus")
+      else if (goal == "surplus")
         bmrl =
           "Já que você está tentando perder peso, você deve ter um déficit calórico decente, nada além de 250-500kcal abaixo de sua taxa metabólica basal seria bom, esta taxa é basicamente quantas calorias você queima para suas funções corporais basais, por dia, tal como respiração, circulação e produção de células, é <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
@@ -3773,7 +3773,7 @@ function result() {
           "kcal</big> a <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * age + 5) * 0.8).toFixed(0) +
           "kcal</big> além das calorias que você queima com os exercícios.";
-      else if (bope == "muscle")
+      else if (goal == "muscle")
         bmrl =
           "Já que você está tentando ganhar peso principalmente através dos músculos, você deve tentar obter um excedente de ingestão de calorias decente, como 250-450 kcal acima de sua taxa metabólica basal, que é basicamente quantas calorias você queima para suas funções corporais basais, por dia, como como respiração, circulação e produção de células, é <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
@@ -3786,7 +3786,7 @@ function result() {
   } else if (languageValue == 3) {
     if (gender == "male") {
       bmr = (10 * weight + 625 * height - 5 * age + 5).toFixed(1) + "kcal";
-      if (bope == "bulking")
+      if (goal == "bulking")
         bmrl =
           "Puisque vous essayez de prendre du volume, vous devriez essayer d'obtenir un petit surplus d'apport calorique, comme 100 à 300 kcal au-dessus de votre taux métabolique de base, qui correspond essentiellement au nombre de calories que vous brûlez pour les fonctions basales de votre corps, par jour, comme la respiration, la circulation. et la production cellulaire, est <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
@@ -3795,7 +3795,7 @@ function result() {
           "kcal</big> à <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * age + 5) * 1.15).toFixed(0) +
           "kcal</big> en plus des calories que vous brûlez grâce aux exercices.";
-      else if (bope == "cutting")
+      else if (goal == "cutting")
         bmrl =
           "Puisque vous essayez de couper, vous devriez avoir un déficit calorique décent, rien de plus que 250-500kcal sous votre taux métabolique basal serait bien, ce taux est essentiellement le nombre de calories que vous brûlez pour vos fonctions corporelles basales, telles que la respiration, la circulation et la production de cellules par jour est <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
@@ -3804,7 +3804,7 @@ function result() {
           "kcal</big> à <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * age + 5) * 0.8).toFixed(0) +
           "kcal</big> en plus des calories que vous brûlez grâce aux exercices. Vous devez également garder à l'esprit qu'un bon catalyseur de tout cela est l'entraînement, vous pouvez manger plus dès que vous brûlez en faisant de l'exercice, en maintenant toujours le même déficit calorique.";
-      else if (bope == "surplus")
+      else if (goal == "surplus")
         bmrl =
           "Puisque vous essayez de perdre du poids, vous devriez avoir un déficit calorique décent, rien de plus que 250-500kcal sous votre taux métabolique basal serait bien, ce taux est essentiellement le nombre de calories que vous brûlez pour vos fonctions corporelles basales, un jour, tel comme la respiration, la circulation et la production de cellules, est <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
@@ -3813,7 +3813,7 @@ function result() {
           "kcal</big> à <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * age + 5) * 0.8).toFixed(0) +
           "kcal</big> en plus des calories que vous brûlez grâce aux exercices.";
-      else if (bope == "muscle")
+      else if (goal == "muscle")
         bmrl =
           "Puisque vous essayez de prendre du poids principalement par vos muscles, vous devriez essayer d'obtenir un excédent calorique décent, comme 250 à 450 kcal au-dessus de votre taux métabolique de base, qui correspond essentiellement au nombre de calories que vous brûlez pour vos fonctions corporelles basales, par jour, par exemple. comme la respiration, la circulation et la production de cellules, est <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
@@ -3824,7 +3824,7 @@ function result() {
           "kcal</big> en plus des calories que vous brûlez grâce aux exercices.";
     } else if (gender == "female") {
       bmr = (10 * weight + 625 * height - 5 * age - 161).toFixed(1) + "kcal";
-      if (bope == "bulking")
+      if (goal == "bulking")
         bmrl =
           "Puisque vous essayez de prendre du volume, vous devriez essayer d'obtenir un petit surplus d'apport calorique, comme 100 à 300 kcal au-dessus de votre taux métabolique de base, qui correspond essentiellement au nombre de calories que vous brûlez pour les fonctions basales de votre corps, par jour, comme la respiration, la circulation. et la production cellulaire, est <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
@@ -3833,7 +3833,7 @@ function result() {
           "kcal</big> à <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * age + 5) * 1.1).toFixed(0) +
           "kcal</big> en plus des calories que vous brûlez grâce aux exercices.";
-      else if (bope == "cutting")
+      else if (goal == "cutting")
         bmrl =
           "Puisque vous essayez de réduire, vous devriez avoir un déficit calorique décent, rien de plus que 250-500kcal sous votre taux métabolique basal serait bien, ce taux est fondamentalement le nombre de calories que vous brûlez pour vos fonctions corporelles basales, par jour, comme la respiration, la circulation et la production de cellules, <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
@@ -3842,7 +3842,7 @@ function result() {
           "kcal</big> à <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * age + 5) * 0.75).toFixed(0) +
           "kcal</big> en plus des calories que vous brûlez grâce aux exercices. Vous devez également garder à l'esprit qu'un bon catalyseur de tout cela est l'entraînement, vous pouvez manger plus dès que vous brûlez en faisant de l'exercice, en maintenant toujours le même déficit calorique.";
-      else if (bope == "surplus")
+      else if (goal == "surplus")
         bmrl =
           "Puisque vous essayez de perdre du poids, vous devriez avoir un déficit calorique décent, rien de plus que 250-500kcal sous votre taux métabolique basal serait bien, ce taux est essentiellement le nombre de calories que vous brûlez pour vos fonctions corporelles basales, un jour, tel comme la respiration, la circulation et la production de cellules, est <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
@@ -3851,7 +3851,7 @@ function result() {
           "kcal</big> à <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * age + 5) * 0.8).toFixed(0) +
           "kcal</big> en plus des calories que vous brûlez grâce aux exercices.";
-      else if (bope == "muscle")
+      else if (goal == "muscle")
         bmrl =
           "Puisque vous essayez de prendre du poids principalement par vos muscles, vous devriez essayer d'obtenir un excédent calorique décent, comme 250 à 450 kcal au-dessus de votre taux métabolique de base, qui correspond essentiellement au nombre de calories que vous brûlez pour vos fonctions corporelles basales, par jour, par exemple. comme la respiration, la circulation et la production de cellules, est <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
@@ -3864,7 +3864,7 @@ function result() {
   } else if (languageValue == 4) {
     if (gender == "male") {
       bmr = (10 * weight + 625 * height - 5 * age + 5).toFixed(1) + "kcal";
-      if (bope == "bulking")
+      if (goal == "bulking")
         bmrl =
           "Dado que está tratando de aumentar el volumen, debe intentar obtener un pequeño excedente de ingesta de calorías, como 100-300 kcal por encima de su tasa metabólica basal, que es básicamente la cantidad de calorías que quema para las funciones basales del cuerpo, al día, como la respiración, la circulación. y la producción de células, es <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
@@ -3873,7 +3873,7 @@ function result() {
           "kcal</big> a  <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * age + 5) * 1.15).toFixed(0) +
           "kcal</big> además de las calorías que quema con los ejercicios.";
-      else if (bope == "cutting")
+      else if (goal == "cutting")
         bmrl =
           "Ya que está tratando de reducir, debe tener un déficit de calorías decente, nada más que 250-500 kcal por debajo de su tasa metabólica basal estaría bien, esta tasa es básicamente la cantidad de calorías que quema para las funciones basales del cuerpo, como la respiración, la circulación. y la producción de células al día, es <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
@@ -3882,7 +3882,7 @@ function result() {
           "kcal</big> a  <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * age + 5) * 0.8).toFixed(0) +
           "kcal</big> además de las calorías que quema con los ejercicios. También debes tener en cuenta que un buen catalizador de todo esto es el entrenamiento, puedes comer más en cuanto te quemas a través del ejercicio, manteniendo siempre ese mismo déficit de ingesta calórica.";
-      else if (bope == "surplus")
+      else if (goal == "surplus")
         bmrl =
           "Dado que está tratando de perder peso, debe tener un déficit de calorías decente, nada más que 250-500 kcal por debajo de su tasa metabólica basal estaría bien, esta tasa es básicamente la cantidad de calorías que quema para sus funciones corporales basales, un día, por ejemplo. como respiración, circulación y producción celular, es <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
@@ -3891,7 +3891,7 @@ function result() {
           "kcal</big> a <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * age + 5) * 0.8).toFixed(0) +
           "kcal</big> además de las calorías que quema con los ejercicios.";
-      else if (bope == "muscle")
+      else if (goal == "muscle")
         bmrl =
           "Dado que intenta ganar peso principalmente a través de los músculos, debe tratar de obtener un excedente de ingesta de calorías decente, como 250-450 kcal por encima de su tasa metabólica basal, que es básicamente la cantidad de calorías que quema para las funciones basales del cuerpo, un día, por ejemplo. como respiración, circulación y producción celular, es <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
@@ -3902,7 +3902,7 @@ function result() {
           "kcal</big> además de las calorías que quema con los ejercicios.";
     } else if (gender == "female") {
       bmr = (10 * weight + 625 * height - 5 * age - 161).toFixed(1) + "kcal";
-      if (bope == "bulking")
+      if (goal == "bulking")
         bmrl =
           "Dado que está tratando de aumentar el volumen, debe intentar obtener un pequeño excedente de ingesta de calorías, como 100-300 kcal por encima de su tasa metabólica basal, que es básicamente la cantidad de calorías que quema para las funciones basales del cuerpo, al día, como la respiración, la circulación. y la producción de células, es <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
@@ -3911,7 +3911,7 @@ function result() {
           "kcal</big> a  <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * age + 5) * 1.1).toFixed(0) +
           "kcal</big> además de las calorías que quema con los ejercicios.";
-      else if (bope == "cutting")
+      else if (goal == "cutting")
         bmrl =
           "Dado que está tratando de reducir, debe tener un déficit de calorías decente, nada más que 250-500 kcal por debajo de su tasa metabólica basal estaría bien, esta tasa es básicamente la cantidad de calorías que quema para sus funciones corporales basales, un día, como la respiración, la circulación y la producción celular, es <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
@@ -3920,7 +3920,7 @@ function result() {
           "kcal</big> a  <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * age + 5) * 0.75).toFixed(0) +
           "kcal</big> además de las calorías que quema con los ejercicios. También debes tener en cuenta que un buen catalizador de todo esto es el entrenamiento, puedes comer más en cuanto te quemas a través del ejercicio, manteniendo siempre ese mismo déficit de ingesta calórica.";
-      else if (bope == "surplus")
+      else if (goal == "surplus")
         bmrl =
           "Dado que está tratando de perder peso, debe tener un déficit de calorías decente, nada más que 250-500 kcal por debajo de su tasa metabólica basal estaría bien, esta tasa es básicamente la cantidad de calorías que quema para sus funciones corporales basales, un día, por ejemplo. como respiración, circulación y producción celular, es <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
@@ -3929,7 +3929,7 @@ function result() {
           "kcal</big> a  <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * age + 5) * 0.8).toFixed(0) +
           "kcal</big> además de las calorías que quema con los ejercicios.";
-      else if (bope == "muscle")
+      else if (goal == "muscle")
         bmrl =
           "Dado que intenta ganar peso principalmente a través de los músculos, debe tratar de obtener un excedente de ingesta de calorías decente, como 250-450 kcal por encima de su tasa metabólica basal, que es básicamente la cantidad de calorías que quema para las funciones basales del cuerpo, un día, por ejemplo. como respiración, circulación y producción celular, es <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
@@ -3999,48 +3999,48 @@ function result() {
         " That's ideal, always eat healthy with 3-hour intervals for better muscle gain and fat loss.";
     goalBodyDistance += currentBody - bgoal;
     if (goalBodyDistance == 1)
-      bbg +=
+      goalDistance +=
         " Also, you are really close to your goal, which means that with focus and determination your run towards your goal will be short!";
     else if (goalBodyDistance == 2)
-      bbg +=
+      goalDistance +=
         " Also, you are close to your goal, which means that with focus and determination your run towards your goal will be short!";
     else if (goalBodyDistance == 3)
-      bbg +=
+      goalDistance +=
         " Also, you are not far from your goal, take ownership of your path and you'll get there soon!";
     else if (goalBodyDistance == 4)
-      bbg +=
+      goalDistance +=
         " It will be a bit difficult but with focus, besides the right training and diet, you'll get there!";
     else if (goalBodyDistance == 5)
-      bbg +=
+      goalDistance +=
         " It will be difficult but with focus, besides the right training and diet, you'll get there!";
     else if (goalBodyDistance == 6)
-      bbg +=
+      goalDistance +=
         " This is gonna be a long, but well rewarding, run, that requires a lot of will, determination, and focus!";
     else if (goalBodyDistance == 7)
-      bbg +=
+      goalDistance +=
         " This is gonna be a long, but well rewarding, run, that requires a lot of will, determination, and focus!";
     else if (goalBodyDistance == 8)
-      bbg +=
+      goalDistance +=
         " This is gonna be a long, but well rewarding, run, that requires a lot of will, determination, and focus!";
-    if (bope == "bulking") {
+    if (goal == "bulking") {
       ccbodycc =
         " Since you are trying to bulk, you should focus the most on weight training, better with an instructor but it works anyway. Try increasing the weights and decreasing the movement speed. At your will for losing weight try some exercises like running, cycling, and so on. ";
       bodyc =
         " For bulking, You should eat well, a lot of protein, a good portion of carbohydrates. And you should always try to have a slight calorie intake surplus. Your menu varies between eggs, protein shakes, chicken, meat and so on. Besides salads, fruits and vegetables.";
     }
-    if (bope == "cutting") {
+    if (goal == "cutting") {
       ccbodycc =
         " Since you are trying to cut, you should focus on weight training, better with an instructor but it works anyway, for having the athletic shape, and also some exercises like running, cycling, and so on. Try increasing the weights and decreasing the movement speed, while in the gym workout, and try to increase the difficulty of the aerobic exercises gradually, every workout day.";
       bodyc =
         " For cutting, You should eat in a controlled way, but with a good portion of proteins, not much carbohydrates and of course our loved ones: salad, fruits and vegetables. But you should have a calorie intake deficit. ";
     }
-    if (bope == "surplus") {
+    if (goal == "surplus") {
       ccbodycc =
         " Since you are trying to lose weight, you should focus on weight training and aerobic exercises, better with an instructor but it works anyway, for having the better shape. Try increasing the weights and decreasing the movement speed, while in the gym workout, and try to increase the difficulty of the aerobic exercises gradually, every workout day.";
       bodyc =
         " For losing weight, You should eat in a controlled way, but with a decent portion of proteins, not much carbohydrates and of course our loved ones: salad, fruits and vegetables. But you should have a calorie intake deficit. ";
     }
-    if (bope == "muscle") {
+    if (goal == "muscle") {
       ccbodycc =
         " Since you are trying to muscle-up, you should focus on weight training, better with an instructor but it works anyway, for having the better shape. Try increasing the weights and decreasing the movement speed, while in the gym workout.";
       bodyc =
@@ -4105,48 +4105,48 @@ function result() {
         " Isso é ideal, sempre alimente-se de forma saudável com intervalos de 3 horas para melhor ganho muscular e perda de gordura.";
     goalBodyDistance += currentBody - bgoal;
     if (goalBodyDistance == 1)
-      bbg +=
+      goalDistance +=
         " Além disso, você está muito perto de seu objetivo, o que significa que com foco e determinação sua corrida em direção ao objetivo será curta!";
     else if (goalBodyDistance == 2)
-      bbg +=
+      goalDistance +=
         " Além disso, você está perto de seu objetivo, o que significa que com foco e determinação sua corrida em direção ao objetivo será curta!";
     else if (goalBodyDistance == 3)
-      bbg +=
+      goalDistance +=
         " Além disso, você não está longe de seu objetivo, tome posse de seu caminho e você chegará lá em breve!";
     else if (goalBodyDistance == 4)
-      bbg +=
+      goalDistance +=
         " Vai ser um pouco difícil, mas com foco, além do treino e da dieta corretos, você vai chegar lá!";
     else if (goalBodyDistance == 5)
-      bbg +=
+      goalDistance +=
         " Vai ser difícil, mas com foco, além do treino e da dieta corretos, você vai chegar lá!";
     else if (goalBodyDistance == 6)
-      bbg +=
+      goalDistance +=
         " Vai ser uma corrida longa, mas bem recompensadora, que exige muita vontade, determinação e foco!";
     else if (goalBodyDistance == 7)
-      bbg +=
+      goalDistance +=
         " Vai ser uma corrida longa, mas bem recompensadora, que exige muita vontade, determinação e foco!";
     else if (goalBodyDistance == 8)
-      bbg +=
+      goalDistance +=
         " Vai ser uma corrida longa, mas bem recompensadora, que exige muita vontade, determinação e foco!";
-    if (bope == "bulking") {
+    if (goal == "bulking") {
       ccbodycc =
         " Já que você está tentando ganhar massa, você deve se concentrar mais no treinamento com pesos, melhor com um instrutor, mas funciona de qualquer maneira. Experimente aumentar os pesos e diminuir a velocidade do movimento. Quando desejar, para perder peso, experimente alguns exercícios como corrida, ciclismo e assim por diante. ";
       bodyc =
         " Para aumentar, você deve comer bem, muita proteína, uma boa porção de carboidratos. E você deve sempre tentar ter um pequeno excedente de ingestão de calorias. Seu menu varia entre ovos, shakes de proteína, frango, carne e assim por diante. Além de saladas, frutas e vegetais.";
     }
-    if (bope == "cutting") {
+    if (goal == "cutting") {
       ccbodycc =
         " Já que você está tentando secar, você deve focar no treinamento com pesos, melhor com um instrutor, mas funciona mesmo assim, para ter a forma atlética, e também alguns exercícios como corrida, ciclismo e assim por diante. Experimente aumentar os pesos e diminuir a velocidade do movimento, durante a malhação, e tente aumentar a dificuldade dos exercícios aeróbicos gradativamente, a cada dia de treino.";
       bodyc =
         " Para secar, deve comer de forma controlada, mas com uma boa porção de proteínas, não muito carbohidratos e claro os nossos entes queridos: salada, fruta e vegetais. Mas você deve ter um déficit de ingestão de calorias. ";
     }
-    if (bope == "surplus") {
+    if (goal == "surplus") {
       ccbodycc =
         " Já que você está tentando emagrecer, você deve focar no musculação e exercícios aeróbicos, melhor com um instrutor, mas funciona mesmo assim, para ter uma melhor forma. Experimente aumentar os pesos e diminuir a velocidade do movimento, durante a ginástica, e tente aumentar a dificuldade dos exercícios aeróbicos gradativamente, a cada dia de treino.";
       bodyc =
         " Para emagrecer, deve comer de forma controlada, mas com uma porção decente de proteínas, sem muitos carbohidratos e claro os nossos entes queridos: salada, fruta e vegetais. Mas você deve ter um déficit de ingestão calórica. ";
     }
-    if (bope == "muscle") {
+    if (goal == "muscle") {
       ccbodycc =
         " Já que você está tentando ganhar músculos, você deve se concentrar no treinamento com pesos, melhor com um instrutor, mas funciona de qualquer maneira, para ter a melhor forma. Experimente aumentar os pesos e diminuir a velocidade do movimento, durante o treino de ginásio.";
       bodyc =
@@ -4211,48 +4211,48 @@ function result() {
         " C'est idéal, mangez toujours sainement avec des intervalles de 3 heures pour un meilleur gain musculaire et une meilleure perte de graisse.";
     goalBodyDistance += currentBody - bgoal;
     if (goalBodyDistance == 1)
-      bbg +=
+      goalDistance +=
         " De plus, vous êtes très proche de votre objectif, ce qui signifie qu'avec concentration et détermination, votre course vers votre objectif sera courte!";
     else if (goalBodyDistance == 2)
-      bbg +=
+      goalDistance +=
         " De plus, vous êtes proche de votre objectif, ce qui signifie qu'avec de la concentration et de la détermination, votre course vers votre objectif sera courte!";
     else if (goalBodyDistance == 3)
-      bbg +=
+      goalDistance +=
         " Aussi, vous n'êtes pas loin de votre objectif, prenez en main votre chemin et vous y arriverez bientôt!";
     else if (goalBodyDistance == 4)
-      bbg +=
+      goalDistance +=
         " Ce sera un peu difficile mais avec de la concentration, en plus du bon entraînement et du bon régime, vous y arriverez!";
     else if (goalBodyDistance == 5)
-      bbg +=
+      goalDistance +=
         " Ce sera difficile mais avec de la concentration, en plus du bon entraînement et du bon régime, vous y arriverez!";
     else if (goalBodyDistance == 6)
-      bbg +=
+      goalDistance +=
         " Ce sera une course longue, mais bien enrichissante, qui demandera beaucoup de volonté, de détermination et de concentration!";
     else if (goalBodyDistance == 7)
-      bbg +=
+      goalDistance +=
         " Ce sera une course longue, mais bien enrichissante, qui demandera beaucoup de volonté, de détermination et de concentration!";
     else if (goalBodyDistance == 8)
-      bbg +=
+      goalDistance +=
         " Ce sera une course longue, mais bien enrichissante, qui demandera beaucoup de volonté, de détermination et de concentration!";
-    if (bope == "bulking") {
+    if (goal == "bulking") {
       ccbodycc =
         " Puisque vous essayez de prendre du volume, vous devriez vous concentrer le plus sur la musculation, mieux avec un instructeur, mais cela fonctionne quand même. Essayez d'augmenter les poids et de réduire la vitesse de déplacement. À votre guise pour perdre du poids, essayez des exercices comme la course à pied, le cyclisme, etc. ";
       bodyc =
         " Pour le gonflement, vous devez bien manger, beaucoup de protéines, une bonne portion de glucides. Et vous devriez toujours essayer d'avoir un léger surplus d'apport calorique. Votre menu varie entre les œufs, les boissons protéinées, le poulet, la viande, etc. Outre les salades, les fruits et légumes.";
     }
-    if (bope == "cutting") {
+    if (goal == "cutting") {
       ccbodycc =
         " Puisque vous essayez de couper, vous devriez vous concentrer sur la musculation, mieux avec un instructeur mais cela fonctionne quand même, pour avoir la forme athlétique, et aussi certains exercices comme la course, le cyclisme, etc. Essayez d'augmenter les poids et de réduire la vitesse de mouvement, pendant que vous vous entraînez au gymnase, et essayez d'augmenter progressivement la difficulté des exercices d'aérobie, chaque jour d'entraînement.";
       bodyc =
         " Pour la découpe, il faut manger de manière contrôlée, mais avec une bonne portion de protéines, peu de glucides et bien sûr nos proches: salade, fruits et légumes. Mais vous devriez avoir un déficit calorique. ";
     }
-    if (bope == "surplus") {
+    if (goal == "surplus") {
       ccbodycc =
         " Puisque vous essayez de perdre du poids, vous devriez vous concentrer sur la musculation et les exercices d'aérobie, mieux avec un instructeur mais cela fonctionne quand même, pour avoir la meilleure forme. Essayez d'augmenter les poids et de réduire la vitesse de mouvement, pendant que vous vous entraînez au gymnase, et essayez d'augmenter progressivement la difficulté des exercices d'aérobie, chaque jour d'entraînement.";
       bodyc =
         " Pour perdre du poids, vous devez manger de manière contrôlée, mais avec une bonne portion de protéines, pas beaucoup de glucides et bien sûr nos proches: salade, fruits et légumes. Mais vous devriez avoir un déficit calorique. ";
     }
-    if (bope == "muscle") {
+    if (goal == "muscle") {
       ccbodycc =
         " Puisque vous essayez de vous muscler, vous devriez vous concentrer sur la musculation, mieux avec un instructeur mais cela fonctionne quand même, pour avoir la meilleure forme. Essayez d'augmenter les poids et de réduire la vitesse de mouvement pendant que vous vous entraînez au gymnase.";
       bodyc =
@@ -4317,48 +4317,48 @@ function result() {
         " Eso es ideal, siempre coma sano con intervalos de 3 horas para una mejor ganancia muscular y pérdida de grasa..";
     goalBodyDistance += currentBody - bgoal;
     if (goalBodyDistance == 1)
-      bbg +=
+      goalDistance +=
         " Además, estás muy cerca de tu objetivo, lo que significa que con concentración y determinación, ¡tu carrera hacia tu objetivo será corta!";
     else if (goalBodyDistance == 2)
-      bbg +=
+      goalDistance +=
         " Además, estás cerca de tu objetivo, lo que significa que con concentración y determinación, ¡tu carrera hacia tu objetivo será corta!";
     else if (goalBodyDistance == 3)
-      bbg +=
+      goalDistance +=
         " Además, no está lejos de su objetivo, tome posesión de su camino y ¡llegará pronto!";
     else if (goalBodyDistance == 4)
-      bbg +=
+      goalDistance +=
         " Será un poco difícil, pero con concentración, además del entrenamiento y la dieta adecuados, ¡lo lograrás!";
     else if (goalBodyDistance == 5)
-      bbg +=
+      goalDistance +=
         " Será difícil, pero con concentración, además del entrenamiento y la dieta adecuados, ¡lo lograrás!";
     else if (goalBodyDistance == 6)
-      bbg +=
+      goalDistance +=
         " ¡Esta será una carrera larga, pero gratificante, que requiere mucha voluntad, determinación y concentración!";
     else if (goalBodyDistance == 7)
-      bbg +=
+      goalDistance +=
         " ¡Esta será una carrera larga, pero gratificante, que requiere mucha voluntad, determinación y concentración!";
     else if (goalBodyDistance == 8)
-      bbg +=
+      goalDistance +=
         " ¡Esta será una carrera larga, pero gratificante, que requiere mucha voluntad, determinación y concentración!";
-    if (bope == "bulking") {
+    if (goal == "bulking") {
       ccbodycc =
         " Dado que está tratando de aumentar el volumen, debe concentrarse más en el entrenamiento con pesas, mejor con un instructor, pero de todos modos funciona. Intente aumentar los pesos y disminuir la velocidad de movimiento. Si desea perder peso, pruebe algunos ejercicios como correr, andar en bicicleta, etc. ";
       bodyc =
         " Para aumentar el volumen, debes comer bien, mucha proteína, una buena porción de carbohidratos. Y siempre debe intentar tener un ligero exceso de ingesta calórica. Su menú varía entre huevos, batidos de proteínas, pollo, carne, etc. Además de ensaladas, frutas y verduras.";
     }
-    if (bope == "cutting") {
+    if (goal == "cutting") {
       ccbodycc =
         " Ya que estás tratando desecar, debes enfocarte en el entrenamiento con pesas, mejor con un instructor pero de todos modos funciona, para tener la forma atlética, y también algunos ejercicios como correr, andar en bicicleta, etc. Intente aumentar los pesos y disminuir la velocidad de movimiento, mientras está en el gimnasio, e intente aumentar la dificultad de los ejercicios aeróbicos gradualmente, todos los días de entrenamiento.";
       bodyc =
         " Parasecar, conviene comer de forma controlada, pero con una buena porción de proteínas, poco carbohidratos y por supuesto nuestros seres queridos: ensalada, frutas y verduras. Pero deberías tener un déficit de ingesta de calorías.. ";
     }
-    if (bope == "surplus") {
+    if (goal == "surplus") {
       ccbodycc =
         " Ya que estás tratando de perder peso, debes concentrarte en el entrenamiento con pesas y ejercicios aeróbicos, mejor con un instructor pero de todos modos funciona, para tener la mejor forma. Intente aumentar los pesos y disminuir la velocidad de movimiento, mientras está en el gimnasio, y trate de aumentar la dificultad de los ejercicios aeróbicos gradualmente, todos los días de entrenamiento.";
       bodyc =
         " Para adelgazar, conviene comer de forma controlada, pero con una buena porción de proteínas, poco carbohidratos y por supuesto nuestros seres queridos: ensalada, frutas y verduras. Pero debería tener un déficit de ingesta de calorías. ";
     }
-    if (bope == "muscle") {
+    if (goal == "muscle") {
       ccbodycc =
         " Ya que estás tratando de hacer musculación, debes concentrarte en el entrenamiento con pesas, mejor con un instructor pero de todos modos funciona, para tener la mejor forma. Intente aumentar los pesos y disminuir la velocidad de movimiento, mientras hace ejercicio en el gimnasio.";
       bodyc =
@@ -4378,7 +4378,7 @@ function result() {
   else if (languageValue == 4)
     downloadResult +=
       '<h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">¡Bueno! <big style="font-family: Kaushan Script, cursive;">';
-  downloadResult += `${name}</big><br>${btype}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${bodypt}${bbg}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${ageAdvice}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${bodytp}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${cbody}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${ccbodycc}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${cbodyc}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${ccbody}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${bodycc}${bodyc}</h3>`;
+  downloadResult += `${inputName}</big><br>${btype}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${bodypt}${goalDistance}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${ageAdvice}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${bodytp}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${cbody}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${ccbodycc}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${cbodyc}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${ccbody}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${bodycc}${bodyc}</h3>`;
   if (emotion == "yes")
     downloadResult += `<br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${emotionans}</h3>`;
   downloadResult += `<br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${bmrl}</h3><br><h4><i>${bmrll}</i></h4><br><h4><i>${bmrlll}</i></h4><br><h4><i>${bmrllll}</i></h4><br><h4><i>${bmrlllll}</i></h4></span>`;
@@ -4409,7 +4409,7 @@ function resultTransition() {
     if (counter == 95) h4Config.innerHTML = `${done}`;
     if (counter == 100) {
       clearInterval();
-      ttttt = setInterval(tttt, 1);
+      timeInterval = setInterval(resultTime, 1);
       linkTitlea.setAttribute("href", "");
       titleLink.setAttribute("href", "");
     } else {
@@ -4418,48 +4418,45 @@ function resultTransition() {
     }
   }, 200);
   if (
-    (ttt === 0 && counter >= 100) ||
-    (ttt === 0 && h4Config.innerHTML == "Done")
+    (timeGaps === 0 && counter >= 100) ||
+    (timeGaps === 0 && h4Config.innerHTML == "Done")
   )
-    ttttt = setInterval(tttt, 1);
-  if (ttt > 1500000) clearInterval(ttttt);
+    timeInterval = setInterval(resultTime, 1);
+  if (timeGaps > 1500000) clearInterval(timeInterval);
 }
-function names() {
-  name = document.getElementById("name").value;
-  document.getElementById("name").innerHTML = name;
-}
-function tttt() {
-  if (ttt > 1500000) clearInterval(ttttt);
-  if (ttt == 100) {
+const names = () => inputName = document.getElementById("name").value;
+function resultTime() {
+  if (timeGaps > 1500000) clearInterval(timeInterval);
+  if (timeGaps == 100) {
     idBar.style.display = "none";
     finalResultH3Id.style.display = "block";
     finalResultH3Id.innerHTML = resultBeginning;
-    finalResultH3Id.innerHTML += `${name}</big>, ${btype}`;
+    finalResultH3Id.innerHTML += `${inputName}</big>, ${btype}`;
   }
-  ttt += 1;
-  if (ttt == 1500) finalResultH3Id.innerHTML += `${bodypt}${bbg}<br><br>`;
-  if (ttt == 2000) finalResultH3Id.innerHTML += `${ageAdvice}<br><br>`;
-  if (ttt == 3000) finalResultH3Id.innerHTML += `${bodytp}<br><br>`;
-  if (ttt == 4000) finalResultH3Id.innerHTML += `${cbody}<br><br>`;
-  if (ttt == 5000) finalResultH3Id.innerHTML += `${ccbodycc}<br><br>`;
-  if (ttt == 6000) finalResultH3Id.innerHTML += `${cbodyc}<br><br>`;
-  if (ttt == 7000) finalResultH3Id.innerHTML += `${ccbody}<br><br>`;
-  if (ttt == 8000)
+  timeGaps += 1;
+  if (timeGaps == 1500) finalResultH3Id.innerHTML += `${bodypt}${goalDistance}<br><br>`;
+  if (timeGaps == 2000) finalResultH3Id.innerHTML += `${ageAdvice}<br><br>`;
+  if (timeGaps == 3000) finalResultH3Id.innerHTML += `${bodytp}<br><br>`;
+  if (timeGaps == 4000) finalResultH3Id.innerHTML += `${cbody}<br><br>`;
+  if (timeGaps == 5000) finalResultH3Id.innerHTML += `${ccbodycc}<br><br>`;
+  if (timeGaps == 6000) finalResultH3Id.innerHTML += `${cbodyc}<br><br>`;
+  if (timeGaps == 7000) finalResultH3Id.innerHTML += `${ccbody}<br><br>`;
+  if (timeGaps == 8000)
     finalResultH3Id.innerHTML += `${bodycc}<br><br>${bodyc}<br><br>`;
-  if (ttt == 10000 && emotion == "yes")
+  if (timeGaps == 10000 && emotion == "yes")
     finalResultH3Id.innerHTML += `${emotionans}<br><br>`;
-  if (ttt == 11000) finalResultH3Id.innerHTML += `${bmrl}<br><br><br>`;
-  if (ttt == 12000) {
+  if (timeGaps == 11000) finalResultH3Id.innerHTML += `${bmrl}<br><br><br>`;
+  if (timeGaps == 12000) {
     finalResultH4Id.innerHTML = "";
     finalResultH4Id.style.display = "block";
     finalResultH4Id.innerHTML += `<i>${bmrll}<br><br>${bmrlll}<br><br>${bmrllll}<br><br>${bmrlllll}</i><br><br><br>`;
   }
-  if (ttt == 13000) {
+  if (timeGaps == 13000) {
     finalResultH2Id.style.display = "block";
     if (!(noEmailNeeded === 0 || emailaddrreturnfinal || emailaddrreturn))
       emailLinkColor.innerHTML = ``;
   }
-  if (ttt == 14000) {
+  if (timeGaps == 14000) {
     idFooter.style.position = "relative";
     idFooter.style.marginBottom = "0";
     idFooter.style.display = "block";
