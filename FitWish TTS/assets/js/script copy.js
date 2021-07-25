@@ -1,12 +1,15 @@
+//literally all variables declaration
 var btype,
   buttonQuerySelector = document.querySelectorAll(".button"),
   resultBeginning,
-  contentArray = JSON.parse(localStorage.getItem("contentArray")) ?? [],
+  contentArrayJSON,
+  contentArrayJSONget = localStorage.getItem("contentArray"),
+  contentArray = JSON.parse(contentArrayJSONget) ?? [],
   idUser,
-  exercise,
-  healthy,
-  cheat,
-  meals,
+  c,
+  c2,
+  c3,
+  c4,
   resultBeginning2,
   day,
   dd,
@@ -62,6 +65,62 @@ var btype,
   weight2,
   bbgwp,
   bbgw0,
+  xx1,
+  xx2,
+  x5,
+  x6,
+  x7,
+  x8,
+  x9,
+  x10,
+  x11,
+  x12,
+  x13,
+  x14,
+  x15,
+  x16,
+  x17,
+  x18,
+  x19,
+  x20,
+  x21,
+  x22,
+  x23,
+  x24,
+  x25,
+  x26,
+  x27,
+  x28,
+  x29,
+  x30,
+  x31,
+  x32,
+  xx24,
+  xx25,
+  xx26,
+  xx27,
+  xx28,
+  xx29,
+  xx30,
+  xx31,
+  xx32,
+  x34,
+  x35,
+  x36,
+  x37,
+  x38,
+  x39,
+  x40,
+  x41,
+  x42,
+  x43,
+  x44,
+  x45,
+  x46,
+  x47,
+  x48,
+  x49,
+  x50,
   bodyreturn,
   emailaddrreturn,
   genderreturn,
@@ -87,6 +146,10 @@ var btype,
   bmrlll,
   bbgw1,
   bbgw2,
+  subject,
+  message,
+  urll,
+  redirectemail,
   element,
   addup1,
   addup2,
@@ -96,8 +159,9 @@ var btype,
   addup6,
   emailaddrreturnfinal,
   name,
+  agest,
   age,
-  ageAdvice,
+  bodyage,
   languageValue = 1,
   fullresult = "",
   ttt = 0,
@@ -118,9 +182,9 @@ var btype,
   idealWeight000 = parseFloat(idealWeight00),
   deltap = 0,
   bmi = 0,
-  currentBody = 0,
-  goalBody = 0,
-  goalBodyDistance = 0,
+  b = 0,
+  bgoal = 0,
+  bbgoal = 0,
   bbgw3 = 0,
   bbgw4 = 0,
   bbgw00 = 0,
@@ -234,8 +298,7 @@ if (contentArray.length == 0) {
     français();
     if (
       !(
-        contentArray?.[0]?.name?.toLowerCase() ==
-        contentArray?.[1]?.name?.toLowerCase()
+        contentArray[0].name.toLowerCase() == contentArray[1].name.toLowerCase()
       )
     ) {
       firstPageH13rd.innerHTML = `Nous avons détecté que vous avez déjà essayé notre test deux fois, une fois comme ${contentArray[0].name} fabriqué en ${contentArray[0].day}, et une fois comme ${contentArray[1].name} fabriqué en ${contentArray[1].day}. Choisissez ce que vous souhaitez faire ci-dessous`;
@@ -479,7 +542,7 @@ function english() {
   firstAlert =
     "DISCLAIMER: This is not a medical nor nutritionist advice and not only does not exclude a medical consultation, but also, me as this code creator, encourage and support YOU to get to see your doctor for anything YOU think YOU should improve in YOUR health life. Peace!";
   document.getElementById("name").placeholder = "Name Example: Nick";
-  document.getElementById("age").placeholder = "Age Example: 24";
+  document.getElementById("agest").placeholder = "Age Example: 24";
   document.getElementById("email").placeholder =
     "Example: name.lastname@email.com";
   document.getElementById("headingTextInputIdName").innerHTML = "Name:";
@@ -666,7 +729,7 @@ function português() {
   firstAlert =
     "AVISO LEGAL: Este não é um conselho médico ou nutricionista e não só não exclui uma consulta médica, como também, eu, como criador deste código, encorajo e apoio VOCÊ a procurar seu médico para qualquer coisa que você acha que deveria melhorar em sua vida saudável.";
   document.getElementById("name").placeholder = "Exemplo de Nome: Nick";
-  document.getElementById("age").placeholder = "Exemplo de idade: 24";
+  document.getElementById("agest").placeholder = "Exemplo de idade: 24";
   document.getElementById("email").placeholder =
     "Exemplo: nome.sobrenome@email.com";
   document.getElementById("headingTextInputIdName").innerHTML = "Nome:";
@@ -865,7 +928,7 @@ function français() {
   firstAlert =
     "AVIS DE NON-RESPONSABILITÉ: Ce n'est pas un conseil médical ou nutritionniste et non seulement n'exclut pas une consultation médicale, mais aussi, moi en tant que créateur de code, je vous encourage et vous soutenez à voir votre médecin pour tout ce que VOUS pensez que VOUS devriez améliorer dans VOTRE vie de santé . Paix!";
   document.getElementById("name").placeholder = "Exemple de nom: Nick";
-  document.getElementById("age").placeholder = "Exemple d'âge: 24 ";
+  document.getElementById("agest").placeholder = "Exemple d'âge: 24 ";
   document.getElementById("email").placeholder =
     "Exemple d'email: nom.nom@email.com";
   document.getElementById("headingTextInputIdName").innerHTML = "Nom:";
@@ -1066,7 +1129,7 @@ function español() {
   firstAlert =
     "DESCARGO DE RESPONSABILIDAD: Este no es un consejo médico ni nutricionista y no solo no excluye una consulta médica, sino que también, como creador de este código, lo animo y lo apoyo para que vea a su médico por cualquier cosa que usted crea que debe mejorar en su vida de salud. . ¡Paz!";
   document.getElementById("name").placeholder = "Ejemplo de nombre: Nick";
-  document.getElementById("age").placeholder = "Ejemplo de edad: 24";
+  document.getElementById("agest").placeholder = "Ejemplo de edad: 24";
   document.getElementById("email").placeholder =
     "Ejemplo: nombre.apellido@email.com";
   document.getElementById("headingTextInputIdName").innerHTML = "Nombre:";
@@ -1303,7 +1366,7 @@ const setLocalData = (idParameter) => {
     btype,
     bodypt,
     bbg,
-    ageAdvice,
+    bodyage,
     bodytp,
     cbody,
     ccbodycc,
@@ -1319,7 +1382,8 @@ const setLocalData = (idParameter) => {
     bmrlllll,
     day,
   });
-  localStorage.setItem("contentArray", JSON.stringify(contentArray));
+  contentArrayJSON = JSON.stringify(contentArray);
+  localStorage.setItem("contentArray", contentArrayJSON);
 };
 const storage = () => (tryNumber == 1 ? setLocalData(1) : setLocalData(2));
 const showPrevTestResult = (resultTry) => {
@@ -1328,7 +1392,7 @@ const showPrevTestResult = (resultTry) => {
     idFooter.style.display = "none";
     buttonFirst.style.display = "block";
     finalResultH3Id.style.display = "block";
-    finalResultH3Id.innerHTML = `${contentArray[0].resultBeginning2} ${contentArray[0].name}</big>, ${contentArray[0].btype} <br> ${contentArray[0].bodypt}${contentArray[0].bbg}<br><br>${contentArray[0].ageAdvice}<br><br>${contentArray[0].bodytp}<br><br>${contentArray[0].cbody}<br><br>${contentArray[0].ccbodycc}<br><br>${contentArray[0].cbodyc}<br><br>${contentArray[0].ccbody}<br><br>${contentArray[0].bodycc}<br><br>${contentArray[0].bodyc}<br><br>${contentArray[0].emotionans}<br><br>${contentArray[0].bmrl}<br><br><br>`;
+    finalResultH3Id.innerHTML = `${contentArray[0].resultBeginning2} ${contentArray[0].name}</big>, ${contentArray[0].btype} <br> ${contentArray[0].bodypt}${contentArray[0].bbg}<br><br>${contentArray[0].bodyage}<br><br>${contentArray[0].bodytp}<br><br>${contentArray[0].cbody}<br><br>${contentArray[0].ccbodycc}<br><br>${contentArray[0].cbodyc}<br><br>${contentArray[0].ccbody}<br><br>${contentArray[0].bodycc}<br><br>${contentArray[0].bodyc}<br><br>${contentArray[0].emotionans}<br><br>${contentArray[0].bmrl}<br><br><br>`;
     finalResultH4Id.style.display = "block";
     finalResultH4Id.innerHTML = `<i>${contentArray[0].bmrll}<br><br>${contentArray[0].bmrlll}<br><br>${contentArray[0].bmrllll}<br><br>${contentArray[0].bmrlllll}</i><br><br><br>`;
     idFooter.style.position = "relative";
@@ -1339,7 +1403,7 @@ const showPrevTestResult = (resultTry) => {
     idFooter.style.display = "none";
     buttonFirst.style.display = "block";
     finalResultH3Id.style.display = "block";
-    finalResultH3Id.innerHTML = `${contentArray[1].resultBeginning2} ${contentArray[1].name}</big>, ${contentArray[1].btype} <br> ${contentArray[1].bodypt}${contentArray[1].bbg}<br><br>${contentArray[1].ageAdvice}<br><br>${contentArray[1].bodytp}<br><br>${contentArray[1].cbody}<br><br>${contentArray[1].ccbodycc}<br><br>${contentArray[1].cbodyc}<br><br>${contentArray[1].ccbody}<br><br>${contentArray[1].bodycc}<br><br>${contentArray[1].bodyc}<br><br>${contentArray[1].emotionans}<br><br>${contentArray[1].bmrl}<br><br><br>`;
+    finalResultH3Id.innerHTML = `${contentArray[1].resultBeginning2} ${contentArray[1].name}</big>, ${contentArray[1].btype} <br> ${contentArray[1].bodypt}${contentArray[1].bbg}<br><br>${contentArray[1].bodyage}<br><br>${contentArray[1].bodytp}<br><br>${contentArray[1].cbody}<br><br>${contentArray[1].ccbodycc}<br><br>${contentArray[1].cbodyc}<br><br>${contentArray[1].ccbody}<br><br>${contentArray[1].bodycc}<br><br>${contentArray[1].bodyc}<br><br>${contentArray[1].emotionans}<br><br>${contentArray[1].bmrl}<br><br><br>`;
     finalResultH4Id.style.display = "block";
     finalResultH4Id.innerHTML = `<i>${contentArray[1].bmrll}<br><br>${contentArray[1].bmrlll}<br><br>${contentArray[1].bmrllll}<br><br>${contentArray[1].bmrlllll}</i><br><br><br>`;
     idFooter.style.position = "relative";
@@ -1372,7 +1436,8 @@ const overwriteTest2 = (paramas) => {
       );
     if (confirmOverwrite == true) {
       contentArray.shift();
-      localStorage.setItem("contentArray", JSON.stringify(contentArray));
+      contentArrayJSON = JSON.stringify(contentArray);
+      localStorage.setItem("contentArray", contentArrayJSON);
       startNewTry(1);
       firstPageBtn1stTry.style.display = "none";
       firstPageBtn1stTryOverwrite.style.display = "none";
@@ -1402,7 +1467,8 @@ const overwriteTest2 = (paramas) => {
       );
     if (confirmOverwrite == true) {
       contentArray.pop();
-      localStorage.setItem("contentArray", JSON.stringify(contentArray));
+      contentArrayJSON = JSON.stringify(contentArray);
+      localStorage.setItem("contentArray", contentArrayJSON);
       startNewTry(2);
     }
   }
@@ -1427,7 +1493,8 @@ function overwriteTest() {
       );
     if (confirmOverwrite == true) {
       contentArray.shift();
-      localStorage.setItem("contentArray", JSON.stringify(contentArray));
+      contentArrayJSON = JSON.stringify(contentArray);
+      localStorage.setItem("contentArray", contentArrayJSON);
       startNewTry(1);
     }
   } else if (triesMade == 2) {
@@ -1909,9 +1976,10 @@ function prevPageInterpreter() {
 //disclaimer button callable function
 const disclaimer = () => alert(firstAlert);
 //functions that define the color change when the cursor is on or out of a button
-const hoverColorChangeFunc = (hoveredId) =>
-  (document.getElementById(hoveredId).style.backgroundColor = "#2ECC71");
-
+const hoverColorChangeFunc = (f) => {
+  var f = document.getElementById(f);
+  f.style.backgroundColor = "#2ECC71";
+};
 function hoverOutColorChangeFunc(g, gg) {
   var g = document.getElementById(gg);
   g.style.backgroundColor = "teal";
@@ -1937,136 +2005,122 @@ function hoverOutColorChangeFunc(g, gg) {
     colorChangeIdMeso.style.backgroundColor = "#7395AE";
   else if (bodytype == "endo")
     colorChangeIdEndo.style.backgroundColor = "#7395AE";
-  if (currentBody == 1) colorChangeIdBody1.style.backgroundColor = "#7395AE";
-  else if (currentBody == 2)
-    colorChangeIdBody2.style.backgroundColor = "#7395AE";
-  else if (currentBody == 3)
-    colorChangeIdBody3.style.backgroundColor = "#7395AE";
-  else if (currentBody == 4)
-    colorChangeIdBody4.style.backgroundColor = "#7395AE";
-  else if (currentBody == 5)
-    colorChangeIdBody5.style.backgroundColor = "#7395AE";
-  else if (currentBody == 6)
-    colorChangeIdBody6.style.backgroundColor = "#7395AE";
-  else if (currentBody == 7)
-    colorChangeIdBody7.style.backgroundColor = "#7395AE";
-  else if (currentBody == 8)
-    colorChangeIdBody8.style.backgroundColor = "#7395AE";
-  else if (currentBody == 9)
-    colorChangeIdBody9.style.backgroundColor = "#7395AE";
-  if (goalBody == 1) {
+  if (b == 1) colorChangeIdBody1.style.backgroundColor = "#7395AE";
+  else if (b == 2) colorChangeIdBody2.style.backgroundColor = "#7395AE";
+  else if (b == 3) colorChangeIdBody3.style.backgroundColor = "#7395AE";
+  else if (b == 4) colorChangeIdBody4.style.backgroundColor = "#7395AE";
+  else if (b == 5) colorChangeIdBody5.style.backgroundColor = "#7395AE";
+  else if (b == 6) colorChangeIdBody6.style.backgroundColor = "#7395AE";
+  else if (b == 7) colorChangeIdBody7.style.backgroundColor = "#7395AE";
+  else if (b == 8) colorChangeIdBody8.style.backgroundColor = "#7395AE";
+  else if (b == 9) colorChangeIdBody9.style.backgroundColor = "#7395AE";
+  if (bgoal == 1) {
     if (
       (age >= 15 && age <= 40) ||
-      (age < 15 && age >= 10 && goalBody > 3) ||
-      (age > 40 && age <= 50 && goalBody > 2) ||
-      (age > 50 && age <= 60 && goalBody > 3) ||
-      (age > 60 && goalBody > 4)
+      (age < 15 && age >= 10 && bgoal > 3) ||
+      (age > 40 && age <= 50 && bgoal > 2) ||
+      (age > 50 && age <= 60 && bgoal > 3) ||
+      (age > 60 && bgoal > 4)
     )
       colorChangeIdGoal1.style.backgroundColor = "#7395AE";
     else colorChangeIdGoal1.style.backgroundColor = "teal";
-  } else if (goalBody == 2) {
+  } else if (bgoal == 2) {
     if (
       (age >= 15 && age <= 40) ||
-      (age < 15 && age >= 10 && goalBody > 3) ||
-      (age > 40 && age <= 50 && goalBody > 2) ||
-      (age > 50 && age <= 60 && goalBody > 3) ||
-      (age > 60 && goalBody > 4)
+      (age < 15 && age >= 10 && bgoal > 3) ||
+      (age > 40 && age <= 50 && bgoal > 2) ||
+      (age > 50 && age <= 60 && bgoal > 3) ||
+      (age > 60 && bgoal > 4)
     )
       colorChangeIdGoal2.style.backgroundColor = "#7395AE";
     else colorChangeIdGoal2.style.backgroundColor = "teal";
-  } else if (goalBody == 3) {
+  } else if (bgoal == 3) {
     if (
       (age >= 15 && age <= 40) ||
-      (age < 15 && age >= 10 && goalBody > 3) ||
-      (age > 40 && age <= 50 && goalBody > 2) ||
-      (age > 50 && age <= 60 && goalBody > 3) ||
-      (age > 60 && goalBody > 4)
+      (age < 15 && age >= 10 && bgoal > 3) ||
+      (age > 40 && age <= 50 && bgoal > 2) ||
+      (age > 50 && age <= 60 && bgoal > 3) ||
+      (age > 60 && bgoal > 4)
     )
       colorChangeIdGoal3.style.backgroundColor = "#7395AE";
     else colorChangeIdGoal3.style.backgroundColor = "teal";
-  } else if (goalBody == 4) {
+  } else if (bgoal == 4) {
     if (
       (age >= 15 && age <= 40) ||
-      (age < 15 && age >= 10 && goalBody > 3) ||
-      (age > 40 && age <= 50 && goalBody > 2) ||
-      (age > 50 && age <= 60 && goalBody > 3) ||
-      (age > 60 && goalBody > 4)
+      (age < 15 && age >= 10 && bgoal > 3) ||
+      (age > 40 && age <= 50 && bgoal > 2) ||
+      (age > 50 && age <= 60 && bgoal > 3) ||
+      (age > 60 && bgoal > 4)
     )
       colorChangeIdGoal4.style.backgroundColor = "#7395AE";
     else colorChangeIdGoal4.style.backgroundColor = "teal";
-  } else if (goalBody == 5) {
+  } else if (bgoal == 5) {
     if (
       (age >= 15 && age <= 40) ||
-      (age < 15 && age >= 10 && goalBody > 3) ||
-      (age > 40 && age <= 50 && goalBody > 2) ||
-      (age > 50 && age <= 60 && goalBody > 3) ||
-      (age > 60 && goalBody > 4)
+      (age < 15 && age >= 10 && bgoal > 3) ||
+      (age > 40 && age <= 50 && bgoal > 2) ||
+      (age > 50 && age <= 60 && bgoal > 3) ||
+      (age > 60 && bgoal > 4)
     )
       colorChangeIdGoal5.style.backgroundColor = "#7395AE";
     else colorChangeIdGoal5.style.backgroundColor = "teal";
-  } else if (goalBody == 6) {
+  } else if (bgoal == 6) {
     if (
       (age >= 15 && age <= 40) ||
-      (age < 15 && age >= 10 && goalBody > 3) ||
-      (age > 40 && age <= 50 && goalBody > 2) ||
-      (age > 50 && age <= 60 && goalBody > 3) ||
-      (age > 60 && goalBody > 4)
+      (age < 15 && age >= 10 && bgoal > 3) ||
+      (age > 40 && age <= 50 && bgoal > 2) ||
+      (age > 50 && age <= 60 && bgoal > 3) ||
+      (age > 60 && bgoal > 4)
     )
       colorChangeIdGoal6.style.backgroundColor = "#7395AE";
     else colorChangeIdGoal6.style.backgroundColor = "teal";
-  } else if (goalBody == 7) {
+  } else if (bgoal == 7) {
     if (
       (age >= 15 && age <= 40) ||
-      (age < 15 && age >= 10 && goalBody > 3) ||
-      (age > 40 && age <= 50 && goalBody > 2) ||
-      (age > 50 && age <= 60 && goalBody > 3) ||
-      (age > 60 && goalBody > 4)
+      (age < 15 && age >= 10 && bgoal > 3) ||
+      (age > 40 && age <= 50 && bgoal > 2) ||
+      (age > 50 && age <= 60 && bgoal > 3) ||
+      (age > 60 && bgoal > 4)
     )
       colorChangeIdGoal7.style.backgroundColor = "#7395AE";
     else colorChangeIdGoal7.style.backgroundColor = "teal";
-  } else if (goalBody == 8) {
+  } else if (bgoal == 8) {
     if (
       (age >= 15 && age <= 40) ||
-      (age < 15 && age >= 10 && goalBody > 3) ||
-      (age > 40 && age <= 50 && goalBody > 2) ||
-      (age > 50 && age <= 60 && goalBody > 3) ||
-      (age > 60 && goalBody > 4)
+      (age < 15 && age >= 10 && bgoal > 3) ||
+      (age > 40 && age <= 50 && bgoal > 2) ||
+      (age > 50 && age <= 60 && bgoal > 3) ||
+      (age > 60 && bgoal > 4)
     )
       colorChangeIdGoal8.style.backgroundColor = "#7395AE";
     else colorChangeIdGoal8.style.backgroundColor = "teal";
-  } else if (goalBody == 9) {
+  } else if (bgoal == 9) {
     if (
       (age >= 15 && age <= 40) ||
-      (age < 15 && age >= 10 && goalBody > 3) ||
-      (age > 40 && age <= 50 && goalBody > 2) ||
-      (age > 50 && age <= 60 && goalBody > 3) ||
-      (age > 60 && goalBody > 4)
+      (age < 15 && age >= 10 && bgoal > 3) ||
+      (age > 40 && age <= 50 && bgoal > 2) ||
+      (age > 50 && age <= 60 && bgoal > 3) ||
+      (age > 60 && bgoal > 4)
     )
       colorChangeIdGoal9.style.backgroundColor = "#7395AE";
     else colorChangeIdGoal9.style.backgroundColor = "teal";
   }
-  if (exercise == 1) colorChangeIdNoneXercise.style.backgroundColor = "#7395AE";
-  else if (exercise == 2)
-    colorChangeIdLowXercise.style.backgroundColor = "#7395AE";
-  else if (exercise == 3)
-    colorChangeIdMidXercise.style.backgroundColor = "#7395AE";
-  else if (exercise == 4)
-    colorChangeIdHighXercise.style.backgroundColor = "#7395AE";
-  if (healthy == 1) colorChangeIdNoneHealthy.style.backgroundColor = "#7395AE";
-  else if (healthy == 2)
-    colorChangeIdLowHealthy.style.backgroundColor = "#7395AE";
-  else if (healthy == 3)
-    colorChangeIdMidHealthy.style.backgroundColor = "#7395AE";
-  else if (healthy == 4)
-    colorChangeIdHighHealthy.style.backgroundColor = "#7395AE";
-  if (cheat == 1) colorChangeIdNoneCheat.style.backgroundColor = "#7395AE";
-  else if (cheat == 2) colorChangeIdLowCheat.style.backgroundColor = "#7395AE";
-  else if (cheat == 3) colorChangeIdMidCheat.style.backgroundColor = "#7395AE";
-  else if (cheat == 4) colorChangeIdHighCheat.style.backgroundColor = "#7395AE";
-  if (meals == 1) colorChangeId2Meals.style.backgroundColor = "#7395AE";
-  else if (meals == 2) colorChangeId3Meals.style.backgroundColor = "#7395AE";
-  else if (meals == 3) colorChangeId4Meals.style.backgroundColor = "#7395AE";
-  else if (meals == 4) colorChangeId5Meals.style.backgroundColor = "#7395AE";
+  if (c == 1) colorChangeIdNoneXercise.style.backgroundColor = "#7395AE";
+  else if (c == 2) colorChangeIdLowXercise.style.backgroundColor = "#7395AE";
+  else if (c == 3) colorChangeIdMidXercise.style.backgroundColor = "#7395AE";
+  else if (c == 4) colorChangeIdHighXercise.style.backgroundColor = "#7395AE";
+  if (c2 == 1) colorChangeIdNoneHealthy.style.backgroundColor = "#7395AE";
+  else if (c2 == 2) colorChangeIdLowHealthy.style.backgroundColor = "#7395AE";
+  else if (c2 == 3) colorChangeIdMidHealthy.style.backgroundColor = "#7395AE";
+  else if (c2 == 4) colorChangeIdHighHealthy.style.backgroundColor = "#7395AE";
+  if (c3 == 1) colorChangeIdNoneCheat.style.backgroundColor = "#7395AE";
+  else if (c3 == 2) colorChangeIdLowCheat.style.backgroundColor = "#7395AE";
+  else if (c3 == 3) colorChangeIdMidCheat.style.backgroundColor = "#7395AE";
+  else if (c3 == 4) colorChangeIdHighCheat.style.backgroundColor = "#7395AE";
+  if (c4 == 1) colorChangeId2Meals.style.backgroundColor = "#7395AE";
+  else if (c4 == 2) colorChangeId3Meals.style.backgroundColor = "#7395AE";
+  else if (c4 == 3) colorChangeId4Meals.style.backgroundColor = "#7395AE";
+  else if (c4 == 4) colorChangeId5Meals.style.backgroundColor = "#7395AE";
 }
 img = document.createElement("img");
 //1 func about emotional overeating
@@ -2074,18 +2128,17 @@ const emoFunc = (binary) => (emotion = binary);
 //2 functions about gender
 function male() {
   gender = "male";
-  setImg(
-    "https://crossfitclandestine.files.wordpress.com/2019/05/xbody-fat-chart-men.png.pagespeed.ic_.57b54gdukq.jpg"
-  );
+  img.src =
+    "https://crossfitclandestine.files.wordpress.com/2019/05/xbody-fat-chart-men.png.pagespeed.ic_.57b54gdukq.jpg";
+  img.setAttribute("width", "500");
+  img.setAttribute("height", "400");
+  src = document.getElementById("bodyImageId");
+  src.appendChild(img);
 }
 function female() {
   gender = "female";
-  setImg(
-    "https://crossfitclandestine.files.wordpress.com/2019/05/body-fat-chart-women.png.pagespeed.ce_.9463kejyyr.png"
-  );
-}
-function setImg(link) {
-  img.src = link;
+  img.src =
+    "https://crossfitclandestine.files.wordpress.com/2019/05/body-fat-chart-women.png.pagespeed.ce_.9463kejyyr.png";
   img.setAttribute("width", "500");
   img.setAttribute("height", "400");
   src = document.getElementById("bodyImageId");
@@ -2096,19 +2149,19 @@ const bodyGoalFunction = (bbtype) => (bope = bbtype);
 function nop() {
   if (languageValue == 1)
     alert(
-      "Copy the first link to a 10-minute video explaining it: https://www.youtube.com/watch?v=iW6QeqA_iD4&t=446s, or take a Google test on this link: https://www.bodybuilding.com/fun/becker3.htm. But basically ecto does not have much ease in gaining muscle nor fat, meso has ease in gaining muscle and losing fat and endo has ease to gain both. And btw you can click on the body type you are without having to rerun the code"
+      "Copy the first link to a 10-minute video explaining it: https://www.youtube.com/watch?v=iW6QeqA_iD4&t=446s          or take a Google test on this link: https://www.bodybuilding.com/fun/becker3.htm             But basically ecto does not have much ease in gaining muscle nor fat, meso has ease in gaining muscle and losing fat and endo has ease to gain both. And btw you can click on the body type you are without having to rerun the code"
     );
   else if (languageValue == 2)
     alert(
-      "Copie o primeiro link para um vídeo de 10 minutos explicando-o: https://www.youtube.com/watch?v=iW6QeqA_iD4&t=446s, ou faça um teste do Google neste link: https://www.bodybuilding.com/fun/becker3.htm. Mas basicamente o ecto não tem muita facilidade em ganhar músculo nem gordura, o meso tem facilidade em ganhar músculo e perder gordura e o endo tem facilidade em ganhar ambos. E inclusive você pode clicar no tipo de corpo que você é, sem ter que executar o código novamente"
+      "Copie o primeiro link para um vídeo de 10 minutos explicando-o: https://www.youtube.com/watch?v=iW6QeqA_iD4&t=446s          ou faça um teste do Google neste link: https://www.bodybuilding.com/fun/becker3.htm             Mas basicamente o ecto não tem muita facilidade em ganhar músculo nem gordura, o meso tem facilidade em ganhar músculo e perder gordura e o endo tem facilidade em ganhar ambos. E inclusive você pode clicar no tipo de corpo que você é, sem ter que executar o código novamente"
     );
   else if (languageValue == 3)
     alert(
-      "Copiez le premier lien vers une vidéo de 10 minutes expliquant: https://www.youtube.com/watch?v=iW6QeqA_iD4&t=446s, ou faites un test Google sur ce lien: https://www.bodybuilding.com/fun/becker3.htm. Mais fondamentalement, ecto n'a pas beaucoup de facilité à gagner du muscle ni de la graisse, le méso a la facilité de gagner du muscle et de perdre de la graisse et l'endo a la facilité de gagner les deux. Et au fait, vous pouvez cliquer sur le type de corps que vous êtes sans avoir à réexécuter le code"
+      "Copiez le premier lien vers une vidéo de 10 minutes expliquant: https://www.youtube.com/watch?v=iW6QeqA_iD4&t=446s          ou faites un test Google sur ce lien: https://www.bodybuilding.com/fun/becker3.htm             Mais fondamentalement, ecto n'a pas beaucoup de facilité à gagner du muscle ni de la graisse, le méso a la facilité de gagner du muscle et de perdre de la graisse et l'endo a la facilité de gagner les deux. Et au fait, vous pouvez cliquer sur le type de corps que vous êtes sans avoir à réexécuter le code"
     );
   else if (languageValue == 4)
     alert(
-      "Copie el primer enlace a un video de 10 minutos que lo explique: https://www.youtube.com/watch?v=iW6QeqA_iD4&t=446s, o haz una prueba de Google en este enlace: https://www.bodybuilding.com/fun/becker3.htm. Pero básicamente ecto no tiene mucha facilidad para ganar músculo ni grasa, meso tiene facilidad para ganar músculo y perder grasa y endo tiene facilidad para ganar ambos. Y, por cierto, puede hacer clic en el tipo de cuerpo que tiene sin tener que volver a ejecutar el código."
+      "Copie el primer enlace a un video de 10 minutos que lo explique: https://www.youtube.com/watch?v=iW6QeqA_iD4&t=446s          o haz una prueba de Google en este enlace: https://www.bodybuilding.com/fun/becker3.htm             Pero básicamente ecto no tiene mucha facilidad para ganar músculo ni grasa, meso tiene facilidad para ganar músculo y perder grasa y endo tiene facilidad para ganar ambos. Y, por cierto, puede hacer clic en el tipo de cuerpo que tiene sin tener que volver a ejecutar el código."
     );
 }
 // body type
@@ -2442,84 +2495,141 @@ function idealWeight(lbs, lb) {
 }
 // function of color change at click - btw the number is of how many button per question
 // and the 10 isnt really 10 buttons, its also 9 but the structures between them both are different
-function changeColor2(clickedId, idleId) {
-  document.getElementById(clickedId).style.backgroundColor = "#7395AE";
-  document.getElementById(idleId).style.backgroundColor = "teal";
+function changeColor2(xx1, xxx1, xx2, xxx2) {
+  xx1 = document.getElementById(xxx1);
+  xx1.style.backgroundColor = "#7395AE";
+  xx2 = document.getElementById(xxx2);
+  xx2.style.backgroundColor = "teal";
 }
-function changeColor4(clickedId, idleId1, idleId2, idleId3) {
-  document.getElementById(clickedId).style.backgroundColor = "#7395AE";
-  document.getElementById(idleId1).style.backgroundColor = "teal";
-  document.getElementById(idleId2).style.backgroundColor = "teal";
-  document.getElementById(idleId3).style.backgroundColor = "teal";
+function changeColor4(x7, xx7, x8, xx8, x9, xx9, x10, xx10) {
+  x7 = document.getElementById(xx7);
+  x7.style.backgroundColor = "#7395AE";
+  x8 = document.getElementById(xx8);
+  x8.style.backgroundColor = "teal";
+  x9 = document.getElementById(xx9);
+  x9.style.backgroundColor = "teal";
+  x10 = document.getElementById(xx10);
+  x10.style.backgroundColor = "teal";
 }
 function changeColor9(
-  clickedId,
-  idleId1,
-  idleId2,
-  idleId3,
-  idleId4,
-  idleId5,
-  idleId6,
-  idleId7,
-  idleId8
+  x15,
+  xx15,
+  x16,
+  xx16,
+  x17,
+  xx17,
+  x18,
+  xx18,
+  x19,
+  xx19,
+  x20,
+  xx20,
+  x21,
+  xx21,
+  x22,
+  xx22,
+  x23,
+  xx23
 ) {
-  document.getElementById(clickedId).style.backgroundColor = "#7395AE";
-  document.getElementById(idleId1).style.backgroundColor = "teal";
-  document.getElementById(idleId2).style.backgroundColor = "teal";
-  document.getElementById(idleId3).style.backgroundColor = "teal";
-  document.getElementById(idleId4).style.backgroundColor = "teal";
-  document.getElementById(idleId5).style.backgroundColor = "teal";
-  document.getElementById(idleId6).style.backgroundColor = "teal";
-  document.getElementById(idleId7).style.backgroundColor = "teal";
-  document.getElementById(idleId8).style.backgroundColor = "teal";
+  x15 = document.getElementById(xx15);
+  x15.style.backgroundColor = "#7395AE";
+  x16 = document.getElementById(xx16);
+  x16.style.backgroundColor = "teal";
+  x17 = document.getElementById(xx17);
+  x17.style.backgroundColor = "teal";
+  x18 = document.getElementById(xx18);
+  x18.style.backgroundColor = "teal";
+  x19 = document.getElementById(xx19);
+  x19.style.backgroundColor = "teal";
+  x20 = document.getElementById(xx20);
+  x20.style.backgroundColor = "teal";
+  x21 = document.getElementById(xx21);
+  x21.style.backgroundColor = "teal";
+  x22 = document.getElementById(xx22);
+  x22.style.backgroundColor = "teal";
+  x23 = document.getElementById(xx23);
+  x23.style.backgroundColor = "teal";
 }
 function changeColor10(
-  clickedId,
-  idleId1,
-  idleId2,
-  idleId3,
-  idleId4,
-  idleId5,
-  idleId6,
-  idleId7,
-  idleId8
+  x24,
+  xx24,
+  x25,
+  xx25,
+  x26,
+  xx26,
+  x27,
+  xx27,
+  x28,
+  xx28,
+  x29,
+  xx29,
+  x30,
+  xx30,
+  x31,
+  xx31,
+  x32,
+  xx32
 ) {
   if (
     (age >= 15 && age <= 40) ||
-    (age < 15 && age >= 10 && goalBody > 3) ||
-    (age > 40 && age <= 50 && goalBody > 2) ||
-    (age > 50 && age <= 60 && goalBody > 3) ||
-    (age > 60 && goalBody > 4)
+    (age < 15 && age >= 10 && bgoal > 3) ||
+    (age > 40 && age <= 50 && bgoal > 2) ||
+    (age > 50 && age <= 60 && bgoal > 3) ||
+    (age > 60 && bgoal > 4)
   ) {
-    document.getElementById(clickedId).style.backgroundColor = "#7395AE";
-    document.getElementById(idleId1).style.backgroundColor = "teal";
-    document.getElementById(idleId2).style.backgroundColor = "teal";
-    document.getElementById(idleId3).style.backgroundColor = "teal";
-    document.getElementById(idleId4).style.backgroundColor = "teal";
-    document.getElementById(idleId5).style.backgroundColor = "teal";
-    document.getElementById(idleId6).style.backgroundColor = "teal";
-    document.getElementById(idleId7).style.backgroundColor = "teal";
-    document.getElementById(idleId8).style.backgroundColor = "teal";
+    x24 = document.getElementById(xx24);
+    x24.style.backgroundColor = "#7395AE";
+    x25 = document.getElementById(xx25);
+    x25.style.backgroundColor = "teal";
+    x26 = document.getElementById(xx26);
+    x26.style.backgroundColor = "teal";
+    x27 = document.getElementById(xx27);
+    x27.style.backgroundColor = "teal";
+    x28 = document.getElementById(xx28);
+    x28.style.backgroundColor = "teal";
+    x29 = document.getElementById(xx29);
+    x29.style.backgroundColor = "teal";
+    x30 = document.getElementById(xx30);
+    x30.style.backgroundColor = "teal";
+    x31 = document.getElementById(xx31);
+    x31.style.backgroundColor = "teal";
+    x32 = document.getElementById(xx32);
+    x32.style.backgroundColor = "teal";
   } else {
-    for (let element of arguments)
-      document.getElementById(element).style.backgroundColor = "teal";
+    x24 = document.getElementById(xx24);
+    x24.style.backgroundColor = "teal";
+    x25 = document.getElementById(xx25);
+    x25.style.backgroundColor = "teal";
+    x26 = document.getElementById(xx26);
+    x26.style.backgroundColor = "teal";
+    x27 = document.getElementById(xx27);
+    x27.style.backgroundColor = "teal";
+    x28 = document.getElementById(xx28);
+    x28.style.backgroundColor = "teal";
+    x29 = document.getElementById(xx29);
+    x29.style.backgroundColor = "teal";
+    x30 = document.getElementById(xx30);
+    x30.style.backgroundColor = "teal";
+    x31 = document.getElementById(xx31);
+    x31.style.backgroundColor = "teal";
+    x32 = document.getElementById(xx32);
+    x32.style.backgroundColor = "teal";
   }
 }
-const setCurrentBody = (body) => (currentBody = body);
+const bbbb = (bbbb) => (b = bbbb);
 // age conditionals function
-const setGoalBody = (goal) => {
-  goalBody = goal;
+const bGoal = (bbgoalbb) => {
+  bgoal = bbgoalbb;
   if (
-    !(
-      (age >= 15 && age <= 40) ||
-      (age < 15 && age >= 10 && goalBody > 3) ||
-      (age > 40 && age <= 50 && goalBody > 2) ||
-      (age > 50 && age <= 60 && goalBody > 3) ||
-      (age > 60 && goalBody > 4)
-    )
+    (age >= 15 && age <= 40) ||
+    (age < 15 && age >= 10 && bgoal > 3) ||
+    (age > 40 && age <= 50 && bgoal > 2) ||
+    (age > 50 && age <= 60 && bgoal > 3) ||
+    (age > 60 && bgoal > 4)
   ) {
+  } else {
     if (languageValue == 1) {
-      if (age < 15 && age >= 10 && goalBody <= 3)
+      if (age < 15 && age >= 10 && bgoal <= 3)
         alert(
           "For your age, it is not healthy to get this little body fat percentage, try a bit higher by now and soon enough you'll be able to get to this body goal of yours as safe as it gets."
         );
@@ -2527,20 +2637,20 @@ const setGoalBody = (goal) => {
         alert(
           "I wouldn't recommend you would try to get to fit by now, of course, you should be healthy but I cannot see a way you can use this coding advice in your way, being this young, since it's purpose is people long term body goal, and by this, I get that the changes can likely be extreme for a 9 y/o or younger"
         );
-      else if (age > 40 && age <= 50 && goalBody <= 2)
+      else if (age > 40 && age <= 50 && bgoal <= 2)
         alert(
           "For your age, it is not healthy to get this little body fat percentage, try a bit higher by now, since the amount of fat on your body naturally grows with aging. try instead of losing this much fat, gaining more muscle to compensate. This way you'll be able to get to a doable body goal in a path as safe as it can get."
         );
-      else if (age > 50 && age <= 60 && goalBody <= 3)
+      else if (age > 50 && age <= 60 && bgoal <= 3)
         alert(
           "For your age, it is not healthy to get this little body fat percentage, try a bit higher by now, since the amount of fat on your body naturally grows with aging. try instead of losing this much fat, gaining more muscle to compensate. This way you'll be able to get to a doable body goal in a path as safe as it can get."
         );
-      else if (age > 60 && goalBody <= 4)
+      else if (age > 60 && bgoal <= 4)
         alert(
           "This won't be gladful to hear, it breaks my heart to say it too, because I appreciate your ferving will of getting in shape, however for your age it is not healthy to get this little body fat percentage, try a bit higher by now since the amount of fat on your body naturally grows with aging. try instead of losing this much fat, gaining more muscle to compensate. This way you'll be able to get to a doable body goal in a path as safe as it can get."
         );
     } else if (languageValue == 2) {
-      if (age < 15 && age >= 10 && goalBody <= 3)
+      if (age < 15 && age >= 10 && bgoal <= 3)
         alert(
           "Para a sua idade, não é saudável obter essa pequena porcentagem de gordura corporal, tente um pouco mais alto agora e em breve você será capaz de atingir esse seu objetivo corporal o mais seguro possível."
         );
@@ -2548,20 +2658,20 @@ const setGoalBody = (goal) => {
         alert(
           "Eu não recomendaria que você tentasse entrar em forma agora, é claro, você deve estar saudável, mas não vejo uma maneira de usar este conselho de codificação do seu jeito, sendo tão jovem, já que seu propósito é o corpo das pessoas a longo prazo objetivo, e com isso, eu entendo que as mudanças podem provavelmente ser extremas para um jovem de 9 anos ou menos"
         );
-      else if (age > 40 && age <= 50 && goalBody <= 2)
+      else if (age > 40 && age <= 50 && bgoal <= 2)
         alert(
           "Para a sua idade, não é saudável obter este pequeno percentual de gordura corporal, tente um pouco mais alto agora, já que a quantidade de gordura em seu corpo cresce naturalmente com o envelhecimento. tente em vez de perder essa quantidade de gordura, ganhando mais músculos para compensar. Desta forma, você será capaz de atingir um objetivo corporal factível em um caminho tão seguro quanto possível."
         );
-      else if (age > 50 && age <= 60 && goalBody <= 3)
+      else if (age > 50 && age <= 60 && bgoal <= 3)
         alert(
           "Para a sua idade, não é saudável obter este pequeno percentual de gordura corporal, tente um pouco mais alto agora, já que a quantidade de gordura em seu corpo cresce naturalmente com o envelhecimento. tente em vez de perder essa quantidade de gordura, ganhando mais músculos para compensar. Desta forma, você será capaz de atingir um objetivo corporal factível em um caminho tão seguro quanto possível."
         );
-      else if (age > 60 && goalBody <= 4)
+      else if (age > 60 && bgoal <= 4)
         alert(
           "Não vou ficar feliz em ouvir isso, parte meu coração dizer isso também, porque eu aprecio sua fervorosa vontade de entrar em forma, porém para sua idade não é saudável obter este pequeno percentual de gordura corporal, tente um pouco mais alto até agora, uma vez que a quantidade de gordura em seu corpo cresce naturalmente com o envelhecimento. tente em vez de perder essa quantidade de gordura, ganhando mais músculos para compensar. Desta forma, você será capaz de atingir um objetivo corporal factível em um caminho tão seguro quanto possível."
         );
     } else if (languageValue == 3) {
-      if (age < 15 && age >= 10 && goalBody <= 3)
+      if (age < 15 && age >= 10 && bgoal <= 3)
         alert(
           "Pour votre âge, il n'est pas sain d'obtenir ce petit pourcentage de graisse corporelle, essayez un peu plus haut maintenant et vous serez bientôt en mesure d'atteindre votre objectif corporel aussi sûr que possible."
         );
@@ -2569,20 +2679,20 @@ const setGoalBody = (goal) => {
         alert(
           "Je ne vous recommanderais pas d'essayer de vous mettre en forme maintenant, bien sûr, vous devriez être en bonne santé, mais je ne vois pas comment vous pouvez utiliser ces conseils de codage à votre manière, étant aussi jeune, car son but est le corps à long terme des gens objectif, et par là, je comprends que les changements peuvent probablement être extrêmes pour un 9 ans ou moins"
         );
-      else if (age > 40 && age <= 50 && goalBody <= 2)
+      else if (age > 40 && age <= 50 && bgoal <= 2)
         alert(
           "Pour votre âge, il n'est pas sain d'obtenir ce petit pourcentage de graisse corporelle, essayez un peu plus haut maintenant, car la quantité de graisse sur votre corps augmente naturellement avec le vieillissement. essayez au lieu de perdre autant de graisse, gagnez plus de muscle pour compenser. De cette façon, vous serez en mesure d'atteindre un objectif corporel réalisable dans un chemin aussi sûr que possible."
         );
-      else if (age > 50 && age <= 60 && goalBody <= 3)
+      else if (age > 50 && age <= 60 && bgoal <= 3)
         alert(
           "Pour votre âge, il n'est pas sain d'obtenir ce petit pourcentage de graisse corporelle, essayez un peu plus haut maintenant, car la quantité de graisse sur votre corps augmente naturellement avec le vieillissement. essayez au lieu de perdre autant de graisse, gagnez plus de muscle pour compenser. De cette façon, vous serez en mesure d'atteindre un objectif corporel réalisable dans un chemin aussi sûr que possible."
         );
-      else if (age > 60 && goalBody <= 4)
+      else if (age > 60 && bgoal <= 4)
         alert(
           "Ce ne sera pas heureux d'entendre, cela me brise le cœur de le dire aussi, car j'apprécie votre fervente volonté de vous mettre en forme, mais pour votre âge, ce n'est pas sain d'obtenir ce petit pourcentage de graisse corporelle, essayez un peu plus haut en maintenant puisque la quantité de graisse sur votre corps augmente naturellement avec le vieillissement. essayez au lieu de perdre autant de graisse, gagnez plus de muscle pour compenser. De cette façon, vous serez en mesure d'atteindre un objectif corporel réalisable dans un chemin aussi sûr que possible."
         );
     } else if (languageValue == 4) {
-      if (age < 15 && age >= 10 && goalBody <= 3)
+      if (age < 15 && age >= 10 && bgoal <= 3)
         alert(
           "Para su edad, no es saludable obtener este pequeño porcentaje de grasa corporal, intente un poco más alto ahora y muy pronto podrá alcanzar este objetivo corporal de la manera más segura posible."
         );
@@ -2590,15 +2700,15 @@ const setGoalBody = (goal) => {
         alert(
           "No recomendaría que intentaras ponerte en forma a esta altura, por supuesto, deberías estar sano, pero no veo la manera en que puedas usar este consejo de codificación a tu manera, siendo tan joven, ya que su propósito es el cuerpo de las personas a largo plazo. objetivo, y con esto, entiendo que los cambios probablemente pueden ser extremos para un niño de 9 años o menos"
         );
-      else if (age > 40 && age <= 50 && goalBody <= 2)
+      else if (age > 40 && age <= 50 && bgoal <= 2)
         alert(
           "Para su edad, no es saludable obtener este pequeño porcentaje de grasa corporal, intente un poco más alto a estas alturas, ya que la cantidad de grasa en su cuerpo crece naturalmente con el envejecimiento. intente en lugar de perder tanta grasa, ganando más músculo para compensar. De esta manera, podrá llegar a una meta corporal factible en un camino lo más seguro posible."
         );
-      else if (age > 50 && age <= 60 && goalBody <= 3)
+      else if (age > 50 && age <= 60 && bgoal <= 3)
         alert(
           "Para su edad, no es saludable obtener este pequeño porcentaje de grasa corporal, intente un poco más alto a estas alturas, ya que la cantidad de grasa en su cuerpo crece naturalmente con el envejecimiento. intente en lugar de perder tanta grasa, ganando más músculo para compensar. De esta manera, podrá llegar a una meta corporal factible en un camino lo más seguro posible."
         );
-      else if (age > 60 && goalBody <= 4)
+      else if (age > 60 && bgoal <= 4)
         alert(
           "Esto no me alegrará escucharlo, me rompe el corazón decirlo también, porque agradezco tu ferviente voluntad de ponerte en forma, sin embargo para tu edad no es saludable obtener este pequeño porcentaje de grasa corporal, intenta un poco más alto ahora, dado que la cantidad de grasa en su cuerpo crece naturalmente con el envejecimiento. intente en lugar de perder tanta grasa, ganando más músculo para compensar. De esta manera, podrá llegar a una meta corporal factible en un camino lo más seguro posible."
         );
@@ -2699,10 +2809,22 @@ function validate() {
   }
 }
 // functions about meals and workout
-const setExecise = (workout) => (exercise = workout);
-const setHealthy = (food) => (healthy = food);
-const setCheat = (food) => (cheat = food);
-const setMeals = (food) => (meals = food);
+const ccccccccc = () => (c = 1);
+const cc2 = () => (c = 2);
+const cc3 = () => (c = 3);
+const cc4 = () => (c = 4);
+const cc5 = () => (c2 = 1);
+const cc6 = () => (c2 = 2);
+const cc7 = () => (c2 = 3);
+const cc8 = () => (c2 = 4);
+const cc9 = () => (c3 = 1);
+const cc10 = () => (c3 = 2);
+const cc11 = () => (c3 = 3);
+const cc12 = () => (c3 = 4);
+const cc13 = () => (c4 = 1);
+const cc14 = () => (c4 = 2);
+const cc15 = () => (c4 = 3);
+const cc16 = () => (c4 = 4);
 // file name according to the language
 // functions to download file with result
 function downloadData(filename, text) {
@@ -2718,7 +2840,6 @@ function downloadData(filename, text) {
   document.body.removeChild(element);
 }
 function sendConfirm() {
-  let redirectemail;
   if (languageValue == 1)
     redirectemail = confirm(
       "Are you sure you want to receive a main result email?"
@@ -2735,234 +2856,580 @@ function sendConfirm() {
     redirectemail = confirm(
       "¿Está seguro de que desea recibir un correo electrónico con el resultado principal?"
     );
-  if (redirectemail) sendEmail();
+  if (redirectemail == true) sendEmail();
 }
 //more email sending information
 function sendEmail() {
   if (languageValue == 1) {
     addup5 = "kcal to ";
     addup6 = "kcal \n\n\n\n";
-    let message = `Hi, this is just a way for you to have all the main data summed up saved in your email inbox.\n\n Gender: ${genderreturn}\n\n Goal: ${goalreturn}\n\n
-    Bodytype: ${bodyreturn}\n\n Age: ${age}\n\n Current Weight: ${
-      unit == "metric"
-        ? `${weight}kg \n\n`
-        : `${(weight * 2.205).toFixed(2)}lbs \n\n`
-    } Current fat percentage: ${bbgwp}% \n\nIdeal weight range: ${
-      unit == "metric"
-        ? `${idealweight1.toFixed(1)}kg to ${idealweight2.toFixed(
-            1
-          )}kg\n\nPerfect/ideal approximate weight: ${parseFloat(
-            idealWeight000
-          ).toFixed(1)}kg\n\n`
-        : `${(idealweight1 * 2.205).toFixed(1)}lbs to ${(
-            idealweight2 * 2.205
-          ).toFixed(1)}lbs\n\n
-        Perfect/ideal approximate weight: ${(idealWeight000 * 2.205).toFixed(
-          1
-        )}lbs\n\n`
+    message =
+      "Hi, this is just a way for you to have all the main data summed up saved in your email inbox.\n\n";
+    message += "Gender: ";
+    message += genderreturn;
+    message += "\n\n";
+    message += "Goal: ";
+    message += goalreturn;
+    message += "\n\n";
+    message += "Bodytype: ";
+    message += bodyreturn;
+    message += "\n\n";
+    message += "Age: ";
+    message += age;
+    message += "\n\n";
+    message += "Current Weight: ";
+    if (unit == "metric") {
+      message += weight;
+      message += "kg \n\n";
+    } else if (unit == "imperial") {
+      message += (weight * 2.205).toFixed(2);
+      message += "lbs \n\n";
     }
-    Goal's fat percentage: ${(bbgw0p * 10) / 10}% \n\n
-    Exercise Situation: ${
-      exercise == 1
-        ? "No Exercise \n\nExercise Advice: Start to Gradually Workout all the way up to 5-6 days/week \n\n"
-        : exercise == 2
-        ? "Too little Exercise \n\nExercise Advice: Start to Gradually Workout all the way up to 5-6 days/week \n\n"
-        : exercise == 3
-        ? "Moderate Exercise \n\nExercise Advice: Gradually increase intensity and frequency Of Your Workouts \n\n"
-        : "Ideal exercise Intensity \n\nExercise Advice: Always Take care of the intensity and make sure it is an exercise hard enough *for you* \n\n"
-    }Good/Healthy Meals Situation: ${
-      healthy == 1
-        ? "No Helthy Meals\n\nGood/Healthy Meals Advice: Start to Gradually Eat healthy all the way up to 5-6 days/week \n\n"
-        : healthy == 2
-        ? "Too Little Healthy Meals \n\nGood/Healthy Meals Advice: Start to Gradually Eat healthy all the way up to 5-6 days/week \n\n"
-        : healthy == 3
-        ? "Moderate Good Meals \n\nGood/Healthy Meals Advice: Slowly change your food buying habits so that you only got Good Food to eat at the right Quantities \n\n"
-        : "Ideal Healthy Meals \n\nGood/Healthy Meals Advice: Speechlessly Confident about this diet plan, just know to eat well but not too much \n\n"
-    }Cheat Meals Situation: ${
-      cheat == 4
-        ? "Too much Cheat Meals \n\nCheat Meals Advice: Gradually change your food buying habits so that you only got Good Food to eat at the right Quantities \n\n"
-        : cheat == 3
-        ? "Too much Cheat Meals \n\nCheat Meals Advice: Gradually change your food buying habits so that you only got Good Food to eat at the right Quantities \n\n"
-        : cheat == 2
-        ? "Moderate Cheat Meals \n\nCheat Meals Advice: Gradually change your food buying habits so that you only got Good Food to eat at the right Quantities \n\n"
-        : "Ideal Quantity of Cheat Meals \n\nCheat Meals Advice: No advice, already the best it can be \n\n"
-    }Meals per day Situation: ${
-      meals == 1
-        ? "Too little Meals per day \n\nMeals per day Advice: Increase the Meals per day. Eat decent amounts of right food every 3 hours \n\n"
-        : meals == 2
-        ? "Too little Meals per day \n\nMeals per day Advice: Increase the Meals per day. Eat decent amounts of right food every 3 hours \n\n"
-        : meals == 3
-        ? "Moderate Quantity of Meals per day \n\nMeals per day Advice: Increase the Meals per day. Eat decent amounts of right food every 3 hours \n\n"
-        : "Good and Ideal Quantity of Meals per day\n\nMeals per day Advice: Really Good but remember of only eating for feeding and not for anything else, besides eat every 3 hours or so \n\n"
-    }BMI state: ${bmi_state}\n\nBasal Metabolic Rate: ${bmr}\n\nRecommended calorie intake range: `;
+    message += "Current fat percentage: ";
+    message += bbgwp;
+    message += "% \n\n";
+    message += "Ideal weight range: ";
+    if (unit == "metric") {
+      message += idealweight1.toFixed(1);
+      message += "kg to ";
+      message += idealweight2.toFixed(1);
+      message += "kg\n\n";
+      message += "Perfect/ideal approximate weight: ";
+      message += parseFloat(idealWeight000).toFixed(1);
+      message += "kg\n\n";
+    } else if (unit == "imperial") {
+      message += (idealweight1 * 2.205).toFixed(1);
+      message += "lbs to ";
+      message += (idealweight2 * 2.205).toFixed(1);
+      message += "lbs\n\n";
+      message += "Perfect/ideal approximate weight: ";
+      message += (idealWeight000 * 2.205).toFixed(1);
+      message += "lbs\n\n";
+    }
+    message += "Goal's fat percentage: ";
+    message += (bbgw0p * 10) / 10;
+    message += "% \n\n";
+    message += "Exercise Situation:";
+    if (c == 1) {
+      message += "No Exercise \n\n";
+      message += "Exercise Advice:";
+      message +=
+        "Start to Gradually Workout all the way up to 5-6 days/week \n\n";
+    } else if (c == 2) {
+      message += "Too little Exercise \n\n";
+      message += "Exercise Advice:";
+      message +=
+        "Start to Gradually Workout all the way up to 5-6 days/week \n\n";
+    } else if (c == 3) {
+      message += "Moderate Exercise \n\n";
+      message += "Exercise Advice:";
+      message +=
+        "Gradually increase intensity and frequency Of Your Workouts \n\n";
+    } else if (c == 4) {
+      message += "Ideal exercise Intensity \n\n";
+      message += "Exercise Advice:";
+      message +=
+        "Always Take care of the intensity and make sure it is an exercise hard enough *for you* \n\n";
+    }
+    message += "Good/Healthy Meals Situation:";
+    if (c2 == 1) {
+      message += "No Helthy Meals\n\n";
+      message += "Good/Healthy Meals Advice:";
+      message +=
+        "Start to Gradually Eat healthy all the way up to 5-6 days/week \n\n";
+    } else if (c2 == 2) {
+      message += "Too Little Healthy Meals \n\n";
+      message += "Good/Healthy Meals Advice:";
+      message +=
+        "Start to Gradually Eat healthy all the way up to 5-6 days/week \n\n";
+    } else if (c2 == 3) {
+      message += "Moderate Good Meals \n\n";
+      message += "Good/Healthy Meals Advice:";
+      message +=
+        "Slowly change your food buying habits so that you only got Good Food to eat at the right Quantities \n\n";
+    } else if (c2 == 4) {
+      message += "Ideal Healthy Meals \n\n";
+      message += "Good/Healthy Meals Advice:";
+      message +=
+        "Speechlessly Confident about this diet plan, just know to eat well but not too much \n\n";
+    }
+    message += "Cheat Meals Situation:";
+    if (c3 == 4) {
+      message += "Too much Cheat Meals \n\n";
+      message += "Cheat Meals Advice:";
+      message +=
+        "Gradually change your food buying habits so that you only got Good Food to eat at the right Quantities \n\n";
+    } else if (c3 == 3) {
+      message += "Too much Cheat Meals \n\n";
+      message += "Cheat Meals Advice:";
+      message +=
+        "Gradually change your food buying habits so that you only got Good Food to eat at the right Quantities \n\n";
+    } else if (c3 == 2) {
+      message += "Moderate Cheat Meals \n\n";
+      message += "Cheat Meals Advice:";
+      message +=
+        "Gradually change your food buying habits so that you only got Good Food to eat at the right Quantities \n\n";
+    } else if (c3 == 1) {
+      message += "Ideal Quantity of Cheat Meals \n\n";
+      message += "Cheat Meals Advice:";
+      message += "No advice, already the best it can be \n\n";
+    }
+    message += "Meals per day Situation:";
+    if (c4 == 1) {
+      message += "Too little Meals per day \n\n";
+      message += "Meals per day Advice:";
+      message +=
+        "Increase the Meals per day. Eat decent amounts of right food every 3 hours \n\n";
+    } else if (c4 == 2) {
+      message += "Too little Meals per day \n\n";
+      message += "Meals per day Advice:";
+      message +=
+        "Increase the Meals per day. Eat decent amounts of right food every 3 hours \n\n";
+    } else if (c4 == 3) {
+      message += "Moderate Quantity of Meals per day \n\n";
+      message += "Meals per day Advice:";
+      message +=
+        "Increase the Meals per day. Eat decent amounts of right food every 3 hours \n\n";
+    } else if (c4 == 4) {
+      message += "Good and Ideal Quantity of Meals per day\n\n";
+      message += "Meals per day Advice:";
+      message +=
+        "Really Good but remember of only eating for feeding and not for anything else, besides eat every 3 hours or so \n\n";
+    }
+    message += "BMI state: ";
+    message += bmi_state;
+    message += "\n\n";
+    message += "Basal Metabolic Rate: ";
+    message += bmr;
+    message += "\n\n";
+    message += "Recommended calorie intake range: ";
   } else if (languageValue == 2) {
     addup5 = "kcal para ";
     addup6 = "kcal \n\n\n\n";
-    let message = `Olá, esta é apenas uma forma de guardar todos os dados principais na sua caixa de entrada de email.\n\n Gênero: ${genderreturn}\n\n Objetivo: ${goalreturn}\n\n
-    Tipo de Corpo: ${bodyreturn}\n\n Idade: ${age}\n\n Peso Atual: ${
-      unit == "metric"
-        ? `${weight}kg \n\n`
-        : `${(weight * 2.205).toFixed(2)}lbs \n\n`
-    } Percentual de Gordura Atual: ${bbgwp}% \n\nVariação de peso ideal: ${
-      unit == "metric"
-        ? `${idealweight1.toFixed(1)}kg até ${idealweight2.toFixed(
-            1
-          )}kg\n\nAproximado peso ideal: ${parseFloat(idealWeight000).toFixed(
-            1
-          )}kg\n\n`
-        : `${(idealweight1 * 2.205).toFixed(1)}lbs até ${(
-            idealweight2 * 2.205
-          ).toFixed(1)}lbs\n\n
-        Aproximado peso ideal: ${(idealWeight000 * 2.205).toFixed(1)}lbs\n\n`
+    message =
+      "Olá, esta é apenas uma forma de guardar todos os dados principais na sua caixa de entrada de email.\n\n";
+    message += "Gênero: ";
+    message += genderreturn;
+    message += "\n\n";
+    message += "Objetivo: ";
+    message += goalreturn;
+    message += "\n\n";
+    message += "Tipo de Corpo: ";
+    message += bodyreturn;
+    message += "\n\n";
+    message += "Idade: ";
+    message += age;
+    message += "\n\n";
+    message += "Peso Atual: ";
+    if (unit == "metric") {
+      message += weight;
+      message += "kg \n\n";
+    } else if (unit == "imperial") {
+      message += (weight * 2.205).toFixed(2);
+      message += "lbs \n\n";
     }
-    Percentual de Gordura do seu Objetivo: ${(bbgw0p * 10) / 10}% \n\n
-    Situação de Exercício: ${
-      exercise == 1
-        ? "Nenhum \n\nConselho de Exercício: Comece a treinar gradualmente até 5-6 dias / semana \n\n"
-        : exercise == 2
-        ? "Muito pouco exercício \n\nConselho de Exercício: Comece a treinar gradualmente até 5-6 dias / semana \n\n"
-        : exercise == 3
-        ? "Exercício moderado \n\nConselho de Exercício: Aumente gradualmente a intensidade e a frequência dos seus treinos \n\n"
-        : "Intensidade ideal de exercício\n\nConselho de Exercício: Sempre tome cuidado com a intensidade e certifique-se de que é um exercício difícil o suficiente * para você *\n\n"
-    }Situação da alimentação saudável: ${
-      healthy == 1
-        ? "Nenhuma\n\nConselho de alimentação saudável: Comece a comer gradualmente de forma saudável até 5-6 dias / semana \n\n"
-        : healthy == 2
-        ? "Alimentação saudável deficiente \n\nConselho de alimentação saudável: Comece a comer gradualmente de forma saudável até 5-6 dias / semana \n\n"
-        : healthy == 3
-        ? "Alimentação saudável moderada \n\nConselho de alimentação saudável: Mude lentamente seus hábitos de compra de alimentos para que você só tenha comida boa para comer nas quantidades certas \n\n"
-        : "Alimetação ideal \n\nConselho de alimentação saudável: Sem palavras, confiante sobre este plano de dieta, apenas saiba comer bem, mas não muito \n\n "
-    }Situação da alimentação não saudável: ${
-      cheat == 4
-        ? "Muita alimentação não saudável \n\nConselho sobre alimentação não saudável: Mude gradualmente seus hábitos de compra de alimentos para que você só tenha bons alimentos para comer nas quantidades certas \n\n"
-        : cheat == 3
-        ? "Muita alimentação não saudável \n\nConselho sobre alimentação não saudável: Mude gradualmente seus hábitos de compra de alimentos para que você só tenha bons alimentos para comer nas quantidades certas \n\n"
-        : cheat == 2
-        ? "Alimentação não saudável moderada \n\nConselho sobre alimentação não saudável: Mude gradualmente seus hábitos de compra de alimentos para que você só tenha bons alimentos para comer nas quantidades certas \n\n"
-        : "Alimentação não saudável ideal \n\nConselho sobre alimentação não saudável: Nenhum conselho, já é o melhor que pode ser \n\n"
-    }Situação de refeições por dia: ${
-      meals == 1
-        ? "Muito poucas refeições por dia \n\nConselho sobre refeições por dia: Aumente as refeições por dia. Coma quantidades decentes de alimentos certos a cada 3 horas \n\n"
-        : meals == 2
-        ? "Muito poucas refeições por dia \n\nConselho sobre refeições por dia: Aumente as refeições por dia. Coma quantidades decentes de alimentos certos a cada 3 horas \n\n"
-        : meals == 3
-        ? "Refeições moderadas por dia \n\nConselho sobre refeições por dia: Aumente as refeições por dia. Coma quantidades decentes de alimentos certos a cada 3 horas \n\n"
-        : "Quantidade ideal de refeições por dia\n\nConselho sobre refeições por dia: Muito bom, mas lembre-se de comer apenas para se alimentar e nada mais, além de comer a cada 3 horas, mais ou menos \n\n"
-    }Estado do IMC: ${bmi_state}\n\nTaxa metabólica basal: ${bmr}\n\nVariação de Ingestão Calórica Recomendada: `;
+    message += "Percentual de Gordura Atual: ";
+    message += bbgwp;
+    message += "% \n\n";
+    message += "Variação de peso ideal: ";
+    if (unit == "metric") {
+      message += idealweight1.toFixed(1);
+      message += "kg até ";
+      message += idealweight2.toFixed(1);
+      message += "kg\n\n";
+      message += "Aproximado peso ideal: ";
+      message += parseFloat(idealWeight000).toFixed(1);
+      message += "kg\n\n";
+    } else if (unit == "imperial") {
+      message += (idealweight1 * 2.205).toFixed(1);
+      message += "lbs até ";
+      message += (idealweight2 * 2.205).toFixed(1);
+      message += "lbs\n\n";
+      message += "Aproximado peso ideal: ";
+      message += (idealWeight000 * 2.205).toFixed(1);
+      message += "lbs\n\n";
+    }
+    message += "Percentual de Gordura do seu Objetivo: ";
+    message += (bbgw0p * 10) / 10;
+    message += "% \n\n";
+    message += "Situação de Exercício:";
+    if (c == 1) {
+      message += "Nenhum \n\n";
+      message += "Conselho de Exercício:";
+      message += "Comece a treinar gradualmente até 5-6 dias / semana \n\n";
+    } else if (c == 2) {
+      message += "Muito pouco exercício \n\n";
+      message += "Conselho de Exercício:";
+      message += "Comece a treinar gradualmente até 5-6 dias / semana \n\n";
+    } else if (c == 3) {
+      message += "Exercício moderado \n\n";
+      message += "Conselho de Exercício:";
+      message +=
+        "Aumente gradualmente a intensidade e a frequência dos seus treinos \n\n";
+    } else if (c == 4) {
+      message += "Intensidade ideal de exercício\n\n";
+      message += "Conselho de Exercício:";
+      message +=
+        "Sempre tome cuidado com a intensidade e certifique-se de que é um exercício difícil o suficiente * para você *\n\n";
+    }
+    message += "Situação da alimentação saudável:";
+    if (c2 == 1) {
+      message += "Nenhuma\n\n";
+      message += "Conselho de alimentação saudável:";
+      message +=
+        "Comece a comer gradualmente de forma saudável até 5-6 dias / semana \n\n";
+    } else if (c2 == 2) {
+      message += "Alimentação saudável deficiente \n\n";
+      message += "Conselho de alimentação saudável:";
+      message +=
+        "Comece a comer gradualmente de forma saudável até 5-6 dias / semana \n\n";
+    } else if (c2 == 3) {
+      message += "Alimentação saudável moderada \n\n";
+      message += "Conselho de alimentação saudável:";
+      message +=
+        "Mude lentamente seus hábitos de compra de alimentos para que você só tenha comida boa para comer nas quantidades certas \n\n";
+    } else if (c2 == 4) {
+      message += "Alimetação ideal \n\n";
+      message += "Conselho de alimentação saudável:";
+      message +=
+        "Sem palavras, confiante sobre este plano de dieta, apenas saiba comer bem, mas não muito \n\n";
+    }
+    message += "Situação da alimentação não saudável:";
+    if (c3 == 4) {
+      message += "Muita alimentação não saudável \n\n";
+      message += "Conselho sobre alimentação não saudável:";
+      message +=
+        "Mude gradualmente seus hábitos de compra de alimentos para que você só tenha bons alimentos para comer nas quantidades certas \n\n";
+    } else if (c3 == 3) {
+      message += "Muita alimentação não saudável \n\n";
+      message += "Conselho sobre alimentação não saudável:";
+      message +=
+        "Mude gradualmente seus hábitos de compra de alimentos para que você só tenha bons alimentos para comer nas quantidades certas \n\n";
+    } else if (c3 == 2) {
+      message += "Alimentação não saudável moderada \n\n";
+      message += "Conselho sobre alimentação não saudável:";
+      message +=
+        "Mude gradualmente seus hábitos de compra de alimentos para que você só tenha bons alimentos para comer nas quantidades certas \n\n";
+    } else if (c3 == 1) {
+      message += "Alimentação não saudável ideal \n\n";
+      message += "Conselho sobre alimentação não saudável:";
+      message += "Nenhum conselho, já é o melhor que pode ser \n\n";
+    }
+    message += "Situação de refeições por dia:";
+    if (c4 == 1) {
+      message += "Muito poucas refeições por dia \n\n";
+      message += "Conselho sobre refeições por dia:";
+      message +=
+        "Aumente as refeições por dia. Coma quantidades decentes de alimentos certos a cada 3 horas \n\n";
+    } else if (c4 == 2) {
+      message += "Muito poucas refeições por dia \n\n";
+      message += "Conselho sobre refeições por dia:";
+      message +=
+        "Aumente as refeições por dia. Coma quantidades decentes de alimentos certos a cada 3 horas \n\n";
+    } else if (c4 == 3) {
+      message += "Refeições moderadas por dia \n\n";
+      message += "Conselho sobre refeições por dia:";
+      message +=
+        "Aumente as refeições por dia. Coma quantidades decentes de alimentos certos a cada 3 horas \n\n";
+    } else if (c4 == 4) {
+      message += "Quantidade ideal de refeições por dia\n\n";
+      message += "Conselho sobre refeições por dia:";
+      message +=
+        "Muito bom, mas lembre-se de comer apenas para se alimentar e nada mais, além de comer a cada 3 horas, mais ou menos \n\n";
+    }
+    message += "Estado do IMC: ";
+    message += bmi_state;
+    message += "\n\n";
+    message += "Taxa metabólica basal: ";
+    message += bmr;
+    message += "\n\n";
+    message += "Variação de Ingestão Calórica Recomendada: ";
   } else if (languageValue == 3) {
     addup5 = "kcal à ";
     addup6 = "kcal \n\n\n\n";
-    let message = `Bonjour, c'est juste un moyen pour vous d'avoir toutes les données principales résumées enregistrées dans votre boîte de réception.\n\n 
-    Genre: ${genderreturn}\n\n Objectif: ${goalreturn}\n\n
-    Type de corps: ${bodyreturn}\n\n Âge: ${age}\n\n Poids actuel: ${
-      unit == "metric"
-        ? `${weight}kg \n\n`
-        : `${(weight * 2.205).toFixed(2)}lbs \n\n`
-    } Pourcentage de graisse actuel: ${bbgwp}% \n\nGamme de poids idéale: ${
-      unit == "metric"
-        ? `${idealweight1.toFixed(1)}kg à ${idealweight2.toFixed(
-            1
-          )}kg\n\nPoids approximatif parfait / idéal: ${parseFloat(
-            idealWeight000
-          ).toFixed(1)}kg\n\n`
-        : `${(idealweight1 * 2.205).toFixed(1)}lbs à ${(
-            idealweight2 * 2.205
-          ).toFixed(1)}lbs\n\n
-        Poids approximatif parfait / idéal: ${(idealWeight000 * 2.205).toFixed(
-          1
-        )}lbs\n\n`
+    message =
+      "Bonjour, c'est juste un moyen pour vous d'avoir toutes les données principales résumées enregistrées dans votre boîte de réception.\n\n";
+    message += "Genre: ";
+    message += genderreturn;
+    message += "\n\n";
+    message += "Objectif: ";
+    message += goalreturn;
+    message += "\n\n";
+    message += "Type de corps: ";
+    message += bodyreturn;
+    message += "\n\n";
+    message += "Âge: ";
+    message += age;
+    message += "\n\n";
+    message += "Poids actuel: ";
+    if (unit == "metric") {
+      message += weight;
+      message += "kg \n\n";
+    } else if (unit == "imperial") {
+      message += (weight * 2.205).toFixed(2);
+      message += "lbs \n\n";
     }
-    Pourcentage de graisse de l'objectif: ${(bbgw0p * 10) / 10}% \n\n
-    Situation d'exercice: ${
-      exercise == 1
-        ? "Aucun exercice \n\nConseils d'exercice: Commencez à vous entraîner progressivement jusqu'à 5-6 jours / semaine \n\n"
-        : exercise == 2
-        ? "Trop peu d'exercice \n\nConseils d'exercice: Commencez à vous entraîner progressivement jusqu'à 5-6 jours / semaine \n\n"
-        : exercise == 3
-        ? "Exercice modéré \n\nConseils d'exercice: Augmentez progressivement l'intensité et la fréquence de vos entraînements\n\n"
-        : "Intensité d'exercice idéale \n\nConseils d'exercice: Faites toujours attention à l'intensité et assurez-vous que c'est un exercice assez dur * pour vous * \n\n"
-    }Situation de bons repas sains: ${
-      healthy == 1
-        ? "Pas de repas sains\n\nConseils bons / sains: Commencez progressivement à manger sainement jusqu'à 5-6 jours / semaine \n\n"
-        : healthy == 2
-        ? "Trop peu de repas sains \n\nConseils bons / sains: Commencez progressivement à manger sainement jusqu'à 5-6 jours / semaine \n\n"
-        : healthy == 3
-        ? "Bons repas modérés \n\nConseils bons / sains: Changez lentement vos habitudes d'achat de nourriture afin de ne manger que de la bonne nourriture aux bonnes quantités \n\n"
-        : "Repas sains idéaux \n\nConseils bons / sains: Sans voix confiant à propos de ce plan de régime, sachez simplement qu'il faut bien manger mais pas trop \n\n"
-    }Situation des repas non sains: ${
-      cheat == 4
-        ? "Trop de repas non sains \n\nConseils de repas non sains: Changez progressivement vos habitudes d'achat de nourriture afin de ne manger que de la bonne nourriture aux bonnes quantités \n\n"
-        : cheat == 3
-        ? "Trop de repas non sains \n\nConseils de repas non sains: Changez progressivement vos habitudes d'achat de nourriture afin de ne manger que de la bonne nourriture aux bonnes quantités \n\n"
-        : cheat == 2
-        ? "Moderate Cheat Meals \n\nConseils de repas non sains: Changez progressivement vos habitudes d'achat de nourriture afin de ne manger que de la bonne nourriture aux bonnes quantités \n\n"
-        : "Quantité idéale de repas non sains \n\nConseils de repas non sains: Aucun conseil, déjà le meilleur possible \n\n"
-    }Repas par jour Situation: ${
-      meals == 1
-        ? "Trop peu de repas par jour \n\nRepas par jour Conseils: Augmentez les repas par jour. Mangez des quantités décentes de bonne nourriture toutes les 3 heures \n\n"
-        : meals == 2
-        ? "Trop peu de repas par jour \n\nRepas par jour Conseils: Augmentez les repas par jour. Mangez des quantités décentes de bonne nourriture toutes les 3 heures \n\n"
-        : meals == 3
-        ? "Quantité modérée de repas par jour \n\nRepas par jour Conseils: Augmentez les repas par jour. Mangez des quantités décentes de bonne nourriture toutes les 3 heures \n\n"
-        : "Bonne et idéale quantité de repas par jour\n\nRepas par jour Conseils: Vraiment bon mais rappelez-vous de ne manger que pour se nourrir et pas pour autre chose, à part manger toutes les 3 heures environ\n\n"
-    }État de l'IMC: ${bmi_state}\n\nLe taux métabolique basal: ${bmr}\n\nPlage d'apport calorique recommandée: `;
+    message += "Pourcentage de graisse actuel: ";
+    message += bbgwp;
+    message += "% \n\n";
+    message += "Gamme de poids idéale: ";
+    if (unit == "metric") {
+      message += idealweight1.toFixed(1);
+      message += "kg à ";
+      message += idealweight2.toFixed(1);
+      message += "kg\n\n";
+      message += "Poids approximatif parfait / idéal: ";
+      message += parseFloat(idealWeight000).toFixed(1);
+      message += "kg\n\n";
+    } else if (unit == "imperial") {
+      message += (idealweight1 * 2.205).toFixed(1);
+      message += "lbs à ";
+      message += (idealweight2 * 2.205).toFixed(1);
+      message += "lbs\n\n";
+      message += "Poids approximatif parfait / idéal: ";
+      message += (idealWeight000 * 2.205).toFixed(1);
+      message += "lbs\n\n";
+    }
+    message += "Pourcentage de graisse de l'objectif: ";
+    message += (bbgw0p * 10) / 10;
+    message += "% \n\n";
+    message += "Situation d'exercice:";
+    if (c == 1) {
+      message += "Aucun exercice \n\n";
+      message += "Conseils d'exercice:";
+      message +=
+        "Commencez à vous entraîner progressivement jusqu'à 5-6 jours / semaine \n\n";
+    } else if (c == 2) {
+      message += "Trop peu d'exercice \n\n";
+      message += "Conseils d'exercice:";
+      message +=
+        "Commencez à vous entraîner progressivement jusqu'à 5-6 jours / semaine \n\n";
+    } else if (c == 3) {
+      message += "Exercice modéré \n\n";
+      message += "Conseils d'exercice:";
+      message +=
+        "Augmentez progressivement l'intensité et la fréquence de vos entraînements\n\n";
+    } else if (c == 4) {
+      message += "Intensité d'exercice idéale \n\n";
+      message += "Conseils d'exercice:";
+      message +=
+        "Faites toujours attention à l'intensité et assurez-vous que c'est un exercice assez dur * pour vous * \n\n";
+    }
+    message += "Situation de bons repas sains:";
+    if (c2 == 1) {
+      message += "Pas de repas sains\n\n";
+      message += "Conseils bons / sains:";
+      message +=
+        "Commencez progressivement à manger sainement jusqu'à 5-6 jours / semaine \n\n";
+    } else if (c2 == 2) {
+      message += "Trop peu de repas sains \n\n";
+      message += "Conseils bons / sains:";
+      message +=
+        "Commencez progressivement à manger sainement jusqu'à 5-6 jours / semaine \n\n";
+    } else if (c2 == 3) {
+      message += "Bons repas modérés \n\n";
+      message += "Conseils bons / sains:";
+      message +=
+        "Changez lentement vos habitudes d'achat de nourriture afin de ne manger que de la bonne nourriture aux bonnes quantités \n\n";
+    } else if (c2 == 4) {
+      message += "Repas sains idéaux \n\n";
+      message += "Conseils bons / sains:";
+      message +=
+        "Sans voix confiant à propos de ce plan de régime, sachez simplement qu'il faut bien manger mais pas trop \n\n";
+    }
+    message += "Situation des repas non sains:";
+    if (c3 == 4) {
+      message += "Trop de repas non sains \n\n";
+      message += "Conseils de repas non sains:";
+      message +=
+        "Changez progressivement vos habitudes d'achat de nourriture afin de ne manger que de la bonne nourriture aux bonnes quantités \n\n";
+    } else if (c3 == 3) {
+      message += "Trop de repas non sains \n\n";
+      message += "Conseils de repas non sains:";
+      message +=
+        "Changez progressivement vos habitudes d'achat de nourriture afin de ne manger que de la bonne nourriture aux bonnes quantités \n\n";
+    } else if (c3 == 2) {
+      message += "Moderate Cheat Meals \n\n";
+      message += "Conseils de repas non sains:";
+      message +=
+        "Changez progressivement vos habitudes d'achat de nourriture afin de ne manger que de la bonne nourriture aux bonnes quantités \n\n";
+    } else if (c3 == 1) {
+      message += "Quantité idéale de repas non sains \n\n";
+      message += "Conseils de repas non sains:";
+      message += "Aucun conseil, déjà le meilleur possible \n\n";
+    }
+    message += "Repas par jour Situation:";
+    if (c4 == 1) {
+      message += "Trop peu de repas par jour \n\n";
+      message += "Repas par jour Conseils:";
+      message +=
+        "Augmentez les repas par jour. Mangez des quantités décentes de bonne nourriture toutes les 3 heures \n\n";
+    } else if (c4 == 2) {
+      message += "Trop peu de repas par jour \n\n";
+      message += "Repas par jour Conseils:";
+      message +=
+        "Augmentez les repas par jour. Mangez des quantités décentes de bonne nourriture toutes les 3 heures \n\n";
+    } else if (c4 == 3) {
+      message += "Quantité modérée de repas par jour \n\n";
+      message += "Repas par jour Conseils:";
+      message +=
+        "Augmentez les repas par jour. Mangez des quantités décentes de bonne nourriture toutes les 3 heures \n\n";
+    } else if (c4 == 4) {
+      message += "Bonne et idéale quantité de repas par jour\n\n";
+      message += "Repas par jour Conseils:";
+      message +=
+        "Vraiment bon mais rappelez-vous de ne manger que pour se nourrir et pas pour autre chose, à part manger toutes les 3 heures environ\n\n";
+    }
+    message += "État de l'IMC: ";
+    message += bmi_state;
+    message += "\n\n";
+    message += "Le taux métabolique basal: ";
+    message += bmr;
+    message += "\n\n";
+    message += "Plage d'apport calorique recommandée: ";
   } else if (languageValue == 4) {
     addup5 = "kcal a ";
     addup6 = "kcal \n\n\n\n";
-    let message = `Hola, esta es solo una manera de tener todos los datos principales resumidos guardados en la bandeja de entrada de su correo electrónico.\n\n 
-    Género: ${genderreturn}\n\n Objetivo: ${goalreturn}\n\n
-    Tipo de Cuerpo: ${bodyreturn}\n\n Edad: ${age}\n\n Peso Actual: ${
-      unit == "metric"
-        ? `${weight}kg \n\n`
-        : `${(weight * 2.205).toFixed(2)}lbs \n\n`
-    } Porcentaje de grasa actual: ${bbgwp}% \n\nRango de peso ideal: ${
-      unit == "metric"
-        ? `${idealweight1.toFixed(1)}kg a ${idealweight2.toFixed(
-            1
-          )}kg\n\nPeso aproximado perfecto / ideal: ${parseFloat(
-            idealWeight000
-          ).toFixed(1)}kg\n\n`
-        : `${(idealweight1 * 2.205).toFixed(1)}lbs a ${(
-            idealweight2 * 2.205
-          ).toFixed(1)}lbs\n\n
-        Peso aproximado perfecto / ideal: ${(idealWeight000 * 2.205).toFixed(
-          1
-        )}lbs\n\n`
+    message =
+      "Hola, esta es solo una manera de tener todos los datos principales resumidos guardados en la bandeja de entrada de su correo electrónico.\n\n";
+    message += "Género: ";
+    message += genderreturn;
+    message += "\n\n";
+    message += "Objetivo: ";
+    message += goalreturn;
+    message += "\n\n";
+    message += "Tipo de cuerpo: ";
+    message += bodyreturn;
+    message += "\n\n";
+    message += "Edad: ";
+    message += age;
+    message += "\n\n";
+    message += "Peso actual: ";
+    if (unit == "metric") {
+      message += weight;
+      message += "kg \n\n";
+    } else if (unit == "imperial") {
+      message += (weight * 2.205).toFixed(2);
+      message += "lbs \n\n";
     }
-    Porcentaje de grasa del objetivo: ${(bbgw0p * 10) / 10}% \n\n
-    Situación del ejercicio: ${
-      exercise == 1
-        ? "No ejercicio \n\nConsejos de ejercicio: Comience a entrenar gradualmente hasta 5-6 días a la semana \n\n"
-        : exercise == 2
-        ? "Muy poco ejercicio \n\nConsejos de ejercicio: Comience a entrenar gradualmente hasta 5-6 días a la semana \n\n"
-        : exercise == 3
-        ? "Ejercicio moderado \n\nConsejos de ejercicio: Aumente gradualmente la intensidad y la frecuencia de sus entrenamientos\n\n"
-        : "Intensidad ideal del ejercicio \n\nConsejos de ejercicio: Cuida siempre la intensidad y asegúrate de que sea un ejercicio lo suficientemente duro * para ti * \n\n"
-    }Situação da alimentação saudável: ${
-      healthy == 1
-        ? "Sin comidas saludables\n\nConsejos sobre comidas buenas / saludables: Comience a comer saludable gradualmente hasta 5-6 días a la semana \n\n"
-        : healthy == 2
-        ? "Muy pocas comidas saludables \n\nConsejos sobre comidas buenas / saludables: Comience a comer saludable gradualmente hasta 5-6 días a la semana \n\n"
-        : healthy == 3
-        ? "Buenas comidas moderadas \n\nConsejos sobre comidas buenas / saludables: Cambie lentamente sus hábitos de compra de alimentos para que solo obtenga buenos alimentos para comer en las cantidades adecuadas \n\n"
-        : "Comidas saludables ideales \n\nConsejos sobre comidas buenas / saludables: Confiado sin palabras sobre este plan de dieta, solo sepa comer bien pero no demasiado \n\n"
-    }Situação da alimentação não saudável: ${
-      cheat == 4
-        ? "Demasiadas comidas no saludables \n\nConsejos de comidas no saludables: Cambie gradualmente sus hábitos de compra de alimentos para que solo obtenga buenos alimentos para comer en las cantidades adecuadas \n\n"
-        : cheat == 3
-        ? "Demasiadas comidas no saludables \n\nConsejos de comidas no saludables: Cambie gradualmente sus hábitos de compra de alimentos para que solo obtenga buenos alimentos para comer en las cantidades adecuadas \n\n"
-        : cheat == 2
-        ? "Comidas moderadas no saludables \n\nConsejos de comidas no saludables: Cambie gradualmente sus hábitos de compra de alimentos para que solo obtenga buenos alimentos para comer en las cantidades adecuadas \n\n"
-        : "Cantidad ideal de comidas no saludables \n\nConsejos de comidas no saludables: Sin consejos, ya lo mejor que puede ser. \n\n"
-    }Situação de refeições por dia: ${
-      meals == 1
-        ? "Muy pocas comidas al día \n\nComidas por día Consejos: Aumente las Comidas por día. Consuma cantidades decentes de alimentos adecuados cada 3 horas. \n\n"
-        : meals == 2
-        ? "Muy pocas comidas al día \n\nComidas por día Consejos: Aumente las Comidas por día. Consuma cantidades decentes de alimentos adecuados cada 3 horas. \n\n"
-        : meals == 3
-        ? "Cantidad moderada de comidas por día \n\nComidas por día Consejos: Aumente las Comidas por día. Consuma cantidades decentes de alimentos adecuados cada 3 horas.\n\n"
-        : "Cantidad buena e ideal de comidas por día\n\nComidas por día Consejos: Muy bueno pero recuerda que solo comes para alimentarte y no para nada más, además de comer cada 3 horas, aproximadamente. \n\n"
-    }Estado de IMC: ${bmi_state}\n\nTasa metabólica basal: ${bmr}\n\nRango de ingesta calórica recomendado: `;
+    message += "Porcentaje de grasa actual: ";
+    message += bbgwp;
+    message += "% \n\n";
+    message += "Rango de peso ideal: ";
+    if (unit == "metric") {
+      message += idealweight1.toFixed(1);
+      message += "kg a ";
+      message += idealweight2.toFixed(1);
+      message += "kg\n\n";
+      message += "Peso aproximado perfecto / ideal: ";
+      message += parseFloat(idealWeight000).toFixed(1);
+      message += "kg\n\n";
+    } else if (unit == "imperial") {
+      message += (idealweight1 * 2.205).toFixed(1);
+      message += "lbs a ";
+      message += (idealweight2 * 2.205).toFixed(1);
+      message += "lbs\n\n";
+      message += "Peso aproximado perfecto / ideal: ";
+      message += (idealWeight000 * 2.205).toFixed(1);
+      message += "lbs\n\n";
+    }
+    message += "Porcentaje de grasa del objetivo: ";
+    message += (bbgw0p * 10) / 10;
+    message += "% \n\n";
+    message += "Situación del ejercicio:";
+    if (c == 1) {
+      message += "No ejercicio \n\n";
+      message += "Consejos de ejercicio:";
+      message +=
+        "Comience a entrenar gradualmente hasta 5-6 días a la semana \n\n";
+    } else if (c == 2) {
+      message += "Muy poco ejercicio \n\n";
+      message += "Consejos de ejercicio:";
+      message +=
+        "Comience a entrenar gradualmente hasta 5-6 días a la semana \n\n";
+    } else if (c == 3) {
+      message += "Ejercicio moderado \n\n";
+      message += "Consejos de ejercicio:";
+      message +=
+        "Aumente gradualmente la intensidad y la frecuencia de sus entrenamientos\n\n";
+    } else if (c == 4) {
+      message += "Intensidad ideal del ejercicio \n\n";
+      message += "Consejos de ejercicio:";
+      message +=
+        "Cuida siempre la intensidad y asegúrate de que sea un ejercicio lo suficientemente duro * para ti * \n\n";
+    }
+    message += "Situación de comidas buenas / saludables:";
+    if (c2 == 1) {
+      message += "Sin comidas saludables\n\n";
+      message += "Consejos sobre comidas buenas / saludables:";
+      message +=
+        "Comience a comer saludable gradualmente hasta 5-6 días a la semana \n\n";
+    } else if (c2 == 2) {
+      message += "Muy pocas comidas saludables \n\n";
+      message += "Consejos sobre comidas buenas / saludables:";
+      message +=
+        "Comience a comer saludable gradualmente hasta 5-6 días a la semana \n\n";
+    } else if (c2 == 3) {
+      message += "Buenas comidas moderadas \n\n";
+      message += "Consejos sobre comidas buenas / saludables:";
+      message +=
+        "Cambie lentamente sus hábitos de compra de alimentos para que solo obtenga buenos alimentos para comer en las cantidades adecuadas \n\n";
+    } else if (c2 == 4) {
+      message += "Comidas saludables ideales \n\n";
+      message += "Consejos sobre comidas buenas / saludables:";
+      message +=
+        "Confiado sin palabras sobre este plan de dieta, solo sepa comer bien pero no demasiado \n\n";
+    }
+    message += "Situación de comidas no saludables:";
+    if (c3 == 4) {
+      message += "demasiadas comidas no saludables \n\n";
+      message += "Consejos de comidas no saludables:";
+      message +=
+        "Cambie gradualmente sus hábitos de compra de alimentos para que solo obtenga buenos alimentos para comer en las cantidades adecuadas \n\n";
+    } else if (c3 == 3) {
+      message += "demasiadas comidas no saludables \n\n";
+      message += "Consejos de comidas no saludables:";
+      message +=
+        "Cambie gradualmente sus hábitos de compra de alimentos para que solo obtenga buenos alimentos para comer en las cantidades adecuadas \n\n";
+    } else if (c3 == 2) {
+      message += "Comidas moderadas no saludables \n\n";
+      message += "Consejos de comidas no saludables:";
+      message +=
+        "Cambie gradualmente sus hábitos de compra de alimentos para que solo obtenga buenos alimentos para comer en las cantidades adecuadas \n\n";
+    } else if (c3 == 1) {
+      message += "Cantidad ideal de comidas no saludables \n\n";
+      message += "Consejos de comidas no saludables:";
+      message += "Sin consejos, ya lo mejor que puede ser. \n\n";
+    }
+    message += "Comidas por día Situación:";
+    if (c4 == 1) {
+      message += "Muy pocas comidas al día \n\n";
+      message += "Comidas por día Consejos:";
+      message +=
+        "Aumente las Comidas por día. Consuma cantidades decentes de alimentos adecuados cada 3 horas. \n\n";
+    } else if (c4 == 2) {
+      message += "Muy pocas comidas al día \n\n";
+      message += "Comidas por día Consejos:";
+      message +=
+        "Aumente las Comidas por día. Consuma cantidades decentes de alimentos adecuados cada 3 horas. \n\n";
+    } else if (c4 == 3) {
+      message += "Cantidad moderada de comidas por día \n\n";
+      message += "Comidas por día Consejos:";
+      message +=
+        "Aumente las Comidas por día. Consuma cantidades decentes de alimentos adecuados cada 3 horas.\n\n";
+    } else if (c4 == 4) {
+      message += "Cantidad buena e ideal de comidas por día\n\n";
+      message += "Comidas por día Consejos:";
+      message +=
+        "Muy bueno pero recuerda que solo comes para alimentarte y no para nada más, además de comer cada 3 horas, aproximadamente. \n\n";
+    }
+    message += "Estado de IMC: ";
+    message += bmi_state;
+    message += "\n\n";
+    message += "Tasa metabólica basal: ";
+    message += bmr;
+    message += "\n\n";
+    message += "Rango de ingesta calórica recomendado: ";
   }
   if (gender == "male") {
     if (bope == "bulking") {
@@ -3009,103 +3476,104 @@ function sendEmail() {
       message += addup6;
     }
   }
-  var finalmessage = encodeURIComponent(message);
-  if (languageValue == 1) let subject = "Fitness Management Program Main Data";
+  var finalmessage1 = encodeURIComponent(message);
+  if (languageValue == 1) subject = "Fitness Management Program Main Data";
   else if (languageValue == 2)
-    let subject =
+    subject =
       "Dados principais do programa de gestão de condicionamento físico";
   else if (languageValue == 3)
-    let subject = "Données principales du programme de gestion du poids";
+    subject = "Données principales du programme de gestion du poids";
   else if (languageValue == 4)
-   let subject = "Datos principales del programa de control de peso";
-  let url =
+    subject = "Datos principales del programa de control de peso";
+  urll =
     "mailto:" +
     emailaddrreturn +
     "?subject=" +
     subject +
     "&body=" +
-    finalmessage;
-  window.open(url, "_blank");
+    finalmessage1;
+  window.open(urll, "_blank");
 }
 //age related queries
 function ages() {
-  age = document.getElementById("age").value;
-  age = parseFloat(age);
+  agest = document.getElementById("agest").value;
+  document.getElementById("agest").innerHTML = agest;
+  age = parseFloat(agest);
   if (languageValue == 1) {
     if (age <= 12)
-      ageAdvice =
+      bodyage =
         " Honestly, I like that you at this young age want to get in shape, but you know it's important that you understand that until you reach your teens 99,99% of your focus has to be in getting and keeping healthy. Relax, soon you will be able to get in shape easier than now and, more importantly, in a safer time of your life!";
     else if (age >= 13 && age <= 17)
-      ageAdvice =
+      bodyage =
         " It's cool that you want to get in shape, but still, it's important that yada yada of -you gotta keep healthy and that's all that matters-? Well, kinda, I mean, at your early teen's the most important thing is obviously your health, but you're more than right on wanting to have a better body!";
     else if (age >= 18 && age <= 30)
-      ageAdvice =
+      bodyage =
         " Since you are at your best age range to get in shape, that does not mean it's gotta be easy but it means that you have the most amount of hormones that help you through the process!";
     else if (age >= 31 && age <= 45)
-      ageAdvice =
+      bodyage =
         " It's cool that you want to get in shape, but still, it's important that yada yada of -you gotta keep healthy and that's all that matters-? Well, kinda, I mean, it is definitely important that you can maintain good health, but you're more than right on wanting to have a better body, and the healthier you are the easier to get in shape!";
     else if (age >= 46 && age <= 60)
-      ageAdvice =
+      bodyage =
         " It's cool that you want to get in shape, but still, it's important that yada yada of -you gotta keep healthy and that's all that matters-? Well, kinda, I mean, at your late 40s, early 50s, and 60s the most important thing is obviously your health, but you're more than right on wanting to have a better body!";
     else if (age >= 61)
-      ageAdvice =
+      bodyage =
         " Honestly, I like that you at this age want to get in shape, but you know it's important that you understand that 99% of your focus has to be in getting and then keeping healthy. Relax, it may be difficult but you're gonna make it, and also the healthier you are, the easier it will be to get a better body!";
   } else if (languageValue == 2) {
     if (age <= 12)
-      ageAdvice =
+      bodyage =
         " Honestamente, eu gosto que você nesta idade queira entrar em forma, mas você sabe que é importante entender que, até chegar à adolescência, 99,99% do seu foco tem que ser em obter e se manter saudável. Relaxe, logo você poderá entrar em forma mais fácil do que agora e, mais importante, em um momento mais seguro da sua vida!";
     else if (age >= 13 && age <= 17)
-      ageAdvice =
+      bodyage =
         " É legal que você queira entrar em forma, mas ainda assim, é importante aquele blá-blá-blá de -você tem que se manter saudável e isso é tudo que importa-? Bem, tipo, quero dizer, no seu primeiro adolescente a coisa mais importante obviamente é a sua saúde, mas você está mais do que certo em querer ter um corpo melhor!";
     else if (age >= 18 && age <= 30)
-      ageAdvice =
+      bodyage =
         " Como você está na sua melhor faixa etária para entrar em forma, isso não significa que deva ser fácil, mas significa que você tem a maior quantidade de hormônios que o ajudam no processo!";
     else if (age >= 31 && age <= 45)
-      ageAdvice =
+      bodyage =
         " É legal que você queira entrar em forma, mas ainda assim, é importante aquele blá-blá-blá de -você tem que se manter saudável e isso é tudo que importa-? Bem, tipo, quero dizer, é definitivamente importante que você possa manter uma boa saúde, mas você está mais do que certo em querer ter um corpo melhor, e quanto mais saudável você estiver, mais fácil será entrar em forma!";
     else if (age >= 46 && age <= 60)
-      ageAdvice =
+      bodyage =
         " É legal que você queira entrar em forma, mas ainda assim, é importante aquele blá-blá-blá de -você tem que se manter saudável e isso é tudo que importa-? Bem, tipo, quero dizer, com quase 40, 50 e 60 anos, a coisa mais importante é obviamente a sua saúde, mas você está mais do que certo em querer ter um corpo melhor!";
     else if (age >= 61)
-      ageAdvice =
+      bodyage =
         " Honestamente, eu gosto que você nesta idade queira entrar em forma, mas você sabe que é importante entender que 99% do seu foco tem que ser em ficar e então se manter saudável. Relaxe, pode ser difícil, mas você vai conseguir, e quanto mais saudável você for, mais fácil será conseguir um corpo melhor!";
   } else if (languageValue == 3) {
     if (age <= 12)
-      ageAdvice =
+      bodyage =
         " Honnêtement, j'aime que vous, à ce jeune âge, vouliez vous mettre en forme, mais vous savez qu'il est important que vous compreniez que jusqu'à ce que vous atteigniez votre adolescence, 99,99% de votre objectif doit être de rester en bonne santé. Détendez-vous, bientôt vous pourrez vous mettre en forme plus facilement que maintenant et, surtout, à un moment plus sûr de votre vie!";
     else if (age >= 13 && age <= 17)
-      ageAdvice =
+      bodyage =
         " C'est cool que vous vouliez vous mettre en forme, mais quand même, c'est important que yada yada de -vous devez rester en bonne santé et c'est tout ce qui compte-? Eh bien, un peu, je veux dire, à votre jeune adolescent, la chose la plus importante est évidemment votre santé, mais vous avez plus que raison de vouloir avoir un meilleur corps!";
     else if (age >= 18 && age <= 30)
-      ageAdvice =
+      bodyage =
         " Puisque vous êtes à votre meilleure tranche d'âge pour vous mettre en forme, cela ne signifie pas que ce doit être facile, mais cela signifie que vous avez le plus d'hormones qui vous aident tout au long du processus!";
     else if (age >= 31 && age <= 45)
-      ageAdvice =
+      bodyage =
         " C'est cool que vous vouliez vous mettre en forme, mais quand même, c'est important que yada yada de -vous devez rester en bonne santé et c'est tout ce qui compte-? Eh bien, un peu, je veux dire, il est vraiment important que vous puissiez rester en bonne santé, mais vous avez tout à fait raison de vouloir avoir un meilleur corps, et plus vous êtes en bonne santé, plus vous êtes en forme!";
     else if (age >= 46 && age <= 60)
-      ageAdvice =
+      bodyage =
         " C'est cool que vous vouliez vous mettre en forme, mais quand même, c'est important que yada yada de -vous devez rester en bonne santé et c'est tout ce qui compte-? Eh bien, un peu, je veux dire, à la fin de la quarantaine, au début de la cinquantaine et au début de la soixantaine, la chose la plus importante est évidemment votre santé, mais vous avez tout à fait raison de vouloir avoir un meilleur corps!";
     else if (age >= 61)
-      ageAdvice =
+      bodyage =
         " Honnêtement, j'aime le fait que vous, à cet âge, vouliez vous mettre en forme, mais vous savez qu'il est important que vous compreniez que 99% de votre objectif doit être de devenir et de rester en bonne santé. Détendez-vous, cela peut être difficile mais vous y arriverez, et plus vous serez en santé, plus il sera facile d'avoir un meilleur corps!";
   } else if (languageValue == 4) {
     if (age <= 12)
-      ageAdvice =
+      bodyage =
         " Honestamente, me gusta que a esta edad quieras ponerte en forma, pero sabes que es importante que entiendas que hasta que llegues a la adolescencia, el 99,99% de tu enfoque debe estar en estar y mantenerte saludable. Relájate, pronto podrás ponerte en forma más fácilmente que ahora y, lo que es más importante, ¡en un momento más seguro de tu vida!";
     else if (age >= 13 && age <= 17)
-      ageAdvice =
+      bodyage =
         " Es genial que quieras ponerte en forma, pero aún así, es importante que yada yada de -tienes que mantenerte saludable y eso es todo lo que importa-. Bueno, un poco, quiero decir, en la adolescencia temprana lo más importante es obviamente tu salud, ¡pero tienes más razón en querer tener un cuerpo mejor!";
     else if (age >= 18 && age <= 30)
-      ageAdvice =
+      bodyage =
         " Ya que estás en tu mejor rango de edad para ponerte en forma, eso no significa que tenga que ser fácil, ¡pero significa que tienes la mayor cantidad de hormonas que te ayudan en el proceso!";
     else if (age >= 31 && age <= 45)
-      ageAdvice =
+      bodyage =
         " Es genial que quieras ponerte en forma, pero aún así, es importante que yada yada de -tienes que mantenerte saludable y eso es todo lo que importa-. Bueno, un poco, quiero decir, definitivamente es importante que puedas mantener una buena salud, pero tienes más razón en querer tener un mejor cuerpo, ¡y cuanto más saludable estés, más fácil será ponerte en forma!";
     else if (age >= 46 && age <= 60)
-      ageAdvice =
+      bodyage =
         " Es genial que quieras ponerte en forma, pero aún así, es importante que yada yada de -tienes que mantenerte saludable y eso es todo lo que importa-. Bueno, un poco, quiero decir, a finales de los 40, principios de los 50 y 60 lo más importante es obviamente su salud, ¡pero tiene más razón en querer tener un cuerpo mejor!";
     else if (age >= 61)
-      ageAdvice =
+      bodyage =
         " Honestamente, me gusta que a esta edad quieras ponerte en forma, pero sabes que es importante que comprendas que el 99% de tu enfoque tiene que estar en estar y luego en mantenerte saludable. Relájate, puede ser difícil, pero lo lograrás, y además, cuanto más saludable estés, ¡más fácil será tener un mejor cuerpo!";
   }
 }
@@ -3257,7 +3725,7 @@ function result() {
           " Lo sé, es más difícil para tu tipo de cuerpo, pero aún así hagámoslo, será más difícil de mantener, ¡pero aún así llegarás! Estoy contigo en eso, soy un endomorfo que también anhela secar.";
     }
   }
-  if (currentBody == 1) {
+  if (b == 1) {
     if (gender == "male") {
       bbgw1 = weight * 0.04;
       bbgw2 = weight * 0.05;
@@ -3271,7 +3739,7 @@ function result() {
     else if (bope == "cutting") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
     else if (bope == "surplus") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
     else if (bope == "muscle") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
-  } else if (currentBody == 2) {
+  } else if (b == 2) {
     if (gender == "male") {
       bbgw1 = weight * 0.06;
       bbgw2 = weight * 0.07;
@@ -3285,7 +3753,7 @@ function result() {
     else if (bope == "cutting") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
     else if (bope == "surplus") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
     else if (bope == "muscle") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
-  } else if (currentBody == 3) {
+  } else if (b == 3) {
     if (gender == "male") {
       bbgw1 = weight * 0.08;
       bbgw2 = weight * 0.1;
@@ -3299,7 +3767,7 @@ function result() {
     else if (bope == "cutting") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
     else if (bope == "surplus") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
     else if (bope == "muscle") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
-  } else if (currentBody == 4) {
+  } else if (b == 4) {
     if (gender == "male") {
       bbgw1 = weight * 0.11;
       bbgw2 = weight * 0.12;
@@ -3313,7 +3781,7 @@ function result() {
     else if (bope == "cutting") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
     else if (bope == "surplus") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
     else if (bope == "muscle") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
-  } else if (currentBody == 5) {
+  } else if (b == 5) {
     if (gender == "male") {
       bbgw1 = weight * 0.13;
       bbgw2 = weight * 0.15;
@@ -3327,7 +3795,7 @@ function result() {
     else if (bope == "cutting") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
     else if (bope == "surplus") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
     else if (bope == "muscle") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
-  } else if (currentBody == 6) {
+  } else if (b == 6) {
     if (gender == "male") {
       bbgw1 = weight * 0.16;
       bbgw2 = weight * 0.19;
@@ -3341,7 +3809,7 @@ function result() {
     else if (bope == "cutting") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
     else if (bope == "surplus") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
     else if (bope == "muscle") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
-  } else if (currentBody == 7) {
+  } else if (b == 7) {
     if (gender == "male") {
       bbgw1 = weight * 0.2;
       bbgw2 = weight * 0.24;
@@ -3355,7 +3823,7 @@ function result() {
     else if (bope == "cutting") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
     else if (bope == "surplus") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
     else if (bope == "muscle") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
-  } else if (currentBody == 8) {
+  } else if (b == 8) {
     if (gender == "male") {
       bbgw1 = weight * 0.25;
       bbgw2 = weight * 0.3;
@@ -3369,7 +3837,7 @@ function result() {
     else if (bope == "cutting") bbgw0 = ((bbgw2 + bbgw1) / 2).toFixed(1);
     else if (bope == "surplus") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
     else if (bope == "muscle") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
-  } else if (currentBody == 9) {
+  } else if (b == 9) {
     if (gender == "male") {
       bbgw1 = weight * 0.35;
       bbgw2 = weight * 0.4;
@@ -3384,7 +3852,7 @@ function result() {
     else if (bope == "surplus") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
     else if (bope == "muscle") bbgw0 = ((bbgw1 + bbgw2) / 2).toFixed(1);
   }
-  if (goalBody == 1) {
+  if (bgoal == 1) {
     if (gender == "male") {
       bbgw3 += idealWeight000 * 0.04;
       bbgw4 += idealWeight000 * 0.05;
@@ -3405,7 +3873,7 @@ function result() {
       bbgw00 += ((2.5 * bbgw3 + bbgw4) / 3.5).toFixed(1);
     else if (bope == "surplus") bbgw00 += ((bbgw3 + bbgw4) / 2).toFixed(1);
     else if (bope == "muscle") bbgw00 += ((bbgw3 + 2 * bbgw4) / 3).toFixed(1);
-  } else if (goalBody == 2) {
+  } else if (bgoal == 2) {
     if (gender == "male") {
       bbgw3 += idealWeight000 * 0.06;
       bbgw4 += idealWeight000 * 0.07;
@@ -3426,7 +3894,7 @@ function result() {
       bbgw00 += ((2.5 * bbgw3 + bbgw4) / 3.5).toFixed(1);
     else if (bope == "surplus") bbgw00 += ((bbgw3 + bbgw4) / 2).toFixed(1);
     else if (bope == "muscle") bbgw00 += ((bbgw3 + 2 * bbgw4) / 3).toFixed(1);
-  } else if (goalBody == 3) {
+  } else if (bgoal == 3) {
     if (gender == "male") {
       bbgw3 += idealWeight000 * 0.08;
       bbgw4 += idealWeight000 * 0.1;
@@ -3447,7 +3915,7 @@ function result() {
       bbgw00 += ((2.5 * bbgw3 + bbgw4) / 3.5).toFixed(1);
     else if (bope == "surplus") bbgw00 += ((bbgw3 + bbgw4) / 2).toFixed(1);
     else if (bope == "muscle") bbgw00 += ((bbgw3 + 2 * bbgw4) / 3).toFixed(1);
-  } else if (goalBody == 4) {
+  } else if (bgoal == 4) {
     if (gender == "male") {
       bbgw3 += idealWeight000 * 0.11;
       bbgw4 += idealWeight000 * 0.12;
@@ -3468,7 +3936,7 @@ function result() {
       bbgw00 += ((2.5 * bbgw3 + bbgw4) / 3.5).toFixed(1);
     else if (bope == "surplus") bbgw00 += ((bbgw3 + bbgw4) / 2).toFixed(1);
     else if (bope == "muscle") bbgw00 += ((bbgw3 + 2 * bbgw4) / 3).toFixed(1);
-  } else if (goalBody == 5) {
+  } else if (bgoal == 5) {
     if (gender == "male") {
       bbgw3 += idealWeight000 * 0.13;
       bbgw4 += idealWeight000 * 0.15;
@@ -3489,7 +3957,7 @@ function result() {
       bbgw00 += ((2.5 * bbgw3 + bbgw4) / 3.5).toFixed(1);
     else if (bope == "surplus") bbgw00 += ((bbgw3 + bbgw4) / 2).toFixed(1);
     else if (bope == "muscle") bbgw00 += ((bbgw3 + 2 * bbgw4) / 3).toFixed(1);
-  } else if (goalBody == 6) {
+  } else if (bgoal == 6) {
     if (gender == "male") {
       bbgw3 += idealWeight000 * 0.16;
       bbgw4 += idealWeight000 * 0.19;
@@ -3510,7 +3978,7 @@ function result() {
       bbgw00 += ((2.5 * bbgw3 + bbgw4) / 3.5).toFixed(1);
     else if (bope == "surplus") bbgw00 += ((bbgw3 + bbgw4) / 2).toFixed(1);
     else if (bope == "muscle") bbgw00 += ((bbgw3 + 2 * bbgw4) / 3).toFixed(1);
-  } else if (goalBody == 7) {
+  } else if (bgoal == 7) {
     if (gender == "male") {
       bbgw3 += idealWeight000 * 0.2;
       bbgw4 += idealWeight000 * 0.24;
@@ -3531,7 +3999,7 @@ function result() {
       bbgw00 += ((2.5 * bbgw3 + bbgw4) / 3.5).toFixed(1);
     else if (bope == "surplus") bbgw00 += ((bbgw3 + bbgw4) / 2).toFixed(1);
     else if (bope == "muscle") bbgw00 += ((bbgw3 + 2 * bbgw4) / 3).toFixed(1);
-  } else if (goalBody == 8) {
+  } else if (bgoal == 8) {
     if (gender == "male") {
       bbgw3 += idealWeight000 * 0.25;
       bbgw4 += idealWeight000 * 0.3;
@@ -3552,7 +4020,7 @@ function result() {
       bbgw00 += ((2.5 * bbgw3 + bbgw4) / 3.5).toFixed(1);
     else if (bope == "surplus") bbgw00 += ((bbgw3 + bbgw4) / 2).toFixed(1);
     else if (bope == "muscle") bbgw00 += ((bbgw3 + 2 * bbgw4) / 3).toFixed(1);
-  } else if (goalBody == 9) {
+  } else if (bgoal == 9) {
     if (gender == "male") {
       bbgw3 += idealWeight000 * 0.35;
       bbgw4 += idealWeight000 * 0.4;
@@ -3949,77 +4417,77 @@ function result() {
       '<a id="finallink" href="https://www.health.harvard.edu/diet-and-weight-loss/calories-burned-in-30-minutes-of-leisure-and-routine-activities" target="_blank">Link to a Harvard page about exercise calories</a>';
     bmrlllll =
       "<a id='finallink' href='https://www.healthline.com/health/fitness-exercise/top-iphone-android-apps' target='_blank'>Link to best apps for workout advice</a>";
-    if (exercise == 1)
+    if (c == 1)
       cbody =
         " Well, it does not matter what is your goal, your current weight, nor your body type, if you don't exercise, it will be basically impossible for you to reach your goal. It can be run, cycling, powerlifting, or any high-intensity workout you want to do, because it helps you to grow on muscle, burn calories, get rid of water surplus your body can store, plus a lot of health improvements exercising can provide you. The recommended is at least 3-4 times a week, but of course that if you, for example, workout 5 times a week, it won't be bad it will actually help you more, so you know what to do!";
-    else if (exercise == 2)
+    else if (c == 2)
       cbody =
         " Well, I suppose, sometimes, you wonder why are you stagnant in the body you're and that you don't like. I can tell you. You are working out too little. Yeah I get it, but it's necessary for you, to get a healthier and prettier body, at least 3-4 high-intensity workouts a week, if you do more, it will still be good and, as a matter of fact, it will be better.";
-    else if (exercise == 3)
+    else if (c == 3)
       cbody =
         " Well, you already do the minimal workout frequency for a diet plan, but if you still feel like more can be done in the path of your dream body, you're totally right, then you can do 5, 6 or, if you really want to do this, 7 times a week, the more the better. ";
-    else if (exercise == 4)
+    else if (c == 4)
       cbody =
         " Well, that's good. you already do more workouts than required for a regular diet plan. If you want to elevate it even more try doing 7 heavy workouts a week, besides a good diet food plan.";
-    if (healthy == 1)
+    if (c2 == 1)
       cbodyc =
         " I probably shouldn't believe you, but I will. Please, you have to have complete meals, nutrient wise, besides healthy food in it like salad, good protein, choosing cleverly between 'similar options', for example, on weekdays choose chicken breast over red meat. But on weekends don't put everything to lose but free yourself to eat something you like more. Well, you still gotta combine that with good training and workouts to maximize your health and fitness gains.";
-    else if (healthy == 2)
+    else if (c2 == 2)
       cbodyc =
         " That's ok, but still, you need more healthy and complete, nutrient wise, meal days a week, like salad, good protein, choosing cleverly between 'similar options', for example, on weekdays choose chicken breast over red meat. But on weekends don't put everything to lose but free yourself to eat something you like more. Well, you still gotta combine that with good training and workouts to maximize your health and fitness gains.";
-    else if (healthy == 3)
+    else if (c2 == 3)
       cbodyc =
         " You have a decent frequency of good meal days a week but I think that you can complete 5 days a week of it, this way you will have more nutrients on your blood, and then you are going to start seeing the effects on your body shortly. Well, you still gotta combine that with good training and workouts to maximize your health and fitness gains.";
-    else if (healthy == 4)
+    else if (c2 == 4)
       cbodyc =
         " It's good that you have a good healthy meal day frequency, this will help you a lot on your path to your body goal. Well, you still gotta combine that with good training and workouts to maximize your health and fitness gains.";
-    if (cheat == 1)
+    if (c3 == 1)
       ccbody =
         " It's good that you have a practically null cheat meal regularity, this will be helpful in your path to your body goal.";
-    else if (cheat == 2)
+    else if (c3 == 2)
       ccbody =
         " You have a decent frequency cheat meal days a week but I think that you can shorten it to 1 cheat meal day a week of it, this way you will have more ease on maintaining your diet plan and sustaining it you are going to start seeing the effects on your body shortly.";
-    else if (cheat == 3)
+    else if (c3 == 3)
       ccbody =
         " That's ok, but still, you need to shorten the number of cheat meals you eat try to only do it on weekends and when you feel like it, try doing it only on Sundays. But on weekends don't put everything to lose but free yourself to eat something you like more.";
-    else if (cheat == 4)
+    else if (c3 == 4)
       ccbody =
         " You need to gradually shorten the number of cheat meals you eat, because that enormous amount of cheat meals are not good at all for your health, therefore try doing it only on Fridays, Saturdays, and Sundays, then when you feel like it, try to only do it on weekends and when you feel like it, try doing it only on Sundays. But on weekends don't put everything to lose but free yourself to eat something you like more.";
-    if (meals == 1)
+    if (c4 == 1)
       bodycc =
         " I know how that goes, you think, and i did too, that if you eat less you lose fat, but that is not necessarily the case. If you eat the right amount of the right food 5-6 times a day you will lose more fat and if you maintain a good protein ingestion in every meal, you will also make more muscle out of it.";
-    else if (meals == 2)
+    else if (c4 == 2)
       bodycc =
         " I know how that goes, you think, and i did too, that if you eat less you lose fat, but that is not necessarily the case. If you eat the right amount of the right food 5-6 times a day you will lose more fat and if you maintain a good protein ingestion in every meal, you will also make more muscle out of it.";
-    else if (meals == 3)
+    else if (c4 == 3)
       bodycc =
         " Your eating frequency is decent but you should try to eat at least once more through the day, and always eating healthy with a good portion of proteins and moderate portions of carbohydrates";
-    else if (meals == 4)
+    else if (c4 == 4)
       bodycc =
         " That's ideal, always eat healthy with 3-hour intervals for better muscle gain and fat loss.";
-    goalBodyDistance += currentBody - bgoal;
-    if (goalBodyDistance == 1)
+    bbgoal += b - bgoal;
+    if (bbgoal == 1)
       bbg +=
         " Also, you are really close to your goal, which means that with focus and determination your run towards your goal will be short!";
-    else if (goalBodyDistance == 2)
+    else if (bbgoal == 2)
       bbg +=
         " Also, you are close to your goal, which means that with focus and determination your run towards your goal will be short!";
-    else if (goalBodyDistance == 3)
+    else if (bbgoal == 3)
       bbg +=
         " Also, you are not far from your goal, take ownership of your path and you'll get there soon!";
-    else if (goalBodyDistance == 4)
+    else if (bbgoal == 4)
       bbg +=
         " It will be a bit difficult but with focus, besides the right training and diet, you'll get there!";
-    else if (goalBodyDistance == 5)
+    else if (bbgoal == 5)
       bbg +=
         " It will be difficult but with focus, besides the right training and diet, you'll get there!";
-    else if (goalBodyDistance == 6)
+    else if (bbgoal == 6)
       bbg +=
         " This is gonna be a long, but well rewarding, run, that requires a lot of will, determination, and focus!";
-    else if (goalBodyDistance == 7)
+    else if (bbgoal == 7)
       bbg +=
         " This is gonna be a long, but well rewarding, run, that requires a lot of will, determination, and focus!";
-    else if (goalBodyDistance == 8)
+    else if (bbgoal == 8)
       bbg +=
         " This is gonna be a long, but well rewarding, run, that requires a lot of will, determination, and focus!";
     if (bope == "bulking") {
@@ -4055,77 +4523,77 @@ function result() {
       '<a id="finallink" href="https://www.health.harvard.edu/diet-and-weight-loss/calories-burned-in-30-minutes-of-leisure-and-routine-activities" target="_blank">Link a uma página de Harvard sobre calorias de exercícios</a>';
     bmrlllll =
       "<a id='finallink' href='https://www.healthline.com/health/fitness-exercise/top-iphone-android-apps' target='_blank'>Link para os melhores aplicativos para conselhos de treino</a>";
-    if (exercise == 1)
+    if (c == 1)
       cbody =
         " Bem, não importa qual é a sua meta, seu peso atual, nem seu tipo de corpo, se você não se exercitar, será basicamente impossível atingir sua meta. Pode ser corrida, ciclismo, levantamento de peso ou qualquer treino de alta intensidade que você queira fazer, porque ajuda a aumentar os músculos, queimar calorias, se livrar do excesso de água que seu corpo pode armazenar, além de muitas melhorias para a saúde que os exercícios podem te fornecer. O recomendado é pelo menos 3-4 vezes por semana, mas é claro que se você, por exemplo, treinar 5 vezes por semana, não será ruim, na verdade irá ajudá-lo mais, então você sabe o que fazer!";
-    else if (exercise == 2)
+    else if (c == 2)
       cbody =
         " Bem, suponho que, às vezes, você se pergunte por que está estagnado no corpo que está e de que não gosta. Eu posso te contar. Você está malhando muito pouco. Sim, entendi, mas é necessário para você ter um corpo mais saudável e bonito, pelo menos 3-4 treinos de alta intensidade por semana, se você fizer mais, ainda será bom e, na verdade, é será melhor.";
-    else if (exercise == 3)
+    else if (c == 3)
       cbody =
         " Bem, você já faz a frequência mínima de treino para um plano de dieta, mas se ainda sente que mais pode ser feito no caminho do seu corpo de sonho, você está totalmente certo, então você pode fazer 5, 6 ou, se você realmente quero fazer isso, 7 vezes por semana, quanto mais, melhor. ";
-    else if (exercise == 4)
+    else if (c == 4)
       cbody =
         " Bem, isso é bom. você já faz mais exercícios do que o necessário para um plano de dieta regular. Se quiser elevá-la ainda mais experimente fazer 7 treinos pesados por semana, além de um bom plano alimentar dietético.";
-    if (healthy == 1)
+    if (c2 == 1)
       cbodyc =
         " Eu provavelmente não deveria acreditar em você, mas vou. Por favor, você tem que fazer refeições completas, em termos de nutrientes, além de alimentos saudáveis como salada, boa proteína, escolhendo habilmente entre 'opções semelhantes', por exemplo, nos dias de semana prefira peito de frango à carne vermelha. Mas nos finais de semana não coloque tudo a perder, mas libere-se para comer o que você gosta mais. Bem, você ainda precisa combinar isso com um bom treinamento e exercícios para maximizar seus ganhos de saúde e fitness.";
-    else if (healthy == 2)
+    else if (c2 == 2)
       cbodyc =
         " Tudo bem, mas ainda assim, você precisa de refeições mais saudáveis e completas, em termos de nutrientes, dias de refeição por semana, como salada, boa proteína, escolher habilmente entre 'opções semelhantes', por exemplo, nos dias de semana escolha peito de frango em vez de carne vermelha. Mas nos finais de semana não coloque tudo a perder, mas libere-se para comer o que você gosta mais. Bem, você ainda precisa combinar isso com um bom treinamento e exercícios para maximizar seus ganhos de saúde e fitness.";
-    else if (healthy == 3)
+    else if (c2 == 3)
       cbodyc =
         " Você tem uma frequência decente de bons dias de refeição por semana, mas eu acho que você pode completar 5 dias por semana, assim você terá mais nutrientes no seu sangue, e então você começará a ver os efeitos no seu corpo em breve . Bem, você ainda precisa combinar isso com um bom treinamento e exercícios para maximizar seus ganhos de saúde e fitness.";
-    else if (healthy == 4)
+    else if (c2 == 4)
       cbodyc =
         " É bom que você tenha uma boa frequência de refeições saudáveis, isso vai te ajudar muito no seu caminho para o seu objetivo corporal. Bem, você ainda precisa combinar isso com um bom treinamento e exercícios para maximizar seus ganhos de saúde e fitness.";
-    if (cheat == 1)
+    if (c3 == 1)
       ccbody =
         " É bom que você tenha uma regularidade de refeição de trapaça praticamente nula, isso será útil em seu caminho para seu objetivo corporal.";
-    else if (cheat == 2)
+    else if (c3 == 2)
       ccbody =
         " Você tem uma frequência decente de refeições diárias por semana, mas acho que pode encurtá-la para 1 refeição diária normal por semana, dessa forma você terá mais facilidade em manter seu plano de dieta e sustentá-lo, você começará a ver o efeitos em seu corpo em breve.";
-    else if (cheat == 3)
+    else if (c3 == 3)
       ccbody =
         " Tudo bem, mas ainda assim, você precisa encurtar o número de cheats que você faz, tente fazer apenas nos finais de semana e quando quiser, tente fazer apenas aos domingos. Mas nos finais de semana não coloque tudo a perder, mas libere-se para comer o que você gosta mais.";
-    else if (cheat == 4)
+    else if (c3 == 4)
       ccbody =
         " Você precisa diminuir gradativamente o número de refeições casuais que você faz, porque essa quantidade enorme de refeições casuais não faz bem à sua saúde, portanto, tente fazê-lo apenas às sextas, sábados e domingos, então quando tiver vontade, tente para fazer apenas nos finais de semana e quando quiser, tente fazer apenas aos domingos. Mas nos finais de semana não coloque tudo a perder, mas libere-se para comer o que você gosta mais.";
-    if (meals == 1)
+    if (c4 == 1)
       bodycc =
         " Sei o que acontece, você pensa, e eu também, que se comer menos perderá gordura, mas não é necessariamente o caso. Se você comer a quantidade certa da comida certa 5-6 vezes ao dia, perderá mais gordura e se mantiver uma boa ingestão de proteína em todas as refeições, também ganhará mais músculos.";
-    else if (meals == 2)
+    else if (c4 == 2)
       bodycc =
         " Sei o que acontece, você pensa, e eu também, que se comer menos perderá gordura, mas não é necessariamente o caso. Se você comer a quantidade certa da comida certa 5-6 vezes ao dia, perderá mais gordura e se mantiver uma boa ingestão de proteína em todas as refeições, também ganhará mais músculos.";
-    else if (meals == 3)
+    else if (c4 == 3)
       bodycc =
         " Sua frequência alimentar é decente, mas você deve tentar comer pelo menos mais uma vez ao longo do dia, e sempre comendo saudável com uma boa porção de proteínas e porções moderadas de carboidratos";
-    else if (meals == 4)
+    else if (c4 == 4)
       bodycc =
         " Isso é ideal, sempre alimente-se de forma saudável com intervalos de 3 horas para melhor ganho muscular e perda de gordura.";
-    goalBodyDistance += currentBody - bgoal;
-    if (goalBodyDistance == 1)
+    bbgoal += b - bgoal;
+    if (bbgoal == 1)
       bbg +=
         " Além disso, você está muito perto de seu objetivo, o que significa que com foco e determinação sua corrida em direção ao objetivo será curta!";
-    else if (goalBodyDistance == 2)
+    else if (bbgoal == 2)
       bbg +=
         " Além disso, você está perto de seu objetivo, o que significa que com foco e determinação sua corrida em direção ao objetivo será curta!";
-    else if (goalBodyDistance == 3)
+    else if (bbgoal == 3)
       bbg +=
         " Além disso, você não está longe de seu objetivo, tome posse de seu caminho e você chegará lá em breve!";
-    else if (goalBodyDistance == 4)
+    else if (bbgoal == 4)
       bbg +=
         " Vai ser um pouco difícil, mas com foco, além do treino e da dieta corretos, você vai chegar lá!";
-    else if (goalBodyDistance == 5)
+    else if (bbgoal == 5)
       bbg +=
         " Vai ser difícil, mas com foco, além do treino e da dieta corretos, você vai chegar lá!";
-    else if (goalBodyDistance == 6)
+    else if (bbgoal == 6)
       bbg +=
         " Vai ser uma corrida longa, mas bem recompensadora, que exige muita vontade, determinação e foco!";
-    else if (goalBodyDistance == 7)
+    else if (bbgoal == 7)
       bbg +=
         " Vai ser uma corrida longa, mas bem recompensadora, que exige muita vontade, determinação e foco!";
-    else if (goalBodyDistance == 8)
+    else if (bbgoal == 8)
       bbg +=
         " Vai ser uma corrida longa, mas bem recompensadora, que exige muita vontade, determinação e foco!";
     if (bope == "bulking") {
@@ -4161,77 +4629,77 @@ function result() {
       "<a id='finallink' href='https://www.health.harvard.edu/diet-and-weight-loss/calories-burned-in-30-minutes-of-leisure-and-routine-activities' target='_blank'>Link vers une page de Harvard sur les calories d'exercice</a>";
     bmrlllll =
       "<a id='finallink' href='https://www.healthline.com/health/fitness-exercise/top-iphone-android-apps' target='_blank'>Lien vers les meilleures applications pour obtenir des conseils d'entraînement</a>";
-    if (exercise == 1)
+    if (c == 1)
       cbody =
         " Eh bien, peu importe votre objectif, votre poids actuel ou votre type de corps, si vous ne faites pas d'exercice, il vous sera pratiquement impossible d'atteindre votre objectif. Il peut s'agir de course, de cyclisme, de dynamophilie ou de tout entraînement de haute intensité que vous souhaitez faire, car il vous aide à développer vos muscles, à brûler des calories, à vous débarrasser du surplus d'eau que votre corps peut stocker, ainsi que de nombreuses améliorations de la santé que l'exercice peut vous fournir. Le recommandé est au moins 3 à 4 fois par semaine, mais bien sûr, si vous vous entraînez, par exemple, 5 fois par semaine, ce ne sera pas mal, cela vous aidera davantage, alors vous savez quoi faire!";
-    else if (exercise == 2)
+    else if (c == 2)
       cbody =
         " Eh bien, je suppose que parfois, vous vous demandez pourquoi vous stagnez dans le corps que vous et que vous n'aimez pas. Je peux vous dire. Vous travaillez trop peu. Ouais je comprends, mais c'est nécessaire pour toi, pour avoir un corps plus sain et plus joli, au moins 3-4 séances d'entraînement de haute intensité par semaine, si tu en fais plus, ce sera toujours bon et, en fait, ça sera mieux.";
-    else if (exercise == 3)
+    else if (c == 3)
       cbody =
         " Eh bien, vous faites déjà la fréquence minimale d'entraînement pour un régime alimentaire, mais si vous pensez toujours que plus peut être fait sur le chemin de votre corps de rêve, vous avez tout à fait raison, alors vous pouvez faire 5, 6 ou, si vous vraiment veulent faire cela, 7 fois par semaine, plus il y en a, mieux c'est. ";
-    else if (exercise == 4)
+    else if (c == 4)
       cbody =
         " Bon, c'est bien. vous faites déjà plus de séances d'entraînement que nécessaire pour un régime alimentaire régulier. Si vous voulez l'augmenter encore plus, essayez de faire 7 séances d'entraînement intensives par semaine, en plus d'un bon régime alimentaire.";
-    if (healthy == 1)
+    if (c2 == 1)
       cbodyc =
         " Je ne devrais probablement pas te croire, mais je le ferai. S'il vous plaît, vous devez avoir des repas complets, en termes de nutriments, en plus des aliments sains comme une salade, de bonnes protéines, en choisissant intelligemment entre des options similaires '', par exemple, en semaine, choisissez la poitrine de poulet plutôt que la viande rouge. Mais le week-end, ne mettez pas tout à perdre mais libérez-vous pour manger quelque chose que vous aimez plus. Eh bien, vous devez toujours combiner cela avec un bon entraînement et des séances d'entraînement pour maximiser vos gains de santé et de forme physique.";
-    else if (healthy == 2)
+    else if (c2 == 2)
       cbodyc =
         " Ce n'est pas grave, mais vous avez quand même besoin de repas plus sains et complets, en termes de nutriments, chaque semaine, comme une salade, de bonnes protéines, en choisissant intelligemment entre des options similaires '', par exemple, en semaine, choisissez la poitrine de poulet plutôt que la viande rouge. Mais le week-end, ne mettez pas tout à perdre mais libérez-vous pour manger quelque chose que vous aimez plus. Eh bien, vous devez toujours combiner cela avec un bon entraînement et des séances d'entraînement pour maximiser vos gains de santé et de forme physique.";
-    else if (healthy == 3)
+    else if (c2 == 3)
       cbodyc =
         " Vous avez une fréquence décente de bons repas jours par semaine, mais je pense que vous pouvez en terminer 5 jours par semaine, de cette façon, vous aurez plus de nutriments dans votre sang, et ensuite vous allez commencer à voir les effets sur votre corps sous peu. . Eh bien, vous devez toujours combiner cela avec un bon entraînement et des séances d'entraînement pour maximiser vos gains de santé et de forme physique.";
-    else if (healthy == 4)
+    else if (c2 == 4)
       cbodyc =
         " Il est bon que vous ayez une bonne fréquence quotidienne de repas sains, cela vous aidera beaucoup sur votre chemin vers votre objectif corporel. Eh bien, vous devez toujours combiner cela avec un bon entraînement et des séances d'entraînement pour maximiser vos gains de santé et de forme physique.";
-    if (cheat == 1)
+    if (c3 == 1)
       ccbody =
         " Il est bon que vous ayez une régularité de repas malsains pratiquement nulle, cela vous sera utile sur votre chemin vers votre objectif corporel.";
-    else if (cheat == 2)
+    else if (c3 == 2)
       ccbody =
         " Vous avez une fréquence de repas de triche décente jours par semaine, mais je pense que vous pouvez le raccourcir à 1 repas de triche par semaine, de cette façon, vous aurez plus de facilité à maintenir votre régime alimentaire et à le maintenir, vous allez commencer à voir le effets sur votre corps sous peu.";
-    else if (cheat == 3)
+    else if (c3 == 3)
       ccbody =
         " C'est correct, mais quand même, vous devez réduire le nombre de repas de triche que vous mangez, essayez de ne le faire que le week-end et lorsque vous en avez envie, essayez de le faire uniquement le dimanche. Mais le week-end, ne mettez pas tout à perdre mais libérez-vous pour manger quelque chose que vous aimez plus.";
-    else if (cheat == 4)
+    else if (c3 == 4)
       ccbody =
         " Vous devez réduire progressivement le nombre de repas de triche que vous mangez, car cette énorme quantité de repas de triche n'est pas du tout bonne pour votre santé, essayez donc de le faire uniquement les vendredis, samedis et dimanches, puis quand vous en avez envie, essayez pour ne le faire que le week-end et quand vous en avez envie, essayez de le faire uniquement le dimanche. Mais le week-end, ne mettez pas tout à perdre mais libérez-vous pour manger quelque chose que vous aimez plus.";
-    if (meals == 1)
+    if (c4 == 1)
       bodycc =
         " Je sais comment ça se passe, vous pensez, et moi aussi, que si vous mangez moins, vous perdez du gras, mais ce n'est pas forcément le cas. Si vous mangez la bonne quantité de la bonne nourriture 5 à 6 fois par jour, vous perdrez plus de graisse et si vous maintenez une bonne ingestion de protéines à chaque repas, vous en tirerez également plus de muscle..";
-    else if (meals == 2)
+    else if (c4 == 2)
       bodycc =
         " Je sais comment ça se passe, vous pensez, et moi aussi, que si vous mangez moins, vous perdez du gras, mais ce n'est pas forcément le cas. Si vous mangez la bonne quantité de la bonne nourriture 5 à 6 fois par jour, vous perdrez plus de graisse et si vous maintenez une bonne ingestion de protéines à chaque repas, vous en tirerez également plus de muscle..";
-    else if (meals == 3)
+    else if (c4 == 3)
       bodycc =
         " Votre fréquence d'alimentation est correcte, mais vous devriez essayer de manger au moins une fois de plus dans la journée et toujours manger sainement avec une bonne portion de protéines et des portions modérées de glucides.";
-    else if (meals == 4)
+    else if (c4 == 4)
       bodycc =
         " C'est idéal, mangez toujours sainement avec des intervalles de 3 heures pour un meilleur gain musculaire et une meilleure perte de graisse.";
-    goalBodyDistance += currentBody - bgoal;
-    if (goalBodyDistance == 1)
+    bbgoal += b - bgoal;
+    if (bbgoal == 1)
       bbg +=
         " De plus, vous êtes très proche de votre objectif, ce qui signifie qu'avec concentration et détermination, votre course vers votre objectif sera courte!";
-    else if (goalBodyDistance == 2)
+    else if (bbgoal == 2)
       bbg +=
         " De plus, vous êtes proche de votre objectif, ce qui signifie qu'avec de la concentration et de la détermination, votre course vers votre objectif sera courte!";
-    else if (goalBodyDistance == 3)
+    else if (bbgoal == 3)
       bbg +=
         " Aussi, vous n'êtes pas loin de votre objectif, prenez en main votre chemin et vous y arriverez bientôt!";
-    else if (goalBodyDistance == 4)
+    else if (bbgoal == 4)
       bbg +=
         " Ce sera un peu difficile mais avec de la concentration, en plus du bon entraînement et du bon régime, vous y arriverez!";
-    else if (goalBodyDistance == 5)
+    else if (bbgoal == 5)
       bbg +=
         " Ce sera difficile mais avec de la concentration, en plus du bon entraînement et du bon régime, vous y arriverez!";
-    else if (goalBodyDistance == 6)
+    else if (bbgoal == 6)
       bbg +=
         " Ce sera une course longue, mais bien enrichissante, qui demandera beaucoup de volonté, de détermination et de concentration!";
-    else if (goalBodyDistance == 7)
+    else if (bbgoal == 7)
       bbg +=
         " Ce sera une course longue, mais bien enrichissante, qui demandera beaucoup de volonté, de détermination et de concentration!";
-    else if (goalBodyDistance == 8)
+    else if (bbgoal == 8)
       bbg +=
         " Ce sera une course longue, mais bien enrichissante, qui demandera beaucoup de volonté, de détermination et de concentration!";
     if (bope == "bulking") {
@@ -4267,77 +4735,77 @@ function result() {
       '<a id="finallink" href="https://www.health.harvard.edu/diet-and-weight-loss/calories-burned-in-30-minutes-of-leisure-and-routine-activities" target="_blank">Link a una página de Harvard sobre las calorías del ejercicio</a>';
     bmrlllll =
       "<a id='finallink' href='https://www.healthline.com/health/fitness-exercise/top-iphone-android-apps' target='_blank'>Link a las mejores aplicaciones para obtener consejos sobre ejercicios</a>";
-    if (exercise == 1)
+    if (c == 1)
       cbody =
         " Bueno, no importa cuál sea tu objetivo, tu peso actual ni tu tipo de cuerpo, si no haces ejercicio, será básicamente imposible que lo alcance. Puede ser correr, andar en bicicleta, levantar pesas o cualquier entrenamiento de alta intensidad que desee hacer, ya que le ayuda a desarrollar músculo, quemar calorías, eliminar el exceso de agua que su cuerpo puede almacenar, además de muchas mejoras para la salud que puede hacer el ejercicio. proporcionarle. Lo recomendado es al menos 3-4 veces a la semana, pero por supuesto que si, por ejemplo, haces ejercicio 5 veces a la semana, no será malo, en realidad te ayudará más, ¡así que sabes qué hacer!";
-    else if (exercise == 2)
+    else if (c == 2)
       cbody =
         " Bueno, supongo que a veces te preguntas por qué estás estancado en el cuerpo que eres y que no te gusta. Te puedo decir. Está haciendo muy poco ejercicio. Sí, lo entiendo, pero es necesario para ti, para tener un cuerpo más sano y bonito, al menos 3-4 entrenamientos de alta intensidad a la semana, si haces más, seguirá siendo bueno y, de hecho, será será mejor.";
-    else if (exercise == 3)
+    else if (c == 3)
       cbody =
         " Bueno, ya tiene la frecuencia mínima de entrenamiento para un plan de dieta, pero si todavía siente que se puede hacer más en el camino del cuerpo de sus sueños, tiene toda la razón, entonces puede hacer 5, 6 o, si realmente lo desea. quiero hacer esto, 7 veces a la semana, cuanto más, mejor. ";
-    else if (exercise == 4)
+    else if (c == 4)
       cbody =
         " Bueno, eso es bueno. ya haces más entrenamientos de los necesarios para un plan de dieta regular. Si quieres elevarlo aún más intenta hacer 7 entrenamientos pesados a la semana, además de un buen plan alimenticio dietético.";
-    if (healthy == 1)
+    if (c2 == 1)
       cbodyc =
         " Probablemente no debería creerte, pero lo haré. Por favor, debe tener comidas completas, en cuanto a nutrientes, además de alimentos saludables como ensaladas, buenas proteínas, eligiendo inteligentemente entre 'opciones similares', por ejemplo, los días de semana elija pechuga de pollo sobre carne roja. Pero los fines de semana no pongas todo para perder, sino libérate para comer algo que te guste más. Bueno, aún debes combinar eso con un buen entrenamiento y entrenamientos para maximizar tus ganancias de salud y estado físico.";
-    else if (healthy == 2)
+    else if (c2 == 2)
       cbodyc =
         " Está bien, pero aún así, necesita días de comida a la semana más saludables y completos, en cuanto a nutrientes, como ensalada, buenas proteínas, eligiendo inteligentemente entre 'opciones similares', por ejemplo, los días de semana elija pechuga de pollo en lugar de carne roja. Pero los fines de semana no pongas todo para perder, sino libérate para comer algo que te guste más. Bueno, aún debes combinar eso con un buen entrenamiento y entrenamientos para maximizar tus ganancias de salud y estado físico.";
-    else if (healthy == 3)
+    else if (c2 == 3)
       cbodyc =
         " Tienes una frecuencia decente de buenos días de comida a la semana, pero creo que puedes completar 5 días a la semana, de esta manera tendrás más nutrientes en tu sangre y luego comenzarás a ver los efectos en tu cuerpo en breve. . Bueno, aún debes combinar eso con un buen entrenamiento y entrenamientos para maximizar tus ganancias de salud y estado físico.";
-    else if (healthy == 4)
+    else if (c2 == 4)
       cbodyc =
         " Es bueno que tengas una buena frecuencia diaria de comidas saludables, esto te ayudará mucho en tu camino hacia tu objetivo corporal. Bueno, aún debes combinar eso con un buen entrenamiento y entrenamientos para maximizar tus ganancias de salud y estado físico.";
-    if (cheat == 1)
+    if (c3 == 1)
       ccbody =
         " Es bueno que tengas una regularidad de comidas poco saludables que sea prácticamente nula, esto te será útil en tu camino hacia tu meta corporal.";
-    else if (cheat == 2)
+    else if (c3 == 2)
       ccbody =
         " Tiene una frecuencia decente para hacer trampas los días de la semana, pero creo que puede acortarla a 1 comida trampa al día a la semana, de esta manera tendrá más facilidad para mantener su plan de dieta y mantenerlo, comenzará a ver el efectos en su cuerpo en breve.";
-    else if (cheat == 3)
+    else if (c3 == 3)
       ccbody =
         " Eso está bien, pero aún así, debes acortar la cantidad de comidas trampa que comes, intenta hacerlo solo los fines de semana y, cuando te apetezca, intenta hacerlo solo los domingos. Pero los fines de semana no pongas todo para perder, sino libérate para comer algo que te guste más.";
-    else if (cheat == 4)
+    else if (c3 == 4)
       ccbody =
         " Necesita acortar gradualmente la cantidad de comidas trampa que come, porque esa enorme cantidad de comidas trampa no es nada bueno para su salud, por lo tanto, intente hacerlo solo los viernes, sábados y domingos, luego, cuando lo desee, intente a hacerlo solo los fines de semana y cuando te apetezca, intenta hacerlo solo los domingos. Pero los fines de semana no pongas todo para perder, sino libérate para comer algo que te guste más.";
-    if (meals == 1)
+    if (c4 == 1)
       bodycc =
         " Sé cómo va eso, piensas, y yo también, que si comes menos pierdes grasa, pero ese no es necesariamente el caso. Si come la cantidad correcta de la comida adecuada 5-6 veces al día, perderá más grasa y si mantiene una buena ingesta de proteínas en cada comida, también hará más músculo con ella.";
-    else if (meals == 2)
+    else if (c4 == 2)
       bodycc =
         " Sé cómo va eso, piensas, y yo también, que si comes menos pierdes grasa, pero ese no es necesariamente el caso. Si come la cantidad correcta de la comida adecuada 5-6 veces al día, perderá más grasa y si mantiene una buena ingesta de proteínas en cada comida, también hará más músculo con ella.";
-    else if (meals == 3)
+    else if (c4 == 3)
       bodycc =
         " Su frecuencia de alimentación es decente, pero debe intentar comer al menos una vez más durante el día, y siempre comer sano con una buena porción de proteínas y porciones moderadas de carbohidratos.";
-    else if (meals == 4)
+    else if (c4 == 4)
       bodycc =
         " Eso es ideal, siempre coma sano con intervalos de 3 horas para una mejor ganancia muscular y pérdida de grasa..";
-    goalBodyDistance += currentBody - bgoal;
-    if (goalBodyDistance == 1)
+    bbgoal += b - bgoal;
+    if (bbgoal == 1)
       bbg +=
         " Además, estás muy cerca de tu objetivo, lo que significa que con concentración y determinación, ¡tu carrera hacia tu objetivo será corta!";
-    else if (goalBodyDistance == 2)
+    else if (bbgoal == 2)
       bbg +=
         " Además, estás cerca de tu objetivo, lo que significa que con concentración y determinación, ¡tu carrera hacia tu objetivo será corta!";
-    else if (goalBodyDistance == 3)
+    else if (bbgoal == 3)
       bbg +=
         " Además, no está lejos de su objetivo, tome posesión de su camino y ¡llegará pronto!";
-    else if (goalBodyDistance == 4)
+    else if (bbgoal == 4)
       bbg +=
         " Será un poco difícil, pero con concentración, además del entrenamiento y la dieta adecuados, ¡lo lograrás!";
-    else if (goalBodyDistance == 5)
+    else if (bbgoal == 5)
       bbg +=
         " Será difícil, pero con concentración, además del entrenamiento y la dieta adecuados, ¡lo lograrás!";
-    else if (goalBodyDistance == 6)
+    else if (bbgoal == 6)
       bbg +=
         " ¡Esta será una carrera larga, pero gratificante, que requiere mucha voluntad, determinación y concentración!";
-    else if (goalBodyDistance == 7)
+    else if (bbgoal == 7)
       bbg +=
         " ¡Esta será una carrera larga, pero gratificante, que requiere mucha voluntad, determinación y concentración!";
-    else if (goalBodyDistance == 8)
+    else if (bbgoal == 8)
       bbg +=
         " ¡Esta será una carrera larga, pero gratificante, que requiere mucha voluntad, determinación y concentración!";
     if (bope == "bulking") {
@@ -4378,7 +4846,7 @@ function result() {
   else if (languageValue == 4)
     downloadResult +=
       '<h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">¡Bueno! <big style="font-family: Kaushan Script, cursive;">';
-  downloadResult += `${name}</big><br>${btype}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${bodypt}${bbg}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${ageAdvice}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${bodytp}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${cbody}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${ccbodycc}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${cbodyc}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${ccbody}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${bodycc}${bodyc}</h3>`;
+  downloadResult += `${name}</big><br>${btype}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${bodypt}${bbg}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${bodyage}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${bodytp}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${cbody}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${ccbodycc}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${cbodyc}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${ccbody}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${bodycc}${bodyc}</h3>`;
   if (emotion == "yes")
     downloadResult += `<br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${emotionans}</h3>`;
   downloadResult += `<br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${bmrl}</h3><br><h4><i>${bmrll}</i></h4><br><h4><i>${bmrlll}</i></h4><br><h4><i>${bmrllll}</i></h4><br><h4><i>${bmrlllll}</i></h4></span>`;
@@ -4438,7 +4906,7 @@ function tttt() {
   }
   ttt += 1;
   if (ttt == 1500) finalResultH3Id.innerHTML += `${bodypt}${bbg}<br><br>`;
-  if (ttt == 2000) finalResultH3Id.innerHTML += `${ageAdvice}<br><br>`;
+  if (ttt == 2000) finalResultH3Id.innerHTML += `${bodyage}<br><br>`;
   if (ttt == 3000) finalResultH3Id.innerHTML += `${bodytp}<br><br>`;
   if (ttt == 4000) finalResultH3Id.innerHTML += `${cbody}<br><br>`;
   if (ttt == 5000) finalResultH3Id.innerHTML += `${ccbodycc}<br><br>`;
