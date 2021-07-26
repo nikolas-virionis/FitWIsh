@@ -1,5 +1,13 @@
 function english() {
   import("./script").then(({ english: defaultEnglish }) => defaultEnglish());
+  showImgBtn.innerHTML = "&#9776; Show Image";
+  referenceImgTxt.innerHTML = "Reference Image:";
+  backupGenderImg =
+    '<br><br><br><br><br><span style="font-size: 40px; font-variant:all-caps; color:white; display: grid; place-items: center;">Select a gender to see the reference Image';
+  document.getElementById("headingObjInputIdBodyImage").innerHTML =
+    "Which one of these you think represent you the most?";
+  document.getElementById("headingObjInputIdGoalImage").innerHTML =
+    "Which one of these you think represent your goal the most?";
 }
 function portugûes() {
   import("./script").then(({ portugûes: defaultPortugûes }) =>
@@ -12,8 +20,12 @@ function español() {
 function français() {
   import("./script").then(({ français: defaultFrançais }) => defaultFrançais());
 }
-function themeTypeDark() {}
-function themeTypeLight() {}
+function themeTypeDark() {
+  import("./script").then(({ themeTypeDark: defaultDark }) => defaultDark());
+}
+function themeTypeLight() {
+  import("./script").then(({ themeTypeLight: defaultLight }) => defaultLight());
+}
 img = document.createElement("img");
 if (gender == "male")
   setImg(
@@ -24,6 +36,17 @@ else
     "https://crossfitclandestine.files.wordpress.com/2019/05/body-fat-chart-women.png.pagespeed.ce_.9463kejyyr.png"
   );
 
+function openGenderCenterNav() {
+  document.getElementById("myGenderCenterNav").style.width = "70vw";
+  document.getElementById("myGenderCenterNav").style.height = "70vh";
+  if (gender != "male" && gender != "female")
+    document.getElementById("backupReferenceImg").innerHTML = backupGenderImg;
+}
+function closeGenderCenterNav() {
+  document.getElementById("myGenderCenterNav").style.width = "0";
+  document.getElementById("myGenderCenterNav").style.height = "0";
+  if (gender != "male" && gender != "female") backupReferenceImg.innerHTML = "";
+}
 function setImg(link) {
   img.src = link;
   img.setAttribute("width", "500");

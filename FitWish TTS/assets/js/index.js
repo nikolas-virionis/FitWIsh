@@ -25,8 +25,12 @@ function español() {
 function français() {
   import("./script").then(({ français: defaultFrançais }) => defaultFrançais());
 }
-function themeTypeDark() {}
-function themeTypeLight() {}
+function themeTypeDark() {
+  import("./script").then(({ themeTypeDark: defaultDark }) => defaultDark());
+}
+function themeTypeLight() {
+  import("./script").then(({ themeTypeLight: defaultLight }) => defaultLight());
+}
 
 if (contentArray.length == 0) {
   if (navigator.language[0] == "e" && navigator.language[1] == "n") english();
@@ -240,4 +244,164 @@ function numberBtnsOverwriteEs() {
     firstPageBtn1stTryOverwrite.value = `Sobrescribir la prueba de ${contentArray[0].day}`;
     firstPageBtn2ndTryOverwrite.value = `Sobrescribir la prueba de ${contentArray[1].day}`;
   }
+}
+const showPrevTestResult = (resultTry) => {
+  if (resultTry == 1) {
+    clearScreen();
+    idFooter.style.display = "none";
+    buttonFirst.style.display = "block";
+    finalResultH3Id.style.display = "block";
+    finalResultH3Id.innerHTML = `${contentArray[0].resultBeginning2} ${contentArray[0].inputName}</strong>, ${contentArray[0].bodyTypeAdvice} <br> ${contentArray[0].bodyTypeAdvantageAdvice}${contentArray[0].goalDistance}<br><br>${contentArray[0].ageAdvice}<br><br>${contentArray[0].finalIdealWeightMsg}<br><br>${contentArray[0].exerciseAdvice}<br><br>${contentArray[0].goalAdvice}<br><br>${contentArray[0].healthyAdvice}<br><br>${contentArray[0].cheatAdvice}<br><br>${contentArray[0].mealsAdvice}<br><br>${contentArray[0].goalAdvice2}<br><br>${contentArray[0].emotionans}<br><br>${contentArray[0].calorieIntakeAdvice}<br><br><br>`;
+    finalResultH4Id.style.display = "block";
+    finalResultH4Id.innerHTML = `<i>${contentArray[0].calorieCounterLink}<br><br>${contentArray[0].caloriesLink}<br><br>${contentArray[0].exerciseCaloriesLink}<br><br>${contentArray[0].fitnessAppsLink}</i><br><br><br>`;
+    idFooter.style.position = "relative";
+    idFooter.style.marginBottom = "0";
+    idFooter.style.display = "block";
+  } else if (resultTry == 2) {
+    clearScreen();
+    idFooter.style.display = "none";
+    buttonFirst.style.display = "block";
+    finalResultH3Id.style.display = "block";
+    finalResultH3Id.innerHTML = `${contentArray[1].resultBeginning2} ${contentArray[1].inputName}</strong>, ${contentArray[1].bodyTypeAdvice} <br> ${contentArray[1].bodyTypeAdvantageAdvice}${contentArray[1].goalDistance}<br><br>${contentArray[1].ageAdvice}<br><br>${contentArray[1].finalIdealWeightMsg}<br><br>${contentArray[1].exerciseAdvice}<br><br>${contentArray[1].goalAdvice}<br><br>${contentArray[1].healthyAdvice}<br><br>${contentArray[1].cheatAdvice}<br><br>${contentArray[1].mealsAdvice}<br><br>${contentArray[1].goalAdvice2}<br><br>${contentArray[1].emotionans}<br><br>${contentArray[1].calorieIntakeAdvice}<br><br><br>`;
+    finalResultH4Id.style.display = "block";
+    finalResultH4Id.innerHTML = `<i>${contentArray[1].calorieCounterLink}<br><br>${contentArray[1].caloriesLink}<br><br>${contentArray[1].exerciseCaloriesLink}<br><br>${contentArray[1].fitnessAppsLink}</i><br><br><br>`;
+    idFooter.style.position = "relative";
+    idFooter.style.marginBottom = "0";
+    idFooter.style.display = "block";
+  }
+};
+const startNewTry = (tryN) => {
+  tryNumber = tryN;
+  window.location.href = "intro.html";
+};
+const overwriteTest2 = (paramas) => {
+  if (paramas == 1) {
+    if (language == "english")
+      var confirmOverwrite = confirm(
+        `Are you sure you want to overwrite the test made as ${contentArray[0].inputName}? It will be forever destroyed.`
+      );
+    else if (language == "português")
+      var confirmOverwrite = confirm(
+        `Tem certeza que deseja sobrescrever o teste feito por ${contentArray[0].inputName}? Esse teste será destruido para sempre.`
+      );
+    else if (language == "français")
+      var confirmOverwrite = confirm(
+        `Voulez-vous vraiment remplacer le test effectué comme ${contentArray[0].inputName}? Il sera détruit à jamais.`
+      );
+    else if (language == "español")
+      var confirmOverwrite = confirm(
+        `¿Estás seguro de que quieres sobrescribir la prueba realizada como ${contentArray[0].inputName}? Será destruido para siempre.`
+      );
+    if (confirmOverwrite == true) {
+      contentArray.shift();
+      localStorage.setItem("contentArray", JSON.stringify(contentArray));
+      startNewTry(1);
+      firstPageBtn1stTry.style.display = "none";
+      firstPageBtn1stTryOverwrite.style.display = "none";
+      firstPageBtn2ndTry.style.display = "none";
+      firstPageBtn2ndTryOverwrite.style.display = "none";
+      firstPageBtnOverwrite.style.display = "none";
+      firstPageBtnSeeAll.style.display = "none";
+      firstPageBtnDelete.style.display = "none";
+      firstPageBtnStart.style.display = "none";
+    }
+  } else if (paramas == 2) {
+    if (language == "english")
+      var confirmOverwrite = confirm(
+        `Are you sure you want to overwrite the test made as ${contentArray[1].inputName}? It will be forever destroyed.`
+      );
+    else if (language == "português")
+      var confirmOverwrite = confirm(
+        `Tem certeza que deseja sobrescrever o teste feito por ${contentArray[1].inputName}? Esse teste será destruido para sempre.`
+      );
+    else if (language == "français")
+      var confirmOverwrite = confirm(
+        `Voulez-vous vraiment remplacer le test effectué comme ${contentArray[1].inputName}? Il sera détruit à jamais.`
+      );
+    else if (language == "español")
+      var confirmOverwrite = confirm(
+        `¿Estás seguro de que quieres sobrescribir la prueba realizada como ${contentArray[1].inputName}? Será destruido para siempre.`
+      );
+    if (confirmOverwrite == true) {
+      contentArray.pop();
+      localStorage.setItem("contentArray", JSON.stringify(contentArray));
+      startNewTry(2);
+    }
+  }
+};
+function overwriteTest() {
+  if (triesMade == 1) {
+    if (language == "english")
+      var confirmOverwrite = confirm(
+        `Are you sure you want to overwrite the test made as ${contentArray[0].inputName}? It will be forever destroyed.`
+      );
+    else if (language == "português")
+      var confirmOverwrite = confirm(
+        `Tem certeza que deseja sobrescrever o teste feito por ${contentArray[0].inputName}? Esse teste será destruido para sempre.`
+      );
+    else if (language == "français")
+      var confirmOverwrite = confirm(
+        `Voulez-vous vraiment remplacer le test effectué comme ${contentArray[0].inputName}? Il sera détruit à jamais.`
+      );
+    else if (language == "español")
+      var confirmOverwrite = confirm(
+        `¿Estás seguro de que quieres sobrescribir la prueba realizada como ${contentArray[0].inputName}? Será destruido para siempre.`
+      );
+    if (confirmOverwrite == true) {
+      contentArray.shift();
+      localStorage.setItem("contentArray", JSON.stringify(contentArray));
+      startNewTry(1);
+    }
+  } else if (triesMade == 2) {
+    seeAllTests();
+    firstPageBtn1stTryOverwrite.style.display = "block";
+    firstPageBtn2ndTryOverwrite.style.display = "block";
+  } else firstPageBtnOverwrite.style.display = "none";
+}
+function deleteTests() {
+  if (language == "english")
+    var deletePrevTests = confirm(
+      "Are you sure you want to delete all the tests?"
+    );
+  else if (language == "português")
+    var deletePrevTests = confirm(
+      "Tem certeza que deseja deletar todos os testes?"
+    );
+  else if (language == "français")
+    var deletePrevTests = confirm(
+      "Voulez-vous vraiment supprimer tous les tests?"
+    );
+  else if (language == "español")
+    var deletePrevTests = confirm(
+      "¿Estás seguro de que quieres eliminar todas las pruebas?"
+    );
+  if (deletePrevTests == true) {
+    localStorage.removeItem("contentArray");
+    window.location.reload();
+  }
+}
+function hidePrevTests() {
+  firstPageBtn1stTry.style.display = "none";
+  firstPageBtnSeePrev.style.display = "block";
+  firstPageBtnHidePrev.style.display = "none";
+}
+function seePrevTest() {
+  firstPageBtn1stTry.style.display = "block";
+  firstPageBtnSeePrev.style.display = "none";
+  firstPageBtnHidePrev.style.display = "block";
+  firstPageBtnDelete.style.display = "block";
+}
+function seeAllTests() {
+  firstPageBtn1stTry.style.display = "block";
+  firstPageBtn2ndTry.style.display = "block";
+  firstPageBtnSeeAll.style.display = "none";
+  firstPageBtnHideAll.style.display = "block";
+  firstPageBtnDelete.style.display = "block";
+}
+function hideAllTests() {
+  firstPageBtn1stTry.style.display = "none";
+  firstPageBtn2ndTry.style.display = "none";
+  firstPageBtnSeeAll.style.display = "block";
+  firstPageBtnHideAll.style.display = "none";
+  firstPageBtnDelete.style.display = "block";
 }

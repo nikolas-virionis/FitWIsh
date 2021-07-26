@@ -1,5 +1,12 @@
 function english() {
   import("./script").then(({ english: defaultEnglish }) => defaultEnglish());
+  document.getElementById("name").placeholder = "Name Example: Nick";
+  document.getElementById("age").placeholder = "Age Example: 24";
+  document.getElementById("email").placeholder =
+    "Example: name.lastname@email.com";
+  document.getElementById("headingTextInputIdName").innerHTML = "Name:";
+  document.getElementById("headingTextInputIdAge").innerHTML = "Age:";
+  document.getElementById("headingTextInputIdEmail").innerHTML = "Email:";
 }
 function portugûes() {
   import("./script").then(({ portugûes: defaultPortugûes }) =>
@@ -12,8 +19,12 @@ function español() {
 function français() {
   import("./script").then(({ français: defaultFrançais }) => defaultFrançais());
 }
-function themeTypeDark() {}
-function themeTypeLight() {}
+function themeTypeDark() {
+  import("./script").then(({ themeTypeDark: defaultDark }) => defaultDark());
+}
+function themeTypeLight() {
+  import("./script").then(({ themeTypeLight: defaultLight }) => defaultLight());
+}
 function setAgeAdvice() {
   if (languageValue == 1) {
     if (age <= 12)

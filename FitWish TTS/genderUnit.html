@@ -21,9 +21,9 @@
     <div class="sideBarButtons" onclick="openNav();" id="leftsidebarButton">&#9776;</div>
     <div class="sideBarButtons" onclick="rightNavInterpreter();" id="rightsidebarButton"><span
             id="rightsidebarSymbol">&sect;</span></div>
-    <div id="linkTitle" title="FitWish Home Page"><a id="linkTitlea" href=""><img id="imageLogo"
+    <div id="linkTitle" title="FitWish Home Page"><a id="linkTitlea" href="intro.html"><img id="imageLogo"
                 src="https://www.pngkey.com/png/full/211-2118619_healthy-army-communities-healthy-apple-logo.png"></a>
-        <a id="titleLink" href="">
+        <a id="titleLink" href="intro.html">
             <h1 class="classHeading" id="headingObjInputIdHead"><i>FitWish</i></h1>
         </a>
     </div>
@@ -50,26 +50,26 @@
         <li onclick="themeTypeLight();" id="lightThemeButton" class="listnav">Light Theme</li>
         <li onclick="" id="pagesNavId" class="listnav">Pages/Sections(&sect;)</li>
         <li onclick="disclaimer();" id="disclaimerId">DISCLAIMER</li>
-        <li onclick="about();" id="aboutId" class="listnav2">About</li>
-        <li onclick="contact();" id="contactId" class="listnav2">Contact</li>
-        <li onclick="howTo();" id="howItWorksId" class="listnav2">How it Works</li>
+        <li onclick="window.location.href = 'about.html';" id="aboutId" class="listnav2">About</li>
+        <li onclick="window.location.href = 'contact.html';" id="contactId" class="listnav2">Contact</li>
+        <li onclick="window.location.href = 'howTo.html';" id="howItWorksId" class="listnav2">How it Works</li>
     </div>
     <div id="myRightSidenav" class="rightsidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="rightNavInterpreter()">&times;</a>
         <span id="pageId">Pages:</span><br>
         <ul id="listRightNav">
-            <li onclick="pageSwitcher(1);" id="introPageId">Introduction</li>
-            <li onclick="pageSwitcher(2);" id="loginPageId">Login</li>
-            <li onclick="pageSwitcher(3);" id="genderUnitPageId">Gender/Unit</li>
-            <li onclick="pageSwitcher(4);" id="dataPageId">Weight/Height</li>
-            <li onclick="pageSwitcher(5);" id="goalPageId">Goal</li>
-            <li onclick="pageSwitcher(6);" id="bodyTypePageId">Body Type</li>
-            <li onclick="pageSwitcher(7);" id="bodyImagePageId">Body Fat Evaluation</li>
-            <li onclick="pageSwitcher(8);" id="xercisePageId">Exercise Evaluation</li>
-            <li onclick="pageSwitcher(9);" id="healthyPageId">Healthy Meals</li>
-            <li onclick="pageSwitcher(10);" id="cheatPageId">Cheat Meals</li>
-            <li onclick="pageSwitcher(11);" id="mealsPageId">Meals/Day</li>
-            <li onclick="pageSwitcher(12);" id="emotionPageId">Emotion-based Overeating</li>
+            <li onclick="window.location.href = 'intro.html';" id="introPageId">Introduction</li>
+            <li onclick="window.location.href = 'login.html';" id="loginPageId">Login</li>
+            <li onclick="inPage();" id="genderUnitPageId">Gender/Unit</li>
+            <li onclick="window.location.href = 'data.html';" id="dataPageId">Weight/Height</li>
+            <li onclick="window.location.href = 'goal.html';" id="goalPageId">Goal</li>
+            <li onclick="window.location.href = 'bodyType.html';" id="bodyTypePageId">Body Type</li>
+            <li onclick="window.location.href = 'image.html';" id="bodyImagePageId">Body Fat Evaluation</li>
+            <li onclick="window.location.href = 'exercise.html';" id="xercisePageId">Exercise Evaluation</li>
+            <li onclick="window.location.href = 'healthy.html';" id="healthyPageId">Healthy Meals</li>
+            <li onclick="window.location.href = 'cheat.html';" id="cheatPageId">Cheat Meals</li>
+            <li onclick="window.location.href = 'meals.html';" id="mealsPageId">Meals/Day</li>
+            <li onclick="window.location.href = 'emotion.html';" id="emotionPageId">Emotion-based Overeating</li>
         </ul>
     </div>
     <strong id="idGenderUnitSubmit"><br><br>
@@ -77,26 +77,25 @@
                 <h1 class="classHeading headingObjInputId" id="headingObjInputIdGender"><i>Gender:</i></h1>
             </b></b><a><input class="buttonHalfWidth button button35vw" id="colorChangeIdMale"
                 onmouseover='hoverColorChangeFunc("colorChangeIdMale")'
-                onmouseout='hoverOutColorChangeFunc("hoverColorVarMale", "colorChangeIdMale")'
-                onclick=" returnEmailAddr(); changeColor2(xx1, 'colorChangeIdMale', xx2, 'colorChangeIdFemale'); male(); returnGender('colorChangeIdMale'); validate();"
-                type="button" value="Male" /></a>
-        <input class="buttonHalfWidth button button35vw"
-            onmouseout='hoverOutColorChangeFunc("hoverColorVarFemale", "colorChangeIdFemale")' id="colorChangeIdFemale"
-            onmouseover='hoverColorChangeFunc("colorChangeIdFemale")'
-            onclick=" returnEmailAddr(); female(); changeColor2(xx2, 'colorChangeIdFemale', xx1, 'colorChangeIdMale'); returnGender('colorChangeIdFemale'); validate();"
-            type="button" value="Female"><br><br><br><br>
+                onmouseout='hoverOutColorChangeFunc("colorChangeIdMale")'
+                onclick="changeColor2('colorChangeIdMale', 'colorChangeIdFemale'); male();" type="button"
+                value="Male" /></a>
+        <input class="buttonHalfWidth button button35vw" onmouseout='hoverOutColorChangeFunc("colorChangeIdFemale")'
+            id="colorChangeIdFemale" onmouseover='hoverColorChangeFunc("colorChangeIdFemale")'
+            onclick="female(); changeColor2('colorChangeIdFemale', 'colorChangeIdMale');;" type="button"
+            value="Female"><br><br><br><br>
         <b>
             <h1 class="classHeading headingObjInputId" id="headingObjInputIdUnit"><i>Unit System:</i></h1>
         </b> <input class="button35vw buttonHalfWidth button" id="colorChangeIdMetric"
             onmouseover='hoverColorChangeFunc("colorChangeIdMetric"); metricUnit();'
-            onmouseout='hoverOutColorChangeFunc("hoverColorVarMetric", "colorChangeIdMetric"); metricUnitCloak();'
-            onclick=" returnEmailAddr(); unitSystem('metric');changeColor2(x5, 'colorChangeIdMetric', x6, 'colorChangeIdImperial'); returnUnit('colorChangeIdMetric'); validate();"
-            type="button" value="Metric">
+            onmouseout='hoverOutColorChangeFunc("colorChangeIdMetric"); metricUnitCloak();'
+            onclick="unitSystem('metric');changeColor2('colorChangeIdMetric', 'colorChangeIdImperial');" type="button"
+            value="Metric">
         <input class="buttonHalfWidth button button35vw" id="colorChangeIdImperial"
             onmouseover='hoverColorChangeFunc("colorChangeIdImperial"); imperialUnit();'
-            onmouseout='hoverOutColorChangeFunc("hoverColorVarImperial", "colorChangeIdImperial"); imperialUnitCloak();'
-            onclick=" returnEmailAddr(); unitSystem('imperial');changeColor2(x6, 'colorChangeIdImperial', x5, 'colorChangeIdMetric'); returnUnit('colorChangeIdImperial'); validate();"
-            type="button" value="Imperial">
+            onmouseout='hoverOutColorChangeFunc("colorChangeIdImperial"); imperialUnitCloak();'
+            onclick="unitSystem('imperial');changeColor2('colorChangeIdImperial', 'colorChangeIdMetric');" type="button"
+            value="Imperial">
         <br><br><br><br><br></strong>
     <div id="footerDiv">
         <div class="footer" id="idFooter"><a id="footerlink" class="classFooter"
@@ -107,10 +106,10 @@
             </a>
         </div>
     </div>
-    <input type="button" name="prev" onclick="prevPageInterpreter();" id="buttonPrev" class="button btnNextPrev"
-        value="Previous">
-    <input type="button" name="next" onclick="nextPageInterpreter();" id="buttonNext" class="button btnNextPrev"
-        value="Next">
+    <input type="button" name="prev" onclick="window.location.href = 'login.html';" id="buttonPrev"
+        class="button btnNextPrev" value="Previous">
+    <input type="button" name="next" onclick="window.location.href = 'data.html';" id="buttonNext"
+        class="button btnNextPrev" value="Next">
 </body>
 
 </html>

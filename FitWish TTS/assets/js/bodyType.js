@@ -1,5 +1,10 @@
 function english() {
   import("./script").then(({ english: defaultEnglish }) => defaultEnglish());
+  document.getElementById("headingObjInputIdBodyType").innerHTML = "Body Type";
+  document.getElementById("colorChangeIdNoIdea").value = "No idea";
+  document.getElementById("colorChangeIdEcto").value = "Ectomorph";
+  document.getElementById("colorChangeIdMeso").value = "Mesomorph";
+  document.getElementById("colorChangeIdEndo").value = "Endomorph";
 }
 function portugûes() {
   import("./script").then(({ portugûes: defaultPortugûes }) =>
@@ -12,8 +17,12 @@ function español() {
 function français() {
   import("./script").then(({ français: defaultFrançais }) => defaultFrançais());
 }
-function themeTypeDark() {}
-function themeTypeLight() {}
+function themeTypeDark() {
+  import("./script").then(({ themeTypeDark: defaultDark }) => defaultDark());
+}
+function themeTypeLight() {
+  import("./script").then(({ themeTypeLight: defaultLight }) => defaultLight());
+}
 
 // body type
 const bodyType = (bodytt) => {

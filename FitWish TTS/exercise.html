@@ -21,9 +21,9 @@
     <div class="sideBarButtons" onclick="openNav();" id="leftsidebarButton">&#9776;</div>
     <div class="sideBarButtons" onclick="rightNavInterpreter();" id="rightsidebarButton"><span
             id="rightsidebarSymbol">&sect;</span></div>
-    <div id="linkTitle" title="FitWish Home Page"><a id="linkTitlea" href=""><img id="imageLogo"
+    <div id="linkTitle" title="FitWish Home Page"><a id="linkTitlea" href="intro.html"><img id="imageLogo"
                 src="https://www.pngkey.com/png/full/211-2118619_healthy-army-communities-healthy-apple-logo.png"></a>
-        <a id="titleLink" href="">
+        <a id="titleLink" href="intro.html">
             <h1 class="classHeading" id="headingObjInputIdHead"><i>FitWish</i></h1>
         </a>
     </div>
@@ -50,26 +50,26 @@
         <li onclick="themeTypeLight();" id="lightThemeButton" class="listnav">Light Theme</li>
         <li onclick="" id="pagesNavId" class="listnav">Pages/Sections(&sect;)</li>
         <li onclick="disclaimer();" id="disclaimerId">DISCLAIMER</li>
-        <li onclick="about();" id="aboutId" class="listnav2">About</li>
-        <li onclick="contact();" id="contactId" class="listnav2">Contact</li>
-        <li onclick="howTo();" id="howItWorksId" class="listnav2">How it Works</li>
+        <li onclick="window.location.href = 'about.html';" id="aboutId" class="listnav2">About</li>
+        <li onclick="window.location.href = 'contact.html';" id="contactId" class="listnav2">Contact</li>
+        <li onclick="window.location.href = 'howTo.html';" id="howItWorksId" class="listnav2">How it Works</li>
     </div>
     <div id="myRightSidenav" class="rightsidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="rightNavInterpreter()">&times;</a>
         <span id="pageId">Pages:</span><br>
         <ul id="listRightNav">
-            <li onclick="pageSwitcher(1);" id="introPageId">Introduction</li>
-            <li onclick="pageSwitcher(2);" id="loginPageId">Login</li>
-            <li onclick="pageSwitcher(3);" id="genderUnitPageId">Gender/Unit</li>
-            <li onclick="pageSwitcher(4);" id="dataPageId">Weight/Height</li>
-            <li onclick="pageSwitcher(5);" id="goalPageId">Goal</li>
-            <li onclick="pageSwitcher(6);" id="bodyTypePageId">Body Type</li>
-            <li onclick="pageSwitcher(7);" id="bodyImagePageId">Body Fat Evaluation</li>
-            <li onclick="pageSwitcher(8);" id="xercisePageId">Exercise Evaluation</li>
-            <li onclick="pageSwitcher(9);" id="healthyPageId">Healthy Meals</li>
-            <li onclick="pageSwitcher(10);" id="cheatPageId">Cheat Meals</li>
-            <li onclick="pageSwitcher(11);" id="mealsPageId">Meals/Day</li>
-            <li onclick="pageSwitcher(12);" id="emotionPageId">Emotion-based Overeating</li>
+            <li onclick="window.location.href = 'intro.html';" id="introPageId">Introduction</li>
+            <li onclick="window.location.href = 'login.html';" id="loginPageId">Login</li>
+            <li onclick="window.location.href = 'genderUnit.html';" id="genderUnitPageId">Gender/Unit</li>
+            <li onclick="window.location.href = 'data.html';" id="dataPageId">Weight/Height</li>
+            <li onclick="window.location.href = 'goal.html';" id="goalPageId">Goal</li>
+            <li onclick="window.location.href = 'bodyType.html';" id="bodyTypePageId">Body Type</li>
+            <li onclick="window.location.href = 'image.html';" id="bodyImagePageId">Body Fat Evaluation</li>
+            <li onclick="inPage();" id="xercisePageId">Exercise Evaluation</li>
+            <li onclick="window.location.href = 'healthy.html';" id="healthyPageId">Healthy Meals</li>
+            <li onclick="window.location.href = 'cheat.html';" id="cheatPageId">Cheat Meals</li>
+            <li onclick="window.location.href = 'meals.html';" id="mealsPageId">Meals/Day</li>
+            <li onclick="window.location.href = 'emotion.html';" id="emotionPageId">Emotion-based Overeating</li>
         </ul>
     </div>
     <strong id="idXerciseSubmit" class="margin15vhSubmit">
@@ -77,24 +77,24 @@
             <h1 class="classHeading headingObjInputId" id="headingObjInputIdXercise"><i>High intensity exercise
                     frequency:</i></h1>
         </b> <input onmouseover='hoverColorChangeFunc("colorChangeIdNoneXercise")'
-            onmouseout='hoverOutColorChangeFunc("hoverColorVarNoneXercise", "colorChangeIdNoneXercise")'
-            class="button buttonQuarterWidth" id="colorChangeIdNoneXercise"
-            onclick="ccccccccc(); changeColor4(x7, 'colorChangeIdNoneXercise', x8, 'colorChangeIdHighXercise', x9, 'colorChangeIdMidXercise', x10, 'colorChangeIdLowXercise')"
+            onmouseout='hoverOutColorChangeFunc("colorChangeIdNoneXercise")' class="button buttonQuarterWidth"
+            id="colorChangeIdNoneXercise"
+            onclick="setExercise(1); changeColor4('colorChangeIdNoneXercise', 'colorChangeIdHighXercise', 'colorChangeIdMidXercise', 'colorChangeIdLowXercise')"
             type="button" value="None">
         <input onmouseover='hoverColorChangeFunc("colorChangeIdLowXercise")'
-            onmouseout='hoverOutColorChangeFunc("hoverColorVarLowXercise", "colorChangeIdLowXercise")'
+            onmouseout='hoverOutColorChangeFunc("colorChangeIdLowXercise")'
             class="button buttonThreeQuartersWidth btnFont25" id="colorChangeIdLowXercise"
-            onclick="cc2(); changeColor4(x7, 'colorChangeIdLowXercise', x8, 'colorChangeIdNoneXercise', x9, 'colorChangeIdHighXercise', x10, 'colorChangeIdMidXercise'); returnXercise('colorChangeIdLowXercise');"
+            onclick="setExercise(2); changeColor4('colorChangeIdLowXercise', 'colorChangeIdNoneXercise', 'colorChangeIdHighXercise', 'colorChangeIdMidXercise');"
             type="button" value="1-2 times a week">
         <input onmouseover='hoverColorChangeFunc("colorChangeIdMidXercise")'
-            onmouseout='hoverOutColorChangeFunc("hoverColorVarMidXercise", "colorChangeIdMidXercise")'
-            class="button buttonFullWidth btnFont25" id="colorChangeIdMidXercise"
-            onclick="cc3(); changeColor4(x7, 'colorChangeIdMidXercise', x8, 'colorChangeIdLowXercise', x9, 'colorChangeIdNoneXercise', x10, 'colorChangeIdHighXercise'); returnXercise('colorChangeIdMidXercise');"
+            onmouseout='hoverOutColorChangeFunc("colorChangeIdMidXercise")' class="button buttonFullWidth btnFont25"
+            id="colorChangeIdMidXercise"
+            onclick="setExercise(3); changeColor4('colorChangeIdMidXercise', 'colorChangeIdLowXercise', 'colorChangeIdNoneXercise', 'colorChangeIdHighXercise');"
             type="button" value="3-4 times a week">
         <input onmouseover='hoverColorChangeFunc("colorChangeIdHighXercise")'
-            onmouseout='hoverOutColorChangeFunc("hoverColorVarHighXercise", "colorChangeIdHighXercise")'
-            class="button buttonFullWidth btnFont25" id="colorChangeIdHighXercise"
-            onclick="cc4(); changeColor4(x7, 'colorChangeIdHighXercise', x8, 'colorChangeIdMidXercise', x9, 'colorChangeIdLowXercise', x10, 'colorChangeIdNoneXercise'); returnXercise('colorChangeIdHighXercise');"
+            onmouseout='hoverOutColorChangeFunc("colorChangeIdHighXercise")' class="button buttonFullWidth btnFont25"
+            id="colorChangeIdHighXercise"
+            onclick="setExercise(4); changeColor4('colorChangeIdHighXercise', 'colorChangeIdMidXercise', 'colorChangeIdLowXercise', 'colorChangeIdNoneXercise');"
             type="button" value="5 or more times a week">
     </strong>
     <div id="footerDiv">
@@ -106,10 +106,10 @@
             </a>
         </div>
     </div>
-    <input type="button" name="prev" onclick="prevPageInterpreter();" id="buttonPrev" class="button btnNextPrev"
-        value="Previous">
-    <input type="button" name="next" onclick="nextPageInterpreter();" id="buttonNext" class="button btnNextPrev"
-        value="Next">
+    <input type="button" name="prev" onclick="window.location.href = 'image.html';" id="buttonPrev"
+        class="button btnNextPrev" value="Previous">
+    <input type="button" name="next" onclick="window.location.href = 'healthy.html';" id="buttonNext"
+        class="button btnNextPrev" value="Next">
 </body>
 
 </html>

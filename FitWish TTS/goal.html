@@ -21,9 +21,9 @@
     <div class="sideBarButtons" onclick="openNav();" id="leftsidebarButton">&#9776;</div>
     <div class="sideBarButtons" onclick="rightNavInterpreter();" id="rightsidebarButton"><span
             id="rightsidebarSymbol">&sect;</span></div>
-    <div id="linkTitle" title="FitWish Home Page"><a id="linkTitlea" href=""><img id="imageLogo"
+    <div id="linkTitle" title="FitWish Home Page"><a id="linkTitlea" href="intro.html"><img id="imageLogo"
                 src="https://www.pngkey.com/png/full/211-2118619_healthy-army-communities-healthy-apple-logo.png"></a>
-        <a id="titleLink" href="">
+        <a id="titleLink" href="intro.html">
             <h1 class="classHeading" id="headingObjInputIdHead"><i>FitWish</i></h1>
         </a>
     </div>
@@ -50,49 +50,48 @@
         <li onclick="themeTypeLight();" id="lightThemeButton" class="listnav">Light Theme</li>
         <li onclick="" id="pagesNavId" class="listnav">Pages/Sections(&sect;)</li>
         <li onclick="disclaimer();" id="disclaimerId">DISCLAIMER</li>
-        <li onclick="about();" id="aboutId" class="listnav2">About</li>
-        <li onclick="contact();" id="contactId" class="listnav2">Contact</li>
-        <li onclick="howTo();" id="howItWorksId" class="listnav2">How it Works</li>
+        <li onclick="window.location.href = 'about.html';" id="aboutId" class="listnav2">About</li>
+        <li onclick="window.location.href = 'contact.html';" id="contactId" class="listnav2">Contact</li>
+        <li onclick="window.location.href = 'howTo.html';" id="howItWorksId" class="listnav2">How it Works</li>
     </div>
     <div id="myRightSidenav" class="rightsidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="rightNavInterpreter()">&times;</a>
         <span id="pageId">Pages:</span><br>
         <ul id="listRightNav">
-            <li onclick="pageSwitcher(1);" id="introPageId">Introduction</li>
-            <li onclick="pageSwitcher(2);" id="loginPageId">Login</li>
-            <li onclick="pageSwitcher(3);" id="genderUnitPageId">Gender/Unit</li>
-            <li onclick="pageSwitcher(4);" id="dataPageId">Weight/Height</li>
-            <li onclick="pageSwitcher(5);" id="goalPageId">Goal</li>
-            <li onclick="pageSwitcher(6);" id="bodyTypePageId">Body Type</li>
-            <li onclick="pageSwitcher(7);" id="bodyImagePageId">Body Fat Evaluation</li>
-            <li onclick="pageSwitcher(8);" id="xercisePageId">Exercise Evaluation</li>
-            <li onclick="pageSwitcher(9);" id="healthyPageId">Healthy Meals</li>
-            <li onclick="pageSwitcher(10);" id="cheatPageId">Cheat Meals</li>
-            <li onclick="pageSwitcher(11);" id="mealsPageId">Meals/Day</li>
-            <li onclick="pageSwitcher(12);" id="emotionPageId">Emotion-based Overeating</li>
+            <li onclick="window.location.href = 'intro.html';" id="introPageId">Introduction</li>
+            <li onclick="window.location.href = 'login.html';" id="loginPageId">Login</li>
+            <li onclick="window.location.href = 'genderUnit.html';" id="genderUnitPageId">Gender/Unit</li>
+            <li onclick="window.location.href = 'data.html';" id="dataPageId">Weight/Height</li>
+            <li onclick="inPage();" id="goalPageId">Goal</li>
+            <li onclick="window.location.href = 'bodyType.html';" id="bodyTypePageId">Body Type</li>
+            <li onclick="window.location.href = 'image.html';" id="bodyImagePageId">Body Fat Evaluation</li>
+            <li onclick="window.location.href = 'exercise.html';" id="xercisePageId">Exercise Evaluation</li>
+            <li onclick="window.location.href = 'healthy.html';" id="healthyPageId">Healthy Meals</li>
+            <li onclick="window.location.href = 'cheat.html';" id="cheatPageId">Cheat Meals</li>
+            <li onclick="window.location.href = 'meals.html';" id="mealsPageId">Meals/Day</li>
+            <li onclick="window.location.href = 'emotion.html';" id="emotionPageId">Emotion-based Overeating</li>
         </ul>
     </div>
     <strong id="idGoalSubmit" class="margin15vhSubmit"><b>
             <h1 class="classHeading headingObjInputId" id="headingObjInputIdGoal"><i>Goal:</i></h1>
         </b> <input class="buttonHalfWidth button btnFont25" id="colorChangeIdBulk"
             onmouseover='hoverColorChangeFunc("colorChangeIdBulk")'
-            onclick="bodyGoalFunction('bulking'); changeColor4(x7, 'colorChangeIdBulk', x8, 'colorChangeIdCut', x9, 'colorChangeIdMuscle', x10, 'colorChangeIdSurp'); returnGoal('colorChangeIdBulk');"
-            onmouseout='hoverOutColorChangeFunc("hoverColorVarBulk", "colorChangeIdBulk")' type="button"
-            value="Bulking">
+            onclick="bodyGoalFunction('bulking'); changeColor4('colorChangeIdBulk', 'colorChangeIdCut', 'colorChangeIdMuscle', 'colorChangeIdSurp');"
+            onmouseout='hoverOutColorChangeFunc("colorChangeIdBulk")' type="button" value="Bulking">
         <input class="buttonHalfWidth button btnFont25" id="colorChangeIdCut"
             onmouseover='hoverColorChangeFunc("colorChangeIdCut")'
-            onmouseout='hoverOutColorChangeFunc("hoverColorVarCut", "colorChangeIdCut")'
-            onclick="bodyGoalFunction('cutting'); changeColor4(x7, 'colorChangeIdCut', x8, 'colorChangeIdMuscle', x9, 'colorChangeIdSurp', x10, 'colorChangeIdBulk'); returnGoal('colorChangeIdCut');"
+            onmouseout='hoverOutColorChangeFunc("colorChangeIdCut")'
+            onclick="bodyGoalFunction('cutting'); changeColor4('colorChangeIdCut', 'colorChangeIdMuscle', 'colorChangeIdSurp', 'colorChangeIdBulk');"
             type="button" value="Cutting">
         <input class="buttonFullWidth button btnFont25" id="colorChangeIdSurp"
             onmouseover='hoverColorChangeFunc("colorChangeIdSurp")'
-            onmouseout='hoverOutColorChangeFunc("hoverColorVarSurp", "colorChangeIdSurp")'
-            onclick="bodyGoalFunction('surplus'); changeColor4(x7, 'colorChangeIdSurp', x8, 'colorChangeIdBulk', x9, 'colorChangeIdCut', x10, 'colorChangeIdMuscle'); returnGoal('colorChangeIdSurp');"
+            onmouseout='hoverOutColorChangeFunc("colorChangeIdSurp")'
+            onclick="bodyGoalFunction('surplus'); changeColor4('colorChangeIdSurp', 'colorChangeIdBulk', 'colorChangeIdCut', 'colorChangeIdMuscle');"
             type="button" value="Get rid of fat surplus">
         <input class="buttonFullWidth button btnFont25" id="colorChangeIdMuscle"
             onmouseover='hoverColorChangeFunc("colorChangeIdMuscle")'
-            onmouseout='hoverOutColorChangeFunc("hoverColorVarMuscle", "colorChangeIdMuscle")'
-            onclick="bodyGoalFunction('muscle'); changeColor4(x7, 'colorChangeIdMuscle', x8, 'colorChangeIdSurp', x9, 'colorChangeIdBulk', x10, 'colorChangeIdCut'); returnGoal('colorChangeIdMuscle');"
+            onmouseout='hoverOutColorChangeFunc("colorChangeIdMuscle")'
+            onclick="bodyGoalFunction('muscle'); changeColor4('colorChangeIdMuscle', 'colorChangeIdSurp', 'colorChangeIdBulk', 'colorChangeIdCut');"
             type="button" value="Gaining weight and muscle">
     </strong>
     <div id="footerDiv">
@@ -104,10 +103,10 @@
             </a>
         </div>
     </div>
-    <input type="button" name="prev" onclick="prevPageInterpreter();" id="buttonPrev" class="button btnNextPrev"
-        value="Previous">
-    <input type="button" name="next" onclick="nextPageInterpreter();" id="buttonNext" class="button btnNextPrev"
-        value="Next">
+    <input type="button" name="prev" onclick="window.location.href = 'data.html';" id="buttonPrev"
+        class="button btnNextPrev" value="Previous">
+    <input type="button" name="next" onclick="window.location.href = 'bodyType.html';" id="buttonNext"
+        class="button btnNextPrev" value="Next">
 </body>
 
 </html>

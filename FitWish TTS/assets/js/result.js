@@ -1,3 +1,42 @@
+function english() {
+  import("./script").then(({ english: defaultEnglish }) => defaultEnglish());
+  weightManagementProgramFinalResult =
+    "Fitness_Management_Program_Final_Result.html";
+  emailLinkColor.innerHTML =
+    "<strong>Want to have a email sent to you with the main result data? Click here!!</strong>";
+  downloadLinkColor.innerHTML =
+    "<strong>Want to have a new document with all this last pages data? Click here!!</strong>";
+  emotionans =
+    'For this emotional overeating issue you should try some ways to reduce it like: try to answer the question, am i really hungry or am i trying to eat my emotions?; aside from that you should try to calm yourself down with some breathing techniques, meditation or yoga to reduce stress; try to fight the boredom finding a new hobby, or something that "awakens" the  will do get up in the morning; don\'t discard the possibility of seeing a therapist to help you out in more areas than you can imagine; And to fight temptation, reward yourself periodically with a dose of a food you like, maybe every 15%-25% of the whole path completed, this way you will learn to moderate the amout you eat and thus make it easier for you to maintain your body in shape when you reach your goal.';
+  downloadResult = `<span style="background-color: ${
+    backgroundColorDownload}; color: ${
+    colorDownload};"><div style="display: flex; "><img id="imageLogo" src="https://www.pngkey.com/png/full/211-2118619_healthy-army-communities-healthy-apple-logo.png" alt="logo" style="float: left; width: 60px; margin-left: ${
+    imageLogo.style.marginLeft};"><h1 class="classHeading" id="headingObjInputIdHead" style="border: none; background: none; color: ${
+    colorDownload}; place-items: left;"><i>${
+    headingObjInputIdHead.innerHTML}</i></h1></div>`;
+  h4Config.innerHTML = "Processing";
+  processing = "Processing";
+  diagnosis = "Finishing Diagnosis";
+  resultPossibilities = "Loading Result Possibilities";
+  done = "Done!";
+}
+function portugûes() {
+  import("./script").then(({ portugûes: defaultPortugûes }) =>
+    defaultPortugûes()
+  );
+}
+function español() {
+  import("./script").then(({ español: defaultEspañol }) => defaultEspañol());
+}
+function français() {
+  import("./script").then(({ français: defaultFrançais }) => defaultFrançais());
+}
+function themeTypeDark() {
+  import("./script").then(({ themeTypeDark: defaultDark }) => defaultDark());
+}
+function themeTypeLight() {
+  import("./script").then(({ themeTypeLight: defaultLight }) => defaultLight());
+}
 //ideal Weight Calculations
 function idealWeight(lbs, lb) {
   if (gender == "male") {

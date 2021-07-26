@@ -124,78 +124,19 @@ const enterFunc = (event) =>
 export function english() {
   language = "english";
   languageValue = 1;
-  resultBeginning2 =
-    'Welcome back <big style="font-family: Kaushan Script, cursive;">';
   buttonFirst.value = "Attempt's Menu";
-  howItWorksId.innerHTML = "How it Works";
-  idHowToHeading.innerHTML = "How it Works";
-  idAboutTxtLeft.style.fontSize = "1em";
-  resultBeginning = 'Well <big style="font-family: Kaushan Script, cursive;">';
-  idAboutH2.style.marginLeft = "40%";
-  idContactH2.style.marginLeft = "37.5%";
-  idContactH2.innerHTML = "How to Contact Us";
-  idContactIntro.innerHTML =
-    "We would love to hear from our users about possible feedback about what you experienced while using our service. To contact Us directly access the link to our CTO's email below, and to have more information on us access his LinkedIn link below.";
-  idAboutH2.innerHTML = "Who are we?";
-  idAboutTxtLeft.innerHTML =
-    "Well, we are FitWish, a new startup with the goal to, as our Name says, fulfill your wish in the fitness sector, we don't charge for your first diagnosis because we believe that wellness shouldn't have more hurdles than it already does. Therefore by committing to this quick quiz you will have a sort of guidance towards achieving your goal in this fitness field.";
-  idAboutTxtRight.innerHTML =
-    "We at FitWish acknowledge the effort put into getting your body the way you want it to be, and because of that, we appreciate your valuable decision to stand your ground and act upon what you should, your health.";
   buttonAbout.value = "About";
   buttonHome.value = "Home Page";
   buttonContact.value = "Contact";
-  idAboutHeading.innerHTML = "About";
-  idContactHeading.innerHTML = "Contact";
-  idBadHabits.style.fontSize = "2.2vw";
-  idPlanMsg.style.fontSize = "2.2vw";
-  idGoodHabits.style.fontSize = "2.2vw";
+  howItWorksId.innerHTML = "How it Works";
   aboutId.innerHTML = "About";
   contactId.innerHTML = "Contact";
-  planId.style.marginLeft = "43%";
-  planId.style.marginRight = "auto";
-  introPageId.style.fontSize = "2.355vw";
-  loginPageId.style.fontSize = "2.355vw";
-  genderUnitPageId.style.fontSize = "2.355vw";
-  dataPageId.style.fontSize = "2.355vw";
-  goalPageId.style.fontSize = "2.355vw";
-  bodyTypePageId.style.fontSize = "2.355vw";
-  bodyImagePageId.style.fontSize = "2.355vw";
-  xercisePageId.style.fontSize = "2.355vw";
-  healthyPageId.style.fontSize = "2.355vw";
-  cheatPageId.style.fontSize = "2.355vw";
-  mealsPageId.style.fontSize = "2.355vw";
-  emotionPageId.style.fontSize = "2.355vw";
-  weightMetric.placeholder = "Example: 80.5";
-  heightMetric.placeholder = "Example: 1.85";
-  weightImperial.placeholder = "Example: 200.5";
-  heightImperial.placeholder = "Example: 70";
-  dataPageId.innerHTML = "Weight/Height";
-  defaultUnit = " - Default -";
-  headingTextInputIdWeightMetric.innerHTML = "Weight";
-  headingTextInputIdHeightMetric.innerHTML = "Height";
-  headingTextInputIdWeightImperial.innerHTML = "Weight";
-  headingTextInputIdHeightImperial.innerHTML = "Height";
-  metricDefault = "Metric - Default -";
-  metricNoDefault = "Metric";
-  imperialDefault = "Imperial";
+  for (let element of listRightNav.children) element.style.fontSize = "2.355vw";
   checkImgId.style.marginLeft = "23%";
   pagesNavId.innerHTML = "Pages/Sections(&sect;)";
   languageInput.innerHTML = "Language:";
-  h4Config.innerHTML = "Processing";
-  processing = "Processing";
-  diagnosis = "Finishing Diagnosis";
-  resultPossibilities = "Loading Result Possibilities";
-  done = "Done!";
   alreadyInPage = "Already in page";
   pageId.innerHTML = "Pages:";
-  planId.innerHTML = "Our Plan:";
-  idBadHabits.innerHTML =
-    "You might be struggling with your current health state, disliking the situation but not entirely committed to change it";
-  idPlanMsg.innerHTML =
-    "But now you started a path in which you take ownership of yourself, and I am going to help you out";
-  idGoodHabits.innerHTML =
-    "Sooner than you'd expect, you'll be used to looking just as good as you want, and healthier too!";
-  introPageId.innerHTML = "Introduction";
   loginPageId.innerHTML = "Login";
   genderUnitPageId.innerHTML = "Gender/Unit";
   goalPageId.innerHTML = "Goal";
@@ -208,88 +149,14 @@ export function english() {
   emotionPageId.innerHTML = "Emotion-based Overeating";
   buttonNext.value = "Next";
   buttonPrev.value = "Previous";
-  showImgBtn.innerHTML = "&#9776; Show Image";
-  referenceImgTxt.innerHTML = "Reference Image:";
-  backupGenderImg =
-    '<br><br><br><br><br><span style="font-size: 40px; font-variant:all-caps; color:white; display: grid; place-items: center;">Select a gender to see the reference Image';
-  weightManagementProgramFinalResult =
-    "Fitness_Management_Program_Final_Result.html";
   document.getElementById("lightThemeButton").innerHTML = "Light Theme";
   document.getElementById("darkThemeButton").innerHTML = "Dark Theme (default)";
-  emailLinkColor.innerHTML =
-    "<strong>Want to have a email sent to you with the main result data? Click here!!</strong>";
-  downloadLinkColor.innerHTML =
-    "<strong>Want to have a new document with all this last pages data? Click here!!</strong>";
-  emotionans =
-    'For this emotional overeating issue you should try some ways to reduce it like: try to answer the question, am i really hungry or am i trying to eat my emotions?; aside from that you should try to calm yourself down with some breathing techniques, meditation or yoga to reduce stress; try to fight the boredom finding a new hobby, or something that "awakens" the  will do get up in the morning; don\'t discard the possibility of seeing a therapist to help you out in more areas than you can imagine; And to fight temptation, reward yourself periodically with a dose of a food you like, maybe every 15%-25% of the whole path completed, this way you will learn to moderate the amout you eat and thus make it easier for you to maintain your body in shape when you reach your goal.';
   document.getElementById("disclaimerId").innerHTML = "DISCLAIMER";
   firstAlert =
     "DISCLAIMER: This is not a medical nor nutritionist advice and not only does not exclude a medical consultation, but also, me as this code creator, encourage and support YOU to get to see your doctor for anything YOU think YOU should improve in YOUR health life. Peace!";
-  document.getElementById("name").placeholder = "Name Example: Nick";
-  document.getElementById("age").placeholder = "Age Example: 24";
-  document.getElementById("email").placeholder =
-    "Example: name.lastname@email.com";
-  document.getElementById("headingTextInputIdName").innerHTML = "Name:";
-  document.getElementById("headingTextInputIdAge").innerHTML = "Age:";
-  document.getElementById("headingTextInputIdEmail").innerHTML = "Email:";
-  document.getElementById("headingObjInputIdGender").innerHTML = "Gender";
-  document.getElementById("colorChangeIdMale").value = "Male";
-  document.getElementById("colorChangeIdFemale").value = "Female";
-  document.getElementById("headingObjInputIdEmotion").innerHTML =
-    "Emotion-based Overeating<h3>(When experiencing sadness, happiness, boredom, loneliness, stress, dissapointment, concern, etc.)</h3>";
-  document.getElementById("colorChangeIdEmoYes").value = "Yes";
-  document.getElementById("colorChangeIdEmoNo").value = "No";
-  document.getElementById("headingObjInputIdUnit").innerHTML = "Unit";
-  document.getElementById("colorChangeIdMetric").value = `Metric${defaultUnit}`;
-  document.getElementById("colorChangeIdImperial").value = "Imperial";
-  document.getElementById("headingObjInputIdGoal").innerHTML = "Goal";
-  document.getElementById("colorChangeIdBulk").value = "Bulking";
-  document.getElementById("colorChangeIdCut").value = "Cutting";
-  document.getElementById("colorChangeIdSurp").value = "Get rid of fat surplus";
-  document.getElementById("colorChangeIdMuscle").value =
-    "Gaining Weight and Muscle";
-  document.getElementById("headingObjInputIdBodyType").innerHTML = "Body Type";
-  document.getElementById("colorChangeIdNoIdea").value = "No idea";
-  document.getElementById("colorChangeIdEcto").value = "Ectomorph";
-  document.getElementById("colorChangeIdMeso").value = "Mesomorph";
-  document.getElementById("colorChangeIdEndo").value = "Endomorph";
-  document.getElementById("headingObjInputIdBodyImage").innerHTML =
-    "Which one of these you think represent you the most?";
-  document.getElementById("headingObjInputIdGoalImage").innerHTML =
-    "Which one of these you think represent your goal the most?";
-  document.getElementById("headingObjInputIdXercise").innerHTML =
-    "High intensity exercise frequency:";
-  document.getElementById("colorChangeIdNoneXercise").value = "None";
-  document.getElementById("colorChangeIdLowXercise").value = "1-2 times a week";
-  document.getElementById("colorChangeIdMidXercise").value = "3-4 times a week";
-  document.getElementById("colorChangeIdHighXercise").value =
-    "5 or more times a week";
-  document.getElementById("headingObjInputIdHealthy").innerHTML =
-    "Good and healthy meal days frequency:";
-  document.getElementById("colorChangeIdNoneHealthy").value = "None";
-  document.getElementById("colorChangeIdLowHealthy").value = "1-2 times a week";
-  document.getElementById("colorChangeIdMidHealthy").value = "3-4 times a week";
-  document.getElementById("colorChangeIdHighHealthy").value =
-    "5 or more times a week";
-  document.getElementById("headingObjInputIdCheat").innerHTML =
-    "Cheat meals days frequency:";
-  document.getElementById("colorChangeIdNoneCheat").value = "None";
-  document.getElementById("colorChangeIdLowCheat").value = "1-2 times a week";
-  document.getElementById("colorChangeIdMidCheat").value = "3-4 times a week";
-  document.getElementById("colorChangeIdHighCheat").value =
-    "5 or more times a week";
-  document.getElementById("headingObjInputIdMeals").innerHTML = "Meals a day:";
-  document.getElementById("colorChangeId2Meals").value = "2 meals a day";
-  document.getElementById("colorChangeId3Meals").value = "3 meals a day";
-  document.getElementById("colorChangeId4Meals").value = "4 meals a day";
-  document.getElementById("colorChangeId5Meals").value = "5 or 6 meals a day";
-  document.getElementById("buttonResult").value = "Result";
-  downloadResult = `<span style="background-color: ${backgroundColorDownload}; color: ${colorDownload};"><div style="display: flex; "><img id="imageLogo" src="https://www.pngkey.com/png/full/211-2118619_healthy-army-communities-healthy-apple-logo.png" alt="logo" style="float: left; width: 60px; margin-left: ${imageLogo.style.marginLeft};"><h1 class="classHeading" id="headingObjInputIdHead" style="border: none; background: none; color: ${colorDownload}; place-items: left;"><i>${headingObjInputIdHead.innerHTML}</i></h1></div>`;
   document.getElementById("allRights").innerHTML = "All Rights Reserved";
-  returnUpdatedValues();
 }
 export function português() {
-  if (contentArray.length == 2) numberBtnsOverwritePt();
   language = "português";
   languageValue = 2;
   linkTitle.title = "Página inicial do FitWish";
@@ -1036,199 +903,6 @@ function themeTypeDark() {
   document.getElementById("downloadLinkColor").style.color = "lightgreen";
   document.getElementById("emailLinkColor").style.color = "pink";
 }
-const setLocalData = (idParameter) => {
-  idUser = idParameter;
-  contentArray.push({
-    idUser,
-    inputName,
-    emailaddrreturn,
-    age,
-    language,
-    theme,
-    genderreturn,
-    resultBeginning2,
-    bodyTypeAdvice,
-    bodyTypeAdvantageAdvice,
-    goalDistance,
-    ageAdvice,
-    finalIdealWeightMsg,
-    exerciseAdvice,
-    goalAdvice,
-    healthyAdvice,
-    cheatAdvice,
-    mealsAdvice,
-    goalAdvice2,
-    emotionans,
-    calorieIntakeAdvice,
-    calorieCounterLink,
-    caloriesLink,
-    exerciseCaloriesLink,
-    fitnessAppsLink,
-    day,
-  });
-  localStorage.setItem("contentArray", JSON.stringify(contentArray));
-};
-const storage = () => (tryNumber == 1 ? setLocalData(1) : setLocalData(2));
-const showPrevTestResult = (resultTry) => {
-  if (resultTry == 1) {
-    clearScreen();
-    idFooter.style.display = "none";
-    buttonFirst.style.display = "block";
-    finalResultH3Id.style.display = "block";
-    finalResultH3Id.innerHTML = `${contentArray[0].resultBeginning2} ${contentArray[0].inputName}</strong>, ${contentArray[0].bodyTypeAdvice} <br> ${contentArray[0].bodyTypeAdvantageAdvice}${contentArray[0].goalDistance}<br><br>${contentArray[0].ageAdvice}<br><br>${contentArray[0].finalIdealWeightMsg}<br><br>${contentArray[0].exerciseAdvice}<br><br>${contentArray[0].goalAdvice}<br><br>${contentArray[0].healthyAdvice}<br><br>${contentArray[0].cheatAdvice}<br><br>${contentArray[0].mealsAdvice}<br><br>${contentArray[0].goalAdvice2}<br><br>${contentArray[0].emotionans}<br><br>${contentArray[0].calorieIntakeAdvice}<br><br><br>`;
-    finalResultH4Id.style.display = "block";
-    finalResultH4Id.innerHTML = `<i>${contentArray[0].calorieCounterLink}<br><br>${contentArray[0].caloriesLink}<br><br>${contentArray[0].exerciseCaloriesLink}<br><br>${contentArray[0].fitnessAppsLink}</i><br><br><br>`;
-    idFooter.style.position = "relative";
-    idFooter.style.marginBottom = "0";
-    idFooter.style.display = "block";
-  } else if (resultTry == 2) {
-    clearScreen();
-    idFooter.style.display = "none";
-    buttonFirst.style.display = "block";
-    finalResultH3Id.style.display = "block";
-    finalResultH3Id.innerHTML = `${contentArray[1].resultBeginning2} ${contentArray[1].inputName}</strong>, ${contentArray[1].bodyTypeAdvice} <br> ${contentArray[1].bodyTypeAdvantageAdvice}${contentArray[1].goalDistance}<br><br>${contentArray[1].ageAdvice}<br><br>${contentArray[1].finalIdealWeightMsg}<br><br>${contentArray[1].exerciseAdvice}<br><br>${contentArray[1].goalAdvice}<br><br>${contentArray[1].healthyAdvice}<br><br>${contentArray[1].cheatAdvice}<br><br>${contentArray[1].mealsAdvice}<br><br>${contentArray[1].goalAdvice2}<br><br>${contentArray[1].emotionans}<br><br>${contentArray[1].calorieIntakeAdvice}<br><br><br>`;
-    finalResultH4Id.style.display = "block";
-    finalResultH4Id.innerHTML = `<i>${contentArray[1].calorieCounterLink}<br><br>${contentArray[1].caloriesLink}<br><br>${contentArray[1].exerciseCaloriesLink}<br><br>${contentArray[1].fitnessAppsLink}</i><br><br><br>`;
-    idFooter.style.position = "relative";
-    idFooter.style.marginBottom = "0";
-    idFooter.style.display = "block";
-  }
-};
-const startNewTry = (tryN) => {
-  tryNumber = tryN;
-  window.location.href = "intro.html";
-};
-const overwriteTest2 = (paramas) => {
-  if (paramas == 1) {
-    if (language == "english")
-      var confirmOverwrite = confirm(
-        `Are you sure you want to overwrite the test made as ${contentArray[0].inputName}? It will be forever destroyed.`
-      );
-    else if (language == "português")
-      var confirmOverwrite = confirm(
-        `Tem certeza que deseja sobrescrever o teste feito por ${contentArray[0].inputName}? Esse teste será destruido para sempre.`
-      );
-    else if (language == "français")
-      var confirmOverwrite = confirm(
-        `Voulez-vous vraiment remplacer le test effectué comme ${contentArray[0].inputName}? Il sera détruit à jamais.`
-      );
-    else if (language == "español")
-      var confirmOverwrite = confirm(
-        `¿Estás seguro de que quieres sobrescribir la prueba realizada como ${contentArray[0].inputName}? Será destruido para siempre.`
-      );
-    if (confirmOverwrite == true) {
-      contentArray.shift();
-      localStorage.setItem("contentArray", JSON.stringify(contentArray));
-      startNewTry(1);
-      firstPageBtn1stTry.style.display = "none";
-      firstPageBtn1stTryOverwrite.style.display = "none";
-      firstPageBtn2ndTry.style.display = "none";
-      firstPageBtn2ndTryOverwrite.style.display = "none";
-      firstPageBtnOverwrite.style.display = "none";
-      firstPageBtnSeeAll.style.display = "none";
-      firstPageBtnDelete.style.display = "none";
-      firstPageBtnStart.style.display = "none";
-    }
-  } else if (paramas == 2) {
-    if (language == "english")
-      var confirmOverwrite = confirm(
-        `Are you sure you want to overwrite the test made as ${contentArray[1].inputName}? It will be forever destroyed.`
-      );
-    else if (language == "português")
-      var confirmOverwrite = confirm(
-        `Tem certeza que deseja sobrescrever o teste feito por ${contentArray[1].inputName}? Esse teste será destruido para sempre.`
-      );
-    else if (language == "français")
-      var confirmOverwrite = confirm(
-        `Voulez-vous vraiment remplacer le test effectué comme ${contentArray[1].inputName}? Il sera détruit à jamais.`
-      );
-    else if (language == "español")
-      var confirmOverwrite = confirm(
-        `¿Estás seguro de que quieres sobrescribir la prueba realizada como ${contentArray[1].inputName}? Será destruido para siempre.`
-      );
-    if (confirmOverwrite == true) {
-      contentArray.pop();
-      localStorage.setItem("contentArray", JSON.stringify(contentArray));
-      startNewTry(2);
-    }
-  }
-};
-function overwriteTest() {
-  if (triesMade == 1) {
-    if (language == "english")
-      var confirmOverwrite = confirm(
-        `Are you sure you want to overwrite the test made as ${contentArray[0].inputName}? It will be forever destroyed.`
-      );
-    else if (language == "português")
-      var confirmOverwrite = confirm(
-        `Tem certeza que deseja sobrescrever o teste feito por ${contentArray[0].inputName}? Esse teste será destruido para sempre.`
-      );
-    else if (language == "français")
-      var confirmOverwrite = confirm(
-        `Voulez-vous vraiment remplacer le test effectué comme ${contentArray[0].inputName}? Il sera détruit à jamais.`
-      );
-    else if (language == "español")
-      var confirmOverwrite = confirm(
-        `¿Estás seguro de que quieres sobrescribir la prueba realizada como ${contentArray[0].inputName}? Será destruido para siempre.`
-      );
-    if (confirmOverwrite == true) {
-      contentArray.shift();
-      localStorage.setItem("contentArray", JSON.stringify(contentArray));
-      startNewTry(1);
-    }
-  } else if (triesMade == 2) {
-    seeAllTests();
-    firstPageBtn1stTryOverwrite.style.display = "block";
-    firstPageBtn2ndTryOverwrite.style.display = "block";
-  } else firstPageBtnOverwrite.style.display = "none";
-}
-function deleteTests() {
-  if (language == "english")
-    var deletePrevTests = confirm(
-      "Are you sure you want to delete all the tests?"
-    );
-  else if (language == "português")
-    var deletePrevTests = confirm(
-      "Tem certeza que deseja deletar todos os testes?"
-    );
-  else if (language == "français")
-    var deletePrevTests = confirm(
-      "Voulez-vous vraiment supprimer tous les tests?"
-    );
-  else if (language == "español")
-    var deletePrevTests = confirm(
-      "¿Estás seguro de que quieres eliminar todas las pruebas?"
-    );
-  if (deletePrevTests == true) {
-    localStorage.removeItem("contentArray");
-    window.location.reload();
-  }
-}
-function hidePrevTests() {
-  firstPageBtn1stTry.style.display = "none";
-  firstPageBtnSeePrev.style.display = "block";
-  firstPageBtnHidePrev.style.display = "none";
-}
-function seePrevTest() {
-  firstPageBtn1stTry.style.display = "block";
-  firstPageBtnSeePrev.style.display = "none";
-  firstPageBtnHidePrev.style.display = "block";
-  firstPageBtnDelete.style.display = "block";
-}
-function seeAllTests() {
-  firstPageBtn1stTry.style.display = "block";
-  firstPageBtn2ndTry.style.display = "block";
-  firstPageBtnSeeAll.style.display = "none";
-  firstPageBtnHideAll.style.display = "block";
-  firstPageBtnDelete.style.display = "block";
-}
-function hideAllTests() {
-  firstPageBtn1stTry.style.display = "none";
-  firstPageBtn2ndTry.style.display = "none";
-  firstPageBtnSeeAll.style.display = "block";
-  firstPageBtnHideAll.style.display = "none";
-  firstPageBtnDelete.style.display = "block";
-}
 function firstPageLogin() {
   buttonFirst.style.display = "none";
   idFooter.style.display = "block";
@@ -1256,36 +930,6 @@ const firstPage = () => {
     rightNavInterpreter();
   }
 };
-const clearScreen = () => {
-  closeNav();
-  closeRightNav();
-  idFirstSubmit.style.display = "none";
-  idIntroSubmit.style.display = "none";
-  idLoginSubmit.style.display = "none";
-  idGenderUnitSubmit.style.display = "none";
-  idDataSubmit.style.display = "none";
-  idGoalSubmit.style.display = "none";
-  idBodyTypeSubmit.style.display = "none";
-  idImageSubmit.style.display = "none";
-  idXerciseSubmit.style.display = "none";
-  idHealthySubmit.style.display = "none";
-  idCheatSubmit.style.display = "none";
-  idMealsSubmit.style.display = "none";
-  idEmotionSubmit.style.display = "none";
-  buttonNext.style.display = "none";
-  buttonResult.style.display = "none";
-  buttonPrev.style.display = "none";
-  idAboutPage.style.display = "none";
-  idContactPage.style.display = "none";
-  idFirstSubmit.style.display = "none";
-  idFirstSubmit.style.display = "none";
-  finalResultH3Id.style.display = "none";
-  finalResultH4Id.style.display = "none";
-  finalResultH2Id.style.display = "none";
-  idHowToPage.style.display = "none";
-  idHowToHeading.style.display = "none";
-  differentPage = 0;
-};
 function titleMid() {
   linkTitle.style.marginLeft = "40%";
   imageLogo.style.marginTop = "1.5vh";
@@ -1311,126 +955,24 @@ function titleLeft() {
   contactId.style.display = "block";
   howItWorksId.style.display = "block";
 }
-function about() {
-  clearScreen();
-  titleLeft();
-  aboutId.style.display = "none";
-  idHowToPage.style.display = "none";
-  idHowToHeading.style.display = "none";
-  idContactPage.style.display = "none";
-  idAboutPage.style.display = "block";
-  buttonAbout.style.display = "none";
-  buttonContact.style.display = "block";
-  buttonHome.style.display = "block";
-  idAboutHeading.style.display = "block";
-  idFirstSubmit.style.display = "none";
-}
-function howTo() {
-  clearScreen();
-  titleLeft();
-  howItWorksId.style.display = "none";
-  idHowToPage.style.display = "block";
-  idHowToHeading.style.display = "block";
-  idContactPage.style.display = "none";
-  idAboutPage.style.display = "none";
-  buttonAbout.style.display = "block";
-  buttonContact.style.display = "block";
-  buttonHome.style.display = "block";
-  idAboutHeading.style.display = "block";
-  idFirstSubmit.style.display = "none";
-}
-function contact() {
-  clearScreen();
-  titleLeft();
-  contactId.style.display = "none";
-  idHowToPage.style.display = "none";
-  idHowToHeading.style.display = "none";
-  idAboutPage.style.display = "none";
-  idContactPage.style.display = "block";
-  buttonAbout.style.display = "block";
-  buttonContact.style.display = "none";
-  buttonHome.style.display = "block";
-  idContactHeading.style.display = "block";
-  idFirstSubmit.style.display = "none";
-}
-const metricUnit = () => (colorChangeIdMetric.value += ` (kg / m)`);
-function metricUnitCloak() {
-  if ((unit == "metric" && metricVerify >= 2) || unit == "imperial")
-    colorChangeIdMetric.value = `${metricNoDefault}`;
-  else colorChangeIdMetric.value = `${metricDefault}`;
-}
-const imperialUnit = () => (colorChangeIdImperial.value += ` (lbs / in)`);
-const imperialUnitCloak = () =>
-  (colorChangeIdImperial.value = ` ${imperialDefault}`);
 function rightNavInterpreter() {
   if (myRightSidenav.style.width == "250px")
     document.getElementById("myRightSidenav").style.width = "0";
   else document.getElementById("myRightSidenav").style.width = "250px";
 }
+const inPage = () => alert(alreadyInPage);
 const openNav = () =>
   (document.getElementById("myLeftSidenav").style.width = "250px");
 const closeNav = () =>
   (document.getElementById("myLeftSidenav").style.width = "0");
 const closeRightNav = () =>
   (document.getElementById("myRightSidenav").style.width = "0");
-function openGenderCenterNav() {
-  document.getElementById("myGenderCenterNav").style.width = "70vw";
-  document.getElementById("myGenderCenterNav").style.height = "70vh";
-  if (gender != "male" && gender != "female")
-    document.getElementById("backupReferenceImg").innerHTML = backupGenderImg;
-}
-function closeGenderCenterNav() {
-  document.getElementById("myGenderCenterNav").style.width = "0";
-  document.getElementById("myGenderCenterNav").style.height = "0";
-  if (gender != "male" && gender != "female") backupReferenceImg.innerHTML = "";
-}
-function returnUpdatedValues() {
-  if (gender == "male") returnGender("colorChangeIdMale");
-  else if (gender == "female") returnGender("colorChangeIdFemale");
-  if (bodytype == "ecto") {
-    returnBody("colorChangeIdEcto");
-    bodyType("ecto");
-  } else if (bodytype == "meso") {
-    returnBody("colorChangeIdMeso");
-    bodyType("meso");
-  } else if (bodytype == "endo") {
-    returnBody("colorChangeIdEndo");
-    bodyType("endo");
-  }
-  if (goal == "bulking") returnGoal("colorChangeIdBulk");
-  else if (goal == "cutting") returnGoal("colorChangeIdCut");
-  else if (goal == "surplus") returnGoal("colorChangeIdSurp");
-  else if (goal == "muscle") returnGoal("colorChangeIdMuscle");
-}
-const pageSwitcher = (numpage) => {
-  if (differentPage == numpage) alert(alreadyInPage);
-  else {
-    if (numpage == 1) {
-    } else if (numpage == 2) {
-    } else if (numpage == 3) {
-    } else if (numpage == 4) {
-    } else if (numpage == 5) {
-    } else if (numpage == 6) {
-    } else if (numpage == 7) {
-    } else if (numpage == 8) {
-    } else if (numpage == 9) {
-    } else if (numpage == 10) {
-    } else if (numpage == 11) {
-    } else if (numpage == 12) {
-    }
-  }
-};
-const nextPageInterpreter = () => pageSwitcher(differentPage - 1);
-const prevPageInterpreter = () => pageSwitcher(differentPage + 1);
-//disclaimer button callable function
 const disclaimer = () => alert(firstAlert);
-//functions that define the color change when the cursor is on or out of a button
 const hoverColorChangeFunc = (hoveredId) =>
   (document.getElementById(hoveredId).style.backgroundColor = "#2ECC71");
 
-function hoverOutColorChangeFunc(g, gg) {
-  var g = document.getElementById(gg);
-  g.style.backgroundColor = "teal";
+function hoverOutColorChangeFunc(hoveredOutId) {
+  document.getElementById(hoveredOutId).style.backgroundColor = "teal";
   if (emotion == "yes") colorChangeIdEmoYes.style.backgroundColor = "#7395AE";
   else if (emotion == "no")
     colorChangeIdEmoNo.style.backgroundColor = "#7395AE";
