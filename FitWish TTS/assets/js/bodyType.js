@@ -6,22 +6,53 @@ function english() {
   document.getElementById("colorChangeIdMeso").value = "Mesomorph";
   document.getElementById("colorChangeIdEndo").value = "Endomorph";
 }
-function portugûes() {
-  import("./script").then(({ portugûes: defaultPortugûes }) =>
-    defaultPortugûes()
+function português() {
+  import("./script").then(({ português: defaultPortuguês }) =>
+    defaultPortuguês()
   );
-}
-function español() {
-  import("./script").then(({ español: defaultEspañol }) => defaultEspañol());
+  document.getElementById("headingObjInputIdBodyType").innerHTML =
+    "Tipo Corporal";
+  document.getElementById("colorChangeIdNoIdea").value = "Sem ideia";
+  document.getElementById("colorChangeIdEcto").value = "Ectomorfo";
+  document.getElementById("colorChangeIdMeso").value = "Mesomorfo";
+  document.getElementById("colorChangeIdEndo").value = "Endomorfo";
 }
 function français() {
   import("./script").then(({ français: defaultFrançais }) => defaultFrançais());
+  document.getElementById("headingObjInputIdBodyType").innerHTML =
+    "Type de corps";
+  document.getElementById("colorChangeIdNoIdea").value = "Aucune idée";
+  document.getElementById("colorChangeIdEcto").value = "Ectomorphe";
+  document.getElementById("colorChangeIdMeso").value = "Mesomorphe";
+  document.getElementById("colorChangeIdEndo").value = "Endomorphe";
 }
-function themeTypeDark() {
-  import("./script").then(({ themeTypeDark: defaultDark }) => defaultDark());
+function español() {
+  import("./script").then(({ español: defaultEspañol }) => defaultEspañol());
+  document.getElementById("headingObjInputIdBodyType").innerHTML =
+    "Tipo de cuerpo";
+  document.getElementById("colorChangeIdNoIdea").value = "Ni idea";
+  document.getElementById("colorChangeIdEcto").value = "Ectomorfo";
+  document.getElementById("colorChangeIdMeso").value = "Mesomorfo";
+  document.getElementById("colorChangeIdEndo").value = "Endomorfo";
 }
 function themeTypeLight() {
   import("./script").then(({ themeTypeLight: defaultLight }) => defaultLight());
+  for (let el of document.querySelector(".headingObjInputId"))
+    el.style.backgroundColor = "#D0FEFE";
+}
+function themeTypeDark() {
+  import("./script").then(({ themeTypeDark: defaultDark }) => defaultDark());
+  for (let el of document.querySelector(".headingObjInputId"))
+    el.style.backgroundColor = "#9DBCD4";
+}
+
+function hoverOutColorChangeFunc(hoveredOutId) {
+  document.getElementById(hoveredOutId).style.backgroundColor = "teal";
+  if (bodytype == "ecto") colorChangeIdEcto.style.backgroundColor = "#7395AE";
+  else if (bodytype == "meso")
+    colorChangeIdMeso.style.backgroundColor = "#7395AE";
+  else if (bodytype == "endo")
+    colorChangeIdEndo.style.backgroundColor = "#7395AE";
 }
 
 // body type

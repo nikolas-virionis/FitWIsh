@@ -8,22 +8,56 @@ function english() {
   document.getElementById("headingTextInputIdAge").innerHTML = "Age:";
   document.getElementById("headingTextInputIdEmail").innerHTML = "Email:";
 }
-function portugûes() {
-  import("./script").then(({ portugûes: defaultPortugûes }) =>
-    defaultPortugûes()
+function português() {
+  import("./script").then(({ português: defaultPortuguês }) =>
+    defaultPortuguês()
   );
-}
-function español() {
-  import("./script").then(({ español: defaultEspañol }) => defaultEspañol());
+  document.getElementById("name").placeholder = "Exemplo de Nome: Nick";
+  document.getElementById("age").placeholder = "Exemplo de idade: 24";
+  document.getElementById("email").placeholder =
+    "Exemplo: nome.sobrenome@email.com";
+  document.getElementById("headingTextInputIdName").innerHTML = "Nome:";
+  document.getElementById("headingTextInputIdAge").innerHTML = "Idade:";
+  document.getElementById("headingTextInputIdEmail").innerHTML = "Email:";
 }
 function français() {
   import("./script").then(({ français: defaultFrançais }) => defaultFrançais());
+  document.getElementById("name").placeholder = "Exemple de nom: Nick";
+  document.getElementById("age").placeholder = "Exemple d'âge: 24 ";
+  document.getElementById("email").placeholder =
+    "Exemple d'email: nom.nom@email.com";
+  document.getElementById("headingTextInputIdName").innerHTML = "Nom:";
+  document.getElementById("headingTextInputIdAge").innerHTML = "Âge:";
+  document.getElementById("headingTextInputIdEmail").innerHTML = "Email:";
 }
-function themeTypeDark() {
-  import("./script").then(({ themeTypeDark: defaultDark }) => defaultDark());
+function español() {
+  import("./script").then(({ español: defaultEspañol }) => defaultEspañol());
+  document.getElementById("name").placeholder = "Ejemplo de nombre: Nick";
+  document.getElementById("age").placeholder = "Ejemplo de edad: 24";
+  document.getElementById("email").placeholder =
+    "Ejemplo: nombre.apellido@email.com";
+  document.getElementById("headingTextInputIdName").innerHTML = "Nombre:";
+  document.getElementById("headingTextInputIdAge").innerHTML = "Edad:";
+  document.getElementById("headingTextInputIdEmail").innerHTML =
+    "Correo electrónico:";
 }
 function themeTypeLight() {
   import("./script").then(({ themeTypeLight: defaultLight }) => defaultLight());
+  document.getElementById("headingTextInputIdName").style.cssText =
+    "color: #1F3B4D;";
+  document.getElementById("headingTextInputIdAge").style.cssText =
+    "color: #1F3B4D;";
+  document.getElementById("headingTextInputIdEmail").style.cssText =
+    "color: #1F3B4D;";
+}
+function themeTypeDark() {
+  import("./script").then(({ themeTypeDark: defaultDark }) => defaultDark());
+  document.getElementById("headingTextInputIdName").style.cssText =
+    "color: #DDD;";
+  document.getElementById("headingTextInputIdAge").style.cssText =
+    "color: #DDD;";
+  document.getElementById("headingTextInputIdEmail").style.cssText =
+    "color: #DDD;";
 }
 function setAgeAdvice() {
   if (languageValue == 1) {

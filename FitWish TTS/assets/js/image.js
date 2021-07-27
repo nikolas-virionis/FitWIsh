@@ -9,23 +9,96 @@ function english() {
   document.getElementById("headingObjInputIdGoalImage").innerHTML =
     "Which one of these you think represent your goal the most?";
 }
-function portugûes() {
-  import("./script").then(({ portugûes: defaultPortugûes }) =>
-    defaultPortugûes()
+function português() {
+  import("./script").then(({ português: defaultPortuguês }) =>
+    defaultPortuguês()
   );
-}
-function español() {
-  import("./script").then(({ español: defaultEspañol }) => defaultEspañol());
+  showImgBtn.innerHTML = "&#9776; Exibir Imagem";
+  referenceImgTxt.innerHTML = "Imagem de Referência:";
+  backupGenderImg =
+    '<br><br><br><br><br><span style="font-size: 40px; font-variant:all-caps; color:white; display: grid; place-items: center;">Escolha um gênero para ver a imagem de referência';
+  document.getElementById("headingObjInputIdBodyImage").innerHTML =
+    "Qual dessas imagens representa melhor seu estado atual?";
+  document.getElementById("headingObjInputIdGoalImage").innerHTML =
+    "Qual dessas imagens representa melhor seu objetivo corporal?";
 }
 function français() {
   import("./script").then(({ français: defaultFrançais }) => defaultFrançais());
+  showImgBtn.innerHTML = "&#9776; Afficher l'image";
+  referenceImgTxt.innerHTML = "Image de référence:";
+  backupGenderImg =
+    '<br><br><br><br><br><span style="font-size: 40px; font-variant:all-caps; color:white; display: grid; place-items: center;">Sélectionnez un sexe pour voir l\'image de référence';
+  document.getElementById("headingObjInputIdBodyImage").innerHTML =
+    "Lequel de ceux-ci vous représente le plus?";
+  document.getElementById("headingObjInputIdGoalImage").innerHTML =
+    "Selon vous, lequel de ces éléments représente le plus votre objectif?";
 }
-function themeTypeDark() {
-  import("./script").then(({ themeTypeDark: defaultDark }) => defaultDark());
+function español() {
+  import("./script").then(({ español: defaultEspañol }) => defaultEspañol());
+  showImgBtn.innerHTML = "&#9776; Mostrar imagen";
+  referenceImgTxt.innerHTML = "Imagen de referencia:";
+  backupGenderImg =
+    '<br><br><br><br><br><span style="font-size: 40px; font-variant:all-caps; color:white; display: grid; place-items: center;">Seleccione un género para ver la imagen de referencia';
+  document.getElementById("headingObjInputIdBodyImage").innerHTML =
+    "¿Cuál de estos crees que te representa más?";
+  document.getElementById("headingObjInputIdGoalImage").innerHTML =
+    "¿Cuál de estos crees que representa más tu objetivo?";
 }
 function themeTypeLight() {
   import("./script").then(({ themeTypeLight: defaultLight }) => defaultLight());
+  for (let el of document.querySelector(".headingObjInputId"))
+    el.style.backgroundColor = "#D0FEFE";
 }
+function themeTypeDark() {
+  import("./script").then(({ themeTypeDark: defaultDark }) => defaultDark());
+  for (let el of document.querySelector(".headingObjInputId"))
+    el.style.backgroundColor = "#9DBCD4";
+}
+
+function hoverOutColorChangeFunc(hoveredOutId) {
+  document.getElementById(hoveredOutId).style.backgroundColor = "teal";
+  if (currentBody == 1) colorChangeIdBody1.style.backgroundColor = "#7395AE";
+  else if (currentBody == 2)
+    colorChangeIdBody2.style.backgroundColor = "#7395AE";
+  else if (currentBody == 3)
+    colorChangeIdBody3.style.backgroundColor = "#7395AE";
+  else if (currentBody == 4)
+    colorChangeIdBody4.style.backgroundColor = "#7395AE";
+  else if (currentBody == 5)
+    colorChangeIdBody5.style.backgroundColor = "#7395AE";
+  else if (currentBody == 6)
+    colorChangeIdBody6.style.backgroundColor = "#7395AE";
+  else if (currentBody == 7)
+    colorChangeIdBody7.style.backgroundColor = "#7395AE";
+  else if (currentBody == 8)
+    colorChangeIdBody8.style.backgroundColor = "#7395AE";
+  else if (currentBody == 9)
+    colorChangeIdBody9.style.backgroundColor = "#7395AE";
+
+  if (goalBody == 1) {
+    if (age >= 15 && age <= 40)
+      colorChangeIdGoal1.style.backgroundColor = "#7395AE";
+    else colorChangeIdGoal1.style.backgroundColor = "teal";
+  } else if (goalBody == 2) {
+    if (age >= 15 && age <= 40)
+      colorChangeIdGoal2.style.backgroundColor = "#7395AE";
+    else colorChangeIdGoal2.style.backgroundColor = "teal";
+  } else if (goalBody == 3) {
+    if (age >= 15 && age <= 50)
+      colorChangeIdGoal3.style.backgroundColor = "#7395AE";
+    else colorChangeIdGoal3.style.backgroundColor = "teal";
+  } else if (goalBody == 4) {
+    if (age >= 10 && age <= 60)
+      colorChangeIdGoal4.style.backgroundColor = "#7395AE";
+    else colorChangeIdGoal4.style.backgroundColor = "teal";
+  } else if (goalBody == 5)
+    colorChangeIdGoal5.style.backgroundColor = "#7395AE";
+  else if (goalBody == 6) colorChangeIdGoal6.style.backgroundColor = "#7395AE";
+  else if (goalBody == 7) colorChangeIdGoal7.style.backgroundColor = "#7395AE";
+  else if (goalBody == 8) colorChangeIdGoal8.style.backgroundColor = "#7395AE";
+  else if (goalBody == 9) colorChangeIdGoal9.style.backgroundColor = "#7395AE";
+}
+
 img = document.createElement("img");
 if (gender == "male")
   setImg(

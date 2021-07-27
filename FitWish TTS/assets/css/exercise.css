@@ -5,3 +5,26 @@
 #headingObjInputIdXercise {
   margin-top: 10vh;
 }
+
+#linkTitle {
+  display: flex;
+  margin-left: 40%;
+  text-decoration: none;
+  margin-right: 1vw;
+}
+
+#imageLogo {
+  float: left;
+  width: 4vw;
+  height: 10vh;
+  margin-left: 37.5%;
+  margin-top: 1.5vh;
+}
+
+#headingObjInputIdHead {
+  border: none;
+  background: none;
+  color: aliceblue;
+  place-items: left;
+  font-size: 2.3em;
+}

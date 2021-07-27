@@ -1,23 +1,27 @@
 function english() {
   import("./script").then(({ english: defaultEnglish }) => defaultEnglish());
 }
-function portugûes() {
-  import("./script").then(({ portugûes: defaultPortugûes }) =>
-    defaultPortugûes()
+function português() {
+  import("./script").then(({ português: defaultPortuguês }) =>
+    defaultPortuguês()
   );
-}
-function español() {
-  import("./script").then(({ español: defaultEspañol }) => defaultEspañol());
 }
 function français() {
   import("./script").then(({ français: defaultFrançais }) => defaultFrançais());
 }
-function themeTypeDark() {
-  import("./script").then(({ themeTypeDark: defaultDark }) => defaultDark());
+function español() {
+  import("./script").then(({ español: defaultEspañol }) => defaultEspañol());
 }
 function themeTypeLight() {
   import("./script").then(({ themeTypeLight: defaultLight }) => defaultLight());
 }
+function themeTypeDark() {
+  import("./script").then(({ themeTypeDark: defaultDark }) => defaultDark());
+}
+
+const hoverOutColorChangeFunc = (hoveredOutId) =>
+  (document.getElementById(hoveredOutId).style.backgroundColor = "teal");
+
 const setLocalData = (idParameter) => {
   idUser = idParameter;
   contentArray.push({

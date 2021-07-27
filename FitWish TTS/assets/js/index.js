@@ -14,32 +14,73 @@ function english() {
   firstPageBtnSeePrev.value = `See the Previous Test Result`;
   firstPageBtnHideAll.value = `Hide All Previous Tests`;
 }
-function portugûes() {
-  import("./script").then(({ portugûes: defaultPortugûes }) =>
-    defaultPortugûes()
+function português() {
+  import("./script").then(({ português: defaultPortuguês }) =>
+    defaultPortuguês()
   );
-}
-function español() {
-  import("./script").then(({ español: defaultEspañol }) => defaultEspañol());
+  firstPageBtnSeePrev.innerHTML = "Ocultar Teste Anterior";
+  firstPageH1.innerHTML =
+    "Estamos felizes por você ter nos dado a chance de ajudá-lo a alcançar o corpo dos seus sonhos, pressione iniciar para continuar";
+  if (contentArray.length > 0)
+    firstPageH12nd.innerHTML = `Detectamos que você já tentou nosso teste uma vez como ${contentArray[0].name}, feito em ${contentArray[0].day}. Escolha o que você gostaria de fazer abaixo`;
+  firstPageBtnStart.value = `Iniciar`;
+  firstPageBtnDifferent.value = `Fazer um novo Teste`;
+  firstPageBtnOverwrite.value = `Sobrescrever um Teste Anterior`;
+  firstPageBtnDelete.value = `Deletar Todos os Testes Feitos Anteriormente`;
+  firstPageBtnSeeAll.value = `Ver Todos os Testes Anteriores`;
+  firstPageBtnSeePrev.value = `Ver o Resultado do Teste Anterior`;
+  firstPageBtnHideAll.value = `Ocultar Testes Anteriores`;
 }
 function français() {
   import("./script").then(({ français: defaultFrançais }) => defaultFrançais());
+  firstPageBtnSeePrev.innerHTML = "Masquer le test précédent";
+  firstPageH1.innerHTML =
+    "Nous sommes heureux que vous nous ayez donné une chance de vous aider à réaliser le corps de vos rêves, appuyez sur Début pour continuer";
+  if (contentArray.length > 0)
+    firstPageH12nd.innerHTML = `Nous avons détecté que vous avez déjà essayé notre test une fois car ${contentArray[0].inputName}, fabriqué en ${contentArray[0].day}. Choisissez ce que vous souhaitez faire ci-dessous`;
+  firstPageBtnStart.value = `Début`;
+  firstPageBtnDifferent.value = `Faites un nouveau test`;
+  firstPageBtnOverwrite.value = `Écraser un test précédent`;
+  firstPageBtnDelete.value = `Supprimer tous les tests précédents effectués`;
+  firstPageBtnSeeAll.value = `Voir tous les tests précédents`;
+  firstPageBtnSeePrev.value = `Voir le résultat du test précédent`;
+  firstPageBtnHideAll.value = `Masquer tous les tests précédents`;
 }
-function themeTypeDark() {
-  import("./script").then(({ themeTypeDark: defaultDark }) => defaultDark());
+function español() {
+  import("./script").then(({ español: defaultEspañol }) => defaultEspañol());
+  firstPageBtnSeePrev.innerHTML = "Ocultar Prueba Anterior";
+  firstPageH1.innerHTML =
+    "Nos alegra que nos haya brindado la oportunidad de ayudarlo a lograr el cuerpo de sus sueños, presione comenzar para continuar";
+  if (contentArray.length > 0)
+    firstPageH12nd.innerHTML = `Detectamos que ya ha realizado nuestra prueba una vez como ${contentArray[0].inputName}, hecho en ${contentArray[0].day}. Elija lo que le gustaría hacer a continuación`;
+  firstPageBtnStart.value = `Comienzo`;
+  firstPageBtnDifferent.value = `Hacer una nueva prueba`;
+  firstPageBtnOverwrite.value = `Sobrescribir una prueba anterior`;
+  firstPageBtnDelete.value = `Eliminar todas las pruebas anteriores realizadas`;
+  firstPageBtnSeeAll.value = `Ver todas las pruebas anteriores`;
+  firstPageBtnSeePrev.value = `Ver el resultado de la prueba anterior`;
+  firstPageBtnHideAll.value = `Ocultar todas las pruebas anteriores`;
 }
 function themeTypeLight() {
   import("./script").then(({ themeTypeLight: defaultLight }) => defaultLight());
+  firstPageH1.style.color = "#1F3B4D";
+  firstPageH12nd.style.color = "#1F3B4D";
+  firstPageH13rd.style.color = "#1F3B4D";
+}
+function themeTypeDark() {
+  import("./script").then(({ themeTypeDark: defaultDark }) => defaultDark());
+  firstPageH1.style.color = "azure";
+  firstPageH12nd.style.color = "azure";
+  firstPageH13rd.style.color = "azure";
 }
 
 if (contentArray.length == 0) {
-  if (navigator.language[0] == "e" && navigator.language[1] == "n") english();
-  else if (navigator.language[0] == "p" && navigator.language[1] == "t")
-    português();
+  if (navigator.language[0] == "p" && navigator.language[1] == "t") português();
   else if (navigator.language[0] == "f" && navigator.language[1] == "r")
     français();
   else if (navigator.language[0] == "e" && navigator.language[1] == "s")
     español();
+  else english();
   themeTypeDark();
 } else if (contentArray.length == 1) {
   firstPageH1.style.display = "none";
