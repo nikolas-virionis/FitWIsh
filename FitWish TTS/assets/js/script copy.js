@@ -1346,7 +1346,7 @@ const overwriteTest2 = (paramas) => {
       var confirmOverwrite = confirm(
         `¿Estás seguro de que quieres sobrescribir la prueba realizada como ${contentArray[0].inputName}? Será destruido para siempre.`
       );
-    if (confirmOverwrite == true) {
+    if (confirmOverwrite) {
       contentArray.shift();
       localStorage.setItem("contentArray", JSON.stringify(contentArray));
       startNewTry(1);
@@ -1376,7 +1376,7 @@ const overwriteTest2 = (paramas) => {
       var confirmOverwrite = confirm(
         `¿Estás seguro de que quieres sobrescribir la prueba realizada como ${contentArray[1].inputName}? Será destruido para siempre.`
       );
-    if (confirmOverwrite == true) {
+    if (confirmOverwrite) {
       contentArray.pop();
       localStorage.setItem("contentArray", JSON.stringify(contentArray));
       startNewTry(2);
@@ -1401,7 +1401,7 @@ function overwriteTest() {
       var confirmOverwrite = confirm(
         `¿Estás seguro de que quieres sobrescribir la prueba realizada como ${contentArray[0].inputName}? Será destruido para siempre.`
       );
-    if (confirmOverwrite == true) {
+    if (confirmOverwrite) {
       contentArray.shift();
       localStorage.setItem("contentArray", JSON.stringify(contentArray));
       startNewTry(1);
@@ -1429,7 +1429,7 @@ function deleteTests() {
     var deletePrevTests = confirm(
       "¿Estás seguro de que quieres eliminar todas las pruebas?"
     );
-  if (deletePrevTests == true) {
+  if (deletePrevTests) {
     localStorage.removeItem("contentArray");
     window.location.reload();
   }
@@ -2275,7 +2275,7 @@ function validate() {
             "¿Estás seguro de que no quieres escribir tu correo electrónico y recibir un resumen más tarde? Si no lo hace, simplemente haga clic en Aceptar, y si desea escribir su correo electrónico, haga clic en Cancelar."
           );
         }
-        if (confirmWriteEmail == true) noEmailNeeded += 1;
+        if (confirmWriteEmail) noEmailNeeded += 1;
       } else {
         if (languageValue == 1) alert(emailaddrreturn + " is not valid");
         else if (languageValue == 2) alert(emailaddrreturn + " não é válido");
@@ -2300,7 +2300,7 @@ function validate() {
             confirmWriteEmail = confirm(
               "¿Estás seguro de que no quieres escribir tu correo electrónico y recibir un resumen más tarde? Si no lo hace, simplemente haga clic en Aceptar, y si desea escribir su correo electrónico, haga clic en Cancelar."
             );
-          if (confirmWriteEmail == true) noEmailNeeded += 1;
+          if (confirmWriteEmail) noEmailNeeded += 1;
         }
       }
     }

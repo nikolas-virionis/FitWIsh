@@ -78,22 +78,22 @@ function validate() {
     if (!validateEmail(email)) {
       // if (!email) {
       //   let confirmWriteEmail;
-      //   if (languageValue == 1) {
+      //   if (language == 'english') {
       //     alert("No Email Written in the Email Field");
       //     confirmWriteEmail = confirm(
       //       "Are you sure you don't want to write your email and receive a sum up later? If You Don't Just Click OK, and if you want to write your email Click Cancel!"
       //     );
-      //   } else if (languageValue == 2) {
+      //   } else if (language == 'português') {
       //     alert("Nenhum email escrito no campo de email");
       //     confirmWriteEmail = confirm(
       //       "Tem certeza de que não deseja escrever seu e-mail e receber um resumo depois? Se você não clicar em OK e quiser escrever seu e-mail, clique em Cancelar!"
       //     );
-      //   } else if (languageValue == 3) {
+      //   } else if (language == 'français') {
       //     alert("Aucun e-mail écrit dans le champ e-mail");
       //     confirmWriteEmail = confirm(
       //       "Êtes-vous sûr de ne pas vouloir écrire votre e-mail et recevoir un résumé plus tard? Si vous ne cliquez pas simplement sur OK, et si vous souhaitez écrire votre e-mail, cliquez sur Annuler!"
       //     );
-      //   } else if (languageValue == 4) {
+      //   } else if (language == 'español') {
       //     alert(
       //       "No se ha escrito ningún correo electrónico en el campo de correo electrónico"
       //     );
@@ -106,26 +106,26 @@ function validate() {
       //   sessionStorage.setItem("emailIn", JSON.stringify(false));
       // }
       // } else {
-      if (languageValue == 1) alert(email + " is not valid");
-      else if (languageValue == 2) alert(email + " não é válido");
-      else if (languageValue == 3) alert(email + " n'est pas valide");
-      else if (languageValue == 4) alert(email + " No es válido");
+      if (language == "english") alert(email + " is not valid");
+      else if (language == "português") alert(email + " não é válido");
+      else if (language == "français") alert(email + " n'est pas valide");
+      else if (language == "español") alert(email + " No es válido");
       wrongEmailCount += 1;
       if (wrongEmailCount >= 2) {
         let confirmWriteEmail;
-        if (languageValue == 1)
+        if (language == "english")
           confirmWriteEmail = confirm(
             "Are you sure you don't want to write your email and receive a sum up later? If You Don't Just Click OK, and if you want to write your email Click Cancel!"
           );
-        else if (languageValue == 2)
+        else if (language == "português")
           confirmWriteEmail = confirm(
             "Tem certeza de que não deseja escrever seu e-mail e receber uma quantia depois? Se você não clicar em OK e quiser escrever seu e-mail, clique em Cancelar!"
           );
-        else if (languageValue == 3)
+        else if (language == "français")
           confirmWriteEmail = confirm(
             "Êtes-vous sûr de ne pas vouloir écrire votre e-mail et recevoir un résumé plus tard? Si vous ne cliquez pas simplement sur OK, et si vous souhaitez écrire votre e-mail, cliquez sur Annuler!"
           );
-        else if (languageValue == 4)
+        else if (language == "español")
           confirmWriteEmail = confirm(
             "¿Estás seguro de que no quieres escribir tu correo electrónico y recibir un resumen más tarde? Si no lo hace, simplemente haga clic en Aceptar, y si desea escribir su correo electrónico, haga clic en Cancelar."
           );
@@ -135,6 +135,9 @@ function validate() {
         }
       }
       // }
-    } else sessionStorage.setItem("email", email);
+    } else {
+      sessionStorage.setItem("email", email);
+      sessionStorage.setItem("emailIn", JSON.stringify(true));
+    }
   }
 }

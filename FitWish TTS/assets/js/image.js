@@ -221,7 +221,7 @@ const setGoalBody = (goal) => {
       (age > 60 && goalBody > 4)
     )
   ) {
-    if (languageValue == 1) {
+    if (language == "english") {
       if (age < 15 && age >= 10 && goalBody <= 3)
         alert(
           "For your age, it is not healthy to get this little body fat percentage, try a bit higher by now and soon enough you'll be able to get to this body goal of yours as safe as it gets."
@@ -242,7 +242,7 @@ const setGoalBody = (goal) => {
         alert(
           "This won't be gladful to hear, it breaks my heart to say it too, because I appreciate your ferving will of getting in shape, however for your age it is not healthy to get this little body fat percentage, try a bit higher by now since the amount of fat on your body naturally grows with aging. try instead of losing this much fat, gaining more muscle to compensate. This way you'll be able to get to a doable body goal in a path as safe as it can get."
         );
-    } else if (languageValue == 2) {
+    } else if (language == "português") {
       if (age < 15 && age >= 10 && goalBody <= 3)
         alert(
           "Para a sua idade, não é saudável obter essa pequena porcentagem de gordura corporal, tente um pouco mais alto agora e em breve você será capaz de atingir esse seu objetivo corporal o mais seguro possível."
@@ -263,7 +263,7 @@ const setGoalBody = (goal) => {
         alert(
           "Não vou ficar feliz em ouvir isso, parte meu coração dizer isso também, porque eu aprecio sua fervorosa vontade de entrar em forma, porém para sua idade não é saudável obter este pequeno percentual de gordura corporal, tente um pouco mais alto até agora, uma vez que a quantidade de gordura em seu corpo cresce naturalmente com o envelhecimento. tente em vez de perder essa quantidade de gordura, ganhando mais músculos para compensar. Desta forma, você será capaz de atingir um objetivo corporal factível em um caminho tão seguro quanto possível."
         );
-    } else if (languageValue == 3) {
+    } else if (language == "français") {
       if (age < 15 && age >= 10 && goalBody <= 3)
         alert(
           "Pour votre âge, il n'est pas sain d'obtenir ce petit pourcentage de graisse corporelle, essayez un peu plus haut maintenant et vous serez bientôt en mesure d'atteindre votre objectif corporel aussi sûr que possible."
@@ -284,7 +284,7 @@ const setGoalBody = (goal) => {
         alert(
           "Ce ne sera pas heureux d'entendre, cela me brise le cœur de le dire aussi, car j'apprécie votre fervente volonté de vous mettre en forme, mais pour votre âge, ce n'est pas sain d'obtenir ce petit pourcentage de graisse corporelle, essayez un peu plus haut en maintenant puisque la quantité de graisse sur votre corps augmente naturellement avec le vieillissement. essayez au lieu de perdre autant de graisse, gagnez plus de muscle pour compenser. De cette façon, vous serez en mesure d'atteindre un objectif corporel réalisable dans un chemin aussi sûr que possible."
         );
-    } else if (languageValue == 4) {
+    } else if (language == "español") {
       if (age < 15 && age >= 10 && goalBody <= 3)
         alert(
           "Para su edad, no es saludable obtener este pequeño porcentaje de grasa corporal, intente un poco más alto ahora y muy pronto podrá alcanzar este objetivo corporal de la manera más segura posible."

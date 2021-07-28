@@ -55,26 +55,41 @@ function hoverOutColorChangeFunc(hoveredOutId) {
 const getEmotion = () => sessionStorage.getItem("emotion");
 const emotion = (emotion) => sessionStorage.setItem("emotion", emotion);
 
+//variable getters
+const getName = () => sessionStorage.getItem("name");
+const getEmail = () => sessionStorage.getItem("email");
+const getAge = () => JSON.parse(sessionStorage.getItem("age"));
+const getWeight = () => JSON.parse(sessionStorage.getItem("weight"));
+const getHeight = () => JSON.parse(sessionStorage.getItem("height"));
+const getBodyType = () => sessionStorage.getItem("bodytype");
+const getCheat = () => JSON.parse(sessionStorage.getItem("cheat"));
+const getExecise = () => JSON.parse(sessionStorage.getItem("exercise"));
+const getGender = () => sessionStorage.getItem("gender");
+const getUnit = () => sessionStorage.getItem("unit");
+const getGoal = () => sessionStorage.getItem("goal");
+const getHealthy = () => JSON.parse(sessionStorage.getItem("healthy"));
+const getCurrentBody = () => JSON.parse(sessionStorage.getItem("currentBody"));
+const getGoalBody = () => JSON.parse(sessionStorage.getItem("goalBody"));
+const getMeals = () => JSON.parse(sessionStorage.getItem("meals"));
+
 function checkAllAnswers() {
-  let email = JSON.parse(sessionStorage.getItem("emailIn"))
-    ? true
-    : sessionStorage.getItem("email");
+  let email = JSON.parse(sessionStorage.getItem("emailIn")) ? getEmail() : true;
   let answers =
-    gender &&
-    unit &&
-    userName &&
-    age &&
+    getGender() &&
+    getGender() &&
+    getName() &&
+    getAge() &&
     email &&
-    height &&
-    weight &&
-    bodyType &&
-    cheat &&
-    meals &&
-    healthy &&
-    exercise &&
-    goal &&
-    emotion &&
-    imgBody &&
-    imgGoal;
+    getHeight() &&
+    getWeight() &&
+    getBodyType() &&
+    getCheat() &&
+    getMeals() &&
+    getHealthy() &&
+    getExecise() &&
+    getGoal() &&
+    getEmotion() &&
+    getCurrentBody() &&
+    getGoalBody();
   if (answers) window.location.href = "check.html";
 }
