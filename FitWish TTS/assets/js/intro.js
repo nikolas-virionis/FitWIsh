@@ -1,6 +1,6 @@
 function english() {
   import("./script").then(({ english: defaultEnglish }) => defaultEnglish());
-  let introTxt = document.querySelector(".planTxt");
+  let introTxt = document.querySelectorAll(".planTxt");
   for (let element of introTxt) element.style.fontSize = "2.2vw";
   planId.style.marginLeft = "43%";
   planId.style.marginRight = "auto";
@@ -17,7 +17,7 @@ function português() {
   import("./script").then(({ português: defaultPortuguês }) =>
     defaultPortuguês()
   );
-  let introTxt = document.querySelector(".planTxt");
+  let introTxt = document.querySelectorAll(".planTxt");
   for (let element of introTxt) element.style.fontSize = "2.1vw";
   planId.style.marginLeft = "41.5%";
   planId.style.marginRight = "auto";
@@ -40,7 +40,7 @@ function français() {
   idGoodHabits.innerHTML =
     "Plus tôt que prévu, vous serez habitué à avoir l'air aussi beau que vous le souhaitez, et en meilleure santé aussi!";
   checkImgId.style.marginLeft = "21.05%";
-  let introTxt = document.querySelector(".planTxt");
+  let introTxt = document.querySelectorAll(".planTxt");
   for (let element of introTxt) element.style.fontSize = "2.2vw";
   planId.style.marginLeft = "41.75%";
   planId.style.marginRight = "auto";
@@ -55,7 +55,7 @@ function español() {
   idGoodHabits.innerHTML =
     "¡Antes de lo que esperabas, estarás acostumbrado a verte tan bien como quieras y más saludable también!";
   checkImgId.style.marginLeft = "17.9%";
-  let introTxt = document.querySelector(".planTxt");
+  let introTxt = document.querySelectorAll(".planTxt");
   for (let element of introTxt) element.style.fontSize = "2.2vw";
   planId.style.marginLeft = "41%";
   planId.style.marginRight = "2.55%";

@@ -34,27 +34,31 @@ function español() {
 }
 function themeTypeLight() {
   import("./script").then(({ themeTypeLight: defaultLight }) => defaultLight());
-  for (let el of document.querySelector(".headingObjInputId"))
+  for (let el of document.querySelectorAll(".headingObjInputId"))
     el.style.backgroundColor = "#D0FEFE";
 }
 function themeTypeDark() {
   import("./script").then(({ themeTypeDark: defaultDark }) => defaultDark());
-  for (let el of document.querySelector(".headingObjInputId"))
+  for (let el of document.querySelectorAll(".headingObjInputId"))
     el.style.backgroundColor = "#9DBCD4";
 }
 
 function hoverOutColorChangeFunc(hoveredOutId) {
   document.getElementById(hoveredOutId).style.backgroundColor = "teal";
-  if (emotion == "yes") colorChangeIdEmoYes.style.backgroundColor = "#7395AE";
-  else if (emotion == "no")
+  if (getEmotion() == "yes")
+    colorChangeIdEmoYes.style.backgroundColor = "#7395AE";
+  else if (getEmotion() == "no")
     colorChangeIdEmoNo.style.backgroundColor = "#7395AE";
 }
 
-//1 func about emotional overeating
-const emoFunc = (binary) => (emotion = binary);
+// emotional overeating
+const getEmotion = () => sessionStorage.getItem("emotion");
+const emotion = (emotion) => sessionStorage.setItem("emotion", emotion);
 
 function checkAllAnswers() {
-  let email = emailInputted ? email : true;
+  let email = JSON.parse(sessionStorage.getItem("emailIn"))
+    ? true
+    : sessionStorage.getItem("email");
   let answers =
     gender &&
     unit &&

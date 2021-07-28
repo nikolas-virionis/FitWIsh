@@ -296,6 +296,128 @@ function idealWeight(lbs, lb) {
   finalIdealWeightMsg += advicedWeight;
   finalIdealWeightMsg += idealWeightMsgBmiState;
 }
+
+if (languageValue == 1) {
+    if (bodytype == "ecto")
+      bodyTypeAdvice =
+        "since you are an ectomorph, you gotta have in mind that you naturally have a condition that makes you skinnier, having less fat but also less muscle.";
+    else if (bodytype == "meso")
+      bodyTypeAdvice =
+        "since you are a mesomorph, you gain muscle with moderate ease and lose fat also with some ease, genetically wise, so you got it 'easier than others', right? Yeah but nahh really. It's not because it's a little bit easier that it's easy to get seriously in shape, so then when you get it done you'll appreciate yourself even more, and that's what matters!";
+    else if (bodytype == "endo")
+      bodyTypeAdvice =
+        "since you are an endomorph, you gain both muscle and fat easily, makes bulking easy but makes it a lot more difficult to cut and get your body in shape.";
+  } else if (languageValue == 2) {
+    if (bodytype == "ecto")
+      bodyTypeAdvice =
+        "já que você é um ectomorfo, é preciso ter em mente que você tem naturalmente uma condição que o torna mais magro, tendo menos gordura, mas também menos músculos.";
+    else if (bodytype == "meso")
+      bodyTypeAdvice =
+        "como você é um mesomorfo, você ganha músculo com moderada facilidade e perde gordura também com alguma facilidade, geneticamente sábio, então você entendeu 'mais fácil do que os outros', certo? Sim, mas nahh realmente. Não é porque é um pouco mais fácil que é fácil entrar em forma seriamente, então, quando terminar, você se apreciará ainda mais, e é isso que importa!";
+    else if (bodytype == "endo")
+      bodyTypeAdvice =
+        "como você é um(a) endomorfo(a), você ganha músculo e gordura facilmente, torna mais fácil aumentar o volume, mas torna muito mais difícil secar e colocar seu corpo em forma.";
+  } else if (languageValue == 3) {
+    if (bodytype == "ecto")
+      bodyTypeAdvice =
+        "puisque vous êtes un ectomorphe, vous devez garder à l'esprit que vous avez naturellement une maladie qui vous rend plus maigre, avec moins de graisse mais aussi moins de muscle.";
+    else if (bodytype == "meso")
+      bodyTypeAdvice =
+        "puisque vous êtes un mésomorphe, vous gagnez du muscle avec une facilité modérée et perdez de la graisse également avec une certaine facilité, génétiquement sage, donc vous l'avez plus facile que les autres '', non? Ouais mais nahh vraiment. Ce n'est pas parce que c'est un peu plus facile qu'il est facile de se mettre sérieusement en forme, alors quand vous aurez terminé, vous vous apprécierez encore plus et c'est ce qui compte!";
+    else if (bodytype == "endo")
+      bodyTypeAdvice =
+        "puisque vous êtes un endomorphe, vous gagnez facilement du muscle et de la graisse, ce qui facilite le gonflement, mais il est beaucoup plus difficile de couper et de remettre votre corps en forme.";
+  } else if (languageValue == 4) {
+    if (bodytype == "ecto")
+      bodyTypeAdvice =
+        "como eres un ectomorfo, debes tener en cuenta que naturalmente tienes una condición que te hace más delgado, con menos grasa pero también con menos músculo.";
+    else if (bodytype == "meso")
+      bodyTypeAdvice =
+        "como eres mesomorfo, ganas músculo con moderada facilidad y pierdes grasa también con cierta facilidad, genéticamente, así que lo conseguiste 'más fácil que otros', ¿verdad? Sí, pero realmente no. No es porque sea un poco más fácil que sea fácil ponerse en forma seriamente, así que cuando lo termines te apreciarás aún más, ¡y eso es lo que importa!";
+    else if (bodytype == "endo")
+      bodyTypeAdvice =
+        "como eres un endomorfo, ganas músculo y grasa fácilmente, facilita el volumen pero hace que sea mucho más difícil secar y poner tu cuerpo en forma.";
+  }
+
+function setAgeAdvice() {
+  if (languageValue == 1) {
+    if (age <= 12)
+      ageAdvice =
+        " Honestly, I like that you at this young age want to get in shape, but you know it's important that you understand that until you reach your teens 99,99% of your focus has to be in getting and keeping healthy. Relax, soon you will be able to get in shape easier than now and, more importantly, in a safer time of your life!";
+    else if (age >= 13 && age <= 17)
+      ageAdvice =
+        " It's cool that you want to get in shape, but still, it's important that yada yada of -you gotta keep healthy and that's all that matters-? Well, kinda, I mean, at your early teen's the most important thing is obviously your health, but you're more than right on wanting to have a better body!";
+    else if (age >= 18 && age <= 30)
+      ageAdvice =
+        " Since you are at your best age range to get in shape, that does not mean it's gotta be easy but it means that you have the most amount of hormones that help you through the process!";
+    else if (age >= 31 && age <= 45)
+      ageAdvice =
+        " It's cool that you want to get in shape, but still, it's important that yada yada of -you gotta keep healthy and that's all that matters-? Well, kinda, I mean, it is definitely important that you can maintain good health, but you're more than right on wanting to have a better body, and the healthier you are the easier to get in shape!";
+    else if (age >= 46 && age <= 60)
+      ageAdvice =
+        " It's cool that you want to get in shape, but still, it's important that yada yada of -you gotta keep healthy and that's all that matters-? Well, kinda, I mean, at your late 40s, early 50s, and 60s the most important thing is obviously your health, but you're more than right on wanting to have a better body!";
+    else if (age >= 61)
+      ageAdvice =
+        " Honestly, I like that you at this age want to get in shape, but you know it's important that you understand that 99% of your focus has to be in getting and then keeping healthy. Relax, it may be difficult but you're gonna make it, and also the healthier you are, the easier it will be to get a better body!";
+  } else if (languageValue == 2) {
+    if (age <= 12)
+      ageAdvice =
+        " Honestamente, eu gosto que você nesta idade queira entrar em forma, mas você sabe que é importante entender que, até chegar à adolescência, 99,99% do seu foco tem que ser em obter e se manter saudável. Relaxe, logo você poderá entrar em forma mais fácil do que agora e, mais importante, em um momento mais seguro da sua vida!";
+    else if (age >= 13 && age <= 17)
+      ageAdvice =
+        " É legal que você queira entrar em forma, mas ainda assim, é importante aquele blá-blá-blá de -você tem que se manter saudável e isso é tudo que importa-? Bem, tipo, quero dizer, no seu primeiro adolescente a coisa mais importante obviamente é a sua saúde, mas você está mais do que certo em querer ter um corpo melhor!";
+    else if (age >= 18 && age <= 30)
+      ageAdvice =
+        " Como você está na sua melhor faixa etária para entrar em forma, isso não significa que deva ser fácil, mas significa que você tem a maior quantidade de hormônios que o ajudam no processo!";
+    else if (age >= 31 && age <= 45)
+      ageAdvice =
+        " É legal que você queira entrar em forma, mas ainda assim, é importante aquele blá-blá-blá de -você tem que se manter saudável e isso é tudo que importa-? Bem, tipo, quero dizer, é definitivamente importante que você possa manter uma boa saúde, mas você está mais do que certo em querer ter um corpo melhor, e quanto mais saudável você estiver, mais fácil será entrar em forma!";
+    else if (age >= 46 && age <= 60)
+      ageAdvice =
+        " É legal que você queira entrar em forma, mas ainda assim, é importante aquele blá-blá-blá de -você tem que se manter saudável e isso é tudo que importa-? Bem, tipo, quero dizer, com quase 40, 50 e 60 anos, a coisa mais importante é obviamente a sua saúde, mas você está mais do que certo em querer ter um corpo melhor!";
+    else if (age >= 61)
+      ageAdvice =
+        " Honestamente, eu gosto que você nesta idade queira entrar em forma, mas você sabe que é importante entender que 99% do seu foco tem que ser em ficar e então se manter saudável. Relaxe, pode ser difícil, mas você vai conseguir, e quanto mais saudável você for, mais fácil será conseguir um corpo melhor!";
+  } else if (languageValue == 3) {
+    if (age <= 12)
+      ageAdvice =
+        " Honnêtement, j'aime que vous, à ce jeune âge, vouliez vous mettre en forme, mais vous savez qu'il est important que vous compreniez que jusqu'à ce que vous atteigniez votre adolescence, 99,99% de votre objectif doit être de rester en bonne santé. Détendez-vous, bientôt vous pourrez vous mettre en forme plus facilement que maintenant et, surtout, à un moment plus sûr de votre vie!";
+    else if (age >= 13 && age <= 17)
+      ageAdvice =
+        " C'est cool que vous vouliez vous mettre en forme, mais quand même, c'est important que yada yada de -vous devez rester en bonne santé et c'est tout ce qui compte-? Eh bien, un peu, je veux dire, à votre jeune adolescent, la chose la plus importante est évidemment votre santé, mais vous avez plus que raison de vouloir avoir un meilleur corps!";
+    else if (age >= 18 && age <= 30)
+      ageAdvice =
+        " Puisque vous êtes à votre meilleure tranche d'âge pour vous mettre en forme, cela ne signifie pas que ce doit être facile, mais cela signifie que vous avez le plus d'hormones qui vous aident tout au long du processus!";
+    else if (age >= 31 && age <= 45)
+      ageAdvice =
+        " C'est cool que vous vouliez vous mettre en forme, mais quand même, c'est important que yada yada de -vous devez rester en bonne santé et c'est tout ce qui compte-? Eh bien, un peu, je veux dire, il est vraiment important que vous puissiez rester en bonne santé, mais vous avez tout à fait raison de vouloir avoir un meilleur corps, et plus vous êtes en bonne santé, plus vous êtes en forme!";
+    else if (age >= 46 && age <= 60)
+      ageAdvice =
+        " C'est cool que vous vouliez vous mettre en forme, mais quand même, c'est important que yada yada de -vous devez rester en bonne santé et c'est tout ce qui compte-? Eh bien, un peu, je veux dire, à la fin de la quarantaine, au début de la cinquantaine et au début de la soixantaine, la chose la plus importante est évidemment votre santé, mais vous avez tout à fait raison de vouloir avoir un meilleur corps!";
+    else if (age >= 61)
+      ageAdvice =
+        " Honnêtement, j'aime le fait que vous, à cet âge, vouliez vous mettre en forme, mais vous savez qu'il est important que vous compreniez que 99% de votre objectif doit être de devenir et de rester en bonne santé. Détendez-vous, cela peut être difficile mais vous y arriverez, et plus vous serez en santé, plus il sera facile d'avoir un meilleur corps!";
+  } else if (languageValue == 4) {
+    if (age <= 12)
+      ageAdvice =
+        " Honestamente, me gusta que a esta edad quieras ponerte en forma, pero sabes que es importante que entiendas que hasta que llegues a la adolescencia, el 99,99% de tu enfoque debe estar en estar y mantenerte saludable. Relájate, pronto podrás ponerte en forma más fácilmente que ahora y, lo que es más importante, ¡en un momento más seguro de tu vida!";
+    else if (age >= 13 && age <= 17)
+      ageAdvice =
+        " Es genial que quieras ponerte en forma, pero aún así, es importante que yada yada de -tienes que mantenerte saludable y eso es todo lo que importa-. Bueno, un poco, quiero decir, en la adolescencia temprana lo más importante es obviamente tu salud, ¡pero tienes más razón en querer tener un cuerpo mejor!";
+    else if (age >= 18 && age <= 30)
+      ageAdvice =
+        " Ya que estás en tu mejor rango de edad para ponerte en forma, eso no significa que tenga que ser fácil, ¡pero significa que tienes la mayor cantidad de hormonas que te ayudan en el proceso!";
+    else if (age >= 31 && age <= 45)
+      ageAdvice =
+        " Es genial que quieras ponerte en forma, pero aún así, es importante que yada yada de -tienes que mantenerte saludable y eso es todo lo que importa-. Bueno, un poco, quiero decir, definitivamente es importante que puedas mantener una buena salud, pero tienes más razón en querer tener un mejor cuerpo, ¡y cuanto más saludable estés, más fácil será ponerte en forma!";
+    else if (age >= 46 && age <= 60)
+      ageAdvice =
+        " Es genial que quieras ponerte en forma, pero aún así, es importante que yada yada de -tienes que mantenerte saludable y eso es todo lo que importa-. Bueno, un poco, quiero decir, a finales de los 40, principios de los 50 y 60 lo más importante es obviamente su salud, ¡pero tiene más razón en querer tener un cuerpo mejor!";
+    else if (age >= 61)
+      ageAdvice =
+        " Honestamente, me gusta que a esta edad quieras ponerte en forma, pero sabes que es importante que comprendas que el 99% de tu enfoque tiene que estar en estar y luego en mantenerte saludable. Relájate, puede ser difícil, pero lo lograrás, y además, cuanto más saludable estés, ¡más fácil será tener un mejor cuerpo!";
+  }
+}
 // file name according to the language
 // functions to download file with result
 function downloadData(filename, text) {
@@ -2175,7 +2297,7 @@ function result() {
 }
 function resultTransition() {
   idBar.style.display = "block";
-  const num = document.querySelector(".number");
+  const num = document.querySelectorAll(".number");
   setInterval(() => {
     if (counter == 5) h4Config.innerHTML = `${processing}.`;
     if (counter == 10) h4Config.innerHTML = `${processing}..`;

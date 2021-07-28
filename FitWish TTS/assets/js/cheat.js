@@ -48,21 +48,26 @@ function español() {
 }
 function themeTypeLight() {
   import("./script").then(({ themeTypeLight: defaultLight }) => defaultLight());
-  for (let el of document.querySelector(".headingObjInputId"))
+  for (let el of document.querySelectorAll(".headingObjInputId"))
     el.style.backgroundColor = "#D0FEFE";
 }
 function themeTypeDark() {
   import("./script").then(({ themeTypeDark: defaultDark }) => defaultDark());
-  for (let el of document.querySelector(".headingObjInputId"))
+  for (let el of document.querySelectorAll(".headingObjInputId"))
     el.style.backgroundColor = "#9DBCD4";
 }
 
 function hoverOutColorChangeFunc(hoveredOutId) {
   document.getElementById(hoveredOutId).style.backgroundColor = "teal";
-  if (cheat == 1) colorChangeIdNoneCheat.style.backgroundColor = "#7395AE";
-  else if (cheat == 2) colorChangeIdLowCheat.style.backgroundColor = "#7395AE";
-  else if (cheat == 3) colorChangeIdMidCheat.style.backgroundColor = "#7395AE";
-  else if (cheat == 4) colorChangeIdHighCheat.style.backgroundColor = "#7395AE";
+  if (getCheat() == 1) colorChangeIdNoneCheat.style.backgroundColor = "#7395AE";
+  else if (getCheat() == 2)
+    colorChangeIdLowCheat.style.backgroundColor = "#7395AE";
+  else if (getCheat() == 3)
+    colorChangeIdMidCheat.style.backgroundColor = "#7395AE";
+  else if (getCheat() == 4)
+    colorChangeIdHighCheat.style.backgroundColor = "#7395AE";
 }
 
-const setCheat = (food) => (cheat = food);
+const setCheat = (cheat) =>
+  sessionStorage.setItem("cheat", JSON.stringify(cheat));
+const getCheat = () => JSON.parse(sessionStorage.getItem("cheat"));

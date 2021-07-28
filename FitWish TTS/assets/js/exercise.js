@@ -48,24 +48,27 @@ function español() {
 }
 function themeTypeLight() {
   import("./script").then(({ themeTypeLight: defaultLight }) => defaultLight());
-  for (let el of document.querySelector(".headingObjInputId"))
+  for (let el of document.querySelectorAll(".headingObjInputId"))
     el.style.backgroundColor = "#D0FEFE";
 }
 function themeTypeDark() {
   import("./script").then(({ themeTypeDark: defaultDark }) => defaultDark());
-  for (let el of document.querySelector(".headingObjInputId"))
+  for (let el of document.querySelectorAll(".headingObjInputId"))
     el.style.backgroundColor = "#9DBCD4";
 }
 
 function hoverOutColorChangeFunc(hoveredOutId) {
   document.getElementById(hoveredOutId).style.backgroundColor = "teal";
-  if (exercise == 1) colorChangeIdNoneXercise.style.backgroundColor = "#7395AE";
-  else if (exercise == 2)
+  if (getExecise() == 1)
+    colorChangeIdNoneXercise.style.backgroundColor = "#7395AE";
+  else if (getExecise() == 2)
     colorChangeIdLowXercise.style.backgroundColor = "#7395AE";
-  else if (exercise == 3)
+  else if (getExecise() == 3)
     colorChangeIdMidXercise.style.backgroundColor = "#7395AE";
-  else if (exercise == 4)
+  else if (getExecise() == 4)
     colorChangeIdHighXercise.style.backgroundColor = "#7395AE";
 }
 
-const setExecise = (workout) => (exercise = workout);
+const getExecise = () => JSON.parse(sessionStorage.getItem("exercise"));
+const setExecise = (exercise) =>
+  sessionStorage.setItem("exercise", JSON.stringify(exercise));

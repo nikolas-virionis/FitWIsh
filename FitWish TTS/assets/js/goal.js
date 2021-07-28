@@ -35,24 +35,26 @@ function español() {
 }
 function themeTypeLight() {
   import("./script").then(({ themeTypeLight: defaultLight }) => defaultLight());
-  for (let el of document.querySelector(".headingObjInputId"))
+  for (let el of document.querySelectorAll(".headingObjInputId"))
     el.style.backgroundColor = "#D0FEFE";
 }
 function themeTypeDark() {
   import("./script").then(({ themeTypeDark: defaultDark }) => defaultDark());
-  for (let el of document.querySelector(".headingObjInputId"))
+  for (let el of document.querySelectorAll(".headingObjInputId"))
     el.style.backgroundColor = "#9DBCD4";
 }
 
 function hoverOutColorChangeFunc(hoveredOutId) {
   document.getElementById(hoveredOutId).style.backgroundColor = "teal";
-  if (goal == "bulking") colorChangeIdBulk.style.backgroundColor = "#7395AE";
-  else if (goal == "cutting")
+  if (getGoal() == "bulking")
+    colorChangeIdBulk.style.backgroundColor = "#7395AE";
+  else if (getGoal() == "cutting")
     colorChangeIdCut.style.backgroundColor = "#7395AE";
-  else if (goal == "surplus")
+  else if (getGoal() == "surplus")
     colorChangeIdSurp.style.backgroundColor = "#7395AE";
-  else if (goal == "muscle")
+  else if (getGoal() == "muscle")
     colorChangeIdMuscle.style.backgroundColor = "#7395AE";
 }
 
-const bodyGoalFunction = (goalMethod) => (goal = goalMethod);
+const getGoal = () => sessionStorage.getItem("goal");
+const goal = (goal) => sessionStorage.setItem("goal", goal);

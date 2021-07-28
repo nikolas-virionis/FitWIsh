@@ -315,8 +315,8 @@ const startNewTry = (tryN) => {
   tryNumber = tryN;
   window.location.href = "intro.html";
 };
-const overwriteTest2 = (paramas) => {
-  if (paramas == 1) {
+const overwriteTest2 = (testToBeOverwritten) => {
+  if (testToBeOverwritten == 1) {
     if (language == "english")
       var confirmOverwrite = confirm(
         `Are you sure you want to overwrite the test made as ${contentArray[0].inputName}? It will be forever destroyed.`
@@ -333,7 +333,7 @@ const overwriteTest2 = (paramas) => {
       var confirmOverwrite = confirm(
         `¿Estás seguro de que quieres sobrescribir la prueba realizada como ${contentArray[0].inputName}? Será destruido para siempre.`
       );
-    if (confirmOverwrite == true) {
+    if (confirmOverwrite) {
       contentArray.shift();
       localStorage.setItem("contentArray", JSON.stringify(contentArray));
       startNewTry(1);
@@ -346,7 +346,7 @@ const overwriteTest2 = (paramas) => {
       firstPageBtnDelete.style.display = "none";
       firstPageBtnStart.style.display = "none";
     }
-  } else if (paramas == 2) {
+  } else if (testToBeOverwritten == 2) {
     if (language == "english")
       var confirmOverwrite = confirm(
         `Are you sure you want to overwrite the test made as ${contentArray[1].inputName}? It will be forever destroyed.`
@@ -363,7 +363,7 @@ const overwriteTest2 = (paramas) => {
       var confirmOverwrite = confirm(
         `¿Estás seguro de que quieres sobrescribir la prueba realizada como ${contentArray[1].inputName}? Será destruido para siempre.`
       );
-    if (confirmOverwrite == true) {
+    if (confirmOverwrite) {
       contentArray.pop();
       localStorage.setItem("contentArray", JSON.stringify(contentArray));
       startNewTry(2);
@@ -388,7 +388,7 @@ function overwriteTest() {
       var confirmOverwrite = confirm(
         `¿Estás seguro de que quieres sobrescribir la prueba realizada como ${contentArray[0].inputName}? Será destruido para siempre.`
       );
-    if (confirmOverwrite == true) {
+    if (confirmOverwrite) {
       contentArray.shift();
       localStorage.setItem("contentArray", JSON.stringify(contentArray));
       startNewTry(1);
@@ -416,7 +416,7 @@ function deleteTests() {
     var deletePrevTests = confirm(
       "¿Estás seguro de que quieres eliminar todas las pruebas?"
     );
-  if (deletePrevTests == true) {
+  if (deletePrevTests) {
     localStorage.removeItem("contentArray");
     window.location.reload();
   }

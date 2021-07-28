@@ -105,6 +105,7 @@ const enterFunc = (event) =>
   event.key === "Enter" ? nextPageInterpreter() : "";
 export function english() {
   language = "english";
+  sessionStorage.setItem("language", language);
   languageValue = 1;
   linkTitle.title = "FitWish Home Page";
   buttonFirst.value = "Attempt's Menu";
@@ -142,6 +143,7 @@ export function english() {
 }
 export function português() {
   language = "português";
+  sessionStorage.setItem("language", language);
   languageValue = 2;
   linkTitle.title = "Página inicial do FitWish";
   buttonFirst.value = "Menu de Tentativas";
@@ -179,6 +181,7 @@ export function português() {
 }
 export function français() {
   language = "français";
+  sessionStorage.setItem("language", language);
   languageValue = 3;
   linkTitle.title = "Page d'accueil FitWish";
   buttonFirst.value = "Menu des tentatives";
@@ -219,6 +222,7 @@ export function français() {
 }
 export function español() {
   language = "español";
+  sessionStorage.setItem("language", language);
   languageValue = 4;
   linkTitle.title = "Página de inicio de FitWish";
   buttonFirst.value = "Menú de intentos";
@@ -263,7 +267,7 @@ export function themeTypeLight() {
   rightsidebarButton.style.color = "black";
   document.body.style.cssText = "background-color:white; color:#1F3B4D;";
   document.getElementById("headingObjInputIdHead").style.color = "black";
-  for (let button of document.querySelector("#pageBtnsId").children) {
+  for (let button of document.querySelectorAll("#pageBtnsId").children) {
     button.classList.remove("aboutContactBtn");
     button.classList.add("contactAboutBtn");
   }
@@ -274,7 +278,7 @@ export function themeTypeDark() {
   rightsidebarButton.style.color = "aliceblue";
   document.body.style.cssText = "background-color:#12232A; color:#1F3B4D;";
   document.getElementById("headingObjInputIdHead").style.color = "aliceblue";
-  for (let button of document.querySelector("#pageBtnsId").children) {
+  for (let button of document.querySelectorAll("#pageBtnsId").children) {
     button.classList.add("aboutContactBtn");
     button.classList.remove("contactAboutBtn");
   }

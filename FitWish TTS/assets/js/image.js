@@ -46,35 +46,59 @@ function español() {
 }
 function themeTypeLight() {
   import("./script").then(({ themeTypeLight: defaultLight }) => defaultLight());
-  for (let el of document.querySelector(".headingObjInputId"))
+  for (let el of document.querySelectorAll(".headingObjInputId"))
     el.style.backgroundColor = "#D0FEFE";
 }
 function themeTypeDark() {
   import("./script").then(({ themeTypeDark: defaultDark }) => defaultDark());
-  for (let el of document.querySelector(".headingObjInputId"))
+  for (let el of document.querySelectorAll(".headingObjInputId"))
     el.style.backgroundColor = "#9DBCD4";
 }
 
+window.addEventListener("load", () => {
+  if (!sessionStorage.getItem("gender")) {
+    if (language == "english")
+      alert(
+        "In order to access the body fat evaluation page, choosing a gender is necessary"
+      );
+    else if (language == "português")
+      alert(
+        "Para acessar a página de avaliação de gordura corporal, é necessário escolher o gênero"
+      );
+    else if (language == "français")
+      alert(
+        "Afin d'accéder à la page d'évaluation de la graisse corporelle, le choix d'un sexe est nécessaire"
+      );
+    else if (language == "español")
+      alert(
+        "Para acceder a la página de evaluación de la grasa corporal, es necesario elegir un género"
+      );
+    window.location.href = "genderUnit.html";
+  } else loadImg(sessionStorage.getItem("gender"));
+});
+
 function hoverOutColorChangeFunc(hoveredOutId) {
   document.getElementById(hoveredOutId).style.backgroundColor = "teal";
-  if (currentBody == 1) colorChangeIdBody1.style.backgroundColor = "#7395AE";
-  else if (currentBody == 2)
+  if (getCurrentBody() == 1)
+    colorChangeIdBody1.style.backgroundColor = "#7395AE";
+  else if (getCurrentBody() == 2)
     colorChangeIdBody2.style.backgroundColor = "#7395AE";
-  else if (currentBody == 3)
+  else if (getCurrentBody() == 3)
     colorChangeIdBody3.style.backgroundColor = "#7395AE";
-  else if (currentBody == 4)
+  else if (getCurrentBody() == 4)
     colorChangeIdBody4.style.backgroundColor = "#7395AE";
-  else if (currentBody == 5)
+  else if (getCurrentBody() == 5)
     colorChangeIdBody5.style.backgroundColor = "#7395AE";
-  else if (currentBody == 6)
+  else if (getCurrentBody() == 6)
     colorChangeIdBody6.style.backgroundColor = "#7395AE";
-  else if (currentBody == 7)
+  else if (getCurrentBody() == 7)
     colorChangeIdBody7.style.backgroundColor = "#7395AE";
-  else if (currentBody == 8)
+  else if (getCurrentBody() == 8)
     colorChangeIdBody8.style.backgroundColor = "#7395AE";
-  else if (currentBody == 9)
+  else if (getCurrentBody() == 9)
     colorChangeIdBody9.style.backgroundColor = "#7395AE";
 
+  let age = sessionStorage.getItem("age");
   if (goalBody == 1) {
     if (age >= 15 && age <= 40)
       colorChangeIdGoal1.style.backgroundColor = "#7395AE";
@@ -99,15 +123,17 @@ function hoverOutColorChangeFunc(hoveredOutId) {
   else if (goalBody == 9) colorChangeIdGoal9.style.backgroundColor = "#7395AE";
 }
 
-img = document.createElement("img");
-if (gender == "male")
-  setImg(
-    "https://crossfitclandestine.files.wordpress.com/2019/05/xbody-fat-chart-men.png.pagespeed.ic_.57b54gdukq.jpg"
-  );
-else
-  setImg(
-    "https://crossfitclandestine.files.wordpress.com/2019/05/body-fat-chart-women.png.pagespeed.ce_.9463kejyyr.png"
-  );
+function loadImg(gender) {
+  img = document.createElement("img");
+  if (gender == "male")
+    setImg(
+      "https://crossfitclandestine.files.wordpress.com/2019/05/xbody-fat-chart-men.png.pagespeed.ic_.57b54gdukq.jpg"
+    );
+  else
+    setImg(
+      "https://crossfitclandestine.files.wordpress.com/2019/05/body-fat-chart-women.png.pagespeed.ce_.9463kejyyr.png"
+    );
+}
 
 function openGenderCenterNav() {
   document.getElementById("myGenderCenterNav").style.width = "70vw";
@@ -180,10 +206,12 @@ function changeColor10(
       document.getElementById(element).style.backgroundColor = "teal";
   }
 }
-const setCurrentBody = (body) => (currentBody = body);
-// age conditionals function
+const getCurrentBody = () => JSON.parse(sessionStorage.getItem("currentBody"));
+const setCurrentBody = (body) =>
+  sessionStorage.setItem("currentBody", JSON.stringify(body));
+
+const getGoalBody = () => JSON.parse(sessionStorage.getItem("goalBody"));
 const setGoalBody = (goal) => {
-  goalBody = goal;
   if (
     !(
       (age >= 15 && age <= 40) ||
@@ -278,5 +306,5 @@ const setGoalBody = (goal) => {
           "Esto no me alegrará escucharlo, me rompe el corazón decirlo también, porque agradezco tu ferviente voluntad de ponerte en forma, sin embargo para tu edad no es saludable obtener este pequeño porcentaje de grasa corporal, intenta un poco más alto ahora, dado que la cantidad de grasa en su cuerpo crece naturalmente con el envejecimiento. intente en lugar de perder tanta grasa, ganando más músculo para compensar. De esta manera, podrá llegar a una meta corporal factible en un camino lo más seguro posible."
         );
     }
-  }
+  } else sessionStorage.setItem("goalBody", JSON.stringify(goal));
 };

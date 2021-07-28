@@ -76,22 +76,22 @@
             <h1 class="classHeading headingObjInputId" id="headingObjInputIdGoal"><i>Goal:</i></h1>
         </b> <input class="buttonHalfWidth button btnFont25" id="colorChangeIdBulk"
             onmouseover='hoverColorChangeFunc("colorChangeIdBulk")'
-            onclick="bodyGoalFunction('bulking'); changeColor4('colorChangeIdBulk', 'colorChangeIdCut', 'colorChangeIdMuscle', 'colorChangeIdSurp');"
+            onclick="goal('bulking'); changeColor4('colorChangeIdBulk', 'colorChangeIdCut', 'colorChangeIdMuscle', 'colorChangeIdSurp');"
             onmouseout='hoverOutColorChangeFunc("colorChangeIdBulk")' type="button" value="Bulking">
         <input class="buttonHalfWidth button btnFont25" id="colorChangeIdCut"
             onmouseover='hoverColorChangeFunc("colorChangeIdCut")'
             onmouseout='hoverOutColorChangeFunc("colorChangeIdCut")'
-            onclick="bodyGoalFunction('cutting'); changeColor4('colorChangeIdCut', 'colorChangeIdMuscle', 'colorChangeIdSurp', 'colorChangeIdBulk');"
+            onclick="goal('cutting'); changeColor4('colorChangeIdCut', 'colorChangeIdMuscle', 'colorChangeIdSurp', 'colorChangeIdBulk');"
             type="button" value="Cutting">
         <input class="buttonFullWidth button btnFont25" id="colorChangeIdSurp"
             onmouseover='hoverColorChangeFunc("colorChangeIdSurp")'
             onmouseout='hoverOutColorChangeFunc("colorChangeIdSurp")'
-            onclick="bodyGoalFunction('surplus'); changeColor4('colorChangeIdSurp', 'colorChangeIdBulk', 'colorChangeIdCut', 'colorChangeIdMuscle');"
+            onclick="goal('surplus'); changeColor4('colorChangeIdSurp', 'colorChangeIdBulk', 'colorChangeIdCut', 'colorChangeIdMuscle');"
             type="button" value="Get rid of fat surplus">
         <input class="buttonFullWidth button btnFont25" id="colorChangeIdMuscle"
             onmouseover='hoverColorChangeFunc("colorChangeIdMuscle")'
             onmouseout='hoverOutColorChangeFunc("colorChangeIdMuscle")'
-            onclick="bodyGoalFunction('muscle'); changeColor4('colorChangeIdMuscle', 'colorChangeIdSurp', 'colorChangeIdBulk', 'colorChangeIdCut');"
+            onclick="goal('muscle'); changeColor4('colorChangeIdMuscle', 'colorChangeIdSurp', 'colorChangeIdBulk', 'colorChangeIdCut');"
             type="button" value="Gaining weight and muscle">
     </strong>
     <div id="footerDiv">

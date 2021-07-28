@@ -39,20 +39,25 @@ function español() {
 }
 function themeTypeLight() {
   import("./script").then(({ themeTypeLight: defaultLight }) => defaultLight());
-  for (let el of document.querySelector(".headingObjInputId"))
+  for (let el of document.querySelectorAll(".headingObjInputId"))
     el.style.backgroundColor = "#D0FEFE";
 }
 function themeTypeDark() {
   import("./script").then(({ themeTypeDark: defaultDark }) => defaultDark());
-  for (let el of document.querySelector(".headingObjInputId"))
+  for (let el of document.querySelectorAll(".headingObjInputId"))
     el.style.backgroundColor = "#9DBCD4";
 }
 function hoverOutColorChangeFunc(hoveredOutId) {
   document.getElementById(hoveredOutId).style.backgroundColor = "teal";
-  if (meals == 1) colorChangeId2Meals.style.backgroundColor = "#7395AE";
-  else if (meals == 2) colorChangeId3Meals.style.backgroundColor = "#7395AE";
-  else if (meals == 3) colorChangeId4Meals.style.backgroundColor = "#7395AE";
-  else if (meals == 4) colorChangeId5Meals.style.backgroundColor = "#7395AE";
+  if (getMeals() == 1) colorChangeId2Meals.style.backgroundColor = "#7395AE";
+  else if (getMeals() == 2)
+    colorChangeId3Meals.style.backgroundColor = "#7395AE";
+  else if (getMeals() == 3)
+    colorChangeId4Meals.style.backgroundColor = "#7395AE";
+  else if (getMeals() == 4)
+    colorChangeId5Meals.style.backgroundColor = "#7395AE";
 }
 
-const setMeals = (food) => (meals = food);
+const getMeals = () => JSON.parse(sessionStorage.getItem("meals"));
+const setMeals = (meals) =>
+  sessionStorage.setItem("meals", JSON.stringify(meals));

@@ -37,69 +37,28 @@ function español() {
 }
 function themeTypeLight() {
   import("./script").then(({ themeTypeLight: defaultLight }) => defaultLight());
-  for (let el of document.querySelector(".headingObjInputId"))
+  for (let el of document.querySelectorAll(".headingObjInputId"))
     el.style.backgroundColor = "#D0FEFE";
 }
 function themeTypeDark() {
   import("./script").then(({ themeTypeDark: defaultDark }) => defaultDark());
-  for (let el of document.querySelector(".headingObjInputId"))
+  for (let el of document.querySelectorAll(".headingObjInputId"))
     el.style.backgroundColor = "#9DBCD4";
 }
 
 function hoverOutColorChangeFunc(hoveredOutId) {
   document.getElementById(hoveredOutId).style.backgroundColor = "teal";
-  if (bodytype == "ecto") colorChangeIdEcto.style.backgroundColor = "#7395AE";
-  else if (bodytype == "meso")
+  if (getBodyType() == "ecto")
+    colorChangeIdEcto.style.backgroundColor = "#7395AE";
+  else if (getBodyType() == "meso")
     colorChangeIdMeso.style.backgroundColor = "#7395AE";
-  else if (bodytype == "endo")
+  else if (getBodyType() == "endo")
     colorChangeIdEndo.style.backgroundColor = "#7395AE";
 }
 
 // body type
-const bodyType = (bodytt) => {
-  bodytype = bodytt;
-  if (languageValue == 1) {
-    if (bodytype == "ecto")
-      bodyTypeAdvice =
-        "since you are an ectomorph, you gotta have in mind that you naturally have a condition that makes you skinnier, having less fat but also less muscle.";
-    else if (bodytype == "meso")
-      bodyTypeAdvice =
-        "since you are a mesomorph, you gain muscle with moderate ease and lose fat also with some ease, genetically wise, so you got it 'easier than others', right? Yeah but nahh really. It's not because it's a little bit easier that it's easy to get seriously in shape, so then when you get it done you'll appreciate yourself even more, and that's what matters!";
-    else if (bodytype == "endo")
-      bodyTypeAdvice =
-        "since you are an endomorph, you gain both muscle and fat easily, makes bulking easy but makes it a lot more difficult to cut and get your body in shape.";
-  } else if (languageValue == 2) {
-    if (bodytype == "ecto")
-      bodyTypeAdvice =
-        "já que você é um ectomorfo, é preciso ter em mente que você tem naturalmente uma condição que o torna mais magro, tendo menos gordura, mas também menos músculos.";
-    else if (bodytype == "meso")
-      bodyTypeAdvice =
-        "como você é um mesomorfo, você ganha músculo com moderada facilidade e perde gordura também com alguma facilidade, geneticamente sábio, então você entendeu 'mais fácil do que os outros', certo? Sim, mas nahh realmente. Não é porque é um pouco mais fácil que é fácil entrar em forma seriamente, então, quando terminar, você se apreciará ainda mais, e é isso que importa!";
-    else if (bodytype == "endo")
-      bodyTypeAdvice =
-        "como você é um(a) endomorfo(a), você ganha músculo e gordura facilmente, torna mais fácil aumentar o volume, mas torna muito mais difícil secar e colocar seu corpo em forma.";
-  } else if (languageValue == 3) {
-    if (bodytype == "ecto")
-      bodyTypeAdvice =
-        "puisque vous êtes un ectomorphe, vous devez garder à l'esprit que vous avez naturellement une maladie qui vous rend plus maigre, avec moins de graisse mais aussi moins de muscle.";
-    else if (bodytype == "meso")
-      bodyTypeAdvice =
-        "puisque vous êtes un mésomorphe, vous gagnez du muscle avec une facilité modérée et perdez de la graisse également avec une certaine facilité, génétiquement sage, donc vous l'avez plus facile que les autres '', non? Ouais mais nahh vraiment. Ce n'est pas parce que c'est un peu plus facile qu'il est facile de se mettre sérieusement en forme, alors quand vous aurez terminé, vous vous apprécierez encore plus et c'est ce qui compte!";
-    else if (bodytype == "endo")
-      bodyTypeAdvice =
-        "puisque vous êtes un endomorphe, vous gagnez facilement du muscle et de la graisse, ce qui facilite le gonflement, mais il est beaucoup plus difficile de couper et de remettre votre corps en forme.";
-  } else if (languageValue == 4) {
-    if (bodytype == "ecto")
-      bodyTypeAdvice =
-        "como eres un ectomorfo, debes tener en cuenta que naturalmente tienes una condición que te hace más delgado, con menos grasa pero también con menos músculo.";
-    else if (bodytype == "meso")
-      bodyTypeAdvice =
-        "como eres mesomorfo, ganas músculo con moderada facilidad y pierdes grasa también con cierta facilidad, genéticamente, así que lo conseguiste 'más fácil que otros', ¿verdad? Sí, pero realmente no. No es porque sea un poco más fácil que sea fácil ponerse en forma seriamente, así que cuando lo termines te apreciarás aún más, ¡y eso es lo que importa!";
-    else if (bodytype == "endo")
-      bodyTypeAdvice =
-        "como eres un endomorfo, ganas músculo y grasa fácilmente, facilita el volumen pero hace que sea mucho más difícil secar y poner tu cuerpo en forma.";
-  }
-};
+const bodyType = (bodytype) => sessionStorage.setItem("bodytype", bodytype);
+const getBodyType = () => sessionStorage.getItem("bodytype");
 function nop() {
   if (languageValue == 1)
     alert(

@@ -4,21 +4,23 @@ function english() {
   document.getElementById("colorChangeIdMale").value = "Male";
   document.getElementById("colorChangeIdFemale").value = "Female";
   document.getElementById("headingObjInputIdUnit").innerHTML = "Unit";
-  document.getElementById("colorChangeIdMetric").value = `Metric${defaultUnit}`;
+  document.getElementById("colorChangeIdMetric").value = `Metric`;
   document.getElementById("colorChangeIdImperial").value = "Imperial";
+  metricSystem = "Metric";
+  imperialSystem = "Imperial";
 }
 function português() {
   import("./script").then(({ português: defaultPortuguês }) =>
     defaultPortuguês()
   );
   document.getElementById("headingObjInputIdUnit").innerHTML = "Unidade";
-  document.getElementById(
-    "colorChangeIdMetric"
-  ).value = `Métrico${defaultUnit}`;
+  document.getElementById("colorChangeIdMetric").value = `Métrico`;
   document.getElementById("colorChangeIdImperial").value = "Imperial";
   document.getElementById("headingObjInputIdGender").innerHTML = "Gênero";
   document.getElementById("colorChangeIdMale").value = "Masculino";
   document.getElementById("colorChangeIdFemale").value = "Feminino";
+  metricSystem = "Métrico";
+  imperialSystem = "Imperial";
 }
 function français() {
   import("./script").then(({ français: defaultFrançais }) => defaultFrançais());
@@ -26,10 +28,10 @@ function français() {
   document.getElementById("colorChangeIdMale").value = "Mâle";
   document.getElementById("colorChangeIdFemale").value = "Femelle";
   document.getElementById("headingObjInputIdUnit").innerHTML = "Unité";
-  document.getElementById(
-    "colorChangeIdMetric"
-  ).value = `Métrique${defaultUnit}`;
+  document.getElementById("colorChangeIdMetric").value = `Métrique`;
   document.getElementById("colorChangeIdImperial").value = "Impérial";
+  metricSystem = "Métrique";
+  imperialSystem = "Impérial";
 }
 function español() {
   import("./script").then(({ español: defaultEspañol }) => defaultEspañol());
@@ -37,59 +39,44 @@ function español() {
   document.getElementById("colorChangeIdMale").value = "Masculino";
   document.getElementById("colorChangeIdFemale").value = "Femenino";
   document.getElementById("headingObjInputIdUnit").innerHTML = "Unidad";
-  document.getElementById(
-    "colorChangeIdMetric"
-  ).value = `Métrico${defaultUnit}`;
+  document.getElementById("colorChangeIdMetric").value = `Métrico`;
   document.getElementById("colorChangeIdImperial").value = "Imperial";
+  metricSystem = "Métrico";
+  imperialSystem = "Imperial";
 }
 function themeTypeLight() {
   import("./script").then(({ themeTypeLight: defaultLight }) => defaultLight());
-  for (let el of document.querySelector(".headingObjInputId"))
+  for (let el of document.querySelectorAll(".headingObjInputId"))
     el.style.backgroundColor = "#D0FEFE";
 }
 function themeTypeDark() {
   import("./script").then(({ themeTypeDark: defaultDark }) => defaultDark());
-  for (let el of document.querySelector(".headingObjInputId"))
+  for (let el of document.querySelectorAll(".headingObjInputId"))
     el.style.backgroundColor = "#9DBCD4";
 }
 
 function hoverOutColorChangeFunc(hoveredOutId) {
   document.getElementById(hoveredOutId).style.backgroundColor = "teal";
-  if (gender == "male") colorChangeIdMale.style.backgroundColor = "#7395AE";
-  else if (gender == "female")
+  if (getGender() == "male")
+    colorChangeIdMale.style.backgroundColor = "#7395AE";
+  else if (getGender() == "female")
     colorChangeIdFemale.style.backgroundColor = "#7395AE";
 
-  if (unit == "metric" && metricVerify >= 2)
+  if (getUnit() == "metric")
     colorChangeIdMetric.style.backgroundColor = "#7395AE";
-  else if (unit == "imperial")
+  else if (getUnit() == "imperial")
     colorChangeIdImperial.style.backgroundColor = "#7395AE";
 }
 
-//2 functions about gender
-function male() {
-  gender = "male";
-}
-function female() {
-  gender = "female";
-}
+//gender
+const gender = (gender) => sessionStorage.setItem("gender", gender);
+const getGender = () => sessionStorage.getItem("gender");
 // unit system
-function unitSystem(unitSys) {
-  unit = unitSys;
-  if (unit == "metric") {
-    metricDataInputId.style.display = "block";
-    imperialDataInputId.style.display = "none";
-    metricVerify += 1;
-  } else if (unit == "imperial") {
-    metricDataInputId.style.display = "none";
-    imperialDataInputId.style.display = "block";
-  }
-}
+const unit = (unit) => sessionStorage.setItem("unit", unit);
+const getUnit = () => sessionStorage.getItem("unit");
+
+//hover nano instructions on units used
 const metricUnit = () => (colorChangeIdMetric.value += ` (kg / m)`);
-function metricUnitCloak() {
-  if ((unit == "metric" && metricVerify >= 2) || unit == "imperial")
-    colorChangeIdMetric.value = `${metricNoDefault}`;
-  else colorChangeIdMetric.value = `${metricDefault}`;
-}
+const metricUnitCloak = () => (colorChangeIdMetric.value = metricSystem);
 const imperialUnit = () => (colorChangeIdImperial.value += ` (lbs / in)`);
-const imperialUnitCloak = () =>
-  (colorChangeIdImperial.value = ` ${imperialDefault}`);
+const imperialUnitCloak = () => (colorChangeIdImperial.value = imperialSystem);

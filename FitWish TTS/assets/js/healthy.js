@@ -48,24 +48,27 @@ function español() {
 }
 function themeTypeLight() {
   import("./script").then(({ themeTypeLight: defaultLight }) => defaultLight());
-  for (let el of document.querySelector(".headingObjInputId"))
+  for (let el of document.querySelectorAll(".headingObjInputId"))
     el.style.backgroundColor = "#D0FEFE";
 }
 function themeTypeDark() {
   import("./script").then(({ themeTypeDark: defaultDark }) => defaultDark());
-  for (let el of document.querySelector(".headingObjInputId"))
+  for (let el of document.querySelectorAll(".headingObjInputId"))
     el.style.backgroundColor = "#9DBCD4";
 }
 
 function hoverOutColorChangeFunc(hoveredOutId) {
   document.getElementById(hoveredOutId).style.backgroundColor = "teal";
-  if (healthy == 1) colorChangeIdNoneHealthy.style.backgroundColor = "#7395AE";
-  else if (healthy == 2)
+  if (getHealthy() == 1)
+    colorChangeIdNoneHealthy.style.backgroundColor = "#7395AE";
+  else if (getHealthy() == 2)
     colorChangeIdLowHealthy.style.backgroundColor = "#7395AE";
-  else if (healthy == 3)
+  else if (getHealthy() == 3)
     colorChangeIdMidHealthy.style.backgroundColor = "#7395AE";
-  else if (healthy == 4)
+  else if (getHealthy() == 4)
     colorChangeIdHighHealthy.style.backgroundColor = "#7395AE";
 }
 
-const setHealthy = (food) => (healthy = food);
+const getHealthy = () => JSON.parse(sessionStorage.getItem("healthy"));
+const setHealthy = (healthy) =>
+  sessionStorage.setItem("healthy", JSON.stringify(healthy));
