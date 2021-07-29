@@ -325,7 +325,7 @@ export function themeTypeDark() {
   if (document.getElementById("headingObjInputIdHead"))
     document.getElementById("headingObjInputIdHead").style.color = "aliceblue";
   if (document.querySelector("#pageBtnsId"))
-    for (let button in document.querySelector("#pageBtnsId").children) {
+    for (let button of document.querySelector("#pageBtnsId").children) {
       button.classList.add("aboutContactBtn");
       button.classList.remove("contactAboutBtn");
     }
