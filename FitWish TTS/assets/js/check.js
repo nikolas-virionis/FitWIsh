@@ -1,22 +1,44 @@
 function english() {
-  import("./script").then(({ english: defaultEnglish }) => defaultEnglish());
+  import("./script.mjs").then(({ english: defaultEnglish }) =>
+    defaultEnglish()
+  );
 }
 function português() {
-  import("./script").then(({ português: defaultPortuguês }) =>
+  import("./script.mjs").then(({ português: defaultPortuguês }) =>
     defaultPortuguês()
   );
 }
 function français() {
-  import("./script").then(({ français: defaultFrançais }) => defaultFrançais());
+  import("./script.mjs").then(({ français: defaultFrançais }) =>
+    defaultFrançais()
+  );
 }
+
+window.addEventListener("load", () => {
+  window[sessionStorage.getItem("language")]();
+  switch (sessionStorage.getItem("theme")) {
+    case "light":
+      themeTypeLight();
+      break;
+    default:
+      themeTypeDark();
+  }
+});
+
 function español() {
-  import("./script").then(({ español: defaultEspañol }) => defaultEspañol());
+  import("./script.mjs").then(({ español: defaultEspañol }) =>
+    defaultEspañol()
+  );
 }
 function themeTypeLight() {
-  import("./script").then(({ themeTypeLight: defaultLight }) => defaultLight());
+  import("./script.mjs").then(({ themeTypeLight: defaultLight }) =>
+    defaultLight()
+  );
 }
 function themeTypeDark() {
-  import("./script").then(({ themeTypeDark: defaultDark }) => defaultDark());
+  import("./script.mjs").then(({ themeTypeDark: defaultDark }) =>
+    defaultDark()
+  );
 }
 
 const hoverOutColorChangeFunc = (hoveredOutId) =>

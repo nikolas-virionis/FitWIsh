@@ -1,5 +1,7 @@
 function english() {
-  import("./script").then(({ english: defaultEnglish }) => defaultEnglish());
+  import("./script.mjs").then(({ english: defaultEnglish }) =>
+    defaultEnglish()
+  );
   document.getElementById("name").placeholder = "Name Example: Nick";
   document.getElementById("age").placeholder = "Age Example: 24";
   document.getElementById("email").placeholder =
@@ -9,7 +11,7 @@ function english() {
   document.getElementById("headingTextInputIdEmail").innerHTML = "Email:";
 }
 function português() {
-  import("./script").then(({ português: defaultPortuguês }) =>
+  import("./script.mjs").then(({ português: defaultPortuguês }) =>
     defaultPortuguês()
   );
   document.getElementById("name").placeholder = "Exemplo de Nome: Nick";
@@ -21,7 +23,9 @@ function português() {
   document.getElementById("headingTextInputIdEmail").innerHTML = "Email:";
 }
 function français() {
-  import("./script").then(({ français: defaultFrançais }) => defaultFrançais());
+  import("./script.mjs").then(({ français: defaultFrançais }) =>
+    defaultFrançais()
+  );
   document.getElementById("name").placeholder = "Exemple de nom: Nick";
   document.getElementById("age").placeholder = "Exemple d'âge: 24 ";
   document.getElementById("email").placeholder =
@@ -31,7 +35,9 @@ function français() {
   document.getElementById("headingTextInputIdEmail").innerHTML = "Email:";
 }
 function español() {
-  import("./script").then(({ español: defaultEspañol }) => defaultEspañol());
+  import("./script.mjs").then(({ español: defaultEspañol }) =>
+    defaultEspañol()
+  );
   document.getElementById("name").placeholder = "Ejemplo de nombre: Nick";
   document.getElementById("age").placeholder = "Ejemplo de edad: 24";
   document.getElementById("email").placeholder =
@@ -42,12 +48,16 @@ function español() {
     "Correo electrónico:";
 }
 function themeTypeLight() {
-  import("./script").then(({ themeTypeLight: defaultLight }) => defaultLight());
+  import("./script.mjs").then(({ themeTypeLight: defaultLight }) =>
+    defaultLight()
+  );
   for (let input of document.querySelectorAll(".textInputClass"))
     input.style.cssText = "color: #1F3B4D;";
 }
 function themeTypeDark() {
-  import("./script").then(({ themeTypeDark: defaultDark }) => defaultDark());
+  import("./script.mjs").then(({ themeTypeDark: defaultDark }) =>
+    defaultDark()
+  );
   for (let input of document.querySelectorAll(".textInputClass"))
     input.style.cssText = "color: #DDD;";
 }
@@ -141,3 +151,14 @@ function validate() {
     }
   }
 }
+
+window.addEventListener("load", () => {
+  window[sessionStorage.getItem("language")]();
+  switch (sessionStorage.getItem("theme")) {
+    case "light":
+      themeTypeLight();
+      break;
+    default:
+      themeTypeDark();
+  }
+});

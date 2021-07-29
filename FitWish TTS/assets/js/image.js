@@ -1,5 +1,7 @@
 function english() {
-  import("./script").then(({ english: defaultEnglish }) => defaultEnglish());
+  import("./script.mjs").then(({ english: defaultEnglish }) =>
+    defaultEnglish()
+  );
   showImgBtn.innerHTML = "&#9776; Show Image";
   referenceImgTxt.innerHTML = "Reference Image:";
   backupGenderImg =
@@ -10,7 +12,7 @@ function english() {
     "Which one of these you think represent your goal the most?";
 }
 function português() {
-  import("./script").then(({ português: defaultPortuguês }) =>
+  import("./script.mjs").then(({ português: defaultPortuguês }) =>
     defaultPortuguês()
   );
   showImgBtn.innerHTML = "&#9776; Exibir Imagem";
@@ -23,7 +25,9 @@ function português() {
     "Qual dessas imagens representa melhor seu objetivo corporal?";
 }
 function français() {
-  import("./script").then(({ français: defaultFrançais }) => defaultFrançais());
+  import("./script.mjs").then(({ français: defaultFrançais }) =>
+    defaultFrançais()
+  );
   showImgBtn.innerHTML = "&#9776; Afficher l'image";
   referenceImgTxt.innerHTML = "Image de référence:";
   backupGenderImg =
@@ -34,7 +38,9 @@ function français() {
     "Selon vous, lequel de ces éléments représente le plus votre objectif?";
 }
 function español() {
-  import("./script").then(({ español: defaultEspañol }) => defaultEspañol());
+  import("./script.mjs").then(({ español: defaultEspañol }) =>
+    defaultEspañol()
+  );
   showImgBtn.innerHTML = "&#9776; Mostrar imagen";
   referenceImgTxt.innerHTML = "Imagen de referencia:";
   backupGenderImg =
@@ -45,17 +51,29 @@ function español() {
     "¿Cuál de estos crees que representa más tu objetivo?";
 }
 function themeTypeLight() {
-  import("./script").then(({ themeTypeLight: defaultLight }) => defaultLight());
+  import("./script.mjs").then(({ themeTypeLight: defaultLight }) =>
+    defaultLight()
+  );
   for (let el of document.querySelectorAll(".headingObjInputId"))
     el.style.backgroundColor = "#D0FEFE";
 }
 function themeTypeDark() {
-  import("./script").then(({ themeTypeDark: defaultDark }) => defaultDark());
+  import("./script.mjs").then(({ themeTypeDark: defaultDark }) =>
+    defaultDark()
+  );
   for (let el of document.querySelectorAll(".headingObjInputId"))
     el.style.backgroundColor = "#9DBCD4";
 }
 
 window.addEventListener("load", () => {
+  window[sessionStorage.getItem("language")]();
+  switch (sessionStorage.getItem("theme")) {
+    case "light":
+      themeTypeLight();
+      break;
+    default:
+      themeTypeDark();
+  }
   if (!sessionStorage.getItem("gender")) {
     if (language == "english")
       alert(

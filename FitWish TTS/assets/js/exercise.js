@@ -1,5 +1,7 @@
 function english() {
-  import("./script").then(({ english: defaultEnglish }) => defaultEnglish());
+  import("./script.mjs").then(({ english: defaultEnglish }) =>
+    defaultEnglish()
+  );
   document.getElementById("headingObjInputIdXercise").innerHTML =
     "High intensity exercise frequency:";
   document.getElementById("colorChangeIdNoneXercise").value = "None";
@@ -9,7 +11,7 @@ function english() {
     "5 or more times a week";
 }
 function português() {
-  import("./script").then(({ português: defaultPortuguês }) =>
+  import("./script.mjs").then(({ português: defaultPortuguês }) =>
     defaultPortuguês()
   );
   document.getElementById("headingObjInputIdXercise").innerHTML =
@@ -23,7 +25,9 @@ function português() {
     "5 ou mais vezes por semana";
 }
 function français() {
-  import("./script").then(({ français: defaultFrançais }) => defaultFrançais());
+  import("./script.mjs").then(({ français: defaultFrançais }) =>
+    defaultFrançais()
+  );
   document.getElementById("headingObjInputIdXercise").innerHTML =
     "Fréquence d'exercice à haute intensité:";
   document.getElementById("colorChangeIdNoneXercise").value = "Aucun";
@@ -35,7 +39,9 @@ function français() {
     "5 fois ou plus par semaine";
 }
 function español() {
-  import("./script").then(({ español: defaultEspañol }) => defaultEspañol());
+  import("./script.mjs").then(({ español: defaultEspañol }) =>
+    defaultEspañol()
+  );
   document.getElementById("headingObjInputIdXercise").innerHTML =
     "Frecuencia de ejercicio de alta intensidad:";
   document.getElementById("colorChangeIdNoneXercise").value = "Ninguno";
@@ -47,12 +53,16 @@ function español() {
     "5 o más veces por semana";
 }
 function themeTypeLight() {
-  import("./script").then(({ themeTypeLight: defaultLight }) => defaultLight());
+  import("./script.mjs").then(({ themeTypeLight: defaultLight }) =>
+    defaultLight()
+  );
   for (let el of document.querySelectorAll(".headingObjInputId"))
     el.style.backgroundColor = "#D0FEFE";
 }
 function themeTypeDark() {
-  import("./script").then(({ themeTypeDark: defaultDark }) => defaultDark());
+  import("./script.mjs").then(({ themeTypeDark: defaultDark }) =>
+    defaultDark()
+  );
   for (let el of document.querySelectorAll(".headingObjInputId"))
     el.style.backgroundColor = "#9DBCD4";
 }
@@ -72,3 +82,14 @@ function hoverOutColorChangeFunc(hoveredOutId) {
 const getExecise = () => JSON.parse(sessionStorage.getItem("exercise"));
 const setExecise = (exercise) =>
   sessionStorage.setItem("exercise", JSON.stringify(exercise));
+
+window.addEventListener("load", () => {
+  window[sessionStorage.getItem("language")]();
+  switch (sessionStorage.getItem("theme")) {
+    case "light":
+      themeTypeLight();
+      break;
+    default:
+      themeTypeDark();
+  }
+});

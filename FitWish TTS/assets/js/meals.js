@@ -1,5 +1,7 @@
 function english() {
-  import("./script").then(({ english: defaultEnglish }) => defaultEnglish());
+  import("./script.mjs").then(({ english: defaultEnglish }) =>
+    defaultEnglish()
+  );
   document.getElementById("headingObjInputIdMeals").innerHTML = "Meals a day:";
   document.getElementById("colorChangeId2Meals").value = "2 meals a day";
   document.getElementById("colorChangeId3Meals").value = "3 meals a day";
@@ -7,7 +9,7 @@ function english() {
   document.getElementById("colorChangeId5Meals").value = "5 or 6 meals a day";
 }
 function português() {
-  import("./script").then(({ português: defaultPortuguês }) =>
+  import("./script.mjs").then(({ português: defaultPortuguês }) =>
     defaultPortuguês()
   );
   document.getElementById("headingObjInputIdMeals").innerHTML =
@@ -19,7 +21,9 @@ function português() {
     "5 ou 6 refeições por dia";
 }
 function français() {
-  import("./script").then(({ français: defaultFrançais }) => defaultFrançais());
+  import("./script.mjs").then(({ français: defaultFrançais }) =>
+    defaultFrançais()
+  );
   document.getElementById("headingObjInputIdMeals").innerHTML =
     "Repas par jour:";
   document.getElementById("colorChangeId2Meals").value = "2 repas par jour";
@@ -29,7 +33,9 @@ function français() {
     "5 ou 6 repas par jour";
 }
 function español() {
-  import("./script").then(({ español: defaultEspañol }) => defaultEspañol());
+  import("./script.mjs").then(({ español: defaultEspañol }) =>
+    defaultEspañol()
+  );
   document.getElementById("headingObjInputIdMeals").innerHTML =
     "Comidas al dia:";
   document.getElementById("colorChangeId2Meals").value = "2 comidas al dia";
@@ -38,12 +44,16 @@ function español() {
   document.getElementById("colorChangeId5Meals").value = "5 o 6 comidas al dia";
 }
 function themeTypeLight() {
-  import("./script").then(({ themeTypeLight: defaultLight }) => defaultLight());
+  import("./script.mjs").then(({ themeTypeLight: defaultLight }) =>
+    defaultLight()
+  );
   for (let el of document.querySelectorAll(".headingObjInputId"))
     el.style.backgroundColor = "#D0FEFE";
 }
 function themeTypeDark() {
-  import("./script").then(({ themeTypeDark: defaultDark }) => defaultDark());
+  import("./script.mjs").then(({ themeTypeDark: defaultDark }) =>
+    defaultDark()
+  );
   for (let el of document.querySelectorAll(".headingObjInputId"))
     el.style.backgroundColor = "#9DBCD4";
 }
@@ -61,3 +71,14 @@ function hoverOutColorChangeFunc(hoveredOutId) {
 const getMeals = () => JSON.parse(sessionStorage.getItem("meals"));
 const setMeals = (meals) =>
   sessionStorage.setItem("meals", JSON.stringify(meals));
+
+window.addEventListener("load", () => {
+  window[sessionStorage.getItem("language")]();
+  switch (sessionStorage.getItem("theme")) {
+    case "light":
+      themeTypeLight();
+      break;
+    default:
+      themeTypeDark();
+  }
+});

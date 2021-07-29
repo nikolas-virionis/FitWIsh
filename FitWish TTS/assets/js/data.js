@@ -1,5 +1,7 @@
 function english() {
-  import("./script").then(({ english: defaultEnglish }) => defaultEnglish());
+  import("./script.mjs").then(({ english: defaultEnglish }) =>
+    defaultEnglish()
+  );
   weightMetric.placeholder = "Example: 80.5";
   heightMetric.placeholder = "Example: 1.85";
   weightImperial.placeholder = "Example: 200.5";
@@ -10,7 +12,7 @@ function english() {
   headingTextInputIdHeightImperial.innerHTML = "Height";
 }
 function português() {
-  import("./script").then(({ português: defaultPortuguês }) =>
+  import("./script.mjs").then(({ português: defaultPortuguês }) =>
     defaultPortuguês()
   );
   weightMetric.placeholder = "Exemplo: 80.5";
@@ -23,7 +25,9 @@ function português() {
   headingTextInputIdHeightImperial.innerHTML = "Altura";
 }
 function français() {
-  import("./script").then(({ français: defaultFrançais }) => defaultFrançais());
+  import("./script.mjs").then(({ français: defaultFrançais }) =>
+    defaultFrançais()
+  );
   weightMetric.placeholder = "Exemple: 80.5";
   heightMetric.placeholder = "Exemple: 1.85";
   weightImperial.placeholder = "Exemple: 200.5";
@@ -34,7 +38,9 @@ function français() {
   headingTextInputIdHeightImperial.innerHTML = "Hauteur";
 }
 function español() {
-  import("./script").then(({ español: defaultEspañol }) => defaultEspañol());
+  import("./script.mjs").then(({ español: defaultEspañol }) =>
+    defaultEspañol()
+  );
   weightMetric.placeholder = "Ejemplo: 80.5";
   heightMetric.placeholder = "Ejemplo: 1.85";
   weightImperial.placeholder = "Ejemplo: 200.5";
@@ -45,16 +51,29 @@ function español() {
   headingTextInputIdHeightImperial.innerHTML = "Altura";
 }
 function themeTypeLight() {
-  import("./script").then(({ themeTypeLight: defaultLight }) => defaultLight());
+  import("./script.mjs").then(({ themeTypeLight: defaultLight }) =>
+    defaultLight()
+  );
   for (let field of document.querySelectorAll(".textInputClass"))
     field.style.color = "#1F3B4D";
 }
 function themeTypeDark() {
-  import("./script").then(({ themeTypeDark: defaultDark }) => defaultDark());
+  import("./script.mjs").then(({ themeTypeDark: defaultDark }) =>
+    defaultDark()
+  );
   for (let field of document.querySelectorAll(".textInputClass"))
     field.style.color = "#DDD";
 }
+
 window.addEventListener("load", () => {
+  window[sessionStorage.getItem("language")]();
+  switch (sessionStorage.getItem("theme")) {
+    case "light":
+      themeTypeLight();
+      break;
+    default:
+      themeTypeDark();
+  }
   if (!sessionStorage.getItem("unit")) {
     if (language == "english")
       alert(

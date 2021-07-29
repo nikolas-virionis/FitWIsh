@@ -1,5 +1,7 @@
 function english() {
-  import("./script").then(({ english: defaultEnglish }) => defaultEnglish());
+  import("./script.mjs").then(({ english: defaultEnglish }) =>
+    defaultEnglish()
+  );
   document.getElementById("headingObjInputIdGoal").innerHTML = "Goal";
   document.getElementById("colorChangeIdBulk").value = "Bulking";
   document.getElementById("colorChangeIdCut").value = "Cutting";
@@ -8,7 +10,7 @@ function english() {
     "Gaining Weight and Muscle";
 }
 function português() {
-  import("./script").then(({ português: defaultPortuguês }) =>
+  import("./script.mjs").then(({ português: defaultPortuguês }) =>
     defaultPortuguês()
   );
   document.getElementById("headingObjInputIdGoal").innerHTML = "Objetivo";
@@ -18,7 +20,9 @@ function português() {
   document.getElementById("colorChangeIdMuscle").value = "Ganhar peso";
 }
 function français() {
-  import("./script").then(({ français: defaultFrançais }) => defaultFrançais());
+  import("./script.mjs").then(({ français: defaultFrançais }) =>
+    defaultFrançais()
+  );
   document.getElementById("headingObjInputIdGoal").innerHTML = "Objectif";
   document.getElementById("colorChangeIdBulk").value = "Gagner du muscle";
   document.getElementById("colorChangeIdCut").value = "Obtenez déchiqueté";
@@ -26,7 +30,9 @@ function français() {
   document.getElementById("colorChangeIdMuscle").value = "Gagner de poids";
 }
 function español() {
-  import("./script").then(({ español: defaultEspañol }) => defaultEspañol());
+  import("./script.mjs").then(({ español: defaultEspañol }) =>
+    defaultEspañol()
+  );
   document.getElementById("headingObjInputIdGoal").innerHTML = "Objetivo";
   document.getElementById("colorChangeIdBulk").value = "Ganar músculo";
   document.getElementById("colorChangeIdCut").value = "Hacerse Rasgado";
@@ -34,12 +40,16 @@ function español() {
   document.getElementById("colorChangeIdMuscle").value = "Ganar peso";
 }
 function themeTypeLight() {
-  import("./script").then(({ themeTypeLight: defaultLight }) => defaultLight());
+  import("./script.mjs").then(({ themeTypeLight: defaultLight }) =>
+    defaultLight()
+  );
   for (let el of document.querySelectorAll(".headingObjInputId"))
     el.style.backgroundColor = "#D0FEFE";
 }
 function themeTypeDark() {
-  import("./script").then(({ themeTypeDark: defaultDark }) => defaultDark());
+  import("./script.mjs").then(({ themeTypeDark: defaultDark }) =>
+    defaultDark()
+  );
   for (let el of document.querySelectorAll(".headingObjInputId"))
     el.style.backgroundColor = "#9DBCD4";
 }
@@ -58,3 +68,14 @@ function hoverOutColorChangeFunc(hoveredOutId) {
 
 const getGoal = () => sessionStorage.getItem("goal");
 const goal = (goal) => sessionStorage.setItem("goal", goal);
+
+window.addEventListener("load", () => {
+  window[sessionStorage.getItem("language")]();
+  switch (sessionStorage.getItem("theme")) {
+    case "light":
+      themeTypeLight();
+      break;
+    default:
+      themeTypeDark();
+  }
+});

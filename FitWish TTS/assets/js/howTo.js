@@ -1,5 +1,7 @@
 function english() {
-  import("./script").then(({ english: defaultEnglish }) => defaultEnglish());
+  import("./script.mjs").then(({ english: defaultEnglish }) =>
+    defaultEnglish()
+  );
   idHowToH2.innerHTML = "What you will do";
   idHowToH3.innerHTML = "What we will do";
   idHowToTxt1.innerHTML =
@@ -9,7 +11,7 @@ function english() {
   idHowToHeading.innerHTML = "How it Works";
 }
 function português() {
-  import("./script").then(({ português: defaultPortuguês }) =>
+  import("./script.mjs").then(({ português: defaultPortuguês }) =>
     defaultPortuguês()
   );
   idHowToH2.innerHTML = "O que você vai fazer";
@@ -21,7 +23,9 @@ function português() {
   idHowToHeading.innerHTML = "Como Funciona";
 }
 function français() {
-  import("./script").then(({ français: defaultFrançais }) => defaultFrançais());
+  import("./script.mjs").then(({ français: defaultFrançais }) =>
+    defaultFrançais()
+  );
   idHowToH2.innerHTML = "Que vas tu faire";
   idHowToH3.innerHTML = "Qu'allons nous faire";
   idHowToHeading.innerHTML = "Comment ça fonctionne";
@@ -31,7 +35,9 @@ function français() {
     "Eh bien, nous allons vous évaluer de manière complète et vous indiquer la distance qui vous sépare de vos objectifs sur votre chemin vers eux, puis vous pouvez revenir sur ce site même et refaire le test, en ayant jusqu'à deux résultats de test précédents stockés localement et en toute sécurité dans votre ordinateur.";
 }
 function español() {
-  import("./script").then(({ español: defaultEspañol }) => defaultEspañol());
+  import("./script.mjs").then(({ español: defaultEspañol }) =>
+    defaultEspañol()
+  );
   idHowToH2.innerHTML = "Qué harás";
   idHowToH3.innerHTML = "Lo que haremos";
   idHowToHeading.innerHTML = "Cómo funciona";
@@ -41,7 +47,9 @@ function español() {
     "Bueno, lo evaluaremos de manera integral y le diremos la distancia a sus objetivos en su camino hacia ellos, luego puede regresar a este mismo sitio y rehacer la prueba, teniendo hasta dos resultados de pruebas anteriores almacenados localmente y de forma segura en su computadora.";
 }
 function themeTypeLight() {
-  import("./script").then(({ themeTypeLight: defaultLight }) => defaultLight());
+  import("./script.mjs").then(({ themeTypeLight: defaultLight }) =>
+    defaultLight()
+  );
   idHowToHeading.style.color = "#1F3B4D";
   idHowToH2.style.color = "#1F3B4D";
   idHowToH3.style.color = "#1F3B4D";
@@ -49,10 +57,23 @@ function themeTypeLight() {
   idHowToTxt2.style.color = "#1F3B4D";
 }
 function themeTypeDark() {
-  import("./script").then(({ themeTypeDark: defaultDark }) => defaultDark());
+  import("./script.mjs").then(({ themeTypeDark: defaultDark }) =>
+    defaultDark()
+  );
   idHowToHeading.style.color = "azure";
   idHowToH2.style.color = "azure";
   idHowToH3.style.color = "azure";
   idHowToTxt1.style.color = "azure";
   idHowToTxt2.style.color = "azure";
 }
+
+window.addEventListener("load", () => {
+  window[sessionStorage.getItem("language")]();
+  switch (sessionStorage.getItem("theme")) {
+    case "light":
+      themeTypeLight();
+      break;
+    default:
+      themeTypeDark();
+  }
+});

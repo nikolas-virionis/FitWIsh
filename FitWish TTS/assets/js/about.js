@@ -1,5 +1,7 @@
 function english() {
-  import("./script").then(({ english: defaultEnglish }) => defaultEnglish());
+  import("./script.mjs").then(({ english: defaultEnglish }) =>
+    defaultEnglish()
+  );
   idAboutTxtLeft.style.fontSize = "1em";
   idAboutH2.style.marginLeft = "40%";
   idAboutH2.innerHTML = "Who are we?";
@@ -9,8 +11,20 @@ function english() {
     "We at FitWish acknowledge the effort put into getting your body the way you want it to be, and because of that, we appreciate your valuable decision to stand your ground and act upon what you should, your health.";
   idAboutHeading.innerHTML = "About";
 }
+
+window.addEventListener("load", () => {
+  window[sessionStorage.getItem("language")]();
+  switch (sessionStorage.getItem("theme")) {
+    case "light":
+      themeTypeLight();
+      break;
+    default:
+      themeTypeDark();
+  }
+});
+
 function português() {
-  import("./script").then(({ português: defaultPortuguês }) =>
+  import("./script.mjs").then(({ português: defaultPortuguês }) =>
     defaultPortuguês()
   );
   idAboutTxtLeft.style.fontSize = "1em";
@@ -23,7 +37,9 @@ function português() {
   idAboutHeading.innerHTML = "Sobre";
 }
 function français() {
-  import("./script").then(({ français: defaultFrançais }) => defaultFrançais());
+  import("./script.mjs").then(({ français: defaultFrançais }) =>
+    defaultFrançais()
+  );
   idAboutTxtLeft.style.fontSize = "0.9em";
   idAboutH2.style.marginLeft = "38.75%";
   idAboutH2.innerHTML = "Qui sommes nous?";
@@ -34,7 +50,9 @@ function français() {
     "Chez FitWish, nous reconnaissons l'effort déployé pour que votre corps soit tel que vous le souhaitez, et pour cette raison, nous apprécions votre précieuse décision de défendre votre position et d'agir en fonction de ce que vous devriez, votre santé.";
 }
 function español() {
-  import("./script").then(({ español: defaultEspañol }) => defaultEspañol());
+  import("./script.mjs").then(({ español: defaultEspañol }) =>
+    defaultEspañol()
+  );
   idAboutTxtLeft.style.fontSize = "1em";
   idAboutH2.style.marginLeft = "33.5%";
   idAboutH2.innerHTML = "Quienes somos nosotros?";
@@ -45,14 +63,18 @@ function español() {
     "En FitWish reconocemos el esfuerzo realizado para lograr que su cuerpo esté de la manera que desea que sea, y por eso, apreciamos su valiosa decisión de defender su posición y actuar de acuerdo con lo que debe, su salud.";
 }
 function themeTypeLight() {
-  import("./script").then(({ themeTypeLight: defaultLight }) => defaultLight());
+  import("./script.mjs").then(({ themeTypeLight: defaultLight }) =>
+    defaultLight()
+  );
   idAboutHeading.style.color = "#1F3B4D";
   idAboutH2.style.color = "#1F3B4D";
   idAboutTxtRight.style.color = "#1F3B4D";
   idAboutTxtLeft.style.color = "#1F3B4D";
 }
 function themeTypeDark() {
-  import("./script").then(({ themeTypeDark: defaultDark }) => defaultDark());
+  import("./script.mjs").then(({ themeTypeDark: defaultDark }) =>
+    defaultDark()
+  );
   idAboutHeading.style.color = "azure";
   idAboutH2.style.color = "azure";
   idAboutTxtRight.style.color = "azure";

@@ -1,5 +1,7 @@
 function english() {
-  import("./script").then(({ english: defaultEnglish }) => defaultEnglish());
+  import("./script.mjs").then(({ english: defaultEnglish }) =>
+    defaultEnglish()
+  );
   document.getElementById("headingObjInputIdGender").innerHTML = "Gender";
   document.getElementById("colorChangeIdMale").value = "Male";
   document.getElementById("colorChangeIdFemale").value = "Female";
@@ -10,7 +12,7 @@ function english() {
   imperialSystem = "Imperial";
 }
 function português() {
-  import("./script").then(({ português: defaultPortuguês }) =>
+  import("./script.mjs").then(({ português: defaultPortuguês }) =>
     defaultPortuguês()
   );
   document.getElementById("headingObjInputIdUnit").innerHTML = "Unidade";
@@ -23,7 +25,9 @@ function português() {
   imperialSystem = "Imperial";
 }
 function français() {
-  import("./script").then(({ français: defaultFrançais }) => defaultFrançais());
+  import("./script.mjs").then(({ français: defaultFrançais }) =>
+    defaultFrançais()
+  );
   document.getElementById("headingObjInputIdGender").innerHTML = "Genre";
   document.getElementById("colorChangeIdMale").value = "Mâle";
   document.getElementById("colorChangeIdFemale").value = "Femelle";
@@ -34,7 +38,9 @@ function français() {
   imperialSystem = "Impérial";
 }
 function español() {
-  import("./script").then(({ español: defaultEspañol }) => defaultEspañol());
+  import("./script.mjs").then(({ español: defaultEspañol }) =>
+    defaultEspañol()
+  );
   document.getElementById("headingObjInputIdGender").innerHTML = "Género";
   document.getElementById("colorChangeIdMale").value = "Masculino";
   document.getElementById("colorChangeIdFemale").value = "Femenino";
@@ -45,12 +51,16 @@ function español() {
   imperialSystem = "Imperial";
 }
 function themeTypeLight() {
-  import("./script").then(({ themeTypeLight: defaultLight }) => defaultLight());
+  import("./script.mjs").then(({ themeTypeLight: defaultLight }) =>
+    defaultLight()
+  );
   for (let el of document.querySelectorAll(".headingObjInputId"))
     el.style.backgroundColor = "#D0FEFE";
 }
 function themeTypeDark() {
-  import("./script").then(({ themeTypeDark: defaultDark }) => defaultDark());
+  import("./script.mjs").then(({ themeTypeDark: defaultDark }) =>
+    defaultDark()
+  );
   for (let el of document.querySelectorAll(".headingObjInputId"))
     el.style.backgroundColor = "#9DBCD4";
 }
@@ -80,3 +90,14 @@ const metricUnit = () => (colorChangeIdMetric.value += ` (kg / m)`);
 const metricUnitCloak = () => (colorChangeIdMetric.value = metricSystem);
 const imperialUnit = () => (colorChangeIdImperial.value += ` (lbs / in)`);
 const imperialUnitCloak = () => (colorChangeIdImperial.value = imperialSystem);
+
+window.addEventListener("load", () => {
+  window[sessionStorage.getItem("language")]();
+  switch (sessionStorage.getItem("theme")) {
+    case "light":
+      themeTypeLight();
+      break;
+    default:
+      themeTypeDark();
+  }
+});

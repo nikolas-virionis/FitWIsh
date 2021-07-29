@@ -1,5 +1,7 @@
 function english() {
-  import("./script").then(({ english: defaultEnglish }) => defaultEnglish());
+  import("./script.mjs").then(({ english: defaultEnglish }) =>
+    defaultEnglish()
+  );
   idContactH2.style.marginLeft = "37.5%";
   idContactH2.innerHTML = "How to Contact Us";
   idContactIntro.innerHTML =
@@ -7,7 +9,7 @@ function english() {
   idContactHeading.innerHTML = "Contact";
 }
 function português() {
-  import("./script").then(({ português: defaultPortuguês }) =>
+  import("./script.mjs").then(({ português: defaultPortuguês }) =>
     defaultPortuguês()
   );
   idContactH2.style.marginLeft = "30.5%";
@@ -17,7 +19,9 @@ function português() {
   idContactHeading.innerHTML = "Contato";
 }
 function français() {
-  import("./script").then(({ français: defaultFrançais }) => defaultFrançais());
+  import("./script.mjs").then(({ français: defaultFrançais }) =>
+    defaultFrançais()
+  );
   idContactH2.style.marginLeft = "34.5%";
   idContactH2.innerHTML = "Comment nous contacter";
   idContactIntro.innerHTML =
@@ -25,7 +29,9 @@ function français() {
   idContactHeading.innerHTML = "Contact";
 }
 function español() {
-  import("./script").then(({ español: defaultEspañol }) => defaultEspañol());
+  import("./script.mjs").then(({ español: defaultEspañol }) =>
+    defaultEspañol()
+  );
   idContactH2.style.marginLeft = "32.5%";
   idContactH2.innerHTML = "Como contactar con nosotros";
   idContactHeading.innerHTML = "Contacto";
@@ -33,7 +39,9 @@ function español() {
     "Nos encantaría saber de nuestros usuarios sobre posibles comentarios sobre lo que experimentó al utilizar nuestro servicio. Para contactarnos acceda directamente al enlace al correo electrónico de nuestro CTO a continuación, y para tener más información sobre nosotros acceda a su enlace de LinkedIn a continuación.";
 }
 function themeTypeLight() {
-  import("./script").then(({ themeTypeLight: defaultLight }) => defaultLight());
+  import("./script.mjs").then(({ themeTypeLight: defaultLight }) =>
+    defaultLight()
+  );
   idContactHeading.style.color = "#1F3B4D";
   idContactLinkedIn.style.color = "#1F3B4D";
   idContactGmail.style.color = "#1F3B4D";
@@ -41,10 +49,23 @@ function themeTypeLight() {
   idContactIntro.style.color = "#1F3B4D";
 }
 function themeTypeDark() {
-  import("./script").then(({ themeTypeDark: defaultDark }) => defaultDark());
+  import("./script.mjs").then(({ themeTypeDark: defaultDark }) =>
+    defaultDark()
+  );
   idContactHeading.style.color = "azure";
   idContactH2.style.color = "azure";
   idContactIntro.style.color = "azure";
   idContactLinkedIn.style.color = "azure";
   idContactGmail.style.color = "azure";
 }
+
+window.addEventListener("load", () => {
+  window[sessionStorage.getItem("language")]();
+  switch (sessionStorage.getItem("theme")) {
+    case "light":
+      themeTypeLight();
+      break;
+    default:
+      themeTypeDark();
+  }
+});

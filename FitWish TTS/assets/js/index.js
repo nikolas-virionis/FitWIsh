@@ -2,7 +2,9 @@ let contentArray = JSON.parse(localStorage.getItem("contentArray")) ?? [],
   triesMade;
 
 function english() {
-  import("./script").then(({ english: defaultEnglish }) => defaultEnglish());
+  import("./script.mjs").then(({ english: defaultEnglish }) =>
+    defaultEnglish()
+  );
   if (contentArray.length >= 1) numberBtnsOverwriteEn();
   firstPageBtnSeePrev.innerHTML = "Hide Previous Test";
   firstPageH1.innerHTML =
@@ -18,7 +20,7 @@ function english() {
   firstPageBtnHideAll.value = `Hide All Previous Tests`;
 }
 function português() {
-  import("./script").then(({ português: defaultPortuguês }) =>
+  import("./script.mjs").then(({ português: defaultPortuguês }) =>
     defaultPortuguês()
   );
   if (contentArray.length >= 1) numberBtnsOverwritePt();
@@ -36,7 +38,9 @@ function português() {
   firstPageBtnHideAll.value = `Ocultar Testes Anteriores`;
 }
 function français() {
-  import("./script").then(({ français: defaultFrançais }) => defaultFrançais());
+  import("./script.mjs").then(({ français: defaultFrançais }) =>
+    defaultFrançais()
+  );
   if (contentArray.length >= 1) numberBtnsOverwriteFr();
   firstPageBtnSeePrev.innerHTML = "Masquer le test précédent";
   firstPageH1.innerHTML =
@@ -52,7 +56,9 @@ function français() {
   firstPageBtnHideAll.value = `Masquer tous les tests précédents`;
 }
 function español() {
-  import("./script").then(({ español: defaultEspañol }) => defaultEspañol());
+  import("./script.mjs").then(({ español: defaultEspañol }) =>
+    defaultEspañol()
+  );
   if (contentArray.length >= 1) numberBtnsOverwriteEs();
   firstPageBtnSeePrev.innerHTML = "Ocultar Prueba Anterior";
   firstPageH1.innerHTML =
@@ -68,154 +74,167 @@ function español() {
   firstPageBtnHideAll.value = `Ocultar todas las pruebas anteriores`;
 }
 function themeTypeLight() {
-  import("./script").then(({ themeTypeLight: defaultLight }) => defaultLight());
+  import("./script.mjs").then(({ themeTypeLight: defaultLight }) => {
+    defaultLight();
+    console.log(defaultLight);
+  });
   firstPageH1.style.color = "#1F3B4D";
   firstPageH12nd.style.color = "#1F3B4D";
   firstPageH13rd.style.color = "#1F3B4D";
 }
 function themeTypeDark() {
-  import("./script").then(({ themeTypeDark: defaultDark }) => defaultDark());
+  import("./script.mjs").then(({ themeTypeDark: defaultDark }) =>
+    defaultDark()
+  );
   firstPageH1.style.color = "azure";
   firstPageH12nd.style.color = "azure";
   firstPageH13rd.style.color = "azure";
 }
 
-if (contentArray.length == 0) {
-  if (navigator.language[0] == "p" && navigator.language[1] == "t") português();
-  else if (navigator.language[0] == "f" && navigator.language[1] == "r")
-    français();
-  else if (navigator.language[0] == "e" && navigator.language[1] == "s")
-    español();
-  else english();
-  themeTypeDark();
-} else if (contentArray.length == 1) {
-  firstPageH1.style.display = "none";
-  firstPageH12nd.style.display = "block";
-  firstPageH13rd.style.display = "none";
-  firstPageBtnStart.style.display = "none";
-  firstPageBtnDifferent.style.display = "block";
-  firstPageBtnOverwrite.style.display = "block";
-  firstPageBtnSeePrev.style.display = "block";
-  firstPageBtnDelete.style.display = "block";
-  triesMade = 1;
+function iniciateEnglish() {
+  english();
   if (
-    contentArray[0]?.language == "english" ||
-    contentArray[0]?.language == null
-  )
-    english();
-  else if (contentArray[0]?.language == "português") português();
-  else if (contentArray[0]?.language == "français") français();
-  else if (contentArray[0]?.language == "español") español();
-  if (contentArray[0]?.theme == "dark" || contentArray[0]?.theme == null)
+    !(
+      contentArray[0]?.inputName.toLowerCase() ==
+      contentArray[1]?.inputName.toLowerCase()
+    )
+  ) {
+    firstPageH13rd.innerHTML = `We detected that you have already tried our test twice, once as ${contentArray[0]?.inputName} made in ${contentArray[0]?.day}, and once as ${contentArray[1]?.inputName} made in ${contentArray[1]?.day}. Choose what you would like to do below`;
+    firstPageBtn1stTry.value = `See the test made by ${contentArray[0]?.inputName}`;
+    firstPageBtn2ndTry.value = `See the test made by ${contentArray[1]?.inputName}`;
+    firstPageBtn1stTryOverwrite.value = `Overwrite test made by ${contentArray[0]?.inputName}`;
+    firstPageBtn2ndTryOverwrite.value = `Overwrite test made by ${contentArray[1]?.inputName}`;
+  } else {
+    firstPageH13rd.innerHTML = `We detected that you have already tried our test twice as ${contentArray[0]?.inputName}, once made in ${contentArray[0]?.day}, and once made in ${contentArray[1]?.day}. Choose what you would like to do below`;
+    firstPageBtn1stTry.value = `See the test made in ${contentArray[0]?.day}`;
+    firstPageBtn2ndTry.value = `See the test made in ${contentArray[1]?.day}`;
+    firstPageBtn1stTryOverwrite.value = `Overwrite test made in ${contentArray[0]?.day}`;
+    firstPageBtn2ndTryOverwrite.value = `Overwrite test made in ${contentArray[1]?.day}`;
+  }
+}
+
+function iniciatePortuguês() {
+  português();
+  if (
+    !(
+      contentArray[0]?.inputName.toLowerCase() ==
+      contentArray[1]?.inputName.toLowerCase()
+    )
+  ) {
+    firstPageH13rd.innerHTML = `Detectamos que você já tentou nosso teste duas vezes, uma vez como ${contentArray[0]?.inputName} feito em ${contentArray[0]?.day}, e uma vez como ${contentArray[1]?.inputName} feito em ${contentArray[1]?.day}. Escolha o que você gostaria de fazer abaixo`;
+    firstPageBtn1stTry.value = `Ver o teste feito por ${contentArray[0]?.inputName}`;
+    firstPageBtn2ndTry.value = `Ver o teste feito por ${contentArray[1]?.inputName}`;
+    firstPageBtn1stTryOverwrite.value = `Sobrescrever o teste de ${contentArray[0]?.inputName}`;
+    firstPageBtn2ndTryOverwrite.value = `Sobrescrever o teste de ${contentArray[1]?.inputName}`;
+  } else {
+    firstPageH13rd.innerHTML = `Detectamos que você já tentou nosso teste duas vezes como ${contentArray[0]?.inputName}, uma vez feito em ${contentArray[0]?.day}, e uma vez feito em ${contentArray[1]?.day}. Escolha o que você gostaria de fazer abaixo`;
+    firstPageBtn1stTry.value = `Ver o teste feito em ${contentArray[0]?.day}`;
+    firstPageBtn2ndTry.value = `Ver o teste feito em ${contentArray[1]?.day}`;
+    firstPageBtn1stTryOverwrite.value = `Sobrescrever o teste de ${contentArray[0]?.day}`;
+    firstPageBtn2ndTryOverwrite.value = `Sobrescrever o teste de ${contentArray[1]?.day}`;
+  }
+}
+function iniciateFrançais() {
+  français();
+  if (
+    !(
+      contentArray?.[0]?.inputName?.toLowerCase() ==
+      contentArray?.[1]?.inputName?.toLowerCase()
+    )
+  ) {
+    firstPageH13rd.innerHTML = `Nous avons détecté que vous avez déjà essayé notre test deux fois, une fois comme ${contentArray[0]?.inputName} fabriqué en ${contentArray[0]?.day}, et une fois comme ${contentArray[1]?.inputName} fabriqué en ${contentArray[1]?.day}. Choisissez ce que vous souhaitez faire ci-dessous`;
+    firstPageBtn1stTry.value = `Voir le test ${contentArray[0]?.inputName}`;
+    firstPageBtn2ndTry.value = `Voir le test ${contentArray[1]?.inputName}`;
+    firstPageBtn1stTryOverwrite.value = `Écraser le test ${contentArray[0]?.inputName}`;
+    firstPageBtn2ndTryOverwrite.value = `Écraser le test ${contentArray[1]?.inputName}`;
+  } else {
+    firstPageH13rd.innerHTML = `Nous avons détecté que vous avez déjà essayé notre test deux fois plus ${contentArray[0]?.inputName}, une fois fait en ${contentArray[0]?.day}, et une fois fait en ${contentArray[1]?.day}. Choisissez ce que vous souhaitez faire ci-dessous`;
+    firstPageBtn1stTry.value = `Voir le test réalisé en ${contentArray[0]?.day}`;
+    firstPageBtn2ndTry.value = `Voir le test réalisé en ${contentArray[1]?.day}`;
+    firstPageBtn1stTryOverwrite.value = `Écraser le test dans ${contentArray[0]?.day}`;
+    firstPageBtn2ndTryOverwrite.value = `Écraser le test dans ${contentArray[1]?.day}`;
+  }
+}
+
+function iniciateEspañol() {
+  español();
+  if (
+    !(
+      contentArray[0]?.inputName.toLowerCase() ==
+      contentArray[1]?.inputName.toLowerCase()
+    )
+  ) {
+    firstPageH13rd.innerHTML = `Detectamos que ya ha realizado nuestra prueba dos veces, una vez como ${contentArray[0]?.inputName} hecho en ${contentArray[0]?.day}, y una vez como ${contentArray[1]?.inputName} hecho en ${contentArray[1]?.day}. Elija lo que le gustaría hacer a continuación`;
+    firstPageBtn1stTry.value = `Ver la prueba de ${contentArray[0]?.inputName}`;
+    firstPageBtn2ndTry.value = `Ver la prueba de ${contentArray[1]?.inputName}`;
+    firstPageBtn1stTryOverwrite.value = `Sobrescribir la prueba de ${contentArray[0]?.inputName}`;
+    firstPageBtn2ndTryOverwrite.value = `Sobrescribir la prueba de ${contentArray[1]?.inputName}`;
+  } else {
+    firstPageH13rd.innerHTML = `Detectamos que ya ha realizado nuestra prueba dos veces más ${contentArray[0]?.inputName}, una vez hecho en ${contentArray[0]?.day}, y una vez hecho en ${contentArray[1]?.day}. Elija lo que le gustaría hacer a continuación`;
+    firstPageBtn1stTry.value = `Ver la prueba de ${contentArray[0]?.day}`;
+    firstPageBtn2ndTry.value = `Ver la prueba de ${contentArray[1]?.day}`;
+    firstPageBtn1stTryOverwrite.value = `Sobrescribir la prueba de ${contentArray[0]?.day}`;
+    firstPageBtn2ndTryOverwrite.value = `Sobrescribir la prueba de ${contentArray[1]?.day}`;
+  }
+}
+
+function rearrangeElements(tries) {
+  firstPageH1.style.display = "none";
+  firstPageBtnStart.style.display = "none";
+  firstPageBtnOverwrite.style.display = "block";
+  firstPageBtnDelete.style.display = "block";
+  firstPageH12nd.style.display = tries == 2 ? "block" : "none";
+  firstPageH13rd.style.display = tries == 2 ? "none" : "block";
+  firstPageBtnDifferent.style.display = tries == 2 ? "block" : "none";
+  firstPageBtnSeePrev.style.display = tries == 2 ? "block" : "none";
+  firstPageBtnSeeAll.style.display = tries == 2 ? "none" : "block";
+}
+
+const getBrowserLang = () => navigator.language.slice(0, 2);
+function getDefLang() {
+  switch (getBrowserLang()) {
+    case "pt":
+      return português();
+    case "fr":
+      return français();
+    case "es":
+      return español();
+  }
+  return english();
+}
+window.addEventListener("load", () => {
+  window[sessionStorage.getItem("language")]();
+  switch (sessionStorage.getItem("theme")) {
+    case "light":
+      themeTypeLight();
+      break;
+    default:
+      themeTypeDark();
+  }
+  if (contentArray.length == 0 && !sessionStorage.getItem("language")) {
+    getDefLang();
     themeTypeDark();
-  else if (contentArray[0]?.theme == "light") themeTypeLight();
-} else if (contentArray.length == 2) {
-  triesMade = 2;
-  firstPageH1.style.display = "none";
-  firstPageH12nd.style.display = "none";
-  firstPageH13rd.style.display = "block";
-  firstPageBtnStart.style.display = "none";
-  firstPageBtnOverwrite.style.display = "block";
-  firstPageBtnSeeAll.style.display = "block";
-  firstPageBtnDelete.style.display = "block";
-  if (
-    contentArray[1]?.language == "english" ||
-    contentArray[1]?.language == null ||
-    (navigator.language[0] == "e" && navigator.language[1] == "n")
-  ) {
-    english();
-    if (
-      !(
-        contentArray[0]?.inputName.toLowerCase() ==
-        contentArray[1]?.inputName.toLowerCase()
-      )
-    ) {
-      firstPageH13rd.innerHTML = `We detected that you have already tried our test twice, once as ${contentArray[0]?.inputName} made in ${contentArray[0]?.day}, and once as ${contentArray[1]?.inputName} made in ${contentArray[1]?.day}. Choose what you would like to do below`;
-      firstPageBtn1stTry.value = `See the test made by ${contentArray[0]?.inputName}`;
-      firstPageBtn2ndTry.value = `See the test made by ${contentArray[1]?.inputName}`;
-      firstPageBtn1stTryOverwrite.value = `Overwrite test made by ${contentArray[0]?.inputName}`;
-      firstPageBtn2ndTryOverwrite.value = `Overwrite test made by ${contentArray[1]?.inputName}`;
+  } else if (contentArray.length != 0) {
+    triesMade = contentArray.length;
+    rearrangeElements(triesMade + 1);
+    if (contentArray[triesMade - 1]?.theme == "light") themeTypeLight();
+    else themeTypeDark();
+    if (contentArray.length == 1) {
+      if (contentArray[0]?.language == "português") português();
+      else if (contentArray[0]?.language == "français") français();
+      else if (contentArray[0]?.language == "español") español();
+      else getDefLang();
     } else {
-      firstPageH13rd.innerHTML = `We detected that you have already tried our test twice as ${contentArray[0]?.inputName}, once made in ${contentArray[0]?.day}, and once made in ${contentArray[1]?.day}. Choose what you would like to do below`;
-      firstPageBtn1stTry.value = `See the test made in ${contentArray[0]?.day}`;
-      firstPageBtn2ndTry.value = `See the test made in ${contentArray[1]?.day}`;
-      firstPageBtn1stTryOverwrite.value = `Overwrite test made in ${contentArray[0]?.day}`;
-      firstPageBtn2ndTryOverwrite.value = `Overwrite test made in ${contentArray[1]?.day}`;
-    }
-  } else if (
-    contentArray[1]?.language == "português" ||
-    (navigator.language[0] == "p" && navigator.language[1] == "t")
-  ) {
-    português();
-    if (
-      !(
-        contentArray[0]?.inputName.toLowerCase() ==
-        contentArray[1]?.inputName.toLowerCase()
-      )
-    ) {
-      firstPageH13rd.innerHTML = `Detectamos que você já tentou nosso teste duas vezes, uma vez como ${contentArray[0]?.inputName} feito em ${contentArray[0]?.day}, e uma vez como ${contentArray[1]?.inputName} feito em ${contentArray[1]?.day}. Escolha o que você gostaria de fazer abaixo`;
-      firstPageBtn1stTry.value = `Ver o teste feito por ${contentArray[0]?.inputName}`;
-      firstPageBtn2ndTry.value = `Ver o teste feito por ${contentArray[1]?.inputName}`;
-      firstPageBtn1stTryOverwrite.value = `Sobrescrever o teste de ${contentArray[0]?.inputName}`;
-      firstPageBtn2ndTryOverwrite.value = `Sobrescrever o teste de ${contentArray[1]?.inputName}`;
-    } else {
-      firstPageH13rd.innerHTML = `Detectamos que você já tentou nosso teste duas vezes como ${contentArray[0]?.inputName}, uma vez feito em ${contentArray[0]?.day}, e uma vez feito em ${contentArray[1]?.day}. Escolha o que você gostaria de fazer abaixo`;
-      firstPageBtn1stTry.value = `Ver o teste feito em ${contentArray[0]?.day}`;
-      firstPageBtn2ndTry.value = `Ver o teste feito em ${contentArray[1]?.day}`;
-      firstPageBtn1stTryOverwrite.value = `Sobrescrever o teste de ${contentArray[0]?.day}`;
-      firstPageBtn2ndTryOverwrite.value = `Sobrescrever o teste de ${contentArray[1]?.day}`;
-    }
-  } else if (
-    contentArray[1]?.language == "français" ||
-    (navigator.language[0] == "f" && navigator.language[1] == "r")
-  ) {
-    français();
-    if (
-      !(
-        contentArray?.[0]?.inputName?.toLowerCase() ==
-        contentArray?.[1]?.inputName?.toLowerCase()
-      )
-    ) {
-      firstPageH13rd.innerHTML = `Nous avons détecté que vous avez déjà essayé notre test deux fois, une fois comme ${contentArray[0]?.inputName} fabriqué en ${contentArray[0]?.day}, et une fois comme ${contentArray[1]?.inputName} fabriqué en ${contentArray[1]?.day}. Choisissez ce que vous souhaitez faire ci-dessous`;
-      firstPageBtn1stTry.value = `Voir le test ${contentArray[0]?.inputName}`;
-      firstPageBtn2ndTry.value = `Voir le test ${contentArray[1]?.inputName}`;
-      firstPageBtn1stTryOverwrite.value = `Écraser le test ${contentArray[0]?.inputName}`;
-      firstPageBtn2ndTryOverwrite.value = `Écraser le test ${contentArray[1]?.inputName}`;
-    } else {
-      firstPageH13rd.innerHTML = `Nous avons détecté que vous avez déjà essayé notre test deux fois plus ${contentArray[0]?.inputName}, une fois fait en ${contentArray[0]?.day}, et une fois fait en ${contentArray[1]?.day}. Choisissez ce que vous souhaitez faire ci-dessous`;
-      firstPageBtn1stTry.value = `Voir le test réalisé en ${contentArray[0]?.day}`;
-      firstPageBtn2ndTry.value = `Voir le test réalisé en ${contentArray[1]?.day}`;
-      firstPageBtn1stTryOverwrite.value = `Écraser le test dans ${contentArray[0]?.day}`;
-      firstPageBtn2ndTryOverwrite.value = `Écraser le test dans ${contentArray[1]?.day}`;
-    }
-  } else if (
-    contentArray[1]?.language == "español" ||
-    (navigator.language[0] == "e" && navigator.language[1] == "s")
-  ) {
-    español();
-    if (
-      !(
-        contentArray[0]?.inputName.toLowerCase() ==
-        contentArray[1]?.inputName.toLowerCase()
-      )
-    ) {
-      firstPageH13rd.innerHTML = `Detectamos que ya ha realizado nuestra prueba dos veces, una vez como ${contentArray[0]?.inputName} hecho en ${contentArray[0]?.day}, y una vez como ${contentArray[1]?.inputName} hecho en ${contentArray[1]?.day}. Elija lo que le gustaría hacer a continuación`;
-      firstPageBtn1stTry.value = `Ver la prueba de ${contentArray[0]?.inputName}`;
-      firstPageBtn2ndTry.value = `Ver la prueba de ${contentArray[1]?.inputName}`;
-      firstPageBtn1stTryOverwrite.value = `Sobrescribir la prueba de ${contentArray[0]?.inputName}`;
-      firstPageBtn2ndTryOverwrite.value = `Sobrescribir la prueba de ${contentArray[1]?.inputName}`;
-    } else {
-      firstPageH13rd.innerHTML = `Detectamos que ya ha realizado nuestra prueba dos veces más ${contentArray[0]?.inputName}, una vez hecho en ${contentArray[0]?.day}, y una vez hecho en ${contentArray[1]?.day}. Elija lo que le gustaría hacer a continuación`;
-      firstPageBtn1stTry.value = `Ver la prueba de ${contentArray[0]?.day}`;
-      firstPageBtn2ndTry.value = `Ver la prueba de ${contentArray[1]?.day}`;
-      firstPageBtn1stTryOverwrite.value = `Sobrescribir la prueba de ${contentArray[0]?.day}`;
-      firstPageBtn2ndTryOverwrite.value = `Sobrescribir la prueba de ${contentArray[1]?.day}`;
+      if (contentArray[1]?.language == "português" || getBrowserLang() == "pt")
+        return iniciatePortuguês();
+      if (contentArray[1]?.language == "français" || getBrowserLang() == "fr")
+        return iniciateFrançais();
+      if (contentArray[1]?.language == "español" || getBrowserLang() == "es")
+        return iniciateEspañol();
+      return iniciateEnglish();
     }
   }
-  if (contentArray[1]?.theme == "dark" || contentArray[1]?.theme == null)
-    themeTypeDark();
-  else if (contentArray[1]?.theme == "light") themeTypeLight();
-}
+});
 
 function numberBtnsOverwriteEn() {
   if (
@@ -307,104 +326,57 @@ const startNewTry = (tryN) => {
   window.location.href = "intro.html";
 };
 const overwriteTest2 = (testToBeOverwritten) => {
-  if (testToBeOverwritten == 1) {
-    if (language == "english")
-      var confirmOverwrite = confirm(
-        `Are you sure you want to overwrite the test made as ${contentArray[0]?.inputName}? It will be forever destroyed.`
-      );
-    else if (language == "português")
-      var confirmOverwrite = confirm(
-        `Tem certeza que deseja sobrescrever o teste feito por ${contentArray[0]?.inputName}? Esse teste será destruido para sempre.`
-      );
-    else if (language == "français")
-      var confirmOverwrite = confirm(
-        `Voulez-vous vraiment remplacer le test effectué comme ${contentArray[0]?.inputName}? Il sera détruit à jamais.`
-      );
-    else if (language == "español")
-      var confirmOverwrite = confirm(
-        `¿Estás seguro de que quieres sobrescribir la prueba realizada como ${contentArray[0]?.inputName}? Será destruido para siempre.`
-      );
-    if (confirmOverwrite) {
-      contentArray.shift();
-      localStorage.setItem("contentArray", JSON.stringify(contentArray));
-      startNewTry(1);
-      firstPageBtn1stTry.style.display = "none";
-      firstPageBtn1stTryOverwrite.style.display = "none";
-      firstPageBtn2ndTry.style.display = "none";
-      firstPageBtn2ndTryOverwrite.style.display = "none";
-      firstPageBtnOverwrite.style.display = "none";
-      firstPageBtnSeeAll.style.display = "none";
-      firstPageBtnDelete.style.display = "none";
-      firstPageBtnStart.style.display = "none";
-    }
-  } else if (testToBeOverwritten == 2) {
-    if (language == "english")
-      var confirmOverwrite = confirm(
-        `Are you sure you want to overwrite the test made as ${contentArray[1]?.inputName}? It will be forever destroyed.`
-      );
-    else if (language == "português")
-      var confirmOverwrite = confirm(
-        `Tem certeza que deseja sobrescrever o teste feito por ${contentArray[1]?.inputName}? Esse teste será destruido para sempre.`
-      );
-    else if (language == "français")
-      var confirmOverwrite = confirm(
-        `Voulez-vous vraiment remplacer le test effectué comme ${contentArray[1]?.inputName}? Il sera détruit à jamais.`
-      );
-    else if (language == "español")
-      var confirmOverwrite = confirm(
-        `¿Estás seguro de que quieres sobrescribir la prueba realizada como ${contentArray[1]?.inputName}? Será destruido para siempre.`
-      );
-    if (confirmOverwrite) {
-      contentArray.pop();
-      localStorage.setItem("contentArray", JSON.stringify(contentArray));
-      startNewTry(2);
-    }
+  let confirmOverwrite;
+  if (language == "english")
+    confirmOverwrite = confirm(
+      `Are you sure you want to overwrite the test made as ${
+        contentArray[testToBeOverwritten - 1]?.inputName
+      }? It will be forever destroyed.`
+    );
+  else if (language == "português")
+    confirmOverwrite = confirm(
+      `Tem certeza que deseja sobrescrever o teste feito por ${
+        contentArray[testToBeOverwritten - 1]?.inputName
+      }? Esse teste será destruido para sempre.`
+    );
+  else if (language == "français")
+    confirmOverwrite = confirm(
+      `Voulez-vous vraiment remplacer le test effectué comme ${
+        contentArray[testToBeOverwritten - 1]?.inputName
+      }? Il sera détruit à jamais.`
+    );
+  else if (language == "español")
+    confirmOverwrite = confirm(
+      `¿Estás seguro de que quieres sobrescribir la prueba realizada como ${
+        contentArray[testToBeOverwritten - 1]?.inputName
+      }? Será destruido para siempre.`
+    );
+  if (confirmOverwrite) {
+    testToBeOverwritten == 1 ? contentArray.shift() : contentArray.pop();
+    localStorage.setItem("contentArray", JSON.stringify(contentArray));
+    startNewTry(testToBeOverwritten);
   }
 };
 function overwriteTest() {
-  if (triesMade == 1) {
-    if (language == "english")
-      var confirmOverwrite = confirm(
-        `Are you sure you want to overwrite the test made as ${contentArray[0]?.inputName}? It will be forever destroyed.`
-      );
-    else if (language == "português")
-      var confirmOverwrite = confirm(
-        `Tem certeza que deseja sobrescrever o teste feito por ${contentArray[0]?.inputName}? Esse teste será destruido para sempre.`
-      );
-    else if (language == "français")
-      var confirmOverwrite = confirm(
-        `Voulez-vous vraiment remplacer le test effectué comme ${contentArray[0]?.inputName}? Il sera détruit à jamais.`
-      );
-    else if (language == "español")
-      var confirmOverwrite = confirm(
-        `¿Estás seguro de que quieres sobrescribir la prueba realizada como ${contentArray[0]?.inputName}? Será destruido para siempre.`
-      );
-    if (confirmOverwrite) {
-      contentArray.shift();
-      localStorage.setItem("contentArray", JSON.stringify(contentArray));
-      startNewTry(1);
-    }
-  } else if (triesMade == 2) {
+  if (triesMade == 1) overwriteTest2(1);
+  else if (triesMade == 2) {
     seeAllTests();
     firstPageBtn1stTryOverwrite.style.display = "block";
     firstPageBtn2ndTryOverwrite.style.display = "block";
-  } else firstPageBtnOverwrite.style.display = "none";
+  }
 }
 function deleteTests() {
+  let deletePrevTests;
   if (language == "english")
-    var deletePrevTests = confirm(
-      "Are you sure you want to delete all the tests?"
-    );
+    deletePrevTests = confirm("Are you sure you want to delete all the tests?");
   else if (language == "português")
-    var deletePrevTests = confirm(
+    deletePrevTests = confirm(
       "Tem certeza que deseja deletar todos os testes?"
     );
   else if (language == "français")
-    var deletePrevTests = confirm(
-      "Voulez-vous vraiment supprimer tous les tests?"
-    );
+    deletePrevTests = confirm("Voulez-vous vraiment supprimer tous les tests?");
   else if (language == "español")
-    var deletePrevTests = confirm(
+    deletePrevTests = confirm(
       "¿Estás seguro de que quieres eliminar todas las pruebas?"
     );
   if (deletePrevTests) {

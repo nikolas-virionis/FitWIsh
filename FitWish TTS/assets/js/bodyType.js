@@ -1,5 +1,7 @@
 function english() {
-  import("./script").then(({ english: defaultEnglish }) => defaultEnglish());
+  import("./script.mjs").then(({ english: defaultEnglish }) =>
+    defaultEnglish()
+  );
   document.getElementById("headingObjInputIdBodyType").innerHTML = "Body Type";
   document.getElementById("colorChangeIdNoIdea").value = "No idea";
   document.getElementById("colorChangeIdEcto").value = "Ectomorph";
@@ -7,7 +9,7 @@ function english() {
   document.getElementById("colorChangeIdEndo").value = "Endomorph";
 }
 function português() {
-  import("./script").then(({ português: defaultPortuguês }) =>
+  import("./script.mjs").then(({ português: defaultPortuguês }) =>
     defaultPortuguês()
   );
   document.getElementById("headingObjInputIdBodyType").innerHTML =
@@ -18,7 +20,9 @@ function português() {
   document.getElementById("colorChangeIdEndo").value = "Endomorfo";
 }
 function français() {
-  import("./script").then(({ français: defaultFrançais }) => defaultFrançais());
+  import("./script.mjs").then(({ français: defaultFrançais }) =>
+    defaultFrançais()
+  );
   document.getElementById("headingObjInputIdBodyType").innerHTML =
     "Type de corps";
   document.getElementById("colorChangeIdNoIdea").value = "Aucune idée";
@@ -27,7 +31,9 @@ function français() {
   document.getElementById("colorChangeIdEndo").value = "Endomorphe";
 }
 function español() {
-  import("./script").then(({ español: defaultEspañol }) => defaultEspañol());
+  import("./script.mjs").then(({ español: defaultEspañol }) =>
+    defaultEspañol()
+  );
   document.getElementById("headingObjInputIdBodyType").innerHTML =
     "Tipo de cuerpo";
   document.getElementById("colorChangeIdNoIdea").value = "Ni idea";
@@ -36,15 +42,30 @@ function español() {
   document.getElementById("colorChangeIdEndo").value = "Endomorfo";
 }
 function themeTypeLight() {
-  import("./script").then(({ themeTypeLight: defaultLight }) => defaultLight());
+  import("./script.mjs").then(({ themeTypeLight: defaultLight }) =>
+    defaultLight()
+  );
   for (let el of document.querySelectorAll(".headingObjInputId"))
     el.style.backgroundColor = "#D0FEFE";
 }
 function themeTypeDark() {
-  import("./script").then(({ themeTypeDark: defaultDark }) => defaultDark());
+  import("./script.mjs").then(({ themeTypeDark: defaultDark }) =>
+    defaultDark()
+  );
   for (let el of document.querySelectorAll(".headingObjInputId"))
     el.style.backgroundColor = "#9DBCD4";
 }
+
+window.addEventListener("load", () => {
+  window[sessionStorage.getItem("language")]();
+  switch (sessionStorage.getItem("theme")) {
+    case "light":
+      themeTypeLight();
+      break;
+    default:
+      themeTypeDark();
+  }
+});
 
 function hoverOutColorChangeFunc(hoveredOutId) {
   document.getElementById(hoveredOutId).style.backgroundColor = "teal";

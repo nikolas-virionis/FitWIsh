@@ -1,5 +1,7 @@
 function english() {
-  import("./script").then(({ english: defaultEnglish }) => defaultEnglish());
+  import("./script.mjs").then(({ english: defaultEnglish }) =>
+    defaultEnglish()
+  );
   let introTxt = document.querySelectorAll(".planTxt");
   for (let element of introTxt) element.style.fontSize = "2.2vw";
   planId.style.marginLeft = "43%";
@@ -14,7 +16,7 @@ function english() {
     "Sooner than you'd expect, you'll be used to looking just as good as you want, and healthier too!";
 }
 function português() {
-  import("./script").then(({ português: defaultPortuguês }) =>
+  import("./script.mjs").then(({ português: defaultPortuguês }) =>
     defaultPortuguês()
   );
   let introTxt = document.querySelectorAll(".planTxt");
@@ -31,7 +33,9 @@ function português() {
     "Antes do que você pode esperar, você já estará aconstumado a ter a aparência que você quiser, e também mais saudável!";
 }
 function français() {
-  import("./script").then(({ français: defaultFrançais }) => defaultFrançais());
+  import("./script.mjs").then(({ français: defaultFrançais }) =>
+    defaultFrançais()
+  );
   planId.innerHTML = "Notre Plan:";
   idBadHabits.innerHTML =
     "Vous avez peut-être des difficultés avec votre état de santé actuel, vous n'aimez pas la situation, mais vous n'êtes pas entièrement déterminé à la changer";
@@ -46,7 +50,9 @@ function français() {
   planId.style.marginRight = "auto";
 }
 function español() {
-  import("./script").then(({ español: defaultEspañol }) => defaultEspañol());
+  import("./script.mjs").then(({ español: defaultEspañol }) =>
+    defaultEspañol()
+  );
   planId.innerHTML = "Nuestro Plan:";
   idBadHabits.innerHTML =
     "Es posible que esté luchando con su estado de salud actual, no le guste la situación, pero no esté completamente comprometido a cambiarla.";
@@ -61,16 +67,31 @@ function español() {
   planId.style.marginRight = "2.55%";
 }
 function themeTypeLight() {
-  import("./script").then(({ themeTypeLight: defaultLight }) => defaultLight());
+  import("./script.mjs").then(({ themeTypeLight: defaultLight }) =>
+    defaultLight()
+  );
   planId.style.color = "blue";
   idBadHabits.style.color = "red";
   idPlanMsg.style.color = "blue";
   idGoodHabits.style.color = "darkgreen";
 }
 function themeTypeDark() {
-  import("./script").then(({ themeTypeDark: defaultDark }) => defaultDark());
+  import("./script.mjs").then(({ themeTypeDark: defaultDark }) =>
+    defaultDark()
+  );
   planId.style.color = "cyan";
   idBadHabits.style.color = "white";
   idPlanMsg.style.color = "cyan";
   idGoodHabits.style.color = "gold";
 }
+
+window.addEventListener("load", () => {
+  window[sessionStorage.getItem("language")]();
+  switch (sessionStorage.getItem("theme")) {
+    case "light":
+      themeTypeLight();
+      break;
+    default:
+      themeTypeDark();
+  }
+});
