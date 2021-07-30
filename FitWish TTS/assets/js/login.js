@@ -51,14 +51,14 @@ function themeTypeLight() {
   import("./script.mjs").then(({ themeTypeLight: defaultLight }) =>
     defaultLight()
   );
-  for (let input of document.querySelectorAll(".textInputClass"))
+  for (let input of document.querySelectorAll(".headingTextInputId"))
     input.style.cssText = "color: #1F3B4D;";
 }
 function themeTypeDark() {
   import("./script.mjs").then(({ themeTypeDark: defaultDark }) =>
     defaultDark()
   );
-  for (let input of document.querySelectorAll(".textInputClass"))
+  for (let input of document.querySelectorAll(".headingTextInputId"))
     input.style.cssText = "color: #DDD;";
 }
 

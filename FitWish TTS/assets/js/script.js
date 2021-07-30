@@ -7,6 +7,10 @@ const enterFuncMid = (event, blur, focus) => {
 const enterFunc = (event) =>
   event.key === "Enter" ? nextPageInterpreter() : "";
 
+let language = sessionStorage.getItem("language"),
+  alreadyInPage,
+  theme = sessionStorage.getItem("theme"),
+  firstAlert;
 function firstPageLogin() {
   buttonFirst.style.display = "none";
   idFooter.style.display = "block";
@@ -35,18 +39,13 @@ const firstPage = () => {
     rightNavInterpreter();
   }
 };
-function rightNavInterpreter() {
-  if (myRightSidenav.style.width == "250px")
-    document.getElementById("myRightSidenav").style.width = "0";
-  else document.getElementById("myRightSidenav").style.width = "250px";
-}
+const rightNavInterpreter = () =>
+  myRightSidenav.style.width == "250px"
+    ? (myRightSidenav.style.width = "0")
+    : (myRightSidenav.style.width = "250px");
 const inPage = () => alert(alreadyInPage);
-function openNav() {
-  document.getElementById("myLeftSidenav").style.width = "250px";
-}
-
-const closeNav = () =>
-  (document.getElementById("myLeftSidenav").style.width = "0");
+const openNav = () => (myLeftSidenav.style.width = "250px");
+const closeNav = () => (myLeftSidenav.style.width = "0");
 const closeRightNav = () =>
   (document.getElementById("myRightSidenav").style.width = "0");
 const disclaimer = () => alert(firstAlert);
@@ -63,3 +62,13 @@ function changeColor4(clickedId, idleId1, idleId2, idleId3) {
   document.getElementById(idleId2).style.backgroundColor = "teal";
   document.getElementById(idleId3).style.backgroundColor = "teal";
 }
+
+const getSiblings = (element) => {
+  let siblings = [];
+  let sibling = element.parentNode.firstChild;
+  while (sibling) {
+    if (sibling.nodeType === 1 && sibling !== element) siblings.push(sibling);
+    sibling = sibling.nextSibling;
+  }
+  return siblings;
+};

@@ -1,86 +1,16 @@
-var alreadyInPage,
-  backupGenderImg =
-    '<br><br><br><br><br><span style="font-size: 40px; font-variant:all-caps; color:white; display: grid; place-items: center;">Select a gender to see the reference Image',
-  weightManagementProgramFinalResult,
-  language,
-  theme,
-  emailLinkFunc,
-  downloadLinkFunc,
-  emotionans,
-  emotion,
-  baseIdealWeight,
-  topIdealWeight,
-  weight,
-  height,
-  unit,
-  advicedWeight,
-  idealBodyFat,
-  idealWeightMsgPunctuation,
-  idealWeightMsgBmiState,
-  bodyFatPercentage,
-  bodyFat,
-  confirmWriteEmail,
-  exerciseAdvice,
-  healthyAdvice,
-  cheatAdvice,
-  mealsAdvice,
-  goalAdvice,
-  goalAdvice2,
-  bmr,
-  calorieIntakeAdvice,
-  calorieCounterLink,
-  caloriesLink,
-  baseBodyFat,
-  topBodyFat,
-  addup1,
-  addup2,
-  addup3,
-  addup4,
-  addup5,
-  addup6,
-  emailaddrreturnfinal,
-  inputName,
-  age,
-  ageAdvice,
-  languageValue = 1,
-  fullresult = "",
-  timeGaps = 0,
-  firstAlert =
-    "DISCLAIMER: This is not a medical nor nutritionist advice and not only does not exclude a medical consultation, but also, me as this code creator, encourage and support YOU to get to see your doctor for anything YOU think YOU should improve in YOUR health life. Peace!",
-  bmi_state = "",
-  gender = "",
-  goal = "",
-  bodyTypeAdvantage,
-  bodyTypeAdvantageAdvice = "",
-  finalIdealWeightMsg = "",
-  bodytype = "",
-  idealWeightMsg = "",
-  idealWeight,
-  idealWeightDistance = 0,
-  bmi = 0,
-  currentBody = 0,
-  goalBody = 0,
-  goalBodyDistance = 0,
-  goalBaseBodyFat = 0,
-  goalTopBodyFat = 0,
-  suggestedBodyFat = 0,
-  idealBodyFatPercentage = 0,
-  noEmailNeeded = 0,
-  wrongEmailCount = 0,
-  goalDistance = "";
 export function english() {
   language = "english";
   sessionStorage.setItem("language", language);
-  languageValue = 1;
   linkTitle.title = "FitWish Home Page";
   if (document.getElementById("buttonFirst"))
     buttonFirst.value = "Attempt's Menu";
   if (document.getElementById("buttonAbout")) buttonAbout.value = "About";
   if (document.getElementById("buttonHome")) buttonHome.value = "Home Page";
   if (document.getElementById("buttonContact")) buttonContact.value = "Contact";
-  howItWorksId.innerHTML = "How it Works";
-  aboutId.innerHTML = "About";
-  contactId.innerHTML = "Contact";
+  if (document.getElementById("howItWorksId"))
+    howItWorksId.innerHTML = "How it Works";
+  if (document.getElementById("aboutId")) aboutId.innerHTML = "About";
+  if (document.getElementById("contactId")) contactId.innerHTML = "Contact";
   if (
     document.getElementById("listRightNav") &&
     window.location.pathname.split("/").pop() != "index.html"
@@ -126,7 +56,6 @@ export function english() {
 export function português() {
   language = "português";
   sessionStorage.setItem("language", language);
-  languageValue = 2;
   linkTitle.title = "Página inicial do FitWish";
   if (document.getElementById("buttonFirst"))
     buttonFirst.value = "Menu de Tentativas";
@@ -134,9 +63,10 @@ export function português() {
   if (document.getElementById("buttonHome"))
     buttonHome.value = "Página Inicial";
   if (document.getElementById("buttonContact")) buttonContact.value = "Contato";
-  howItWorksId.innerHTML = "Como Funciona";
-  aboutId.innerHTML = "Sobre";
-  contactId.innerHTML = "Contato";
+  if (document.getElementById("howItWorksId"))
+    howItWorksId.innerHTML = "Como Funciona";
+  if (document.getElementById("aboutId")) aboutId.innerHTML = "Sobre";
+  if (document.getElementById("contactId")) contactId.innerHTML = "Contato";
   if (
     document.getElementById("listRightNav") &&
     window.location.pathname.split("/").pop() != "index.html"
@@ -182,7 +112,6 @@ export function português() {
 export function français() {
   language = "français";
   sessionStorage.setItem("language", language);
-  languageValue = 3;
   linkTitle.title = "Page d'accueil FitWish";
   if (document.getElementById("buttonFirst"))
     buttonFirst.value = "Menu des tentatives";
@@ -190,9 +119,10 @@ export function français() {
   if (document.getElementById("buttonHome"))
     buttonHome.value = "Page d'accueil";
   if (document.getElementById("buttonContact")) buttonContact.value = "Contact";
-  howItWorksId.innerHTML = "Comment ça fonctionne";
-  contactId.innerHTML = "Contact";
-  aboutId.innerHTML = "À propos";
+  if (document.getElementById("howItWorksId"))
+    howItWorksId.innerHTML = "Comment ça fonctionne";
+  if (document.getElementById("contactId")) contactId.innerHTML = "Contact";
+  if (document.getElementById("aboutId")) aboutId.innerHTML = "À propos";
   if (
     document.getElementById("listRightNav") &&
     window.location.pathname.split("/").pop() != "index.html"
@@ -240,7 +170,6 @@ export function français() {
 export function español() {
   language = "español";
   sessionStorage.setItem("language", language);
-  languageValue = 4;
   linkTitle.title = "Página de inicio de FitWish";
   if (document.getElementById("buttonFirst"))
     buttonFirst.value = "Menú de intentos";
@@ -249,9 +178,10 @@ export function español() {
     buttonHome.value = "Pagina de Inicio";
   if (document.getElementById("buttonContact"))
     buttonContact.value = "Contacto";
-  aboutId.innerHTML = "Sobre";
-  contactId.innerHTML = "Contacto";
-  howItWorksId.innerHTML = "Cómo funciona";
+  if (document.getElementById("aboutId")) aboutId.innerHTML = "Sobre";
+  if (document.getElementById("contactId")) contactId.innerHTML = "Contacto";
+  if (document.getElementById("howItWorksId"))
+    howItWorksId.innerHTML = "Cómo funciona";
   if (
     document.getElementById("listRightNav") &&
     window.location.pathname.split("/").pop() != "index.html"
@@ -307,6 +237,13 @@ export function themeTypeLight() {
     rightsidebarButton.style.color = "black";
   if (document.getElementById("headingObjInputIdHead"))
     document.getElementById("headingObjInputIdHead").style.color = "black";
+  if (document.querySelectorAll(".headingTextInputId"))
+    for (let element of document.querySelectorAll(".headingTextInputId"))
+      element.style.color = "black";
+  for (let nav of document.querySelectorAll(".leftsidenav, .rightsidenav")) {
+    nav.style.backgroundColor = "#42B395";
+    nav.style.color = "#000";
+  }
   if (document.querySelector("#pageBtnsId")) {
     for (let button of document.querySelector("#pageBtnsId").children) {
       button.classList.remove("aboutContactBtn");
@@ -324,6 +261,13 @@ export function themeTypeDark() {
   document.body.style.cssText = "background-color:#12232A; color:#1F3B4D;";
   if (document.getElementById("headingObjInputIdHead"))
     document.getElementById("headingObjInputIdHead").style.color = "aliceblue";
+  if (document.querySelectorAll(".headingTextInputId"))
+    for (let element of document.querySelectorAll(".headingTextInputId"))
+      element.style.color = "aliceblue";
+  for (let nav of document.querySelectorAll(".leftsidenav, .rightsidenav")) {
+    nav.style.backgroundColor = "#000";
+    nav.style.color = "#fff";
+  }
   if (document.querySelector("#pageBtnsId"))
     for (let button of document.querySelector("#pageBtnsId").children) {
       button.classList.add("aboutContactBtn");

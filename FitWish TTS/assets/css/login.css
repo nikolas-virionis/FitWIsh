@@ -32,9 +32,13 @@ input::placeholder {
   border-color: rgba(100, 255, 255);
   background-color: #9dbcd4;
   font-family: Quicksand;
+  color: #1f3b4d;
   height: 6vh;
 }
 
+.textInputClass input::-webkit-search-results-button {
+  background-color: pink;
+}
 #linkTitle {
   display: flex;
   margin-left: 40%;
