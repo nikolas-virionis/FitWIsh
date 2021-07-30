@@ -75,25 +75,17 @@
     </div>
     <strong id="idGoalSubmit" class="margin15vhSubmit"><b>
             <h1 class="classHeading headingObjInputId" id="headingObjInputIdGoal"><i>Goal:</i></h1>
-        </b> <input class="buttonHalfWidth button btnFont25" id="colorChangeIdBulk"
-            onmouseover='hoverColorChangeFunc("colorChangeIdBulk")'
-            onclick="goal('bulking'); changeColor4('colorChangeIdBulk', 'colorChangeIdCut', 'colorChangeIdMuscle', 'colorChangeIdSurp');"
+        </b> <input class="buttonHalfWidth button btnFont25" id="colorChangeIdBulk" onclick="goal('bulking');"
             onmouseout='hoverOutColorChangeFunc("colorChangeIdBulk")' type="button" value="Bulking">
         <input class="buttonHalfWidth button btnFont25" id="colorChangeIdCut"
-            onmouseover='hoverColorChangeFunc("colorChangeIdCut")'
-            onmouseout='hoverOutColorChangeFunc("colorChangeIdCut")'
-            onclick="goal('cutting'); changeColor4('colorChangeIdCut', 'colorChangeIdMuscle', 'colorChangeIdSurp', 'colorChangeIdBulk');"
-            type="button" value="Cutting">
+            onmouseout='hoverOutColorChangeFunc("colorChangeIdCut")' onclick="goal('cutting');" type="button"
+            value="Cutting">
         <input class="buttonFullWidth button btnFont25" id="colorChangeIdSurp"
-            onmouseover='hoverColorChangeFunc("colorChangeIdSurp")'
-            onmouseout='hoverOutColorChangeFunc("colorChangeIdSurp")'
-            onclick="goal('surplus'); changeColor4('colorChangeIdSurp', 'colorChangeIdBulk', 'colorChangeIdCut', 'colorChangeIdMuscle');"
-            type="button" value="Get rid of fat surplus">
+            onmouseout='hoverOutColorChangeFunc("colorChangeIdSurp")' onclick="goal('surplus');" type="button"
+            value="Get rid of fat surplus">
         <input class="buttonFullWidth button btnFont25" id="colorChangeIdMuscle"
-            onmouseover='hoverColorChangeFunc("colorChangeIdMuscle")'
-            onmouseout='hoverOutColorChangeFunc("colorChangeIdMuscle")'
-            onclick="goal('muscle'); changeColor4('colorChangeIdMuscle', 'colorChangeIdSurp', 'colorChangeIdBulk', 'colorChangeIdCut');"
-            type="button" value="Gaining weight and muscle">
+            onmouseout='hoverOutColorChangeFunc("colorChangeIdMuscle")' onclick="goal('muscle');" type="button"
+            value="Gaining weight and muscle">
     </strong>
     <div id="footerDiv">
         <div class="footer" id="idFooter"><a id="footerlink" class="classFooter"
@@ -104,10 +96,10 @@
             </a>
         </div>
     </div>
-    <input type="button" name="prev" onclick="window.location.href = 'data.html';" id="buttonPrev"
-        class="button btnNextPrev" value="Previous">
+    <input type="button" name="prev" onclick="window.location.href = 'data.html';" id="buttonPrev" class="btnNextPrev"
+        value="Previous">
     <input type="button" name="next" onclick="window.location.href = 'bodyType.html';" id="buttonNext"
-        class="button btnNextPrev" value="Next">
+        class="btnNextPrev" value="Next">
 </body>
 
 </html>

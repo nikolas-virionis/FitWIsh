@@ -68,6 +68,18 @@ function themeTypeDark() {
 }
 
 window.addEventListener("load", () => {
+  if (getCheat())
+    document.getElementById(
+      `colorChangeId${
+        getCheat() == 1
+          ? "None"
+          : getCheat() == 2
+          ? "Low"
+          : getCheat() == 3
+          ? "Mid"
+          : "High"
+      }Cheat`
+    ).style.backgroundColor = "#7395AE";
   window[sessionStorage.getItem("language")]();
   switch (sessionStorage.getItem("theme")) {
     case "light":

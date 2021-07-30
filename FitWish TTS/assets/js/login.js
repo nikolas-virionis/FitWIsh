@@ -153,6 +153,9 @@ function validate() {
 }
 
 window.addEventListener("load", () => {
+  let elements = ["name", "age", "email"];
+  for (let element of elements)
+    document.getElementById(element).value = sessionStorage.getItem(element);
   window[sessionStorage.getItem("language")]();
   switch (sessionStorage.getItem("theme")) {
     case "light":

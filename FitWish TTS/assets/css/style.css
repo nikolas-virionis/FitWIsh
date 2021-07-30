@@ -267,6 +267,10 @@ body::-webkit-scrollbar-thumb:hover {
   text-decoration: underline;
   font-size: 0.55em;
   font-weight: 100;
+  border: none;
+  cursor: pointer;
+  font-family: Quicksand;
+  height: 8vh;
 }
 :is(.aboutContactBtn, .contactClass):hover {
   color: white;
@@ -280,6 +284,10 @@ body::-webkit-scrollbar-thumb:hover {
   text-decoration: underline;
   font-size: 0.55em;
   font-weight: 100;
+  border: none;
+  cursor: pointer;
+  font-family: Quicksand;
+  height: 8vh;
 }
 .contactAboutBtn:hover {
   color: black;
@@ -302,6 +310,12 @@ body::-webkit-scrollbar-thumb:hover {
   position: absolute;
   width: 100px;
   text-align: center;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: Quicksand;
+  display: inline-block;
+  height: 8vh;
 }
 #buttonNext,
 #buttonResult {

@@ -23,6 +23,28 @@
   margin-left: 1vw;
 }
 
+.genderCenterNav {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  background-color: black;
+  transform: translate(25vw, 25vh);
+}
+
+.buttonImg {
+  border: none;
+  color: rgba(1, 1, 1);
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: Quicksand;
+  display: inline-block;
+  height: 8vh;
+  background-color: teal;
+}
+
 #headingObjInputIdBodyImage {
   margin-top: 10vh;
 }

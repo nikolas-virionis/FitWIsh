@@ -84,6 +84,18 @@ const setExecise = (exercise) =>
   sessionStorage.setItem("exercise", JSON.stringify(exercise));
 
 window.addEventListener("load", () => {
+  if (getExecise())
+    document.getElementById(
+      `colorChangeId${
+        getExecise() == 1
+          ? "None"
+          : getExecise() == 2
+          ? "Low"
+          : getExecise() == 3
+          ? "Mid"
+          : "High"
+      }Xercise`
+    ).style.backgroundColor = "#7395AE";
   window[sessionStorage.getItem("language")]();
   switch (sessionStorage.getItem("theme")) {
     case "light":

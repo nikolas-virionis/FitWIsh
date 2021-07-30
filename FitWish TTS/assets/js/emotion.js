@@ -102,7 +102,7 @@ function checkAllAnswers() {
     getCurrentBody() &&
     getGoalBody();
   if (answers) window.location.href = "check.html";
-  if (getName()) {
+  if (!getName()) {
     if (language == "english")
       alert(
         "Name not informed, it is mandatory for the best experience of our diagnosis, although all data is safe and private"
@@ -120,8 +120,7 @@ function checkAllAnswers() {
         "Nombre no informado, es obligatorio para la mejor experiencia de nuestro diagnóstico, aunque todos los datos son seguros y privados."
       );
     window.location.href = "login.html";
-  }
-  if (getAge()) {
+  } else if (!getAge()) {
     if (language == "english")
       alert(
         "Age not informed, it is mandatory for the best experience of our diagnosis, although all data is safe and private"
@@ -139,8 +138,7 @@ function checkAllAnswers() {
         "Edad no informada, es obligatorio para la mejor experiencia de nuestro diagnóstico, aunque todos los datos son seguros y privados."
       );
     window.location.href = "login.html";
-  }
-  if (email) {
+  } else if (!email) {
     if (language == "english")
       alert(
         "Email not informed, it is mandatory for the best experience of our diagnosis, although all data is safe and private"
@@ -158,8 +156,7 @@ function checkAllAnswers() {
         "Correo electrónico no informado, es obligatorio para la mejor experiencia de nuestro diagnóstico, aunque todos los datos son seguros y privados."
       );
     window.location.href = "login.html";
-  }
-  if (getGender()) {
+  } else if (!getGender()) {
     if (language == "english")
       alert(
         "Gender option not checked, it is mandatory for the best experience of our diagnosis, although all data is safe and private"
@@ -177,8 +174,7 @@ function checkAllAnswers() {
         "La opción de género no está marcada, es obligatoria para la mejor experiencia de nuestro diagnóstico, aunque todos los datos son seguros y privados."
       );
     window.location.href = "genderUnit.html";
-  }
-  if (getUnit()) {
+  } else if (!getUnit()) {
     if (language == "english")
       alert(
         "Unit option not checked, it is mandatory for the best experience of our diagnosis, although all data is safe and private"
@@ -196,8 +192,7 @@ function checkAllAnswers() {
         "Opción de unidad no marcada, es obligatoria para la mejor experiencia de nuestro diagnóstico, aunque todos los datos son seguros y privados."
       );
     window.location.href = "genderUnit.html";
-  }
-  if (getHeight()) {
+  } else if (!getHeight()) {
     if (language == "english")
       alert(
         "Height not informed, it is mandatory for the best experience of our diagnosis, although all data is safe and private"
@@ -215,8 +210,7 @@ function checkAllAnswers() {
         "Altura no informada, es obligatorio para la mejor experiencia de nuestro diagnóstico, aunque todos los datos son seguros y privados."
       );
     window.location.href = "data.html";
-  }
-  if (getWeight()) {
+  } else if (!getWeight()) {
     if (language == "english")
       alert(
         "Weight not informed, it is mandatory for the best experience of our diagnosis, although all data is safe and private"
@@ -234,8 +228,7 @@ function checkAllAnswers() {
         "Peso no informado, es obligatorio para la mejor experiencia de nuestro diagnóstico, aunque todos los datos son seguros y privados."
       );
     window.location.href = "data.html";
-  }
-  if (getBodyType()) {
+  } else if (!getBodyType()) {
     if (language == "english")
       alert(
         "Body type option not checked, it is mandatory for the best experience of our diagnosis, although all data is safe and private"
@@ -253,8 +246,7 @@ function checkAllAnswers() {
         "La opción de tipo de cuerpo no está marcada, es obligatoria para la mejor experiencia de nuestro diagnóstico, aunque todos los datos son seguros y privados."
       );
     window.location.href = "bodyType.html";
-  }
-  if (getMeals()) {
+  } else if (!getMeals()) {
     if (language == "english")
       alert(
         "Meals per day option not checked, it is mandatory for the best experience of our diagnosis, although all data is safe and private"
@@ -272,8 +264,7 @@ function checkAllAnswers() {
         "Opción de comidas por día no marcada, es obligatorio para la mejor experiencia de nuestro diagnóstico, aunque todos los datos son seguros y privados."
       );
     window.location.href = "meals.html";
-  }
-  if (getCheat()) {
+  } else if (!getCheat()) {
     if (language == "english")
       alert(
         "Cheat meal option not checked, it is mandatory for the best experience of our diagnosis, although all data is safe and private"
@@ -291,8 +282,7 @@ function checkAllAnswers() {
         "Opción de comida poco saludable no marcada, es obligatorio para la mejor experiencia de nuestro diagnóstico, aunque todos los datos son seguros y privados."
       );
     window.location.href = "cheat.html";
-  }
-  if (getHealthy()) {
+  } else if (!getHealthy()) {
     if (language == "english")
       alert(
         "Healthy meal option not checked, it is mandatory for the best experience of our diagnosis, although all data is safe and private"
@@ -310,8 +300,7 @@ function checkAllAnswers() {
         "Opción de comida saludable no marcada, es obligatoria para la mejor experiencia de nuestro diagnóstico, aunque todos los datos son seguros y privados."
       );
     window.location.href = "healthy.html";
-  }
-  if (getExecise()) {
+  } else if (!getExecise()) {
     if (language == "english")
       alert(
         "Exercising option not checked, it is mandatory for the best experience of our diagnosis, although all data is safe and private"
@@ -329,8 +318,7 @@ function checkAllAnswers() {
         "Ejercicio de opción no marcada, es obligatorio para la mejor experiencia de nuestro diagnóstico, aunque todos los datos son seguros y privados."
       );
     window.location.href = "exercise.html";
-  }
-  if (getGoal()) {
+  } else if (!getGoal()) {
     if (language == "english")
       alert(
         "Goal option not checked, it is mandatory for the best experience of our diagnosis, although all data is safe and private"
@@ -348,8 +336,7 @@ function checkAllAnswers() {
         "La opción de objetivo no está marcada, es obligatoria para la mejor experiencia de nuestro diagnóstico, aunque todos los datos son seguros y privados."
       );
     window.location.href = "goal.html";
-  }
-  if (getEmotion()) {
+  } else if (!getEmotion()) {
     if (language == "english")
       alert(
         "Emotional overeating option not checked, it is mandatory for the best experience of our diagnosis, although all data is safe and private"
@@ -367,8 +354,7 @@ function checkAllAnswers() {
         "La opción de comer en exceso emocional no está marcada, es obligatoria para la mejor experiencia de nuestro diagnóstico, aunque todos los datos son seguros y privados."
       );
     window.location.href = "emotion.html";
-  }
-  if (getCurrentBody()) {
+  } else if (!getCurrentBody()) {
     if (language == "english")
       alert(
         "Current body option not checked, it is mandatory for the best experience of our diagnosis, although all data is safe and private"
@@ -386,8 +372,7 @@ function checkAllAnswers() {
         "Opción corporal actual no marcada, es obligatorio para la mejor experiencia de nuestro diagnóstico, aunque todos los datos son seguros y privados."
       );
     window.location.href = "image.html";
-  }
-  if (getGoalBody()) {
+  } else if (!getGoalBody()) {
     if (language == "english")
       alert(
         "Goal body option not checked, it is mandatory for the best experience of our diagnosis, although all data is safe and private"
@@ -409,6 +394,12 @@ function checkAllAnswers() {
 }
 
 window.addEventListener("load", () => {
+  if (getEmotion())
+    document.getElementById(
+      `colorChangeIdEmo${
+        getEmotion().charAt(0).toUpperCase() + getEmotion().slice(1)
+      }`
+    ).style.backgroundColor = "#7395AE";
   window[sessionStorage.getItem("language")]();
   switch (sessionStorage.getItem("theme")) {
     case "light":

@@ -1,3 +1,4 @@
+let metricSystem, imperialSystem;
 function english() {
   import("./script.mjs").then(({ english: defaultEnglish }) =>
     defaultEnglish()
@@ -92,6 +93,16 @@ const imperialUnit = () => (colorChangeIdImperial.value += ` (lbs / in)`);
 const imperialUnitCloak = () => (colorChangeIdImperial.value = imperialSystem);
 
 window.addEventListener("load", () => {
+  if (getGender())
+    document.getElementById(
+      `colorChangeId${
+        getGender().charAt(0).toUpperCase() + getGender().slice(1)
+      }`
+    ).style.backgroundColor = "#7395AE";
+  if (getUnit())
+    document.getElementById(
+      `colorChangeId${getUnit().charAt(0).toUpperCase() + getUnit().slice(1)}`
+    ).style.backgroundColor = "#7395AE";
   window[sessionStorage.getItem("language")]();
   switch (sessionStorage.getItem("theme")) {
     case "light":

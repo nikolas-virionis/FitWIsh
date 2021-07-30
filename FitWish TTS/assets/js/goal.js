@@ -70,6 +70,18 @@ const getGoal = () => sessionStorage.getItem("goal");
 const goal = (goal) => sessionStorage.setItem("goal", goal);
 
 window.addEventListener("load", () => {
+  if (getGoal())
+    document.getElementById(
+      `colorChangeId${
+        getGoal() == "bulking"
+          ? "Bulk"
+          : getGoal() == "cutting"
+          ? "Cut"
+          : getGoal() == "surplus"
+          ? "Surp"
+          : "Muscle"
+      }`
+    ).style.backgroundColor = "#7395AE";
   window[sessionStorage.getItem("language")]();
   switch (sessionStorage.getItem("theme")) {
     case "light":

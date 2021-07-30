@@ -54,18 +54,24 @@ function themeTypeLight() {
   import("./script.mjs").then(({ themeTypeLight: defaultLight }) =>
     defaultLight()
   );
-  for (let field of document.querySelectorAll(".textInputClass"))
+  for (let field of document.querySelectorAll(".headingTextInputId"))
     field.style.color = "#1F3B4D";
 }
 function themeTypeDark() {
   import("./script.mjs").then(({ themeTypeDark: defaultDark }) =>
     defaultDark()
   );
-  for (let field of document.querySelectorAll(".textInputClass"))
+  for (let field of document.querySelectorAll(".headingTextInputId"))
     field.style.color = "#DDD";
 }
-
 window.addEventListener("load", () => {
+  const getUnit = () => sessionStorage.getItem("unit");
+  let unit = getUnit().charAt(0).toUpperCase() + getUnit().slice(1);
+  let elements = ["height", "weight"];
+  for (let element of elements)
+    document.getElementById(element + unit).value = JSON.parse(
+      sessionStorage.getItem(element)
+    );
   window[sessionStorage.getItem("language")]();
   switch (sessionStorage.getItem("theme")) {
     case "light":

@@ -79,14 +79,10 @@
                             (When experiencing sadness, happiness, boredom, loneliness, stress, dissapointment, concern,
                             etc.)</h5></i></h2>
             </b></b><a><input class="buttonHalfWidth button button35vw" id="colorChangeIdEmoYes"
-                onmouseover='hoverColorChangeFunc("colorChangeIdEmoYes")'
-                onmouseout='hoverOutColorChangeFunc("colorChangeIdEmoYes")'
-                onclick="changeColor2('colorChangeIdEmoYes', 'colorChangeIdEmoNo'); emotion('yes');" type="button"
+                onmouseout='hoverOutColorChangeFunc("colorChangeIdEmoYes")' onclick="emotion('yes');" type="button"
                 value="Yes" /></a>
         <input class="buttonHalfWidth button button35vw" onmouseout='hoverOutColorChangeFunc("colorChangeIdEmoNo")'
-            id="colorChangeIdEmoNo" onmouseover='hoverColorChangeFunc("colorChangeIdEmoNo")'
-            onclick="emotion('no'); changeColor2('colorChangeIdEmoNo', 'colorChangeIdEmoYes');" type="button"
-            value="No"></strong>
+            id="colorChangeIdEmoNo" onclick="emotion('no');" type="button" value="No"></strong>
     <div id="footerDiv">
         <div class="footer" id="idFooter"><a id="footerlink" class="classFooter"
                 href="https://www.LinkedIn.com/in/nikolas-barcha-virionis-b71228199/" target="_blank"><i>
@@ -96,8 +92,8 @@
             </a>
         </div>
     </div>
-    <input type="button" name="prev" onclick="window.location.href = 'meals.html';" id="buttonPrev"
-        class="button btnNextPrev" value="Previous">
+    <input type="button" name="prev" onclick="window.location.href = 'meals.html';" id="buttonPrev" class="btnNextPrev"
+        value="Previous">
     <input type="button" name="result" onclick="checkAllAnswers();" id="buttonResult" class="button resultButton"
         value="Result">
 </body>

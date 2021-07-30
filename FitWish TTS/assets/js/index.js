@@ -202,7 +202,8 @@ function getDefLang() {
   return english();
 }
 window.addEventListener("load", () => {
-  window[sessionStorage.getItem("language")]();
+  if (sessionStorage.getItem("language"))
+    window[sessionStorage.getItem("language")]();
   switch (sessionStorage.getItem("theme")) {
     case "light":
       themeTypeLight();

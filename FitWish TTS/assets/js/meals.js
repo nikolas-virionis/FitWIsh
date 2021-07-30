@@ -73,6 +73,18 @@ const setMeals = (meals) =>
   sessionStorage.setItem("meals", JSON.stringify(meals));
 
 window.addEventListener("load", () => {
+  if (getMeals())
+    document.getElementById(
+      `colorChangeId${
+        getMeals() == 1
+          ? "2"
+          : getMeals() == 2
+          ? "3"
+          : getMeals() == 3
+          ? "4"
+          : "5"
+      }Meals`
+    ).style.backgroundColor = "#7395AE";
   window[sessionStorage.getItem("language")]();
   switch (sessionStorage.getItem("theme")) {
     case "light":

@@ -84,6 +84,18 @@ const setHealthy = (healthy) =>
   sessionStorage.setItem("healthy", JSON.stringify(healthy));
 
 window.addEventListener("load", () => {
+  if (getHealthy())
+    document.getElementById(
+      `colorChangeId${
+        getHealthy() == 1
+          ? "None"
+          : getHealthy() == 2
+          ? "Low"
+          : getHealthy() == 3
+          ? "Mid"
+          : "High"
+      }Healthy`
+    ).style.backgroundColor = "#7395AE";
   window[sessionStorage.getItem("language")]();
   switch (sessionStorage.getItem("theme")) {
     case "light":

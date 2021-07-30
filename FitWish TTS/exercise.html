@@ -77,26 +77,15 @@
         <b>
             <h1 class="classHeading headingObjInputId" id="headingObjInputIdXercise"><i>High intensity exercise
                     frequency:</i></h1>
-        </b> <input onmouseover='hoverColorChangeFunc("colorChangeIdNoneXercise")'
-            onmouseout='hoverOutColorChangeFunc("colorChangeIdNoneXercise")' class="button buttonQuarterWidth"
-            id="colorChangeIdNoneXercise"
-            onclick="setExercise(1); changeColor4('colorChangeIdNoneXercise', 'colorChangeIdHighXercise', 'colorChangeIdMidXercise', 'colorChangeIdLowXercise')"
-            type="button" value="None">
-        <input onmouseover='hoverColorChangeFunc("colorChangeIdLowXercise")'
-            onmouseout='hoverOutColorChangeFunc("colorChangeIdLowXercise")'
-            class="button buttonThreeQuartersWidth btnFont25" id="colorChangeIdLowXercise"
-            onclick="setExercise(2); changeColor4('colorChangeIdLowXercise', 'colorChangeIdNoneXercise', 'colorChangeIdHighXercise', 'colorChangeIdMidXercise');"
+        </b> <input onmouseout='hoverOutColorChangeFunc("colorChangeIdNoneXercise")' class="button buttonQuarterWidth"
+            id="colorChangeIdNoneXercise" onclick="setExercise(1);" type="button" value="None">
+        <input onmouseout='hoverOutColorChangeFunc("colorChangeIdLowXercise")'
+            class="button buttonThreeQuartersWidth btnFont25" id="colorChangeIdLowXercise" onclick="setExercise(2);"
             type="button" value="1-2 times a week">
-        <input onmouseover='hoverColorChangeFunc("colorChangeIdMidXercise")'
-            onmouseout='hoverOutColorChangeFunc("colorChangeIdMidXercise")' class="button buttonFullWidth btnFont25"
-            id="colorChangeIdMidXercise"
-            onclick="setExercise(3); changeColor4('colorChangeIdMidXercise', 'colorChangeIdLowXercise', 'colorChangeIdNoneXercise', 'colorChangeIdHighXercise');"
-            type="button" value="3-4 times a week">
-        <input onmouseover='hoverColorChangeFunc("colorChangeIdHighXercise")'
-            onmouseout='hoverOutColorChangeFunc("colorChangeIdHighXercise")' class="button buttonFullWidth btnFont25"
-            id="colorChangeIdHighXercise"
-            onclick="setExercise(4); changeColor4('colorChangeIdHighXercise', 'colorChangeIdMidXercise', 'colorChangeIdLowXercise', 'colorChangeIdNoneXercise');"
-            type="button" value="5 or more times a week">
+        <input onmouseout='hoverOutColorChangeFunc("colorChangeIdMidXercise")' class="button buttonFullWidth btnFont25"
+            id="colorChangeIdMidXercise" onclick="setExercise(3);" type="button" value="3-4 times a week">
+        <input onmouseout='hoverOutColorChangeFunc("colorChangeIdHighXercise")' class="button buttonFullWidth btnFont25"
+            id="colorChangeIdHighXercise" onclick="setExercise(4);" type="button" value="5 or more times a week">
     </strong>
     <div id="footerDiv">
         <div class="footer" id="idFooter"><a id="footerlink" class="classFooter"
@@ -107,10 +96,10 @@
             </a>
         </div>
     </div>
-    <input type="button" name="prev" onclick="window.location.href = 'image.html';" id="buttonPrev"
-        class="button btnNextPrev" value="Previous">
+    <input type="button" name="prev" onclick="window.location.href = 'image.html';" id="buttonPrev" class="btnNextPrev"
+        value="Previous">
     <input type="button" name="next" onclick="window.location.href = 'healthy.html';" id="buttonNext"
-        class="button btnNextPrev" value="Next">
+        class="btnNextPrev" value="Next">
 </body>
 
 </html>

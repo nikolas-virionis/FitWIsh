@@ -77,25 +77,16 @@
         <b>
             <h1 class="classHeading headingObjInputId" id="headingObjInputIdBodyType"><i>Body Type:</i></h1>
         </b> <input class="buttonFullWidth button" id="colorChangeIdNoIdea"
-            onmouseover='hoverColorChangeFunc("colorChangeIdNoIdea")'
-            onmouseout='hoverOutColorChangeFunc("colorChangeIdNoIdea")'
-            onclick="nop(); changeColor4('colorChangeIdNoIdea', 'colorChangeIdEcto', 'colorChangeIdMeso', 'colorChangeIdEndo');"
-            type="button" value="No idea">
+            onmouseout='hoverOutColorChangeFunc("colorChangeIdNoIdea")' onclick="nop();" type="button" value="No idea">
         <input class="buttonFullWidth button btnFont25" id="colorChangeIdEcto"
-            onmouseover='hoverColorChangeFunc("colorChangeIdEcto")'
-            onmouseout='hoverOutColorChangeFunc("colorChangeIdEcto")'
-            onclick="bodyType('ecto'); changeColor4('colorChangeIdEcto', 'colorChangeIdNoIdea', 'colorChangeIdEndo', 'colorChangeIdMeso');"
-            type="button" value="Ectomorph">
+            onmouseout='hoverOutColorChangeFunc("colorChangeIdEcto")' onclick="bodyType('ecto');" type="button"
+            value="Ectomorph">
         <input class="buttonFullWidth button" id="colorChangeIdMeso"
-            onmouseover='hoverColorChangeFunc("colorChangeIdMeso")'
-            onmouseout='hoverOutColorChangeFunc("colorChangeIdMeso")'
-            onclick="bodyType('meso'); changeColor4('colorChangeIdMeso', 'colorChangeIdEndo', 'colorChangeIdNoIdea', 'colorChangeIdEcto');"
-            type="button" value="Mesomorph">
+            onmouseout='hoverOutColorChangeFunc("colorChangeIdMeso")' onclick="bodyType('meso');" type="button"
+            value="Mesomorph">
         <input class="buttonFullWidth button" id="colorChangeIdEndo"
-            onmouseover='hoverColorChangeFunc("colorChangeIdEndo")'
-            onmouseout='hoverOutColorChangeFunc("colorChangeIdEndo")'
-            onclick="bodyType('endo'); changeColor4('colorChangeIdEndo', 'colorChangeIdMeso', 'colorChangeIdEcto', 'colorChangeIdNoIdea');"
-            type="button" value="Endomorph">
+            onmouseout='hoverOutColorChangeFunc("colorChangeIdEndo")' onclick="bodyType('endo');" type="button"
+            value="Endomorph">
     </strong>
     <div id="footerDiv">
         <div class="footer" id="idFooter"><a id="footerlink" class="classFooter"
@@ -106,10 +97,10 @@
             </a>
         </div>
     </div>
-    <input type="button" name="prev" onclick="window.location.href = 'goal.html';" id="buttonPrev"
-        class="button btnNextPrev" value="Previous">
-    <input type="button" name="next" onclick="window.location.href = 'image.html';" id="buttonNext"
-        class="button btnNextPrev" value="Next">
+    <input type="button" name="prev" onclick="window.location.href = 'goal.html';" id="buttonPrev" class="btnNextPrev"
+        value="Previous">
+    <input type="button" name="next" onclick="window.location.href = 'image.html';" id="buttonNext" class="btnNextPrev"
+        value="Next">
 </body>
 
 </html>

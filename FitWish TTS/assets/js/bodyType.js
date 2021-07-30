@@ -57,6 +57,12 @@ function themeTypeDark() {
 }
 
 window.addEventListener("load", () => {
+  if (getBodyType())
+    document.getElementById(
+      `colorChangeId${
+        getBodyType().charAt(0).toUpperCase() + getBodyType().slice(1)
+      }`
+    ).style.backgroundColor = "#7395AE";
   window[sessionStorage.getItem("language")]();
   switch (sessionStorage.getItem("theme")) {
     case "light":
@@ -81,6 +87,7 @@ function hoverOutColorChangeFunc(hoveredOutId) {
 const bodyType = (bodytype) => sessionStorage.setItem("bodytype", bodytype);
 const getBodyType = () => sessionStorage.getItem("bodytype");
 function nop() {
+  sessionStorage.removeItem("bodytype");
   if (language == "english")
     alert(
       "Copy the first link to a 10-minute video explaining it: https://www.youtube.com/watch?v=iW6QeqA_iD4&t=446s, or take a Google test on this link: https://www.bodybuilding.com/fun/becker3.htm. But basically ecto does not have much ease in gaining muscle nor fat, meso has ease in gaining muscle and losing fat and endo has ease to gain both. And btw you can click on the body type you are without having to rerun the code"

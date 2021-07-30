@@ -24,13 +24,13 @@ let language = sessionStorage.getItem("language"),
 
 window.addEventListener("load", () => {
   window[sessionStorage.getItem("language")]();
-  switch (sessionStorage.getItem("theme")) {
-    case "light":
-      themeTypeLight();
-      break;
-    default:
-      themeTypeDark();
-  }
+  window[
+    `themeType${
+      sessionStorage.getItem("theme").charAt(0).toUpperCase() +
+      sessionStorage.getItem("theme").slice(1)
+    }`
+  ]();
+  result();
 });
 
 function english() {

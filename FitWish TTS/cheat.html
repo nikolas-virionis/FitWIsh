@@ -77,26 +77,15 @@
         <b>
             <h1 class="classHeading headingObjInputId" id="headingObjInputIdCheat"><i>Cheat meals days frequency:</i>
             </h1>
-        </b> <input onmouseover='hoverColorChangeFunc("colorChangeIdNoneCheat")'
-            onmouseout='hoverOutColorChangeFunc("colorChangeIdNoneCheat")' class="button buttonQuarterWidth"
-            id="colorChangeIdNoneCheat"
-            onclick="setCheat(1); changeColor4('colorChangeIdNoneCheat', 'colorChangeIdHighCheat', 'colorChangeIdMidCheat', 'colorChangeIdLowCheat')"
-            type="button" value="None">
-        <input onmouseover='hoverColorChangeFunc("colorChangeIdLowCheat")'
-            onmouseout='hoverOutColorChangeFunc("colorChangeIdLowCheat")'
-            class="button buttonThreeQuartersWidth btnFont25" id="colorChangeIdLowCheat"
-            onclick="setCheat(2); changeColor4('colorChangeIdLowCheat', 'colorChangeIdNoneCheat', 'colorChangeIdHighCheat', 'colorChangeIdMidCheat');"
+        </b> <input onmouseout='hoverOutColorChangeFunc("colorChangeIdNoneCheat")' class="button buttonQuarterWidth"
+            id="colorChangeIdNoneCheat" onclick="setCheat(1);" type="button" value="None">
+        <input onmouseout='hoverOutColorChangeFunc("colorChangeIdLowCheat")'
+            class="button buttonThreeQuartersWidth btnFont25" id="colorChangeIdLowCheat" onclick="setCheat(2);"
             type="button" value="1-2 times a week">
-        <input onmouseover='hoverColorChangeFunc("colorChangeIdMidCheat")'
-            onmouseout='hoverOutColorChangeFunc("colorChangeIdMidCheat")' class="button buttonFullWidth btnFont25"
-            id="colorChangeIdMidCheat"
-            onclick="setCheat(3); changeColor4('colorChangeIdMidCheat', 'colorChangeIdLowCheat', 'colorChangeIdNoneCheat', 'colorChangeIdHighCheat');"
-            type="button" value="3-4 times a week">
-        <input onmouseover='hoverColorChangeFunc("colorChangeIdHighCheat")'
-            onmouseout='hoverOutColorChangeFunc("colorChangeIdHighCheat")' class="button buttonFullWidth btnFont25"
-            id="colorChangeIdHighCheat"
-            onclick="setCheat(4); changeColor4('colorChangeIdHighCheat', 'colorChangeIdMidCheat', 'colorChangeIdLowCheat', 'colorChangeIdNoneCheat');"
-            type="button" value="5 or more times a week">
+        <input onmouseout='hoverOutColorChangeFunc("colorChangeIdMidCheat")' class="button buttonFullWidth btnFont25"
+            id="colorChangeIdMidCheat" onclick="setCheat(3);" type="button" value="3-4 times a week">
+        <input onmouseout='hoverOutColorChangeFunc("colorChangeIdHighCheat")' class="button buttonFullWidth btnFont25"
+            id="colorChangeIdHighCheat" onclick="setCheat(4);" type="button" value="5 or more times a week">
     </strong>
     <div id="footerDiv">
         <div class="footer" id="idFooter"><a id="footerlink" class="classFooter"
@@ -108,9 +97,9 @@
         </div>
     </div>
     <input type="button" name="prev" onclick="window.location.href = 'healthy.html';" id="buttonPrev"
-        class="button btnNextPrev" value="Previous">
-    <input type="button" name="next" onclick="window.location.href = 'meals.html';" id="buttonNext"
-        class="button btnNextPrev" value="Next">
+        class="btnNextPrev" value="Previous">
+    <input type="button" name="next" onclick="window.location.href = 'meals.html';" id="buttonNext" class="btnNextPrev"
+        value="Next">
 </body>
 
 </html>

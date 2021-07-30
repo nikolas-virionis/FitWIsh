@@ -1,3 +1,8 @@
+let language = sessionStorage.getItem("language"),
+  theme = sessionStorage.getItem("theme"),
+  buttons = document.querySelectorAll(".button"),
+  alreadyInPage,
+  firstAlert;
 const enterFuncMid = (event, blur, focus) => {
   if (event.key === "Enter") {
     document.getElementById(blur).blur();
@@ -7,10 +12,6 @@ const enterFuncMid = (event, blur, focus) => {
 const enterFunc = (event) =>
   event.key === "Enter" ? nextPageInterpreter() : "";
 
-let language = sessionStorage.getItem("language"),
-  alreadyInPage,
-  theme = sessionStorage.getItem("theme"),
-  firstAlert;
 function firstPageLogin() {
   buttonFirst.style.display = "none";
   idFooter.style.display = "block";
@@ -49,8 +50,6 @@ const closeNav = () => (myLeftSidenav.style.width = "0");
 const closeRightNav = () =>
   (document.getElementById("myRightSidenav").style.width = "0");
 const disclaimer = () => alert(firstAlert);
-const hoverColorChangeFunc = (hoveredId) =>
-  (document.getElementById(hoveredId).style.backgroundColor = "#2ECC71");
 
 function changeColor2(clickedId, idleId) {
   document.getElementById(clickedId).style.backgroundColor = "#7395AE";
@@ -65,10 +64,34 @@ function changeColor4(clickedId, idleId1, idleId2, idleId3) {
 
 const getSiblings = (element) => {
   let siblings = [];
-  let sibling = element.parentNode.firstChild;
+  let sibling = element.parentElement.firstChild;
   while (sibling) {
-    if (sibling.nodeType === 1 && sibling !== element) siblings.push(sibling);
+    if (
+      sibling.nodeType === 1 &&
+      sibling !== element &&
+      sibling.tagName == "INPUT"
+    )
+      siblings.push(sibling);
     sibling = sibling.nextSibling;
   }
   return siblings;
 };
+if (
+  window.location.pathname.split("/").pop().slice(0, -5) !== "index" &&
+  window.location.pathname.split("/").pop().slice(0, -5) != "intro" &&
+  window.location.pathname.split("/").pop().slice(0, -5) != "result"
+) {
+  for (let button of buttons) {
+    button.addEventListener("mouseover", (e) => {
+      let element = e.target;
+      element.style.backgroundColor = "#2ECC71";
+    });
+
+    button.addEventListener(`click`, (e) => {
+      let element = e.target;
+      element.style.backgroundColor = "#7395AE";
+      console.log(getSiblings(element));
+      for (let el of getSiblings(element)) el.style.backgroundColor = "teal";
+    });
+  }
+}

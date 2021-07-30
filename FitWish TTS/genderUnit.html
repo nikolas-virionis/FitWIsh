@@ -74,30 +74,26 @@
         </ul>
     </div>
     <strong id="idGenderUnitSubmit"><br><br>
-        <b><b>
-                <h1 class="classHeading headingObjInputId" id="headingObjInputIdGender"><i>Gender:</i></h1>
-            </b></b><a><input class="buttonHalfWidth button button35vw" id="colorChangeIdMale"
-                onmouseover='hoverColorChangeFunc("colorChangeIdMale")'
-                onmouseout='hoverOutColorChangeFunc("colorChangeIdMale")'
-                onclick="changeColor2('colorChangeIdMale', 'colorChangeIdFemale'); gender('male');" type="button"
-                value="Male" /></a>
-        <input class="buttonHalfWidth button button35vw" onmouseout='hoverOutColorChangeFunc("colorChangeIdFemale")'
-            id="colorChangeIdFemale" onmouseover='hoverColorChangeFunc("colorChangeIdFemale")'
-            onclick="gender('female'); changeColor2('colorChangeIdFemale', 'colorChangeIdMale');;" type="button"
-            value="Female"><br><br><br><br>
-        <b>
+        <div>
+
+            <h1 class="classHeading headingObjInputId" id="headingObjInputIdGender"><i>Gender:</i></h1>
+            <input class="buttonHalfWidth button button35vw" id="colorChangeIdMale"
+                onmouseout='hoverOutColorChangeFunc("colorChangeIdMale")' onclick="gender('male');" type="button"
+                value="Male" />
+            <input class="buttonHalfWidth button button35vw" onmouseout='hoverOutColorChangeFunc("colorChangeIdFemale")'
+                id="colorChangeIdFemale" onclick="gender('female');" type="button" value="Female"><br><br><br><br>
+        </div>
+        <div>
             <h1 class="classHeading headingObjInputId" id="headingObjInputIdUnit"><i>Unit System:</i></h1>
-        </b> <input class="button35vw buttonHalfWidth button" id="colorChangeIdMetric"
-            onmouseover='hoverColorChangeFunc("colorChangeIdMetric"); metricUnit();'
-            onmouseout='hoverOutColorChangeFunc("colorChangeIdMetric"); metricUnitCloak();'
-            onclick="unit('metric');changeColor2('colorChangeIdMetric', 'colorChangeIdImperial');" type="button"
-            value="Metric">
-        <input class="buttonHalfWidth button button35vw" id="colorChangeIdImperial"
-            onmouseover='hoverColorChangeFunc("colorChangeIdImperial"); imperialUnit();'
-            onmouseout='hoverOutColorChangeFunc("colorChangeIdImperial"); imperialUnitCloak();'
-            onclick="unit('imperial');changeColor2('colorChangeIdImperial', 'colorChangeIdMetric');" type="button"
-            value="Imperial">
-        <br><br><br><br><br></strong>
+            <input class="button35vw buttonHalfWidth button" id="colorChangeIdMetric" metricUnit();'
+                onmouseout='hoverOutColorChangeFunc("colorChangeIdMetric"); metricUnitCloak();' onclick="unit('metric')"
+                type="button" value="Metric">
+            <input class="buttonHalfWidth button button35vw" id="colorChangeIdImperial" imperialUnit();'
+                onmouseout='hoverOutColorChangeFunc("colorChangeIdImperial"); imperialUnitCloak();'
+                onclick="unit('imperial')" type="button" value="Imperial">
+            <br><br><br><br><br>
+        </div>
+    </strong>
     <div id="footerDiv">
         <div class="footer" id="idFooter"><a id="footerlink" class="classFooter"
                 href="https://www.LinkedIn.com/in/nikolas-barcha-virionis-b71228199/" target="_blank"><i>
@@ -107,10 +103,10 @@
             </a>
         </div>
     </div>
-    <input type="button" name="prev" onclick="window.location.href = 'login.html';" id="buttonPrev"
-        class="button btnNextPrev" value="Previous">
-    <input type="button" name="next" onclick="window.location.href = 'data.html';" id="buttonNext"
-        class="button btnNextPrev" value="Next">
+    <input type="button" name="prev" onclick="window.location.href = 'login.html';" id="buttonPrev" class="btnNextPrev"
+        value="Previous">
+    <input type="button" name="next" onclick="window.location.href = 'data.html';" id="buttonNext" class="btnNextPrev"
+        value="Next">
 </body>
 
 </html>
