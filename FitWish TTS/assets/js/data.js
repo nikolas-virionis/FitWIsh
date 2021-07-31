@@ -65,21 +65,7 @@ function themeTypeDark() {
     field.style.color = "#DDD";
 }
 window.addEventListener("load", () => {
-  const getUnit = () => sessionStorage.getItem("unit");
-  let unit = getUnit().charAt(0).toUpperCase() + getUnit().slice(1);
-  let elements = ["height", "weight"];
-  for (let element of elements)
-    document.getElementById(element + unit).value = JSON.parse(
-      sessionStorage.getItem(element)
-    );
-  window[sessionStorage.getItem("language")]();
-  switch (sessionStorage.getItem("theme")) {
-    case "light":
-      themeTypeLight();
-      break;
-    default:
-      themeTypeDark();
-  }
+  if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
   if (!sessionStorage.getItem("unit")) {
     if (language == "english")
       alert(
@@ -107,6 +93,20 @@ window.addEventListener("load", () => {
       imperialDataInputId.style.display = "block";
     }
   }
+  const getUnit = () => sessionStorage.getItem("unit");
+  let unit = getUnit().charAt(0).toUpperCase() + getUnit().slice(1);
+  let elements = ["height", "weight"];
+  for (let element of elements)
+    document.getElementById(element + unit).value = JSON.parse(
+      sessionStorage.getItem(element)
+    );
+  window[sessionStorage.getItem("language")]();
+  window[
+    `themeType${
+      sessionStorage.getItem("theme").charAt(0).toUpperCase() +
+      sessionStorage.getItem("theme").slice(1)
+    }`
+  ]();
 });
 
 let heightField = document.getElementById(

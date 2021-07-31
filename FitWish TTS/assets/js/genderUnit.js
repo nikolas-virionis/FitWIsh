@@ -87,12 +87,14 @@ const unit = (unit) => sessionStorage.setItem("unit", unit);
 const getUnit = () => sessionStorage.getItem("unit");
 
 //hover nano instructions on units used
+
 const metricUnit = () => (colorChangeIdMetric.value += ` (kg / m)`);
 const metricUnitCloak = () => (colorChangeIdMetric.value = metricSystem);
 const imperialUnit = () => (colorChangeIdImperial.value += ` (lbs / in)`);
 const imperialUnitCloak = () => (colorChangeIdImperial.value = imperialSystem);
 
 window.addEventListener("load", () => {
+  if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
   if (getGender())
     document.getElementById(
       `colorChangeId${
@@ -104,11 +106,29 @@ window.addEventListener("load", () => {
       `colorChangeId${getUnit().charAt(0).toUpperCase() + getUnit().slice(1)}`
     ).style.backgroundColor = "#7395AE";
   window[sessionStorage.getItem("language")]();
-  switch (sessionStorage.getItem("theme")) {
-    case "light":
-      themeTypeLight();
-      break;
-    default:
-      themeTypeDark();
-  }
+  window[
+    `themeType${
+      sessionStorage.getItem("theme").charAt(0).toUpperCase() +
+      sessionStorage.getItem("theme").slice(1)
+    }`
+  ]();
+  buttons.forEach((button) => {
+    button.addEventListener("click", (e) =>
+      e.target.id.endsWith("ale") // mALE or femALE
+        ? gender(e.target.id.slice(13).toLowerCase())
+        : unit(e.target.id.slice(13).toLowerCase())
+    );
+    button.addEventListener("mouseout", (e) =>
+      hoverOutColorChangeFunc(e.target.id)
+    );
+  });
+  let btns = getSiblings(document.getElementById("headingObjInputIdUnit"));
+  btns.forEach((btn) => {
+    btn.addEventListener("mouseover", (e) => {
+      eval(`${e.target.id.slice(13).toLowerCase()}Unit`)();
+    });
+    btn.addEventListener("mouseout", (e) =>
+      eval(`${e.target.id.slice(13).toLowerCase()}UnitCloak`)()
+    );
+  });
 });

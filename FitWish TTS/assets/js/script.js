@@ -77,9 +77,14 @@ const getSiblings = (element) => {
   return siblings;
 };
 if (
-  window.location.pathname.split("/").pop().slice(0, -5) !== "index" &&
+  window.location.pathname.split("/").pop().slice(0, -5) != "index" &&
   window.location.pathname.split("/").pop().slice(0, -5) != "intro" &&
-  window.location.pathname.split("/").pop().slice(0, -5) != "result"
+  window.location.pathname.split("/").pop().slice(0, -5) != "result" &&
+  window.location.pathname.split("/").pop().slice(0, -5) != "previousResult" &&
+  window.location.pathname.split("/").pop().slice(0, -5) != "about" &&
+  window.location.pathname.split("/").pop().slice(0, -5) != "contact" &&
+  window.location.pathname.split("/").pop().slice(0, -5) != "howTo" &&
+  window.location.pathname.split("/").pop().slice(0, -5) != ""
 ) {
   for (let button of buttons) {
     button.addEventListener("mouseover", (e) => {
@@ -90,7 +95,6 @@ if (
     button.addEventListener(`click`, (e) => {
       let element = e.target;
       element.style.backgroundColor = "#7395AE";
-      console.log(getSiblings(element));
       for (let el of getSiblings(element)) el.style.backgroundColor = "teal";
     });
   }

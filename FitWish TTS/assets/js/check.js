@@ -47,6 +47,7 @@ function themeTypeDark() {
 }
 
 window.addEventListener("load", () => {
+  if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
   window[sessionStorage.getItem("language")]();
   switch (sessionStorage.getItem("theme")) {
     case "light":

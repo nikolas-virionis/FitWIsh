@@ -84,6 +84,7 @@ const setHealthy = (healthy) =>
   sessionStorage.setItem("healthy", JSON.stringify(healthy));
 
 window.addEventListener("load", () => {
+  if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
   if (getHealthy())
     document.getElementById(
       `colorChangeId${
@@ -97,11 +98,26 @@ window.addEventListener("load", () => {
       }Healthy`
     ).style.backgroundColor = "#7395AE";
   window[sessionStorage.getItem("language")]();
-  switch (sessionStorage.getItem("theme")) {
-    case "light":
-      themeTypeLight();
-      break;
-    default:
-      themeTypeDark();
-  }
+  window[
+    `themeType${
+      sessionStorage.getItem("theme").charAt(0).toUpperCase() +
+      sessionStorage.getItem("theme").slice(1)
+    }`
+  ]();
+  buttons.forEach((button) => {
+    button.addEventListener("click", (e) =>
+      setHealthy(
+        e.target.id.slice(13, -7) == "None"
+          ? 1
+          : e.target.id.slice(13, -7) == "Low"
+          ? 2
+          : e.target.id.slice(13, -7) == "Mid"
+          ? 3
+          : 4
+      )
+    );
+    button.addEventListener("mouseout", (e) =>
+      hoverOutColorChangeFunc(e.target.id)
+    );
+  });
 });

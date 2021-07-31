@@ -70,6 +70,7 @@ const getGoal = () => sessionStorage.getItem("goal");
 const goal = (goal) => sessionStorage.setItem("goal", goal);
 
 window.addEventListener("load", () => {
+  if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
   if (getGoal())
     document.getElementById(
       `colorChangeId${
@@ -83,11 +84,26 @@ window.addEventListener("load", () => {
       }`
     ).style.backgroundColor = "#7395AE";
   window[sessionStorage.getItem("language")]();
-  switch (sessionStorage.getItem("theme")) {
-    case "light":
-      themeTypeLight();
-      break;
-    default:
-      themeTypeDark();
-  }
+  window[
+    `themeType${
+      sessionStorage.getItem("theme").charAt(0).toUpperCase() +
+      sessionStorage.getItem("theme").slice(1)
+    }`
+  ]();
+  buttons.forEach((button) => {
+    button.addEventListener("click", (e) =>
+      goal(
+        e.target.id.endsWith("Bulk")
+          ? "bulking"
+          : e.target.id.endsWith("Cut")
+          ? "cutting"
+          : e.target.id.endsWith("Surp")
+          ? "surplus"
+          : "muscle"
+      )
+    );
+    button.addEventListener("mouseout", (e) =>
+      hoverOutColorChangeFunc(e.target.id)
+    );
+  });
 });

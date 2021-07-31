@@ -68,6 +68,7 @@ function themeTypeDark() {
 }
 
 window.addEventListener("load", () => {
+  if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
   if (getCheat())
     document.getElementById(
       `colorChangeId${
@@ -81,13 +82,12 @@ window.addEventListener("load", () => {
       }Cheat`
     ).style.backgroundColor = "#7395AE";
   window[sessionStorage.getItem("language")]();
-  switch (sessionStorage.getItem("theme")) {
-    case "light":
-      themeTypeLight();
-      break;
-    default:
-      themeTypeDark();
-  }
+  window[
+    `themeType${
+      sessionStorage.getItem("theme").charAt(0).toUpperCase() +
+      sessionStorage.getItem("theme").slice(1)
+    }`
+  ]();
 });
 
 function hoverOutColorChangeFunc(hoveredOutId) {
@@ -104,3 +104,20 @@ function hoverOutColorChangeFunc(hoveredOutId) {
 const setCheat = (cheat) =>
   sessionStorage.setItem("cheat", JSON.stringify(cheat));
 const getCheat = () => JSON.parse(sessionStorage.getItem("cheat"));
+
+buttons.forEach((button) => {
+  button.addEventListener("click", (e) =>
+    setCheat(
+      e.target.id.slice(13, -5) == "None"
+        ? 1
+        : e.target.id.slice(13, -5) == "Low"
+        ? 2
+        : e.target.id.slice(13, -5) == "Mid"
+        ? 3
+        : 4
+    )
+  );
+  button.addEventListener("mouseout", (e) =>
+    hoverOutColorChangeFunc(e.target.id)
+  );
+});

@@ -29,8 +29,13 @@
   top: 0;
   width: 0;
   height: 0;
-  background-color: black;
-  transform: translate(25vw, 25vh);
+  transform: translate(20vw, 20vh);
+  display: none;
+  transition: 0.5s ease-in-out;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 2vw;
+  text-align: center;
+  align-items: center;
 }
 
 .buttonImg {

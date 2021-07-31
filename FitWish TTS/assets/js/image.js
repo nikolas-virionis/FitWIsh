@@ -1,3 +1,4 @@
+const getAge = () => JSON.parse(sessionStorage.getItem("age"));
 function english() {
   import("./script.mjs").then(({ english: defaultEnglish }) =>
     defaultEnglish()
@@ -66,6 +67,7 @@ function themeTypeDark() {
 }
 
 window.addEventListener("load", () => {
+  if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
   if (getCurrentBody())
     document.getElementById(
       `colorChangeIdBody${getCurrentBody()}`
@@ -75,13 +77,12 @@ window.addEventListener("load", () => {
       `colorChangeIdBody${getGoalBody()}`
     ).style.backgroundColor = "#7395AE";
   window[sessionStorage.getItem("language")]();
-  switch (sessionStorage.getItem("theme")) {
-    case "light":
-      themeTypeLight();
-      break;
-    default:
-      themeTypeDark();
-  }
+  window[
+    `themeType${
+      sessionStorage.getItem("theme").charAt(0).toUpperCase() +
+      sessionStorage.getItem("theme").slice(1)
+    }`
+  ]();
   if (!sessionStorage.getItem("gender")) {
     if (language == "english")
       alert(
@@ -101,6 +102,35 @@ window.addEventListener("load", () => {
       );
     window.location.href = "genderUnit.html";
   } else loadImg(sessionStorage.getItem("gender"));
+  if (!sessionStorage.getItem("age")) {
+    if (language == "english")
+      alert(
+        "In order to access the body fat evaluation page, inserting an age is necessary"
+      );
+    else if (language == "português")
+      alert(
+        "Para acessar a página de avaliação de gordura corporal, é necessário inserir uma idade"
+      );
+    else if (language == "français")
+      alert(
+        "Afin d'accéder à la page d'évaluation de la graisse corporelle, l'insertion d'un âge est nécessaire"
+      );
+    else if (language == "español")
+      alert(
+        "Para acceder a la página de evaluación de la grasa corporal, es necesario insertar una edad"
+      );
+    window.location.href = "login.html";
+  }
+  buttons.forEach((button) => {
+    button.addEventListener("click", (e) =>
+      e.target.id.slice(-2, -1) == "y"
+        ? setCurrentBody(Number(e.target.id.slice(-1)))
+        : setGoalBody(Number(e.target.id.slice(-1)))
+    );
+    button.addEventListener("mouseout", (e) =>
+      hoverOutColorChangeFunc(e.target.id)
+    );
+  });
 });
 
 function hoverOutColorChangeFunc(hoveredOutId) {
@@ -124,21 +154,20 @@ function hoverOutColorChangeFunc(hoveredOutId) {
   else if (getCurrentBody() == 9)
     colorChangeIdBody9.style.backgroundColor = "#7395AE";
 
-  let age = JSON.parse(sessionStorage.getItem("age"));
   if (getGoalBody() == 1) {
-    if (age >= 15 && age <= 40)
+    if (getAge() >= 15 && getAge() <= 40)
       colorChangeIdGoal1.style.backgroundColor = "#7395AE";
     else colorChangeIdGoal1.style.backgroundColor = "teal";
   } else if (getGoalBody() == 2) {
-    if (age >= 15 && age <= 40)
+    if (getAge() >= 15 && getAge() <= 40)
       colorChangeIdGoal2.style.backgroundColor = "#7395AE";
     else colorChangeIdGoal2.style.backgroundColor = "teal";
   } else if (getGoalBody() == 3) {
-    if (age >= 15 && age <= 50)
+    if (getAge() >= 15 && getAge() <= 50)
       colorChangeIdGoal3.style.backgroundColor = "#7395AE";
     else colorChangeIdGoal3.style.backgroundColor = "teal";
   } else if (getGoalBody() == 4) {
-    if (age >= 10 && age <= 60)
+    if (getAge() >= 10 && getAge() <= 60)
       colorChangeIdGoal4.style.backgroundColor = "#7395AE";
     else colorChangeIdGoal4.style.backgroundColor = "teal";
   } else if (getGoalBody() == 5)
@@ -166,17 +195,21 @@ function loadImg(gender) {
 }
 
 function openGenderCenterNav() {
-  document.getElementById("myGenderCenterNav").style.width = "70vw";
-  document.getElementById("myGenderCenterNav").style.height = "70vh";
+  myGenderCenterNav.style.width = "60vw";
+  myGenderCenterNav.style.height = "60vh";
+  myGenderCenterNav.style.display = "block";
+  closeNav();
+  closeRightNav();
 }
 function closeGenderCenterNav() {
-  document.getElementById("myGenderCenterNav").style.width = "0";
-  document.getElementById("myGenderCenterNav").style.height = "0";
+  myGenderCenterNav.style.width = "0";
+  myGenderCenterNav.style.height = "0";
+  myGenderCenterNav.style.display = "none";
 }
 function setImg(link) {
   img.src = link;
-  img.setAttribute("width", "500");
-  img.setAttribute("height", "400");
+  img.setAttribute("width", "400");
+  img.setAttribute("height", "300");
   src = document.getElementById("bodyImageId");
   src.appendChild(img);
 }
@@ -213,11 +246,11 @@ function changeColor10(
   idleId8
 ) {
   if (
-    (age >= 15 && age <= 40) ||
-    (age < 15 && age >= 10 && getGoalBody() > 3) ||
-    (age > 40 && age <= 50 && getGoalBody() > 2) ||
-    (age > 50 && age <= 60 && getGoalBody() > 3) ||
-    (age > 60 && getGoalBody() > 4)
+    (getAge() >= 15 && getAge() <= 40) ||
+    (getAge() < 15 && getAge() >= 10 && getGoalBody() > 3) ||
+    (getAge() > 40 && getAge() <= 50 && getGoalBody() > 2) ||
+    (getAge() > 50 && getAge() <= 60 && getGoalBody() > 3) ||
+    (getAge() > 60 && getGoalBody() > 4)
   ) {
     document.getElementById(clickedId).style.backgroundColor = "#7395AE";
     document.getElementById(idleId1).style.backgroundColor = "teal";
@@ -241,94 +274,94 @@ const getGoalBody = () => JSON.parse(sessionStorage.getItem("goalBody"));
 const setGoalBody = (goal) => {
   if (
     !(
-      (age >= 15 && age <= 40) ||
-      (age < 15 && age >= 10 && getGoalBody() > 3) ||
-      (age > 40 && age <= 50 && getGoalBody() > 2) ||
-      (age > 50 && age <= 60 && getGoalBody() > 3) ||
-      (age > 60 && getGoalBody() > 4)
+      (getAge() >= 15 && getAge() <= 40) ||
+      (getAge() < 15 && getAge() >= 10 && getGoalBody() > 3) ||
+      (getAge() > 40 && getAge() <= 50 && getGoalBody() > 2) ||
+      (getAge() > 50 && getAge() <= 60 && getGoalBody() > 3) ||
+      (getAge() > 60 && getGoalBody() > 4)
     )
   ) {
     if (language == "english") {
-      if (age < 15 && age >= 10 && getGoalBody() <= 3)
+      if (getAge() < 15 && getAge() >= 10 && getGoalBody() <= 3)
         alert(
           "For your age, it is not healthy to get this little body fat percentage, try a bit higher by now and soon enough you'll be able to get to this body goal of yours as safe as it gets."
         );
-      else if (age < 10)
+      else if (getAge() < 10)
         alert(
           "I wouldn't recommend you would try to get to fit by now, of course, you should be healthy but I cannot see a way you can use this coding advice in your way, being this young, since it's purpose is people long term body goal, and by this, I get that the changes can likely be extreme for a 9 y/o or younger"
         );
-      else if (age > 40 && age <= 50 && getGoalBody() <= 2)
+      else if (getAge() > 40 && getAge() <= 50 && getGoalBody() <= 2)
         alert(
           "For your age, it is not healthy to get this little body fat percentage, try a bit higher by now, since the amount of fat on your body naturally grows with aging. try instead of losing this much fat, gaining more muscle to compensate. This way you'll be able to get to a doable body goal in a path as safe as it can get."
         );
-      else if (age > 50 && age <= 60 && getGoalBody() <= 3)
+      else if (getAge() > 50 && getAge() <= 60 && getGoalBody() <= 3)
         alert(
           "For your age, it is not healthy to get this little body fat percentage, try a bit higher by now, since the amount of fat on your body naturally grows with aging. try instead of losing this much fat, gaining more muscle to compensate. This way you'll be able to get to a doable body goal in a path as safe as it can get."
         );
-      else if (age > 60 && getGoalBody() <= 4)
+      else if (getAge() > 60 && getGoalBody() <= 4)
         alert(
           "This won't be gladful to hear, it breaks my heart to say it too, because I appreciate your ferving will of getting in shape, however for your age it is not healthy to get this little body fat percentage, try a bit higher by now since the amount of fat on your body naturally grows with aging. try instead of losing this much fat, gaining more muscle to compensate. This way you'll be able to get to a doable body goal in a path as safe as it can get."
         );
     } else if (language == "português") {
-      if (age < 15 && age >= 10 && getGoalBody() <= 3)
+      if (getAge() < 15 && getAge() >= 10 && getGoalBody() <= 3)
         alert(
           "Para a sua idade, não é saudável obter essa pequena porcentagem de gordura corporal, tente um pouco mais alto agora e em breve você será capaz de atingir esse seu objetivo corporal o mais seguro possível."
         );
-      else if (age < 10)
+      else if (getAge() < 10)
         alert(
           "Eu não recomendaria que você tentasse entrar em forma agora, é claro, você deve estar saudável, mas não vejo uma maneira de usar este conselho de codificação do seu jeito, sendo tão jovem, já que seu propósito é o corpo das pessoas a longo prazo objetivo, e com isso, eu entendo que as mudanças podem provavelmente ser extremas para um jovem de 9 anos ou menos"
         );
-      else if (age > 40 && age <= 50 && getGoalBody() <= 2)
+      else if (getAge() > 40 && getAge() <= 50 && getGoalBody() <= 2)
         alert(
           "Para a sua idade, não é saudável obter este pequeno percentual de gordura corporal, tente um pouco mais alto agora, já que a quantidade de gordura em seu corpo cresce naturalmente com o envelhecimento. tente em vez de perder essa quantidade de gordura, ganhando mais músculos para compensar. Desta forma, você será capaz de atingir um objetivo corporal factível em um caminho tão seguro quanto possível."
         );
-      else if (age > 50 && age <= 60 && getGoalBody() <= 3)
+      else if (getAge() > 50 && getAge() <= 60 && getGoalBody() <= 3)
         alert(
           "Para a sua idade, não é saudável obter este pequeno percentual de gordura corporal, tente um pouco mais alto agora, já que a quantidade de gordura em seu corpo cresce naturalmente com o envelhecimento. tente em vez de perder essa quantidade de gordura, ganhando mais músculos para compensar. Desta forma, você será capaz de atingir um objetivo corporal factível em um caminho tão seguro quanto possível."
         );
-      else if (age > 60 && getGoalBody() <= 4)
+      else if (getAge() > 60 && getGoalBody() <= 4)
         alert(
           "Não vou ficar feliz em ouvir isso, parte meu coração dizer isso também, porque eu aprecio sua fervorosa vontade de entrar em forma, porém para sua idade não é saudável obter este pequeno percentual de gordura corporal, tente um pouco mais alto até agora, uma vez que a quantidade de gordura em seu corpo cresce naturalmente com o envelhecimento. tente em vez de perder essa quantidade de gordura, ganhando mais músculos para compensar. Desta forma, você será capaz de atingir um objetivo corporal factível em um caminho tão seguro quanto possível."
         );
     } else if (language == "français") {
-      if (age < 15 && age >= 10 && getGoalBody() <= 3)
+      if (getAge() < 15 && getAge() >= 10 && getGoalBody() <= 3)
         alert(
           "Pour votre âge, il n'est pas sain d'obtenir ce petit pourcentage de graisse corporelle, essayez un peu plus haut maintenant et vous serez bientôt en mesure d'atteindre votre objectif corporel aussi sûr que possible."
         );
-      else if (age < 10)
+      else if (getAge() < 10)
         alert(
           "Je ne vous recommanderais pas d'essayer de vous mettre en forme maintenant, bien sûr, vous devriez être en bonne santé, mais je ne vois pas comment vous pouvez utiliser ces conseils de codage à votre manière, étant aussi jeune, car son but est le corps à long terme des gens objectif, et par là, je comprends que les changements peuvent probablement être extrêmes pour un 9 ans ou moins"
         );
-      else if (age > 40 && age <= 50 && getGoalBody() <= 2)
+      else if (getAge() > 40 && getAge() <= 50 && getGoalBody() <= 2)
         alert(
           "Pour votre âge, il n'est pas sain d'obtenir ce petit pourcentage de graisse corporelle, essayez un peu plus haut maintenant, car la quantité de graisse sur votre corps augmente naturellement avec le vieillissement. essayez au lieu de perdre autant de graisse, gagnez plus de muscle pour compenser. De cette façon, vous serez en mesure d'atteindre un objectif corporel réalisable dans un chemin aussi sûr que possible."
         );
-      else if (age > 50 && age <= 60 && getGoalBody() <= 3)
+      else if (getAge() > 50 && getAge() <= 60 && getGoalBody() <= 3)
         alert(
           "Pour votre âge, il n'est pas sain d'obtenir ce petit pourcentage de graisse corporelle, essayez un peu plus haut maintenant, car la quantité de graisse sur votre corps augmente naturellement avec le vieillissement. essayez au lieu de perdre autant de graisse, gagnez plus de muscle pour compenser. De cette façon, vous serez en mesure d'atteindre un objectif corporel réalisable dans un chemin aussi sûr que possible."
         );
-      else if (age > 60 && getGoalBody() <= 4)
+      else if (getAge() > 60 && getGoalBody() <= 4)
         alert(
           "Ce ne sera pas heureux d'entendre, cela me brise le cœur de le dire aussi, car j'apprécie votre fervente volonté de vous mettre en forme, mais pour votre âge, ce n'est pas sain d'obtenir ce petit pourcentage de graisse corporelle, essayez un peu plus haut en maintenant puisque la quantité de graisse sur votre corps augmente naturellement avec le vieillissement. essayez au lieu de perdre autant de graisse, gagnez plus de muscle pour compenser. De cette façon, vous serez en mesure d'atteindre un objectif corporel réalisable dans un chemin aussi sûr que possible."
         );
     } else if (language == "español") {
-      if (age < 15 && age >= 10 && getGoalBody() <= 3)
+      if (getAge() < 15 && getAge() >= 10 && getGoalBody() <= 3)
         alert(
           "Para su edad, no es saludable obtener este pequeño porcentaje de grasa corporal, intente un poco más alto ahora y muy pronto podrá alcanzar este objetivo corporal de la manera más segura posible."
         );
-      else if (age < 10)
+      else if (getAge() < 10)
         alert(
           "No recomendaría que intentaras ponerte en forma a esta altura, por supuesto, deberías estar sano, pero no veo la manera en que puedas usar este consejo de codificación a tu manera, siendo tan joven, ya que su propósito es el cuerpo de las personas a largo plazo. objetivo, y con esto, entiendo que los cambios probablemente pueden ser extremos para un niño de 9 años o menos"
         );
-      else if (age > 40 && age <= 50 && getGoalBody() <= 2)
+      else if (getAge() > 40 && getAge() <= 50 && getGoalBody() <= 2)
         alert(
           "Para su edad, no es saludable obtener este pequeño porcentaje de grasa corporal, intente un poco más alto a estas alturas, ya que la cantidad de grasa en su cuerpo crece naturalmente con el envejecimiento. intente en lugar de perder tanta grasa, ganando más músculo para compensar. De esta manera, podrá llegar a una meta corporal factible en un camino lo más seguro posible."
         );
-      else if (age > 50 && age <= 60 && getGoalBody() <= 3)
+      else if (getAge() > 50 && getAge() <= 60 && getGoalBody() <= 3)
         alert(
           "Para su edad, no es saludable obtener este pequeño porcentaje de grasa corporal, intente un poco más alto a estas alturas, ya que la cantidad de grasa en su cuerpo crece naturalmente con el envejecimiento. intente en lugar de perder tanta grasa, ganando más músculo para compensar. De esta manera, podrá llegar a una meta corporal factible en un camino lo más seguro posible."
         );
-      else if (age > 60 && getGoalBody() <= 4)
+      else if (getAge() > 60 && getGoalBody() <= 4)
         alert(
           "Esto no me alegrará escucharlo, me rompe el corazón decirlo también, porque agradezco tu ferviente voluntad de ponerte en forma, sin embargo para tu edad no es saludable obtener este pequeño porcentaje de grasa corporal, intenta un poco más alto ahora, dado que la cantidad de grasa en su cuerpo crece naturalmente con el envejecimiento. intente en lugar de perder tanta grasa, ganando más músculo para compensar. De esta manera, podrá llegar a una meta corporal factible en un camino lo más seguro posible."
         );

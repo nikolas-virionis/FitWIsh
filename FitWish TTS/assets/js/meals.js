@@ -73,6 +73,7 @@ const setMeals = (meals) =>
   sessionStorage.setItem("meals", JSON.stringify(meals));
 
 window.addEventListener("load", () => {
+  if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
   if (getMeals())
     document.getElementById(
       `colorChangeId${
@@ -86,11 +87,26 @@ window.addEventListener("load", () => {
       }Meals`
     ).style.backgroundColor = "#7395AE";
   window[sessionStorage.getItem("language")]();
-  switch (sessionStorage.getItem("theme")) {
-    case "light":
-      themeTypeLight();
-      break;
-    default:
-      themeTypeDark();
-  }
+  window[
+    `themeType${
+      sessionStorage.getItem("theme").charAt(0).toUpperCase() +
+      sessionStorage.getItem("theme").slice(1)
+    }`
+  ]();
+  buttons.forEach((button) => {
+    button.addEventListener("click", (e) =>
+      setMeals(
+        e.target.id.slice(13, -5) == "2"
+          ? 1
+          : e.target.id.slice(13, -5) == "3"
+          ? 2
+          : e.target.id.slice(13, -5) == "4"
+          ? 3
+          : 4
+      )
+    );
+    button.addEventListener("mouseout", (e) =>
+      hoverOutColorChangeFunc(e.target.id)
+    );
+  });
 });

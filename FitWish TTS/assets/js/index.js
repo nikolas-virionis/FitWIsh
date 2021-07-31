@@ -202,6 +202,7 @@ function getDefLang() {
   return english();
 }
 window.addEventListener("load", () => {
+  sessionStorage.setItem("first", JSON.stringify(true));
   if (sessionStorage.getItem("language"))
     window[sessionStorage.getItem("language")]();
   switch (sessionStorage.getItem("theme")) {

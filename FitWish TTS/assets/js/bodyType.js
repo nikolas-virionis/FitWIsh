@@ -57,6 +57,7 @@ function themeTypeDark() {
 }
 
 window.addEventListener("load", () => {
+  if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
   if (getBodyType())
     document.getElementById(
       `colorChangeId${
@@ -64,12 +65,18 @@ window.addEventListener("load", () => {
       }`
     ).style.backgroundColor = "#7395AE";
   window[sessionStorage.getItem("language")]();
-  switch (sessionStorage.getItem("theme")) {
-    case "light":
-      themeTypeLight();
-      break;
-    default:
-      themeTypeDark();
+  window[
+    `themeType${
+      sessionStorage.getItem("theme").charAt(0).toUpperCase() +
+      sessionStorage.getItem("theme").slice(1)
+    }`
+  ]();
+  for (let button of buttons) {
+    button.addEventListener(`click`, (e) => {
+      let element = e.target;
+      element.style.backgroundColor = "#7395AE";
+      for (let el of getSiblings(element)) el.style.backgroundColor = "teal";
+    });
   }
 });
 
@@ -105,3 +112,14 @@ function nop() {
       "Copie el primer enlace a un video de 10 minutos que lo explique: https://www.youtube.com/watch?v=iW6QeqA_iD4&t=446s, o haz una prueba de Google en este enlace: https://www.bodybuilding.com/fun/becker3.htm. Pero básicamente ecto no tiene mucha facilidad para ganar músculo ni grasa, meso tiene facilidad para ganar músculo y perder grasa y endo tiene facilidad para ganar ambos. Y, por cierto, puede hacer clic en el tipo de cuerpo que tiene sin tener que volver a ejecutar el código."
     );
 }
+
+buttons.forEach((button) => {
+  button.addEventListener("click", (e) =>
+    e.target.id.endsWith("NoIdea")
+      ? nop()
+      : bodyType(e.target.id.slice(13).toLowerCase())
+  );
+  button.addEventListener("mouseout", (e) =>
+    hoverOutColorChangeFunc(e.target.id)
+  );
+});

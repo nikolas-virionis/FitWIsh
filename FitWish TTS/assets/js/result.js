@@ -23,6 +23,7 @@ let language = sessionStorage.getItem("language"),
   bmr;
 
 window.addEventListener("load", () => {
+  if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
   window[sessionStorage.getItem("language")]();
   window[
     `themeType${

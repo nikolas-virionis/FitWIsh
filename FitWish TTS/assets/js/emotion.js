@@ -82,6 +82,33 @@ const getCurrentBody = () => JSON.parse(sessionStorage.getItem("currentBody"));
 const getGoalBody = () => JSON.parse(sessionStorage.getItem("goalBody"));
 const getMeals = () => JSON.parse(sessionStorage.getItem("meals"));
 
+window.addEventListener("load", () => {
+  if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
+  if (getEmotion())
+    document.getElementById(
+      `colorChangeIdEmo${
+        getEmotion().charAt(0).toUpperCase() + getEmotion().slice(1)
+      }`
+    ).style.backgroundColor = "#7395AE";
+  window[sessionStorage.getItem("language")]();
+  window[
+    `themeType${
+      sessionStorage.getItem("theme").charAt(0).toUpperCase() +
+      sessionStorage.getItem("theme").slice(1)
+    }`
+  ]();
+  buttons.forEach((button) => {
+    button.addEventListener("click", (e) =>
+      emotion(e.target.value.toLowerCase())
+    );
+    button.addEventListener("mouseout", (e) =>
+      hoverOutColorChangeFunc(e.target.id)
+    );
+  });
+});
+
+buttonResult.addEventListener("click", () => checkAllAnswers());
+
 function checkAllAnswers() {
   let email = JSON.parse(sessionStorage.getItem("emailIn")) ? getEmail() : true;
   let answers =
@@ -392,20 +419,3 @@ function checkAllAnswers() {
     window.location.href = "image.html";
   }
 }
-
-window.addEventListener("load", () => {
-  if (getEmotion())
-    document.getElementById(
-      `colorChangeIdEmo${
-        getEmotion().charAt(0).toUpperCase() + getEmotion().slice(1)
-      }`
-    ).style.backgroundColor = "#7395AE";
-  window[sessionStorage.getItem("language")]();
-  switch (sessionStorage.getItem("theme")) {
-    case "light":
-      themeTypeLight();
-      break;
-    default:
-      themeTypeDark();
-  }
-});

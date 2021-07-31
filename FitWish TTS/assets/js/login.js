@@ -153,6 +153,7 @@ function validate() {
 }
 
 window.addEventListener("load", () => {
+  if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
   let elements = ["name", "age", "email"];
   for (let element of elements)
     document.getElementById(element).value = sessionStorage.getItem(element);
