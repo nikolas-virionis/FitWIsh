@@ -22,6 +22,7 @@ window.addEventListener("load", () => {
     default:
       themeTypeDark();
   }
+  if (!localStorage.getItem("contentArray")) buttonFirst.style.display = "none";
 });
 
 function português() {

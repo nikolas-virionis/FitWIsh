@@ -94,12 +94,15 @@ window.addEventListener("load", () => {
     }
   }
   const getUnit = () => sessionStorage.getItem("unit");
-  let unit = getUnit().charAt(0).toUpperCase() + getUnit().slice(1);
+  let unit = getUnit().charAt(0).toUpperCase() + getUnit().slice(1) ?? "Metric";
   let elements = ["height", "weight"];
-  for (let element of elements)
-    document.getElementById(element + unit).value = JSON.parse(
-      sessionStorage.getItem(element)
-    );
+  elements.forEach(
+    (element) =>
+      (document.getElementById(element + unit).value = JSON.parse(
+        sessionStorage.getItem(element)
+      ))
+  );
+
   window[sessionStorage.getItem("language")]();
   window[
     `themeType${
@@ -107,6 +110,17 @@ window.addEventListener("load", () => {
       sessionStorage.getItem("theme").slice(1)
     }`
   ]();
+  document
+    .getElementById(`weight${unit}`)
+    .addEventListener("keyup", (e) =>
+      e.key == "Enter" ? document.getElementById(`height${unit}`).focus() : ""
+    );
+
+  document
+    .getElementById(`height${unit}`)
+    .addEventListener("keyup", (e) =>
+      e.key == "Enter" ? (window.location.href = "goal.html") : ""
+    );
 });
 
 let heightField = document.getElementById(

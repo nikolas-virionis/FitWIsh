@@ -3,14 +3,6 @@ let language = sessionStorage.getItem("language"),
   buttons = document.querySelectorAll(".button"),
   alreadyInPage,
   firstAlert;
-const enterFuncMid = (event, blur, focus) => {
-  if (event.key === "Enter") {
-    document.getElementById(blur).blur();
-    document.getElementById(focus).focus();
-  }
-};
-const enterFunc = (event) =>
-  event.key === "Enter" ? nextPageInterpreter() : "";
 
 function firstPageLogin() {
   buttonFirst.style.display = "none";

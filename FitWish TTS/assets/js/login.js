@@ -165,4 +165,19 @@ window.addEventListener("load", () => {
     default:
       themeTypeDark();
   }
+
+  [...document.querySelectorAll(".textInputClass")]
+    .slice(0, 2)
+    .forEach((element) =>
+      element.addEventListener("keyup", (e) =>
+        e.key == "Enter"
+          ? e.target.id == "name"
+            ? age.focus()
+            : email.focus()
+          : ""
+      )
+    );
+  email.addEventListener("keyup", (e) =>
+    e.key == "Enter" ? (window.location.href = "genderUnit.html") : ""
+  );
 });

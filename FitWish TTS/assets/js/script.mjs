@@ -250,6 +250,9 @@ export function themeTypeLight() {
       button.classList.add("contactAboutBtn");
     }
   }
+  document
+    .querySelectorAll(".classFooter")
+    .forEach((el) => (el.style.color = "#000"));
 }
 export function themeTypeDark() {
   theme = "dark";
@@ -273,4 +276,7 @@ export function themeTypeDark() {
       button.classList.add("aboutContactBtn");
       button.classList.remove("contactAboutBtn");
     }
+  document
+    .querySelectorAll(".classFooter")
+    .forEach((el) => (el.style.color = "#fff"));
 }
