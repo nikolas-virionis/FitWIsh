@@ -86,13 +86,10 @@ window.addEventListener("load", () => {
           : "5"
       }Meals`
     ).style.backgroundColor = "#7395AE";
-  window[sessionStorage.getItem("language")]();
-  window[
-    `themeType${
-      sessionStorage.getItem("theme").charAt(0).toUpperCase() +
-      sessionStorage.getItem("theme").slice(1)
-    }`
-  ]();
+  eval(sessionStorage.getItem("language"))();
+  sessionStorage.getItem("theme") == "light"
+    ? themeTypeLight()
+    : themeTypeDark();
   buttons.forEach((button) => {
     button.addEventListener("click", (e) =>
       setMeals(

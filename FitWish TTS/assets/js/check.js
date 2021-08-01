@@ -48,14 +48,10 @@ function themeTypeDark() {
 
 window.addEventListener("load", () => {
   if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
-  window[sessionStorage.getItem("language")]();
-  switch (sessionStorage.getItem("theme")) {
-    case "light":
-      themeTypeLight();
-      break;
-    default:
-      themeTypeDark();
-  }
+  eval(sessionStorage.getItem("language"))();
+  sessionStorage.getItem("theme") == "light"
+    ? themeTypeLight()
+    : themeTypeDark();
 });
 
 for (let button of buttons)
@@ -63,3 +59,13 @@ for (let button of buttons)
     "mouseout",
     (e) => (e.target.style.backgroundColor = "teal")
   );
+
+buttons.forEach((button) =>
+  button.addEventListener(
+    "click",
+    (e) =>
+      (window.location.href = e.target.id.endsWith("Yes")
+        ? "result.html"
+        : "emotion.html")
+  )
+);

@@ -103,13 +103,10 @@ window.addEventListener("load", () => {
       ))
   );
 
-  window[sessionStorage.getItem("language")]();
-  window[
-    `themeType${
-      sessionStorage.getItem("theme").charAt(0).toUpperCase() +
-      sessionStorage.getItem("theme").slice(1)
-    }`
-  ]();
+  eval(sessionStorage.getItem("language"))();
+  sessionStorage.getItem("theme") == "light"
+    ? themeTypeLight()
+    : themeTypeDark();
   document
     .getElementById(`weight${unit}`)
     .addEventListener("keyup", (e) =>
@@ -119,7 +116,10 @@ window.addEventListener("load", () => {
   document
     .getElementById(`height${unit}`)
     .addEventListener("keyup", (e) =>
-      e.key == "Enter" ? (window.location.href = "goal.html") : ""
+      e.key == "Enter"
+        ? (document.getElementById(`height${unit}`).blur(),
+          (window.location.href = "goal.html"))
+        : ""
     );
 });
 

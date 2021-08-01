@@ -1,6 +1,6 @@
 .container {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 80vh;
   display: grid;
   place-items: center;
 }
@@ -123,4 +123,8 @@ svg circle {
   color: aliceblue;
   place-items: left;
   font-size: 2.3em;
+}
+
+.footer {
+  width: 98vw;
 }

@@ -19,7 +19,8 @@ export function english() {
       element.style.fontSize = "2.355vw";
   if (document.getElementById("pagesNavId"))
     pagesNavId.innerHTML = "Pages/Sections(&sect;)";
-  languageInput.innerHTML = "Language:";
+  if (document.getElementById("languageInput"))
+    languageInput.innerHTML = "Language:";
   alreadyInPage = "Already in page";
   if (document.getElementById("pageId")) pageId.innerHTML = "Pages:";
   if (document.getElementById("introPageId"))
@@ -46,11 +47,14 @@ export function english() {
     emotionPageId.innerHTML = "Emotion-based Overeating";
   if (document.getElementById("buttonNext")) buttonNext.value = "Next";
   if (document.getElementById("buttonPrev")) buttonPrev.value = "Previous";
-  document.getElementById("lightThemeButton").innerHTML = "Light Theme";
-  document.getElementById("darkThemeButton").innerHTML = "Dark Theme (default)";
-  document.getElementById("disclaimerId").innerHTML = "DISCLAIMER";
-  firstAlert =
-    "DISCLAIMER: This is not a medical nor nutritionist advice and not only does not exclude a medical consultation, but also, me as this code creator, encourage and support YOU to get to see your doctor for anything YOU think YOU should improve in YOUR health life. Peace!";
+  if (window.location.pathname.split("/").pop().slice(0, -5) != "result") {
+    document.getElementById("lightThemeButton").innerHTML = "Light Theme";
+    document.getElementById("darkThemeButton").innerHTML =
+      "Dark Theme (default)";
+    document.getElementById("disclaimerId").innerHTML = "DISCLAIMER";
+    firstAlert =
+      "DISCLAIMER: This is not a medical nor nutritionist advice and not only does not exclude a medical consultation, but also, me as this code creator, encourage and support YOU to get to see your doctor for anything YOU think YOU should improve in YOUR health life. Peace!";
+  }
   document.getElementById("allRights").innerHTML = "All Rights Reserved";
 }
 export function português() {
@@ -73,7 +77,8 @@ export function português() {
   )
     for (let element of listRightNav.children)
       element.style.fontSize = "2.105vw";
-  languageInput.innerHTML = "Idioma:";
+  if (document.getElementById("languageInput"))
+    languageInput.innerHTML = "Idioma:";
   alreadyInPage = "Já nessa página";
   if (document.getElementById("pagesNavId"))
     pagesNavId.innerHTML = "Páginas/Seções(&sect;)";
@@ -102,11 +107,14 @@ export function português() {
     emotionPageId.innerHTML = "Comer demais por conta de emoções";
   if (document.getElementById("buttonNext")) buttonNext.value = "Próximo";
   if (document.getElementById("buttonPrev")) buttonPrev.value = "Anterior";
-  document.getElementById("lightThemeButton").innerHTML = "Tema Claro";
-  document.getElementById("darkThemeButton").innerHTML = "Tema Escuro (padrão)";
-  document.getElementById("disclaimerId").innerHTML = "AVISO LEGAL";
-  firstAlert =
-    "AVISO LEGAL: Este não é um conselho médico ou nutricionista e não só não exclui uma consulta médica, como também, eu, como criador deste código, encorajo e apoio VOCÊ a procurar seu médico para qualquer coisa que você acha que deveria melhorar em sua vida saudável.";
+  if (window.location.pathname.split("/").pop().slice(0, -5) != "result") {
+    document.getElementById("lightThemeButton").innerHTML = "Tema Claro";
+    document.getElementById("darkThemeButton").innerHTML =
+      "Tema Escuro (padrão)";
+    document.getElementById("disclaimerId").innerHTML = "AVISO LEGAL";
+    firstAlert =
+      "AVISO LEGAL: Este não é um conselho médico ou nutricionista e não só não exclui uma consulta médica, como também, eu, como criador deste código, encorajo e apoio VOCÊ a procurar seu médico para qualquer coisa que você acha que deveria melhorar em sua vida saudável.";
+  }
   document.getElementById("allRights").innerHTML = "Todos direitos reservados";
 }
 export function français() {
@@ -128,7 +136,8 @@ export function français() {
     window.location.pathname.split("/").pop() != "index.html"
   )
     for (let element of listRightNav.children) element.style.fontSize = "2.2vw";
-  languageInput.innerHTML = "Langue:";
+  if (document.getElementById("languageInput"))
+    languageInput.innerHTML = "Langue:";
   alreadyInPage = "Déjà en page";
   if (document.getElementById("pageId")) pageId.innerHTML = "Pages:";
   if (document.getElementById("introPageId"))
@@ -157,13 +166,15 @@ export function français() {
     emotionPageId.innerHTML = "Suralimentation basée sur les émotions";
   if (document.getElementById("buttonNext")) buttonNext.value = "Suivant";
   if (document.getElementById("buttonPrev")) buttonPrev.value = "Précédent";
-  document.getElementById("lightThemeButton").innerHTML = "Thème léger";
-  document.getElementById("darkThemeButton").innerHTML =
-    "Thème sombre (par défaut)";
-  document.getElementById("disclaimerId").innerHTML =
-    "AVIS DE NON-RESPONSABILITÉ";
-  firstAlert =
-    "AVIS DE NON-RESPONSABILITÉ: Ce n'est pas un conseil médical ou nutritionniste et non seulement n'exclut pas une consultation médicale, mais aussi, moi en tant que créateur de code, je vous encourage et vous soutenez à voir votre médecin pour tout ce que VOUS pensez que VOUS devriez améliorer dans VOTRE vie de santé . Paix!";
+  if (window.location.pathname.split("/").pop().slice(0, -5) != "result") {
+    document.getElementById("lightThemeButton").innerHTML = "Thème léger";
+    document.getElementById("darkThemeButton").innerHTML =
+      "Thème sombre (par défaut)";
+    document.getElementById("disclaimerId").innerHTML =
+      "AVIS DE NON-RESPONSABILITÉ";
+    firstAlert =
+      "AVIS DE NON-RESPONSABILITÉ: Ce n'est pas un conseil médical ou nutritionniste et non seulement n'exclut pas une consultation médicale, mais aussi, moi en tant que créateur de code, je vous encourage et vous soutenez à voir votre médecin pour tout ce que VOUS pensez que VOUS devriez améliorer dans VOTRE vie de santé . Paix!";
+  }
   document.getElementById("allRights").innerHTML =
     "Tous les droits sont réservés";
 }
@@ -188,7 +199,8 @@ export function español() {
   )
     for (let element of listRightNav.children)
       element.style.fontSize = "2.025vw";
-  languageInput.innerHTML = "Idioma:";
+  if (document.getElementById("languageInput"))
+    languageInput.innerHTML = "Idioma:";
   alreadyInPage = "Ya en la pagina";
   if (document.getElementById("pageId")) pageId.innerHTML = "Paginas:";
   if (document.getElementById("introPageId"))
@@ -217,13 +229,15 @@ export function español() {
     emotionPageId.innerHTML = "Comer en exceso basado en las emociones";
   if (document.getElementById("buttonNext")) buttonNext.value = "Próximo";
   if (document.getElementById("buttonPrev")) buttonPrev.value = "Previo";
-  document.getElementById("lightThemeButton").innerHTML = "Tema Claro";
-  document.getElementById("darkThemeButton").innerHTML =
-    "Tema oscuro (predeterminado)";
-  document.getElementById("disclaimerId").innerHTML =
-    "DESCARGO DE RESPONSABILIDAD";
-  firstAlert =
-    "DESCARGO DE RESPONSABILIDAD: Este no es un consejo médico ni nutricionista y no solo no excluye una consulta médica, sino que también, como creador de este código, lo animo y lo apoyo para que vea a su médico por cualquier cosa que usted crea que debe mejorar en su vida de salud. . ¡Paz!";
+  if (window.location.pathname.split("/").pop().slice(0, -5) != "result") {
+    document.getElementById("lightThemeButton").innerHTML = "Tema Claro";
+    document.getElementById("darkThemeButton").innerHTML =
+      "Tema oscuro (predeterminado)";
+    document.getElementById("disclaimerId").innerHTML =
+      "DESCARGO DE RESPONSABILIDAD";
+    firstAlert =
+      "DESCARGO DE RESPONSABILIDAD: Este no es un consejo médico ni nutricionista y no solo no excluye una consulta médica, sino que también, como creador de este código, lo animo y lo apoyo para que vea a su médico por cualquier cosa que usted crea que debe mejorar en su vida de salud. . ¡Paz!";
+  }
   document.getElementById("allRights").innerHTML =
     "Todos los derechos reservados";
 }

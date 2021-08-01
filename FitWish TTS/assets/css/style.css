@@ -159,9 +159,6 @@ body::-webkit-scrollbar-thumb:hover {
   padding-top: 5vh;
   font-family: serif;
 }
-#footerDiv {
-  width: 100vw;
-}
 .classFooter {
   text-decoration: none;
   color: #fff;

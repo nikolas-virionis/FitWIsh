@@ -64,13 +64,10 @@ window.addEventListener("load", () => {
         getBodyType().charAt(0).toUpperCase() + getBodyType().slice(1)
       }`
     ).style.backgroundColor = "#7395AE";
-  window[sessionStorage.getItem("language")]();
-  window[
-    `themeType${
-      sessionStorage.getItem("theme").charAt(0).toUpperCase() +
-      sessionStorage.getItem("theme").slice(1)
-    }`
-  ]();
+  eval(sessionStorage.getItem("language"))();
+  sessionStorage.getItem("theme") == "light"
+    ? themeTypeLight()
+    : themeTypeDark();
   for (let button of buttons) {
     button.addEventListener(`click`, (e) => {
       let element = e.target;

@@ -105,13 +105,10 @@ window.addEventListener("load", () => {
     document.getElementById(
       `colorChangeId${getUnit().charAt(0).toUpperCase() + getUnit().slice(1)}`
     ).style.backgroundColor = "#7395AE";
-  window[sessionStorage.getItem("language")]();
-  window[
-    `themeType${
-      sessionStorage.getItem("theme").charAt(0).toUpperCase() +
-      sessionStorage.getItem("theme").slice(1)
-    }`
-  ]();
+  eval(sessionStorage.getItem("language"))();
+  sessionStorage.getItem("theme") == "light"
+    ? themeTypeLight()
+    : themeTypeDark();
   buttons.forEach((button) => {
     button.addEventListener("click", (e) =>
       e.target.id.endsWith("ale") // mALE or femALE

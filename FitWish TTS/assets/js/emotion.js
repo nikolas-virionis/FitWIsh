@@ -90,16 +90,13 @@ window.addEventListener("load", () => {
         getEmotion().charAt(0).toUpperCase() + getEmotion().slice(1)
       }`
     ).style.backgroundColor = "#7395AE";
-  window[sessionStorage.getItem("language")]();
-  window[
-    `themeType${
-      sessionStorage.getItem("theme").charAt(0).toUpperCase() +
-      sessionStorage.getItem("theme").slice(1)
-    }`
-  ]();
+  eval(sessionStorage.getItem("language"))();
+  sessionStorage.getItem("theme") == "light"
+    ? themeTypeLight()
+    : themeTypeDark();
   buttons.forEach((button) => {
     button.addEventListener("click", (e) =>
-      emotion(e.target.value.toLowerCase())
+      emotion(e.target.id.slice(16).toLowerCase())
     );
     button.addEventListener("mouseout", (e) =>
       hoverOutColorChangeFunc(e.target.id)
@@ -110,13 +107,12 @@ window.addEventListener("load", () => {
 buttonResult.addEventListener("click", () => checkAllAnswers());
 
 function checkAllAnswers() {
-  let email = JSON.parse(sessionStorage.getItem("emailIn")) ? getEmail() : true;
   let answers =
     getGender() &&
     getUnit() &&
     getName() &&
     getAge() &&
-    email &&
+    getEmail() &&
     getHeight() &&
     getWeight() &&
     getBodyType() &&
@@ -165,7 +161,7 @@ function checkAllAnswers() {
         "Edad no informada, es obligatorio para la mejor experiencia de nuestro diagnóstico, aunque todos los datos son seguros y privados."
       );
     window.location.href = "login.html";
-  } else if (!email) {
+  } else if (!getEmail()) {
     if (language == "english")
       alert(
         "Email not informed, it is mandatory for the best experience of our diagnosis, although all data is safe and private"

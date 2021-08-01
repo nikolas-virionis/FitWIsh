@@ -69,13 +69,9 @@ function themeTypeDark() {
 
 window.addEventListener("load", () => {
   if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
-  window[sessionStorage.getItem("language")]();
-  switch (sessionStorage.getItem("theme")) {
-    case "light":
-      themeTypeLight();
-      break;
-    default:
-      themeTypeDark();
-  }
+  eval(sessionStorage.getItem("language"))();
+  sessionStorage.getItem("theme") == "light"
+    ? themeTypeLight()
+    : themeTypeDark();
   if (!localStorage.getItem("contentArray")) buttonFirst.style.display = "none";
 });

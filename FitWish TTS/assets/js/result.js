@@ -1,6 +1,7 @@
-let language = sessionStorage.getItem("language"),
-  colorDownload = "#1F3B4D",
+language = sessionStorage.getItem("language");
+let colorDownload = "#1F3B4D",
   backgroundColorDownload = "#12232A",
+  contentArray = JSON.parse(localStorage.getItem("contentArray")) ?? [],
   processing,
   diagnosis,
   done,
@@ -24,13 +25,10 @@ let language = sessionStorage.getItem("language"),
 
 window.addEventListener("load", () => {
   if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
-  window[sessionStorage.getItem("language")]();
-  window[
-    `themeType${
-      sessionStorage.getItem("theme").charAt(0).toUpperCase() +
-      sessionStorage.getItem("theme").slice(1)
-    }`
-  ]();
+  eval(sessionStorage.getItem("language"))();
+  sessionStorage.getItem("theme") == "light"
+    ? themeTypeLight()
+    : themeTypeDark();
   result();
 });
 
@@ -143,7 +141,7 @@ const getHeight = () => JSON.parse(sessionStorage.getItem("height"));
 const getBodyType = () => sessionStorage.getItem("bodytype");
 const getCheat = () => JSON.parse(sessionStorage.getItem("cheat"));
 const getEmotion = () => sessionStorage.getItem("emotion");
-const getExecise = () => JSON.parse(sessionStorage.getItem("exercise"));
+const getExercise = () => JSON.parse(sessionStorage.getItem("exercise"));
 const getGender = () => sessionStorage.getItem("gender");
 const getUnit = () => sessionStorage.getItem("unit");
 const getGoal = () => sessionStorage.getItem("goal");
@@ -226,14 +224,14 @@ function idealWeight(lbs, lb, weight, height) {
     bmi_state != "normal / sain" &&
     bmi_state != "normal / saludable"
   ) {
-    if ((language = "english")) {
+    if (language == "english") {
       idealWeightMsgPunctuation = ", and ";
       idealWeightMsgBmiState = lbs + " distant from a normal&healthy state.";
       if (bmi_state == "underweight")
         advicedWeight = (18.5 * height ** 2 - weight).toFixed(1);
       else if (bmi_state == "overweight" || bmi_state == "obese")
         advicedWeight = ((weight - 24.9 * height ** 2) * lb).toFixed(1);
-    } else if ((language = "português")) {
+    } else if (language == "português") {
       idealWeightMsgPunctuation = ", e ";
       idealWeightMsgBmiState =
         lbs + " distante de um estado normal e saudável .";
@@ -246,14 +244,14 @@ function idealWeight(lbs, lb, weight, height) {
         advicedWeight = (18.5 * height ** 2 - weight).toFixed(1);
       else if (bmi_state == "sobrepeso" || bmi_state == "obeso")
         advicedWeight = ((weight - 24.9 * height ** 2) * lb).toFixed(1);
-    } else if ((language = "français")) {
+    } else if (language == "français") {
       idealWeightMsgPunctuation = ", et ";
       idealWeightMsgBmiState = lbs + " éloigné d'un état normal et sain.";
       if (bmi_state == "poids insuffisant")
         advicedWeight = (18.5 * height ** 2 - weight).toFixed(1);
       else if (bmi_state == "en surpoids" || bmi_state == "obèse")
         advicedWeight = ((weight - 24.9 * height ** 2) * lb).toFixed(1);
-    } else if ((language = "español")) {
+    } else if (language == "español") {
       idealWeightMsgPunctuation = ", y ";
       idealWeightMsgBmiState =
         lbs + " distante de un estado normal y saludable.";
@@ -273,86 +271,87 @@ function idealWeight(lbs, lb, weight, height) {
     advicedWeight = "";
   }
   idealBodyFat = (idealBodyFatPercentage * idealWeight).toFixed(1);
-  if ((language = "english")) {
+  if (language == "english") {
     idealWeightMsg = `Your ideal weight is, approximately, <big style='font-family: Kaushan Script, cursive;' >${
       (idealWeight * lb).toFixed(1) + lbs
-    }</strong>, being between the range of <big style='font-family: Kaushan Script, cursive;' >${
+    }</big>, being between the range of <big style='font-family: Kaushan Script, cursive;' >${
       (baseIdealWeight * lb).toFixed(1) + lbs
-    }</strong> and <big style='font-family: Kaushan Script, cursive;' >${
+    }</big> and <big style='font-family: Kaushan Script, cursive;' >${
       (topIdealWeight * lb).toFixed(1) + lbs
-    }</strong>, and therefore you are <big style='font-family: Kaushan Script, cursive;' >${
+    }</big>, and therefore you are <big style='font-family: Kaushan Script, cursive;' >${
       (idealWeightDistance * lb).toFixed(1) + lbs
-    }</strong> apart from your ideal body, which has <big style='font-family: Kaushan Script, cursive;' >${
+    }</big> apart from your ideal body, which has <big style='font-family: Kaushan Script, cursive;' >${
       (((idealBodyFat * 10) / 1000) * lb).toFixed(1) + lbs
-    }</strong> of fat, and therefore, your ideal body fat percentage is <big style='font-family: Kaushan Script, cursive;' >${
+    }</big> of fat, and therefore, your ideal body fat percentage is <big style='font-family: Kaushan Script, cursive;' >${
       (idealBodyFatPercentage * 10) / 10
-    }%</strong>, as long as your current weight is <big style='font-family: Kaushan Script, cursive;' >${
+    }%</big>, as long as your current weight is <big style='font-family: Kaushan Script, cursive;' >${
       (weight * lb).toFixed(1) + lbs
-    }</strong>, <big style='font-family: Kaushan Script, cursive;' >${
+    }</big>, <big style='font-family: Kaushan Script, cursive;' >${
       (((bodyFatPercentage * weight) / 100) * lb).toFixed(1) + lbs
-    }</strong> of which equals fat, and thus, your body fat percentage, right now, is around <big style='font-family: Kaushan Script, cursive;' >${bodyFatPercentage}%</strong>, and according to WHO's body mass index, you are currently <big style='font-family: Kaushan Script, cursive;' >${bmi_state}</strong>`;
-  } else if ((language = "português")) {
+    }</big> of which equals fat, and thus, your body fat percentage, right now, is around <big style='font-family: Kaushan Script, cursive;' >${bodyFatPercentage}%</big>, and according to WHO's body mass index, you are currently <big style='font-family: Kaushan Script, cursive;' >${bmi_state}</big>`;
+  } else if (language == "português") {
     idealWeightMsg = `Seu peso ideal é, aproximadamente, <big style='font-family: Kaushan Script, cursive;' >${
       (idealWeight * lb).toFixed(1) + lbs
-    }</strong>, sendo entre <big style='font-family: Kaushan Script, cursive;' >${
+    }</big>, sendo entre <big style='font-family: Kaushan Script, cursive;' >${
       (baseIdealWeight * lb).toFixed(1) + lbs
-    }</strong> e <big style='font-family: Kaushan Script, cursive;' >${
+    }</big> e <big style='font-family: Kaushan Script, cursive;' >${
       (topIdealWeight * lb).toFixed(1) + lbs
-    }</strong>, e assim você está <big style='font-family: Kaushan Script, cursive;' >${
+    }</big>, e assim você está <big style='font-family: Kaushan Script, cursive;' >${
       (idealWeightDistance * lb).toFixed(1) + lbs
-    }</strong> distante do seu corpo ideal, que tem <big style='font-family: Kaushan Script, cursive;' >${
+    }</big> distante do seu corpo ideal, que tem <big style='font-family: Kaushan Script, cursive;' >${
       (((idealBodyFat * 10) / 1000) * lb).toFixed(1) + lbs
-    }</strong> de gordura, e assim, seu percentual de gordura ideal é <big style='font-family: Kaushan Script, cursive;' >${
+    }</big> de gordura, e assim, seu percentual de gordura ideal é <big style='font-family: Kaushan Script, cursive;' >${
       (idealBodyFatPercentage * 10) / 10
-    }%</strong>, já que seu peso atual é <big style='font-family: Kaushan Script, cursive;' >${
+    }%</big>, já que seu peso atual é <big style='font-family: Kaushan Script, cursive;' >${
       (weight * lb).toFixed(1) + lbs
-    }</strong>, <big style='font-family: Kaushan Script, cursive;' >${
+    }</big>, <big style='font-family: Kaushan Script, cursive;' >${
       (((bodyFatPercentage * weight) / 100) * lb).toFixed(1) + lbs
-    }</strong> desse de gordura e dessa forma seu percentual de gordura, agora, é, aproximadamente, <big style='font-family: Kaushan Script, cursive;' >${bodyFatPercentage}%</strong>, e de acordo com o indice de massa corporal da OMS você esta atualmente em <big style='font-family: Kaushan Script, cursive;' >${bmi_state}</strong>`;
-  } else if ((language = "français")) {
+    }</big> desse de gordura e dessa forma seu percentual de gordura, agora, é, aproximadamente, <big style='font-family: Kaushan Script, cursive;' >${bodyFatPercentage}%</big>, e de acordo com o indice de massa corporal da OMS você esta atualmente em <big style='font-family: Kaushan Script, cursive;' >${bmi_state}</big>`;
+  } else if (language == "français") {
     idealWeightMsg = `Votre poids idéal est, environ, <big style='font-family: Kaushan Script, cursive;' >${
       (idealWeight * lb).toFixed(1) + lbs
-    }</strong>, se situant entre la gamme de <big style='font-family: Kaushan Script, cursive;' >${
+    }</big>, se situant entre la gamme de <big style='font-family: Kaushan Script, cursive;' >${
       (baseIdealWeight * lb).toFixed(1) + lbs
-    }</strong> et <big style='font-family: Kaushan Script, cursive;' >${
+    }</big> et <big style='font-family: Kaushan Script, cursive;' >${
       (topIdealWeight * lb).toFixed(1) + lbs
-    }</strong>, et donc tu es <big style='font-family: Kaushan Script, cursive;' >${
+    }</big>, et donc tu es <big style='font-family: Kaushan Script, cursive;' >${
       (idealWeightDistance * lb).toFixed(1) + lbs
-    }</strong> en dehors de votre corps idéal, qui a <big style='font-family: Kaushan Script, cursive;' >${
+    }</big> en dehors de votre corps idéal, qui a <big style='font-family: Kaushan Script, cursive;' >${
       (((idealBodyFat * 10) / 1000) * lb).toFixed(1) + lbs
-    }</strong> de graisse, et par conséquent, votre pourcentage de graisse corporelle idéal est <big style='font-family: Kaushan Script, cursive;' >${
+    }</big> de graisse, et par conséquent, votre pourcentage de graisse corporelle idéal est <big style='font-family: Kaushan Script, cursive;' >${
       (idealBodyFatPercentage * 10) / 10
-    }%</strong>, tant que votre poids actuel est <big style='font-family: Kaushan Script, cursive;' >${
+    }%</big>, tant que votre poids actuel est <big style='font-family: Kaushan Script, cursive;' >${
       (weight * lb).toFixed(1) + lbs
-    }</strong>, <big style='font-family: Kaushan Script, cursive;' >${
+    }</big>, <big style='font-family: Kaushan Script, cursive;' >${
       (((bodyFatPercentage * weight) / 100) * lb).toFixed(1) + lbs
-    }</strong> don't est égal à la graisse, et donc, votre pourcentage de graisse corporelle, actuellement, est d'environ <big style='font-family: Kaushan Script, cursive;' >${bodyFatPercentage}%</strong>, et selon l'indice de masse corporelle de l'OMS, vous êtes actuellement <big style='font-family: Kaushan Script, cursive;' >${bmi_state}</strong>`;
-  } else if ((language = "español")) {
+    }</big> don't est égal à la graisse, et donc, votre pourcentage de graisse corporelle, actuellement, est d'environ <big style='font-family: Kaushan Script, cursive;' >${bodyFatPercentage}%</big>, et selon l'indice de masse corporelle de l'OMS, vous êtes actuellement <big style='font-family: Kaushan Script, cursive;' >${bmi_state}</big>`;
+  } else if (language == "español") {
     idealWeightMsg = `Tu peso ideal es, aproximadamente, <big style='font-family: Kaushan Script, cursive;' >${
       (idealWeight * lb).toFixed(1) + lbs
-    }</strong>, estar entre el rango de <big style='font-family: Kaushan Script, cursive;' >${
+    }</big>, estar entre el rango de <big style='font-family: Kaushan Script, cursive;' >${
       (baseIdealWeight * lb).toFixed(1) + lbs
-    }</strong> y <big style='font-family: Kaushan Script, cursive;' >${
+    }</big> y <big style='font-family: Kaushan Script, cursive;' >${
       (topIdealWeight * lb).toFixed(1) + lbs
-    }</strong>, y por lo tanto eres <big style='font-family: Kaushan Script, cursive;' >${
+    }</big>, y por lo tanto eres <big style='font-family: Kaushan Script, cursive;' >${
       (idealWeightDistance * lb).toFixed(1) + lbs
-    }</strong> aparte de tu cuerpo ideal, que tiene <big style='font-family: Kaushan Script, cursive;' >${
+    }</big> aparte de tu cuerpo ideal, que tiene <big style='font-family: Kaushan Script, cursive;' >${
       (((idealBodyFat * 10) / 1000) * lb).toFixed(1) + lbs
-    }</strong> de grasa y, por lo tanto, su porcentaje ideal de grasa corporal es <big style='font-family: Kaushan Script, cursive;' >${
+    }</big> de grasa y, por lo tanto, su porcentaje ideal de grasa corporal es <big style='font-family: Kaushan Script, cursive;' >${
       (idealBodyFatPercentage * 10) / 10
-    }%</strong>, siempre que su peso actual sea <big style='font-family: Kaushan Script, cursive;' >${
+    }%</big>, siempre que su peso actual sea <big style='font-family: Kaushan Script, cursive;' >${
       (weight * lb).toFixed(1) + lbs
-    }</strong>, <big style='font-family: Kaushan Script, cursive;' >${
+    }</big>, <big style='font-family: Kaushan Script, cursive;' >${
       (((bodyFatPercentage * weight) / 100) * lb).toFixed(1) + lbs
-    }</strong> de los cuales es igual a grasa y, por lo tanto, su porcentaje de grasa corporal, en este momento, es de alrededor <big style='font-family: Kaushan Script, cursive;' >${bodyFatPercentage}%</strong>, y según el índice de masa corporal de la OMS, actualmente <big style='font-family: Kaushan Script, cursive;' >${bmi_state}</strong>`;
+    }</big> de los cuales es igual a grasa y, por lo tanto, su porcentaje de grasa corporal, en este momento, es de alrededor <big style='font-family: Kaushan Script, cursive;' >${bodyFatPercentage}%</big>, y según el índice de masa corporal de la OMS, actualmente <big style='font-family: Kaushan Script, cursive;' >${bmi_state}</big>`;
   }
+  finalIdealWeightMsg = idealWeightMsg;
   finalIdealWeightMsg += idealWeightMsgPunctuation;
   finalIdealWeightMsg += advicedWeight;
   finalIdealWeightMsg += idealWeightMsgBmiState;
 }
 
 function setBodyTypeAdvice() {
-  if ((language = "english")) {
+  if (language == "english") {
     if (getBodyType() == "ecto")
       return "since you are an ectomorph, you gotta have in mind that you naturally have a condition that makes you skinnier, having less fat but also less muscle.";
     if (getBodyType() == "meso")
@@ -360,7 +359,7 @@ function setBodyTypeAdvice() {
     if (getBodyType() == "endo")
       return "since you are an endomorph, you gain both muscle and fat easily, makes bulking easy but makes it a lot more difficult to cut and get your body in shape.";
   }
-  if ((language = "português")) {
+  if (language == "português") {
     if (getBodyType() == "ecto")
       return "já que você é um ectomorfo, é preciso ter em mente que você tem naturalmente uma condição que o torna mais magro, tendo menos gordura, mas também menos músculos.";
     if (getBodyType() == "meso")
@@ -368,7 +367,7 @@ function setBodyTypeAdvice() {
     if (getBodyType() == "endo")
       return "como você é um(a) endomorfo(a), você ganha músculo e gordura facilmente, torna mais fácil aumentar o volume, mas torna muito mais difícil secar e colocar seu corpo em forma.";
   }
-  if ((language = "français")) {
+  if (language == "français") {
     if (getBodyType() == "ecto")
       return "puisque vous êtes un ectomorphe, vous devez garder à l'esprit que vous avez naturellement une maladie qui vous rend plus maigre, avec moins de graisse mais aussi moins de muscle.";
     if (getBodyType() == "meso")
@@ -376,7 +375,7 @@ function setBodyTypeAdvice() {
     if (getBodyType() == "endo")
       return "puisque vous êtes un endomorphe, vous gagnez facilement du muscle et de la graisse, ce qui facilite le gonflement, mais il est beaucoup plus difficile de couper et de remettre votre corps en forme.";
   }
-  if ((language = "español")) {
+  if (language == "español") {
     if (getBodyType() == "ecto")
       return "como eres un ectomorfo, debes tener en cuenta que naturalmente tienes una condición que te hace más delgado, con menos grasa pero también con menos músculo.";
     if (getBodyType() == "meso")
@@ -387,7 +386,7 @@ function setBodyTypeAdvice() {
 }
 
 function setAgeAdvice() {
-  if ((language = "english")) {
+  if (language == "english") {
     if (getAge() <= 12)
       return " Honestly, I like that you at this young age want to get in shape, but you know it's important that you understand that until you reach your teens 99,99% of your focus has to be in getting and keeping healthy. Relax, soon you will be able to get in shape easier than now and, more importantly, in a safer time of your life!";
     if (getAge() >= 13 && getAge() <= 17)
@@ -401,7 +400,7 @@ function setAgeAdvice() {
     if (getAge() >= 61)
       return " Honestly, I like that you at this age want to get in shape, but you know it's important that you understand that 99% of your focus has to be in getting and then keeping healthy. Relax, it may be difficult but you're gonna make it, and also the healthier you are, the easier it will be to get a better body!";
   }
-  if ((language = "português")) {
+  if (language == "português") {
     if (getAge() <= 12)
       return " Honestamente, eu gosto que você nesta idade queira entrar em forma, mas você sabe que é importante entender que, até chegar à adolescência, 99,99% do seu foco tem que ser em obter e se manter saudável. Relaxe, logo você poderá entrar em forma mais fácil do que agora e, mais importante, em um momento mais seguro da sua vida!";
     if (getAge() >= 13 && getAge() <= 17)
@@ -415,7 +414,7 @@ function setAgeAdvice() {
     if (getAge() >= 61)
       return " Honestamente, eu gosto que você nesta idade queira entrar em forma, mas você sabe que é importante entender que 99% do seu foco tem que ser em ficar e então se manter saudável. Relaxe, pode ser difícil, mas você vai conseguir, e quanto mais saudável você for, mais fácil será conseguir um corpo melhor!";
   }
-  if ((language = "français")) {
+  if (language == "français") {
     if (getAge() <= 12)
       return " Honnêtement, j'aime que vous, à ce jeune âge, vouliez vous mettre en forme, mais vous savez qu'il est important que vous compreniez que jusqu'à ce que vous atteigniez votre adolescence, 99,99% de votre objectif doit être de rester en bonne santé. Détendez-vous, bientôt vous pourrez vous mettre en forme plus facilement que maintenant et, surtout, à un moment plus sûr de votre vie!";
     if (getAge() >= 13 && getAge() <= 17)
@@ -429,7 +428,7 @@ function setAgeAdvice() {
     if (getAge() >= 61)
       return " Honnêtement, j'aime le fait que vous, à cet âge, vouliez vous mettre en forme, mais vous savez qu'il est important que vous compreniez que 99% de votre objectif doit être de devenir et de rester en bonne santé. Détendez-vous, cela peut être difficile mais vous y arriverez, et plus vous serez en santé, plus il sera facile d'avoir un meilleur corps!";
   }
-  if ((language = "español")) {
+  if (language == "español") {
     if (getAge() <= 12)
       return " Honestamente, me gusta que a esta edad quieras ponerte en forma, pero sabes que es importante que entiendas que hasta que llegues a la adolescencia, el 99,99% de tu enfoque debe estar en estar y mantenerte saludable. Relájate, pronto podrás ponerte en forma más fácilmente que ahora y, lo que es más importante, ¡en un momento más seguro de tu vida!";
     if (getAge() >= 13 && getAge() <= 17)
@@ -461,19 +460,19 @@ function downloadData() {
 }
 function sendConfirm() {
   let redirectemail;
-  if ((language = "english"))
+  if (language == "english")
     redirectemail = confirm(
       "Are you sure you want to receive a main result email?"
     );
-  else if ((language = "português"))
+  else if (language == "português")
     redirectemail = confirm(
       "Tem certeza de que deseja receber um e-mail de resultado principal?"
     );
-  else if ((language = "français"))
+  else if (language == "français")
     redirectemail = confirm(
       "Voulez-vous vraiment recevoir un e-mail de résultat principal?"
     );
-  else if ((language = "español"))
+  else if (language == "español")
     redirectemail = confirm(
       "¿Está seguro de que desea recibir un correo electrónico con el resultado principal?"
     );
@@ -481,16 +480,16 @@ function sendConfirm() {
 }
 //more email sending information
 function sendEmail() {
-  if ((language = "english")) {
+  if (language == "english") {
     addup5 = "kcal to ";
     addup6 = "kcal \n\n\n\n";
     var message = `Hi, this is just a way for you to have all the main data summed up saved in your email inbox.\n\n Gender: ${getGender()}\n\n Goal: ${getGoal()}\n\n
     getBodyType(): ${getBodyType()}\n\n Age: ${getAge()}\n\n Current Weight: ${
-      unit == "metric"
+      getUnit() == "metric"
         ? `${weight}kg \n\n`
         : `${(weight * 2.205).toFixed(2)}lbs \n\n`
     } Current fat percentage: ${bodyFatPercentage}% \n\nIdeal weight range: ${
-      unit == "metric"
+      getUnit() == "metric"
         ? `${baseIdealWeight.toFixed(1)}kg to ${topIdealWeight.toFixed(
             1
           )}kg\n\nPerfect/ideal approximate weight: ${parseFloat(
@@ -537,16 +536,16 @@ function sendEmail() {
         ? "Moderate Quantity of Meals per day \n\nMeals per day Advice: Increase the Meals per day. Eat decent amounts of right food every 3 hours \n\n"
         : "Good and Ideal Quantity of Meals per day\n\nMeals per day Advice: Really Good but remember of only eating for feeding and not for anything else, besides eat every 3 hours or so \n\n"
     }BMI state: ${bmi_state}\n\nBasal Metabolic Rate: ${bmr}\n\nRecommended calorie intake range: `;
-  } else if ((language = "português")) {
+  } else if (language == "português") {
     addup5 = "kcal para ";
     addup6 = "kcal \n\n\n\n";
     var message = `Olá, esta é apenas uma forma de guardar todos os dados principais na sua caixa de entrada de email.\n\n Gênero: ${getGender()}\n\n Objetivo: ${getGoal()}\n\n
     Tipo de Corpo: ${getBodyType()}\n\n Idade: ${getAge()}\n\n Peso Atual: ${
-      unit == "metric"
+      getUnit() == "metric"
         ? `${weight}kg \n\n`
         : `${(weight * 2.205).toFixed(2)}lbs \n\n`
     } Percentual de Gordura Atual: ${bodyFatPercentage}% \n\nVariação de peso ideal: ${
-      unit == "metric"
+      getUnit() == "metric"
         ? `${baseIdealWeight.toFixed(1)}kg até ${topIdealWeight.toFixed(
             1
           )}kg\n\nAproximado peso ideal: ${parseFloat(idealWeight).toFixed(
@@ -593,17 +592,17 @@ function sendEmail() {
         ? "Refeições moderadas por dia \n\nConselho sobre refeições por dia: Aumente as refeições por dia. Coma quantidades decentes de alimentos certos a cada 3 horas \n\n"
         : "Quantidade ideal de refeições por dia\n\nConselho sobre refeições por dia: Muito bom, mas lembre-se de comer apenas para se alimentar e nada mais, além de comer a cada 3 horas, mais ou menos \n\n"
     }Estado do IMC: ${bmi_state}\n\nTaxa metabólica basal: ${bmr}\n\nVariação de Ingestão Calórica Recomendada: `;
-  } else if ((language = "français")) {
+  } else if (language == "français") {
     addup5 = "kcal à ";
     addup6 = "kcal \n\n\n\n";
     var message = `Bonjour, c'est juste un moyen pour vous d'avoir toutes les données principales résumées enregistrées dans votre boîte de réception.\n\n 
     Genre: ${getGender()}\n\n Objectif: ${getGoal()}\n\n
     Type de corps: ${getBodyType()}\n\n Âge: ${getAge()}\n\n Poids actuel: ${
-      unit == "metric"
+      getUnit() == "metric"
         ? `${weight}kg \n\n`
         : `${(weight * 2.205).toFixed(2)}lbs \n\n`
     } Pourcentage de graisse actuel: ${bodyFatPercentage}% \n\nGamme de poids idéale: ${
-      unit == "metric"
+      getUnit() == "metric"
         ? `${baseIdealWeight.toFixed(1)}kg à ${topIdealWeight.toFixed(
             1
           )}kg\n\nPoids approximatif parfait / idéal: ${parseFloat(
@@ -652,17 +651,17 @@ function sendEmail() {
         ? "Quantité modérée de repas par jour \n\nRepas par jour Conseils: Augmentez les repas par jour. Mangez des quantités décentes de bonne nourriture toutes les 3 heures \n\n"
         : "Bonne et idéale quantité de repas par jour\n\nRepas par jour Conseils: Vraiment bon mais rappelez-vous de ne manger que pour se nourrir et pas pour autre chose, à part manger toutes les 3 heures environ\n\n"
     }État de l'IMC: ${bmi_state}\n\nLe taux métabolique basal: ${bmr}\n\nPlage d'apport calorique recommandée: `;
-  } else if ((language = "español")) {
+  } else if (language == "español") {
     addup5 = "kcal a ";
     addup6 = "kcal \n\n\n\n";
     var message = `Hola, esta es solo una manera de tener todos los datos principales resumidos guardados en la bandeja de entrada de su correo electrónico.\n\n 
     Género: ${getGender()}\n\n Objetivo: ${getGoal()}\n\n
     Tipo de Cuerpo: ${getBodyType()}\n\n Edad: ${getAge()}\n\n Peso Actual: ${
-      unit == "metric"
+      getUnit() == "metric"
         ? `${weight}kg \n\n`
         : `${(weight * 2.205).toFixed(2)}lbs \n\n`
     } Porcentaje de grasa actual: ${bodyFatPercentage}% \n\nRango de peso ideal: ${
-      unit == "metric"
+      getUnit() == "metric"
         ? `${baseIdealWeight.toFixed(1)}kg a ${topIdealWeight.toFixed(
             1
           )}kg\n\nPeso aproximado perfecto / ideal: ${parseFloat(
@@ -807,13 +806,13 @@ function sendEmail() {
   }
   var finalmessage = encodeURIComponent(message);
   let subject;
-  if ((language = "english")) subject = "Fitness Management Program Main Data";
-  else if ((language = "português"))
+  if (language == "english") subject = "Fitness Management Program Main Data";
+  else if (language == "português")
     subject =
       "Dados principais do programa de gestão de condicionamento físico";
-  else if ((language = "français"))
+  else if (language == "français")
     subject = "Données principales du programme de gestion du poids";
-  else if ((language = "español"))
+  else if (language == "español")
     subject = "Datos principales del programa de control de peso";
   let url =
     "mailto:" + getEmail() + "?subject=" + subject + "&body=" + finalmessage;
@@ -825,13 +824,13 @@ function getBodyTypeAdvantage() {
     (getBodyType() == "ecto" && getGoal() == "muscle") ||
     (getBodyType() == "endo" && getGoal() == "cutting")
   )
-    bodyTypeAdvantage = 0;
+    return 0;
   else if (
     (getBodyType() == "ecto" && getGoal() == "cutting") ||
     (getBodyType() == "meso" && getGoal() == "surplus") ||
     (getBodyType() == "endo" && getGoal() == "surplus")
   )
-    bodyTypeAdvantage = 1;
+    return 1;
   else if (
     (getBodyType() == "ecto" && getGoal() == "surplus") ||
     (getBodyType() == "meso" && getGoal() == "bulking") ||
@@ -840,7 +839,7 @@ function getBodyTypeAdvantage() {
     (getBodyType() == "endo" && getGoal() == "bulking") ||
     (getBodyType() == "endo" && getGoal() == "muscle")
   )
-    bodyTypeAdvantage = 2;
+    return 2;
 }
 function getDate() {
   let date = new Date();
@@ -850,7 +849,7 @@ function getDate() {
   return `${dd}/${mm}/${yyyy}`;
 }
 function getBodyTypeAdvantageAdviceEcto(bodyTypeAdvantage) {
-  if ((language = "english")) {
+  if (language == "english") {
     if (bodyTypeAdvantage == 2)
       return " Although it may be easier for your body type since you lose fat easier, but you still gotta grind for it!";
     if (bodyTypeAdvantage == 1)
@@ -858,7 +857,7 @@ function getBodyTypeAdvantageAdviceEcto(bodyTypeAdvantage) {
     if (bodyTypeAdvantage == 0)
       return " I know, it is more difficult for your body type but still let´s do it, it will be harder to keep but still, you'll get there!";
   }
-  if ((language = "português")) {
+  if (language == "português") {
     if (bodyTypeAdvantage == 2)
       return " Embora possa ser mais fácil para o seu tipo de corpo, já que você perde gordura com mais facilidade, você ainda precisa trabalhar para isso!";
     if (bodyTypeAdvantage == 1)
@@ -866,7 +865,7 @@ function getBodyTypeAdvantageAdviceEcto(bodyTypeAdvantage) {
     if (bodyTypeAdvantage == 0)
       return " Eu sei, é mais difícil para o seu tipo de corpo mas ainda vamos fazer, vai ser mais difícil de manter mas mesmo assim, você vai chegar lá!";
   }
-  if ((language = "français")) {
+  if (language == "français") {
     if (bodyTypeAdvantage == 2)
       return " Bien que cela puisse être plus facile pour votre type de corps, car vous perdez de la graisse plus facilement, mais vous devez quand même moudre pour cela!";
     if (bodyTypeAdvantage == 1)
@@ -874,7 +873,7 @@ function getBodyTypeAdvantageAdviceEcto(bodyTypeAdvantage) {
     if (bodyTypeAdvantage == 0)
       return " Je sais, c'est plus difficile pour votre type de corps mais faisons-le quand même, ce sera plus difficile à garder mais quand même, vous y arriverez!";
   }
-  if ((language = "español")) {
+  if (language == "español") {
     if (bodyTypeAdvantage == 2)
       return " Aunque puede ser más fácil para tu tipo de cuerpo, ya que pierdes grasa más fácilmente, ¡aún así tienes que esforzarte!";
     if (bodyTypeAdvantage == 1)
@@ -884,28 +883,28 @@ function getBodyTypeAdvantageAdviceEcto(bodyTypeAdvantage) {
   }
 }
 function getBodyTypeAdvantageAdviceMeso(bodyTypeAdvantage) {
-  if ((language = "english")) {
+  if (language == "english") {
     if (bodyTypeAdvantage == 2)
       return " Yeah, got it, 'for me its easier' yada yada yada. Well, it's supposed to, but if you don't concentrate and engage on your goal, sorry bro, but if it happens it will take a lot longer, so focus and you will get there.";
     if (bodyTypeAdvantage == 1)
       return " It can get difficult for your body type for the muscle-up part, but still totally doable!";
     if (bodyTypeAdvantage == 0) return " That shouldn't happen! Sry.";
   }
-  if ((language = "português")) {
+  if (language == "português") {
     if (bodyTypeAdvantage == 2)
       return " Sim, entendi, 'para mim é mais fácil' blá blá blá. Bem, é suposto que sim, mas se você não se concentrar e se engajar no seu objetivo, desculpe mano, mas se acontecer vai demorar muito mais, então foque e você vai chegar lá.";
     if (bodyTypeAdvantage == 1)
       return " It can get difficult for your body type for the muscle-up part, but still totally doable!";
     if (bodyTypeAdvantage == 0) return " Isso não deveria acontecer! Desculpa.";
   }
-  if ((language = "français")) {
+  if (language == "français") {
     if (bodyTypeAdvantage == 2)
       return " Ouais, compris, «pour moi, c'est plus facile» yada yada yada. Eh bien, c'est censé le faire, mais si vous ne vous concentrez pas et ne vous engagez pas sur votre objectif, désolé mon frère, mais si cela arrive, cela prendra beaucoup plus de temps, alors concentrez-vous et vous y arriverez.";
     if (bodyTypeAdvantage == 1)
       return " Cela peut devenir difficile pour votre type de corps pour la partie musculaire, mais cela reste tout à fait faisable!";
     if (bodyTypeAdvantage == 0) return " Cela ne devrait pas arriver! Pardon.";
   }
-  if ((language = "español")) {
+  if (language == "español") {
     if (bodyTypeAdvantage == 2)
       return " Sí, lo tengo, 'para mí es más fácil' yada yada yada. Bueno, se supone que debe hacerlo, pero si no te concentras y te comprometes con tu objetivo, lo siento hermano, pero si sucede, tomará mucho más tiempo, así que concéntrate y llegarás allí..";
     if (bodyTypeAdvantage == 1)
@@ -914,7 +913,7 @@ function getBodyTypeAdvantageAdviceMeso(bodyTypeAdvantage) {
   }
 }
 function getBodyTypeAdvantageAdviceEndo(bodyTypeAdvantage) {
-  if ((language = "english")) {
+  if (language == "english") {
     if (bodyTypeAdvantage == 2)
       return " For your body type it may be easier, due to the ease you have to gain muscle, but, still, you gotta grind to accomplish it!";
     if (bodyTypeAdvantage == 1)
@@ -922,7 +921,7 @@ function getBodyTypeAdvantageAdviceEndo(bodyTypeAdvantage) {
     if (bodyTypeAdvantage == 0)
       return " I know, it is more difficult for your body type but still let´s do it, it will be harder to maintain but still you'll get there! I'm with you in that, I'm an endomorph that craves to cut too.";
   }
-  if ((language = "português")) {
+  if (language == "português") {
     if (bodyTypeAdvantage == 2)
       return " Para o seu tipo de corpo pode ser mais fácil, devido à facilidade que você tem para ganhar músculos, mas, ainda assim, é preciso trincar para conseguir!";
     if (bodyTypeAdvantage == 1)
@@ -930,7 +929,7 @@ function getBodyTypeAdvantageAdviceEndo(bodyTypeAdvantage) {
     if (bodyTypeAdvantage == 0)
       return " Eu sei, é mais difícil para o seu tipo de corpo, mas mesmo assim vamos fazer, será mais difícil de manter, mas você vai chegar lá! Estou com você nisso, sou um endomorfo que anseia secar também.";
   }
-  if ((language = "français")) {
+  if (language == "français") {
     if (bodyTypeAdvantage == 2)
       return " Pour votre type de corps, cela peut être plus facile, en raison de la facilité don't vous disposez pour gagner du muscle, mais, quand même, vous devez broyer pour y parvenir!";
     if (bodyTypeAdvantage == 1)
@@ -938,7 +937,7 @@ function getBodyTypeAdvantageAdviceEndo(bodyTypeAdvantage) {
     if (bodyTypeAdvantage == 0)
       return " Je sais, c'est plus difficile pour votre type de corps mais faisons-le quand même, ce sera plus difficile à entretenir mais vous y arriverez quand même! Je suis avec toi, je suis un endomorphe qui aspire aussi à couper.";
   }
-  if ((language = "español")) {
+  if (language == "español") {
     if (bodyTypeAdvantage == 2)
       return " Para tu tipo de cuerpo puede ser más fácil, debido a la facilidad que tienes para ganar músculo, pero, aún así, ¡tienes que esforzarte para lograrlo!";
     if (bodyTypeAdvantage == 1)
@@ -956,14 +955,14 @@ function getBodyTypeAdvantageAdvice() {
     return getBodyTypeAdvantageAdviceEndo(getBodyTypeAdvantage());
 }
 function getBodyFat() {
-  if (currentBody == 1) {
+  if (getCurrentBody() == 1) {
     if (getGender() == "male") {
-      baseBodyFat = weight * 0.04;
-      topBodyFat = weight * 0.05;
+      baseBodyFat = getWeight() * 0.04;
+      topBodyFat = getWeight() * 0.05;
       bodyFatPercentage = 4.5;
     } else if (getGender() == "female") {
-      baseBodyFat = weight * 0.12;
-      topBodyFat = weight * 0.14;
+      baseBodyFat = getWeight() * 0.12;
+      topBodyFat = getWeight() * 0.14;
       bodyFatPercentage = 13;
     }
     if (getGoal() == "bulking")
@@ -974,14 +973,14 @@ function getBodyFat() {
       bodyFat = ((baseBodyFat + topBodyFat) / 2).toFixed(1);
     else if (getGoal() == "muscle")
       bodyFat = ((baseBodyFat + topBodyFat) / 2).toFixed(1);
-  } else if (currentBody == 2) {
+  } else if (getCurrentBody() == 2) {
     if (getGender() == "male") {
-      baseBodyFat = weight * 0.06;
-      topBodyFat = weight * 0.07;
+      baseBodyFat = getWeight() * 0.06;
+      topBodyFat = getWeight() * 0.07;
       bodyFatPercentage = 6.5;
     } else if (getGender() == "female") {
-      baseBodyFat = weight * 0.15;
-      topBodyFat = weight * 0.17;
+      baseBodyFat = getWeight() * 0.15;
+      topBodyFat = getWeight() * 0.17;
       bodyFatPercentage = 16;
     }
     if (getGoal() == "bulking")
@@ -992,14 +991,14 @@ function getBodyFat() {
       bodyFat = ((baseBodyFat + topBodyFat) / 2).toFixed(1);
     else if (getGoal() == "muscle")
       bodyFat = ((baseBodyFat + topBodyFat) / 2).toFixed(1);
-  } else if (currentBody == 3) {
+  } else if (getCurrentBody() == 3) {
     if (getGender() == "male") {
-      baseBodyFat = weight * 0.08;
-      topBodyFat = weight * 0.1;
+      baseBodyFat = getWeight() * 0.08;
+      topBodyFat = getWeight() * 0.1;
       bodyFatPercentage = 9;
     } else if (getGender() == "female") {
-      baseBodyFat = weight * 0.18;
-      topBodyFat = weight * 0.2;
+      baseBodyFat = getWeight() * 0.18;
+      topBodyFat = getWeight() * 0.2;
       bodyFatPercentage = 19;
     }
     if (getGoal() == "bulking")
@@ -1010,14 +1009,14 @@ function getBodyFat() {
       bodyFat = ((baseBodyFat + topBodyFat) / 2).toFixed(1);
     else if (getGoal() == "muscle")
       bodyFat = ((baseBodyFat + topBodyFat) / 2).toFixed(1);
-  } else if (currentBody == 4) {
+  } else if (getCurrentBody() == 4) {
     if (getGender() == "male") {
-      baseBodyFat = weight * 0.11;
-      topBodyFat = weight * 0.12;
+      baseBodyFat = getWeight() * 0.11;
+      topBodyFat = getWeight() * 0.12;
       bodyFatPercentage = 11.5;
     } else if (getGender() == "female") {
-      baseBodyFat = weight * 0.21;
-      topBodyFat = weight * 0.23;
+      baseBodyFat = getWeight() * 0.21;
+      topBodyFat = getWeight() * 0.23;
       bodyFatPercentage = 22;
     }
     if (getGoal() == "bulking")
@@ -1028,14 +1027,14 @@ function getBodyFat() {
       bodyFat = ((baseBodyFat + topBodyFat) / 2).toFixed(1);
     else if (getGoal() == "muscle")
       bodyFat = ((baseBodyFat + topBodyFat) / 2).toFixed(1);
-  } else if (currentBody == 5) {
+  } else if (getCurrentBody() == 5) {
     if (getGender() == "male") {
-      baseBodyFat = weight * 0.13;
-      topBodyFat = weight * 0.15;
+      baseBodyFat = getWeight() * 0.13;
+      topBodyFat = getWeight() * 0.15;
       bodyFatPercentage = 14;
     } else if (getGender() == "female") {
-      baseBodyFat = weight * 0.24;
-      topBodyFat = weight * 0.26;
+      baseBodyFat = getWeight() * 0.24;
+      topBodyFat = getWeight() * 0.26;
       bodyFatPercentage = 25;
     }
     if (getGoal() == "bulking")
@@ -1046,14 +1045,14 @@ function getBodyFat() {
       bodyFat = ((baseBodyFat + topBodyFat) / 2).toFixed(1);
     else if (getGoal() == "muscle")
       bodyFat = ((baseBodyFat + topBodyFat) / 2).toFixed(1);
-  } else if (currentBody == 6) {
+  } else if (getCurrentBody() == 6) {
     if (getGender() == "male") {
-      baseBodyFat = weight * 0.16;
-      topBodyFat = weight * 0.19;
+      baseBodyFat = getWeight() * 0.16;
+      topBodyFat = getWeight() * 0.19;
       bodyFatPercentage = 17.5;
     } else if (getGender() == "female") {
-      baseBodyFat = weight * 0.27;
-      topBodyFat = weight * 0.29;
+      baseBodyFat = getWeight() * 0.27;
+      topBodyFat = getWeight() * 0.29;
       bodyFatPercentage = 28;
     }
     if (getGoal() == "bulking")
@@ -1064,14 +1063,14 @@ function getBodyFat() {
       bodyFat = ((baseBodyFat + topBodyFat) / 2).toFixed(1);
     else if (getGoal() == "muscle")
       bodyFat = ((baseBodyFat + topBodyFat) / 2).toFixed(1);
-  } else if (currentBody == 7) {
+  } else if (getCurrentBody() == 7) {
     if (getGender() == "male") {
-      baseBodyFat = weight * 0.2;
-      topBodyFat = weight * 0.24;
+      baseBodyFat = getWeight() * 0.2;
+      topBodyFat = getWeight() * 0.24;
       bodyFatPercentage = 22;
     } else if (getGender() == "female") {
-      baseBodyFat = weight * 0.3;
-      topBodyFat = weight * 0.35;
+      baseBodyFat = getWeight() * 0.3;
+      topBodyFat = getWeight() * 0.35;
       bodyFatPercentage = 32.5;
     }
     if (getGoal() == "bulking")
@@ -1082,14 +1081,14 @@ function getBodyFat() {
       bodyFat = ((baseBodyFat + topBodyFat) / 2).toFixed(1);
     else if (getGoal() == "muscle")
       bodyFat = ((baseBodyFat + topBodyFat) / 2).toFixed(1);
-  } else if (currentBody == 8) {
+  } else if (getCurrentBody() == 8) {
     if (getGender() == "male") {
-      baseBodyFat = weight * 0.25;
-      topBodyFat = weight * 0.3;
+      baseBodyFat = getWeight() * 0.25;
+      topBodyFat = getWeight() * 0.3;
       bodyFatPercentage = 27.5;
     } else if (getGender() == "female") {
-      baseBodyFat = weight * 0.36;
-      topBodyFat = weight * 0.4;
+      baseBodyFat = getWeight() * 0.36;
+      topBodyFat = getWeight() * 0.4;
       bodyFatPercentage = 38;
     }
     if (getGoal() == "bulking")
@@ -1100,14 +1099,14 @@ function getBodyFat() {
       bodyFat = ((baseBodyFat + topBodyFat) / 2).toFixed(1);
     else if (getGoal() == "muscle")
       bodyFat = ((baseBodyFat + topBodyFat) / 2).toFixed(1);
-  } else if (currentBody == 9) {
+  } else if (getCurrentBody() == 9) {
     if (getGender() == "male") {
-      baseBodyFat = weight * 0.35;
-      topBodyFat = weight * 0.4;
+      baseBodyFat = getWeight() * 0.35;
+      topBodyFat = getWeight() * 0.4;
       bodyFatPercentage = 37.5;
     } else if (getGender() == "female") {
-      baseBodyFat = weight * 0.5;
-      topBodyFat = weight * 0.5;
+      baseBodyFat = getWeight() * 0.5;
+      topBodyFat = getWeight() * 0.5;
       bodyFatPercentage = 50;
     }
     if (getGoal() == "bulking")
@@ -1121,7 +1120,7 @@ function getBodyFat() {
   }
 }
 function getSuggestedBodyFat() {
-  if (goalBody == 1) {
+  if (getGoalBody() == 1) {
     if (getGender() == "male") {
       goalBaseBodyFat = idealWeight * 0.04;
       goalTopBodyFat = idealWeight * 0.05;
@@ -1160,7 +1159,7 @@ function getSuggestedBodyFat() {
       suggestedBodyFat = ((goalBaseBodyFat + 2 * goalTopBodyFat) / 3).toFixed(
         1
       );
-  } else if (goalBody == 2) {
+  } else if (getGoalBody() == 2) {
     if (getGender() == "male") {
       goalBaseBodyFat = idealWeight * 0.06;
       goalTopBodyFat = idealWeight * 0.07;
@@ -1199,7 +1198,7 @@ function getSuggestedBodyFat() {
       suggestedBodyFat = ((goalBaseBodyFat + 2 * goalTopBodyFat) / 3).toFixed(
         1
       );
-  } else if (goalBody == 3) {
+  } else if (getGoalBody() == 3) {
     if (getGender() == "male") {
       goalBaseBodyFat = idealWeight * 0.08;
       goalTopBodyFat = idealWeight * 0.1;
@@ -1238,7 +1237,7 @@ function getSuggestedBodyFat() {
       suggestedBodyFat = ((goalBaseBodyFat + 2 * goalTopBodyFat) / 3).toFixed(
         1
       );
-  } else if (goalBody == 4) {
+  } else if (getGoalBody() == 4) {
     if (getGender() == "male") {
       goalBaseBodyFat = idealWeight * 0.11;
       goalTopBodyFat = idealWeight * 0.12;
@@ -1277,7 +1276,7 @@ function getSuggestedBodyFat() {
       suggestedBodyFat = ((goalBaseBodyFat + 2 * goalTopBodyFat) / 3).toFixed(
         1
       );
-  } else if (goalBody == 5) {
+  } else if (getGoalBody() == 5) {
     if (getGender() == "male") {
       goalBaseBodyFat = idealWeight * 0.13;
       goalTopBodyFat = idealWeight * 0.15;
@@ -1316,7 +1315,7 @@ function getSuggestedBodyFat() {
       suggestedBodyFat = ((goalBaseBodyFat + 2 * goalTopBodyFat) / 3).toFixed(
         1
       );
-  } else if (goalBody == 6) {
+  } else if (getGoalBody() == 6) {
     if (getGender() == "male") {
       goalBaseBodyFat = idealWeight * 0.16;
       goalTopBodyFat = idealWeight * 0.19;
@@ -1355,7 +1354,7 @@ function getSuggestedBodyFat() {
       suggestedBodyFat = ((goalBaseBodyFat + 2 * goalTopBodyFat) / 3).toFixed(
         1
       );
-  } else if (goalBody == 7) {
+  } else if (getGoalBody() == 7) {
     if (getGender() == "male") {
       goalBaseBodyFat = idealWeight * 0.2;
       goalTopBodyFat = idealWeight * 0.24;
@@ -1394,7 +1393,7 @@ function getSuggestedBodyFat() {
       suggestedBodyFat = ((goalBaseBodyFat + 2 * goalTopBodyFat) / 3).toFixed(
         1
       );
-  } else if (goalBody == 8) {
+  } else if (getGoalBody() == 8) {
     if (getGender() == "male") {
       goalBaseBodyFat = idealWeight * 0.25;
       goalTopBodyFat = idealWeight * 0.3;
@@ -1433,7 +1432,7 @@ function getSuggestedBodyFat() {
       suggestedBodyFat = ((goalBaseBodyFat + 2 * goalTopBodyFat) / 3).toFixed(
         1
       );
-  } else if (goalBody == 9) {
+  } else if (getGoalBody() == 9) {
     if (getGender() == "male") {
       goalBaseBodyFat = idealWeight * 0.35;
       goalTopBodyFat = idealWeight * 0.4;
@@ -1476,25 +1475,25 @@ function getSuggestedBodyFat() {
 }
 
 function getBMIstate(bmi) {
-  if ((language = "english")) {
+  if (language == "english") {
     if (bmi < 18.5) return "underweight";
     if (bmi >= 18.5 && bmi <= 24.9) return "normal/healthy";
     if (bmi >= 25 && bmi <= 30) return "overweight";
     if (bmi > 30) return "obese";
   }
-  if ((language = "português")) {
+  if (language == "português") {
     if (bmi < 18.5) return "abaixo do peso";
     if (bmi >= 18.5 && bmi <= 24.9) return "normal/saudável";
     if (bmi >= 25 && bmi <= 30) return "sobrepeso";
     if (bmi > 30) return "obeso";
   }
-  if ((language = "français")) {
+  if (language == "français") {
     if (bmi < 18.5) return "poids insuffisant";
     if (bmi >= 18.5 && bmi <= 24.9) return "normal / sain";
     if (bmi >= 25 && bmi <= 30) return "en surpoids";
     if (bmi > 30) return "obèse";
   }
-  if ((language = "español")) {
+  if (language == "español") {
     if (bmi < 18.5) return "bajo peso";
     if (bmi >= 18.5 && bmi <= 24.9) return "normal / saludable";
     if (bmi >= 25 && bmi <= 30) return "exceso de peso";
@@ -1516,147 +1515,147 @@ function imperial() {
   idealWeight("lbs", 2.205, weight, height);
 }
 function setCalorieIntake() {
-  if ((language = "english")) {
+  if (language == "english") {
     if (getGender() == "male") {
       bmr = (10 * weight + 625 * height - 5 * getAge() + 5).toFixed(1) + "kcal";
       if (getGoal() == "bulking")
-        return `Since you trying to bulk, you should try to get a small calorie intake surplus, like 100-300 kcal above your basal metabolic rate, which is basically how many calories you burn for your basal body functions, a day, such as breathing, circulation and cell production, is <big style='font-family: Kaushan Script, cursive;' >${bmr}</strong>. A good slice of that amount of intake calories would be better being proteins, fruits and vegetables, besides good and lower glycemic index rate carbohydrates, mainly before your workouts, that will play a huge role in this path of yours. You should try to get a whole day calorie intake from about <big style='font-family: Kaushan Script, cursive;' >${(
+        return `Since you trying to bulk, you should try to get a small calorie intake surplus, like 100-300 kcal above your basal metabolic rate, which is basically how many calories you burn for your basal body functions, a day, such as breathing, circulation and cell production, is <big style='font-family: Kaushan Script, cursive;' >${bmr}</big>. A good slice of that amount of intake calories would be better being proteins, fruits and vegetables, besides good and lower glycemic index rate carbohydrates, mainly before your workouts, that will play a huge role in this path of yours. You should try to get a whole day calorie intake from about <big style='font-family: Kaushan Script, cursive;' >${(
           (10 * weight + 625 * height - 5 * getAge() + 5) *
           1.1
         ).toFixed(
           0
-        )}kcal</strong> to about <big style='font-family: Kaushan Script, cursive;' >${(
+        )}kcal</big> to about <big style='font-family: Kaushan Script, cursive;' >${(
           (10 * weight + 625 * height - 5 * getAge() + 5) *
           1.15
         ).toFixed(
           0
-        )}kcal</strong> besides the calories you burn through exercises.`;
+        )}kcal</big> besides the calories you burn through exercises.`;
       if (getGoal() == "cutting")
-        return `Since you are trying to cut, you should have a decent calorie deficit, nothing much but 250-500kcal under your basal metabolic rate would be fine, this rate is basically how many calories you burn for your basal body functions, such as breathing, circulation and cell production a day, is <big style='font-family: Kaushan Script, cursive;' >${bmr}</strong>. A good slice of that amount of intake calories would be better being proteins, fruits and vegetables, besides a decent amount of low calorie and low glycemic index rate carbohydrates, and you'd better consider some brown rice, wholemeal pasta and sweet potato. You should try to get a whole day calorie intake from about <big style='font-family: Kaushan Script, cursive;' >${(
+        return `Since you are trying to cut, you should have a decent calorie deficit, nothing much but 250-500kcal under your basal metabolic rate would be fine, this rate is basically how many calories you burn for your basal body functions, such as breathing, circulation and cell production a day, is <big style='font-family: Kaushan Script, cursive;' >${bmr}</big>. A good slice of that amount of intake calories would be better being proteins, fruits and vegetables, besides a decent amount of low calorie and low glycemic index rate carbohydrates, and you'd better consider some brown rice, wholemeal pasta and sweet potato. You should try to get a whole day calorie intake from about <big style='font-family: Kaushan Script, cursive;' >${(
           (10 * weight + 625 * height - 5 * getAge() + 5) *
           0.7
         ).toFixed(
           0
-        )}kcal</strong> to about <big style='font-family: Kaushan Script, cursive;' >${(
+        )}kcal</big> to about <big style='font-family: Kaushan Script, cursive;' >${(
           (10 * weight + 625 * height - 5 * getAge() + 5) *
           0.8
         ).toFixed(
           0
-        )}kcal</strong> besides the calories you burn through exercises. Also you have to have in mind that a good catalyst to all this is training, you can eat more as soon as you burn through exercise, always maintaining that same calorie intake deficit.`;
+        )}kcal</big> besides the calories you burn through exercises. Also you have to have in mind that a good catalyst to all this is training, you can eat more as soon as you burn through exercise, always maintaining that same calorie intake deficit.`;
       if (getGoal() == "surplus")
-        return `Since you are trying to lose weight, you should have a decent calorie deficit, nothing much but 250-500kcal under your basal metabolic rate would be fine, this rate is basically how many calories you burn for your basal body functions, a day, such as breathing, circulation and cell production, is <big style='font-family: Kaushan Script, cursive;' >${bmr}</strong>. A good slice of that amount of intake calories would be better being proteins, fruits and vegetables, besides a decent amount of low calorie and low glycemic index rate carbohydrates, and you'd better consider some brown rice, wholemeal pasta and sweet potato. You should try to get a whole day calorie intake from about <big style='font-family: Kaushan Script, cursive;' >${(
+        return `Since you are trying to lose weight, you should have a decent calorie deficit, nothing much but 250-500kcal under your basal metabolic rate would be fine, this rate is basically how many calories you burn for your basal body functions, a day, such as breathing, circulation and cell production, is <big style='font-family: Kaushan Script, cursive;' >${bmr}</big>. A good slice of that amount of intake calories would be better being proteins, fruits and vegetables, besides a decent amount of low calorie and low glycemic index rate carbohydrates, and you'd better consider some brown rice, wholemeal pasta and sweet potato. You should try to get a whole day calorie intake from about <big style='font-family: Kaushan Script, cursive;' >${(
           (10 * weight + 625 * height - 5 * getAge() + 5) *
           0.7
         ).toFixed(
           0
-        )}kcal</strong> to about <big style='font-family: Kaushan Script, cursive;' >${(
+        )}kcal</big> to about <big style='font-family: Kaushan Script, cursive;' >${(
           (10 * weight + 625 * height - 5 * getAge() + 5) *
           0.8
         ).toFixed(
           0
-        )}kcal</strong> besides the calories you burn through exercises.`;
+        )}kcal</big> besides the calories you burn through exercises.`;
       if (getGoal() == "muscle")
-        return `Since you trying to gain weight through mostly muscle, you should try to get a decent calorie intake surplus, like 250-450 kcal above your basal metabolic rate, which is basically how many calories you burn for your basal body functions, a day, such as breathing, circulation and cell production, is <big style='font-family: Kaushan Script, cursive;' >${bmr}</strong>. A good slice of that amount of intake calories would be better being proteins, fruits and vegetables, besides good and lower glycemic index rate carbohydrates, mainly before your workouts, that will play a huge role in this path of yours, once you will get muscle and weight in general you gotta workout, mainly in the gym. You should try to get a whole day calorie intake from about <big style='font-family: Kaushan Script, cursive;' >${(
+        return `Since you trying to gain weight through mostly muscle, you should try to get a decent calorie intake surplus, like 250-450 kcal above your basal metabolic rate, which is basically how many calories you burn for your basal body functions, a day, such as breathing, circulation and cell production, is <big style='font-family: Kaushan Script, cursive;' >${bmr}</big>. A good slice of that amount of intake calories would be better being proteins, fruits and vegetables, besides good and lower glycemic index rate carbohydrates, mainly before your workouts, that will play a huge role in this path of yours, once you will get muscle and weight in general you gotta workout, mainly in the gym. You should try to get a whole day calorie intake from about <big style='font-family: Kaushan Script, cursive;' >${(
           (10 * weight + 625 * height - 5 * getAge() + 5) *
           1.1
         ).toFixed(
           0
-        )}kcal</strong> to about <big style='font-family: Kaushan Script, cursive;' >${(
+        )}kcal</big> to about <big style='font-family: Kaushan Script, cursive;' >${(
           (10 * weight + 625 * height - 5 * getAge() + 5) *
           1.15
         ).toFixed(
           0
-        )}kcal</strong> besides the calories you burn through exercises.`;
+        )}kcal</big> besides the calories you burn through exercises.`;
     }
     if (getGender() == "female") {
       bmr =
         (10 * weight + 625 * height - 5 * getAge() - 161).toFixed(1) + "kcal";
       if (getGoal() == "bulking")
-        return `Since you trying to bulk, you should try to get a small calorie intake surplus, like 100-300 kcal above your basal metabolic rate, which is basically how many calories you burn for your basal body functions, a day, such as breathing, circulation and cell production, is <big style='font-family: Kaushan Script, cursive;' >${bmr}</strong>. A good slice of that amount of intake calories would be better being proteins, fruits and vegetables, besides good and lower glycemic index rate carbohydrates, mainly before your workouts, that will play a huge role in this path of yours. You should try to get a whole day calorie intake from about <big style='font-family: Kaushan Script, cursive;' >${(
+        return `Since you trying to bulk, you should try to get a small calorie intake surplus, like 100-300 kcal above your basal metabolic rate, which is basically how many calories you burn for your basal body functions, a day, such as breathing, circulation and cell production, is <big style='font-family: Kaushan Script, cursive;' >${bmr}</big>. A good slice of that amount of intake calories would be better being proteins, fruits and vegetables, besides good and lower glycemic index rate carbohydrates, mainly before your workouts, that will play a huge role in this path of yours. You should try to get a whole day calorie intake from about <big style='font-family: Kaushan Script, cursive;' >${(
           (10 * weight + 625 * height - 5 * getAge() + 5) *
           1.05
         ).toFixed(
           0
-        )}kcal</strong> to about <big style='font-family: Kaushan Script, cursive;' >${(
+        )}kcal</big> to about <big style='font-family: Kaushan Script, cursive;' >${(
           (10 * weight + 625 * height - 5 * getAge() + 5) *
           1.1
         ).toFixed(
           0
-        )}kcal</strong> besides the calories you burn through exercises.`;
+        )}kcal</big> besides the calories you burn through exercises.`;
       if (getGoal() == "cutting")
         return (
           "Since you are trying to cut, you should have a decent calorie deficit, nothing much but 250-500kcal under your basal metabolic rate would be fine, this rate is basically how many calories you burn for your basal body functions, a day, such as breathing, circulation and cell production, is <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
-          "</strong>. A good slice of that amount of intake calories would be better being proteins, fruits and vegetables, besides a decent amount of low calorie and low glycemic index rate carbohydrates, and you'd better consider some brown rice, wholemeal pasta and sweet potato. You should try to get a whole day calorie intake from about <big style='font-family: Kaushan Script, cursive;' >" +
+          "</big>. A good slice of that amount of intake calories would be better being proteins, fruits and vegetables, besides a decent amount of low calorie and low glycemic index rate carbohydrates, and you'd better consider some brown rice, wholemeal pasta and sweet potato. You should try to get a whole day calorie intake from about <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.65).toFixed(0) +
-          "kcal</strong> to about <big style='font-family: Kaushan Script, cursive;' >" +
+          "kcal</big> to about <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.75).toFixed(0) +
-          "kcal</strong> besides the calories you burn through exercises. Also you have to have in mind that a good catalyst to all this is training, you can eat more as soon as you burn through exercise, always maintaining that same calorie intake deficit."
+          "kcal</big> besides the calories you burn through exercises. Also you have to have in mind that a good catalyst to all this is training, you can eat more as soon as you burn through exercise, always maintaining that same calorie intake deficit."
         );
       if (getGoal() == "surplus")
         return (
           "Since you are trying to lose weight, you should have a decent calorie deficit, nothing much but 250-500kcal under your basal metabolic rate would be fine, this rate is basically how many calories you burn for your basal body functions, a day, such as breathing, circulation and cell production, is <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
-          "</strong>. A good slice of that amount of intake calories would be better being proteins, fruits and vegetables, besides a decent amount of low calorie and low glycemic index rate carbohydrates, and you'd better consider some brown rice, wholemeal pasta and sweet potato. You should try to get a whole day calorie intake from about <big style='font-family: Kaushan Script, cursive;' >" +
+          "</big>. A good slice of that amount of intake calories would be better being proteins, fruits and vegetables, besides a decent amount of low calorie and low glycemic index rate carbohydrates, and you'd better consider some brown rice, wholemeal pasta and sweet potato. You should try to get a whole day calorie intake from about <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.7).toFixed(0) +
-          "kcal</strong> to about <big style='font-family: Kaushan Script, cursive;' >" +
+          "kcal</big> to about <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.8).toFixed(0) +
-          "kcal</strong> besides the calories you burn through exercises."
+          "kcal</big> besides the calories you burn through exercises."
         );
       if (getGoal() == "muscle")
         return (
           "Since you trying to gain weight through mostly muscle, you should try to get a decent calorie intake surplus, like 250-450 kcal above your basal metabolic rate, which is basically how many calories you burn for your basal body functions, a day, such as breathing, circulation and cell production, is <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
-          "</strong>. A good slice of that amount of intake calories would be better being proteins, fruits and vegetables, besides good and lower glycemic index rate carbohydrates, mainly before your workouts, that will play a huge role in this path of yours, once you will get muscle and weight in general you gotta workout, mainly in the gym. You should try to get a whole day calorie intake from about <big style='font-family: Kaushan Script, cursive;' >" +
+          "</big>. A good slice of that amount of intake calories would be better being proteins, fruits and vegetables, besides good and lower glycemic index rate carbohydrates, mainly before your workouts, that will play a huge role in this path of yours, once you will get muscle and weight in general you gotta workout, mainly in the gym. You should try to get a whole day calorie intake from about <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 1.1).toFixed(0) +
-          "kcal</strong> to about <big style='font-family: Kaushan Script, cursive;' >" +
+          "kcal</big> to about <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 1.15).toFixed(0) +
-          "kcal</strong> besides the calories you burn through exercises."
+          "kcal</big> besides the calories you burn through exercises."
         );
     }
   }
-  if ((language = "português")) {
+  if (language == "português") {
     if (getGender() == "male") {
       bmr = (10 * weight + 625 * height - 5 * getAge() + 5).toFixed(1) + "kcal";
       if (getGoal() == "bulking")
         return (
           "Já que você está tentando aumentar o volume, deve tentar obter um pequeno excedente de ingestão de calorias, como 100-300 kcal acima de sua taxa metabólica basal, que é basicamente quantas calorias você queima para as funções corporais basais, por dia, como respiração, circulação e a produção de células, é <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
-          "</strong>. Uma boa parte dessascalorias ingeridas ficaria melhor sendo proteínas, frutas e vegetais, além de carboidratos bons e com índice glicêmico mais baixo, principalmente antes dos treinos, que vão desempenhar um grande papel neste seu caminho. Você deve tentar obter uma ingestão de calorias para um dia inteiro de cerca de <big style='font-family: Kaushan Script, cursive;' >" +
+          "</big>. Uma boa parte dessascalorias ingeridas ficaria melhor sendo proteínas, frutas e vegetais, além de carboidratos bons e com índice glicêmico mais baixo, principalmente antes dos treinos, que vão desempenhar um grande papel neste seu caminho. Você deve tentar obter uma ingestão de calorias para um dia inteiro de cerca de <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 1.1).toFixed(0) +
-          "kcal</strong> a <big style='font-family: Kaushan Script, cursive;' >" +
+          "kcal</big> a <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 1.15).toFixed(0) +
-          "kcal</strong> além das calorias que você queima com os exercícios."
+          "kcal</big> além das calorias que você queima com os exercícios."
         );
       if (getGoal() == "cutting")
         return (
           "Já que você está tentando secar, você deve ter um déficit calórico decente, nada além de 250-500kcal abaixo de sua taxa metabólica basal seria bom, esta taxa é basicamente quantas calorias você queima para suas funções corporais basais, como respiração, circulação e a produção de células por dia, é <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
-          "</strong>. Uma boa parte dessascalorias ingeridas seria melhor sendo proteínas, frutas e vegetais, além de uma quantidade decente de carboidratos de baixa caloria e baixo índice glicêmico, e é melhor considerar um pouco de arroz integral, macarrão integral e batata doce. Você deve tentar obter uma ingestão de calorias para um dia inteiro de cerca de <big style='font-family: Kaushan Script, cursive;' >" +
+          "</big>. Uma boa parte dessascalorias ingeridas seria melhor sendo proteínas, frutas e vegetais, além de uma quantidade decente de carboidratos de baixa caloria e baixo índice glicêmico, e é melhor considerar um pouco de arroz integral, macarrão integral e batata doce. Você deve tentar obter uma ingestão de calorias para um dia inteiro de cerca de <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.7).toFixed(0) +
-          "kcal</strong> a <big style='font-family: Kaushan Script, cursive;' >" +
+          "kcal</big> a <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.8).toFixed(0) +
-          "kcal</strong> além das calorias que você queima com os exercícios. Também é preciso ter em mente que um bom catalisador para tudo isso é o treinamento, você pode comer mais assim que se queimar com o exercício, mantendo sempre esse mesmo déficit calórico."
+          "kcal</big> além das calorias que você queima com os exercícios. Também é preciso ter em mente que um bom catalisador para tudo isso é o treinamento, você pode comer mais assim que se queimar com o exercício, mantendo sempre esse mesmo déficit calórico."
         );
       if (getGoal() == "surplus")
         return (
           "Já que você está tentando perder peso, você deve ter um déficit calórico decente, nada além de 250-500kcal abaixo de sua taxa metabólica basal seria bom, esta taxa é basicamente quantas calorias você queima para suas funções corporais basais, por dia, tal como respiração, circulação e produção de células, é <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
-          "</strong>. Uma boa parte dessascalorias ingeridas seria melhor sendo proteínas, frutas e vegetais, além de uma quantidade decente de carboidratos de baixa caloria e baixo índice glicêmico, e é melhor considerar um pouco de arroz integral, macarrão integral e batata doce. Você deve tentar obter uma ingestão de calorias para um dia inteiro de cerca de <big style='font-family: Kaushan Script, cursive;' >" +
+          "</big>. Uma boa parte dessascalorias ingeridas seria melhor sendo proteínas, frutas e vegetais, além de uma quantidade decente de carboidratos de baixa caloria e baixo índice glicêmico, e é melhor considerar um pouco de arroz integral, macarrão integral e batata doce. Você deve tentar obter uma ingestão de calorias para um dia inteiro de cerca de <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.7).toFixed(0) +
-          "kcal</strong> a <big style='font-family: Kaushan Script, cursive;' >" +
+          "kcal</big> a <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.8).toFixed(0) +
-          "kcal</strong> além das calorias que você queima com os exercícios."
+          "kcal</big> além das calorias que você queima com os exercícios."
         );
       if (getGoal() == "muscle")
         return (
           "Já que você está tentando ganhar peso principalmente através dos músculos, você deve tentar obter um excedente de ingestão de calorias decente, como 250-450 kcal acima de sua taxa metabólica basal, que é basicamente quantas calorias você queima para suas funções corporais basais, por dia, como como respiração, circulação e produção de células, é <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
-          "</strong>. Uma boa parte dessascalorias ingeridas ficaria melhor sendo proteínas, frutas e vegetais, além de carboidratos bons e com índice glicêmico mais baixo, principalmente antes dos treinos, que terão um grande papel nesse seu caminho, pois você vai ganhar músculos. e peso em geral você tem que treinar, principalmente na academia. Você deve tentar obter uma ingestão de calorias para um dia inteiro de cerca de <big style='font-family: Kaushan Script, cursive;' >" +
+          "</big>. Uma boa parte dessascalorias ingeridas ficaria melhor sendo proteínas, frutas e vegetais, além de carboidratos bons e com índice glicêmico mais baixo, principalmente antes dos treinos, que terão um grande papel nesse seu caminho, pois você vai ganhar músculos. e peso em geral você tem que treinar, principalmente na academia. Você deve tentar obter uma ingestão de calorias para um dia inteiro de cerca de <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 1.1).toFixed(0) +
-          "kcal</strong> a <big style='font-family: Kaushan Script, cursive;' >" +
+          "kcal</big> a <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 1.15).toFixed(0) +
-          "kcal</strong> além das calorias que você queima com os exercícios."
+          "kcal</big> além das calorias que você queima com os exercícios."
         );
     }
     if (getGender() == "female") {
@@ -1666,86 +1665,86 @@ function setCalorieIntake() {
         return (
           "Já que você está tentando aumentar o volume, deve tentar obter um pequeno excedente de ingestão de calorias, como 100-300 kcal acima de sua taxa metabólica basal, que é basicamente quantas calorias você queima para as funções corporais basais, por dia, como respiração, circulação e a produção de células, é <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
-          "</strong>. Uma boa parte dessascalorias ingeridas ficaria melhor sendo proteínas, frutas e vegetais, além de carboidratos bons e com índice glicêmico mais baixo, principalmente antes dos treinos, que vão desempenhar um grande papel neste seu caminho. Você deve tentar obter uma ingestão de calorias para um dia inteiro de cerca de <big style='font-family: Kaushan Script, cursive;' >" +
+          "</big>. Uma boa parte dessascalorias ingeridas ficaria melhor sendo proteínas, frutas e vegetais, além de carboidratos bons e com índice glicêmico mais baixo, principalmente antes dos treinos, que vão desempenhar um grande papel neste seu caminho. Você deve tentar obter uma ingestão de calorias para um dia inteiro de cerca de <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 1.05).toFixed(0) +
-          "kcal</strong> a <big style='font-family: Kaushan Script, cursive;' >" +
+          "kcal</big> a <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 1.1).toFixed(0) +
-          "kcal</strong> além das calorias que você queima com os exercícios."
+          "kcal</big> além das calorias que você queima com os exercícios."
         );
       if (getGoal() == "cutting")
         return (
           "Já que você está tentando secar, você deve ter um déficit calórico decente, nada além de 250-500kcal abaixo de sua taxa metabólica basal, esta taxa é basicamente quantas calorias você queima para suas funções corporais basais, por dia, como respiração, circulação e produção de células, é <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
-          "</strong>. Uma boa parte dessascalorias ingeridas seria melhor sendo proteínas, frutas e vegetais, além de uma quantidade decente de carboidratos de baixa caloria e baixo índice glicêmico, e é melhor considerar um pouco de arroz integral, macarrão integral e batata doce. Você deve tentar obter uma ingestão de calorias para um dia inteiro de cerca de <big style='font-family: Kaushan Script, cursive;' >" +
+          "</big>. Uma boa parte dessascalorias ingeridas seria melhor sendo proteínas, frutas e vegetais, além de uma quantidade decente de carboidratos de baixa caloria e baixo índice glicêmico, e é melhor considerar um pouco de arroz integral, macarrão integral e batata doce. Você deve tentar obter uma ingestão de calorias para um dia inteiro de cerca de <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.65).toFixed(0) +
-          "kcal</strong> a <big style='font-family: Kaushan Script, cursive;' >" +
+          "kcal</big> a <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.75).toFixed(0) +
-          "kcal</strong> além das calorias que você queima com os exercícios. Também é preciso ter em mente que um bom catalisador para tudo isso é o treinamento, você pode comer mais assim que se queimar com o exercício, mantendo sempre esse mesmo déficit calórico."
+          "kcal</big> além das calorias que você queima com os exercícios. Também é preciso ter em mente que um bom catalisador para tudo isso é o treinamento, você pode comer mais assim que se queimar com o exercício, mantendo sempre esse mesmo déficit calórico."
         );
       if (getGoal() == "surplus")
         return (
           "Já que você está tentando perder peso, você deve ter um déficit calórico decente, nada além de 250-500kcal abaixo de sua taxa metabólica basal seria bom, esta taxa é basicamente quantas calorias você queima para suas funções corporais basais, por dia, tal como respiração, circulação e produção de células, é <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
-          "</strong>. Uma boa parte dessascalorias ingeridas seria melhor sendo proteínas, frutas e vegetais, além de uma quantidade decente de carboidratos de baixa caloria e baixo índice glicêmico, e é melhor considerar um pouco de arroz integral, macarrão integral e batata doce. Você deve tentar obter uma ingestão de calorias para um dia inteiro de cerca de <big style='font-family: Kaushan Script, cursive;' >" +
+          "</big>. Uma boa parte dessascalorias ingeridas seria melhor sendo proteínas, frutas e vegetais, além de uma quantidade decente de carboidratos de baixa caloria e baixo índice glicêmico, e é melhor considerar um pouco de arroz integral, macarrão integral e batata doce. Você deve tentar obter uma ingestão de calorias para um dia inteiro de cerca de <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.7).toFixed(0) +
-          "kcal</strong> a <big style='font-family: Kaushan Script, cursive;' >" +
+          "kcal</big> a <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.8).toFixed(0) +
-          "kcal</strong> além das calorias que você queima com os exercícios."
+          "kcal</big> além das calorias que você queima com os exercícios."
         );
       if (getGoal() == "muscle")
         return (
           "Já que você está tentando ganhar peso principalmente através dos músculos, você deve tentar obter um excedente de ingestão de calorias decente, como 250-450 kcal acima de sua taxa metabólica basal, que é basicamente quantas calorias você queima para suas funções corporais basais, por dia, como como respiração, circulação e produção de células, é <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
-          "</strong>. Uma boa parte dessascalorias ingeridas ficaria melhor sendo proteínas, frutas e vegetais, além de carboidratos bons e com índice glicêmico mais baixo, principalmente antes dos treinos, que terão um grande papel nesse seu caminho, pois você vai ganhar músculos. e peso em geral você tem que treinar, principalmente na academia. Você deve tentar obter uma ingestão de calorias para um dia inteiro de cerca de <big style='font-family: Kaushan Script, cursive;' >" +
+          "</big>. Uma boa parte dessascalorias ingeridas ficaria melhor sendo proteínas, frutas e vegetais, além de carboidratos bons e com índice glicêmico mais baixo, principalmente antes dos treinos, que terão um grande papel nesse seu caminho, pois você vai ganhar músculos. e peso em geral você tem que treinar, principalmente na academia. Você deve tentar obter uma ingestão de calorias para um dia inteiro de cerca de <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 1.1).toFixed(0) +
-          "kcal</strong> a <big style='font-family: Kaushan Script, cursive;' >" +
+          "kcal</big> a <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 1.15).toFixed(0) +
-          "kcal</strong> além das calorias que você queima com os exercícios."
+          "kcal</big> além das calorias que você queima com os exercícios."
         );
     }
   }
-  if ((language = "français")) {
+  if (language == "français") {
     if (getGender() == "male") {
       bmr = (10 * weight + 625 * height - 5 * getAge() + 5).toFixed(1) + "kcal";
       if (getGoal() == "bulking")
         return (
           "Puisque vous essayez de prendre du volume, vous devriez essayer d'obtenir un petit surplus d'apport calorique, comme 100 à 300 kcal au-dessus de votre taux métabolique de base, qui correspond essentiellement au nombre de calories que vous brûlez pour les fonctions basales de votre corps, par jour, comme la respiration, la circulation. et la production cellulaire, est <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
-          "</strong>. Une bonne part de cette quantité de calories d'apport serait préférable d'être des protéines, des fruits et des légumes, en plus des glucides à indice glycémique bon et inférieur, principalement avant vos entraînements, qui joueront un rôle énorme dans votre chemin. Vous devriez essayer d'obtenir un apport calorique d'une journée entière d'environ <big style='font-family: Kaushan Script, cursive;' >" +
+          "</big>. Une bonne part de cette quantité de calories d'apport serait préférable d'être des protéines, des fruits et des légumes, en plus des glucides à indice glycémique bon et inférieur, principalement avant vos entraînements, qui joueront un rôle énorme dans votre chemin. Vous devriez essayer d'obtenir un apport calorique d'une journée entière d'environ <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 1.1).toFixed(0) +
-          "kcal</strong> à <big style='font-family: Kaushan Script, cursive;' >" +
+          "kcal</big> à <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 1.15).toFixed(0) +
-          "kcal</strong> en plus des calories que vous brûlez grâce aux exercices."
+          "kcal</big> en plus des calories que vous brûlez grâce aux exercices."
         );
       if (getGoal() == "cutting")
         return (
           "Puisque vous essayez de couper, vous devriez avoir un déficit calorique décent, rien de plus que 250-500kcal sous votre taux métabolique basal serait bien, ce taux est essentiellement le nombre de calories que vous brûlez pour vos fonctions corporelles basales, telles que la respiration, la circulation et la production de cellules par jour est <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
-          "</strong>. Une bonne part de cette quantité de calories serait mieux constituée de protéines, de fruits et de légumes, en plus d'une quantité décente de glucides à faible teneur en calories et à faible indice glycémique, et vous feriez mieux d'envisager du riz brun, des pâtes complètes et des patates douces. Vous devriez essayer d'obtenir un apport calorique d'une journée entière d'environ <big style='font-family: Kaushan Script, cursive;' >" +
+          "</big>. Une bonne part de cette quantité de calories serait mieux constituée de protéines, de fruits et de légumes, en plus d'une quantité décente de glucides à faible teneur en calories et à faible indice glycémique, et vous feriez mieux d'envisager du riz brun, des pâtes complètes et des patates douces. Vous devriez essayer d'obtenir un apport calorique d'une journée entière d'environ <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.7).toFixed(0) +
-          "kcal</strong> à <big style='font-family: Kaushan Script, cursive;' >" +
+          "kcal</big> à <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.8).toFixed(0) +
-          "kcal</strong> en plus des calories que vous brûlez grâce aux exercices. Vous devez également garder à l'esprit qu'un bon catalyseur de tout cela est l'entraînement, vous pouvez manger plus dès que vous brûlez en faisant de l'exercice, en maintenant toujours le même déficit calorique."
+          "kcal</big> en plus des calories que vous brûlez grâce aux exercices. Vous devez également garder à l'esprit qu'un bon catalyseur de tout cela est l'entraînement, vous pouvez manger plus dès que vous brûlez en faisant de l'exercice, en maintenant toujours le même déficit calorique."
         );
       if (getGoal() == "surplus")
         return (
           "Puisque vous essayez de perdre du poids, vous devriez avoir un déficit calorique décent, rien de plus que 250-500kcal sous votre taux métabolique basal serait bien, ce taux est essentiellement le nombre de calories que vous brûlez pour vos fonctions corporelles basales, un jour, tel comme la respiration, la circulation et la production de cellules, est <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
-          "</strong>. Une bonne part de cette quantité de calories serait mieux constituée de protéines, de fruits et de légumes, en plus d'une quantité décente de glucides à faible teneur en calories et à faible indice glycémique, et vous feriez mieux d'envisager du riz brun, des pâtes complètes et des patates douces. Vous devriez essayer d'obtenir un apport calorique d'une journée entière d'environ <big style='font-family: Kaushan Script, cursive;' >" +
+          "</big>. Une bonne part de cette quantité de calories serait mieux constituée de protéines, de fruits et de légumes, en plus d'une quantité décente de glucides à faible teneur en calories et à faible indice glycémique, et vous feriez mieux d'envisager du riz brun, des pâtes complètes et des patates douces. Vous devriez essayer d'obtenir un apport calorique d'une journée entière d'environ <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.7).toFixed(0) +
-          "kcal</strong> à <big style='font-family: Kaushan Script, cursive;' >" +
+          "kcal</big> à <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.8).toFixed(0) +
-          "kcal</strong> en plus des calories que vous brûlez grâce aux exercices."
+          "kcal</big> en plus des calories que vous brûlez grâce aux exercices."
         );
       if (getGoal() == "muscle")
         return (
           "Puisque vous essayez de prendre du poids principalement par vos muscles, vous devriez essayer d'obtenir un excédent calorique décent, comme 250 à 450 kcal au-dessus de votre taux métabolique de base, qui correspond essentiellement au nombre de calories que vous brûlez pour vos fonctions corporelles basales, par jour, par exemple. comme la respiration, la circulation et la production de cellules, est <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
-          "</strong>. Une bonne part de cette quantité de calories d'apport serait préférable d'être des protéines, des fruits et des légumes, en plus des glucides à indice glycémique bon et inférieur, principalement avant vos entraînements, qui joueront un rôle énorme dans votre chemin, une fois que vous aurez du muscle. et le poids en général, vous devez vous entraîner, principalement dans le gymnase. Vous devriez essayer d'obtenir un apport calorique d'une journée entière d'environ <big style='font-family: Kaushan Script, cursive;' >" +
+          "</big>. Une bonne part de cette quantité de calories d'apport serait préférable d'être des protéines, des fruits et des légumes, en plus des glucides à indice glycémique bon et inférieur, principalement avant vos entraînements, qui joueront un rôle énorme dans votre chemin, une fois que vous aurez du muscle. et le poids en général, vous devez vous entraîner, principalement dans le gymnase. Vous devriez essayer d'obtenir un apport calorique d'une journée entière d'environ <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 1.1).toFixed(0) +
-          "kcal</strong> à <big style='font-family: Kaushan Script, cursive;' >" +
+          "kcal</big> à <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 1.15).toFixed(0) +
-          "kcal</strong> en plus des calories que vous brûlez grâce aux exercices."
+          "kcal</big> en plus des calories que vous brûlez grâce aux exercices."
         );
     }
     if (getGender() == "female") {
@@ -1755,86 +1754,86 @@ function setCalorieIntake() {
         return (
           "Puisque vous essayez de prendre du volume, vous devriez essayer d'obtenir un petit surplus d'apport calorique, comme 100 à 300 kcal au-dessus de votre taux métabolique de base, qui correspond essentiellement au nombre de calories que vous brûlez pour les fonctions basales de votre corps, par jour, comme la respiration, la circulation. et la production cellulaire, est <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
-          "</strong>. Une bonne part de cette quantité de calories d'apport serait préférable d'être des protéines, des fruits et des légumes, en plus des glucides à indice glycémique bon et inférieur, principalement avant vos entraînements, qui joueront un rôle énorme dans votre chemin. Vous devriez essayer d'obtenir un apport calorique d'une journée entière d'environ <big style='font-family: Kaushan Script, cursive;' >" +
+          "</big>. Une bonne part de cette quantité de calories d'apport serait préférable d'être des protéines, des fruits et des légumes, en plus des glucides à indice glycémique bon et inférieur, principalement avant vos entraînements, qui joueront un rôle énorme dans votre chemin. Vous devriez essayer d'obtenir un apport calorique d'une journée entière d'environ <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 1.05).toFixed(0) +
-          "kcal</strong> à <big style='font-family: Kaushan Script, cursive;' >" +
+          "kcal</big> à <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 1.1).toFixed(0) +
-          "kcal</strong> en plus des calories que vous brûlez grâce aux exercices."
+          "kcal</big> en plus des calories que vous brûlez grâce aux exercices."
         );
       if (getGoal() == "cutting")
         return (
           "Puisque vous essayez de réduire, vous devriez avoir un déficit calorique décent, rien de plus que 250-500kcal sous votre taux métabolique basal serait bien, ce taux est fondamentalement le nombre de calories que vous brûlez pour vos fonctions corporelles basales, par jour, comme la respiration, la circulation et la production de cellules, <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
-          "</strong>. Une bonne part de cette quantité de calories serait mieux constituée de protéines, de fruits et de légumes, en plus d'une quantité décente de glucides à faible teneur en calories et à faible indice glycémique, et vous feriez mieux d'envisager du riz brun, des pâtes complètes et des patates douces. Vous devriez essayer d'obtenir un apport calorique d'une journée entière d'environ <big style='font-family: Kaushan Script, cursive;' >" +
+          "</big>. Une bonne part de cette quantité de calories serait mieux constituée de protéines, de fruits et de légumes, en plus d'une quantité décente de glucides à faible teneur en calories et à faible indice glycémique, et vous feriez mieux d'envisager du riz brun, des pâtes complètes et des patates douces. Vous devriez essayer d'obtenir un apport calorique d'une journée entière d'environ <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.65).toFixed(0) +
-          "kcal</strong> à <big style='font-family: Kaushan Script, cursive;' >" +
+          "kcal</big> à <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.75).toFixed(0) +
-          "kcal</strong> en plus des calories que vous brûlez grâce aux exercices. Vous devez également garder à l'esprit qu'un bon catalyseur de tout cela est l'entraînement, vous pouvez manger plus dès que vous brûlez en faisant de l'exercice, en maintenant toujours le même déficit calorique."
+          "kcal</big> en plus des calories que vous brûlez grâce aux exercices. Vous devez également garder à l'esprit qu'un bon catalyseur de tout cela est l'entraînement, vous pouvez manger plus dès que vous brûlez en faisant de l'exercice, en maintenant toujours le même déficit calorique."
         );
       if (getGoal() == "surplus")
         return (
           "Puisque vous essayez de perdre du poids, vous devriez avoir un déficit calorique décent, rien de plus que 250-500kcal sous votre taux métabolique basal serait bien, ce taux est essentiellement le nombre de calories que vous brûlez pour vos fonctions corporelles basales, un jour, tel comme la respiration, la circulation et la production de cellules, est <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
-          "</strong>. Une bonne part de cette quantité de calories serait mieux constituée de protéines, de fruits et de légumes, en plus d'une quantité décente de glucides à faible teneur en calories et à faible indice glycémique, et vous feriez mieux d'envisager du riz brun, des pâtes complètes et des patates douces. Vous devriez essayer d'obtenir un apport calorique d'une journée entière d'environ <big style='font-family: Kaushan Script, cursive;' >" +
+          "</big>. Une bonne part de cette quantité de calories serait mieux constituée de protéines, de fruits et de légumes, en plus d'une quantité décente de glucides à faible teneur en calories et à faible indice glycémique, et vous feriez mieux d'envisager du riz brun, des pâtes complètes et des patates douces. Vous devriez essayer d'obtenir un apport calorique d'une journée entière d'environ <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.7).toFixed(0) +
-          "kcal</strong> à <big style='font-family: Kaushan Script, cursive;' >" +
+          "kcal</big> à <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.8).toFixed(0) +
-          "kcal</strong> en plus des calories que vous brûlez grâce aux exercices."
+          "kcal</big> en plus des calories que vous brûlez grâce aux exercices."
         );
       if (getGoal() == "muscle")
         return (
           "Puisque vous essayez de prendre du poids principalement par vos muscles, vous devriez essayer d'obtenir un excédent calorique décent, comme 250 à 450 kcal au-dessus de votre taux métabolique de base, qui correspond essentiellement au nombre de calories que vous brûlez pour vos fonctions corporelles basales, par jour, par exemple. comme la respiration, la circulation et la production de cellules, est <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
-          "</strong>. Une bonne part de cette quantité de calories d'apport serait préférable d'être des protéines, des fruits et des légumes, en plus des glucides à indice glycémique bon et inférieur, principalement avant vos entraînements, qui joueront un rôle énorme dans votre chemin, une fois que vous aurez du muscle. et le poids en général, vous devez vous entraîner, principalement dans le gymnase. Vous devriez essayer d'obtenir un apport calorique d'une journée entière d'environ <big style='font-family: Kaushan Script, cursive;' >" +
+          "</big>. Une bonne part de cette quantité de calories d'apport serait préférable d'être des protéines, des fruits et des légumes, en plus des glucides à indice glycémique bon et inférieur, principalement avant vos entraînements, qui joueront un rôle énorme dans votre chemin, une fois que vous aurez du muscle. et le poids en général, vous devez vous entraîner, principalement dans le gymnase. Vous devriez essayer d'obtenir un apport calorique d'une journée entière d'environ <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 1.1).toFixed(0) +
-          "kcal</strong> à <big style='font-family: Kaushan Script, cursive;' >" +
+          "kcal</big> à <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 1.15).toFixed(0) +
-          "kcal</strong> en plus des calories que vous brûlez grâce aux exercices."
+          "kcal</big> en plus des calories que vous brûlez grâce aux exercices."
         );
     }
   }
-  if ((language = "español")) {
+  if (language == "español") {
     if (getGender() == "male") {
       bmr = (10 * weight + 625 * height - 5 * getAge() + 5).toFixed(1) + "kcal";
       if (getGoal() == "bulking")
         return (
           "Dado que está tratando de aumentar el volumen, debe intentar obtener un pequeño excedente de ingesta de calorías, como 100-300 kcal por encima de su tasa metabólica basal, que es básicamente la cantidad de calorías que quema para las funciones basales del cuerpo, al día, como la respiración, la circulación. y la producción de células, es <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
-          "</strong>. Una buena porción de esa cantidad de calorías ingeridas sería mejor si fueran proteínas, frutas y verduras, además de carbohidratos buenos y de menor índice glucémico, principalmente antes de tus entrenamientos, que jugarán un papel muy importante en este camino tuyo. Debería intentar obtener una ingesta de calorías de un día <big style='font-family: Kaushan Script, cursive;' >" +
+          "</big>. Una buena porción de esa cantidad de calorías ingeridas sería mejor si fueran proteínas, frutas y verduras, además de carbohidratos buenos y de menor índice glucémico, principalmente antes de tus entrenamientos, que jugarán un papel muy importante en este camino tuyo. Debería intentar obtener una ingesta de calorías de un día <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 1.1).toFixed(0) +
-          "kcal</strong> a  <big style='font-family: Kaushan Script, cursive;' >" +
+          "kcal</big> a  <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 1.15).toFixed(0) +
-          "kcal</strong> además de las calorías que quema con los ejercicios."
+          "kcal</big> además de las calorías que quema con los ejercicios."
         );
       if (getGoal() == "cutting")
         return (
           "Ya que está tratando de reducir, debe tener un déficit de calorías decente, nada más que 250-500 kcal por debajo de su tasa metabólica basal estaría bien, esta tasa es básicamente la cantidad de calorías que quema para las funciones basales del cuerpo, como la respiración, la circulación. y la producción de células al día, es <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
-          "</strong>. Una buena porción de esa cantidad de calorías ingeridas sería mejor si fueran proteínas, frutas y verduras, además de una cantidad decente de carbohidratos bajos en calorías y con índice glucémico bajo, y es mejor que considere un poco de arroz integral, pasta integral y batata. Debería intentar obtener una ingesta de calorías de un día <big style='font-family: Kaushan Script, cursive;' >" +
+          "</big>. Una buena porción de esa cantidad de calorías ingeridas sería mejor si fueran proteínas, frutas y verduras, además de una cantidad decente de carbohidratos bajos en calorías y con índice glucémico bajo, y es mejor que considere un poco de arroz integral, pasta integral y batata. Debería intentar obtener una ingesta de calorías de un día <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.7).toFixed(0) +
-          "kcal</strong> a  <big style='font-family: Kaushan Script, cursive;' >" +
+          "kcal</big> a  <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.8).toFixed(0) +
-          "kcal</strong> además de las calorías que quema con los ejercicios. También debes tener en cuenta que un buen catalizador de todo esto es el entrenamiento, puedes comer más en cuanto te quemas a través del ejercicio, manteniendo siempre ese mismo déficit de ingesta calórica."
+          "kcal</big> además de las calorías que quema con los ejercicios. También debes tener en cuenta que un buen catalizador de todo esto es el entrenamiento, puedes comer más en cuanto te quemas a través del ejercicio, manteniendo siempre ese mismo déficit de ingesta calórica."
         );
       if (getGoal() == "surplus")
         return (
           "Dado que está tratando de perder peso, debe tener un déficit de calorías decente, nada más que 250-500 kcal por debajo de su tasa metabólica basal estaría bien, esta tasa es básicamente la cantidad de calorías que quema para sus funciones corporales basales, un día, por ejemplo. como respiración, circulación y producción celular, es <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
-          "</strong>. Una buena porción de esa cantidad de calorías ingeridas sería mejor si fueran proteínas, frutas y verduras, además de una cantidad decente de carbohidratos bajos en calorías y con índice glucémico bajo, y es mejor que considere un poco de arroz integral, pasta integral y batata. Debería intentar obtener una ingesta de calorías de un día <big style='font-family: Kaushan Script, cursive;' >" +
+          "</big>. Una buena porción de esa cantidad de calorías ingeridas sería mejor si fueran proteínas, frutas y verduras, además de una cantidad decente de carbohidratos bajos en calorías y con índice glucémico bajo, y es mejor que considere un poco de arroz integral, pasta integral y batata. Debería intentar obtener una ingesta de calorías de un día <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.7).toFixed(0) +
-          "kcal</strong> a <big style='font-family: Kaushan Script, cursive;' >" +
+          "kcal</big> a <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.8).toFixed(0) +
-          "kcal</strong> además de las calorías que quema con los ejercicios."
+          "kcal</big> además de las calorías que quema con los ejercicios."
         );
       if (getGoal() == "muscle")
         return (
           "Dado que intenta ganar peso principalmente a través de los músculos, debe tratar de obtener un excedente de ingesta de calorías decente, como 250-450 kcal por encima de su tasa metabólica basal, que es básicamente la cantidad de calorías que quema para las funciones basales del cuerpo, un día, por ejemplo. como respiración, circulación y producción celular, es <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
-          "</strong>. Una buena porción de esa cantidad de calorías ingeridas sería mejor si fueran proteínas, frutas y verduras, además de carbohidratos buenos y de índice glucémico más bajo, principalmente antes de tus entrenamientos, que jugarán un papel muy importante en este camino tuyo, una vez que obtengas músculo. y peso en general tienes que hacer ejercicio, principalmente en el gimnasio. Debería intentar obtener una ingesta de calorías de un día <big style='font-family: Kaushan Script, cursive;' >" +
+          "</big>. Una buena porción de esa cantidad de calorías ingeridas sería mejor si fueran proteínas, frutas y verduras, además de carbohidratos buenos y de índice glucémico más bajo, principalmente antes de tus entrenamientos, que jugarán un papel muy importante en este camino tuyo, una vez que obtengas músculo. y peso en general tienes que hacer ejercicio, principalmente en el gimnasio. Debería intentar obtener una ingesta de calorías de un día <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 1.1).toFixed(0) +
-          "kcal</strong> a  <big style='font-family: Kaushan Script, cursive;' >" +
+          "kcal</big> a  <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 1.15).toFixed(0) +
-          "kcal</strong> además de las calorías que quema con los ejercicios."
+          "kcal</big> además de las calorías que quema con los ejercicios."
         );
     }
     if (getGender() == "female") {
@@ -1844,47 +1843,47 @@ function setCalorieIntake() {
         return (
           "Dado que está tratando de aumentar el volumen, debe intentar obtener un pequeño excedente de ingesta de calorías, como 100-300 kcal por encima de su tasa metabólica basal, que es básicamente la cantidad de calorías que quema para las funciones basales del cuerpo, al día, como la respiración, la circulación. y la producción de células, es <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
-          "</strong>. Una buena porción de esa cantidad de calorías ingeridas sería mejor si fueran proteínas, frutas y verduras, además de carbohidratos buenos y de menor índice glucémico, principalmente antes de tus entrenamientos, que jugarán un papel muy importante en este camino tuyo. Debería intentar obtener una ingesta de calorías de un día <big style='font-family: Kaushan Script, cursive;' >" +
+          "</big>. Una buena porción de esa cantidad de calorías ingeridas sería mejor si fueran proteínas, frutas y verduras, además de carbohidratos buenos y de menor índice glucémico, principalmente antes de tus entrenamientos, que jugarán un papel muy importante en este camino tuyo. Debería intentar obtener una ingesta de calorías de un día <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 1.05).toFixed(0) +
-          "kcal</strong> a  <big style='font-family: Kaushan Script, cursive;' >" +
+          "kcal</big> a  <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 1.1).toFixed(0) +
-          "kcal</strong> además de las calorías que quema con los ejercicios."
+          "kcal</big> además de las calorías que quema con los ejercicios."
         );
       if (getGoal() == "cutting")
         return (
           "Dado que está tratando de reducir, debe tener un déficit de calorías decente, nada más que 250-500 kcal por debajo de su tasa metabólica basal estaría bien, esta tasa es básicamente la cantidad de calorías que quema para sus funciones corporales basales, un día, como la respiración, la circulación y la producción celular, es <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
-          "</strong>. Una buena porción de esa cantidad de calorías ingeridas sería mejor si fueran proteínas, frutas y verduras, además de una cantidad decente de carbohidratos bajos en calorías y con índice glucémico bajo, y es mejor que considere un poco de arroz integral, pasta integral y batata. Debería intentar obtener una ingesta de calorías de un día <big style='font-family: Kaushan Script, cursive;' >" +
+          "</big>. Una buena porción de esa cantidad de calorías ingeridas sería mejor si fueran proteínas, frutas y verduras, además de una cantidad decente de carbohidratos bajos en calorías y con índice glucémico bajo, y es mejor que considere un poco de arroz integral, pasta integral y batata. Debería intentar obtener una ingesta de calorías de un día <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.65).toFixed(0) +
-          "kcal</strong> a  <big style='font-family: Kaushan Script, cursive;' >" +
+          "kcal</big> a  <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.75).toFixed(0) +
-          "kcal</strong> además de las calorías que quema con los ejercicios. También debes tener en cuenta que un buen catalizador de todo esto es el entrenamiento, puedes comer más en cuanto te quemas a través del ejercicio, manteniendo siempre ese mismo déficit de ingesta calórica."
+          "kcal</big> además de las calorías que quema con los ejercicios. También debes tener en cuenta que un buen catalizador de todo esto es el entrenamiento, puedes comer más en cuanto te quemas a través del ejercicio, manteniendo siempre ese mismo déficit de ingesta calórica."
         );
       if (getGoal() == "surplus")
         return (
           "Dado que está tratando de perder peso, debe tener un déficit de calorías decente, nada más que 250-500 kcal por debajo de su tasa metabólica basal estaría bien, esta tasa es básicamente la cantidad de calorías que quema para sus funciones corporales basales, un día, por ejemplo. como respiración, circulación y producción celular, es <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
-          "</strong>. Una buena porción de esa cantidad de calorías ingeridas sería mejor si fueran proteínas, frutas y verduras, además de una cantidad decente de carbohidratos bajos en calorías y con índice glucémico bajo, y es mejor que considere un poco de arroz integral, pasta integral y batata. Debería intentar obtener una ingesta de calorías de un día <big style='font-family: Kaushan Script, cursive;' >" +
+          "</big>. Una buena porción de esa cantidad de calorías ingeridas sería mejor si fueran proteínas, frutas y verduras, además de una cantidad decente de carbohidratos bajos en calorías y con índice glucémico bajo, y es mejor que considere un poco de arroz integral, pasta integral y batata. Debería intentar obtener una ingesta de calorías de un día <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.7).toFixed(0) +
-          "kcal</strong> a  <big style='font-family: Kaushan Script, cursive;' >" +
+          "kcal</big> a  <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.8).toFixed(0) +
-          "kcal</strong> además de las calorías que quema con los ejercicios."
+          "kcal</big> además de las calorías que quema con los ejercicios."
         );
       if (getGoal() == "muscle")
         return (
           "Dado que intenta ganar peso principalmente a través de los músculos, debe tratar de obtener un excedente de ingesta de calorías decente, como 250-450 kcal por encima de su tasa metabólica basal, que es básicamente la cantidad de calorías que quema para las funciones basales del cuerpo, un día, por ejemplo. como respiración, circulación y producción celular, es <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
-          "</strong>. Una buena porción de esa cantidad de calorías ingeridas sería mejor si fueran proteínas, frutas y verduras, además de carbohidratos buenos y de índice glucémico más bajo, principalmente antes de tus entrenamientos, que jugarán un papel muy importante en este camino tuyo, una vez que obtengas músculo. y peso en general tienes que hacer ejercicio, principalmente en el gimnasio. Debería intentar obtener una ingesta de calorías de un día <big style='font-family: Kaushan Script, cursive;' >" +
+          "</big>. Una buena porción de esa cantidad de calorías ingeridas sería mejor si fueran proteínas, frutas y verduras, además de carbohidratos buenos y de índice glucémico más bajo, principalmente antes de tus entrenamientos, que jugarán un papel muy importante en este camino tuyo, una vez que obtengas músculo. y peso en general tienes que hacer ejercicio, principalmente en el gimnasio. Debería intentar obtener una ingesta de calorías de un día <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 1.1).toFixed(0) +
-          "kcal</strong> a  <big style='font-family: Kaushan Script, cursive;' >" +
+          "kcal</big> a  <big style='font-family: Kaushan Script, cursive;' >" +
           ((10 * weight + 625 * height - 5 * getAge() + 5) * 1.15).toFixed(0) +
-          "kcal</strong> además de las calorías que quema con los ejercicios."
+          "kcal</big> además de las calorías que quema con los ejercicios."
         );
     }
   }
 }
-function setExeciseAdvice() {
-  if ((language = "english")) {
+function setExerciseAdvice() {
+  if (language == "english") {
     if (getExercise() == 1)
       return " Well, it does not matter what is your goal, your current weight, nor your body type, if you don't exercise, it will be basically impossible for you to reach your goal. It can be run, cycling, powerlifting, or any high-intensity workout you want to do, because it helps you to grow on muscle, burn calories, get rid of water surplus your body can store, plus a lot of health improvements exercising can provide you. The recommended is at least 3-4 times a week, but of course that if you, for example, workout 5 times a week, it won't be bad it will actually help you more, so you know what to do!";
     if (getExercise() == 2)
@@ -1894,7 +1893,7 @@ function setExeciseAdvice() {
     if (getExercise() == 4)
       return " Well, that's good. you already do more workouts than required for a regular diet plan. If you want to elevate it even more try doing 7 heavy workouts a week, besides a good diet food plan.";
   }
-  if ((language = "português")) {
+  if (language == "português") {
     if (getExercise() == 1)
       return " Bem, não importa qual é a sua meta, seu peso atual, nem seu tipo de corpo, se você não se exercitar, será basicamente impossível atingir sua meta. Pode ser corrida, ciclismo, levantamento de peso ou qualquer treino de alta intensidade que você queira fazer, porque ajuda a aumentar os músculos, queimar calorias, se livrar do excesso de água que seu corpo pode armazenar, além de muitas melhorias para a saúde que os exercícios podem te fornecer. O recomendado é pelo menos 3-4 vezes por semana, mas é claro que se você, por exemplo, treinar 5 vezes por semana, não será ruim, na verdade irá ajudá-lo mais, então você sabe o que fazer!";
     if (getExercise() == 2)
@@ -1904,7 +1903,7 @@ function setExeciseAdvice() {
     if (getExercise() == 4)
       return " Bem, isso é bom. você já faz mais exercícios do que o necessário para um plano de dieta regular. Se quiser elevá-la ainda mais experimente fazer 7 treinos pesados por semana, além de um bom plano alimentar dietético.";
   }
-  if ((language = "français")) {
+  if (language == "français") {
     if (getExercise() == 1)
       return " Eh bien, peu importe votre objectif, votre poids actuel ou votre type de corps, si vous ne faites pas d'exercice, il vous sera pratiquement impossible d'atteindre votre objectif. Il peut s'agir de course, de cyclisme, de dynamophilie ou de tout entraînement de haute intensité que vous souhaitez faire, car il vous aide à développer vos muscles, à brûler des calories, à vous débarrasser du surplus d'eau que votre corps peut stocker, ainsi que de nombreuses améliorations de la santé que l'exercice peut vous fournir. Le recommandé est au moins 3 à 4 fois par semaine, mais bien sûr, si vous vous entraînez, par exemple, 5 fois par semaine, ce ne sera pas mal, cela vous aidera davantage, alors vous savez quoi faire!";
     if (getExercise() == 2)
@@ -1914,7 +1913,7 @@ function setExeciseAdvice() {
     if (getExercise() == 4)
       return " Bon, c'est bien. vous faites déjà plus de séances d'entraînement que nécessaire pour un régime alimentaire régulier. Si vous voulez l'augmenter encore plus, essayez de faire 7 séances d'entraînement intensives par semaine, en plus d'un bon régime alimentaire.";
   }
-  if ((language = "español")) {
+  if (language == "español") {
     if (getExercise() == 1)
       return " Bueno, no importa cuál sea tu objetivo, tu peso actual ni tu tipo de cuerpo, si no haces ejercicio, será básicamente imposible que lo alcance. Puede ser correr, andar en bicicleta, levantar pesas o cualquier entrenamiento de alta intensidad que desee hacer, ya que le ayuda a desarrollar músculo, quemar calorías, eliminar el exceso de agua que su cuerpo puede almacenar, además de muchas mejoras para la salud que puede hacer el ejercicio. proporcionarle. Lo recomendado es al menos 3-4 veces a la semana, pero por supuesto que si, por ejemplo, haces ejercicio 5 veces a la semana, no será malo, en realidad te ayudará más, ¡así que sabes qué hacer!";
     if (getExercise() == 2)
@@ -1926,7 +1925,7 @@ function setExeciseAdvice() {
   }
 }
 function setHealthyAdvice() {
-  if ((language = "english")) {
+  if (language == "english") {
     if (getHealthy() == 1)
       return " I probably shouldn't believe you, but I will. Please, you have to have complete meals, nutrient wise, besides healthy food in it like salad, good protein, choosing cleverly between 'similar options', for example, on weekdays choose chicken breast over red meat. But on weekends don't put everything to lose but free yourself to eat something you like more. Well, you still gotta combine that with good training and workouts to maximize your health and fitness gains.";
     if (getHealthy() == 2)
@@ -1936,7 +1935,7 @@ function setHealthyAdvice() {
     if (getHealthy() == 4)
       return " It's good that you have a good healthy meal day frequency, this will help you a lot on your path to your body goal. Well, you still gotta combine that with good training and workouts to maximize your health and fitness gains.";
   }
-  if ((language = "português")) {
+  if (language == "português") {
     if (getHealthy() == 1)
       return " Eu provavelmente não deveria acreditar em você, mas vou. Por favor, você tem que fazer refeições completas, em termos de nutrientes, além de alimentos saudáveis como salada, boa proteína, escolhendo habilmente entre 'opções semelhantes', por exemplo, nos dias de semana prefira peito de frango à carne vermelha. Mas nos finais de semana não coloque tudo a perder, mas libere-se para comer o que você gosta mais. Bem, você ainda precisa combinar isso com um bom treinamento e exercícios para maximizar seus ganhos de saúde e fitness.";
     if (getHealthy() == 2)
@@ -1946,7 +1945,7 @@ function setHealthyAdvice() {
     if (getHealthy() == 4)
       return " É bom que você tenha uma boa frequência de refeições saudáveis, isso vai te ajudar muito no seu caminho para o seu objetivo corporal. Bem, você ainda precisa combinar isso com um bom treinamento e exercícios para maximizar seus ganhos de saúde e fitness.";
   }
-  if ((language = "français")) {
+  if (language == "français") {
     if (getHealthy() == 1)
       return " Je ne devrais probablement pas te croire, mais je le ferai. S'il vous plaît, vous devez avoir des repas complets, en termes de nutriments, en plus des aliments sains comme une salade, de bonnes protéines, en choisissant intelligemment entre des options similaires '', par exemple, en semaine, choisissez la poitrine de poulet plutôt que la viande rouge. Mais le week-end, ne mettez pas tout à perdre mais libérez-vous pour manger quelque chose que vous aimez plus. Eh bien, vous devez toujours combiner cela avec un bon entraînement et des séances d'entraînement pour maximiser vos gains de santé et de forme physique.";
     if (getHealthy() == 2)
@@ -1956,7 +1955,7 @@ function setHealthyAdvice() {
     if (getHealthy() == 4)
       return " Il est bon que vous ayez une bonne fréquence quotidienne de repas sains, cela vous aidera beaucoup sur votre chemin vers votre objectif corporel. Eh bien, vous devez toujours combiner cela avec un bon entraînement et des séances d'entraînement pour maximiser vos gains de santé et de forme physique.";
   }
-  if ((language = "español")) {
+  if (language == "español") {
     if (getHealthy() == 1)
       return " Probablemente no debería creerte, pero lo haré. Por favor, debe tener comidas completas, en cuanto a nutrientes, además de alimentos saludables como ensaladas, buenas proteínas, eligiendo inteligentemente entre 'opciones similares', por ejemplo, los días de semana elija pechuga de pollo sobre carne roja. Pero los fines de semana no pongas todo para perder, sino libérate para comer algo que te guste más. Bueno, aún debes combinar eso con un buen entrenamiento y entrenamientos para maximizar tus ganancias de salud y estado físico.";
     if (getHealthy() == 2)
@@ -1968,7 +1967,7 @@ function setHealthyAdvice() {
   }
 }
 function setCheatAdvice() {
-  if ((language = "english")) {
+  if (language == "english") {
     if (getCheat() == 1)
       return " It's good that you have a practically null cheat meal regularity, this will be helpful in your path to your body goal.";
     if (getCheat() == 2)
@@ -1978,7 +1977,7 @@ function setCheatAdvice() {
     if (getCheat() == 4)
       return " You need to gradually shorten the number of cheat meals you eat, because that enormous amount of cheat meals are not good at all for your health, therefore try doing it only on Fridays, Saturdays, and Sundays, then when you feel like it, try to only do it on weekends and when you feel like it, try doing it only on Sundays. But on weekends don't put everything to lose but free yourself to eat something you like more.";
   }
-  if ((language = "português")) {
+  if (language == "português") {
     if (getCheat() == 1)
       return " É bom que você tenha uma regularidade de refeição de trapaça praticamente nula, isso será útil em seu caminho para seu objetivo corporal.";
     if (getCheat() == 2)
@@ -1988,7 +1987,7 @@ function setCheatAdvice() {
     if (getCheat() == 4)
       return " Você precisa diminuir gradativamente o número de refeições casuais que você faz, porque essa quantidade enorme de refeições casuais não faz bem à sua saúde, portanto, tente fazê-lo apenas às sextas, sábados e domingos, então quando tiver vontade, tente para fazer apenas nos finais de semana e quando quiser, tente fazer apenas aos domingos. Mas nos finais de semana não coloque tudo a perder, mas libere-se para comer o que você gosta mais.";
   }
-  if ((language = "français")) {
+  if (language == "français") {
     if (getCheat() == 1)
       return " Il est bon que vous ayez une régularité de repas malsains pratiquement nulle, cela vous sera utile sur votre chemin vers votre objectif corporel.";
     if (getCheat() == 2)
@@ -1998,7 +1997,7 @@ function setCheatAdvice() {
     if (getCheat() == 4)
       return " Vous devez réduire progressivement le nombre de repas de triche que vous mangez, car cette énorme quantité de repas de triche n'est pas du tout bonne pour votre santé, essayez donc de le faire uniquement les vendredis, samedis et dimanches, puis quand vous en avez envie, essayez pour ne le faire que le week-end et quand vous en avez envie, essayez de le faire uniquement le dimanche. Mais le week-end, ne mettez pas tout à perdre mais libérez-vous pour manger quelque chose que vous aimez plus.";
   }
-  if ((language = "español")) {
+  if (language == "español") {
     if (getCheat() == 1)
       return " Es bueno que tengas una regularidad de comidas poco saludables que sea prácticamente nula, esto te será útil en tu camino hacia tu meta corporal.";
     if (getCheat() == 2)
@@ -2010,7 +2009,7 @@ function setCheatAdvice() {
   }
 }
 function setMealsAdvice() {
-  if ((language = "english")) {
+  if (language == "english") {
     if (getMeals() == 1)
       return " I know how that goes, you think, and i did too, that if you eat less you lose fat, but that is not necessarily the case. If you eat the right amount of the right food 5-6 times a day you will lose more fat and if you maintain a good protein ingestion in every meal, you will also make more muscle out of it.";
     if (getMeals() == 2)
@@ -2020,7 +2019,7 @@ function setMealsAdvice() {
     if (getMeals() == 4)
       return " That's ideal, always eat healthy with 3-hour intervals for better muscle gain and fat loss.";
   }
-  if ((language = "português")) {
+  if (language == "português") {
     if (getMeals() == 1)
       return " Sei o que acontece, você pensa, e eu também, que se comer menos perderá gordura, mas não é necessariamente o caso. Se você comer a quantidade certa da comida certa 5-6 vezes ao dia, perderá mais gordura e se mantiver uma boa ingestão de proteína em todas as refeições, também ganhará mais músculos.";
     if (getMeals() == 2)
@@ -2030,7 +2029,7 @@ function setMealsAdvice() {
     if (getMeals() == 4)
       return " Isso é ideal, sempre alimente-se de forma saudável com intervalos de 3 horas para melhor ganho muscular e perda de gordura.";
   }
-  if ((language = "français")) {
+  if (language == "français") {
     if (getMeals() == 1)
       return " Je sais comment ça se passe, vous pensez, et moi aussi, que si vous mangez moins, vous perdez du gras, mais ce n'est pas forcément le cas. Si vous mangez la bonne quantité de la bonne nourriture 5 à 6 fois par jour, vous perdrez plus de graisse et si vous maintenez une bonne ingestion de protéines à chaque repas, vous en tirerez également plus de muscle..";
     if (getMeals() == 2)
@@ -2040,7 +2039,7 @@ function setMealsAdvice() {
     if (getMeals() == 4)
       return " C'est idéal, mangez toujours sainement avec des intervalles de 3 heures pour un meilleur gain musculaire et une meilleure perte de graisse.";
   }
-  if ((language = "español")) {
+  if (language == "español") {
     if (getMeals() == 1)
       return " Sé cómo va eso, piensas, y yo también, que si comes menos pierdes grasa, pero ese no es necesariamente el caso. Si come la cantidad correcta de la comida adecuada 5-6 veces al día, perderá más grasa y si mantiene una buena ingesta de proteínas en cada comida, también hará más músculo con ella.";
     if (getMeals() == 2)
@@ -2052,28 +2051,28 @@ function setMealsAdvice() {
   }
 }
 function setLinks() {
-  if ((language = "english"))
+  if (language == "english")
     return [
       '<a id="finallink" href="https://www.webmd.com/diet/healthtool-food-calorie-counter" target="_blank" >Link to a whole food health tool</a>',
       '<a id="finallink" href="https://www.calories.info/food/candy-sweets" target="_blank" >Link to a food calorie by general group</a>',
       '<a id="finallink" href="https://www.health.harvard.edu/diet-and-weight-loss/calories-burned-in-30-minutes-of-leisure-and-routine-activities" target="_blank">Link to a Harvard page about exercise calories</a>',
       "<a id='finallink' href='https://www.healthline.com/health/fitness-exercise/top-iphone-android-apps' target='_blank'>Link to best apps for workout advice</a>",
     ];
-  if ((language = "português"))
+  if (language == "português")
     return [
       '<a id="finallink" href="https://www.webmd.com/diet/healthtool-food-calorie-counter" target="_blank" >Link a uma ferramenta de saúde alimentar completa</a>',
       '<a id="finallink" href="https://www.calories.info/food/candy-sweets" target="_blank" >Link a uma caloria alimentar por grupo geral</a>',
       '<a id="finallink" href="https://www.health.harvard.edu/diet-and-weight-loss/calories-burned-in-30-minutes-of-leisure-and-routine-activities" target="_blank">Link a uma página de Harvard sobre calorias de exercícios</a>',
       "<a id='finallink' href='https://www.healthline.com/health/fitness-exercise/top-iphone-android-apps' target='_blank'>Link para os melhores aplicativos para conselhos de treino</a>",
     ];
-  if ((language = "français"))
+  if (language == "français")
     return [
       '<a id="finallink" href="https://www.webmd.com/diet/healthtool-food-calorie-counter" target="_blank" >Link vers un outil de santé alimentaire complet</a>',
       '<a id="finallink" href="https://www.calories.info/food/candy-sweets" target="_blank" >Link vers une calorie alimentaire par groupe général</a>',
       "<a id='finallink' href='https://www.health.harvard.edu/diet-and-weight-loss/calories-burned-in-30-minutes-of-leisure-and-routine-activities' target='_blank'>Link vers une page de Harvard sur les calories d'exercice</a>",
       "<a id='finallink' href='https://www.healthline.com/health/fitness-exercise/top-iphone-android-apps' target='_blank'>Lien vers les meilleures applications pour obtenir des conseils d'entraînement</a>",
     ];
-  if ((language = "español"))
+  if (language == "español")
     return [
       '<a id="finallink" href="https://www.webmd.com/diet/healthtool-food-calorie-counter" target="_blank" >Link a una herramienta de salud alimentaria integral</a>',
       '<a id="finallink" href="https://www.calories.info/food/candy-sweets" target="_blank" >Link a una caloría alimentaria por grupo general</a>',
@@ -2083,7 +2082,7 @@ function setLinks() {
 }
 function setGoalDistance() {
   let goalBodyDistance = getCurrentBody() - getGoalBody();
-  if ((language = "english")) {
+  if (language == "english") {
     if (goalBodyDistance == 1)
       return " Also, you are really close to your goal, which means that with focus and determination your run towards your goal will be short!";
     if (goalBodyDistance == 2)
@@ -2101,7 +2100,7 @@ function setGoalDistance() {
     if (goalBodyDistance == 8)
       return " This is gonna be a long, but well rewarding, run, that requires a lot of will, determination, and focus!";
   }
-  if ((language = "português")) {
+  if (language == "português") {
     if (goalBodyDistance == 1)
       return " Além disso, você está muito perto de seu objetivo, o que significa que com foco e determinação sua corrida em direção ao objetivo será curta!";
     if (goalBodyDistance == 2)
@@ -2119,7 +2118,7 @@ function setGoalDistance() {
     if (goalBodyDistance == 8)
       return " Vai ser uma corrida longa, mas bem recompensadora, que exige muita vontade, determinação e foco!";
   }
-  if ((language = "français")) {
+  if (language == "français") {
     if (goalBodyDistance == 1)
       return " De plus, vous êtes très proche de votre objectif, ce qui signifie qu'avec concentration et détermination, votre course vers votre objectif sera courte!";
     if (goalBodyDistance == 2)
@@ -2137,7 +2136,7 @@ function setGoalDistance() {
     if (goalBodyDistance == 8)
       return " Ce sera une course longue, mais bien enrichissante, qui demandera beaucoup de volonté, de détermination et de concentration!";
   }
-  if ((language = "español")) {
+  if (language == "español") {
     if (goalBodyDistance == 1)
       return " Además, estás muy cerca de tu objetivo, lo que significa que con concentración y determinación, ¡tu carrera hacia tu objetivo será corta!";
     if (goalBodyDistance == 2)
@@ -2157,7 +2156,7 @@ function setGoalDistance() {
   }
 }
 function setGoalAdvices() {
-  if ((language = "english")) {
+  if (language == "english") {
     if (getGoal() == "bulking")
       return [
         " Since you are trying to bulk, you should focus the most on weight training, better with an instructor but it works anyway. Try increasing the weights and decreasing the movement speed. At your will for losing weight try some exercises like running, cycling, and so on. ",
@@ -2179,7 +2178,7 @@ function setGoalAdvices() {
         " For gaining weight, You should eat in a controlled way, but with a good portion of proteins and carbohydrates, and of course our loved ones: salad, fruits and vegetables. But you should have a calorie intake deficit.",
       ];
   }
-  if ((language = "português")) {
+  if (language == "português") {
     if (getGoal() == "bulking")
       return [
         " Já que você está tentando ganhar massa, você deve se concentrar mais no treinamento com pesos, melhor com um instrutor, mas funciona de qualquer maneira. Experimente aumentar os pesos e diminuir a velocidade do movimento. Quando desejar, para perder peso, experimente alguns exercícios como corrida, ciclismo e assim por diante. ",
@@ -2201,7 +2200,7 @@ function setGoalAdvices() {
         " Para ganhar peso, você deve comer de forma controlada, mas com uma boa porção de proteínas e carboidratos e, claro, nossos entes queridos: salada, frutas e vegetais. Mas você deve ter um déficit de ingestão calórica.",
       ];
   }
-  if ((language = "français")) {
+  if (language == "français") {
     if (getGoal() == "bulking")
       return [
         " Puisque vous essayez de prendre du volume, vous devriez vous concentrer le plus sur la musculation, mieux avec un instructeur, mais cela fonctionne quand même. Essayez d'augmenter les poids et de réduire la vitesse de déplacement. À votre guise pour perdre du poids, essayez des exercices comme la course à pied, le cyclisme, etc. ",
@@ -2223,7 +2222,7 @@ function setGoalAdvices() {
         " Pour prendre du poids, vous devez manger de manière contrôlée, mais avec une bonne portion de protéines et de glucides, et bien sûr nos proches: salade, fruits et légumes. Mais vous devriez avoir un déficit calorique.",
       ];
   }
-  if ((language = "español")) {
+  if (language == "español") {
     if (getGoal() == "bulking")
       return [
         " Dado que está tratando de aumentar el volumen, debe concentrarse más en el entrenamiento con pesas, mejor con un instructor, pero de todos modos funciona. Intente aumentar los pesos y disminuir la velocidad de movimiento. Si desea perder peso, pruebe algunos ejercicios como correr, andar en bicicleta, etc. ",
@@ -2249,16 +2248,16 @@ function setGoalAdvices() {
 //downloaded file message formation
 function setDownloadableFileData() {
   let downloadResult;
-  if ((language = "english"))
-    downloadResult = `<span style="background-color: ${backgroundColorDownload}; color: ${colorDownload};"><div style="display: flex; "><img id="imageLogo" src="https://www.pngkey.com/png/full/211-2118619_healthy-army-communities-healthy-apple-logo.png" alt="logo" style="float: left; width: 60px; margin-left: ${imageLogo.style.marginLeft};"><h1 class="classHeading" id="headingObjInputIdHead" style="border: none; background: none; color: ${colorDownload}; place-items: left;"><i>${headingObjInputIdHead.innerHTML}</i></h1></div><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">Well <big style="font-family: Kaushan Script, cursive;">`;
-  else if ((language = "português"))
-    downloadResult = `<span style="background-color: ${backgroundColorDownload}; color: ${colorDownload};"><div style="display: flex; "><img id="imageLogo" src="https://www.pngkey.com/png/full/211-2118619_healthy-army-communities-healthy-apple-logo.png" alt="logo" style="float: left; width: 60px; margin-left: ${imageLogo.style.marginLeft};"><h1 class="classHeading" id="headingObjInputIdHead" style="border: none; background: none; color: ${colorDownload}; place-items: left;"><i>${headingObjInputIdHead.innerHTML}</i></h1></div><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">Bem <big style="font-family: Kaushan Script, cursive;">`;
-  else if ((language = "français"))
-    downloadResult = `<span style="background-color: ${backgroundColorDownload}; color: ${colorDownload};"><div style="display: flex; "><img id="imageLogo" src="https://www.pngkey.com/png/full/211-2118619_healthy-army-communities-healthy-apple-logo.png" alt="logo" style="float: left; width: 60px; margin-left: ${imageLogo.style.marginLeft};"><h1 class="classHeading" id="headingObjInputIdHead" style="border: none; background: none; color: ${colorDownload}; place-items: left;"><i>${headingObjInputIdHead.innerHTML}</i></h1></div><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">Bien <big style="font-family: Kaushan Script, cursive;">`;
-  else if ((language = "español"))
-    downloadResult = `<span style="background-color: ${backgroundColorDownload}; color: ${colorDownload};"><div style="display: flex; "><img id="imageLogo" src="https://www.pngkey.com/png/full/211-2118619_healthy-army-communities-healthy-apple-logo.png" alt="logo" style="float: left; width: 60px; margin-left: ${imageLogo.style.marginLeft};"><h1 class="classHeading" id="headingObjInputIdHead" style="border: none; background: none; color: ${colorDownload}; place-items: left;"><i>${headingObjInputIdHead.innerHTML}</i></h1></div><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">¡Bueno! <big style="font-family: Kaushan Script, cursive;">`;
+  if (language == "english")
+    downloadResult = `<span style="background-color: ${backgroundColorDownload}; color: ${colorDownload};"><div style="display: flex; text-align: center"><img id="imageLogo" src="https://www.pngkey.com/png/full/211-2118619_healthy-army-communities-healthy-apple-logo.png" alt="logo" style="float: left; width: 60px; margin-left: ${imageLogo.style.marginLeft};"><h1 class="classHeading" id="headingObjInputIdHead" style="border: none; background: none; color: ${colorDownload}; place-items: left;"><i>${headingObjInputIdHead.innerHTML}</i></h1></div><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">Well <big style="font-family: Kaushan Script, cursive;">`;
+  else if (language == "português")
+    downloadResult = `<span style="background-color: ${backgroundColorDownload}; color: ${colorDownload};"><div style="display: flex;  text-align: center"><img id="imageLogo" src="https://www.pngkey.com/png/full/211-2118619_healthy-army-communities-healthy-apple-logo.png" alt="logo" style="float: left; width: 60px; margin-left: ${imageLogo.style.marginLeft};"><h1 class="classHeading" id="headingObjInputIdHead" style="border: none; background: none; color: ${colorDownload}; place-items: left;"><i>${headingObjInputIdHead.innerHTML}</i></h1></div><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">Bem <big style="font-family: Kaushan Script, cursive;">`;
+  else if (language == "français")
+    downloadResult = `<span style="background-color: ${backgroundColorDownload}; color: ${colorDownload};"><div style="display: flex;  text-align: center"><img id="imageLogo" src="https://www.pngkey.com/png/full/211-2118619_healthy-army-communities-healthy-apple-logo.png" alt="logo" style="float: left; width: 60px; margin-left: ${imageLogo.style.marginLeft};"><h1 class="classHeading" id="headingObjInputIdHead" style="border: none; background: none; color: ${colorDownload}; place-items: left;"><i>${headingObjInputIdHead.innerHTML}</i></h1></div><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">Bien <big style="font-family: Kaushan Script, cursive;">`;
+  else if (language == "español")
+    downloadResult = `<span style="background-color: ${backgroundColorDownload}; color: ${colorDownload};"><div style="display: flex;  text-align: center"><img id="imageLogo" src="https://www.pngkey.com/png/full/211-2118619_healthy-army-communities-healthy-apple-logo.png" alt="logo" style="float: left; width: 60px; margin-left: ${imageLogo.style.marginLeft};"><h1 class="classHeading" id="headingObjInputIdHead" style="border: none; background: none; color: ${colorDownload}; place-items: left;"><i>${headingObjInputIdHead.innerHTML}</i></h1></div><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">¡Bueno! <big style="font-family: Kaushan Script, cursive;">`;
 
-  downloadResult += `${getName()}</big><br>${setBodyTypeAdvice()}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${getBodyTypeAdvantageAdvice()}${setGoalDistance()}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${setAgeAdvice()}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${finalIdealWeightMsg}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${setExeciseAdvice()}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${
+  downloadResult += `${getName()}</big><br>${setBodyTypeAdvice()}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${getBodyTypeAdvantageAdvice()}${setGoalDistance()}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${setAgeAdvice()}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${finalIdealWeightMsg}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${setExerciseAdvice()}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${
     setGoalAdvices()[0]
   }</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${setHealthyAdvice()}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${setCheatAdvice()}</h3><br><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">${setMealsAdvice()}${
     setGoalAdvices()[1]
@@ -2280,8 +2279,8 @@ function result() {
   idFooter.style.display = "none";
   getSuggestedBodyFat();
   getBodyFat();
-  if (unit == "metric") metric();
-  else if (unit == "imperial") imperial();
+  if (getUnit() == "metric") metric();
+  else if (getUnit() == "imperial") imperial();
   setDownloadableFileData();
   resultTransition();
   storage();
@@ -2301,7 +2300,7 @@ const setLocalData = (idUser) => {
     goalDistance: setGoalDistance(),
     ageAdvice: setAgeAdvice(),
     finalIdealWeightMsg,
-    exerciseAdvice: setExeciseAdvice(),
+    exerciseAdvice: setExerciseAdvice(),
     goalAdvice: setGoalAdvices()[0],
     healthyAdvice: setHealthyAdvice(),
     cheatAdvice: setCheatAdvice(),
@@ -2327,7 +2326,7 @@ function resultTransition() {
   let timeInterval;
   let counter = 0;
   idBar.style.display = "block";
-  const num = document.querySelectorAll(".number");
+  const num = document.querySelector(".number");
   setInterval(() => {
     if (counter == 5) h4Config.innerHTML = `${processing}.`;
     if (counter == 10) h4Config.innerHTML = `${processing}..`;
@@ -2353,7 +2352,7 @@ function resultTransition() {
       linkTitlea.setAttribute("href", "");
       titleLink.setAttribute("href", "");
       clearInterval();
-    } else num.textContent = ++counter + "%";
+    } else num.innerText = ++counter + "%";
   }, 200);
   if (
     (timeGaps === 0 && counter >= 100) ||
@@ -2378,7 +2377,7 @@ function resultTime(timeInterval) {
   if (timeGaps == 3000)
     finalResultH3Id.innerHTML += `${finalIdealWeightMsg}<br><br>`;
   if (timeGaps == 4000)
-    finalResultH3Id.innerHTML += `${setExeciseAdvice()}<br><br>`;
+    finalResultH3Id.innerHTML += `${setExerciseAdvice()}<br><br>`;
   if (timeGaps == 5000)
     finalResultH3Id.innerHTML += `${setGoalAdvices()[0]}<br><br>`;
   if (timeGaps == 6000)
@@ -2400,11 +2399,7 @@ function resultTime(timeInterval) {
       setLinks()[1]
     }<br><br>${setLinks()[2]}<br><br>${setLinks()[3]}</i><br><br><br>`;
   }
-  if (timeGaps == 13000) {
-    finalResultH2Id.style.display = "block";
-    if (!JSON.parse(sessionStorage.getItem("emailIn")))
-      emailLinkColor.innerHTML = ``;
-  }
+  if (timeGaps == 13000) finalResultH2Id.style.display = "block";
   if (timeGaps == 14000) {
     idFooter.style.position = "relative";
     idFooter.style.marginBottom = "0";
