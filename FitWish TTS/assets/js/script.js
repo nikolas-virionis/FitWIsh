@@ -4,34 +4,6 @@ let language = sessionStorage.getItem("language"),
   alreadyInPage,
   firstAlert;
 
-function firstPageLogin() {
-  buttonFirst.style.display = "none";
-  idFooter.style.display = "block";
-  idFooter.style.position = "absolute";
-  idFooter.style.bottom = "0";
-  idFirstSubmit.style.display = "block";
-  idHowToPage.style.display = "none";
-  idHowToHeading.style.display = "none";
-}
-
-const firstPage = () => {
-  if (differentPage != 1) {
-    pageSwitcher(1);
-    closeNav();
-    closeRightNav();
-    idHowToPage.style.display = "none";
-    idHowToHeading.style.display = "none";
-    idContactHeading.style.display = "none";
-    idAboutHeading.style.display = "none";
-    rightsidebarButton.style.display = "block";
-    idFirstSubmit.style.display = "none";
-    linkTitlea.href = "javascript:window.location.href = 'intro.html';";
-    titleLink.href = "javascript:window.location.href = 'intro.html';";
-    pagesNavId.onclick = rightNavInterpreter;
-    pagesNavId.onclick();
-    rightNavInterpreter();
-  }
-};
 const rightNavInterpreter = () =>
   myRightSidenav.style.width == "250px"
     ? (myRightSidenav.style.width = "0")
@@ -42,17 +14,6 @@ const closeNav = () => (myLeftSidenav.style.width = "0");
 const closeRightNav = () =>
   (document.getElementById("myRightSidenav").style.width = "0");
 const disclaimer = () => alert(firstAlert);
-
-function changeColor2(clickedId, idleId) {
-  document.getElementById(clickedId).style.backgroundColor = "#7395AE";
-  document.getElementById(idleId).style.backgroundColor = "teal";
-}
-function changeColor4(clickedId, idleId1, idleId2, idleId3) {
-  document.getElementById(clickedId).style.backgroundColor = "#7395AE";
-  document.getElementById(idleId1).style.backgroundColor = "teal";
-  document.getElementById(idleId2).style.backgroundColor = "teal";
-  document.getElementById(idleId3).style.backgroundColor = "teal";
-}
 
 const getSiblings = (element) => {
   let siblings = [];
@@ -78,7 +39,7 @@ if (
   window.location.pathname.split("/").pop().slice(0, -5) != "howTo" &&
   window.location.pathname.split("/").pop().slice(0, -5) != ""
 ) {
-  for (let button of buttons) {
+  buttons.forEach((button) => {
     button.addEventListener("mouseover", (e) => {
       let element = e.target;
       element.style.backgroundColor = "#2ECC71";
@@ -89,5 +50,33 @@ if (
       element.style.backgroundColor = "#7395AE";
       for (let el of getSiblings(element)) el.style.backgroundColor = "teal";
     });
-  }
+  });
 }
+if (document.getElementById("listRightNav"))
+  [...listRightNav.children].forEach((pageButton) =>
+    pageButton.addEventListener("click", (e) =>
+      window.location.pathname.split("/").pop().slice(0, -5) ==
+      e.target.id.slice(0, -6)
+        ? inPage()
+        : (window.location.href = `${e.target.id.slice(0, -6)}.html`)
+    )
+  );
+
+if (document.getElementById("pageBtnsId"))
+  [...pageBtnsId.children].forEach((button) =>
+    button.addEventListener(
+      "click",
+      (e) =>
+        (window.location.href =
+          e.target.name == "attempt" ? "/" : `${e.target.name}.html`)
+    )
+  );
+
+if (document.querySelectorAll(".sideBarButtons"))
+  document
+    .querySelectorAll(".sideBarButtons")
+    .forEach((sideBtn) =>
+      sideBtn.addEventListener("click", (e) =>
+        e.target.id.slice(0, 4) == "left" ? openNav() : rightNavInterpreter()
+      )
+    );

@@ -1,5 +1,5 @@
 function english() {
-  import("./script.mjs").then(({ english: defaultEnglish }) =>
+  import("./modules/language.js").then(({ english: defaultEnglish }) =>
     defaultEnglish()
   );
   document.getElementById("headingObjInputIdCheat").innerHTML =
@@ -11,7 +11,7 @@ function english() {
     "5 or more times a week";
 }
 function português() {
-  import("./script.mjs").then(({ português: defaultPortuguês }) =>
+  import("./modules/language.js").then(({ português: defaultPortuguês }) =>
     defaultPortuguês()
   );
   document.getElementById("headingObjInputIdCheat").innerHTML =
@@ -25,7 +25,7 @@ function português() {
     "5 ou mais vezes por semana";
 }
 function français() {
-  import("./script.mjs").then(({ français: defaultFrançais }) =>
+  import("./modules/language.js").then(({ français: defaultFrançais }) =>
     defaultFrançais()
   );
   document.getElementById("headingObjInputIdCheat").innerHTML =
@@ -39,7 +39,7 @@ function français() {
     "5 fois ou plus par semaine";
 }
 function español() {
-  import("./script.mjs").then(({ español: defaultEspañol }) =>
+  import("./modules/language.js").then(({ español: defaultEspañol }) =>
     defaultEspañol()
   );
   document.getElementById("headingObjInputIdCheat").innerHTML =
@@ -53,14 +53,14 @@ function español() {
     "5 o más veces por semana";
 }
 function themeTypeLight() {
-  import("./script.mjs").then(({ themeTypeLight: defaultLight }) =>
+  import("./modules/theme.js").then(({ themeTypeLight: defaultLight }) =>
     defaultLight()
   );
   for (let el of document.querySelectorAll(".headingObjInputId"))
     el.style.backgroundColor = "#D0FEFE";
 }
 function themeTypeDark() {
-  import("./script.mjs").then(({ themeTypeDark: defaultDark }) =>
+  import("./modules/theme.js").then(({ themeTypeDark: defaultDark }) =>
     defaultDark()
   );
   for (let el of document.querySelectorAll(".headingObjInputId"))

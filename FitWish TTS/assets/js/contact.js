@@ -1,5 +1,5 @@
 function english() {
-  import("./script.mjs").then(({ english: defaultEnglish }) =>
+  import("./modules/language.js").then(({ english: defaultEnglish }) =>
     defaultEnglish()
   );
   idContactH2.style.marginLeft = "37.5%";
@@ -9,7 +9,7 @@ function english() {
   idContactHeading.innerHTML = "Contact";
 }
 function português() {
-  import("./script.mjs").then(({ português: defaultPortuguês }) =>
+  import("./modules/language.js").then(({ português: defaultPortuguês }) =>
     defaultPortuguês()
   );
   idContactH2.style.marginLeft = "30.5%";
@@ -19,7 +19,7 @@ function português() {
   idContactHeading.innerHTML = "Contato";
 }
 function français() {
-  import("./script.mjs").then(({ français: defaultFrançais }) =>
+  import("./modules/language.js").then(({ français: defaultFrançais }) =>
     defaultFrançais()
   );
   idContactH2.style.marginLeft = "34.5%";
@@ -29,7 +29,7 @@ function français() {
   idContactHeading.innerHTML = "Contact";
 }
 function español() {
-  import("./script.mjs").then(({ español: defaultEspañol }) =>
+  import("./modules/language.js").then(({ español: defaultEspañol }) =>
     defaultEspañol()
   );
   idContactH2.style.marginLeft = "32.5%";
@@ -39,7 +39,7 @@ function español() {
     "Nos encantaría saber de nuestros usuarios sobre posibles comentarios sobre lo que experimentó al utilizar nuestro servicio. Para contactarnos acceda directamente al enlace al correo electrónico de nuestro CTO a continuación, y para tener más información sobre nosotros acceda a su enlace de LinkedIn a continuación.";
 }
 function themeTypeLight() {
-  import("./script.mjs").then(({ themeTypeLight: defaultLight }) =>
+  import("./modules/theme.js").then(({ themeTypeLight: defaultLight }) =>
     defaultLight()
   );
   idContactHeading.style.color = "#1F3B4D";
@@ -49,7 +49,7 @@ function themeTypeLight() {
   idContactIntro.style.color = "#1F3B4D";
 }
 function themeTypeDark() {
-  import("./script.mjs").then(({ themeTypeDark: defaultDark }) =>
+  import("./modules/theme.js").then(({ themeTypeDark: defaultDark }) =>
     defaultDark()
   );
   idContactHeading.style.color = "azure";

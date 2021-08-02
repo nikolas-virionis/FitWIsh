@@ -33,10 +33,10 @@ export function english() {
     dataPageId.innerHTML = "Weight/Height";
   if (document.getElementById("bodyTypePageId"))
     bodyTypePageId.innerHTML = "Body Type";
-  if (document.getElementById("bodyImagePageId"))
-    bodyImagePageId.innerHTML = "Body Fat Evaluation";
-  if (document.getElementById("xercisePageId"))
-    xercisePageId.innerHTML = "Exercise Evaluation";
+  if (document.getElementById("imagePageId"))
+    imagePageId.innerHTML = "Body Fat Evaluation";
+  if (document.getElementById("exercisePageId"))
+    exercisePageId.innerHTML = "Exercise Evaluation";
   if (document.getElementById("healthyPageId"))
     healthyPageId.innerHTML = "Healthy Meals";
   if (document.getElementById("cheatPageId"))
@@ -91,10 +91,10 @@ export function português() {
   if (document.getElementById("goalPageId")) goalPageId.innerHTML = "Objetivo";
   if (document.getElementById("bodyTypePageId"))
     bodyTypePageId.innerHTML = "Tipo Corporal";
-  if (document.getElementById("bodyImagePageId"))
-    bodyImagePageId.innerHTML = "Avaliação da Gordura Corporal";
-  if (document.getElementById("xercisePageId"))
-    xercisePageId.innerHTML = "Avaliação de Exercícios";
+  if (document.getElementById("imagePageId"))
+    imagePageId.innerHTML = "Avaliação da Gordura Corporal";
+  if (document.getElementById("exercisePageId"))
+    exercisePageId.innerHTML = "Avaliação de Exercícios";
   if (document.getElementById("dataPageId"))
     dataPageId.innerHTML = "Peso/Altura";
   if (document.getElementById("healthyPageId"))
@@ -150,12 +150,12 @@ export function français() {
     dataPageId.innerHTML = "Poids/Hauteur";
   if (document.getElementById("bodyTypePageId"))
     bodyTypePageId.innerHTML = "Type de corps";
-  if (document.getElementById("bodyImagePageId"))
-    bodyImagePageId.innerHTML = "Évaluation de la graisse corporelle";
+  if (document.getElementById("imagePageId"))
+    imagePageId.innerHTML = "Évaluation de la graisse corporelle";
   if (document.getElementById("pagesNavId"))
     pagesNavId.innerHTML = "Pages/Sections(&sect;)";
-  if (document.getElementById("xercisePageId"))
-    xercisePageId.innerHTML = "Évaluation de l'exercice";
+  if (document.getElementById("exercisePageId"))
+    exercisePageId.innerHTML = "Évaluation de l'exercice";
   if (document.getElementById("healthyPageId"))
     healthyPageId.innerHTML = "Repas sains";
   if (document.getElementById("cheatPageId"))
@@ -211,10 +211,10 @@ export function español() {
   if (document.getElementById("goalPageId")) goalPageId.innerHTML = "Objetivo";
   if (document.getElementById("bodyTypePageId"))
     bodyTypePageId.innerHTML = "Tipo de cuerpo";
-  if (document.getElementById("bodyImagePageId"))
-    bodyImagePageId.innerHTML = "Evaluación de la grasa corporal";
-  if (document.getElementById("xercisePageId"))
-    xercisePageId.innerHTML = "Evaluación del ejercicio";
+  if (document.getElementById("imagePageId"))
+    imagePageId.innerHTML = "Evaluación de la grasa corporal";
+  if (document.getElementById("exercisePageId"))
+    exercisePageId.innerHTML = "Evaluación del ejercicio";
   if (document.getElementById("healthyPageId"))
     healthyPageId.innerHTML = "Comidas saludables";
   if (document.getElementById("pagesNavId"))
@@ -240,57 +240,4 @@ export function español() {
   }
   document.getElementById("allRights").innerHTML =
     "Todos los derechos reservados";
-}
-export function themeTypeLight() {
-  theme = "light";
-  sessionStorage.setItem("theme", theme);
-  document.body.style.cssText = "background-color:white; color:#1F3B4D;";
-  if (document.getElementById("leftsidebarButton"))
-    leftsidebarButton.style.color = "black";
-  if (document.getElementById("rightsidebarButton"))
-    rightsidebarButton.style.color = "black";
-  if (document.getElementById("headingObjInputIdHead"))
-    document.getElementById("headingObjInputIdHead").style.color = "black";
-  if (document.querySelectorAll(".headingTextInputId"))
-    for (let element of document.querySelectorAll(".headingTextInputId"))
-      element.style.color = "black";
-  for (let nav of document.querySelectorAll(".leftsidenav, .rightsidenav")) {
-    nav.style.backgroundColor = "#42B395";
-    nav.style.color = "#000";
-  }
-  if (document.querySelector("#pageBtnsId")) {
-    for (let button of document.querySelector("#pageBtnsId").children) {
-      button.classList.remove("aboutContactBtn");
-      button.classList.add("contactAboutBtn");
-    }
-  }
-  document
-    .querySelectorAll(".classFooter")
-    .forEach((el) => (el.style.color = "#000"));
-}
-export function themeTypeDark() {
-  theme = "dark";
-  sessionStorage.setItem("theme", theme);
-  if (document.getElementById("leftsidebarButton"))
-    leftsidebarButton.style.color = "aliceblue";
-  if (document.getElementById("rightsidebarButton"))
-    rightsidebarButton.style.color = "aliceblue";
-  document.body.style.cssText = "background-color:#12232A; color:#1F3B4D;";
-  if (document.getElementById("headingObjInputIdHead"))
-    document.getElementById("headingObjInputIdHead").style.color = "aliceblue";
-  if (document.querySelectorAll(".headingTextInputId"))
-    for (let element of document.querySelectorAll(".headingTextInputId"))
-      element.style.color = "aliceblue";
-  for (let nav of document.querySelectorAll(".leftsidenav, .rightsidenav")) {
-    nav.style.backgroundColor = "#000";
-    nav.style.color = "#fff";
-  }
-  if (document.querySelector("#pageBtnsId"))
-    for (let button of document.querySelector("#pageBtnsId").children) {
-      button.classList.add("aboutContactBtn");
-      button.classList.remove("contactAboutBtn");
-    }
-  document
-    .querySelectorAll(".classFooter")
-    .forEach((el) => (el.style.color = "#fff"));
 }

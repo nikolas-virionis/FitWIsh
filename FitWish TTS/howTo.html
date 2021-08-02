@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="./assets/css/aboutContactHowTo.css">
     <link rel="stylesheet" href="./assets/css/howTo.css">
-    <script type="module" src="./assets/js/script.mjs" defer></script>
     <script src="./assets/js/script.js" defer></script>
     <script src="./assets/js/howTo.js" defer></script>
 </head>
@@ -50,7 +49,6 @@
                     class="nationNameYellow">ñol</span></a></span>
         <li onclick="themeTypeDark();" id="darkThemeButton" class="listnav">Dark Theme (default)</li>
         <li onclick="themeTypeLight();" id="lightThemeButton" class="listnav">Light Theme</li>
-        <li onclick="" id="pagesNavId" class="listnav">Pages/Sections(&sect;)</li>
         <li onclick="disclaimer();" id="disclaimerId">DISCLAIMER</li>
         <li onclick="window.location.href = 'about.html';" id="aboutId" class="listnav2">About</li>
         <li onclick="window.location.href = 'contact.html';" id="contactId" class="listnav2">Contact</li>
@@ -59,18 +57,18 @@
         <a href="javascript:void(0)" class="closebtn" onclick="rightNavInterpreter()">&times;</a>
         <span id="pageId">Pages:</span><br>
         <ul id="listRightNav">
-            <li onclick="window.location.href = 'intro.html';" id="introPageId">Introduction</li>
-            <li onclick="window.location.href = 'login.html';" id="loginPageId">Login</li>
-            <li onclick="window.location.href = 'genderUnit.html';" id="genderUnitPageId">Gender/Unit</li>
-            <li onclick="window.location.href = 'data.html';" id="dataPageId">Weight/Height</li>
-            <li onclick="window.location.href = 'goal.html';" id="goalPageId">Goal</li>
-            <li onclick="window.location.href = 'bodyType.html';" id="bodyTypePageId">Body Type</li>
-            <li onclick="window.location.href = 'image.html';" id="bodyImagePageId">Body Fat Evaluation</li>
-            <li onclick="window.location.href = 'exercise.html';" id="xercisePageId">Exercise Evaluation</li>
-            <li onclick="window.location.href = 'healthy.html';" id="healthyPageId">Healthy Meals</li>
-            <li onclick="window.location.href = 'cheat.html';" id="cheatPageId">Cheat Meals</li>
-            <li onclick="window.location.href = 'meals.html';" id="mealsPageId">Meals/Day</li>
-            <li onclick="window.location.href = 'emotion.html';" id="emotionPageId">Emotion-based Overeating</li>
+            <li id="introPageId">Introduction</li>
+            <li id="loginPageId">Login</li>
+            <li id="genderUnitPageId">Gender/Unit</li>
+            <li id="dataPageId">Weight/Height</li>
+            <li id="goalPageId">Goal</li>
+            <li id="bodyTypePageId">Body Type</li>
+            <li id="imagePageId">Body Fat Evaluation</li>
+            <li id="exercisePageId">Exercise Evaluation</li>
+            <li id="healthyPageId">Healthy Meals</li>
+            <li id="cheatPageId">Cheat Meals</li>
+            <li id="mealsPageId">Meals/Day</li>
+            <li id="emotionPageId">Emotion-based Overeating</li>
         </ul>
     </div>
     <strong id="idHowToPage">
@@ -102,15 +100,13 @@
             </a>
         </div>
     </div>
-    <div id="buttonsId">
-        <div id="pageBtnsId">
-            <input type="button" name="attempt" onclick="window.location.href = 'index.html';" id="buttonFirst"
-                class="aboutContactBtn" value="Attempt's Menu">
-            <input type="button" name="about" onclick="window.location.href = 'about.html';" id="buttonAbout"
-                class="aboutContactBtn" value="About">
-            <input type="button" name="contact" onclick="window.location.href = 'contact.html';" id="buttonContact"
-                class="aboutContactBtn" value="Contact">
-        </div>
+    <div id="pageBtnsId">
+        <input type="button" name="attempt" onclick="window.location.href = 'index.html';" id="buttonFirst"
+            class="aboutContactBtn" value="Attempt's Menu">
+        <input type="button" name="about" onclick="window.location.href = 'about.html';" id="buttonAbout"
+            class="aboutContactBtn" value="About">
+        <input type="button" name="contact" onclick="window.location.href = 'contact.html';" id="buttonContact"
+            class="aboutContactBtn" value="Contact">
     </div>
 </body>
 

@@ -1,26 +1,26 @@
 let contentArray = JSON.parse(localStorage.getItem("contentArray"));
 const english = () =>
-  import("./script.mjs").then(({ english: defaultEnglish }) =>
+  import("./modules/language.js").then(({ english: defaultEnglish }) =>
     defaultEnglish()
   );
 const português = () =>
-  import("./script.mjs").then(({ português: defaultPortuguês }) =>
+  import("./modules/language.js").then(({ português: defaultPortuguês }) =>
     defaultPortuguês()
   );
 const français = () =>
-  import("./script.mjs").then(({ français: defaultFrançais }) =>
+  import("./modules/language.js").then(({ français: defaultFrançais }) =>
     defaultFrançais()
   );
 const español = () =>
-  import("./script.mjs").then(({ español: defaultEspañol }) =>
+  import("./modules/language.js").then(({ español: defaultEspañol }) =>
     defaultEspañol()
   );
 const themeTypeLight = () =>
-  import("./script.mjs").then(({ themeTypeLight: defaultLight }) =>
+  import("./modules/theme.js").then(({ themeTypeLight: defaultLight }) =>
     defaultLight()
   );
 const themeTypeDark = () =>
-  import("./script.mjs").then(({ themeTypeDark: defaultDark }) =>
+  import("./modules/theme.js").then(({ themeTypeDark: defaultDark }) =>
     defaultDark()
   );
 

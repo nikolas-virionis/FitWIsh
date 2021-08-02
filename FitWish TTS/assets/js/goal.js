@@ -1,5 +1,5 @@
 function english() {
-  import("./script.mjs").then(({ english: defaultEnglish }) =>
+  import("./modules/language.js").then(({ english: defaultEnglish }) =>
     defaultEnglish()
   );
   document.getElementById("headingObjInputIdGoal").innerHTML = "Goal";
@@ -10,7 +10,7 @@ function english() {
     "Gaining Weight and Muscle";
 }
 function português() {
-  import("./script.mjs").then(({ português: defaultPortuguês }) =>
+  import("./modules/language.js").then(({ português: defaultPortuguês }) =>
     defaultPortuguês()
   );
   document.getElementById("headingObjInputIdGoal").innerHTML = "Objetivo";
@@ -20,7 +20,7 @@ function português() {
   document.getElementById("colorChangeIdMuscle").value = "Ganhar peso";
 }
 function français() {
-  import("./script.mjs").then(({ français: defaultFrançais }) =>
+  import("./modules/language.js").then(({ français: defaultFrançais }) =>
     defaultFrançais()
   );
   document.getElementById("headingObjInputIdGoal").innerHTML = "Objectif";
@@ -30,7 +30,7 @@ function français() {
   document.getElementById("colorChangeIdMuscle").value = "Gagner de poids";
 }
 function español() {
-  import("./script.mjs").then(({ español: defaultEspañol }) =>
+  import("./modules/language.js").then(({ español: defaultEspañol }) =>
     defaultEspañol()
   );
   document.getElementById("headingObjInputIdGoal").innerHTML = "Objetivo";
@@ -40,14 +40,14 @@ function español() {
   document.getElementById("colorChangeIdMuscle").value = "Ganar peso";
 }
 function themeTypeLight() {
-  import("./script.mjs").then(({ themeTypeLight: defaultLight }) =>
+  import("./modules/theme.js").then(({ themeTypeLight: defaultLight }) =>
     defaultLight()
   );
   for (let el of document.querySelectorAll(".headingObjInputId"))
     el.style.backgroundColor = "#D0FEFE";
 }
 function themeTypeDark() {
-  import("./script.mjs").then(({ themeTypeDark: defaultDark }) =>
+  import("./modules/theme.js").then(({ themeTypeDark: defaultDark }) =>
     defaultDark()
   );
   for (let el of document.querySelectorAll(".headingObjInputId"))

@@ -1,5 +1,5 @@
 function english() {
-  import("./script.mjs").then(({ english: defaultEnglish }) =>
+  import("./modules/language.js").then(({ english: defaultEnglish }) =>
     defaultEnglish()
   );
   document.getElementById("headingObjInputIdEmotion").innerHTML =
@@ -9,7 +9,7 @@ function english() {
   document.getElementById("buttonResult").value = "Result";
 }
 function português() {
-  import("./script.mjs").then(({ português: defaultPortuguês }) =>
+  import("./modules/language.js").then(({ português: defaultPortuguês }) =>
     defaultPortuguês()
   );
   document.getElementById("headingObjInputIdEmotion").innerHTML =
@@ -19,7 +19,7 @@ function português() {
   document.getElementById("buttonResult").value = "Resultado";
 }
 function français() {
-  import("./script.mjs").then(({ français: defaultFrançais }) =>
+  import("./modules/language.js").then(({ français: defaultFrançais }) =>
     defaultFrançais()
   );
   document.getElementById("headingObjInputIdEmotion").innerHTML =
@@ -29,7 +29,7 @@ function français() {
   document.getElementById("buttonResult").value = "Résultat";
 }
 function español() {
-  import("./script.mjs").then(({ español: defaultEspañol }) =>
+  import("./modules/language.js").then(({ español: defaultEspañol }) =>
     defaultEspañol()
   );
   document.getElementById("headingObjInputIdEmotion").innerHTML =
@@ -39,14 +39,14 @@ function español() {
   document.getElementById("buttonResult").value = "Resultado";
 }
 function themeTypeLight() {
-  import("./script.mjs").then(({ themeTypeLight: defaultLight }) =>
+  import("./modules/theme.js").then(({ themeTypeLight: defaultLight }) =>
     defaultLight()
   );
   for (let el of document.querySelectorAll(".headingObjInputId"))
     el.style.backgroundColor = "#D0FEFE";
 }
 function themeTypeDark() {
-  import("./script.mjs").then(({ themeTypeDark: defaultDark }) =>
+  import("./modules/theme.js").then(({ themeTypeDark: defaultDark }) =>
     defaultDark()
   );
   for (let el of document.querySelectorAll(".headingObjInputId"))

@@ -2,7 +2,7 @@ let contentArray = JSON.parse(localStorage.getItem("contentArray")) ?? [],
   triesMade;
 
 function english() {
-  import("./script.mjs").then(({ english: defaultEnglish }) =>
+  import("./modules/language.js").then(({ english: defaultEnglish }) =>
     defaultEnglish()
   );
   if (contentArray.length >= 1) numberBtnsOverwriteEn();
@@ -20,7 +20,7 @@ function english() {
   firstPageBtnHideAll.value = `Hide All Previous Tests`;
 }
 function português() {
-  import("./script.mjs").then(({ português: defaultPortuguês }) =>
+  import("./modules/language.js").then(({ português: defaultPortuguês }) =>
     defaultPortuguês()
   );
   if (contentArray.length >= 1) numberBtnsOverwritePt();
@@ -38,7 +38,7 @@ function português() {
   firstPageBtnHideAll.value = `Ocultar Testes Anteriores`;
 }
 function français() {
-  import("./script.mjs").then(({ français: defaultFrançais }) =>
+  import("./modules/language.js").then(({ français: defaultFrançais }) =>
     defaultFrançais()
   );
   if (contentArray.length >= 1) numberBtnsOverwriteFr();
@@ -56,7 +56,7 @@ function français() {
   firstPageBtnHideAll.value = `Masquer tous les tests précédents`;
 }
 function español() {
-  import("./script.mjs").then(({ español: defaultEspañol }) =>
+  import("./modules/language.js").then(({ español: defaultEspañol }) =>
     defaultEspañol()
   );
   if (contentArray.length >= 1) numberBtnsOverwriteEs();
@@ -74,7 +74,7 @@ function español() {
   firstPageBtnHideAll.value = `Ocultar todas las pruebas anteriores`;
 }
 function themeTypeLight() {
-  import("./script.mjs").then(({ themeTypeLight: defaultLight }) =>
+  import("./modules/theme.js").then(({ themeTypeLight: defaultLight }) =>
     defaultLight()
   );
   firstPageH1.style.color = "#1F3B4D";
@@ -82,7 +82,7 @@ function themeTypeLight() {
   firstPageH13rd.style.color = "#1F3B4D";
 }
 function themeTypeDark() {
-  import("./script.mjs").then(({ themeTypeDark: defaultDark }) =>
+  import("./modules/theme.js").then(({ themeTypeDark: defaultDark }) =>
     defaultDark()
   );
   firstPageH1.style.color = "azure";
@@ -203,8 +203,7 @@ function getDefLang() {
 }
 window.addEventListener("load", () => {
   sessionStorage.setItem("first", JSON.stringify(true));
-  if (sessionStorage.getItem("language"))
-    eval(sessionStorage.getItem("language"))();
+  eval(sessionStorage.getItem("language"))?.();
   sessionStorage.getItem("theme") == "light"
     ? themeTypeLight()
     : themeTypeDark();

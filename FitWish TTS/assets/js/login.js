@@ -1,5 +1,5 @@
 function english() {
-  import("./script.mjs").then(({ english: defaultEnglish }) =>
+  import("./modules/language.js").then(({ english: defaultEnglish }) =>
     defaultEnglish()
   );
   document.getElementById("name").placeholder = "Name Example: Nick";
@@ -11,7 +11,7 @@ function english() {
   document.getElementById("headingTextInputIdEmail").innerHTML = "Email:";
 }
 function português() {
-  import("./script.mjs").then(({ português: defaultPortuguês }) =>
+  import("./modules/language.js").then(({ português: defaultPortuguês }) =>
     defaultPortuguês()
   );
   document.getElementById("name").placeholder = "Exemplo de Nome: Nick";
@@ -23,7 +23,7 @@ function português() {
   document.getElementById("headingTextInputIdEmail").innerHTML = "Email:";
 }
 function français() {
-  import("./script.mjs").then(({ français: defaultFrançais }) =>
+  import("./modules/language.js").then(({ français: defaultFrançais }) =>
     defaultFrançais()
   );
   document.getElementById("name").placeholder = "Exemple de nom: Nick";
@@ -35,7 +35,7 @@ function français() {
   document.getElementById("headingTextInputIdEmail").innerHTML = "Email:";
 }
 function español() {
-  import("./script.mjs").then(({ español: defaultEspañol }) =>
+  import("./modules/language.js").then(({ español: defaultEspañol }) =>
     defaultEspañol()
   );
   document.getElementById("name").placeholder = "Ejemplo de nombre: Nick";
@@ -48,14 +48,14 @@ function español() {
     "Correo electrónico:";
 }
 function themeTypeLight() {
-  import("./script.mjs").then(({ themeTypeLight: defaultLight }) =>
+  import("./modules/theme.js").then(({ themeTypeLight: defaultLight }) =>
     defaultLight()
   );
   for (let input of document.querySelectorAll(".headingTextInputId"))
     input.style.cssText = "color: #1F3B4D;";
 }
 function themeTypeDark() {
-  import("./script.mjs").then(({ themeTypeDark: defaultDark }) =>
+  import("./modules/theme.js").then(({ themeTypeDark: defaultDark }) =>
     defaultDark()
   );
   for (let input of document.querySelectorAll(".headingTextInputId"))

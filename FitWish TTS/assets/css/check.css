@@ -1,15 +1,17 @@
-#idCheckSubmit {
-  margin-top: 10vh;
-  top: 10vh;
-}
-#headingObjInputIdEmotion {
-  margin-top: 10vh;
-  top: 10vh;
-  height: 15vh;
-  padding: 5vh 10vw;
+#headingObjInputIdCheck {
+  height: 12.5vh;
+  padding: 2.5vh 10vw;
   text-align: center;
   align-items: center;
   font-size: 3vw;
+  margin-bottom: 1.5vh;
+}
+
+#idCheckSubmit {
+  display: block;
+  place-content: center;
+  place-items: center;
+  margin-top: 15vh;
 }
 
 #titleLink {

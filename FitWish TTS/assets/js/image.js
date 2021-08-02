@@ -1,6 +1,6 @@
 const getAge = () => JSON.parse(sessionStorage.getItem("age"));
 function english() {
-  import("./script.mjs").then(({ english: defaultEnglish }) =>
+  import("./modules/language.js").then(({ english: defaultEnglish }) =>
     defaultEnglish()
   );
   showImgBtn.innerHTML = "&#9776; Show Image";
@@ -13,7 +13,7 @@ function english() {
     "Which one of these you think represent your goal the most?";
 }
 function português() {
-  import("./script.mjs").then(({ português: defaultPortuguês }) =>
+  import("./modules/language.js").then(({ português: defaultPortuguês }) =>
     defaultPortuguês()
   );
   showImgBtn.innerHTML = "&#9776; Exibir Imagem";
@@ -26,7 +26,7 @@ function português() {
     "Qual dessas imagens representa melhor seu objetivo corporal?";
 }
 function français() {
-  import("./script.mjs").then(({ français: defaultFrançais }) =>
+  import("./modules/language.js").then(({ français: defaultFrançais }) =>
     defaultFrançais()
   );
   showImgBtn.innerHTML = "&#9776; Afficher l'image";
@@ -39,7 +39,7 @@ function français() {
     "Selon vous, lequel de ces éléments représente le plus votre objectif?";
 }
 function español() {
-  import("./script.mjs").then(({ español: defaultEspañol }) =>
+  import("./modules/language.js").then(({ español: defaultEspañol }) =>
     defaultEspañol()
   );
   showImgBtn.innerHTML = "&#9776; Mostrar imagen";
@@ -52,14 +52,14 @@ function español() {
     "¿Cuál de estos crees que representa más tu objetivo?";
 }
 function themeTypeLight() {
-  import("./script.mjs").then(({ themeTypeLight: defaultLight }) =>
+  import("./modules/theme.js").then(({ themeTypeLight: defaultLight }) =>
     defaultLight()
   );
   for (let el of document.querySelectorAll(".headingObjInputId"))
     el.style.backgroundColor = "#D0FEFE";
 }
 function themeTypeDark() {
-  import("./script.mjs").then(({ themeTypeDark: defaultDark }) =>
+  import("./modules/theme.js").then(({ themeTypeDark: defaultDark }) =>
     defaultDark()
   );
   for (let el of document.querySelectorAll(".headingObjInputId"))
