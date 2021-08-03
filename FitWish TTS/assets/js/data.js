@@ -1,3 +1,4 @@
+const getUnit = () => sessionStorage.getItem("unit");
 function english() {
   import("./modules/language.js").then(({ english: defaultEnglish }) =>
     defaultEnglish()
@@ -122,7 +123,6 @@ window.addEventListener("load", () => {
       imperialDataInputId.style.display = "block";
     }
   }
-  const getUnit = () => sessionStorage.getItem("unit");
   let unit = getUnit().charAt(0).toUpperCase() + getUnit().slice(1) ?? "Metric";
   let elements = ["height", "weight"];
   elements.forEach(

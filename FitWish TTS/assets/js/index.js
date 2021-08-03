@@ -436,7 +436,7 @@ function hidePrevTests() {
   firstPageBtnSeePrev.style.display = "block";
   firstPageBtnHidePrev.style.display = "none";
 }
-function seePrevTest() {
+function seePrevTests() {
   firstPageBtn1stTry.style.display = "block";
   firstPageBtnSeePrev.style.display = "none";
   firstPageBtnHidePrev.style.display = "block";

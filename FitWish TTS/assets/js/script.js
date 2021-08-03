@@ -87,10 +87,15 @@ if (document.getElementById("leftCloseBtn"))
   leftCloseBtn.addEventListener("click", () => closeNav());
 if (document.getElementById("disclaimerId"))
   disclaimerId.addEventListener("click", () => disclaimer());
-linkTitle.addEventListener(
-  "click",
-  () => (window.location.href = "intro.html")
-);
+if (
+  window.location.pathname.split("/").pop().slice(0, -5) != "index" &&
+  window.location.pathname.split("/").pop().slice(0, -5) != "" &&
+  window.location.pathname.split("/").pop().slice(0, -5) != "previousResult"
+)
+  linkTitle.addEventListener(
+    "click",
+    () => (window.location.href = "intro.html")
+  );
 
 if (document.querySelectorAll(".nationBtns")) {
   let nations = ["english", "português", "français", "español"];
