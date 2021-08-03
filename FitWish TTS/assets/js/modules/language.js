@@ -17,8 +17,6 @@ export function english() {
   )
     for (let element of listRightNav.children)
       element.style.fontSize = "2.355vw";
-  if (document.getElementById("pagesNavId"))
-    pagesNavId.innerHTML = "Pages/Sections(&sect;)";
   if (document.getElementById("languageInput"))
     languageInput.innerHTML = "Language:";
   alreadyInPage = "Already in page";
@@ -80,8 +78,6 @@ export function português() {
   if (document.getElementById("languageInput"))
     languageInput.innerHTML = "Idioma:";
   alreadyInPage = "Já nessa página";
-  if (document.getElementById("pagesNavId"))
-    pagesNavId.innerHTML = "Páginas/Seções(&sect;)";
   if (document.getElementById("pageId")) pageId.innerHTML = "Páginas:";
   if (document.getElementById("introPageId"))
     introPageId.innerHTML = "Introdução";
@@ -152,8 +148,6 @@ export function français() {
     bodyTypePageId.innerHTML = "Type de corps";
   if (document.getElementById("imagePageId"))
     imagePageId.innerHTML = "Évaluation de la graisse corporelle";
-  if (document.getElementById("pagesNavId"))
-    pagesNavId.innerHTML = "Pages/Sections(&sect;)";
   if (document.getElementById("exercisePageId"))
     exercisePageId.innerHTML = "Évaluation de l'exercice";
   if (document.getElementById("healthyPageId"))
@@ -217,8 +211,6 @@ export function español() {
     exercisePageId.innerHTML = "Evaluación del ejercicio";
   if (document.getElementById("healthyPageId"))
     healthyPageId.innerHTML = "Comidas saludables";
-  if (document.getElementById("pagesNavId"))
-    pagesNavId.innerHTML = "Paginas/Secciones(&sect;)";
   if (document.getElementById("dataPageId"))
     dataPageId.innerHTML = "Peso/Altura";
   if (document.getElementById("cheatPageId"))

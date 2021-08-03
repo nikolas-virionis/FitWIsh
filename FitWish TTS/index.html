@@ -26,38 +26,38 @@
 <!--HTML questions and basic structure-->
 
 <body id="bodyBgColorId">
-    <div class="sideBarButtons" onclick="openNav();" id="leftsidebarButton">&#9776;</div>
-    <div id="linkTitle" title="FitWish Home Page"><a id="linkTitlea" href="intro.html"><img id="imageLogo"
-                src="https://www.pngkey.com/png/full/211-2118619_healthy-army-communities-healthy-apple-logo.png"></a>
-        <a id="titleLink" href="intro.html">
+    <div class="sideBarButtons" id="leftsidebarButton">&#9776;</div>
+    <span id="linkTitle" title="FitWish Home Page"><span id="linkTitlea"><img id="imageLogo"
+                src="https://www.pngkey.com/png/full/211-2118619_healthy-army-communities-healthy-apple-logo.png"></span>
+        <span id="titleLink">
             <h1 class="classHeading" id="headingObjInputIdHead"><i>FitWish</i></h1>
-        </a>
-    </div>
+        </span>
+    </span>
     <div id="myLeftSidenav" class="leftsidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a class="closebtn" id="leftCloseBtn">&times;</a>
         <span id="languageInput">Language:</span><br>
-        <a href="javascript:english();"><img class="nationFlag"
+        <div class="nationBtns"><img class="nationFlag"
                 src="https://grid.gograph.com/flag-usuk-eps-vector_gg64260913.jpg"><span class="nationName"><span
                     class="nationNameRed">En</span><span class="nationNameWhite">gli</span><span
-                    class="nationNameBlue">sh</span></a></span>
-        <a href="javascript:português();"><img class="nationFlag"
+                    class="nationNameBlue">sh</span></span></div>
+        <div class="nationBtns"><img class="nationFlag"
                 src="https://portuguessemmisterio.files.wordpress.com/2018/12/Bandeiras_Brazil_e_Portugal.png"><span
                 class="nationName"><span class="nationNameGreen">Por</span><span class="nationNameRed">tu</span><span
-                    class="nationNameYellow">guês</span></a></span>
-        <a href="javascript:français();"><img class="nationFlag"
+                    class="nationNameYellow">guês</span></span></div>
+        <div class="nationBtns"><img class="nationFlag"
                 src="https://upload.wikimedia.org/wikipedia/commons/6/62/Flag_of_France.png"><span
                 class="nationName"><span class="nationNameBlue">Fr</span><span class="nationNameWhite">an</span><span
-                    class="nationNameRed">çais</span></a></span>
-        <a href="javascript:español();"><img class="nationFlag"
+                    class="nationNameRed">çais</span></span></div>
+        <div class="nationBtns"><img class="nationFlag"
                 src="https://www.countryflags.com/wp-content/uploads/spain-flag-png-large.png"><span
                 class="nationName"><span class="nationNameYellow">Es</span><span class="nationNameRed">pa</span><span
-                    class="nationNameYellow">ñol</span></a></span>
-        <li onclick="themeTypeDark();" id="darkThemeButton" class="listnav">Dark Theme (default)</li>
-        <li onclick="themeTypeLight();" id="lightThemeButton" class="listnav">Light Theme</li>
-        <li onclick="disclaimer();" id="disclaimerId">DISCLAIMER</li>
-        <li onclick="window.location.href = 'about.html';" id="aboutId" class="listnav2">About</li>
-        <li onclick="window.location.href = 'contact.html';" id="contactId" class="listnav2">Contact</li>
-        <li onclick="window.location.href = 'howTo.html';" id="howItWorksId" class="listnav2">How it Works</li>
+                    class="nationNameYellow">ñol</span></span></div>
+        <li id="darkThemeButton" class="listnav">Dark Theme (default)</li>
+        <li id="lightThemeButton" class="listnav">Light Theme</li>
+        <li id="disclaimerId">DISCLAIMER</li>
+        <li id="aboutId" class="listnav2">About</li>
+        <li id="contactId" class="listnav2">Contact</li>
+        <li id="howItWorksId" class="listnav2">How it Works</li>
     </div>
     <strong id="idFirstSubmit">
         <span>
@@ -74,30 +74,30 @@
                 tried
                 our test twice. <br> Do you want to</h1>
         </span>
-        <input type="button" class="button" id="firstPageBtn1stTry" onclick="showPrevTestResult(1);"
-            value="See Result from test as " style="display: none;">
-        <input type="button" class="button" id="firstPageBtn2ndTry" onclick="showPrevTestResult(2);"
-            value="See Result from test as " style="display: none;">
-        <input type="button" class="button" id="firstPageBtn1stTryOverwrite" onclick="overwriteTest2(1);"
-            value="Overwrite Test made as " style="display: none;">
-        <input type="button" class="button" id="firstPageBtn2ndTryOverwrite" onclick="overwriteTest2(2);"
-            value="Overwrite Test made as " style="display: none;">
+        <input type="button" class="button" id="firstPageBtn1stTry""
+            value=" See Result from test as " style=" display: none;">
+        <input type="button" class="button" id="firstPageBtn2ndTry""
+            value=" See Result from test as " style=" display: none;">
+        <input type="button" class="button" id="firstPageBtn1stTryOverwrite" value="Overwrite Test made as "
+            style="display: none;">
+        <input type="button" class="button" id="firstPageBtn2ndTryOverwrite" value="Overwrite Test made as "
+            style="display: none;">
         <span class="firstPageBtns">
-            <input type="button" class="button" id="firstPageBtnStart" onclick="startNewTry(1);" value="Start">
+            <input type="button" class="button" id="firstPageBtnStart" value="Start">
             <input type="button" class="button" id="firstPageBtnDifferent" style="display: none;"
-                onclick="startNewTry(2);" value="Do a Different Test">
-            <input type="button" class="button" id="firstPageBtnOverwrite" onclick="overwriteTest();"
-                value="Overwrite one Previous Test" style="display: none;">
-            <input type="button" class="button" id="firstPageBtnDelete" onclick="deleteTests();"
-                value="Delete All Previous Tests Made" style="display: none;">
-            <input type="button" class="button" id="firstPageBtnSeePrev" onclick="seePrevTest();"
-                value="See the Previous Test Result" style="display: none;">
-            <input type="button" class="button" id="firstPageBtnSeeAll" onclick="seeAllTests();"
-                value="See All Previous Tests" style="display: none;">
+                value="Do a Different Test">
+            <input type="button" class="button" id="firstPageBtnOverwrite" value="Overwrite one Previous Test"
+                style="display: none;">
+            <input type="button" class="button" id="firstPageBtnDelete" value="Delete All Previous Tests Made"
+                style="display: none;">
+            <input type="button" class="button" id="firstPageBtnSeePrev" value="See the Previous Test Result"
+                style="display: none;">
+            <input type="button" class="button" id="firstPageBtnSeeAll" value="See All Previous Tests"
+                style="display: none;">
             <input type="button" class="button" style="display: none;" id="firstPageBtnHideAll"
-                onclick="hideAllTests();" value="Hide All Previous Tests">
+                value="Hide All Previous Tests">
             <input type="button" class="button" style="display: none;" id="firstPageBtnHidePrev"
-                onclick="hidePrevTests();" value="Hide Previous Test">
+                value="Hide Previous Test">
         </span>
     </strong>
     <div id="footerDiv">
@@ -110,10 +110,8 @@
         </div>
     </div>
     <div id="pageBtnsId">
-        <input type="button" name="about" onclick="window.location.href = 'about.html';" id="buttonAbout"
-            class="aboutContactBtn" value="About">
-        <input type="button" name="contact" onclick="window.location.href = 'contact.html';" id="buttonContact"
-            class="aboutContactBtn" value="Contact">
+        <input type="button" name="about" id="buttonAbout" class="aboutContactBtn" value="About">
+        <input type="button" name="contact" id="buttonContact" class="aboutContactBtn" value="Contact">
     </div>
 </body>
 

@@ -203,6 +203,10 @@ function closeGenderCenterNav() {
   myGenderCenterNav.style.height = "0";
   myGenderCenterNav.style.display = "none";
 }
+
+showImgBtn.addEventListener("click", () => openGenderCenterNav());
+genderCloneNav.addEventListener("click", () => closeGenderCenterNav());
+
 function setImg(link) {
   img.src = link;
   img.setAttribute("width", "400");

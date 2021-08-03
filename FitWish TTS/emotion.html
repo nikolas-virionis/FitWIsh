@@ -18,44 +18,42 @@
 <!--HTML questions and basic structure-->
 
 <body id="bodyBgColorId">
-    <div class="sideBarButtons" onclick="openNav();" id="leftsidebarButton">&#9776;</div>
-    <div class="sideBarButtons" onclick="rightNavInterpreter();" id="rightsidebarButton"><span
-            id="rightsidebarSymbol">&sect;</span></div>
-    <div id="linkTitle" title="FitWish Home Page"><a id="linkTitlea" href="intro.html"><img id="imageLogo"
-                src="https://www.pngkey.com/png/full/211-2118619_healthy-army-communities-healthy-apple-logo.png"></a>
-        <a id="titleLink" href="intro.html">
+    <div class="sideBarButtons" id="leftsidebarButton">&#9776;</div>
+    <div class="sideBarButtons" id="rightsidebarButton"><span id="rightsidebarSymbol">&sect;</span></div>
+    <span id="linkTitle" title="FitWish Home Page"><span id="linkTitlea"><img id="imageLogo"
+                src="https://www.pngkey.com/png/full/211-2118619_healthy-army-communities-healthy-apple-logo.png"></span>
+        <span id="titleLink">
             <h1 class="classHeading" id="headingObjInputIdHead"><i>FitWish</i></h1>
-        </a>
-    </div>
+        </span>
+    </span>
     <div id="myLeftSidenav" class="leftsidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a class="closebtn" id="leftCloseBtn">&times;</a>
         <span id="languageInput">Language:</span><br>
-        <a href="javascript:english();"><img class="nationFlag"
+        <div class="nationBtns"><img class="nationFlag"
                 src="https://grid.gograph.com/flag-usuk-eps-vector_gg64260913.jpg"><span class="nationName"><span
                     class="nationNameRed">En</span><span class="nationNameWhite">gli</span><span
-                    class="nationNameBlue">sh</span></a></span>
-        <a href="javascript:português();"><img class="nationFlag"
+                    class="nationNameBlue">sh</span></span></div>
+        <div class="nationBtns"><img class="nationFlag"
                 src="https://portuguessemmisterio.files.wordpress.com/2018/12/Bandeiras_Brazil_e_Portugal.png"><span
                 class="nationName"><span class="nationNameGreen">Por</span><span class="nationNameRed">tu</span><span
-                    class="nationNameYellow">guês</span></a></span>
-        <a href="javascript:français();"><img class="nationFlag"
+                    class="nationNameYellow">guês</span></span></div>
+        <div class="nationBtns"><img class="nationFlag"
                 src="https://upload.wikimedia.org/wikipedia/commons/6/62/Flag_of_France.png"><span
                 class="nationName"><span class="nationNameBlue">Fr</span><span class="nationNameWhite">an</span><span
-                    class="nationNameRed">çais</span></a></span>
-        <a href="javascript:español();"><img class="nationFlag"
+                    class="nationNameRed">çais</span></span></div>
+        <div class="nationBtns"><img class="nationFlag"
                 src="https://www.countryflags.com/wp-content/uploads/spain-flag-png-large.png"><span
                 class="nationName"><span class="nationNameYellow">Es</span><span class="nationNameRed">pa</span><span
-                    class="nationNameYellow">ñol</span></a></span>
-        <li onclick="themeTypeDark();" id="darkThemeButton" class="listnav">Dark Theme (default)</li>
-        <li onclick="themeTypeLight();" id="lightThemeButton" class="listnav">Light Theme</li>
-        <li onclick="" id="pagesNavId" class="listnav">Pages/Sections(&sect;)</li>
-        <li onclick="disclaimer();" id="disclaimerId">DISCLAIMER</li>
-        <li onclick="window.location.href = 'about.html';" id="aboutId" class="listnav2">About</li>
-        <li onclick="window.location.href = 'contact.html';" id="contactId" class="listnav2">Contact</li>
-        <li onclick="window.location.href = 'howTo.html';" id="howItWorksId" class="listnav2">How it Works</li>
+                    class="nationNameYellow">ñol</span></span></div>
+        <li id="darkThemeButton" class="listnav">Dark Theme (default)</li>
+        <li id="lightThemeButton" class="listnav">Light Theme</li>
+        <li id="disclaimerId">DISCLAIMER</li>
+        <li id="aboutId" class="listnav2">About</li>
+        <li id="contactId" class="listnav2">Contact</li>
+        <li id="howItWorksId" class="listnav2">How it Works</li>
     </div>
     <div id="myRightSidenav" class="rightsidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="rightNavInterpreter()">&times;</a>
+        <a href="javascript:void(0)" id="rightCloseBtn" class="closebtn">&times;</a>
         <span id="pageId">Pages:</span><br>
         <ul id="listRightNav">
             <li id="introPageId">Introduction</li>
@@ -88,8 +86,7 @@
             </a>
         </div>
     </div>
-    <input type="button" name="prev" onclick="window.location.href = 'meals.html';" id="buttonPrev" class="btnNextPrev"
-        value="Previous">
+    <input type="button" name="prev" id="buttonPrev" class="btnNextPrev" value="Previous">
     <input type="button" name="result" id="buttonResult" class="resultButton" value="Result">
 </body>
 

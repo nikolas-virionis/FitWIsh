@@ -68,10 +68,15 @@ body::-webkit-scrollbar-thumb:hover {
   margin: auto 1vw;
 }
 #linkTitle {
+  width: fit-content;
   display: flex;
   margin-left: 40%;
   text-decoration: none;
-  margin-right: 1vw;
+  cursor: pointer;
+}
+
+#linkTitle :is(span, img) {
+  pointer-events: none;
 }
 #imageLogo {
   float: left;
@@ -82,7 +87,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 #titleLink {
   text-decoration: none;
-  margin-left: 1.5%;
+  margin-left: 10%;
 }
 /*input headings' properties*/
 .classHeading {
@@ -104,6 +109,12 @@ body::-webkit-scrollbar-thumb:hover {
   color: aliceblue;
   place-items: left;
   font-size: 2.3em;
+}
+.nationBtns {
+  z-index: 13;
+}
+.nationBtns :is(span, img) {
+  pointer-events: none;
 }
 .nationFlag {
   height: 4vh;
@@ -136,9 +147,6 @@ body::-webkit-scrollbar-thumb:hover {
 .listnav2 {
   font-size: 1.45em;
   list-style-type: circle;
-}
-#pagesNavId {
-  font-size: 1.3em;
 }
 #pageId {
   color: white;
@@ -207,7 +215,7 @@ body::-webkit-scrollbar-thumb:hover {
   color: #818181;
   transition: 0.05s;
 }
-:is(.leftsidenav, .genderCenterNav, .rightsidenav) a {
+:is(.leftsidenav, .genderCenterNav, .rightsidenav) :is(a, div) {
   padding: 8px 8px 8px 30px;
   text-decoration: none;
   font-size: 2.355vw;

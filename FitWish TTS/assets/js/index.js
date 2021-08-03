@@ -177,6 +177,49 @@ function iniciateEspañol() {
   }
 }
 
+[
+  document.getElementById("firstPageBtn1stTry"),
+  document.getElementById("firstPageBtn2ndTry"),
+].forEach((element) =>
+  element.addEventListener("click", (e) =>
+    showPrevTestResult(Number(e.target.id[12]))
+  )
+);
+[
+  document.getElementById("firstPageBtn1stTryOverwrite"),
+  document.getElementById("firstPageBtn2ndTryOverwrite"),
+].forEach((element) =>
+  element.addEventListener("click", (e) =>
+    overwriteTest2(Number(e.target.id[12]))
+  )
+);
+[
+  document.getElementById("firstPageBtnStart"),
+  document.getElementById("firstPageBtnDifferent"),
+].forEach((element) =>
+  element.addEventListener("click", (e) =>
+    startNewTry(e.target.id.endsWith("Start") ? 1 : 2)
+  )
+);
+[
+  document.getElementById("firstPageBtnSeePrev"),
+  document.getElementById("firstPageBtnSeeAll"),
+].forEach((element) =>
+  element.addEventListener("click", (e) =>
+    eval(`see${e.target.id.slice(15)}Tests`)()
+  )
+);
+[
+  document.getElementById("firstPageBtnHidePrev"),
+  document.getElementById("firstPageBtnHideAll"),
+].forEach((element) =>
+  element.addEventListener("click", (e) =>
+    eval(`hide${e.target.id.slice(16)}Tests`)()
+  )
+);
+firstPageBtnOverwrite.addEventListener("click", () => overwriteTest());
+firstPageBtnDelete.addEventListener("click", () => deleteTests());
+
 function rearrangeElements(tries) {
   firstPageH1.style.display = "none";
   firstPageBtnStart.style.display = "none";
