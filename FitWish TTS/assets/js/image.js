@@ -1,4 +1,4 @@
-const getAge = () => JSON.parse(sessionStorage.getItem("age"));
+import { getAge } from "./modules/fieldGetter.js";
 function english() {
   import("./modules/language.js").then(({ english: defaultEnglish }) =>
     defaultEnglish()
@@ -132,6 +132,10 @@ window.addEventListener("load", () => {
 
 function hoverOutColorChangeFunc(hoveredOutId) {
   document.getElementById(hoveredOutId).style.backgroundColor = "teal";
+  changeBodyColor();
+  checkGoal();
+}
+function changeBodyColor() {
   if (getCurrentBody() == 1)
     colorChangeIdBody1.style.backgroundColor = "#7395AE";
   else if (getCurrentBody() == 2)
@@ -150,7 +154,8 @@ function hoverOutColorChangeFunc(hoveredOutId) {
     colorChangeIdBody8.style.backgroundColor = "#7395AE";
   else if (getCurrentBody() == 9)
     colorChangeIdBody9.style.backgroundColor = "#7395AE";
-
+}
+function checkGoal() {
   if (getGoalBody() == 1) {
     if (getAge() >= 15 && getAge() <= 40)
       colorChangeIdGoal1.style.backgroundColor = "#7395AE";
@@ -214,64 +219,12 @@ function setImg(link) {
   src = document.getElementById("bodyImageId");
   src.appendChild(img);
 }
-function changeColor9(
-  clickedId,
-  idleId1,
-  idleId2,
-  idleId3,
-  idleId4,
-  idleId5,
-  idleId6,
-  idleId7,
-  idleId8
-) {
-  document.getElementById(clickedId).style.backgroundColor = "#7395AE";
-  document.getElementById(idleId1).style.backgroundColor = "teal";
-  document.getElementById(idleId2).style.backgroundColor = "teal";
-  document.getElementById(idleId3).style.backgroundColor = "teal";
-  document.getElementById(idleId4).style.backgroundColor = "teal";
-  document.getElementById(idleId5).style.backgroundColor = "teal";
-  document.getElementById(idleId6).style.backgroundColor = "teal";
-  document.getElementById(idleId7).style.backgroundColor = "teal";
-  document.getElementById(idleId8).style.backgroundColor = "teal";
-}
-function changeColor10(
-  clickedId,
-  idleId1,
-  idleId2,
-  idleId3,
-  idleId4,
-  idleId5,
-  idleId6,
-  idleId7,
-  idleId8
-) {
-  if (
-    (getAge() >= 15 && getAge() <= 40) ||
-    (getAge() < 15 && getAge() >= 10 && getGoalBody() > 3) ||
-    (getAge() > 40 && getAge() <= 50 && getGoalBody() > 2) ||
-    (getAge() > 50 && getAge() <= 60 && getGoalBody() > 3) ||
-    (getAge() > 60 && getGoalBody() > 4)
-  ) {
-    document.getElementById(clickedId).style.backgroundColor = "#7395AE";
-    document.getElementById(idleId1).style.backgroundColor = "teal";
-    document.getElementById(idleId2).style.backgroundColor = "teal";
-    document.getElementById(idleId3).style.backgroundColor = "teal";
-    document.getElementById(idleId4).style.backgroundColor = "teal";
-    document.getElementById(idleId5).style.backgroundColor = "teal";
-    document.getElementById(idleId6).style.backgroundColor = "teal";
-    document.getElementById(idleId7).style.backgroundColor = "teal";
-    document.getElementById(idleId8).style.backgroundColor = "teal";
-  } else {
-    for (let element of arguments)
-      document.getElementById(element).style.backgroundColor = "teal";
-  }
-}
-const getCurrentBody = () => JSON.parse(sessionStorage.getItem("currentBody"));
+
+import { getCurrentBody } from "./modules/fieldGetter.js";
 const setCurrentBody = (body) =>
   sessionStorage.setItem("currentBody", JSON.stringify(body));
 
-const getGoalBody = () => JSON.parse(sessionStorage.getItem("goalBody"));
+import { getGoalBody } from "./modules/fieldGetter.js";
 const setGoalBody = (goal) => {
   if (
     !(

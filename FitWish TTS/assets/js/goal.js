@@ -66,7 +66,7 @@ function hoverOutColorChangeFunc(hoveredOutId) {
     colorChangeIdMuscle.style.backgroundColor = "#7395AE";
 }
 
-const getGoal = () => sessionStorage.getItem("goal");
+import { getGoal } from "./modules/fieldGetter.js";
 const goal = (goal) => sessionStorage.setItem("goal", goal);
 
 window.addEventListener("load", () => {

@@ -68,7 +68,7 @@ function hoverOutColorChangeFunc(hoveredOutId) {
     colorChangeId5Meals.style.backgroundColor = "#7395AE";
 }
 
-const getMeals = () => JSON.parse(sessionStorage.getItem("meals"));
+import { getMeals } from "./modules/fieldGetter.js";
 const setMeals = (meals) =>
   sessionStorage.setItem("meals", JSON.stringify(meals));
 

@@ -89,7 +89,7 @@ function hoverOutColorChangeFunc(hoveredOutId) {
 
 // body type
 const bodyType = (bodytype) => sessionStorage.setItem("bodytype", bodytype);
-const getBodyType = () => sessionStorage.getItem("bodytype");
+import { getBodyType } from "./modules/fieldGetter.js";
 function nop() {
   sessionStorage.removeItem("bodytype");
   if (language == "english")

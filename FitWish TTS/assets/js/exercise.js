@@ -69,30 +69,30 @@ function themeTypeDark() {
 
 function hoverOutColorChangeFunc(hoveredOutId) {
   document.getElementById(hoveredOutId).style.backgroundColor = "teal";
-  if (getExecise() == 1)
+  if (getExercise() == 1)
     colorChangeIdNoneXercise.style.backgroundColor = "#7395AE";
-  else if (getExecise() == 2)
+  else if (getExercise() == 2)
     colorChangeIdLowXercise.style.backgroundColor = "#7395AE";
-  else if (getExecise() == 3)
+  else if (getExercise() == 3)
     colorChangeIdMidXercise.style.backgroundColor = "#7395AE";
-  else if (getExecise() == 4)
+  else if (getExercise() == 4)
     colorChangeIdHighXercise.style.backgroundColor = "#7395AE";
 }
 
-const getExecise = () => JSON.parse(sessionStorage.getItem("exercise"));
-const setExecise = (exercise) =>
+import { getExercise } from "./modules/fieldGetter.js";
+const setExercise = (exercise) =>
   sessionStorage.setItem("exercise", JSON.stringify(exercise));
 
 window.addEventListener("load", () => {
   if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
-  if (getExecise())
+  if (getExercise())
     document.getElementById(
       `colorChangeId${
-        getExecise() == 1
+        getExercise() == 1
           ? "None"
-          : getExecise() == 2
+          : getExercise() == 2
           ? "Low"
-          : getExecise() == 3
+          : getExercise() == 3
           ? "Mid"
           : "High"
       }Xercise`
@@ -103,7 +103,7 @@ window.addEventListener("load", () => {
     : themeTypeDark();
   buttons.forEach((button) => {
     button.addEventListener("click", (e) =>
-      setExecise(
+      setExercise(
         e.target.id.slice(13, -7) == "None"
           ? 1
           : e.target.id.slice(13, -7) == "Low"

@@ -1,4 +1,4 @@
-const getUnit = () => sessionStorage.getItem("unit");
+import { getUnit } from "./modules/fieldGetter.js";
 function english() {
   import("./modules/language.js").then(({ english: defaultEnglish }) =>
     defaultEnglish()
