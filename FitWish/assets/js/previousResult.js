@@ -1,4 +1,4 @@
-import { contentArray } from "./index.js";
+let contentArray = JSON.parse(localStorage.getItem("contentArray")) ?? [];
 const english = () =>
   import("./modules/global/language.js").then(({ english: defaultEnglish }) =>
     defaultEnglish()

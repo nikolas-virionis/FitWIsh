@@ -1,4 +1,4 @@
-export let language = sessionStorage.getItem("language");
+let language = sessionStorage.getItem("language");
 let theme = sessionStorage.getItem("theme"),
   buttons = document.querySelectorAll(".button"),
   alreadyInPage,

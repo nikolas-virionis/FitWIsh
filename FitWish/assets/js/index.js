@@ -1,6 +1,5 @@
-export let contentArray =
-  JSON.parse(localStorage.getItem("contentArray")) ?? [];
-let triesMade;
+let contentArray = JSON.parse(localStorage.getItem("contentArray")) ?? [],
+  triesMade;
 
 import {
   startNewTry,
