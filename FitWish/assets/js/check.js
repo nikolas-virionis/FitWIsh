@@ -1,5 +1,5 @@
 function english() {
-  import("./modules/language.js").then(({ english: defaultEnglish }) =>
+  import("./modules/global/language.js").then(({ english: defaultEnglish }) =>
     defaultEnglish()
   );
   headingObjInputIdCheck.innerHTML =
@@ -8,8 +8,8 @@ function english() {
   colorChangeIdCheckYes.value = "Yes";
 }
 function português() {
-  import("./modules/language.js").then(({ português: defaultPortuguês }) =>
-    defaultPortuguês()
+  import("./modules/global/language.js").then(
+    ({ português: defaultPortuguês }) => defaultPortuguês()
   );
   headingObjInputIdCheck.innerHTML =
     "<i> Tem certeza de que deseja ver os resultados? <h5> Os dados inseridos não podem ser alterados depois disso </h5> </i>";
@@ -17,7 +17,7 @@ function português() {
   colorChangeIdCheckYes.value = "Sim";
 }
 function français() {
-  import("./modules/language.js").then(({ français: defaultFrançais }) =>
+  import("./modules/global/language.js").then(({ français: defaultFrançais }) =>
     defaultFrançais()
   );
   headingObjInputIdCheck.innerHTML =
@@ -27,7 +27,7 @@ function français() {
 }
 
 function español() {
-  import("./modules/language.js").then(({ español: defaultEspañol }) =>
+  import("./modules/global/language.js").then(({ español: defaultEspañol }) =>
     defaultEspañol()
   );
   headingObjInputIdCheck.innerHTML =
@@ -36,12 +36,12 @@ function español() {
   colorChangeIdCheckYes.value = "Sí";
 }
 function themeTypeLight() {
-  import("./modules/theme.js").then(({ themeTypeLight: defaultLight }) =>
+  import("./modules/global/theme.js").then(({ themeTypeLight: defaultLight }) =>
     defaultLight()
   );
 }
 function themeTypeDark() {
-  import("./modules/theme.js").then(({ themeTypeDark: defaultDark }) =>
+  import("./modules/global/theme.js").then(({ themeTypeDark: defaultDark }) =>
     defaultDark()
   );
 }

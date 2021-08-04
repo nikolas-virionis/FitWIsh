@@ -1,5 +1,5 @@
 function english() {
-  import("./modules/language.js").then(({ english: defaultEnglish }) =>
+  import("./modules/global/language.js").then(({ english: defaultEnglish }) =>
     defaultEnglish()
   );
   idHowToH2.innerHTML = "What you will do";
@@ -11,8 +11,8 @@ function english() {
   idHowToHeading.innerHTML = "How it Works";
 }
 function português() {
-  import("./modules/language.js").then(({ português: defaultPortuguês }) =>
-    defaultPortuguês()
+  import("./modules/global/language.js").then(
+    ({ português: defaultPortuguês }) => defaultPortuguês()
   );
   idHowToH2.innerHTML = "O que você vai fazer";
   idHowToH3.innerHTML = "O que nós vamos fazer";
@@ -23,7 +23,7 @@ function português() {
   idHowToHeading.innerHTML = "Como Funciona";
 }
 function français() {
-  import("./modules/language.js").then(({ français: defaultFrançais }) =>
+  import("./modules/global/language.js").then(({ français: defaultFrançais }) =>
     defaultFrançais()
   );
   idHowToH2.innerHTML = "Que vas tu faire";
@@ -35,7 +35,7 @@ function français() {
     "Eh bien, nous allons vous évaluer de manière complète et vous indiquer la distance qui vous sépare de vos objectifs sur votre chemin vers eux, puis vous pouvez revenir sur ce site même et refaire le test, en ayant jusqu'à deux résultats de test précédents stockés localement et en toute sécurité dans votre ordinateur.";
 }
 function español() {
-  import("./modules/language.js").then(({ español: defaultEspañol }) =>
+  import("./modules/global/language.js").then(({ español: defaultEspañol }) =>
     defaultEspañol()
   );
   idHowToH2.innerHTML = "Qué harás";
@@ -47,7 +47,7 @@ function español() {
     "Bueno, lo evaluaremos de manera integral y le diremos la distancia a sus objetivos en su camino hacia ellos, luego puede regresar a este mismo sitio y rehacer la prueba, teniendo hasta dos resultados de pruebas anteriores almacenados localmente y de forma segura en su computadora.";
 }
 function themeTypeLight() {
-  import("./modules/theme.js").then(({ themeTypeLight: defaultLight }) =>
+  import("./modules/global/theme.js").then(({ themeTypeLight: defaultLight }) =>
     defaultLight()
   );
   idHowToHeading.style.color = "#1F3B4D";
@@ -57,7 +57,7 @@ function themeTypeLight() {
   idHowToTxt2.style.color = "#1F3B4D";
 }
 function themeTypeDark() {
-  import("./modules/theme.js").then(({ themeTypeDark: defaultDark }) =>
+  import("./modules/global/theme.js").then(({ themeTypeDark: defaultDark }) =>
     defaultDark()
   );
   idHowToHeading.style.color = "azure";

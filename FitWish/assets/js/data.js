@@ -1,6 +1,6 @@
-import { getUnit } from "./modules/fieldGetter.js";
+import { getUnit } from "./modules/global/fieldGetter.js";
 function english() {
-  import("./modules/language.js").then(({ english: defaultEnglish }) =>
+  import("./modules/global/language.js").then(({ english: defaultEnglish }) =>
     defaultEnglish()
   );
   weightMetric.placeholder = "Example: 80.5";
@@ -20,8 +20,8 @@ function english() {
   }
 }
 function português() {
-  import("./modules/language.js").then(({ português: defaultPortuguês }) =>
-    defaultPortuguês()
+  import("./modules/global/language.js").then(
+    ({ português: defaultPortuguês }) => defaultPortuguês()
   );
   weightMetric.placeholder = "Exemplo: 80.5";
   heightMetric.placeholder = "Exemplo: 1.85";
@@ -40,7 +40,7 @@ function português() {
   }
 }
 function français() {
-  import("./modules/language.js").then(({ français: defaultFrançais }) =>
+  import("./modules/global/language.js").then(({ français: defaultFrançais }) =>
     defaultFrançais()
   );
   weightMetric.placeholder = "Exemple: 80.5";
@@ -60,7 +60,7 @@ function français() {
   }
 }
 function español() {
-  import("./modules/language.js").then(({ español: defaultEspañol }) =>
+  import("./modules/global/language.js").then(({ español: defaultEspañol }) =>
     defaultEspañol()
   );
   weightMetric.placeholder = "Ejemplo: 80.5";
@@ -80,14 +80,14 @@ function español() {
   }
 }
 function themeTypeLight() {
-  import("./modules/theme.js").then(({ themeTypeLight: defaultLight }) =>
+  import("./modules/global/theme.js").then(({ themeTypeLight: defaultLight }) =>
     defaultLight()
   );
   for (let field of document.querySelectorAll(".headingTextInputId"))
     field.style.color = "#1F3B4D";
 }
 function themeTypeDark() {
-  import("./modules/theme.js").then(({ themeTypeDark: defaultDark }) =>
+  import("./modules/global/theme.js").then(({ themeTypeDark: defaultDark }) =>
     defaultDark()
   );
   for (let field of document.querySelectorAll(".headingTextInputId"))

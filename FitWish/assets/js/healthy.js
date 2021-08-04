@@ -1,5 +1,5 @@
 function english() {
-  import("./modules/language.js").then(({ english: defaultEnglish }) =>
+  import("./modules/global/language.js").then(({ english: defaultEnglish }) =>
     defaultEnglish()
   );
   document.getElementById("headingObjInputIdHealthy").innerHTML =
@@ -11,8 +11,8 @@ function english() {
     "5 or more times a week";
 }
 function português() {
-  import("./modules/language.js").then(({ português: defaultPortuguês }) =>
-    defaultPortuguês()
+  import("./modules/global/language.js").then(
+    ({ português: defaultPortuguês }) => defaultPortuguês()
   );
   document.getElementById("headingObjInputIdHealthy").innerHTML =
     "Frequencia de dias com alimentação saudável:";
@@ -25,7 +25,7 @@ function português() {
     "5 ou mais vezes por semana";
 }
 function français() {
-  import("./modules/language.js").then(({ français: defaultFrançais }) =>
+  import("./modules/global/language.js").then(({ français: defaultFrançais }) =>
     defaultFrançais()
   );
   document.getElementById("headingObjInputIdHealthy").innerHTML =
@@ -39,7 +39,7 @@ function français() {
     "5 fois ou plus par semaine";
 }
 function español() {
-  import("./modules/language.js").then(({ español: defaultEspañol }) =>
+  import("./modules/global/language.js").then(({ español: defaultEspañol }) =>
     defaultEspañol()
   );
   document.getElementById("headingObjInputIdHealthy").innerHTML =
@@ -53,14 +53,14 @@ function español() {
     "5 o más veces por semana";
 }
 function themeTypeLight() {
-  import("./modules/theme.js").then(({ themeTypeLight: defaultLight }) =>
+  import("./modules/global/theme.js").then(({ themeTypeLight: defaultLight }) =>
     defaultLight()
   );
   for (let el of document.querySelectorAll(".headingObjInputId"))
     el.style.backgroundColor = "#D0FEFE";
 }
 function themeTypeDark() {
-  import("./modules/theme.js").then(({ themeTypeDark: defaultDark }) =>
+  import("./modules/global/theme.js").then(({ themeTypeDark: defaultDark }) =>
     defaultDark()
   );
   for (let el of document.querySelectorAll(".headingObjInputId"))
@@ -79,7 +79,7 @@ function hoverOutColorChangeFunc(hoveredOutId) {
     colorChangeIdHighHealthy.style.backgroundColor = "#7395AE";
 }
 
-import { getHealthy } from "./modules/fieldGetter.js";
+import { getHealthy } from "./modules/global/fieldGetter.js";
 const setHealthy = (healthy) =>
   sessionStorage.setItem("healthy", JSON.stringify(healthy));
 

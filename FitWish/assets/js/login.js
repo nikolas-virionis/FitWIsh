@@ -1,5 +1,5 @@
 function english() {
-  import("./modules/language.js").then(({ english: defaultEnglish }) =>
+  import("./modules/global/language.js").then(({ english: defaultEnglish }) =>
     defaultEnglish()
   );
   document.getElementById("name").placeholder = "Name Example: Nick";
@@ -11,8 +11,8 @@ function english() {
   document.getElementById("headingTextInputIdEmail").innerHTML = "Email:";
 }
 function português() {
-  import("./modules/language.js").then(({ português: defaultPortuguês }) =>
-    defaultPortuguês()
+  import("./modules/global/language.js").then(
+    ({ português: defaultPortuguês }) => defaultPortuguês()
   );
   document.getElementById("name").placeholder = "Exemplo de Nome: Nick";
   document.getElementById("age").placeholder = "Exemplo de idade: 24";
@@ -23,7 +23,7 @@ function português() {
   document.getElementById("headingTextInputIdEmail").innerHTML = "Email:";
 }
 function français() {
-  import("./modules/language.js").then(({ français: defaultFrançais }) =>
+  import("./modules/global/language.js").then(({ français: defaultFrançais }) =>
     defaultFrançais()
   );
   document.getElementById("name").placeholder = "Exemple de nom: Nick";
@@ -35,7 +35,7 @@ function français() {
   document.getElementById("headingTextInputIdEmail").innerHTML = "Email:";
 }
 function español() {
-  import("./modules/language.js").then(({ español: defaultEspañol }) =>
+  import("./modules/global/language.js").then(({ español: defaultEspañol }) =>
     defaultEspañol()
   );
   document.getElementById("name").placeholder = "Ejemplo de nombre: Nick";
@@ -48,14 +48,14 @@ function español() {
     "Correo electrónico:";
 }
 function themeTypeLight() {
-  import("./modules/theme.js").then(({ themeTypeLight: defaultLight }) =>
+  import("./modules/global/theme.js").then(({ themeTypeLight: defaultLight }) =>
     defaultLight()
   );
   for (let input of document.querySelectorAll(".headingTextInputId"))
     input.style.cssText = "color: #1F3B4D;";
 }
 function themeTypeDark() {
-  import("./modules/theme.js").then(({ themeTypeDark: defaultDark }) =>
+  import("./modules/global/theme.js").then(({ themeTypeDark: defaultDark }) =>
     defaultDark()
   );
   for (let input of document.querySelectorAll(".headingTextInputId"))

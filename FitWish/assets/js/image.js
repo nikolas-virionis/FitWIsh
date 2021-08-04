@@ -1,6 +1,6 @@
-import { getAge } from "./modules/fieldGetter.js";
+import { getAge } from "./modules/global/fieldGetter.js";
 function english() {
-  import("./modules/language.js").then(({ english: defaultEnglish }) =>
+  import("./modules/global/language.js").then(({ english: defaultEnglish }) =>
     defaultEnglish()
   );
   showImgBtn.innerHTML = "&#9776; Show Image";
@@ -13,8 +13,8 @@ function english() {
     "Which one of these you think represent your goal the most?";
 }
 function português() {
-  import("./modules/language.js").then(({ português: defaultPortuguês }) =>
-    defaultPortuguês()
+  import("./modules/global/language.js").then(
+    ({ português: defaultPortuguês }) => defaultPortuguês()
   );
   showImgBtn.innerHTML = "&#9776; Exibir Imagem";
   referenceImgTxt.innerHTML = "Imagem de Referência:";
@@ -26,7 +26,7 @@ function português() {
     "Qual dessas imagens representa melhor seu objetivo corporal?";
 }
 function français() {
-  import("./modules/language.js").then(({ français: defaultFrançais }) =>
+  import("./modules/global/language.js").then(({ français: defaultFrançais }) =>
     defaultFrançais()
   );
   showImgBtn.innerHTML = "&#9776; Afficher l'image";
@@ -39,7 +39,7 @@ function français() {
     "Selon vous, lequel de ces éléments représente le plus votre objectif?";
 }
 function español() {
-  import("./modules/language.js").then(({ español: defaultEspañol }) =>
+  import("./modules/global/language.js").then(({ español: defaultEspañol }) =>
     defaultEspañol()
   );
   showImgBtn.innerHTML = "&#9776; Mostrar imagen";
@@ -52,14 +52,14 @@ function español() {
     "¿Cuál de estos crees que representa más tu objetivo?";
 }
 function themeTypeLight() {
-  import("./modules/theme.js").then(({ themeTypeLight: defaultLight }) =>
+  import("./modules/global/theme.js").then(({ themeTypeLight: defaultLight }) =>
     defaultLight()
   );
   for (let el of document.querySelectorAll(".headingObjInputId"))
     el.style.backgroundColor = "#D0FEFE";
 }
 function themeTypeDark() {
-  import("./modules/theme.js").then(({ themeTypeDark: defaultDark }) =>
+  import("./modules/global/theme.js").then(({ themeTypeDark: defaultDark }) =>
     defaultDark()
   );
   for (let el of document.querySelectorAll(".headingObjInputId"))
@@ -220,11 +220,11 @@ function setImg(link) {
   src.appendChild(img);
 }
 
-import { getCurrentBody } from "./modules/fieldGetter.js";
+import { getCurrentBody } from "./modules/global/fieldGetter.js";
 const setCurrentBody = (body) =>
   sessionStorage.setItem("currentBody", JSON.stringify(body));
 
-import { getGoalBody } from "./modules/fieldGetter.js";
+import { getGoalBody } from "./modules/global/fieldGetter.js";
 const setGoalBody = (goal) => {
   if (
     !(

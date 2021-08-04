@@ -91,12 +91,19 @@ export function setAgeAdvice() {
   }
 }
 export const getBodyTypeAdvantageAdvice = () =>
-  import("./bodyTypeAdvices.js").then(({}) =>
-    getBodyType() == "ecto"
-      ? bodyTypeAdv.getBodyTypeAdvantageAdviceEcto(getBodyTypeAdvantage())
-      : getBodyType() == "meso"
-      ? bodyTypeAdv.getBodyTypeAdvantageAdviceMeso(getBodyTypeAdvantage())
-      : bodyTypeAdv.getBodyTypeAdvantageAdviceEndo(getBodyTypeAdvantage())
+  import("./bodyTypeAdvices.js").then(
+    ({
+      getBodyTypeAdvantageAdviceEcto,
+      getBodyTypeAdvantageAdviceMeso,
+      getBodyTypeAdvantageAdviceEndo,
+    }) =>
+      import("./variableSetters.js").then(({ getBodyTypeAdvantage }) =>
+        getBodyType() == "ecto"
+          ? getBodyTypeAdvantageAdviceEcto(getBodyTypeAdvantage())
+          : getBodyType() == "meso"
+          ? getBodyTypeAdvantageAdviceMeso(getBodyTypeAdvantage())
+          : getBodyTypeAdvantageAdviceEndo(getBodyTypeAdvantage())
+      )
   );
 
 export function setCalorieIntake() {
@@ -157,12 +164,12 @@ export function setCalorieIntake() {
         (10 * weight + 625 * height - 5 * getAge() - 161).toFixed(1) + "kcal";
       if (getGoal() == "bulking")
         return `Since you trying to bulk, you should try to get a small calorie intake surplus, like 100-300 kcal above your basal metabolic rate, which is basically how many calories you burn for your basal body functions, a day, such as breathing, circulation and cell production, is <big style='font-family: Kaushan Script, cursive;' >${bmr}</big>. A good slice of that amount of intake calories would be better being proteins, fruits and vegetables, besides good and lower glycemic index rate carbohydrates, mainly before your workouts, that will play a huge role in this path of yours. You should try to get a whole day calorie intake from about <big style='font-family: Kaushan Script, cursive;' >${(
-          (10 * weight + 625 * height - 5 * getAge() + 5) *
+          (10 * weight + 625 * height - 5 * getAge() - 161) *
           1.05
         ).toFixed(
           0
         )}kcal</big> to about <big style='font-family: Kaushan Script, cursive;' >${(
-          (10 * weight + 625 * height - 5 * getAge() + 5) *
+          (10 * weight + 625 * height - 5 * getAge() - 161) *
           1.1
         ).toFixed(
           0
@@ -172,9 +179,13 @@ export function setCalorieIntake() {
           "Since you are trying to cut, you should have a decent calorie deficit, nothing much but 250-500kcal under your basal metabolic rate would be fine, this rate is basically how many calories you burn for your basal body functions, a day, such as breathing, circulation and cell production, is <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. A good slice of that amount of intake calories would be better being proteins, fruits and vegetables, besides a decent amount of low calorie and low glycemic index rate carbohydrates, and you'd better consider some brown rice, wholemeal pasta and sweet potato. You should try to get a whole day calorie intake from about <big style='font-family: Kaushan Script, cursive;' >" +
-          ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.65).toFixed(0) +
+          ((10 * weight + 625 * height - 5 * getAge() - 161) * 0.65).toFixed(
+            0
+          ) +
           "kcal</big> to about <big style='font-family: Kaushan Script, cursive;' >" +
-          ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.75).toFixed(0) +
+          ((10 * weight + 625 * height - 5 * getAge() - 161) * 0.75).toFixed(
+            0
+          ) +
           "kcal</big> besides the calories you burn through exercises. Also you have to have in mind that a good catalyst to all this is training, you can eat more as soon as you burn through exercise, always maintaining that same calorie intake deficit."
         );
       if (getGoal() == "surplus")
@@ -182,9 +193,9 @@ export function setCalorieIntake() {
           "Since you are trying to lose weight, you should have a decent calorie deficit, nothing much but 250-500kcal under your basal metabolic rate would be fine, this rate is basically how many calories you burn for your basal body functions, a day, such as breathing, circulation and cell production, is <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. A good slice of that amount of intake calories would be better being proteins, fruits and vegetables, besides a decent amount of low calorie and low glycemic index rate carbohydrates, and you'd better consider some brown rice, wholemeal pasta and sweet potato. You should try to get a whole day calorie intake from about <big style='font-family: Kaushan Script, cursive;' >" +
-          ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.7).toFixed(0) +
+          ((10 * weight + 625 * height - 5 * getAge() - 161) * 0.7).toFixed(0) +
           "kcal</big> to about <big style='font-family: Kaushan Script, cursive;' >" +
-          ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.8).toFixed(0) +
+          ((10 * weight + 625 * height - 5 * getAge() - 161) * 0.8).toFixed(0) +
           "kcal</big> besides the calories you burn through exercises."
         );
       if (getGoal() == "muscle")
@@ -192,9 +203,11 @@ export function setCalorieIntake() {
           "Since you trying to gain weight through mostly muscle, you should try to get a decent calorie intake surplus, like 250-450 kcal above your basal metabolic rate, which is basically how many calories you burn for your basal body functions, a day, such as breathing, circulation and cell production, is <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. A good slice of that amount of intake calories would be better being proteins, fruits and vegetables, besides good and lower glycemic index rate carbohydrates, mainly before your workouts, that will play a huge role in this path of yours, once you will get muscle and weight in general you gotta workout, mainly in the gym. You should try to get a whole day calorie intake from about <big style='font-family: Kaushan Script, cursive;' >" +
-          ((10 * weight + 625 * height - 5 * getAge() + 5) * 1.1).toFixed(0) +
+          ((10 * weight + 625 * height - 5 * getAge() - 161) * 1.1).toFixed(0) +
           "kcal</big> to about <big style='font-family: Kaushan Script, cursive;' >" +
-          ((10 * weight + 625 * height - 5 * getAge() + 5) * 1.15).toFixed(0) +
+          ((10 * weight + 625 * height - 5 * getAge() - 161) * 1.15).toFixed(
+            0
+          ) +
           "kcal</big> besides the calories you burn through exercises."
         );
     }
@@ -251,9 +264,11 @@ export function setCalorieIntake() {
           "Já que você está tentando aumentar o volume, deve tentar obter um pequeno excedente de ingestão de calorias, como 100-300 kcal acima de sua taxa metabólica basal, que é basicamente quantas calorias você queima para as funções corporais basais, por dia, como respiração, circulação e a produção de células, é <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. Uma boa parte dessascalorias ingeridas ficaria melhor sendo proteínas, frutas e vegetais, além de carboidratos bons e com índice glicêmico mais baixo, principalmente antes dos treinos, que vão desempenhar um grande papel neste seu caminho. Você deve tentar obter uma ingestão de calorias para um dia inteiro de cerca de <big style='font-family: Kaushan Script, cursive;' >" +
-          ((10 * weight + 625 * height - 5 * getAge() + 5) * 1.05).toFixed(0) +
+          ((10 * weight + 625 * height - 5 * getAge() - 161) * 1.05).toFixed(
+            0
+          ) +
           "kcal</big> a <big style='font-family: Kaushan Script, cursive;' >" +
-          ((10 * weight + 625 * height - 5 * getAge() + 5) * 1.1).toFixed(0) +
+          ((10 * weight + 625 * height - 5 * getAge() - 161) * 1.1).toFixed(0) +
           "kcal</big> além das calorias que você queima com os exercícios."
         );
       if (getGoal() == "cutting")
@@ -261,9 +276,13 @@ export function setCalorieIntake() {
           "Já que você está tentando secar, você deve ter um déficit calórico decente, nada além de 250-500kcal abaixo de sua taxa metabólica basal, esta taxa é basicamente quantas calorias você queima para suas funções corporais basais, por dia, como respiração, circulação e produção de células, é <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. Uma boa parte dessascalorias ingeridas seria melhor sendo proteínas, frutas e vegetais, além de uma quantidade decente de carboidratos de baixa caloria e baixo índice glicêmico, e é melhor considerar um pouco de arroz integral, macarrão integral e batata doce. Você deve tentar obter uma ingestão de calorias para um dia inteiro de cerca de <big style='font-family: Kaushan Script, cursive;' >" +
-          ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.65).toFixed(0) +
+          ((10 * weight + 625 * height - 5 * getAge() - 161) * 0.65).toFixed(
+            0
+          ) +
           "kcal</big> a <big style='font-family: Kaushan Script, cursive;' >" +
-          ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.75).toFixed(0) +
+          ((10 * weight + 625 * height - 5 * getAge() - 161) * 0.75).toFixed(
+            0
+          ) +
           "kcal</big> além das calorias que você queima com os exercícios. Também é preciso ter em mente que um bom catalisador para tudo isso é o treinamento, você pode comer mais assim que se queimar com o exercício, mantendo sempre esse mesmo déficit calórico."
         );
       if (getGoal() == "surplus")
@@ -271,9 +290,9 @@ export function setCalorieIntake() {
           "Já que você está tentando perder peso, você deve ter um déficit calórico decente, nada além de 250-500kcal abaixo de sua taxa metabólica basal seria bom, esta taxa é basicamente quantas calorias você queima para suas funções corporais basais, por dia, tal como respiração, circulação e produção de células, é <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. Uma boa parte dessascalorias ingeridas seria melhor sendo proteínas, frutas e vegetais, além de uma quantidade decente de carboidratos de baixa caloria e baixo índice glicêmico, e é melhor considerar um pouco de arroz integral, macarrão integral e batata doce. Você deve tentar obter uma ingestão de calorias para um dia inteiro de cerca de <big style='font-family: Kaushan Script, cursive;' >" +
-          ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.7).toFixed(0) +
+          ((10 * weight + 625 * height - 5 * getAge() - 161) * 0.7).toFixed(0) +
           "kcal</big> a <big style='font-family: Kaushan Script, cursive;' >" +
-          ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.8).toFixed(0) +
+          ((10 * weight + 625 * height - 5 * getAge() - 161) * 0.8).toFixed(0) +
           "kcal</big> além das calorias que você queima com os exercícios."
         );
       if (getGoal() == "muscle")
@@ -281,9 +300,11 @@ export function setCalorieIntake() {
           "Já que você está tentando ganhar peso principalmente através dos músculos, você deve tentar obter um excedente de ingestão de calorias decente, como 250-450 kcal acima de sua taxa metabólica basal, que é basicamente quantas calorias você queima para suas funções corporais basais, por dia, como como respiração, circulação e produção de células, é <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. Uma boa parte dessascalorias ingeridas ficaria melhor sendo proteínas, frutas e vegetais, além de carboidratos bons e com índice glicêmico mais baixo, principalmente antes dos treinos, que terão um grande papel nesse seu caminho, pois você vai ganhar músculos. e peso em geral você tem que treinar, principalmente na academia. Você deve tentar obter uma ingestão de calorias para um dia inteiro de cerca de <big style='font-family: Kaushan Script, cursive;' >" +
-          ((10 * weight + 625 * height - 5 * getAge() + 5) * 1.1).toFixed(0) +
+          ((10 * weight + 625 * height - 5 * getAge() - 161) * 1.1).toFixed(0) +
           "kcal</big> a <big style='font-family: Kaushan Script, cursive;' >" +
-          ((10 * weight + 625 * height - 5 * getAge() + 5) * 1.15).toFixed(0) +
+          ((10 * weight + 625 * height - 5 * getAge() - 161) * 1.15).toFixed(
+            0
+          ) +
           "kcal</big> além das calorias que você queima com os exercícios."
         );
     }
@@ -340,9 +361,11 @@ export function setCalorieIntake() {
           "Puisque vous essayez de prendre du volume, vous devriez essayer d'obtenir un petit surplus d'apport calorique, comme 100 à 300 kcal au-dessus de votre taux métabolique de base, qui correspond essentiellement au nombre de calories que vous brûlez pour les fonctions basales de votre corps, par jour, comme la respiration, la circulation. et la production cellulaire, est <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. Une bonne part de cette quantité de calories d'apport serait préférable d'être des protéines, des fruits et des légumes, en plus des glucides à indice glycémique bon et inférieur, principalement avant vos entraînements, qui joueront un rôle énorme dans votre chemin. Vous devriez essayer d'obtenir un apport calorique d'une journée entière d'environ <big style='font-family: Kaushan Script, cursive;' >" +
-          ((10 * weight + 625 * height - 5 * getAge() + 5) * 1.05).toFixed(0) +
+          ((10 * weight + 625 * height - 5 * getAge() - 161) * 1.05).toFixed(
+            0
+          ) +
           "kcal</big> à <big style='font-family: Kaushan Script, cursive;' >" +
-          ((10 * weight + 625 * height - 5 * getAge() + 5) * 1.1).toFixed(0) +
+          ((10 * weight + 625 * height - 5 * getAge() - 161) * 1.1).toFixed(0) +
           "kcal</big> en plus des calories que vous brûlez grâce aux exercices."
         );
       if (getGoal() == "cutting")
@@ -350,9 +373,13 @@ export function setCalorieIntake() {
           "Puisque vous essayez de réduire, vous devriez avoir un déficit calorique décent, rien de plus que 250-500kcal sous votre taux métabolique basal serait bien, ce taux est fondamentalement le nombre de calories que vous brûlez pour vos fonctions corporelles basales, par jour, comme la respiration, la circulation et la production de cellules, <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. Une bonne part de cette quantité de calories serait mieux constituée de protéines, de fruits et de légumes, en plus d'une quantité décente de glucides à faible teneur en calories et à faible indice glycémique, et vous feriez mieux d'envisager du riz brun, des pâtes complètes et des patates douces. Vous devriez essayer d'obtenir un apport calorique d'une journée entière d'environ <big style='font-family: Kaushan Script, cursive;' >" +
-          ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.65).toFixed(0) +
+          ((10 * weight + 625 * height - 5 * getAge() - 161) * 0.65).toFixed(
+            0
+          ) +
           "kcal</big> à <big style='font-family: Kaushan Script, cursive;' >" +
-          ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.75).toFixed(0) +
+          ((10 * weight + 625 * height - 5 * getAge() - 161) * 0.75).toFixed(
+            0
+          ) +
           "kcal</big> en plus des calories que vous brûlez grâce aux exercices. Vous devez également garder à l'esprit qu'un bon catalyseur de tout cela est l'entraînement, vous pouvez manger plus dès que vous brûlez en faisant de l'exercice, en maintenant toujours le même déficit calorique."
         );
       if (getGoal() == "surplus")
@@ -360,9 +387,9 @@ export function setCalorieIntake() {
           "Puisque vous essayez de perdre du poids, vous devriez avoir un déficit calorique décent, rien de plus que 250-500kcal sous votre taux métabolique basal serait bien, ce taux est essentiellement le nombre de calories que vous brûlez pour vos fonctions corporelles basales, un jour, tel comme la respiration, la circulation et la production de cellules, est <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. Une bonne part de cette quantité de calories serait mieux constituée de protéines, de fruits et de légumes, en plus d'une quantité décente de glucides à faible teneur en calories et à faible indice glycémique, et vous feriez mieux d'envisager du riz brun, des pâtes complètes et des patates douces. Vous devriez essayer d'obtenir un apport calorique d'une journée entière d'environ <big style='font-family: Kaushan Script, cursive;' >" +
-          ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.7).toFixed(0) +
+          ((10 * weight + 625 * height - 5 * getAge() - 161) * 0.7).toFixed(0) +
           "kcal</big> à <big style='font-family: Kaushan Script, cursive;' >" +
-          ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.8).toFixed(0) +
+          ((10 * weight + 625 * height - 5 * getAge() - 161) * 0.8).toFixed(0) +
           "kcal</big> en plus des calories que vous brûlez grâce aux exercices."
         );
       if (getGoal() == "muscle")
@@ -370,9 +397,11 @@ export function setCalorieIntake() {
           "Puisque vous essayez de prendre du poids principalement par vos muscles, vous devriez essayer d'obtenir un excédent calorique décent, comme 250 à 450 kcal au-dessus de votre taux métabolique de base, qui correspond essentiellement au nombre de calories que vous brûlez pour vos fonctions corporelles basales, par jour, par exemple. comme la respiration, la circulation et la production de cellules, est <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. Une bonne part de cette quantité de calories d'apport serait préférable d'être des protéines, des fruits et des légumes, en plus des glucides à indice glycémique bon et inférieur, principalement avant vos entraînements, qui joueront un rôle énorme dans votre chemin, une fois que vous aurez du muscle. et le poids en général, vous devez vous entraîner, principalement dans le gymnase. Vous devriez essayer d'obtenir un apport calorique d'une journée entière d'environ <big style='font-family: Kaushan Script, cursive;' >" +
-          ((10 * weight + 625 * height - 5 * getAge() + 5) * 1.1).toFixed(0) +
+          ((10 * weight + 625 * height - 5 * getAge() - 161) * 1.1).toFixed(0) +
           "kcal</big> à <big style='font-family: Kaushan Script, cursive;' >" +
-          ((10 * weight + 625 * height - 5 * getAge() + 5) * 1.15).toFixed(0) +
+          ((10 * weight + 625 * height - 5 * getAge() - 161) * 1.15).toFixed(
+            0
+          ) +
           "kcal</big> en plus des calories que vous brûlez grâce aux exercices."
         );
     }
@@ -429,9 +458,11 @@ export function setCalorieIntake() {
           "Dado que está tratando de aumentar el volumen, debe intentar obtener un pequeño excedente de ingesta de calorías, como 100-300 kcal por encima de su tasa metabólica basal, que es básicamente la cantidad de calorías que quema para las funciones basales del cuerpo, al día, como la respiración, la circulación. y la producción de células, es <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. Una buena porción de esa cantidad de calorías ingeridas sería mejor si fueran proteínas, frutas y verduras, además de carbohidratos buenos y de menor índice glucémico, principalmente antes de tus entrenamientos, que jugarán un papel muy importante en este camino tuyo. Debería intentar obtener una ingesta de calorías de un día <big style='font-family: Kaushan Script, cursive;' >" +
-          ((10 * weight + 625 * height - 5 * getAge() + 5) * 1.05).toFixed(0) +
+          ((10 * weight + 625 * height - 5 * getAge() - 161) * 1.05).toFixed(
+            0
+          ) +
           "kcal</big> a  <big style='font-family: Kaushan Script, cursive;' >" +
-          ((10 * weight + 625 * height - 5 * getAge() + 5) * 1.1).toFixed(0) +
+          ((10 * weight + 625 * height - 5 * getAge() - 161) * 1.1).toFixed(0) +
           "kcal</big> además de las calorías que quema con los ejercicios."
         );
       if (getGoal() == "cutting")
@@ -439,9 +470,13 @@ export function setCalorieIntake() {
           "Dado que está tratando de reducir, debe tener un déficit de calorías decente, nada más que 250-500 kcal por debajo de su tasa metabólica basal estaría bien, esta tasa es básicamente la cantidad de calorías que quema para sus funciones corporales basales, un día, como la respiración, la circulación y la producción celular, es <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. Una buena porción de esa cantidad de calorías ingeridas sería mejor si fueran proteínas, frutas y verduras, además de una cantidad decente de carbohidratos bajos en calorías y con índice glucémico bajo, y es mejor que considere un poco de arroz integral, pasta integral y batata. Debería intentar obtener una ingesta de calorías de un día <big style='font-family: Kaushan Script, cursive;' >" +
-          ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.65).toFixed(0) +
+          ((10 * weight + 625 * height - 5 * getAge() - 161) * 0.65).toFixed(
+            0
+          ) +
           "kcal</big> a  <big style='font-family: Kaushan Script, cursive;' >" +
-          ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.75).toFixed(0) +
+          ((10 * weight + 625 * height - 5 * getAge() - 161) * 0.75).toFixed(
+            0
+          ) +
           "kcal</big> además de las calorías que quema con los ejercicios. También debes tener en cuenta que un buen catalizador de todo esto es el entrenamiento, puedes comer más en cuanto te quemas a través del ejercicio, manteniendo siempre ese mismo déficit de ingesta calórica."
         );
       if (getGoal() == "surplus")
@@ -449,9 +484,9 @@ export function setCalorieIntake() {
           "Dado que está tratando de perder peso, debe tener un déficit de calorías decente, nada más que 250-500 kcal por debajo de su tasa metabólica basal estaría bien, esta tasa es básicamente la cantidad de calorías que quema para sus funciones corporales basales, un día, por ejemplo. como respiración, circulación y producción celular, es <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. Una buena porción de esa cantidad de calorías ingeridas sería mejor si fueran proteínas, frutas y verduras, además de una cantidad decente de carbohidratos bajos en calorías y con índice glucémico bajo, y es mejor que considere un poco de arroz integral, pasta integral y batata. Debería intentar obtener una ingesta de calorías de un día <big style='font-family: Kaushan Script, cursive;' >" +
-          ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.7).toFixed(0) +
+          ((10 * weight + 625 * height - 5 * getAge() - 161) * 0.7).toFixed(0) +
           "kcal</big> a  <big style='font-family: Kaushan Script, cursive;' >" +
-          ((10 * weight + 625 * height - 5 * getAge() + 5) * 0.8).toFixed(0) +
+          ((10 * weight + 625 * height - 5 * getAge() - 161) * 0.8).toFixed(0) +
           "kcal</big> además de las calorías que quema con los ejercicios."
         );
       if (getGoal() == "muscle")
@@ -459,13 +494,16 @@ export function setCalorieIntake() {
           "Dado que intenta ganar peso principalmente a través de los músculos, debe tratar de obtener un excedente de ingesta de calorías decente, como 250-450 kcal por encima de su tasa metabólica basal, que es básicamente la cantidad de calorías que quema para las funciones basales del cuerpo, un día, por ejemplo. como respiración, circulación y producción celular, es <big style='font-family: Kaushan Script, cursive;' >" +
           bmr +
           "</big>. Una buena porción de esa cantidad de calorías ingeridas sería mejor si fueran proteínas, frutas y verduras, además de carbohidratos buenos y de índice glucémico más bajo, principalmente antes de tus entrenamientos, que jugarán un papel muy importante en este camino tuyo, una vez que obtengas músculo. y peso en general tienes que hacer ejercicio, principalmente en el gimnasio. Debería intentar obtener una ingesta de calorías de un día <big style='font-family: Kaushan Script, cursive;' >" +
-          ((10 * weight + 625 * height - 5 * getAge() + 5) * 1.1).toFixed(0) +
+          ((10 * weight + 625 * height - 5 * getAge() - 161) * 1.1).toFixed(0) +
           "kcal</big> a  <big style='font-family: Kaushan Script, cursive;' >" +
-          ((10 * weight + 625 * height - 5 * getAge() + 5) * 1.15).toFixed(0) +
+          ((10 * weight + 625 * height - 5 * getAge() - 161) * 1.15).toFixed(
+            0
+          ) +
           "kcal</big> además de las calorías que quema con los ejercicios."
         );
     }
   }
+  export { bmr };
 }
 export function setExerciseAdvice() {
   if (language == "english") {

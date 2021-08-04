@@ -7,15 +7,15 @@ import {
   overwriteTest2,
   overwriteTest,
   seeAllTests,
-} from "./modules/previousTestsHandle.js";
+} from "./modules/index/previousTestsHandle.js";
 
 function english() {
-  import("./modules/language.js").then(({ english: defaultEnglish }) =>
+  import("./modules/global/language.js").then(({ english: defaultEnglish }) =>
     defaultEnglish()
   );
   if (contentArray.length >= 1)
-    import("./modules/overwriteBtns.js").then(({ numberBtnsOverwriteEn }) =>
-      numberBtnsOverwriteEn()
+    import("./modules/index/overwriteBtns.js").then(
+      ({ numberBtnsOverwriteEn }) => numberBtnsOverwriteEn()
     );
   firstPageBtnSeePrev.innerHTML = "Hide Previous Test";
   firstPageH1.innerHTML =
@@ -31,12 +31,12 @@ function english() {
   firstPageBtnHideAll.value = `Hide All Previous Tests`;
 }
 function português() {
-  import("./modules/language.js").then(({ português: defaultPortuguês }) =>
-    defaultPortuguês()
+  import("./modules/global/language.js").then(
+    ({ português: defaultPortuguês }) => defaultPortuguês()
   );
   if (contentArray.length >= 1)
-    import("./modules/overwriteBtns.js").then(({ numberBtnsOverwritePt }) =>
-      numberBtnsOverwritePt()
+    import("./modules/index/overwriteBtns.js").then(
+      ({ numberBtnsOverwritePt }) => numberBtnsOverwritePt()
     );
   firstPageBtnSeePrev.innerHTML = "Ocultar Teste Anterior";
   firstPageH1.innerHTML =
@@ -52,12 +52,12 @@ function português() {
   firstPageBtnHideAll.value = `Ocultar Testes Anteriores`;
 }
 function français() {
-  import("./modules/language.js").then(({ français: defaultFrançais }) =>
+  import("./modules/global/language.js").then(({ français: defaultFrançais }) =>
     defaultFrançais()
   );
   if (contentArray.length >= 1)
-    import("./modules/overwriteBtns.js").then(({ numberBtnsOverwriteFr }) =>
-      numberBtnsOverwriteFr()
+    import("./modules/index/overwriteBtns.js").then(
+      ({ numberBtnsOverwriteFr }) => numberBtnsOverwriteFr()
     );
   firstPageBtnSeePrev.innerHTML = "Masquer le test précédent";
   firstPageH1.innerHTML =
@@ -73,12 +73,12 @@ function français() {
   firstPageBtnHideAll.value = `Masquer tous les tests précédents`;
 }
 function español() {
-  import("./modules/language.js").then(({ español: defaultEspañol }) =>
+  import("./modules/global/language.js").then(({ español: defaultEspañol }) =>
     defaultEspañol()
   );
   if (contentArray.length >= 1)
-    import("./modules/overwriteBtns.js").then(({ numberBtnsOverwriteEs }) =>
-      numberBtnsOverwriteEs()
+    import("./modules/index/overwriteBtns.js").then(
+      ({ numberBtnsOverwriteEs }) => numberBtnsOverwriteEs()
     );
   firstPageBtnSeePrev.innerHTML = "Ocultar Prueba Anterior";
   firstPageH1.innerHTML =
@@ -94,14 +94,14 @@ function español() {
   firstPageBtnHideAll.value = `Ocultar todas las pruebas anteriores`;
 }
 function themeTypeLight() {
-  import("./modules/theme.js").then(({ themeTypeLight: defaultLight }) =>
+  import("./modules/global/theme.js").then(({ themeTypeLight: defaultLight }) =>
     defaultLight()
   );
   for (let element of document.querySelectorAll(".firstPageH1setItem"))
     element.style.color = "#1F3B4D";
 }
 function themeTypeDark() {
-  import("./modules/theme.js").then(({ themeTypeDark: defaultDark }) =>
+  import("./modules/global/theme.js").then(({ themeTypeDark: defaultDark }) =>
     defaultDark()
   );
   for (let element of document.querySelectorAll(".firstPageH1setItem"))
@@ -113,8 +113,8 @@ function themeTypeDark() {
   document.getElementById("firstPageBtn2ndTry"),
 ].forEach((element) =>
   element.addEventListener("click", (e) =>
-    import("./modules/previousTestsHandle.js").then(({ showPrevTestResult }) =>
-      showPrevTestResult(Number(e.target.id[12]))
+    import("./modules/index/previousTestsHandle.js").then(
+      ({ showPrevTestResult }) => showPrevTestResult(Number(e.target.id[12]))
     )
   )
 );
@@ -139,7 +139,7 @@ function themeTypeDark() {
   document.getElementById("firstPageBtnSeeAll"),
 ].forEach((element) =>
   element.addEventListener("click", (e) =>
-    import("./modules/previousTestsHandle.js").then(
+    import("./modules/index/previousTestsHandle.js").then(
       ({ seePrevTests, seeAllTests }) =>
         eval(`see${e.target.id.slice(15)}Tests`)()
     )
@@ -150,7 +150,7 @@ function themeTypeDark() {
   document.getElementById("firstPageBtnHideAll"),
 ].forEach((element) =>
   element.addEventListener("click", (e) =>
-    import("./modules/previousTestsHandle.js").then(
+    import("./modules/index/previousTestsHandle.js").then(
       ({ hidePrevTests, hideAllTests }) =>
         eval(`hide${e.target.id.slice(16)}Tests`)()
     )
@@ -158,7 +158,7 @@ function themeTypeDark() {
 );
 firstPageBtnOverwrite.addEventListener("click", () => overwriteTest());
 firstPageBtnDelete.addEventListener("click", () =>
-  import("./modules/previousTestsHandle.js").then(({ deleteTests }) =>
+  import("./modules/index/previousTestsHandle.js").then(({ deleteTests }) =>
     deleteTests()
   )
 );
@@ -212,7 +212,7 @@ window.addEventListener("load", () => {
 });
 
 const initiateLanguage = () =>
-  import("./modules/iniciateIndexLang.js").then(
+  import("./modules/index/iniciateIndexLang.js").then(
     ({
       iniciateEnglish,
       iniciatePortuguês,
