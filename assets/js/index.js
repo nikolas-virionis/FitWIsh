@@ -1,7 +1,7 @@
-let contentArray = JSON.parse(localStorage.getItem("contentArray")) ?? [],
-  triesMade;
-export default contentArray;
+let triesMade; //contentArray = JSON.parse(localStorage.getItem("contentArray")) ?? [],
 
+let { contentArray } = await import("./modules/index/iniciateIndexLang.js");
+// import { contentArray } from "./modules/index/iniciateIndexLang.js";
 import {
   startNewTry,
   overwriteTest2,
@@ -207,6 +207,7 @@ window.addEventListener("load", () => {
       if (contentArray[0].language == "español") return español();
       return getDefLang();
     }
+    export { triesMade };
     initiateLanguage();
   }
 });
@@ -227,3 +228,30 @@ const initiateLanguage = () =>
         ? iniciateEspañol()
         : iniciateEnglish()
   );
+
+if (document.querySelectorAll(".nationBtns")) {
+  let nations = ["english", "português", "français", "español"];
+  document
+    .querySelectorAll(".nationBtns")
+    .forEach((btn) =>
+      btn.addEventListener("click", (e) =>
+        eval(
+          nations[
+            [...document.querySelectorAll(".nationBtns")].indexOf(e.target)
+          ]
+        )()
+      )
+    );
+}
+
+if (document.querySelectorAll(".listnav"))
+  document.querySelectorAll(".listnav").forEach((element) => {
+    element.addEventListener("click", (e) =>
+      eval(
+        `themeType${
+          e.target.id.slice(0, -11).charAt(0).toUpperCase() +
+          e.target.id.slice(1, -11)
+        }`
+      )()
+    );
+  });

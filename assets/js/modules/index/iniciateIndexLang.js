@@ -1,4 +1,4 @@
-let contentArray = JSON.parse(localStorage.getItem("contentArray"));
+export let contentArray = JSON.parse(localStorage.getItem("contentArray"));
 export function iniciateEnglish() {
   import("../../index.js").then(({ english }) => english());
   if (

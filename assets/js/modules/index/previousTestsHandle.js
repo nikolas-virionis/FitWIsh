@@ -40,7 +40,9 @@ export const overwriteTest2 = (testToBeOverwritten) => {
   }
 };
 export const overwriteTest = () =>
-  triesMade == 1 ? overwriteTest2(1) : seeAllTests();
+  import("../../index.js").then(({ triesMade }) =>
+    triesMade == 1 ? overwriteTest2(1) : seeAllTests()
+  );
 
 export function deleteTests() {
   let deletePrevTests;

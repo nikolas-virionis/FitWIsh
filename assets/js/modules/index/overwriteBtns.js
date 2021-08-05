@@ -1,5 +1,5 @@
 export function numberBtnsOverwriteEn() {
-  import("../../index.js").then(({ contentArray }) => {
+  import("./iniciateIndexLang.js").then(({ contentArray }) => {
     if (contentArray?.length >= 1) {
       firstPageBtn1stTry.value = `See the test made in ${contentArray[0].day}`;
       firstPageBtn1stTryOverwrite.value = `Overwrite test made in ${contentArray[0].day}`;
@@ -23,7 +23,7 @@ export function numberBtnsOverwriteEn() {
   });
 }
 export function numberBtnsOverwritePt() {
-  import("../../index.js").then(({ contentArray }) => {
+  import("./iniciateIndexLang.js").then(({ contentArray }) => {
     if (contentArray?.length >= 1) {
       firstPageBtn1stTry.value = `Ver o teste feito em ${contentArray[0].day}`;
       firstPageBtn1stTryOverwrite.value = `Sobrescrever o teste de ${contentArray[0].day}`;
@@ -47,7 +47,7 @@ export function numberBtnsOverwritePt() {
   });
 }
 export function numberBtnsOverwriteFr() {
-  import("../../index.js").then(({ contentArray }) => {
+  import("./iniciateIndexLang.js").then(({ contentArray }) => {
     if (contentArray?.length >= 1) {
       firstPageBtn1stTry.value = `Voir le test réalisé en ${contentArray[0].day}`;
       firstPageBtn1stTryOverwrite.value = `Écraser le test dans ${contentArray[0].day}`;
@@ -71,7 +71,7 @@ export function numberBtnsOverwriteFr() {
   });
 }
 export function numberBtnsOverwriteEs() {
-  import("../../index.js").then(({ contentArray }) => {
+  import("./iniciateIndexLang.js").then(({ contentArray }) => {
     if (contentArray?.length >= 1) {
       firstPageBtn1stTry.value = `Ver la prueba de ${contentArray[0].day}`;
       firstPageBtn1stTryOverwrite.value = `Sobrescribir la prueba de ${contentArray[0].day}`;
