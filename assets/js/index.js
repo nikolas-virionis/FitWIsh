@@ -1,5 +1,6 @@
 let contentArray = JSON.parse(localStorage.getItem("contentArray")) ?? [],
   triesMade;
+export default contentArray;
 
 import {
   startNewTry,
@@ -8,7 +9,7 @@ import {
   seeAllTests,
 } from "./modules/index/previousTestsHandle.js";
 
-function english() {
+export function english() {
   import("./modules/global/language.js").then(({ english: defaultEnglish }) =>
     defaultEnglish()
   );
@@ -29,7 +30,7 @@ function english() {
   firstPageBtnSeePrev.value = `See the Previous Test Result`;
   firstPageBtnHideAll.value = `Hide All Previous Tests`;
 }
-function português() {
+export function português() {
   import("./modules/global/language.js").then(
     ({ português: defaultPortuguês }) => defaultPortuguês()
   );
@@ -50,7 +51,7 @@ function português() {
   firstPageBtnSeePrev.value = `Ver o Resultado do Teste Anterior`;
   firstPageBtnHideAll.value = `Ocultar Testes Anteriores`;
 }
-function français() {
+export function français() {
   import("./modules/global/language.js").then(({ français: defaultFrançais }) =>
     defaultFrançais()
   );
@@ -71,7 +72,7 @@ function français() {
   firstPageBtnSeePrev.value = `Voir le résultat du test précédent`;
   firstPageBtnHideAll.value = `Masquer tous les tests précédents`;
 }
-function español() {
+export function español() {
   import("./modules/global/language.js").then(({ español: defaultEspañol }) =>
     defaultEspañol()
   );

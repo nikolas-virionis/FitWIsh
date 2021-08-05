@@ -1,5 +1,6 @@
+let contentArray = JSON.parse(localStorage.getItem("contentArray"));
 export function iniciateEnglish() {
-  english();
+  import("../../index.js").then(({ english }) => english());
   if (
     !(
       contentArray[0].inputName.toLowerCase() ==
@@ -21,7 +22,7 @@ export function iniciateEnglish() {
 }
 
 export function iniciatePortuguês() {
-  português();
+  import("../../index.js").then(({ português }) => português());
   if (
     !(
       contentArray[0].inputName.toLowerCase() ==
@@ -42,7 +43,7 @@ export function iniciatePortuguês() {
   }
 }
 export function iniciateFrançais() {
-  français();
+  import("../../index.js").then(({ français }) => français());
   if (
     !(
       contentArray[0].inputName.toLowerCase() ==
@@ -64,7 +65,7 @@ export function iniciateFrançais() {
 }
 
 export function iniciateEspañol() {
-  español();
+  import("../../index.js").then(({ español }) => español());
   if (
     !(
       contentArray[0].inputName.toLowerCase() ==
