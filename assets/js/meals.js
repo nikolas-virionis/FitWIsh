@@ -1,3 +1,13 @@
+function hoverOutColorChangeFunc(hoveredOutId) {
+  document.getElementById(hoveredOutId).style.backgroundColor = "teal";
+  if (getMeals() == 1) colorChangeId2Meals.style.backgroundColor = "#7395AE";
+  else if (getMeals() == 2)
+    colorChangeId3Meals.style.backgroundColor = "#7395AE";
+  else if (getMeals() == 3)
+    colorChangeId4Meals.style.backgroundColor = "#7395AE";
+  else if (getMeals() == 4)
+    colorChangeId5Meals.style.backgroundColor = "#7395AE";
+}
 function english() {
   import("./modules/global/language.js").then(({ english: defaultEnglish }) =>
     defaultEnglish()
@@ -57,22 +67,38 @@ function themeTypeDark() {
   for (let el of document.querySelectorAll(".headingObjInputId"))
     el.style.backgroundColor = "#9DBCD4";
 }
-function hoverOutColorChangeFunc(hoveredOutId) {
-  document.getElementById(hoveredOutId).style.backgroundColor = "teal";
-  if (getMeals() == 1) colorChangeId2Meals.style.backgroundColor = "#7395AE";
-  else if (getMeals() == 2)
-    colorChangeId3Meals.style.backgroundColor = "#7395AE";
-  else if (getMeals() == 3)
-    colorChangeId4Meals.style.backgroundColor = "#7395AE";
-  else if (getMeals() == 4)
-    colorChangeId5Meals.style.backgroundColor = "#7395AE";
-}
 
 import { getMeals } from "./modules/global/fieldGetter.js";
 const setMeals = (meals) =>
   sessionStorage.setItem("meals", JSON.stringify(meals));
 
 window.addEventListener("load", () => {
+  if (document.querySelectorAll(".nationBtns")) {
+    let nations = ["english", "português", "français", "español"];
+    document
+      .querySelectorAll(".nationBtns")
+      .forEach((btn) =>
+        btn.addEventListener("click", (e) =>
+          eval(
+            nations[
+              [...document.querySelectorAll(".nationBtns")].indexOf(e.target)
+            ]
+          )()
+        )
+      );
+  }
+
+  if (document.querySelectorAll(".listnav"))
+    document.querySelectorAll(".listnav").forEach((element) => {
+      element.addEventListener("click", (e) =>
+        eval(
+          `themeType${
+            e.target.id.slice(0, -11).charAt(0).toUpperCase() +
+            e.target.id.slice(1, -11)
+          }`
+        )()
+      );
+    });
   if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
   if (getMeals())
     document.getElementById(
@@ -103,7 +129,7 @@ window.addEventListener("load", () => {
       )
     );
     button.addEventListener("mouseout", (e) =>
-      hoverOutColorChangeFunc(e.target.id)
+      hoverOutColorChangeFunc?.(e.target.id)
     );
   });
 });

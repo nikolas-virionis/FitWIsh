@@ -1,3 +1,21 @@
+import * as getters from "../global/fieldGetter.js";
+//variable getters
+const getName = getters.getName;
+const getEmail = getters.getEmail;
+const getAge = getters.getAge;
+const getWeight = getters.getWeight;
+const getHeight = getters.getHeight;
+const getBodyType = getters.getBodyType;
+const getCheat = getters.getCheat;
+const getExercise = getters.getExercise;
+const getGender = getters.getGender;
+const getUnit = getters.getUnit;
+const getGoal = getters.getGoal;
+const getHealthy = getters.getHealthy;
+const getCurrentBody = getters.getCurrentBody;
+const getGoalBody = getters.getGoalBody;
+const getMeals = getters.getMeals;
+const getEmotion = getters.getEmotion;
 export function checkAllAnswers() {
   let answers =
     getGender() &&

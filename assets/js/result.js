@@ -3,6 +3,7 @@ let contentArray = JSON.parse(localStorage.getItem("contentArray")) ?? [];
 let colorDownload = "#1F3B4D",
   backgroundColorDownload = "#12232A",
   processing,
+  emotionAnswer,
   diagnosis,
   done,
   resultPossibilities,
@@ -25,6 +26,32 @@ let colorDownload = "#1F3B4D",
   timeGaps = 0;
 
 window.addEventListener("load", () => {
+  if (document.querySelectorAll(".nationBtns")) {
+    let nations = ["english", "português", "français", "español"];
+    document
+      .querySelectorAll(".nationBtns")
+      .forEach((btn) =>
+        btn.addEventListener("click", (e) =>
+          eval(
+            nations[
+              [...document.querySelectorAll(".nationBtns")].indexOf(e.target)
+            ]
+          )()
+        )
+      );
+  }
+
+  if (document.querySelectorAll(".listnav"))
+    document.querySelectorAll(".listnav").forEach((element) => {
+      element.addEventListener("click", (e) =>
+        eval(
+          `themeType${
+            e.target.id.slice(0, -11).charAt(0).toUpperCase() +
+            e.target.id.slice(1, -11)
+          }`
+        )()
+      );
+    });
   if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
   eval(sessionStorage.getItem("language"))();
   sessionStorage.getItem("theme") == "light"
@@ -559,11 +586,11 @@ function result() {
       getBodyFat();
     }
   );
-  import("./modules/result/units").then(({ metric, imperial }) =>
-    eval(getUnit())()
+  import("./modules/result/units.js").then(({ metric, imperial }) =>
+    getUnit() == "metric" ? metric() : imperial()
   );
-  import("./modules/result/downloadInfo").then(({ setDownloadableFileData }) =>
-    setDownloadableFileData()
+  import("./modules/result/downloadInfo.js").then(
+    ({ setDownloadableFileData }) => setDownloadableFileData()
   );
   resultTransition();
   storage();

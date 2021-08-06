@@ -1,3 +1,4 @@
+export let bmr;
 export function setBodyTypeAdvice() {
   if (language == "english") {
     if (getBodyType() == "ecto")
@@ -503,7 +504,6 @@ export function setCalorieIntake() {
         );
     }
   }
-  export { bmr };
 }
 export function setExerciseAdvice() {
   if (language == "english") {

@@ -61,29 +61,37 @@ function hoverOutColorChangeFunc(hoveredOutId) {
     colorChangeIdEmoNo.style.backgroundColor = "#7395AE";
 }
 
-import * as getters from "./modules/global/fieldGetter.js";
 // emotional overeating
-const getEmotion = getters.getEmotion;
+const { getEmotion } = await import("./modules/global/fieldGetter.js");
 const emotion = (emotion) => sessionStorage.setItem("emotion", emotion);
 
-//variable getters
-const getName = getters.getName;
-const getEmail = getters.getEmail;
-const getAge = getters.getAge;
-const getWeight = getters.getWeight;
-const getHeight = getters.getHeight;
-const getBodyType = getters.getBodyType;
-const getCheat = getters.getCheat;
-const getExercise = getters.getExercise;
-const getGender = getters.getGender;
-const getUnit = getters.getUnit;
-const getGoal = getters.getGoal;
-const getHealthy = getters.getHealthy;
-const getCurrentBody = getters.getCurrentBody;
-const getGoalBody = getters.getGoalBody;
-const getMeals = getters.getMeals;
-
 window.addEventListener("load", () => {
+  if (document.querySelectorAll(".nationBtns")) {
+    let nations = ["english", "português", "français", "español"];
+    document
+      .querySelectorAll(".nationBtns")
+      .forEach((btn) =>
+        btn.addEventListener("click", (e) =>
+          eval(
+            nations[
+              [...document.querySelectorAll(".nationBtns")].indexOf(e.target)
+            ]
+          )()
+        )
+      );
+  }
+
+  if (document.querySelectorAll(".listnav"))
+    document.querySelectorAll(".listnav").forEach((element) => {
+      element.addEventListener("click", (e) =>
+        eval(
+          `themeType${
+            e.target.id.slice(0, -11).charAt(0).toUpperCase() +
+            e.target.id.slice(1, -11)
+          }`
+        )()
+      );
+    });
   if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
   if (getEmotion())
     document.getElementById(

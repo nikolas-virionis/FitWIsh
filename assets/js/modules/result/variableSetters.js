@@ -1,3 +1,11 @@
+import * as getters from "../global/fieldGetter.js";
+//variable getters
+const getWeight = getters.getWeight;
+const getBodyType = getters.getBodyType;
+const getGender = getters.getGender;
+const getGoal = getters.getGoal;
+const getCurrentBody = getters.getCurrentBody;
+const getGoalBody = getters.getGoalBody;
 export function getBodyTypeAdvantage() {
   if (
     (getBodyType() == "ecto" && getGoal() == "bulking") ||

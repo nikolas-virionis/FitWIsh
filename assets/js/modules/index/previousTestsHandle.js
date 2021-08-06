@@ -1,3 +1,4 @@
+let { contentArray } = await import("./iniciateIndexLang.js");
 export const showPrevTestResult = (resultTry) => {
   sessionStorage.setItem("resultTry", JSON.stringify(resultTry));
   window.location.href = "previousResult.html";
@@ -40,8 +41,8 @@ export const overwriteTest2 = (testToBeOverwritten) => {
   }
 };
 export const overwriteTest = () =>
-  import("../../index.js").then(({ triesMade }) =>
-    triesMade == 1 ? overwriteTest2(1) : seeAllTests()
+  import("./iniciateIndexLang.js").then(({ triesMade }) =>
+    triesMade == 1 ? overwriteTest2(1) : seeAllTests(true)
   );
 
 export function deleteTests() {
@@ -69,12 +70,16 @@ export function seePrevTests() {
   firstPageBtnHidePrev.style.display = "block";
   firstPageBtnDelete.style.display = "block";
 }
-export function seeAllTests() {
+export function seeAllTests(showOverwrite = false) {
   firstPageBtn1stTry.style.display = "block";
   firstPageBtn2ndTry.style.display = "block";
   firstPageBtnSeeAll.style.display = "none";
   firstPageBtnHideAll.style.display = "block";
   firstPageBtnDelete.style.display = "block";
+  if (showOverwrite) {
+    firstPageBtn1stTryOverwrite.style.display = "block";
+    firstPageBtn2ndTryOverwrite.style.display = "block";
+  }
 }
 export function hidePrevTests() {
   firstPageBtn1stTry.style.display = "none";

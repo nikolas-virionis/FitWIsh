@@ -1,5 +1,4 @@
-let triesMade; //contentArray = JSON.parse(localStorage.getItem("contentArray")) ?? [],
-
+// let contentArray = JSON.parse(localStorage.getItem("contentArray")) ?? [];
 let { contentArray } = await import("./modules/index/iniciateIndexLang.js");
 // import { contentArray } from "./modules/index/iniciateIndexLang.js";
 import {
@@ -188,6 +187,32 @@ function getDefLang() {
   return english();
 }
 window.addEventListener("load", () => {
+  if (document.querySelectorAll(".nationBtns")) {
+    let nations = ["english", "português", "français", "español"];
+    document
+      .querySelectorAll(".nationBtns")
+      .forEach((btn) =>
+        btn.addEventListener("click", (e) =>
+          eval(
+            nations[
+              [...document.querySelectorAll(".nationBtns")].indexOf(e.target)
+            ]
+          )()
+        )
+      );
+  }
+
+  if (document.querySelectorAll(".listnav"))
+    document.querySelectorAll(".listnav").forEach((element) => {
+      element.addEventListener("click", (e) =>
+        eval(
+          `themeType${
+            e.target.id.slice(0, -11).charAt(0).toUpperCase() +
+            e.target.id.slice(1, -11)
+          }`
+        )()
+      );
+    });
   sessionStorage.setItem("first", JSON.stringify(true));
   eval(sessionStorage.getItem("language"))?.();
   sessionStorage.getItem("theme") == "light"
@@ -197,18 +222,18 @@ window.addEventListener("load", () => {
     getDefLang();
     themeTypeDark();
   } else if (contentArray.length != 0) {
-    triesMade = contentArray.length;
-    rearrangeElements(triesMade + 1);
-    if (contentArray[triesMade - 1].theme == "light") themeTypeLight();
-    else themeTypeDark();
-    if (contentArray.length == 1) {
-      if (contentArray[0].language == "português") return português();
-      if (contentArray[0].language == "français") return français();
-      if (contentArray[0].language == "español") return español();
-      return getDefLang();
-    }
-    export { triesMade };
-    initiateLanguage();
+    import("./modules/index/iniciateIndexLang.js").then(({ triesMade }) => {
+      rearrangeElements(triesMade + 1);
+      if (contentArray[triesMade - 1].theme == "light") themeTypeLight();
+      else themeTypeDark();
+      if (contentArray.length == 1) {
+        if (contentArray[0].language == "português") return português();
+        if (contentArray[0].language == "français") return français();
+        if (contentArray[0].language == "español") return español();
+        return getDefLang();
+      }
+      initiateLanguage();
+    });
   }
 });
 
@@ -228,30 +253,3 @@ const initiateLanguage = () =>
         ? iniciateEspañol()
         : iniciateEnglish()
   );
-
-if (document.querySelectorAll(".nationBtns")) {
-  let nations = ["english", "português", "français", "español"];
-  document
-    .querySelectorAll(".nationBtns")
-    .forEach((btn) =>
-      btn.addEventListener("click", (e) =>
-        eval(
-          nations[
-            [...document.querySelectorAll(".nationBtns")].indexOf(e.target)
-          ]
-        )()
-      )
-    );
-}
-
-if (document.querySelectorAll(".listnav"))
-  document.querySelectorAll(".listnav").forEach((element) => {
-    element.addEventListener("click", (e) =>
-      eval(
-        `themeType${
-          e.target.id.slice(0, -11).charAt(0).toUpperCase() +
-          e.target.id.slice(1, -11)
-        }`
-      )()
-    );
-  });

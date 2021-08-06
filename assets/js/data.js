@@ -95,6 +95,32 @@ function themeTypeDark() {
 }
 let labels = document.querySelectorAll(".label");
 window.addEventListener("load", () => {
+  if (document.querySelectorAll(".nationBtns")) {
+    let nations = ["english", "português", "français", "español"];
+    document
+      .querySelectorAll(".nationBtns")
+      .forEach((btn) =>
+        btn.addEventListener("click", (e) =>
+          eval(
+            nations[
+              [...document.querySelectorAll(".nationBtns")].indexOf(e.target)
+            ]
+          )()
+        )
+      );
+  }
+
+  if (document.querySelectorAll(".listnav"))
+    document.querySelectorAll(".listnav").forEach((element) => {
+      element.addEventListener("click", (e) =>
+        eval(
+          `themeType${
+            e.target.id.slice(0, -11).charAt(0).toUpperCase() +
+            e.target.id.slice(1, -11)
+          }`
+        )()
+      );
+    });
   if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
   if (!sessionStorage.getItem("unit")) {
     if (language == "english")
