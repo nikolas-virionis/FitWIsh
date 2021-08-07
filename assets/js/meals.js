@@ -68,7 +68,7 @@ function themeTypeDark() {
     el.style.backgroundColor = "#9DBCD4";
 }
 
-import { getMeals } from "./modules/global/fieldGetter.js";
+const { getMeals } = await import("./modules/global/fieldGetter.js");
 const setMeals = (meals) =>
   sessionStorage.setItem("meals", JSON.stringify(meals));
 

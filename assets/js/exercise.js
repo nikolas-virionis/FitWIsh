@@ -79,7 +79,7 @@ function hoverOutColorChangeFunc(hoveredOutId) {
     colorChangeIdHighXercise.style.backgroundColor = "#7395AE";
 }
 
-import { getExercise } from "./modules/global/fieldGetter.js";
+const { getExercise } = await import("./modules/global/fieldGetter.js");
 const setExercise = (exercise) =>
   sessionStorage.setItem("exercise", JSON.stringify(exercise));
 

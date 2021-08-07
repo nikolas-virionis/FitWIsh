@@ -81,10 +81,10 @@ function hoverOutColorChangeFunc(hoveredOutId) {
 
 //gender
 const gender = (gender) => sessionStorage.setItem("gender", gender);
-import { getGender } from "./modules/global/fieldGetter.js";
+const { getGender } = await import("./modules/global/fieldGetter.js");
 // unit system
 const unit = (unit) => sessionStorage.setItem("unit", unit);
-import { getUnit } from "./modules/global/fieldGetter.js";
+const { getUnit } = await import("./modules/global/fieldGetter.js");
 
 //hover nano instructions on units used
 

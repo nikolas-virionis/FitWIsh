@@ -1,3 +1,17 @@
+let { weight } = await import("./units.js");
+
+let getters = import("../global/fieldGetter.js");
+// //variable getters
+const { getAge } = await getters;
+const { getBodyType } = await getters;
+const { getCheat } = await getters;
+const { getExercise } = await getters;
+const { getGender } = await getters;
+const { getGoal } = await getters;
+const { getHealthy } = await getters;
+const { getCurrentBody } = await getters;
+const { getGoalBody } = await getters;
+const { getMeals } = await getters;
 export let bmr;
 export function setBodyTypeAdvice() {
   if (language == "english") {
@@ -108,6 +122,7 @@ export const getBodyTypeAdvantageAdvice = () =>
   );
 
 export function setCalorieIntake() {
+  let { height } = import("./units.js");
   if (language == "english") {
     if (getGender() == "male") {
       bmr = (10 * weight + 625 * height - 5 * getAge() + 5).toFixed(1) + "kcal";

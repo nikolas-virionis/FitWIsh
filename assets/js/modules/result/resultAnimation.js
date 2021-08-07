@@ -1,4 +1,19 @@
+const { getEmotion, getName } = await import("../global/fieldGetter.js");
+let { resultBeginning } = await import("../../result.js");
+let { emotionAnswer } = await import("../../result.js");
+let advices = import("./advices.js");
+const { setBodyTypeAdvice } = await advices;
+const { setAgeAdvice } = await advices;
+const { getBodyTypeAdvantageAdvice } = await advices;
+const { setCalorieIntake } = await advices;
+const { setExerciseAdvice } = await advices;
+const { setHealthyAdvice } = await advices;
+const { setCheatAdvice } = await advices;
+const { setMealsAdvice } = await advices;
+const { setGoalDistance } = await advices;
+const { setGoalAdvices } = await advices;
 export function resultTime() {
+  let timeGaps = 0;
   let interval = setInterval(() => {
     if (timeGaps > 1500000) clearInterval(interval);
     if (timeGaps == 100) {
@@ -13,7 +28,10 @@ export function resultTime() {
     if (timeGaps == 2000)
       finalResultH3Id.innerHTML += `${setAgeAdvice()}<br><br>`;
     if (timeGaps == 3000)
-      finalResultH3Id.innerHTML += `${finalIdealWeightMsg}<br><br>`;
+      import("./idealWeight.js").then(
+        ({ finalIdealWeightMsg }) =>
+          (finalResultH3Id.innerHTML += `${finalIdealWeightMsg}<br><br>`)
+      );
     if (timeGaps == 4000)
       finalResultH3Id.innerHTML += `${setExerciseAdvice()}<br><br>`;
     if (timeGaps == 5000)
@@ -33,7 +51,7 @@ export function resultTime() {
     if (timeGaps == 12000) {
       finalResultH4Id.innerHTML = "";
       finalResultH4Id.style.display = "block";
-      import("./modules/result/links.js").then(
+      import("./links.js").then(
         ({ setLinks }) =>
           (finalResultH4Id.innerHTML += `<i>${setLinks()[0]}<br><br>${
             setLinks()[1]

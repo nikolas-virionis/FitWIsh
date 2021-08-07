@@ -1,11 +1,14 @@
-import * as getters from "../global/fieldGetter.js";
+let getters = import("../global/fieldGetter.js");
+export let idealBodyFatPercentage;
+export let bodyFatPercentage;
+// let { idealWeight } = await import("./idealWeight.js");
 //variable getters
-const getWeight = getters.getWeight;
-const getBodyType = getters.getBodyType;
-const getGender = getters.getGender;
-const getGoal = getters.getGoal;
-const getCurrentBody = getters.getCurrentBody;
-const getGoalBody = getters.getGoalBody;
+const { getWeight } = await getters;
+const { getBodyType } = await getters;
+const { getGender } = await getters;
+const { getGoal } = await getters;
+const { getCurrentBody } = await getters;
+const { getGoalBody } = await getters;
 export function getBodyTypeAdvantage() {
   if (
     (getBodyType() == "ecto" && getGoal() == "bulking") ||
@@ -31,6 +34,9 @@ export function getBodyTypeAdvantage() {
 }
 
 export function getBodyFat() {
+  let baseBodyFat;
+  let topBodyFat;
+  let bodyFat;
   if (getCurrentBody() == 1) {
     if (getGender() == "male") {
       baseBodyFat = getWeight() * 0.04;
@@ -196,6 +202,10 @@ export function getBodyFat() {
   }
 }
 export function getSuggestedBodyFat() {
+  let { idealWeight } = import("./idealWeight.js");
+  let goalBaseBodyFat;
+  let goalTopBodyFat;
+  let suggestedBodyFat;
   if (getGoalBody() == 1) {
     if (getGender() == "male") {
       goalBaseBodyFat = idealWeight * 0.04;

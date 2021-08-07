@@ -1,4 +1,4 @@
-import { getUnit } from "./modules/global/fieldGetter.js";
+const { getUnit } = await import("./modules/global/fieldGetter.js");
 function english() {
   import("./modules/global/language.js").then(({ english: defaultEnglish }) =>
     defaultEnglish()

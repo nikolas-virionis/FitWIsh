@@ -1,5 +1,6 @@
-let bmi_state = window.bmi_state;
-export { bmi_state };
+let bmi_state, weight, height, bmi;
+const { getWeight, getHeight } = await import("../global/fieldGetter.js");
+export { bmi_state, weight, height };
 export function metric() {
   weight = parseFloat(getWeight());
   height = parseFloat(getHeight());
@@ -7,8 +8,8 @@ export function metric() {
   import("./variableSetters.js").then(
     ({ getBMIstate }) => (bmi_state = getBMIstate(bmi))
   );
-  import("./idealWeight.js").then(({ idealWeight }) =>
-    idealWeight("kg", 1, weight, height)
+  import("./idealWeight.js").then(({ setIdealWeight }) =>
+    setIdealWeight("kg", 1, weight, height)
   );
 }
 export function imperial() {
@@ -18,7 +19,7 @@ export function imperial() {
   import("./variableSetters.js").then(
     ({ getBMIstate }) => (bmi_state = getBMIstate(bmi))
   );
-  import("./idealWeight.js").then(({ idealWeight }) =>
-    idealWeight("lbs", 2.205, weight, height)
+  import("./idealWeight.js").then(({ setIdealWeight }) =>
+    setIdealWeight("lbs", 2.205, weight, height)
   );
 }

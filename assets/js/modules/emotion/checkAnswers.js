@@ -1,21 +1,21 @@
-import * as getters from "../global/fieldGetter.js";
+let getters = import("../global/fieldGetter.js");
 //variable getters
-const getName = getters.getName;
-const getEmail = getters.getEmail;
-const getAge = getters.getAge;
-const getWeight = getters.getWeight;
-const getHeight = getters.getHeight;
-const getBodyType = getters.getBodyType;
-const getCheat = getters.getCheat;
-const getExercise = getters.getExercise;
-const getGender = getters.getGender;
-const getUnit = getters.getUnit;
-const getGoal = getters.getGoal;
-const getHealthy = getters.getHealthy;
-const getCurrentBody = getters.getCurrentBody;
-const getGoalBody = getters.getGoalBody;
-const getMeals = getters.getMeals;
-const getEmotion = getters.getEmotion;
+const { getName } = await getters;
+const { getEmail } = await getters;
+const { getAge } = await getters;
+const { getWeight } = await getters;
+const { getHeight } = await getters;
+const { getBodyType } = await getters;
+const { getCheat } = await getters;
+const { getExercise } = await getters;
+const { getGender } = await getters;
+const { getUnit } = await getters;
+const { getGoal } = await getters;
+const { getHealthy } = await getters;
+const { getCurrentBody } = await getters;
+const { getGoalBody } = await getters;
+const { getMeals } = await getters;
+const { getEmotion } = await getters;
 export function checkAllAnswers() {
   let answers =
     getGender() &&

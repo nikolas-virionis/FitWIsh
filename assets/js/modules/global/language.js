@@ -1,3 +1,4 @@
+export let language;
 export function english() {
   language = "english";
   sessionStorage.setItem("language", language);

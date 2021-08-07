@@ -1,3 +1,20 @@
+let { backgroundColorDownload, colorDownload } = await import(
+  "../../result.js"
+);
+const { getName, getEmotion } = await import("../global/fieldGetter.js");
+const { setLinks } = await import("../result/links.js");
+const {
+  setBodyTypeAdvice,
+  setGoalAdvices,
+  setHealthyAdvice,
+  getBodyTypeAdvantageAdvice,
+  setGoalDistance,
+  setCheatAdvice,
+  setAgeAdvice,
+  setMealsAdvice,
+  setExerciseAdvice,
+  setCalorieIntake,
+} = await import("./advices.js");
 export function downloadData() {
   let element = document.createElement("a");
   element.setAttribute(
@@ -12,6 +29,8 @@ export function downloadData() {
   document.body.removeChild(element);
 }
 export function setDownloadableFileData() {
+  let { finalIdealWeightMsg } = import("./idealWeight.js");
+  let { emotionAnswer } = import("../../result.js");
   let downloadResult;
   if (language == "english")
     downloadResult = `<span style="background-color: ${backgroundColorDownload}; color: ${colorDownload};"><div style="display: flex; text-align: center"><img id="imageLogo" src="https://www.pngkey.com/png/full/211-2118619_healthy-army-communities-healthy-apple-logo.png" alt="logo" style="float: left; width: 60px; margin-left: ${imageLogo.style.marginLeft};"><h1 class="classHeading" id="headingObjInputIdHead" style="border: none; background: none; color: ${colorDownload}; place-items: left;"><i>${headingObjInputIdHead.innerHTML}</i></h1></div><h3 style="color:#1F3B4D; font-family: Quicksand, sans-serif; font-weight:150;">Well <big style="font-family: Kaushan Script, cursive;">`;

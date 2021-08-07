@@ -126,7 +126,7 @@ function hoverOutColorChangeFunc(hoveredOutId) {
 
 const setCheat = (cheat) =>
   sessionStorage.setItem("cheat", JSON.stringify(cheat));
-import { getCheat } from "./modules/global/fieldGetter.js";
+const { getCheat } = await import("./modules/global/fieldGetter.js");
 
 buttons.forEach((button) => {
   button.addEventListener("click", (e) =>

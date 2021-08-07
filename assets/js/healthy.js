@@ -79,7 +79,7 @@ function hoverOutColorChangeFunc(hoveredOutId) {
     colorChangeIdHighHealthy.style.backgroundColor = "#7395AE";
 }
 
-import { getHealthy } from "./modules/global/fieldGetter.js";
+const { getHealthy } = await import("./modules/global/fieldGetter.js");
 const setHealthy = (healthy) =>
   sessionStorage.setItem("healthy", JSON.stringify(healthy));
 

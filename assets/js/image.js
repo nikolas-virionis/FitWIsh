@@ -1,4 +1,11 @@
-import { getAge } from "./modules/global/fieldGetter.js";
+import {
+  getAge,
+  getGoalBody,
+  getCurrentBody,
+} from "./modules/global/fieldGetter.js";
+// let { getAge } = await import("./modules/global/fieldGetter.js");
+// let { getGoalBody } = await import("./modules/global/fieldGetter.js");
+// let { getCurrentBody } = await import("./modules/global/fieldGetter.js");
 let img;
 function english() {
   import("./modules/global/language.js").then(({ english: defaultEnglish }) =>
@@ -239,11 +246,9 @@ function setImg(link) {
   src.appendChild(img);
 }
 
-import { getCurrentBody } from "./modules/global/fieldGetter.js";
 const setCurrentBody = (body) =>
   sessionStorage.setItem("currentBody", JSON.stringify(body));
 
-import { getGoalBody } from "./modules/global/fieldGetter.js";
 const setGoalBody = (goal) => {
   if (
     !(

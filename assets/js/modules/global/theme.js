@@ -1,3 +1,4 @@
+export let theme;
 export function themeTypeLight() {
   theme = "light";
   sessionStorage.setItem("theme", theme);

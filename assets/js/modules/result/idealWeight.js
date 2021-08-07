@@ -1,8 +1,22 @@
-export function idealWeight(lbs, lb, weight, height) {
+export let idealWeight;
+export let finalIdealWeightMsg;
+let getters = import("../global/fieldGetter.js");
+// //variable getters
+const { getBodyType } = await getters;
+const { getGender } = await getters;
+const { getGoal } = await getters;
+export let baseIdealWeight;
+export let topIdealWeight;
+export function setIdealWeight(lbs, lb, weight, height) {
+  let { bmi_state } = import("./units.js");
+  let idealWeightMsg;
   let idealWeightDistance;
   let advicedWeight;
   let idealWeightMsgPunctuation;
   let idealWeightMsgBmiState;
+  let { idealBodyFatPercentage } = import("./variableSetters.js");
+  let idealBodyFat;
+  let { bodyFatPercentage } = import("./variableSetters.js");
   if (getGender() == "male") {
     if (getBodyType() == "ecto") {
       baseIdealWeight = 18.5 * height ** 2;
