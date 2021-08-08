@@ -1,5 +1,6 @@
-export function sendConfirm() {
+export async function sendConfirm() {
   let redirectemail;
+  let { language } = await import("../global/language.js");
   if (language == "english")
     redirectemail = confirm(
       "Are you sure you want to receive a main result email?"
@@ -16,5 +17,6 @@ export function sendConfirm() {
     redirectemail = confirm(
       "¿Está seguro de que desea recibir un correo electrónico con el resultado principal?"
     );
-  if (redirectemail) sendEmail();
+  if (redirectemail)
+    import("../../result.js").then(({ sendEmail }) => sendEmail());
 }

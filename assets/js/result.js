@@ -21,9 +21,6 @@ export {
   weightManagementProgramFinalResult,
 };
 
-import { idealBodyFatPercentage } from "./modules/result/variableSetters.js";
-import { bodyFatPercentage } from "./modules/result/variableSetters.js";
-import { baseIdealWeight } from "./modules/result/idealWeight.js";
 window.addEventListener("load", () => {
   if (document.querySelectorAll(".nationBtns")) {
     let nations = ["english", "português", "français", "español"];
@@ -66,9 +63,9 @@ function english() {
   weightManagementProgramFinalResult =
     "Fitness_Management_Program_Final_Result.html";
   emailLinkColor.innerHTML =
-    "<strong>Want to have a email sent to you with the main result data? Click here!!</strong>";
+    "<strong style='cursor:pointer;'>Want to have a email sent to you with the main result data? Click here!!</strong>";
   downloadLinkColor.innerHTML =
-    "<strong>Want to have a new document with all this last pages data? Click here!!</strong>";
+    "<strong style='cursor:pointer;'>Want to have a new document with all this last pages data? Click here!!</strong>";
   emotionAnswer =
     'For this emotional overeating issue you should try some ways to reduce it like: try to answer the question, am i really hungry or am i trying to eat my emotions?; aside from that you should try to calm yourself down with some breathing techniques, meditation or yoga to reduce stress; try to fight the boredom finding a new hobby, or something that "awakens" the  will do get up in the morning; don\'t discard the possibility of seeing a therapist to help you out in more areas than you can imagine; And to fight temptation, reward yourself periodically with a dose of a food you like, maybe every 15%-25% of the whole path completed, this way you will learn to moderate the amout you eat and thus make it easier for you to maintain your body in shape when you reach your goal.';
   h4Config.innerHTML = "Processing";
@@ -91,9 +88,9 @@ function português() {
   weightManagementProgramFinalResult =
     "Resultado_final_do_programa_de_controle_de_peso.html";
   emailLinkColor.innerHTML =
-    "<strong>Deseja receber um e-mail com os principais dados do resultado? Clique aqui!!</strong>";
+    "<strong style='cursor:pointer;'>Deseja receber um e-mail com os principais dados do resultado? Clique aqui!!</strong>";
   downloadLinkColor.innerHTML =
-    "<strong>Quer ter um novo documento com todos esses dados da última página? Clique aqui!!</strong>";
+    "<strong style='cursor:pointer;'>Quer ter um novo documento com todos esses dados da última página? Clique aqui!!</strong>";
   emotionAnswer =
     'Para esse problema de comer demais emocionalmente, você deve tentar algumas maneiras de reduzi-lo, como: tente responder à pergunta, estou realmente com fome ou estou tentando comer minhas emoções ?; além disso, você deve tentar se acalmar com algumas técnicas de respiração, meditação ou ioga para reduzir o estresse; tente lutar contra o tédio encontrando um novo hobby, ou algo que "desperte" a vontade o faça de se levantar de manhã; não descarte a possibilidade de ver um terapeuta para ajudá-lo em mais áreas do que você pode imaginar; E para lutar contra a tentação, recompense-se periodicamente com uma dose de um alimento que você goste, talvez a cada 15% -25% de todo o caminho percorrido, assim você aprenderá a moderar a quantidade que ingere e assim tornar mais fácil para você manter seu corpo em forma quando você atingir seu objetivo.';
 }
@@ -110,9 +107,9 @@ function français() {
   weightManagementProgramFinalResult =
     "Résultat_final_du_programme_de_gestion_du_poids.html";
   emailLinkColor.innerHTML =
-    "<strong>Vous souhaitez recevoir un e-mail contenant les principales données de résultat? Cliquez ici!!</strong>";
+    "<strong style='cursor:pointer;'>Vous souhaitez recevoir un e-mail contenant les principales données de résultat? Cliquez ici!!</strong>";
   downloadLinkColor.innerHTML =
-    "<strong>Vous voulez avoir un nouveau document avec toutes ces dernières pages de données? Cliquez ici!!</strong>";
+    "<strong style='cursor:pointer;'>Vous voulez avoir un nouveau document avec toutes ces dernières pages de données? Cliquez ici!!</strong>";
   emotionAnswer =
     "Pour ce problème émotionnel de suralimentation, vous devriez essayer quelques moyens de le réduire comme: essayez de répondre à la question, ai-je vraiment faim ou est-ce que j'essaye de manger mes émotions ?; à part cela, vous devriez essayer de vous calmer avec des techniques de respiration, de méditation ou de yoga pour réduire le stress; essayez de lutter contre l'ennui en trouvant un nouveau passe-temps, ou quelque chose qui «réveille» la volonté de se lever le matin; ne pas écarter la possibilité de voir un thérapeute pour vous aider dans plus de domaines que vous ne pouvez l'imaginer; Et pour lutter contre la tentation, récompensez-vous périodiquement avec une dose d'un aliment que vous aimez, peut-être tous les 15% à 25% du chemin parcouru, de cette façon vous apprendrez à modérer la quantité que vous mangez et ainsi vous faciliterez le maintien. votre corps en forme lorsque vous atteignez votre objectif.";
 }
@@ -130,9 +127,9 @@ function español() {
   weightManagementProgramFinalResult =
     "Resultado_final_del_programa_de_control_de_peso.html";
   emailLinkColor.innerHTML =
-    "<strong>¿Quiere que le envíen un correo electrónico con los principales datos de resultados? ¡¡Haga clic aquí!!</strong>";
+    "<strong style='cursor:pointer;'>¿Quiere que le envíen un correo electrónico con los principales datos de resultados? ¡¡Haga clic aquí!!</strong>";
   downloadLinkColor.innerHTML =
-    "<strong>¿Quieres tener un nuevo documento con todos los datos de estas últimas páginas? ¡¡Haga clic aquí!!</strong>";
+    "<strong style='cursor:pointer;'>¿Quieres tener un nuevo documento con todos los datos de estas últimas páginas? ¡¡Haga clic aquí!!</strong>";
   emotionAnswer =
     'Para este problema emocional de comer en exceso, debe probar algunas formas de reducirlo, como: intente responder la pregunta, ¿tengo mucha hambre o estoy tratando de comerme mis emociones ?; aparte de eso, debes intentar calmarte con algunas técnicas de respiración, meditación o yoga para reducir el estrés; intenta luchar contra el aburrimiento encontrando un nuevo pasatiempo, o algo que  "despierte " la voluntad de levantarse por la mañana; no descarte la posibilidad de ver a un terapeuta para que le ayude en más áreas de las que pueda imaginar; Y para combatir la tentación, recompénsate periódicamente con una dosis de un alimento que te guste, tal vez cada 15% -25% de todo el camino recorrido, de esta forma aprenderás a moderar la cantidad que comes y así te será más fácil mantenerlo. tu cuerpo en forma cuando alcances tu objetivo.';
 }
@@ -158,19 +155,11 @@ function themeTypeDark() {
   document.getElementById("downloadLinkColor").style.color = "lightgreen";
   document.getElementById("emailLinkColor").style.color = "pink";
 }
-// global imports
+// global import
 let getters = import("./modules/global/fieldGetter.js");
-let advices = import("./modules/result/advices.js");
-// import * as getters from "./modules/global/fieldGetter.js";
-// import * as advices from "./modules/result/advices.js";
-
 // //variable getters
-// const { getEmotion } = await getters;
-// const { getName } = await getters;
 const { getEmail } = await getters;
 const { getAge } = await getters;
-// const { getWeight } = await getters;
-// const { getHeight } = await getters;
 const { getBodyType } = await getters;
 const { getCheat } = await getters;
 const { getExercise } = await getters;
@@ -178,24 +167,17 @@ const { getGender } = await getters;
 const { getUnit } = await getters;
 const { getGoal } = await getters;
 const { getHealthy } = await getters;
-// const { getCurrentBody } = await getters;
-// const { getGoalBody } = await getters;
 const { getMeals } = await getters;
 
-// //advice functions
-// const { setBodyTypeAdvice } = await advices;
-// const { setAgeAdvice } = await advices;
-// const { getBodyTypeAdvantageAdvice } = await advices;
-// const { setCalorieIntake } = await advices;
-// const { setExerciseAdvice } = await advices;
-// const { setHealthyAdvice } = await advices;
-// const { setCheatAdvice } = await advices;
-// const { setMealsAdvice } = await advices;
-// const { setGoalDistance } = await advices;
-// const { setGoalAdvices } = await advices;
-
-function sendEmail() {
-  let { weight, height } = import("./modules/result/units.js");
+export async function sendEmail() {
+  let { weight, height } = await import("./modules/result/units.js");
+  let { idealBodyFatPercentage } = await import(
+    "./modules/result/variableSetters.js"
+  );
+  let { bodyFatPercentage } = await import(
+    "./modules/result/variableSetters.js"
+  );
+  let { baseIdealWeight } = await import("./modules/result/idealWeight.js");
   let addup5, addup6;
   if (language == "english") {
     addup5 = "kcal to ";
@@ -573,21 +555,21 @@ function resultTransition() {
     } else num.innerText = ++counter + "%";
   }, 200);
 }
-function result() {
+async function result() {
   idFooter.style.display = "none";
-  import("./modules/result/units.js").then(({ metric, imperial }) =>
+  await import("./modules/result/units.js").then(({ metric, imperial }) =>
     getUnit() == "metric" ? metric() : imperial()
   );
-  import("./modules/result/variableSetters.js").then(
+  await import("./modules/result/variableSetters.js").then(
     ({ getSuggestedBodyFat, getBodyFat }) => {
       getSuggestedBodyFat();
       getBodyFat();
     }
   );
-  import("./modules/result/downloadInfo.js").then(
+  await import("./modules/result/downloadInfo.js").then(
     ({ setDownloadableFileData }) => setDownloadableFileData()
   );
-  resultTransition();
+  await resultTransition();
   storage();
 }
 
