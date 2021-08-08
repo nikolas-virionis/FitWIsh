@@ -1,6 +1,6 @@
 let { weight } = await import("./units.js");
 
-let getters = import("../global/fieldGetter.js");
+let getters = await import("../global/fieldGetter.js");
 // //variable getters
 const { getAge } = await getters;
 const { getBodyType } = await getters;
@@ -119,8 +119,9 @@ export const getBodyTypeAdvantageAdvice = async () => {
   return getBodyTypeAdvantageAdviceEndo(getBodyTypeAdvantage());
 };
 
-export function setCalorieIntake() {
-  let { height } = import("./units.js");
+export async function setCalorieIntake() {
+  let { weight } = await import("./units.js");
+  let { height } = await import("./units.js");
   if (language == "english") {
     if (getGender() == "male") {
       bmr = (10 * weight + 625 * height - 5 * getAge() + 5).toFixed(1) + "kcal";

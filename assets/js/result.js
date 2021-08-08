@@ -18,6 +18,7 @@ export {
   colorDownload,
   emotionAnswer,
   resultBeginning,
+  weightManagementProgramFinalResult,
 };
 
 import { idealBodyFatPercentage } from "./modules/result/variableSetters.js";
@@ -565,17 +566,12 @@ function resultTransition() {
     if (counter == 90) h4Config.innerHTML = `${diagnosis}...`;
     if (counter == 95) h4Config.innerHTML = `${done}`;
     if (counter >= 100) {
-      import("./modules/result/resultAnimation.js").then(({ resultTime }) =>
-        resultTime()
+      import("./modules/result/resultAnimation.js").then(({ printResult }) =>
+        printResult()
       );
       clearInterval(counterInterval);
     } else num.innerText = ++counter + "%";
   }, 200);
-  // if (
-  //   (timeGaps === 0 && counter >= 100) ||
-  //   (timeGaps === 0 && h4Config.innerHTML == "Done")
-  // )
-  //   resultTime();
 }
 function result() {
   idFooter.style.display = "none";
