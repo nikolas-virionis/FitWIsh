@@ -105,21 +105,19 @@ export function setAgeAdvice() {
       return " Honestamente, me gusta que a esta edad quieras ponerte en forma, pero sabes que es importante que comprendas que el 99% de tu enfoque tiene que estar en estar y luego en mantenerte saludable. Relájate, puede ser difícil, pero lo lograrás, y además, cuanto más saludable estés, ¡más fácil será tener un mejor cuerpo!";
   }
 }
-export const getBodyTypeAdvantageAdvice = () =>
-  import("./bodyTypeAdvices.js").then(
-    ({
-      getBodyTypeAdvantageAdviceEcto,
-      getBodyTypeAdvantageAdviceMeso,
-      getBodyTypeAdvantageAdviceEndo,
-    }) =>
-      import("./variableSetters.js").then(({ getBodyTypeAdvantage }) =>
-        getBodyType() == "ecto"
-          ? getBodyTypeAdvantageAdviceEcto(getBodyTypeAdvantage())
-          : getBodyType() == "meso"
-          ? getBodyTypeAdvantageAdviceMeso(getBodyTypeAdvantage())
-          : getBodyTypeAdvantageAdviceEndo(getBodyTypeAdvantage())
-      )
-  );
+export const getBodyTypeAdvantageAdvice = async () => {
+  const {
+    getBodyTypeAdvantageAdviceEcto,
+    getBodyTypeAdvantageAdviceMeso,
+    getBodyTypeAdvantageAdviceEndo,
+  } = await import("./bodyTypeAdvices.js");
+  const { getBodyTypeAdvantage } = await import("./variableSetters.js");
+  if (getBodyType() == "ecto")
+    return getBodyTypeAdvantageAdviceEcto(getBodyTypeAdvantage());
+  if (getBodyType() == "meso")
+    return getBodyTypeAdvantageAdviceMeso(getBodyTypeAdvantage());
+  return getBodyTypeAdvantageAdviceEndo(getBodyTypeAdvantage());
+};
 
 export function setCalorieIntake() {
   let { height } = import("./units.js");

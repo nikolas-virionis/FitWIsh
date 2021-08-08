@@ -13,6 +13,10 @@ const { setMealsAdvice } = await advices;
 const { setGoalDistance } = await advices;
 const { setGoalAdvices } = await advices;
 export function resultTime() {
+  let bodyTypeAdvice;
+  getBodyTypeAdvantageAdvice()
+    .then((advice) => (bodyTypeAdvice = advice))
+    .catch((err) => console.log(err));
   let timeGaps = 0;
   let interval = setInterval(() => {
     if (timeGaps > 1500000) clearInterval(interval);
@@ -24,7 +28,7 @@ export function resultTime() {
     }
     timeGaps += 1;
     if (timeGaps == 1500)
-      finalResultH3Id.innerHTML += `${getBodyTypeAdvantageAdvice()}${setGoalDistance()}<br><br>`;
+      finalResultH3Id.innerHTML += `${bodyTypeAdvice}${setGoalDistance()}<br><br>`;
     if (timeGaps == 2000)
       finalResultH3Id.innerHTML += `${setAgeAdvice()}<br><br>`;
     if (timeGaps == 3000)
