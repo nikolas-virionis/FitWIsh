@@ -12,14 +12,14 @@ export function english() {
   import("./modules/global/language.js").then(({ english: defaultEnglish }) =>
     defaultEnglish()
   );
-  if (contentArray.length >= 1)
+  if (contentArray?.length >= 1)
     import("./modules/index/overwriteBtns.js").then(
       ({ numberBtnsOverwriteEn }) => numberBtnsOverwriteEn()
     );
   firstPageBtnSeePrev.innerHTML = "Hide Previous Test";
   firstPageH1.innerHTML =
     "We are glad you gave us a chance to help you achieve the body of your dreams, press start to continue";
-  if (contentArray.length > 0)
+  if (contentArray?.length > 0)
     firstPageH12nd.innerHTML = `We detected that you have already tried our test once as ${contentArray[0].inputName}, made in ${contentArray[0].day}. Choose what you would like to do below`;
   firstPageBtnStart.value = `Start`;
   firstPageBtnDifferent.value = `Do a Different Test`;
@@ -218,18 +218,21 @@ window.addEventListener("load", () => {
   sessionStorage.getItem("theme") == "light"
     ? themeTypeLight()
     : themeTypeDark();
-  if (contentArray.length == 0 && !sessionStorage.getItem("language")) {
+  if (
+    !contentArray ||
+    (contentArray.length == 0 && !sessionStorage.getItem("language"))
+  ) {
     getDefLang();
     themeTypeDark();
-  } else if (contentArray.length != 0) {
+  } else if (contentArray?.length != 0) {
     import("./modules/index/iniciateIndexLang.js").then(({ triesMade }) => {
       rearrangeElements(triesMade + 1);
-      if (contentArray[triesMade - 1].theme == "light") themeTypeLight();
+      if (contentArray?.[triesMade - 1].theme == "light") themeTypeLight();
       else themeTypeDark();
-      if (contentArray.length == 1) {
-        if (contentArray[0].language == "português") return português();
-        if (contentArray[0].language == "français") return français();
-        if (contentArray[0].language == "español") return español();
+      if (contentArray?.length == 1) {
+        if (contentArray?.[0].language == "português") return português();
+        if (contentArray?.[0].language == "français") return français();
+        if (contentArray?.[0].language == "español") return español();
         return getDefLang();
       }
       initiateLanguage();
@@ -245,11 +248,11 @@ const initiateLanguage = () =>
       iniciateFrançais,
       iniciateEspañol,
     }) =>
-      contentArray[1].language == "português" || getBrowserLang() == "pt"
+      contentArray?.[1].language == "português" || getBrowserLang() == "pt"
         ? iniciatePortuguês()
-        : contentArray[1].language == "français" || getBrowserLang() == "fr"
+        : contentArray?.[1].language == "français" || getBrowserLang() == "fr"
         ? iniciateFrançais()
-        : contentArray[1].language == "español" || getBrowserLang() == "es"
+        : contentArray?.[1].language == "español" || getBrowserLang() == "es"
         ? iniciateEspañol()
         : iniciateEnglish()
   );

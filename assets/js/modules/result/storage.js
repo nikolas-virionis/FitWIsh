@@ -1,4 +1,4 @@
-let { contentArray } = await import("../index/iniciateIndexLang.js");
+let contentArray = JSON.parse(localStorage.getItem("contentArray")) ?? [];
 export const setLocalData = (idUser) => {
   import("./date.js").then(({ getDate }) =>
     import("../../result.js").then(({ emotionAnswer }) =>
@@ -62,5 +62,6 @@ export const setLocalData = (idUser) => {
       )
     )
   );
-  localStorage.setItem("contentArray", JSON.stringify(contentArray));
+  console.log(contentArray);
+  window.localStorage.setItem("contentArray", JSON.stringify(contentArray));
 };
