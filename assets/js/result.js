@@ -575,7 +575,7 @@ async function result() {
     ({ setDownloadableFileData }) => setDownloadableFileData()
   );
   storage();
-  await resultTransition();
+  resultTransition();
 }
 
 downloadLinkColor.addEventListener("click", () =>
