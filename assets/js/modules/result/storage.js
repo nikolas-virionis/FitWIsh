@@ -1,6 +1,6 @@
 let contentArray = JSON.parse(localStorage.getItem("contentArray")) ?? [];
-export const setLocalData = (idUser) => {
-  import("./date.js").then(({ getDate }) =>
+export const setLocalData = async (idUser) => {
+  await import("./date.js").then(({ getDate }) =>
     import("../../result.js").then(({ emotionAnswer }) =>
       import("../global/language.js").then(({ language }) =>
         import("../global/theme.js").then(({ theme }) =>

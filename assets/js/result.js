@@ -1,5 +1,4 @@
 let language = sessionStorage.getItem("language");
-let contentArray = JSON.parse(localStorage.getItem("contentArray")) ?? [];
 let colorDownload = "#1F3B4D",
   backgroundColorDownload = "#12232A",
   processing,
