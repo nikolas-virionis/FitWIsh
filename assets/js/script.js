@@ -1,5 +1,5 @@
-let language = sessionStorage.getItem("language"),
-  theme = sessionStorage.getItem("theme"),
+let language = sessionStorage.getItem("language");
+let theme = sessionStorage.getItem("theme"),
   buttons = document.querySelectorAll(".button"),
   alreadyInPage,
   firstAlert;
@@ -96,33 +96,6 @@ if (
     "click",
     () => (window.location.href = "intro.html")
   );
-
-if (document.querySelectorAll(".nationBtns")) {
-  let nations = ["english", "português", "français", "español"];
-  document
-    .querySelectorAll(".nationBtns")
-    .forEach((btn) =>
-      btn.addEventListener("click", (e) =>
-        eval(
-          nations[
-            [...document.querySelectorAll(".nationBtns")].indexOf(e.target)
-          ]
-        )()
-      )
-    );
-}
-
-if (document.querySelectorAll(".listnav"))
-  document.querySelectorAll(".listnav").forEach((element) => {
-    element.addEventListener("click", (e) =>
-      eval(
-        `themeType${
-          e.target.id.slice(0, -11).charAt(0).toUpperCase() +
-          e.target.id.slice(1, -11)
-        }`
-      )()
-    );
-  });
 
 if (document.querySelectorAll(".listnav2"))
   document.querySelectorAll(".listnav2").forEach((element) => {

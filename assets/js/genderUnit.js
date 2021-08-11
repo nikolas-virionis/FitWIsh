@@ -1,6 +1,6 @@
 let metricSystem, imperialSystem;
 function english() {
-  import("./modules/language.js").then(({ english: defaultEnglish }) =>
+  import("./modules/global/language.js").then(({ english: defaultEnglish }) =>
     defaultEnglish()
   );
   document.getElementById("headingObjInputIdGender").innerHTML = "Gender";
@@ -13,8 +13,8 @@ function english() {
   imperialSystem = "Imperial";
 }
 function português() {
-  import("./modules/language.js").then(({ português: defaultPortuguês }) =>
-    defaultPortuguês()
+  import("./modules/global/language.js").then(
+    ({ português: defaultPortuguês }) => defaultPortuguês()
   );
   document.getElementById("headingObjInputIdUnit").innerHTML = "Unidade";
   document.getElementById("colorChangeIdMetric").value = `Métrico`;
@@ -26,7 +26,7 @@ function português() {
   imperialSystem = "Imperial";
 }
 function français() {
-  import("./modules/language.js").then(({ français: defaultFrançais }) =>
+  import("./modules/global/language.js").then(({ français: defaultFrançais }) =>
     defaultFrançais()
   );
   document.getElementById("headingObjInputIdGender").innerHTML = "Genre";
@@ -39,7 +39,7 @@ function français() {
   imperialSystem = "Impérial";
 }
 function español() {
-  import("./modules/language.js").then(({ español: defaultEspañol }) =>
+  import("./modules/global/language.js").then(({ español: defaultEspañol }) =>
     defaultEspañol()
   );
   document.getElementById("headingObjInputIdGender").innerHTML = "Género";
@@ -52,14 +52,14 @@ function español() {
   imperialSystem = "Imperial";
 }
 function themeTypeLight() {
-  import("./modules/theme.js").then(({ themeTypeLight: defaultLight }) =>
+  import("./modules/global/theme.js").then(({ themeTypeLight: defaultLight }) =>
     defaultLight()
   );
   for (let el of document.querySelectorAll(".headingObjInputId"))
     el.style.backgroundColor = "#D0FEFE";
 }
 function themeTypeDark() {
-  import("./modules/theme.js").then(({ themeTypeDark: defaultDark }) =>
+  import("./modules/global/theme.js").then(({ themeTypeDark: defaultDark }) =>
     defaultDark()
   );
   for (let el of document.querySelectorAll(".headingObjInputId"))
@@ -81,10 +81,10 @@ function hoverOutColorChangeFunc(hoveredOutId) {
 
 //gender
 const gender = (gender) => sessionStorage.setItem("gender", gender);
-import { getGender } from "./modules/fieldGetter.js";
+const { getGender } = await import("./modules/global/fieldGetter.js");
 // unit system
 const unit = (unit) => sessionStorage.setItem("unit", unit);
-import { getUnit } from "./modules/fieldGetter.js";
+const { getUnit } = await import("./modules/global/fieldGetter.js");
 
 //hover nano instructions on units used
 
@@ -94,6 +94,32 @@ const imperialUnit = () => (colorChangeIdImperial.value += ` (lbs / in)`);
 const imperialUnitCloak = () => (colorChangeIdImperial.value = imperialSystem);
 
 window.addEventListener("load", () => {
+  if (document.querySelectorAll(".nationBtns")) {
+    let nations = ["english", "português", "français", "español"];
+    document
+      .querySelectorAll(".nationBtns")
+      .forEach((btn) =>
+        btn.addEventListener("click", (e) =>
+          eval(
+            nations[
+              [...document.querySelectorAll(".nationBtns")].indexOf(e.target)
+            ]
+          )()
+        )
+      );
+  }
+
+  if (document.querySelectorAll(".listnav"))
+    document.querySelectorAll(".listnav").forEach((element) => {
+      element.addEventListener("click", (e) =>
+        eval(
+          `themeType${
+            e.target.id.slice(0, -11).charAt(0).toUpperCase() +
+            e.target.id.slice(1, -11)
+          }`
+        )()
+      );
+    });
   if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
   if (getGender())
     document.getElementById(

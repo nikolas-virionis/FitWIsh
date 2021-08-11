@@ -1,5 +1,5 @@
 function english() {
-  import("./modules/language.js").then(({ english: defaultEnglish }) =>
+  import("./modules/global/language.js").then(({ english: defaultEnglish }) =>
     defaultEnglish()
   );
   document.getElementById("headingObjInputIdBodyType").innerHTML = "Body Type";
@@ -9,8 +9,8 @@ function english() {
   document.getElementById("colorChangeIdEndo").value = "Endomorph";
 }
 function português() {
-  import("./modules/language.js").then(({ português: defaultPortuguês }) =>
-    defaultPortuguês()
+  import("./modules/global/language.js").then(
+    ({ português: defaultPortuguês }) => defaultPortuguês()
   );
   document.getElementById("headingObjInputIdBodyType").innerHTML =
     "Tipo Corporal";
@@ -20,7 +20,7 @@ function português() {
   document.getElementById("colorChangeIdEndo").value = "Endomorfo";
 }
 function français() {
-  import("./modules/language.js").then(({ français: defaultFrançais }) =>
+  import("./modules/global/language.js").then(({ français: defaultFrançais }) =>
     defaultFrançais()
   );
   document.getElementById("headingObjInputIdBodyType").innerHTML =
@@ -31,7 +31,7 @@ function français() {
   document.getElementById("colorChangeIdEndo").value = "Endomorphe";
 }
 function español() {
-  import("./modules/language.js").then(({ español: defaultEspañol }) =>
+  import("./modules/global/language.js").then(({ español: defaultEspañol }) =>
     defaultEspañol()
   );
   document.getElementById("headingObjInputIdBodyType").innerHTML =
@@ -42,14 +42,14 @@ function español() {
   document.getElementById("colorChangeIdEndo").value = "Endomorfo";
 }
 function themeTypeLight() {
-  import("./modules/theme.js").then(({ themeTypeLight: defaultLight }) =>
+  import("./modules/global/theme.js").then(({ themeTypeLight: defaultLight }) =>
     defaultLight()
   );
   for (let el of document.querySelectorAll(".headingObjInputId"))
     el.style.backgroundColor = "#D0FEFE";
 }
 function themeTypeDark() {
-  import("./modules/theme.js").then(({ themeTypeDark: defaultDark }) =>
+  import("./modules/global/theme.js").then(({ themeTypeDark: defaultDark }) =>
     defaultDark()
   );
   for (let el of document.querySelectorAll(".headingObjInputId"))
@@ -57,6 +57,32 @@ function themeTypeDark() {
 }
 
 window.addEventListener("load", () => {
+  if (document.querySelectorAll(".nationBtns")) {
+    let nations = ["english", "português", "français", "español"];
+    document
+      .querySelectorAll(".nationBtns")
+      .forEach((btn) =>
+        btn.addEventListener("click", (e) =>
+          eval(
+            nations[
+              [...document.querySelectorAll(".nationBtns")].indexOf(e.target)
+            ]
+          )()
+        )
+      );
+  }
+
+  if (document.querySelectorAll(".listnav"))
+    document.querySelectorAll(".listnav").forEach((element) => {
+      element.addEventListener("click", (e) =>
+        eval(
+          `themeType${
+            e.target.id.slice(0, -11).charAt(0).toUpperCase() +
+            e.target.id.slice(1, -11)
+          }`
+        )()
+      );
+    });
   if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
   if (getBodyType())
     document.getElementById(
@@ -89,7 +115,7 @@ function hoverOutColorChangeFunc(hoveredOutId) {
 
 // body type
 const bodyType = (bodytype) => sessionStorage.setItem("bodytype", bodytype);
-import { getBodyType } from "./modules/fieldGetter.js";
+const { getBodyType } = await import("./modules/global/fieldGetter.js");
 function nop() {
   sessionStorage.removeItem("bodytype");
   if (language == "english")

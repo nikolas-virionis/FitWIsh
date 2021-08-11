@@ -1,26 +1,25 @@
-export let contentArray =
-  JSON.parse(localStorage.getItem("contentArray")) ?? [];
-let triesMade;
-
+// let contentArray = JSON.parse(localStorage.getItem("contentArray")) ?? [];
+let { contentArray } = await import("./modules/index/iniciateIndexLang.js");
+// import { contentArray } from "./modules/index/iniciateIndexLang.js";
 import {
   startNewTry,
   overwriteTest2,
   overwriteTest,
   seeAllTests,
-} from "./modules/previousTestsHandle.js";
+} from "./modules/index/previousTestsHandle.js";
 
-function english() {
-  import("./modules/language.js").then(({ english: defaultEnglish }) =>
+export function english() {
+  import("./modules/global/language.js").then(({ english: defaultEnglish }) =>
     defaultEnglish()
   );
-  if (contentArray.length >= 1)
-    import("./modules/overwriteBtns.js").then(({ numberBtnsOverwriteEn }) =>
-      numberBtnsOverwriteEn()
+  if (contentArray?.length >= 1)
+    import("./modules/index/overwriteBtns.js").then(
+      ({ numberBtnsOverwriteEn }) => numberBtnsOverwriteEn()
     );
   firstPageBtnSeePrev.innerHTML = "Hide Previous Test";
   firstPageH1.innerHTML =
     "We are glad you gave us a chance to help you achieve the body of your dreams, press start to continue";
-  if (contentArray.length > 0)
+  if (contentArray?.length > 0)
     firstPageH12nd.innerHTML = `We detected that you have already tried our test once as ${contentArray[0].inputName}, made in ${contentArray[0].day}. Choose what you would like to do below`;
   firstPageBtnStart.value = `Start`;
   firstPageBtnDifferent.value = `Do a Different Test`;
@@ -30,13 +29,13 @@ function english() {
   firstPageBtnSeePrev.value = `See the Previous Test Result`;
   firstPageBtnHideAll.value = `Hide All Previous Tests`;
 }
-function português() {
-  import("./modules/language.js").then(({ português: defaultPortuguês }) =>
-    defaultPortuguês()
+export function português() {
+  import("./modules/global/language.js").then(
+    ({ português: defaultPortuguês }) => defaultPortuguês()
   );
   if (contentArray.length >= 1)
-    import("./modules/overwriteBtns.js").then(({ numberBtnsOverwritePt }) =>
-      numberBtnsOverwritePt()
+    import("./modules/index/overwriteBtns.js").then(
+      ({ numberBtnsOverwritePt }) => numberBtnsOverwritePt()
     );
   firstPageBtnSeePrev.innerHTML = "Ocultar Teste Anterior";
   firstPageH1.innerHTML =
@@ -51,13 +50,13 @@ function português() {
   firstPageBtnSeePrev.value = `Ver o Resultado do Teste Anterior`;
   firstPageBtnHideAll.value = `Ocultar Testes Anteriores`;
 }
-function français() {
-  import("./modules/language.js").then(({ français: defaultFrançais }) =>
+export function français() {
+  import("./modules/global/language.js").then(({ français: defaultFrançais }) =>
     defaultFrançais()
   );
   if (contentArray.length >= 1)
-    import("./modules/overwriteBtns.js").then(({ numberBtnsOverwriteFr }) =>
-      numberBtnsOverwriteFr()
+    import("./modules/index/overwriteBtns.js").then(
+      ({ numberBtnsOverwriteFr }) => numberBtnsOverwriteFr()
     );
   firstPageBtnSeePrev.innerHTML = "Masquer le test précédent";
   firstPageH1.innerHTML =
@@ -72,13 +71,13 @@ function français() {
   firstPageBtnSeePrev.value = `Voir le résultat du test précédent`;
   firstPageBtnHideAll.value = `Masquer tous les tests précédents`;
 }
-function español() {
-  import("./modules/language.js").then(({ español: defaultEspañol }) =>
+export function español() {
+  import("./modules/global/language.js").then(({ español: defaultEspañol }) =>
     defaultEspañol()
   );
   if (contentArray.length >= 1)
-    import("./modules/overwriteBtns.js").then(({ numberBtnsOverwriteEs }) =>
-      numberBtnsOverwriteEs()
+    import("./modules/index/overwriteBtns.js").then(
+      ({ numberBtnsOverwriteEs }) => numberBtnsOverwriteEs()
     );
   firstPageBtnSeePrev.innerHTML = "Ocultar Prueba Anterior";
   firstPageH1.innerHTML =
@@ -94,14 +93,14 @@ function español() {
   firstPageBtnHideAll.value = `Ocultar todas las pruebas anteriores`;
 }
 function themeTypeLight() {
-  import("./modules/theme.js").then(({ themeTypeLight: defaultLight }) =>
+  import("./modules/global/theme.js").then(({ themeTypeLight: defaultLight }) =>
     defaultLight()
   );
   for (let element of document.querySelectorAll(".firstPageH1setItem"))
     element.style.color = "#1F3B4D";
 }
 function themeTypeDark() {
-  import("./modules/theme.js").then(({ themeTypeDark: defaultDark }) =>
+  import("./modules/global/theme.js").then(({ themeTypeDark: defaultDark }) =>
     defaultDark()
   );
   for (let element of document.querySelectorAll(".firstPageH1setItem"))
@@ -113,8 +112,8 @@ function themeTypeDark() {
   document.getElementById("firstPageBtn2ndTry"),
 ].forEach((element) =>
   element.addEventListener("click", (e) =>
-    import("./modules/previousTestsHandle.js").then(({ showPrevTestResult }) =>
-      showPrevTestResult(Number(e.target.id[12]))
+    import("./modules/index/previousTestsHandle.js").then(
+      ({ showPrevTestResult }) => showPrevTestResult(Number(e.target.id[12]))
     )
   )
 );
@@ -139,7 +138,7 @@ function themeTypeDark() {
   document.getElementById("firstPageBtnSeeAll"),
 ].forEach((element) =>
   element.addEventListener("click", (e) =>
-    import("./modules/previousTestsHandle.js").then(
+    import("./modules/index/previousTestsHandle.js").then(
       ({ seePrevTests, seeAllTests }) =>
         eval(`see${e.target.id.slice(15)}Tests`)()
     )
@@ -150,7 +149,7 @@ function themeTypeDark() {
   document.getElementById("firstPageBtnHideAll"),
 ].forEach((element) =>
   element.addEventListener("click", (e) =>
-    import("./modules/previousTestsHandle.js").then(
+    import("./modules/index/previousTestsHandle.js").then(
       ({ hidePrevTests, hideAllTests }) =>
         eval(`hide${e.target.id.slice(16)}Tests`)()
     )
@@ -158,7 +157,7 @@ function themeTypeDark() {
 );
 firstPageBtnOverwrite.addEventListener("click", () => overwriteTest());
 firstPageBtnDelete.addEventListener("click", () =>
-  import("./modules/previousTestsHandle.js").then(({ deleteTests }) =>
+  import("./modules/index/previousTestsHandle.js").then(({ deleteTests }) =>
     deleteTests()
   )
 );
@@ -188,42 +187,72 @@ function getDefLang() {
   return english();
 }
 window.addEventListener("load", () => {
+  if (document.querySelectorAll(".nationBtns")) {
+    let nations = ["english", "português", "français", "español"];
+    document
+      .querySelectorAll(".nationBtns")
+      .forEach((btn) =>
+        btn.addEventListener("click", (e) =>
+          eval(
+            nations[
+              [...document.querySelectorAll(".nationBtns")].indexOf(e.target)
+            ]
+          )()
+        )
+      );
+  }
+
+  if (document.querySelectorAll(".listnav"))
+    document.querySelectorAll(".listnav").forEach((element) => {
+      element.addEventListener("click", (e) =>
+        eval(
+          `themeType${
+            e.target.id.slice(0, -11).charAt(0).toUpperCase() +
+            e.target.id.slice(1, -11)
+          }`
+        )()
+      );
+    });
   sessionStorage.setItem("first", JSON.stringify(true));
   eval(sessionStorage.getItem("language"))?.();
   sessionStorage.getItem("theme") == "light"
     ? themeTypeLight()
     : themeTypeDark();
-  if (contentArray.length == 0 && !sessionStorage.getItem("language")) {
+  if (
+    !contentArray ||
+    (contentArray.length == 0 && !sessionStorage.getItem("language"))
+  ) {
     getDefLang();
     themeTypeDark();
-  } else if (contentArray.length != 0) {
-    triesMade = contentArray.length;
-    rearrangeElements(triesMade + 1);
-    if (contentArray[triesMade - 1].theme == "light") themeTypeLight();
-    else themeTypeDark();
-    if (contentArray.length == 1) {
-      if (contentArray[0].language == "português") return português();
-      if (contentArray[0].language == "français") return français();
-      if (contentArray[0].language == "español") return español();
-      return getDefLang();
-    }
-    initiateLanguage();
+  } else if (contentArray?.length != 0) {
+    import("./modules/index/iniciateIndexLang.js").then(({ triesMade }) => {
+      rearrangeElements(triesMade + 1);
+      if (contentArray?.[triesMade - 1].theme == "light") themeTypeLight();
+      else themeTypeDark();
+      if (contentArray?.length == 1) {
+        if (contentArray?.[0].language == "português") return português();
+        if (contentArray?.[0].language == "français") return français();
+        if (contentArray?.[0].language == "español") return español();
+        return getDefLang();
+      }
+      initiateLanguage();
+    });
   }
 });
 
 const initiateLanguage = () =>
-  import("./modules/iniciateIndexLang.js").then(
+  import("./modules/index/iniciateIndexLang.js").then(
     ({
       iniciateEnglish,
       iniciatePortuguês,
       iniciateFrançais,
       iniciateEspañol,
     }) =>
-      contentArray[1].language == "português" || getBrowserLang() == "pt"
+      contentArray?.[1].language == "português" || getBrowserLang() == "pt"
         ? iniciatePortuguês()
-        : contentArray[1].language == "français" || getBrowserLang() == "fr"
+        : contentArray?.[1].language == "français" || getBrowserLang() == "fr"
         ? iniciateFrançais()
-        : contentArray[1].language == "español" || getBrowserLang() == "es"
+        : contentArray?.[1].language == "español" || getBrowserLang() == "es"
         ? iniciateEspañol()
         : iniciateEnglish()
   );

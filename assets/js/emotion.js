@@ -1,5 +1,5 @@
 function english() {
-  import("./modules/language.js").then(({ english: defaultEnglish }) =>
+  import("./modules/global/language.js").then(({ english: defaultEnglish }) =>
     defaultEnglish()
   );
   document.getElementById("headingObjInputIdEmotion").innerHTML =
@@ -9,8 +9,8 @@ function english() {
   document.getElementById("buttonResult").value = "Result";
 }
 function português() {
-  import("./modules/language.js").then(({ português: defaultPortuguês }) =>
-    defaultPortuguês()
+  import("./modules/global/language.js").then(
+    ({ português: defaultPortuguês }) => defaultPortuguês()
   );
   document.getElementById("headingObjInputIdEmotion").innerHTML =
     "Comer demais baseado em emoção<h3>(Quando experenciando tristeza, felicidade, tédio, solidão, stress, decepção, preocupação, etc.)</h3>";
@@ -19,7 +19,7 @@ function português() {
   document.getElementById("buttonResult").value = "Resultado";
 }
 function français() {
-  import("./modules/language.js").then(({ français: defaultFrançais }) =>
+  import("./modules/global/language.js").then(({ français: defaultFrançais }) =>
     defaultFrançais()
   );
   document.getElementById("headingObjInputIdEmotion").innerHTML =
@@ -29,7 +29,7 @@ function français() {
   document.getElementById("buttonResult").value = "Résultat";
 }
 function español() {
-  import("./modules/language.js").then(({ español: defaultEspañol }) =>
+  import("./modules/global/language.js").then(({ español: defaultEspañol }) =>
     defaultEspañol()
   );
   document.getElementById("headingObjInputIdEmotion").innerHTML =
@@ -39,14 +39,14 @@ function español() {
   document.getElementById("buttonResult").value = "Resultado";
 }
 function themeTypeLight() {
-  import("./modules/theme.js").then(({ themeTypeLight: defaultLight }) =>
+  import("./modules/global/theme.js").then(({ themeTypeLight: defaultLight }) =>
     defaultLight()
   );
   for (let el of document.querySelectorAll(".headingObjInputId"))
     el.style.backgroundColor = "#D0FEFE";
 }
 function themeTypeDark() {
-  import("./modules/theme.js").then(({ themeTypeDark: defaultDark }) =>
+  import("./modules/global/theme.js").then(({ themeTypeDark: defaultDark }) =>
     defaultDark()
   );
   for (let el of document.querySelectorAll(".headingObjInputId"))
@@ -61,29 +61,37 @@ function hoverOutColorChangeFunc(hoveredOutId) {
     colorChangeIdEmoNo.style.backgroundColor = "#7395AE";
 }
 
-import * as getters from "./modules/fieldGetter.js";
 // emotional overeating
-const getEmotion = getters.getEmotion;
+const { getEmotion } = await import("./modules/global/fieldGetter.js");
 const emotion = (emotion) => sessionStorage.setItem("emotion", emotion);
 
-//variable getters
-const getName = getters.getName;
-const getEmail = getters.getEmail;
-const getAge = getters.getAge;
-const getWeight = getters.getWeight;
-const getHeight = getters.getHeight;
-const getBodyType = getters.getBodyType;
-const getCheat = getters.getCheat;
-const getExercise = getters.getExercise;
-const getGender = getters.getGender;
-const getUnit = getters.getUnit;
-const getGoal = getters.getGoal;
-const getHealthy = getters.getHealthy;
-const getCurrentBody = getters.getCurrentBody;
-const getGoalBody = getters.getGoalBody;
-const getMeals = getters.getMeals;
-
 window.addEventListener("load", () => {
+  if (document.querySelectorAll(".nationBtns")) {
+    let nations = ["english", "português", "français", "español"];
+    document
+      .querySelectorAll(".nationBtns")
+      .forEach((btn) =>
+        btn.addEventListener("click", (e) =>
+          eval(
+            nations[
+              [...document.querySelectorAll(".nationBtns")].indexOf(e.target)
+            ]
+          )()
+        )
+      );
+  }
+
+  if (document.querySelectorAll(".listnav"))
+    document.querySelectorAll(".listnav").forEach((element) => {
+      element.addEventListener("click", (e) =>
+        eval(
+          `themeType${
+            e.target.id.slice(0, -11).charAt(0).toUpperCase() +
+            e.target.id.slice(1, -11)
+          }`
+        )()
+      );
+    });
   if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
   if (getEmotion())
     document.getElementById(
@@ -106,7 +114,7 @@ window.addEventListener("load", () => {
 });
 
 buttonResult.addEventListener("click", () =>
-  import("./modules/checkAnswers.js").then(({ checkAllAnswers }) =>
+  import("./modules/emotion/checkAnswers.js").then(({ checkAllAnswers }) =>
     checkAllAnswers()
   )
 );

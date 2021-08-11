@@ -1,65 +1,65 @@
-import { getAge } from "./modules/fieldGetter.js";
+import {
+  getAge,
+  getGoalBody,
+  getCurrentBody,
+} from "./modules/global/fieldGetter.js";
+// let { getAge } = await import("./modules/global/fieldGetter.js");
+// let { getGoalBody } = await import("./modules/global/fieldGetter.js");
+// let { getCurrentBody } = await import("./modules/global/fieldGetter.js");
+let img;
 function english() {
-  import("./modules/language.js").then(({ english: defaultEnglish }) =>
+  import("./modules/global/language.js").then(({ english: defaultEnglish }) =>
     defaultEnglish()
   );
   showImgBtn.innerHTML = "&#9776; Show Image";
   referenceImgTxt.innerHTML = "Reference Image:";
-  backupGenderImg =
-    '<br><br><br><br><br><span style="font-size: 40px; font-variant:all-caps; color:white; display: grid; place-items: center;">Select a gender to see the reference Image';
   document.getElementById("headingObjInputIdBodyImage").innerHTML =
     "Which one of these you think represent you the most?";
   document.getElementById("headingObjInputIdGoalImage").innerHTML =
     "Which one of these you think represent your goal the most?";
 }
 function português() {
-  import("./modules/language.js").then(({ português: defaultPortuguês }) =>
-    defaultPortuguês()
+  import("./modules/global/language.js").then(
+    ({ português: defaultPortuguês }) => defaultPortuguês()
   );
   showImgBtn.innerHTML = "&#9776; Exibir Imagem";
   referenceImgTxt.innerHTML = "Imagem de Referência:";
-  backupGenderImg =
-    '<br><br><br><br><br><span style="font-size: 40px; font-variant:all-caps; color:white; display: grid; place-items: center;">Escolha um gênero para ver a imagem de referência';
   document.getElementById("headingObjInputIdBodyImage").innerHTML =
     "Qual dessas imagens representa melhor seu estado atual?";
   document.getElementById("headingObjInputIdGoalImage").innerHTML =
     "Qual dessas imagens representa melhor seu objetivo corporal?";
 }
 function français() {
-  import("./modules/language.js").then(({ français: defaultFrançais }) =>
+  import("./modules/global/language.js").then(({ français: defaultFrançais }) =>
     defaultFrançais()
   );
   showImgBtn.innerHTML = "&#9776; Afficher l'image";
   referenceImgTxt.innerHTML = "Image de référence:";
-  backupGenderImg =
-    '<br><br><br><br><br><span style="font-size: 40px; font-variant:all-caps; color:white; display: grid; place-items: center;">Sélectionnez un sexe pour voir l\'image de référence';
   document.getElementById("headingObjInputIdBodyImage").innerHTML =
     "Lequel de ceux-ci vous représente le plus?";
   document.getElementById("headingObjInputIdGoalImage").innerHTML =
     "Selon vous, lequel de ces éléments représente le plus votre objectif?";
 }
 function español() {
-  import("./modules/language.js").then(({ español: defaultEspañol }) =>
+  import("./modules/global/language.js").then(({ español: defaultEspañol }) =>
     defaultEspañol()
   );
   showImgBtn.innerHTML = "&#9776; Mostrar imagen";
   referenceImgTxt.innerHTML = "Imagen de referencia:";
-  backupGenderImg =
-    '<br><br><br><br><br><span style="font-size: 40px; font-variant:all-caps; color:white; display: grid; place-items: center;">Seleccione un género para ver la imagen de referencia';
   document.getElementById("headingObjInputIdBodyImage").innerHTML =
     "¿Cuál de estos crees que te representa más?";
   document.getElementById("headingObjInputIdGoalImage").innerHTML =
     "¿Cuál de estos crees que representa más tu objetivo?";
 }
 function themeTypeLight() {
-  import("./modules/theme.js").then(({ themeTypeLight: defaultLight }) =>
+  import("./modules/global/theme.js").then(({ themeTypeLight: defaultLight }) =>
     defaultLight()
   );
   for (let el of document.querySelectorAll(".headingObjInputId"))
     el.style.backgroundColor = "#D0FEFE";
 }
 function themeTypeDark() {
-  import("./modules/theme.js").then(({ themeTypeDark: defaultDark }) =>
+  import("./modules/global/theme.js").then(({ themeTypeDark: defaultDark }) =>
     defaultDark()
   );
   for (let el of document.querySelectorAll(".headingObjInputId"))
@@ -67,6 +67,32 @@ function themeTypeDark() {
 }
 
 window.addEventListener("load", () => {
+  if (document.querySelectorAll(".nationBtns")) {
+    let nations = ["english", "português", "français", "español"];
+    document
+      .querySelectorAll(".nationBtns")
+      .forEach((btn) =>
+        btn.addEventListener("click", (e) =>
+          eval(
+            nations[
+              [...document.querySelectorAll(".nationBtns")].indexOf(e.target)
+            ]
+          )()
+        )
+      );
+  }
+
+  if (document.querySelectorAll(".listnav"))
+    document.querySelectorAll(".listnav").forEach((element) => {
+      element.addEventListener("click", (e) =>
+        eval(
+          `themeType${
+            e.target.id.slice(0, -11).charAt(0).toUpperCase() +
+            e.target.id.slice(1, -11)
+          }`
+        )()
+      );
+    });
   if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
   if (getCurrentBody())
     document.getElementById(
@@ -214,17 +240,15 @@ genderCloneNav.addEventListener("click", () => closeGenderCenterNav());
 
 function setImg(link) {
   img.src = link;
-  img.setAttribute("width", "400");
-  img.setAttribute("height", "300");
-  src = document.getElementById("bodyImageId");
+  img.setAttribute("width", "400vw");
+  img.setAttribute("height", "300vh");
+  let src = document.getElementById("bodyImageId");
   src.appendChild(img);
 }
 
-import { getCurrentBody } from "./modules/fieldGetter.js";
 const setCurrentBody = (body) =>
   sessionStorage.setItem("currentBody", JSON.stringify(body));
 
-import { getGoalBody } from "./modules/fieldGetter.js";
 const setGoalBody = (goal) => {
   if (
     !(

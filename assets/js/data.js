@@ -1,6 +1,6 @@
-import { getUnit } from "./modules/fieldGetter.js";
+const { getUnit } = await import("./modules/global/fieldGetter.js");
 function english() {
-  import("./modules/language.js").then(({ english: defaultEnglish }) =>
+  import("./modules/global/language.js").then(({ english: defaultEnglish }) =>
     defaultEnglish()
   );
   weightMetric.placeholder = "Example: 80.5";
@@ -20,8 +20,8 @@ function english() {
   }
 }
 function português() {
-  import("./modules/language.js").then(({ português: defaultPortuguês }) =>
-    defaultPortuguês()
+  import("./modules/global/language.js").then(
+    ({ português: defaultPortuguês }) => defaultPortuguês()
   );
   weightMetric.placeholder = "Exemplo: 80.5";
   heightMetric.placeholder = "Exemplo: 1.85";
@@ -40,7 +40,7 @@ function português() {
   }
 }
 function français() {
-  import("./modules/language.js").then(({ français: defaultFrançais }) =>
+  import("./modules/global/language.js").then(({ français: defaultFrançais }) =>
     defaultFrançais()
   );
   weightMetric.placeholder = "Exemple: 80.5";
@@ -60,7 +60,7 @@ function français() {
   }
 }
 function español() {
-  import("./modules/language.js").then(({ español: defaultEspañol }) =>
+  import("./modules/global/language.js").then(({ español: defaultEspañol }) =>
     defaultEspañol()
   );
   weightMetric.placeholder = "Ejemplo: 80.5";
@@ -80,14 +80,14 @@ function español() {
   }
 }
 function themeTypeLight() {
-  import("./modules/theme.js").then(({ themeTypeLight: defaultLight }) =>
+  import("./modules/global/theme.js").then(({ themeTypeLight: defaultLight }) =>
     defaultLight()
   );
   for (let field of document.querySelectorAll(".headingTextInputId"))
     field.style.color = "#1F3B4D";
 }
 function themeTypeDark() {
-  import("./modules/theme.js").then(({ themeTypeDark: defaultDark }) =>
+  import("./modules/global/theme.js").then(({ themeTypeDark: defaultDark }) =>
     defaultDark()
   );
   for (let field of document.querySelectorAll(".headingTextInputId"))
@@ -95,6 +95,32 @@ function themeTypeDark() {
 }
 let labels = document.querySelectorAll(".label");
 window.addEventListener("load", () => {
+  if (document.querySelectorAll(".nationBtns")) {
+    let nations = ["english", "português", "français", "español"];
+    document
+      .querySelectorAll(".nationBtns")
+      .forEach((btn) =>
+        btn.addEventListener("click", (e) =>
+          eval(
+            nations[
+              [...document.querySelectorAll(".nationBtns")].indexOf(e.target)
+            ]
+          )()
+        )
+      );
+  }
+
+  if (document.querySelectorAll(".listnav"))
+    document.querySelectorAll(".listnav").forEach((element) => {
+      element.addEventListener("click", (e) =>
+        eval(
+          `themeType${
+            e.target.id.slice(0, -11).charAt(0).toUpperCase() +
+            e.target.id.slice(1, -11)
+          }`
+        )()
+      );
+    });
   if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
   if (!sessionStorage.getItem("unit")) {
     if (language == "english")

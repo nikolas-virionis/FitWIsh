@@ -1,5 +1,15 @@
+function hoverOutColorChangeFunc(hoveredOutId) {
+  document.getElementById(hoveredOutId).style.backgroundColor = "teal";
+  if (getMeals() == 1) colorChangeId2Meals.style.backgroundColor = "#7395AE";
+  else if (getMeals() == 2)
+    colorChangeId3Meals.style.backgroundColor = "#7395AE";
+  else if (getMeals() == 3)
+    colorChangeId4Meals.style.backgroundColor = "#7395AE";
+  else if (getMeals() == 4)
+    colorChangeId5Meals.style.backgroundColor = "#7395AE";
+}
 function english() {
-  import("./modules/language.js").then(({ english: defaultEnglish }) =>
+  import("./modules/global/language.js").then(({ english: defaultEnglish }) =>
     defaultEnglish()
   );
   document.getElementById("headingObjInputIdMeals").innerHTML = "Meals a day:";
@@ -9,8 +19,8 @@ function english() {
   document.getElementById("colorChangeId5Meals").value = "5 or 6 meals a day";
 }
 function português() {
-  import("./modules/language.js").then(({ português: defaultPortuguês }) =>
-    defaultPortuguês()
+  import("./modules/global/language.js").then(
+    ({ português: defaultPortuguês }) => defaultPortuguês()
   );
   document.getElementById("headingObjInputIdMeals").innerHTML =
     "Refeições por dias:";
@@ -21,7 +31,7 @@ function português() {
     "5 ou 6 refeições por dia";
 }
 function français() {
-  import("./modules/language.js").then(({ français: defaultFrançais }) =>
+  import("./modules/global/language.js").then(({ français: defaultFrançais }) =>
     defaultFrançais()
   );
   document.getElementById("headingObjInputIdMeals").innerHTML =
@@ -33,7 +43,7 @@ function français() {
     "5 ou 6 repas par jour";
 }
 function español() {
-  import("./modules/language.js").then(({ español: defaultEspañol }) =>
+  import("./modules/global/language.js").then(({ español: defaultEspañol }) =>
     defaultEspañol()
   );
   document.getElementById("headingObjInputIdMeals").innerHTML =
@@ -44,35 +54,51 @@ function español() {
   document.getElementById("colorChangeId5Meals").value = "5 o 6 comidas al dia";
 }
 function themeTypeLight() {
-  import("./modules/theme.js").then(({ themeTypeLight: defaultLight }) =>
+  import("./modules/global/theme.js").then(({ themeTypeLight: defaultLight }) =>
     defaultLight()
   );
   for (let el of document.querySelectorAll(".headingObjInputId"))
     el.style.backgroundColor = "#D0FEFE";
 }
 function themeTypeDark() {
-  import("./modules/theme.js").then(({ themeTypeDark: defaultDark }) =>
+  import("./modules/global/theme.js").then(({ themeTypeDark: defaultDark }) =>
     defaultDark()
   );
   for (let el of document.querySelectorAll(".headingObjInputId"))
     el.style.backgroundColor = "#9DBCD4";
 }
-function hoverOutColorChangeFunc(hoveredOutId) {
-  document.getElementById(hoveredOutId).style.backgroundColor = "teal";
-  if (getMeals() == 1) colorChangeId2Meals.style.backgroundColor = "#7395AE";
-  else if (getMeals() == 2)
-    colorChangeId3Meals.style.backgroundColor = "#7395AE";
-  else if (getMeals() == 3)
-    colorChangeId4Meals.style.backgroundColor = "#7395AE";
-  else if (getMeals() == 4)
-    colorChangeId5Meals.style.backgroundColor = "#7395AE";
-}
 
-import { getMeals } from "./modules/fieldGetter.js";
+const { getMeals } = await import("./modules/global/fieldGetter.js");
 const setMeals = (meals) =>
   sessionStorage.setItem("meals", JSON.stringify(meals));
 
 window.addEventListener("load", () => {
+  if (document.querySelectorAll(".nationBtns")) {
+    let nations = ["english", "português", "français", "español"];
+    document
+      .querySelectorAll(".nationBtns")
+      .forEach((btn) =>
+        btn.addEventListener("click", (e) =>
+          eval(
+            nations[
+              [...document.querySelectorAll(".nationBtns")].indexOf(e.target)
+            ]
+          )()
+        )
+      );
+  }
+
+  if (document.querySelectorAll(".listnav"))
+    document.querySelectorAll(".listnav").forEach((element) => {
+      element.addEventListener("click", (e) =>
+        eval(
+          `themeType${
+            e.target.id.slice(0, -11).charAt(0).toUpperCase() +
+            e.target.id.slice(1, -11)
+          }`
+        )()
+      );
+    });
   if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
   if (getMeals())
     document.getElementById(
@@ -103,7 +129,7 @@ window.addEventListener("load", () => {
       )
     );
     button.addEventListener("mouseout", (e) =>
-      hoverOutColorChangeFunc(e.target.id)
+      hoverOutColorChangeFunc?.(e.target.id)
     );
   });
 });
