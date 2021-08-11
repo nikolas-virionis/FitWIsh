@@ -62,6 +62,5 @@ export const setLocalData = async (idUser) => {
       )
     )
   );
-  console.log(contentArray);
-  window.localStorage.setItem("contentArray", JSON.stringify(contentArray));
+  localStorage.setItem("contentArray", JSON.stringify(contentArray));
 };
