@@ -14,14 +14,72 @@ const closeNav = () => (myLeftSidenav.style.width = "0");
 const closeRightNav = () =>
   (document.getElementById("myRightSidenav").style.width = "0");
 
-const setLanguage = (language) => {
-  sessionStorage.setItem("language", language);
-  setTranslations(language);
-};
-
-const globalTranslations = async (language) => {
+export const globalTranslations = async (language) => {
   await import(`./modules/global/languages/${language}.js`).then(
-    ({ translations }) => {}
+    ({ translations }) => {
+      linkTitle.title = translations.homePage;
+      if (document.getElementById("buttonFirst"))
+        buttonFirst.value = translations.buttonFirst;
+      if (document.getElementById("buttonAbout"))
+        buttonAbout.value = translations.about;
+      if (document.getElementById("buttonContact"))
+        buttonContact.value = translations.contact;
+      if (document.getElementById("howItWorksId"))
+        howItWorksId.innerHTML = translations.howItWorks;
+      if (document.getElementById("aboutId"))
+        aboutId.innerHTML = translations.about;
+      if (document.getElementById("contactId"))
+        contactId.innerHTML = translations.contact;
+      if (
+        document.getElementById("listRightNav") &&
+        window.location.pathname.split("/").pop() != "index.html"
+      )
+        for (let element of listRightNav.children)
+          element.style.fontSize = translations.rightNavFontSize;
+      if (document.getElementById("languageInput"))
+        languageInput.innerHTML = translations.languageInput;
+      alreadyInPage = translations.alreadyInPage;
+      if (document.getElementById("pageId"))
+        pageId.innerHTML = translations.page;
+      if (document.getElementById("introPageId"))
+        introPageId.innerHTML = translations.introPage;
+      if (document.getElementById("loginPageId"))
+        loginPageId.innerHTML = translations.loginPage;
+      if (document.getElementById("genderUnitPageId"))
+        genderUnitPageId.innerHTML = translations.genderUnitPage;
+      if (document.getElementById("goalPageId"))
+        goalPageId.innerHTML = translations.goalPage;
+      if (document.getElementById("dataPageId"))
+        dataPageId.innerHTML = translations.dataPage;
+      if (document.getElementById("bodyTypePageId"))
+        bodyTypePageId.innerHTML = translations.bodyTypePage;
+      if (document.getElementById("imagePageId"))
+        imagePageId.innerHTML = translations.imagePage;
+      if (document.getElementById("exercisePageId"))
+        exercisePageId.innerHTML = translations.exercisePage;
+      if (document.getElementById("healthyPageId"))
+        healthyPageId.innerHTML = translations.healthyPage;
+      if (document.getElementById("cheatPageId"))
+        cheatPageId.innerHTML = translations.cheatPage;
+      if (document.getElementById("mealsPageId"))
+        mealsPageId.innerHTML = translations.mealsPage;
+      if (document.getElementById("emotionPageId"))
+        emotionPageId.innerHTML = translations.emotionPage;
+      if (document.getElementById("buttonNext"))
+        buttonNext.value = translations.buttonNext;
+      if (document.getElementById("buttonPrev"))
+        buttonPrev.value = translations.buttonPrev;
+      if (window.location.pathname.split("/").pop().slice(0, -5) != "result") {
+        document.getElementById("lightThemeButton").innerHTML =
+          translations.lightTheme;
+        document.getElementById("darkThemeButton").innerHTML =
+          translations.darkTheme;
+        document.getElementById("disclaimerId").innerHTML =
+          translations.DISCLAIMER;
+        firstAlert = translations.firstAlert;
+      }
+      document.getElementById("allRights").innerHTML = translations.allRights;
+    }
   );
 };
 

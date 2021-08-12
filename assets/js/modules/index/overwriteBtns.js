@@ -22,7 +22,7 @@ export function numberBtnsOverwriteEn() {
     }
   });
 }
-export function numberBtnsOverwritePt() {
+export function numberBtnsOverwritePo() {
   import("./iniciateIndexLang.js").then(({ contentArray }) => {
     if (contentArray?.length >= 1) {
       firstPageBtn1stTry.value = `Ver o teste feito em ${contentArray[0].day}`;
