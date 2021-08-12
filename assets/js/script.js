@@ -13,7 +13,17 @@ const openNav = () => (myLeftSidenav.style.width = "250px");
 const closeNav = () => (myLeftSidenav.style.width = "0");
 const closeRightNav = () =>
   (document.getElementById("myRightSidenav").style.width = "0");
-const disclaimer = () => alert(firstAlert);
+
+const setLanguage = (language) => {
+  sessionStorage.setItem("language", language);
+  setTranslations(language);
+};
+
+const globalTranslations = async (language) => {
+  await import(`./modules/global/languages/${language}.js`).then(
+    ({ translations }) => {}
+  );
+};
 
 const getSiblings = (element) => {
   let siblings = [];
@@ -86,7 +96,7 @@ if (document.getElementById("rightCloseBtn"))
 if (document.getElementById("leftCloseBtn"))
   leftCloseBtn.addEventListener("click", () => closeNav());
 if (document.getElementById("disclaimerId"))
-  disclaimerId.addEventListener("click", () => disclaimer());
+  disclaimerId.addEventListener("click", () => alert(firstAlert));
 if (
   window.location.pathname.split("/").pop().slice(0, -5) != "index" &&
   window.location.pathname.split("/").pop().slice(0, -5) != "" &&

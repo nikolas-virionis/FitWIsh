@@ -193,7 +193,7 @@ window.addEventListener("load", () => {
       .querySelectorAll(".nationBtns")
       .forEach((btn) =>
         btn.addEventListener("click", (e) =>
-          eval(
+          setLanguage(
             nations[
               [...document.querySelectorAll(".nationBtns")].indexOf(e.target)
             ]
@@ -201,6 +201,17 @@ window.addEventListener("load", () => {
         )
       );
   }
+
+  const setTranslations = async (language) => {
+    let file =
+      window.location.pathname.split("/").pop().slice(0, -5) ?? "index";
+    await import("./script.js").then(({ globalTranslations }) =>
+      globalTranslations(language)
+    );
+    await import(`./modules/${file}/languages/${language}.js`)
+      .catch(() => import(`./modules/index/languages/${language}.js`))
+      .then(({ translations }) => {});
+  };
 
   if (document.querySelectorAll(".listnav"))
     document.querySelectorAll(".listnav").forEach((element) => {
