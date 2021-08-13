@@ -123,7 +123,6 @@ export const setTranslations = async (language) => {
       firstPageBtnHideAll.value = translations.hideAll;
     });
 };
-export { setTranslations };
 
 const setLanguage = (language) => {
   sessionStorage.setItem("language", language);
