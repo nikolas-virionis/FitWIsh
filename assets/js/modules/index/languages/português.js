@@ -12,3 +12,8 @@ export const translations = {
   seePrev: `Ver o Resultado do Teste Anterior`,
   hideAll: `Ocultar Testes Anteriores`,
 };
+
+export const iniciate = {
+  sameName: {},
+  differentName: {},
+};

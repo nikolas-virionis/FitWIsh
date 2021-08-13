@@ -123,6 +123,7 @@ const setTranslations = async (language) => {
       firstPageBtnHideAll.value = translations.hideAll;
     });
 };
+export { setTranslations };
 
 const setLanguage = (language) => {
   sessionStorage.setItem("language", language);
@@ -188,9 +189,12 @@ window.addEventListener("load", () => {
       if (contentArray?.[triesMade - 1].theme == "light") themeTypeLight();
       else themeTypeDark();
       if (contentArray?.length == 1) {
-        if (contentArray?.[0].language == "português") return português();
-        if (contentArray?.[0].language == "français") return français();
-        if (contentArray?.[0].language == "español") return español();
+        if (contentArray?.[0].language == "português")
+          return setLanguage("português");
+        if (contentArray?.[0].language == "français")
+          return setLanguage("français");
+        if (contentArray?.[0].language == "español")
+          return setLanguage("español");
         return getDefLang();
       }
       initiateLanguage();
