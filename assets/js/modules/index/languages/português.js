@@ -1,4 +1,4 @@
-let { contentArray } = await import("../iniciateIndexLang.js");
+let { contentArray } = await import("../overwriteBtns.js");
 export const translations = {
   HidePrevious: "Ocultar Teste Anterior",
   firstH1:

@@ -1,6 +1,4 @@
-// let contentArray = JSON.parse(localStorage.getItem("contentArray")) ?? [];
-let { contentArray } = await import("./modules/index/iniciateIndexLang.js");
-// import { contentArray } from "./modules/index/iniciateIndexLang.js";
+let { contentArray } = await import("./modules/index/overwriteBtns.js");
 import {
   startNewTry,
   overwriteTest2,
@@ -161,7 +159,6 @@ window.addEventListener("load", () => {
       );
     });
   sessionStorage.setItem("first", JSON.stringify(true));
-  // eval(sessionStorage.getItem("language"))?.();
   if (sessionStorage.getItem("language"))
     setLanguage(sessionStorage.getItem("language"));
 
@@ -175,7 +172,7 @@ window.addEventListener("load", () => {
     getDefLang();
     themeTypeDark();
   } else if (contentArray?.length != 0) {
-    import("./modules/index/iniciateIndexLang.js").then(({ triesMade }) => {
+    import("./modules/index/overwriteBtns.js").then(({ triesMade }) => {
       rearrangeElements(triesMade + 1);
       if (contentArray?.[triesMade - 1].theme == "light") themeTypeLight();
       else themeTypeDark();
@@ -186,20 +183,8 @@ window.addEventListener("load", () => {
           return setLanguage("français");
         if (contentArray?.[0].language == "español")
           return setLanguage("español");
-        return getDefLang();
       }
-      initiateLanguage();
+      return getDefLang();
     });
   }
 });
-
-const initiateLanguage = () =>
-  import("./modules/index/iniciateIndexLang.js").then(({ iniciateLang }) =>
-    contentArray?.[1].language == "português" || getBrowserLang() == "pt"
-      ? iniciateLang("português")
-      : contentArray?.[1].language == "français" || getBrowserLang() == "fr"
-      ? iniciateLang("français")
-      : contentArray?.[1].language == "español" || getBrowserLang() == "es"
-      ? iniciateLang("español")
-      : iniciateLang("english")
-  );
