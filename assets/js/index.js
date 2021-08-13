@@ -90,7 +90,7 @@ function rearrangeElements(tries) {
   firstPageBtnSeeAll.style.display = tries == 2 ? "none" : "block";
 }
 
-const setTranslations = async (language) => {
+export const setTranslations = async (language) => {
   let file = window.location.pathname.split("/").pop().slice(0, -5) || "index";
   await import("./script.js").then(({ globalTranslations }) =>
     globalTranslations(language)
