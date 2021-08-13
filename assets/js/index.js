@@ -202,18 +202,12 @@ window.addEventListener("load", () => {
 });
 
 const initiateLanguage = () =>
-  import("./modules/index/iniciateIndexLang.js").then(
-    ({
-      iniciateEnglish,
-      iniciatePortuguês,
-      iniciateFrançais,
-      iniciateEspañol,
-    }) =>
-      contentArray?.[1].language == "português" || getBrowserLang() == "pt"
-        ? iniciatePortuguês()
-        : contentArray?.[1].language == "français" || getBrowserLang() == "fr"
-        ? iniciateFrançais()
-        : contentArray?.[1].language == "español" || getBrowserLang() == "es"
-        ? iniciateEspañol()
-        : iniciateEnglish()
+  import("./modules/index/iniciateIndexLang.js").then(({ iniciateLang }) =>
+    contentArray?.[1].language == "português" || getBrowserLang() == "pt"
+      ? iniciateLang("português")
+      : contentArray?.[1].language == "français" || getBrowserLang() == "fr"
+      ? iniciateLang("français")
+      : contentArray?.[1].language == "español" || getBrowserLang() == "es"
+      ? iniciateLang("español")
+      : iniciateLang("english")
   );

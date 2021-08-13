@@ -14,6 +14,18 @@ export const translations = {
 };
 
 export const iniciate = {
-  sameName: {},
-  differentName: {},
+  sameName: {
+    firstPageH13rd: `Detectamos que ya ha realizado nuestra prueba dos veces, una vez como ${contentArray[0]?.inputName} hecho en ${contentArray[0]?.day}, y una vez como ${contentArray[1]?.inputName} hecho en ${contentArray[1]?.day}. Elija lo que le gustaría hacer a continuación`,
+    firstPageBtn1stTry: `Ver la prueba de ${contentArray[0]?.inputName}`,
+    firstPageBtn2ndTry: `Ver la prueba de ${contentArray[1]?.inputName}`,
+    firstPageBtn1stTryOverwrite: `Sobrescribir la prueba de ${contentArray[0]?.inputName}`,
+    firstPageBtn2ndTryOverwrite: `Sobrescribir la prueba de ${contentArray[1]?.inputName}`,
+  },
+  differentName: {
+    firstPageH13rd: `Detectamos que ya ha realizado nuestra prueba dos veces más ${contentArray[0]?.inputName}, una vez hecho en ${contentArray[0]?.day}, y una vez hecho en ${contentArray[1]?.day}. Elija lo que le gustaría hacer a continuación`,
+    firstPageBtn1stTry: `Ver la prueba de ${contentArray[0]?.day}`,
+    firstPageBtn2ndTry: `Ver la prueba de ${contentArray[1]?.day}`,
+    firstPageBtn1stTryOverwrite: `Sobrescribir la prueba de ${contentArray[0]?.day}`,
+    firstPageBtn2ndTryOverwrite: `Sobrescribir la prueba de ${contentArray[1]?.day}`,
+  },
 };
