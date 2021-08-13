@@ -90,17 +90,56 @@ function rearrangeElements(tries) {
   firstPageBtnSeeAll.style.display = tries == 2 ? "none" : "block";
 }
 
+const setTranslations = async (language) => {
+  let file = window.location.pathname.split("/").pop().slice(0, -5) || "index";
+  await import("./script.js").then(({ globalTranslations }) =>
+    globalTranslations(language)
+  );
+  await import(`./modules/${file}/languages/${language}.js`)
+    .catch(() => import(`./modules/index/languages/${language}.js`))
+    .then(({ translations }) => {
+      if (contentArray?.length >= 1)
+        import("./modules/index/overwriteBtns.js").then(
+          ({
+            numberBtnsOverwriteEn,
+            numberBtnsOverwritePo,
+            numberBtnsOverwriteFr,
+            numberBtnsOverwriteEs,
+          }) =>
+            eval(
+              `numberBtnsOverwrite${language[0].toUpperCase() + language[1]}`
+            )()
+        );
+      firstPageBtnSeePrev.innerHTML = translations.HidePrevious;
+      firstPageH1.innerHTML = translations.firstH1;
+      if (contentArray?.length > 0)
+        firstPageH12nd.innerHTML = translations.secondTryH1;
+      firstPageBtnStart.value = translations.start;
+      firstPageBtnDifferent.value = translations.different;
+      firstPageBtnOverwrite.value = translations.overwrite;
+      firstPageBtnDelete.value = translations.deleteAll;
+      firstPageBtnSeeAll.value = translations.seeAll;
+      firstPageBtnSeePrev.value = translations.seePrev;
+      firstPageBtnHideAll.value = translations.hideAll;
+    });
+};
+
+const setLanguage = (language) => {
+  sessionStorage.setItem("language", language);
+  setTranslations(language);
+};
+
 const getBrowserLang = () => navigator.language.slice(0, 2);
 function getDefLang() {
   switch (getBrowserLang()) {
     case "pt":
       return setLanguage("português");
     case "fr":
-      return setLanguage("français")();
+      return setLanguage("français");
     case "es":
-      return setLanguage("español")();
+      return setLanguage("español");
   }
-  return setLanguage("english")();
+  return setLanguage("english");
 }
 window.addEventListener("load", () => {
   if (document.querySelectorAll(".nationBtns")) {
@@ -117,46 +156,6 @@ window.addEventListener("load", () => {
         )
       );
   }
-
-  const setLanguage = (language) => {
-    sessionStorage.setItem("language", language);
-    setTranslations(language);
-  };
-
-  const setTranslations = async (language) => {
-    let file =
-      window.location.pathname.split("/").pop().slice(0, -5) || "index";
-    await import("./script.js").then(({ globalTranslations }) =>
-      globalTranslations(language)
-    );
-    await import(`./modules/${file}/languages/${language}.js`)
-      .catch(() => import(`./modules/index/languages/${language}.js`))
-      .then(({ translations }) => {
-        if (contentArray?.length >= 1)
-          import("./modules/index/overwriteBtns.js").then(
-            ({
-              numberBtnsOverwriteEn,
-              numberBtnsOverwritePo,
-              numberBtnsOverwriteFr,
-              numberBtnsOverwriteEs,
-            }) =>
-              eval(
-                `numberBtnsOverwrite${language[0].toUpperCase() + language[1]}`
-              )()
-          );
-        firstPageBtnSeePrev.innerHTML = translations.HidePrevious;
-        firstPageH1.innerHTML = translations.firstH1;
-        if (contentArray?.length > 0)
-          firstPageH12nd.innerHTML = translations.secondTryH1;
-        firstPageBtnStart.value = translations.start;
-        firstPageBtnDifferent.value = translations.different;
-        firstPageBtnOverwrite.value = translations.overwrite;
-        firstPageBtnDelete.value = translations.deleteAll;
-        firstPageBtnSeeAll.value = translations.seeAll;
-        firstPageBtnSeePrev.value = translations.seePrev;
-        firstPageBtnHideAll.value = translations.hideAll;
-      });
-  };
 
   if (document.querySelectorAll(".listnav"))
     document.querySelectorAll(".listnav").forEach((element) => {
