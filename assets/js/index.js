@@ -100,15 +100,7 @@ export const setTranslations = async (language) => {
     .then(({ translations }) => {
       if (contentArray?.length >= 1)
         import("./modules/index/overwriteBtns.js").then(
-          ({
-            numberBtnsOverwriteEn,
-            numberBtnsOverwritePo,
-            numberBtnsOverwriteFr,
-            numberBtnsOverwriteEs,
-          }) =>
-            eval(
-              `numberBtnsOverwrite${language[0].toUpperCase() + language[1]}`
-            )()
+          ({ numberBtnsOverwrite }) => numberBtnsOverwrite(language)
         );
       firstPageBtnSeePrev.innerHTML = translations.HidePrevious;
       firstPageH1.innerHTML = translations.firstH1;

@@ -1,4 +1,4 @@
-let language = sessionStorage.getItem("language");
+export let language = sessionStorage.getItem("language");
 let theme = sessionStorage.getItem("theme"),
   buttons = document.querySelectorAll(".button"),
   alreadyInPage,
@@ -14,8 +14,9 @@ const closeNav = () => (myLeftSidenav.style.width = "0");
 const closeRightNav = () =>
   (document.getElementById("myRightSidenav").style.width = "0");
 
-export const globalTranslations = async (language) => {
-  await import(`./modules/global/languages/${language}.js`).then(
+export const globalTranslations = async (lang) => {
+  language = lang;
+  await import(`./modules/global/languages/${lang}.js`).then(
     ({ translations }) => {
       linkTitle.title = translations.homePage;
       if (document.getElementById("buttonFirst"))
