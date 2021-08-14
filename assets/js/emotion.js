@@ -39,7 +39,7 @@ function hoverOutColorChangeFunc(hoveredOutId) {
 const { getEmotion } = await import("./modules/global/fieldGetter.js");
 const emotion = (emotion) => sessionStorage.setItem("emotion", emotion);
 
-window.addEventListener("load", () => {
+window.addEventListener("load", async () => {
   if (document.querySelectorAll(".nationBtns")) {
     let nations = ["english", "português", "français", "español"];
     document
@@ -70,6 +70,7 @@ window.addEventListener("load", () => {
     ).style.backgroundColor = "#7395AE";
   setLanguage(sessionStorage.getItem("language"));
   setTheme(sessionStorage.getItem("theme"));
+  let { buttons } = await import("./script.js");
   buttons.forEach((button) => {
     button.addEventListener("click", (e) =>
       emotion(e.target.id.slice(16).toLowerCase())

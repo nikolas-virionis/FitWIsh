@@ -44,7 +44,8 @@ const { getHealthy } = await import("./modules/global/fieldGetter.js");
 const setHealthy = (healthy) =>
   sessionStorage.setItem("healthy", JSON.stringify(healthy));
 
-window.addEventListener("load", () => {
+window.addEventListener("load", async () => {
+  let { buttons } = await import("./script.js");
   if (document.querySelectorAll(".nationBtns")) {
     let nations = ["english", "português", "français", "español"];
     document

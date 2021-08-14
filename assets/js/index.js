@@ -148,19 +148,19 @@ window.addEventListener("load", () => {
     });
   sessionStorage.setItem("first", JSON.stringify(true));
   if (sessionStorage.getItem("language"))
-    setLanguage(sessionStorage.getItem("language"));
-
-  setTheme(sessionStorage.getItem("theme"));
+    setLanguage(sessionStorage.getItem("language") || "english");
+  if (sessionStorage.getItem("theme"))
+    setTheme(sessionStorage.getItem("theme") || "dark");
   if (
     !contentArray ||
     (contentArray.length == 0 && !sessionStorage.getItem("language"))
   ) {
     getDefLang();
-    themeTypeDark();
+    setTheme("dark");
   } else if (contentArray?.length != 0) {
     import("./modules/index/overwriteBtns.js").then(({ triesMade }) => {
       rearrangeElements(triesMade + 1);
-      setTheme(contentArray?.[triesMade - 1].theme);
+      setTheme(contentArray?.[triesMade - 1].theme || "dark");
       if (contentArray?.length == 1) {
         if (contentArray?.[0].language == "português")
           return setLanguage("português");

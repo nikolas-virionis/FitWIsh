@@ -5,8 +5,8 @@ export function metric() {
   weight = parseFloat(getWeight());
   height = parseFloat(getHeight());
   bmi = weight / height ** 2;
-  import("./variableSetters.js").then(
-    ({ getBMIstate }) => (bmi_state = getBMIstate(bmi))
+  import("./variableSetters.js").then(({ getBMIstate }) =>
+    getBMIstate(bmi).then((bmistate) => (bmi_state = bmistate))
   );
   import("./idealWeight.js").then(({ setIdealWeight }) =>
     setIdealWeight("kg", 1, weight, height)

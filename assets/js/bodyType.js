@@ -27,7 +27,10 @@ const setTheme = (theme) => {
   sessionStorage.setItem("theme", theme);
   setThemes(theme);
 };
-window.addEventListener("load", () => {
+window.addEventListener("load", async () => {
+  const { getBodyType } = await import("./modules/global/fieldGetter.js");
+  let { buttons } = await import("./script.js");
+  if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
   if (document.querySelectorAll(".nationBtns")) {
     let nations = ["english", "português", "français", "español"];
     document
@@ -49,7 +52,6 @@ window.addEventListener("load", () => {
         setTheme(e.target.id.slice(0, -11))
       );
     });
-  if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
   if (getBodyType())
     document.getElementById(
       `colorChangeId${
@@ -58,6 +60,7 @@ window.addEventListener("load", () => {
     ).style.backgroundColor = "#7395AE";
   setLanguage(sessionStorage.getItem("language"));
   setTheme(sessionStorage.getItem("theme"));
+  const { getSiblings } = await import("./script.js");
   for (let button of buttons) {
     button.addEventListener(`click`, (e) => {
       let element = e.target;
@@ -67,7 +70,8 @@ window.addEventListener("load", () => {
   }
 });
 
-function hoverOutColorChangeFunc(hoveredOutId) {
+async function hoverOutColorChangeFunc(hoveredOutId) {
+  const { getBodyType } = await import("./modules/global/fieldGetter.js");
   document.getElementById(hoveredOutId).style.backgroundColor = "teal";
   if (getBodyType() == "ecto")
     colorChangeIdEcto.style.backgroundColor = "#7395AE";
@@ -78,9 +82,8 @@ function hoverOutColorChangeFunc(hoveredOutId) {
 }
 
 // body type
-const bodyType = (bodytype) => sessionStorage.setItem("bodytype", bodytype);
-const { getBodyType } = await import("./modules/global/fieldGetter.js");
-function nop() {
+async function nop() {
+  let { language } = await import("./script.js");
   sessionStorage.removeItem("bodytype");
   if (language == "english")
     alert(
@@ -100,6 +103,8 @@ function nop() {
     );
 }
 
+const bodyType = (bodytype) => sessionStorage.setItem("bodytype", bodytype);
+let { buttons } = await import("./script.js");
 buttons.forEach((button) => {
   button.addEventListener("click", (e) =>
     e.target.id.endsWith("NoIdea")

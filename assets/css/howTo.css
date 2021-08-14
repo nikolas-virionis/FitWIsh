@@ -1,11 +1,12 @@
 #idHowToHeading {
   left: 37.5%;
+  margin-top: -6vh;
 }
 
 #howYouWork,
 #howWeWork {
   width: 45vw;
-  font-size: 2em;
+  font-size: 3.25vw;
   align-items: center;
   text-align: center;
 }
@@ -23,14 +24,11 @@
   margin-top: 6vh;
   max-width: 42.5vw;
 }
-#idHowToHeading {
-  margin-top: -6vh;
-}
 #idHowToImg1 {
-  height: 25vh;
+  width: 22.5vw;
 }
 #idHowToImg2 {
-  height: 20vh;
+  width: 20vw;
 }
 #linkTitle {
   display: flex;

@@ -7,6 +7,6 @@ export const translations = {
   height: "Height",
   weightMetric: "Unit: kilograms (kg)",
   heightMetric: "Unit: meters (m)",
-  weightMetric: "Unit: pounds (lbs)",
-  heightMetric: "Unit: inches (in)",
+  weightImperial: "Unit: pounds (lbs)",
+  heightImperial: "Unit: inches (in)",
 };

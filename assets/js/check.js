@@ -13,7 +13,7 @@ const setLanguage = (language) => {
   setTranslations(language);
 };
 
-const setTheme = (theme) => {
+const setTheme = async (theme) => {
   sessionStorage.setItem("theme", theme);
   await import("./script.js").then(({ globalTheme }) => globalTheme(theme));
 };
@@ -44,7 +44,7 @@ window.addEventListener("load", () => {
   setLanguage(sessionStorage.getItem("language"));
   setTheme(sessionStorage.getItem("theme"));
 });
-
+let { buttons } = await import("./script.js");
 for (let button of buttons)
   button.addEventListener(
     "mouseout",

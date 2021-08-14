@@ -1,5 +1,5 @@
 export const translations = {
-  cheat: " meals days frequency:",
+  cheat: "Meals days frequency:",
   none: "None",
   low: "1-2 times a week",
   mid: "3-4 times a week",

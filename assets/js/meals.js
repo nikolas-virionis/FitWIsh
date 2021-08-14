@@ -40,7 +40,8 @@ const { getMeals } = await import("./modules/global/fieldGetter.js");
 const setMeals = (meals) =>
   sessionStorage.setItem("meals", JSON.stringify(meals));
 
-window.addEventListener("load", () => {
+window.addEventListener("load", async () => {
+  let { buttons } = await import("./script.js");
   if (document.querySelectorAll(".nationBtns")) {
     let nations = ["english", "português", "français", "español"];
     document

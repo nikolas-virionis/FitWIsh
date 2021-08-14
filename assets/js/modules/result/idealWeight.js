@@ -11,6 +11,7 @@ export async function setIdealWeight(lbs, lb, weight, height) {
   let { bmi_state } = await import("./units.js");
   let { idealBodyFatPercentage } = await import("./variableSetters.js");
   let { bodyFatPercentage } = await import("./variableSetters.js");
+  let { language } = await import("../../script.js");
   let idealWeightMsg;
   let idealWeightDistance;
   let advicedWeight;

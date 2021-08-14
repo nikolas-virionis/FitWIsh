@@ -80,6 +80,7 @@ const setCheat = (cheat) =>
   sessionStorage.setItem("cheat", JSON.stringify(cheat));
 const { getCheat } = await import("./modules/global/fieldGetter.js");
 
+let { buttons } = await import("./script.js");
 buttons.forEach((button) => {
   button.addEventListener("click", (e) =>
     setCheat(

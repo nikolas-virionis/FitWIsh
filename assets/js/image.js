@@ -31,7 +31,8 @@ const setTheme = (theme) => {
   setThemes(theme);
 };
 
-window.addEventListener("load", () => {
+window.addEventListener("load", async () => {
+  let { buttons } = await import("./script.js");
   if (document.querySelectorAll(".nationBtns")) {
     let nations = ["english", "português", "français", "español"];
     document
@@ -180,12 +181,14 @@ function loadImg(gender) {
     );
 }
 
-function openGenderCenterNav() {
-  myGenderCenterNav.style.width = "60vw";
-  myGenderCenterNav.style.height = "60vh";
-  myGenderCenterNav.style.display = "block";
-  closeNav();
-  closeRightNav();
+async function openGenderCenterNav() {
+  await import("./script.js").then(({ closeNav, closeRightNav }) => {
+    myGenderCenterNav.style.width = "60vw";
+    myGenderCenterNav.style.height = "60vh";
+    myGenderCenterNav.style.display = "block";
+    closeNav();
+    closeRightNav();
+  });
 }
 function closeGenderCenterNav() {
   myGenderCenterNav.style.width = "0";

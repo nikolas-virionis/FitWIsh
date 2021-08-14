@@ -91,10 +91,12 @@ svg circle {
 #emailLinkColor {
   color: pink;
   font-weight: 100px;
+  cursor: pointer;
 }
 #downloadLinkColor {
   color: lightgreen;
   font-weight: 100px;
+  cursor: pointer;
 }
 
 #titleLink {

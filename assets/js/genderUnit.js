@@ -59,7 +59,7 @@ const metricUnitCloak = () => (colorChangeIdMetric.value = metricSystem);
 const imperialUnit = () => (colorChangeIdImperial.value += ` (lbs / in)`);
 const imperialUnitCloak = () => (colorChangeIdImperial.value = imperialSystem);
 
-window.addEventListener("load", () => {
+window.addEventListener("load", async () => {
   if (document.querySelectorAll(".nationBtns")) {
     let nations = ["english", "português", "français", "español"];
     document
@@ -94,6 +94,7 @@ window.addEventListener("load", () => {
     ).style.backgroundColor = "#7395AE";
   setLanguage(sessionStorage.getItem("language"));
   setTheme(sessionStorage.getItem("theme"));
+  let { buttons } = await import("./script.js");
   buttons.forEach((button) => {
     button.addEventListener("click", (e) =>
       e.target.id.endsWith("ale") // mALE or femALE
@@ -104,6 +105,7 @@ window.addEventListener("load", () => {
       hoverOutColorChangeFunc(e.target.id)
     );
   });
+  const { getSiblings } = await import("./script.js");
   let btns = getSiblings(document.getElementById("headingObjInputIdUnit"));
   btns.forEach((btn) => {
     btn.addEventListener("mouseover", (e) => {

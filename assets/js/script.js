@@ -1,17 +1,17 @@
 export let language = sessionStorage.getItem("language");
+export let buttons = [...document.querySelectorAll(".button")];
 let theme = sessionStorage.getItem("theme"),
-  buttons = document.querySelectorAll(".button"),
   alreadyInPage,
   firstAlert;
 
 const rightNavInterpreter = () =>
-  myRightSidenav.style.width == "250px"
+  myRightSidenav.style.width == "25vw"
     ? (myRightSidenav.style.width = "0")
-    : (myRightSidenav.style.width = "250px");
+    : (myRightSidenav.style.width = "25vw");
 const inPage = () => alert(alreadyInPage);
-const openNav = () => (myLeftSidenav.style.width = "250px");
-const closeNav = () => (myLeftSidenav.style.width = "0");
-const closeRightNav = () =>
+const openNav = () => (myLeftSidenav.style.width = "25vw");
+export const closeNav = () => (myLeftSidenav.style.width = "0");
+export const closeRightNav = () =>
   (document.getElementById("myRightSidenav").style.width = "0");
 
 export const globalTheme = async (color) => {
@@ -118,7 +118,7 @@ export const globalLang = async (lang) => {
   );
 };
 
-const getSiblings = (element) => {
+export const getSiblings = (element) => {
   let siblings = [];
   let sibling = element.parentElement.firstChild;
   while (sibling) {

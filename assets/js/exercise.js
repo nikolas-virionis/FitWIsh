@@ -44,7 +44,8 @@ const { getExercise } = await import("./modules/global/fieldGetter.js");
 const setExercise = (exercise) =>
   sessionStorage.setItem("exercise", JSON.stringify(exercise));
 
-window.addEventListener("load", () => {
+window.addEventListener("load", async () => {
+  let { buttons } = await import("./script.js");
   if (document.querySelectorAll(".nationBtns")) {
     let nations = ["english", "português", "français", "español"];
     document

@@ -3,6 +3,6 @@ export const colorSwitch = {
   structColor: "aliceblue",
   navBackgroundColor: "#000",
   navfooterColor: "#fff",
-  buttonClassRemove: contactAboutBtn,
-  buttonClassAdd: aboutContactBtn,
+  buttonClassRemove: "contactAboutBtn",
+  buttonClassAdd: "aboutContactBtn",
 };

@@ -1,9 +1,10 @@
-let contentArray = JSON.parse(localStorage.getItem("contentArray")) ?? [];
+let contentArray = JSON.parse(localStorage.getItem("contentArray")) ?? [],
+  resultBeginning2;
 const setLanguage = async (language) => {
   sessionStorage.setItem("language", language);
   await import("./script.js").then(({ globalLang }) => globalLang(language));
 };
-const setTheme = (theme) => {
+const setTheme = async (theme) => {
   sessionStorage.setItem("theme", theme);
   await import("./script.js").then(({ globalTheme }) => globalTheme(theme));
 };

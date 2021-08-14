@@ -1,7 +1,7 @@
 export const translations = {
   goal: "Objetivo",
-  bulk: "Ganhar Massa",
-  cut: "Secar",
-  surp: "Emagrecer",
+  bulking: "Ganhar Massa",
+  cutting: "Secar",
+  surplus: "Emagrecer",
   muscle: "Ganhar peso",
 };

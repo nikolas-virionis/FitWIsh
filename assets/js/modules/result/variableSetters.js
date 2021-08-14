@@ -560,7 +560,8 @@ export function getSuggestedBodyFat() {
   }
 }
 
-export function getBMIstate(bmi) {
+export async function getBMIstate(bmi) {
+  let { language } = await import("../../script.js");
   if (language == "english") {
     if (bmi < 18.5) return "underweight";
     if (bmi >= 18.5 && bmi <= 24.9) return "normal/healthy";
