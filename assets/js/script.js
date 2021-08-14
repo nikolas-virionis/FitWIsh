@@ -14,6 +14,40 @@ const closeNav = () => (myLeftSidenav.style.width = "0");
 const closeRightNav = () =>
   (document.getElementById("myRightSidenav").style.width = "0");
 
+export const globalTheme = async (color) => {
+  theme = color;
+  await import(`./modules/global/themes/${color}.js`).then(
+    ({ colorSwitch }) => {
+      document.body.style.cssText = colorSwitch.bodyCssText;
+      if (document.getElementById("leftsidebarButton"))
+        leftsidebarButton.style.color = colorSwitch.structColor;
+      if (document.getElementById("rightsidebarButton"))
+        rightsidebarButton.style.color = colorSwitch.structColor;
+      if (document.getElementById("headingObjInputIdHead"))
+        document.getElementById("headingObjInputIdHead").style.color =
+          colorSwitch.structColor;
+      if (document.querySelectorAll(".headingTextInputId"))
+        for (let element of document.querySelectorAll(".headingTextInputId"))
+          element.style.color = colorSwitch.structColor;
+      for (let nav of document.querySelectorAll(
+        ".leftsidenav, .rightsidenav"
+      )) {
+        nav.style.backgroundColor = colorSwitch.navBackgroundColor;
+        nav.style.color = colorSwitch.navfooterColor;
+      }
+      if (document.querySelector("#pageBtnsId")) {
+        for (let button of document.querySelector("#pageBtnsId").children) {
+          button.classList.remove(colorSwitch.buttonClassRemove);
+          button.classList.add(colorSwitch.buttonClassAdd);
+        }
+      }
+      document
+        .querySelectorAll(".classFooter")
+        .forEach((el) => (el.style.color = colorSwitch.navfooterColor));
+    }
+  );
+};
+
 export const globalLang = async (lang) => {
   language = lang;
   await import(`./modules/global/languages/${lang}.js`).then(

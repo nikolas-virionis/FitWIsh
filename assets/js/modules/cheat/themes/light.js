@@ -1,1 +1,3 @@
-export const colorSwitch = {};
+export const colorSwitch = {
+  elementsColor: "#D0FEFE",
+};

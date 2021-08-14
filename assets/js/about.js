@@ -2,12 +2,12 @@ export const setTranslations = async (language) => {
   await import("./script.js").then(({ globalLang }) => globalLang(language));
   await import(`./modules/about/languages/${language}.js`).then(
     ({ translations }) => {
-      idAboutTxtLeft.style.fontSize = translations.aboutTxtLeftFontSize;
-      idAboutH2.style.marginLeft = translations.aboutH2MarginLeft;
-      idAboutH2.innerHTML = translations.aboutH2;
-      idAboutTxtLeft.innerHTML = translations.aboutTxtLeft;
-      idAboutHeading.innerHTML = translations.aboutHeading;
-      idAboutTxtRight.innerHTML = translations.aboutTxtRight;
+      idAboutTxtLeft.style.fontSize = translations.txtLeftFontSize;
+      idAboutH2.style.marginLeft = translations.h2MarginLeft;
+      idAboutH2.innerHTML = translations.h2;
+      idAboutTxtLeft.innerHTML = translations.txtLeft;
+      idAboutHeading.innerHTML = translations.heading;
+      idAboutTxtRight.innerHTML = translations.txtRight;
     }
   );
 };
@@ -16,25 +16,21 @@ const setLanguage = (language) => {
   sessionStorage.setItem("language", language);
   setTranslations(language);
 };
-
-function themeTypeLight() {
-  import("./modules/global/theme.js").then(({ themeTypeLight: defaultLight }) =>
-    defaultLight()
+export const setThemes = async (theme) => {
+  await import("./script.js").then(({ globalTheme }) => globalTheme(theme));
+  await import(`./modules/about/themes/${theme}.js`).then(
+    ({ colorSwitch }) =>
+      (idAboutHeading.style.color =
+        idAboutH2.style.color =
+        idAboutTxtRight.style.color =
+        idAboutTxtLeft.style.color =
+          colorSwitch.colorPallete)
   );
-  idAboutHeading.style.color = "#1F3B4D";
-  idAboutH2.style.color = "#1F3B4D";
-  idAboutTxtRight.style.color = "#1F3B4D";
-  idAboutTxtLeft.style.color = "#1F3B4D";
-}
-function themeTypeDark() {
-  import("./modules/global/theme.js").then(({ themeTypeDark: defaultDark }) =>
-    defaultDark()
-  );
-  idAboutHeading.style.color = "azure";
-  idAboutH2.style.color = "azure";
-  idAboutTxtRight.style.color = "azure";
-  idAboutTxtLeft.style.color = "azure";
-}
+};
+const setTheme = (theme) => {
+  sessionStorage.setItem("theme", theme);
+  setThemes(theme);
+};
 
 window.addEventListener("load", () => {
   if (document.querySelectorAll(".nationBtns")) {
@@ -55,18 +51,11 @@ window.addEventListener("load", () => {
   if (document.querySelectorAll(".listnav"))
     document.querySelectorAll(".listnav").forEach((element) => {
       element.addEventListener("click", (e) =>
-        eval(
-          `themeType${
-            e.target.id.slice(0, -11).charAt(0).toUpperCase() +
-            e.target.id.slice(1, -11)
-          }`
-        )()
+        setTheme(e.target.id.slice(0, -11))
       );
     });
   if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
   setLanguage(sessionStorage.getItem("language"));
-  sessionStorage.getItem("theme") == "light"
-    ? themeTypeLight()
-    : themeTypeDark();
+  setTheme(sessionStorage.getItem("theme"));
   if (!localStorage.getItem("contentArray")) buttonFirst.style.display = "none";
 });

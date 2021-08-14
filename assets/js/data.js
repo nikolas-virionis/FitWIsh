@@ -25,20 +25,17 @@ const setLanguage = (language) => {
   sessionStorage.setItem("language", language);
   setTranslations(language);
 };
-function themeTypeLight() {
-  import("./modules/global/theme.js").then(({ themeTypeLight: defaultLight }) =>
-    defaultLight()
-  );
-  for (let field of document.querySelectorAll(".headingTextInputId"))
-    field.style.color = "#1F3B4D";
-}
-function themeTypeDark() {
-  import("./modules/global/theme.js").then(({ themeTypeDark: defaultDark }) =>
-    defaultDark()
-  );
-  for (let field of document.querySelectorAll(".headingTextInputId"))
-    field.style.color = "#DDD";
-}
+export const setThemes = async (theme) => {
+  await import("./script.js").then(({ globalTheme }) => globalTheme(theme));
+  await import(`./modules/data/themes/${theme}.js`).then(({ colorSwitch }) => {
+    for (let field of document.querySelectorAll(".headingTextInputId"))
+      field.style.color = colorSwitch.field;
+  });
+};
+const setTheme = (theme) => {
+  sessionStorage.setItem("theme", theme);
+  setThemes(theme);
+};
 let labels = document.querySelectorAll(".label");
 window.addEventListener("load", () => {
   if (document.querySelectorAll(".nationBtns")) {
@@ -59,12 +56,7 @@ window.addEventListener("load", () => {
   if (document.querySelectorAll(".listnav"))
     document.querySelectorAll(".listnav").forEach((element) => {
       element.addEventListener("click", (e) =>
-        eval(
-          `themeType${
-            e.target.id.slice(0, -11).charAt(0).toUpperCase() +
-            e.target.id.slice(1, -11)
-          }`
-        )()
+        setTheme(e.target.id.slice(0, -11))
       );
     });
   if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
@@ -104,9 +96,7 @@ window.addEventListener("load", () => {
       ))
   );
   setLanguage(sessionStorage.getItem("language"));
-  sessionStorage.getItem("theme") == "light"
-    ? themeTypeLight()
-    : themeTypeDark();
+  setTheme(sessionStorage.getItem("theme"));
   document
     .getElementById(`weight${unit}`)
     .addEventListener("keyup", (e) =>

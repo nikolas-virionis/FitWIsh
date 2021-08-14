@@ -13,9 +13,7 @@ let colorDownload = "#1F3B4D",
   idealWeight,
   bmi_state,
   finalIdealWeightMsg,
-  bodyFat,
   bodyFatPercentage,
-  suggestedBodyFat,
   topBodyFat,
   baseBodyFat,
   goalBaseBodyFat,
@@ -26,111 +24,44 @@ let colorDownload = "#1F3B4D",
 window.addEventListener("load", () => {
   if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
   setLanguage(sessionStorage.getItem("language"));
-  sessionStorage.getItem("theme") == "light"
-    ? themeTypeLight()
-    : themeTypeDark();
+  setTheme(sessionStorage.getItem("theme"));
   result();
 });
-
-function english() {
-  import("./modules/language.js").then(({ english: defaultEnglish }) =>
-    defaultEnglish()
+export const setTranslations = async (language) => {
+  await import("./script.js").then(({ globalLang }) => globalLang(language));
+  await import(`./modules/result/languages/${language}.js`).then(
+    ({ translations }) => {
+      weightManagementProgramFinalResult = translations.fileName;
+      emailLinkColor.innerHTML = translations.email;
+      downloadLinkColor.innerHTML = translations.download;
+      emotionAnswer = translations.emotion;
+      h4Config.innerHTML = translations.h4Config;
+      processing = translations.processing;
+      diagnosis = translations.diagnosis;
+      resultPossibilities = translations.result;
+      done = translations.done;
+      resultBeginning = translations.resultBeginning;
+    }
   );
-  weightManagementProgramFinalResult =
-    "Fitness_Management_Program_Final_Result.html";
-  emailLinkColor.innerHTML =
-    "<strong>Want to have a email sent to you with the main result data? Click here!!</strong>";
-  downloadLinkColor.innerHTML =
-    "<strong>Want to have a new document with all this last pages data? Click here!!</strong>";
-  emotionAnswer =
-    'For this emotional overeating issue you should try some ways to reduce it like: try to answer the question, am i really hungry or am i trying to eat my emotions?; aside from that you should try to calm yourself down with some breathing techniques, meditation or yoga to reduce stress; try to fight the boredom finding a new hobby, or something that "awakens" the  will do get up in the morning; don\'t discard the possibility of seeing a therapist to help you out in more areas than you can imagine; And to fight temptation, reward yourself periodically with a dose of a food you like, maybe every 15%-25% of the whole path completed, this way you will learn to moderate the amout you eat and thus make it easier for you to maintain your body in shape when you reach your goal.';
-  h4Config.innerHTML = "Processing";
-  processing = "Processing";
-  diagnosis = "Finishing Diagnosis";
-  resultPossibilities = "Loading Result Possibilities";
-  done = "Done!";
-  resultBeginning = 'Well <big style="font-family: Kaushan Script, cursive;">';
-}
-function português() {
-  import("./modules/language.js").then(({ português: defaultPortuguês }) =>
-    defaultPortuguês()
-  );
-  h4Config.innerHTML = "Processando";
-  processing = "Processando";
-  diagnosis = "Terminando Diagnóstico";
-  resultPossibilities = "Carregando Possibilidades de Resultado";
-  done = "Pronto!";
-  resultBeginning = 'Bem <big style="font-family: Kaushan Script, cursive;">';
-  weightManagementProgramFinalResult =
-    "Resultado_final_do_programa_de_controle_de_peso.html";
-  emailLinkColor.innerHTML =
-    "<strong>Deseja receber um e-mail com os principais dados do resultado? Clique aqui!!</strong>";
-  downloadLinkColor.innerHTML =
-    "<strong>Quer ter um novo documento com todos esses dados da última página? Clique aqui!!</strong>";
-  emotionAnswer =
-    'Para esse problema de comer demais emocionalmente, você deve tentar algumas maneiras de reduzi-lo, como: tente responder à pergunta, estou realmente com fome ou estou tentando comer minhas emoções ?; além disso, você deve tentar se acalmar com algumas técnicas de respiração, meditação ou ioga para reduzir o estresse; tente lutar contra o tédio encontrando um novo hobby, ou algo que "desperte" a vontade o faça de se levantar de manhã; não descarte a possibilidade de ver um terapeuta para ajudá-lo em mais áreas do que você pode imaginar; E para lutar contra a tentação, recompense-se periodicamente com uma dose de um alimento que você goste, talvez a cada 15% -25% de todo o caminho percorrido, assim você aprenderá a moderar a quantidade que ingere e assim tornar mais fácil para você manter seu corpo em forma quando você atingir seu objetivo.';
-}
-function français() {
-  import("./modules/language.js").then(({ français: defaultFrançais }) =>
-    defaultFrançais()
-  );
-  h4Config.innerHTML = "Traitement";
-  processing = "Traitement";
-  diagnosis = "Fin du diagnostic";
-  resultPossibilities = "Chargement des possibilités de résultat";
-  done = "Fait!";
-  resultBeginning = 'Bien <big style="font-family: Kaushan Script, cursive;">';
-  weightManagementProgramFinalResult =
-    "Résultat_final_du_programme_de_gestion_du_poids.html";
-  emailLinkColor.innerHTML =
-    "<strong>Vous souhaitez recevoir un e-mail contenant les principales données de résultat? Cliquez ici!!</strong>";
-  downloadLinkColor.innerHTML =
-    "<strong>Vous voulez avoir un nouveau document avec toutes ces dernières pages de données? Cliquez ici!!</strong>";
-  emotionAnswer =
-    "Pour ce problème émotionnel de suralimentation, vous devriez essayer quelques moyens de le réduire comme: essayez de répondre à la question, ai-je vraiment faim ou est-ce que j'essaye de manger mes émotions ?; à part cela, vous devriez essayer de vous calmer avec des techniques de respiration, de méditation ou de yoga pour réduire le stress; essayez de lutter contre l'ennui en trouvant un nouveau passe-temps, ou quelque chose qui «réveille» la volonté de se lever le matin; ne pas écarter la possibilité de voir un thérapeute pour vous aider dans plus de domaines que vous ne pouvez l'imaginer; Et pour lutter contre la tentation, récompensez-vous périodiquement avec une dose d'un aliment que vous aimez, peut-être tous les 15% à 25% du chemin parcouru, de cette façon vous apprendrez à modérer la quantité que vous mangez et ainsi vous faciliterez le maintien. votre corps en forme lorsque vous atteignez votre objectif.";
-}
-function español() {
-  import("./modules/language.js").then(({ español: defaultEspañol }) =>
-    defaultEspañol()
-  );
-  h4Config.innerHTML = "Procesando";
-  processing = "Procesando";
-  diagnosis = "Diagnóstico final";
-  resultPossibilities = "Cargando Posibilidades de Resultados";
-  done = "¡Hecho!";
-  resultBeginning =
-    '¡Bueno! <big style="font-family: Kaushan Script, cursive;">';
-  weightManagementProgramFinalResult =
-    "Resultado_final_del_programa_de_control_de_peso.html";
-  emailLinkColor.innerHTML =
-    "<strong>¿Quiere que le envíen un correo electrónico con los principales datos de resultados? ¡¡Haga clic aquí!!</strong>";
-  downloadLinkColor.innerHTML =
-    "<strong>¿Quieres tener un nuevo documento con todos los datos de estas últimas páginas? ¡¡Haga clic aquí!!</strong>";
-  emotionAnswer =
-    'Para este problema emocional de comer en exceso, debe probar algunas formas de reducirlo, como: intente responder la pregunta, ¿tengo mucha hambre o estoy tratando de comerme mis emociones ?; aparte de eso, debes intentar calmarte con algunas técnicas de respiración, meditación o yoga para reducir el estrés; intenta luchar contra el aburrimiento encontrando un nuevo pasatiempo, o algo que  "despierte " la voluntad de levantarse por la mañana; no descarte la posibilidad de ver a un terapeuta para que le ayude en más áreas de las que pueda imaginar; Y para combatir la tentación, recompénsate periódicamente con una dosis de un alimento que te guste, tal vez cada 15% -25% de todo el camino recorrido, de esta forma aprenderás a moderar la cantidad que comes y así te será más fácil mantenerlo. tu cuerpo en forma cuando alcances tu objetivo.';
-}
-function themeTypeLight() {
-  import("./modules/theme.js").then(({ themeTypeLight: defaultLight }) =>
-    defaultLight()
-  );
-  colorDownload = "#1F3B4D";
-  backgroundColorDownload = "white";
-  divPushCircleId.style.backgroundColor = "white";
-  finalResultH3Id.style.color = "#1F3B4D";
-  document.getElementById("downloadLinkColor").style.color = "green";
-  document.getElementById("emailLinkColor").style.color = "#E50278";
-}
-function themeTypeDark() {
-  import("./modules/theme.js").then(({ themeTypeDark: defaultDark }) =>
-    defaultDark()
-  );
-  colorDownload = "azure";
-  backgroundColorDownload = "#12232A";
-  divPushCircleId.style.backgroundColor = "#12232A";
-  finalResultH3Id.style.color = "azure";
-  document.getElementById("downloadLinkColor").style.color = "lightgreen";
-  document.getElementById("emailLinkColor").style.color = "pink";
-}
+};
+const setLanguage = (language) => {
+  sessionStorage.setItem("language", language);
+  setTranslations(language);
+};
+export const setThemes = async (theme) => {
+  await import("./script.js").then(({ globalTheme }) => globalTheme(theme));
+  await import(`./modules/intro/themes/${theme}.js`).then(({ colorSwitch }) => {
+    backgroundColorDownload = divPushCircleId.style.backgroundColor =
+      colorSwitch.backgroundColor;
+    colorDownload = finalResultH3Id.style.color = colorSwitch.colorDownload;
+    downloadLinkColor.style.color = colorSwitch.download;
+    emailLinkColor.style.color = colorSwitch.email;
+  });
+};
+const setTheme = (theme) => {
+  sessionStorage.setItem("theme", theme);
+  setThemes(theme);
+};
 // global imports
 import * as getters from "./modules/fieldGetter.js";
 import * as advices from "./modules/advices.js";

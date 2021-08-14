@@ -5,21 +5,17 @@ import {
   overwriteTest,
   seeAllTests,
 } from "./modules/index/previousTestsHandle.js";
-
-function themeTypeLight() {
-  import("./modules/global/theme.js").then(({ themeTypeLight: defaultLight }) =>
-    defaultLight()
-  );
-  for (let element of document.querySelectorAll(".firstPageH1setItem"))
-    element.style.color = "#1F3B4D";
-}
-function themeTypeDark() {
-  import("./modules/global/theme.js").then(({ themeTypeDark: defaultDark }) =>
-    defaultDark()
-  );
-  for (let element of document.querySelectorAll(".firstPageH1setItem"))
-    element.style.color = "azure";
-}
+export const setThemes = async (theme) => {
+  await import("./script.js").then(({ globalTheme }) => globalTheme(theme));
+  await import(`./modules/index/themes/${theme}.js`).then(({ colorSwitch }) => {
+    for (let element of document.querySelectorAll(".firstPageH1setItem"))
+      element.style.color = colorSwitch.elementsColor;
+  });
+};
+const setTheme = (theme) => {
+  sessionStorage.setItem("theme", theme);
+  setThemes(theme);
+};
 
 [
   document.getElementById("firstPageBtn1stTry"),
@@ -147,21 +143,14 @@ window.addEventListener("load", () => {
   if (document.querySelectorAll(".listnav"))
     document.querySelectorAll(".listnav").forEach((element) => {
       element.addEventListener("click", (e) =>
-        eval(
-          `themeType${
-            e.target.id.slice(0, -11).charAt(0).toUpperCase() +
-            e.target.id.slice(1, -11)
-          }`
-        )()
+        setTheme(e.target.id.slice(0, -11))
       );
     });
   sessionStorage.setItem("first", JSON.stringify(true));
   if (sessionStorage.getItem("language"))
     setLanguage(sessionStorage.getItem("language"));
 
-  sessionStorage.getItem("theme") == "light"
-    ? themeTypeLight()
-    : themeTypeDark();
+  setTheme(sessionStorage.getItem("theme"));
   if (
     !contentArray ||
     (contentArray.length == 0 && !sessionStorage.getItem("language"))
@@ -171,8 +160,7 @@ window.addEventListener("load", () => {
   } else if (contentArray?.length != 0) {
     import("./modules/index/overwriteBtns.js").then(({ triesMade }) => {
       rearrangeElements(triesMade + 1);
-      if (contentArray?.[triesMade - 1].theme == "light") themeTypeLight();
-      else themeTypeDark();
+      setTheme(contentArray?.[triesMade - 1].theme);
       if (contentArray?.length == 1) {
         if (contentArray?.[0].language == "português")
           return setLanguage("português");

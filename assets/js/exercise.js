@@ -14,20 +14,19 @@ const setLanguage = (language) => {
   sessionStorage.setItem("language", language);
   setTranslations(language);
 };
-function themeTypeLight() {
-  import("./modules/global/theme.js").then(({ themeTypeLight: defaultLight }) =>
-    defaultLight()
+export const setThemes = async (theme) => {
+  await import("./script.js").then(({ globalTheme }) => globalTheme(theme));
+  await import(`./modules/exercise/themes/${theme}.js`).then(
+    ({ colorSwitch }) => {
+      for (let el of document.querySelectorAll(".headingObjInputId"))
+        el.style.backgroundColor = colorSwitch.elementsColor;
+    }
   );
-  for (let el of document.querySelectorAll(".headingObjInputId"))
-    el.style.backgroundColor = "#D0FEFE";
-}
-function themeTypeDark() {
-  import("./modules/global/theme.js").then(({ themeTypeDark: defaultDark }) =>
-    defaultDark()
-  );
-  for (let el of document.querySelectorAll(".headingObjInputId"))
-    el.style.backgroundColor = "#9DBCD4";
-}
+};
+const setTheme = (theme) => {
+  sessionStorage.setItem("theme", theme);
+  setThemes(theme);
+};
 
 function hoverOutColorChangeFunc(hoveredOutId) {
   document.getElementById(hoveredOutId).style.backgroundColor = "teal";
@@ -64,12 +63,7 @@ window.addEventListener("load", () => {
   if (document.querySelectorAll(".listnav"))
     document.querySelectorAll(".listnav").forEach((element) => {
       element.addEventListener("click", (e) =>
-        eval(
-          `themeType${
-            e.target.id.slice(0, -11).charAt(0).toUpperCase() +
-            e.target.id.slice(1, -11)
-          }`
-        )()
+        setTheme(e.target.id.slice(0, -11))
       );
     });
   if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
@@ -86,9 +80,7 @@ window.addEventListener("load", () => {
       }Xercise`
     ).style.backgroundColor = "#7395AE";
   setLanguage(sessionStorage.getItem("language"));
-  sessionStorage.getItem("theme") == "light"
-    ? themeTypeLight()
-    : themeTypeDark();
+  setTheme(sessionStorage.getItem("theme"));
   buttons.forEach((button) => {
     button.addEventListener("click", (e) =>
       setExercise(

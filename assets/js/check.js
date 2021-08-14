@@ -2,10 +2,9 @@ export const setTranslations = async (language) => {
   await import("./script.js").then(({ globalLang }) => globalLang(language));
   await import(`./modules/check/languages/${language}.js`).then(
     ({ translations }) => {
-      headingObjInputIdCheck.innerHTML =
-        "<i>Are you sure you want to seethe results?<h5> The data inputted cannot be changed after this</h5></i>";
-      colorChangeIdCheckNo.value = "No";
-      colorChangeIdCheckYes.value = "Yes";
+      headingObjInputIdCheck.innerHTML = translations.check;
+      colorChangeIdCheckNo.value = translations.no;
+      colorChangeIdCheckYes.value = translations.yes;
     }
   );
 };
@@ -14,21 +13,10 @@ const setLanguage = (language) => {
   setTranslations(language);
 };
 
-// const setTheme = (theme) => {
-//   sessionStorage.setItem("theme", theme);
-//   colorSwitch(theme);
-// };
-
-function themeTypeLight() {
-  import("./modules/global/theme.js").then(({ themeTypeLight: defaultLight }) =>
-    defaultLight()
-  );
-}
-function themeTypeDark() {
-  import("./modules/global/theme.js").then(({ themeTypeDark: defaultDark }) =>
-    defaultDark()
-  );
-}
+const setTheme = (theme) => {
+  sessionStorage.setItem("theme", theme);
+  await import("./script.js").then(({ globalTheme }) => globalTheme(theme));
+};
 
 window.addEventListener("load", () => {
   if (document.querySelectorAll(".nationBtns")) {
@@ -49,19 +37,12 @@ window.addEventListener("load", () => {
   if (document.querySelectorAll(".listnav"))
     document.querySelectorAll(".listnav").forEach((element) => {
       element.addEventListener("click", (e) =>
-        eval(
-          `themeType${
-            e.target.id.slice(0, -11).charAt(0).toUpperCase() +
-            e.target.id.slice(1, -11)
-          }`
-        )()
+        setTheme(e.target.id.slice(0, -11))
       );
     });
   if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
   setLanguage(sessionStorage.getItem("language"));
-  sessionStorage.getItem("theme") == "light"
-    ? themeTypeLight()
-    : themeTypeDark();
+  setTheme(sessionStorage.getItem("theme"));
 });
 
 for (let button of buttons)

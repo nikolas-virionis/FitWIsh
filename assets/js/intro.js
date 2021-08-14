@@ -15,30 +15,22 @@ export const setTranslations = async (language) => {
     }
   );
 };
-
 const setLanguage = (language) => {
   sessionStorage.setItem("language", language);
   setTranslations(language);
 };
-
-function themeTypeLight() {
-  import("./modules/global/theme.js").then(({ themeTypeLight: defaultLight }) =>
-    defaultLight()
-  );
-  planId.style.color = "blue";
-  idBadHabits.style.color = "red";
-  idPlanMsg.style.color = "blue";
-  idGoodHabits.style.color = "darkgreen";
-}
-function themeTypeDark() {
-  import("./modules/global/theme.js").then(({ themeTypeDark: defaultDark }) =>
-    defaultDark()
-  );
-  planId.style.color = "cyan";
-  idBadHabits.style.color = "white";
-  idPlanMsg.style.color = "cyan";
-  idGoodHabits.style.color = "gold";
-}
+export const setThemes = async (theme) => {
+  await import("./script.js").then(({ globalTheme }) => globalTheme(theme));
+  await import(`./modules/intro/themes/${theme}.js`).then(({ colorSwitch }) => {
+    planId.style.color = idPlanMsg.style.color = colorSwitch.plan;
+    idBadHabits.style.color = colorSwitch.bad;
+    idGoodHabits.style.color = colorSwitch.good;
+  });
+};
+const setTheme = (theme) => {
+  sessionStorage.setItem("theme", theme);
+  setThemes(theme);
+};
 
 window.addEventListener("load", () => {
   if (document.querySelectorAll(".nationBtns")) {
@@ -59,18 +51,11 @@ window.addEventListener("load", () => {
   if (document.querySelectorAll(".listnav"))
     document.querySelectorAll(".listnav").forEach((element) => {
       element.addEventListener("click", (e) =>
-        eval(
-          `themeType${
-            e.target.id.slice(0, -11).charAt(0).toUpperCase() +
-            e.target.id.slice(1, -11)
-          }`
-        )()
+        setTheme(e.target.id.slice(0, -11))
       );
     });
   if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
   setLanguage(sessionStorage.getItem("language"));
-  sessionStorage.getItem("theme") == "light"
-    ? themeTypeLight()
-    : themeTypeDark();
+  setTheme(sessionStorage.getItem("theme"));
   if (!localStorage.getItem("contentArray")) buttonFirst.style.display = "none";
 });

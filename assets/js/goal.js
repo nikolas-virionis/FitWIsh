@@ -1,58 +1,30 @@
-function english() {
-  import("./modules/global/language.js").then(({ english: defaultEnglish }) =>
-    defaultEnglish()
+export const setTranslations = async (language) => {
+  await import("./script.js").then(({ globalLang }) => globalLang(language));
+  await import(`./modules/goal/languages/${language}.js`).then(
+    ({ translations }) => {
+      headingObjInputIdGoal.innerHTML = translations.goal;
+      colorChangeIdBulk.value = translations.bulk;
+      colorChangeIdCut.value = translations.cut;
+      colorChangeIdSurp.value = translations.surp;
+      colorChangeIdMuscle.value = translations.muscle;
+    }
   );
-  document.getElementById("headingObjInputIdGoal").innerHTML = "Goal";
-  document.getElementById("colorChangeIdBulk").value = "Bulking";
-  document.getElementById("colorChangeIdCut").value = "Cutting";
-  document.getElementById("colorChangeIdSurp").value = "Get rid of fat surplus";
-  document.getElementById("colorChangeIdMuscle").value =
-    "Gaining Weight and Muscle";
-}
-function português() {
-  import("./modules/global/language.js").then(
-    ({ português: defaultPortuguês }) => defaultPortuguês()
-  );
-  document.getElementById("headingObjInputIdGoal").innerHTML = "Objetivo";
-  document.getElementById("colorChangeIdBulk").value = "Ganhar Massa";
-  document.getElementById("colorChangeIdCut").value = "Secar";
-  document.getElementById("colorChangeIdSurp").value = "Emagrecer";
-  document.getElementById("colorChangeIdMuscle").value = "Ganhar peso";
-}
-function français() {
-  import("./modules/global/language.js").then(({ français: defaultFrançais }) =>
-    defaultFrançais()
-  );
-  document.getElementById("headingObjInputIdGoal").innerHTML = "Objectif";
-  document.getElementById("colorChangeIdBulk").value = "Gagner du muscle";
-  document.getElementById("colorChangeIdCut").value = "Obtenez déchiqueté";
-  document.getElementById("colorChangeIdSurp").value = "Perdre du poids";
-  document.getElementById("colorChangeIdMuscle").value = "Gagner de poids";
-}
-function español() {
-  import("./modules/global/language.js").then(({ español: defaultEspañol }) =>
-    defaultEspañol()
-  );
-  document.getElementById("headingObjInputIdGoal").innerHTML = "Objetivo";
-  document.getElementById("colorChangeIdBulk").value = "Ganar músculo";
-  document.getElementById("colorChangeIdCut").value = "Hacerse Rasgado";
-  document.getElementById("colorChangeIdSurp").value = "Perder peso";
-  document.getElementById("colorChangeIdMuscle").value = "Ganar peso";
-}
-function themeTypeLight() {
-  import("./modules/global/theme.js").then(({ themeTypeLight: defaultLight }) =>
-    defaultLight()
-  );
-  for (let el of document.querySelectorAll(".headingObjInputId"))
-    el.style.backgroundColor = "#D0FEFE";
-}
-function themeTypeDark() {
-  import("./modules/global/theme.js").then(({ themeTypeDark: defaultDark }) =>
-    defaultDark()
-  );
-  for (let el of document.querySelectorAll(".headingObjInputId"))
-    el.style.backgroundColor = "#9DBCD4";
-}
+};
+const setLanguage = (language) => {
+  sessionStorage.setItem("language", language);
+  setTranslations(language);
+};
+export const setThemes = async (theme) => {
+  await import("./script.js").then(({ globalTheme }) => globalTheme(theme));
+  await import(`./modules/goal/themes/${theme}.js`).then(({ colorSwitch }) => {
+    for (let el of document.querySelectorAll(".headingObjInputId"))
+      el.style.backgroundColor = colorSwitch.elementsColor;
+  });
+};
+const setTheme = (theme) => {
+  sessionStorage.setItem("theme", theme);
+  setThemes(theme);
+};
 
 function hoverOutColorChangeFunc(hoveredOutId) {
   document.getElementById(hoveredOutId).style.backgroundColor = "teal";
@@ -88,12 +60,7 @@ window.addEventListener("load", () => {
   if (document.querySelectorAll(".listnav"))
     document.querySelectorAll(".listnav").forEach((element) => {
       element.addEventListener("click", (e) =>
-        eval(
-          `themeType${
-            e.target.id.slice(0, -11).charAt(0).toUpperCase() +
-            e.target.id.slice(1, -11)
-          }`
-        )()
+        setTheme(e.target.id.slice(0, -11))
       );
     });
   if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
@@ -110,9 +77,7 @@ window.addEventListener("load", () => {
       }`
     ).style.backgroundColor = "#7395AE";
   setLanguage(sessionStorage.getItem("language"));
-  sessionStorage.getItem("theme") == "light"
-    ? themeTypeLight()
-    : themeTypeDark();
+  setTheme(sessionStorage.getItem("theme"));
   buttons.forEach((button) => {
     button.addEventListener("click", (e) =>
       goal(
