@@ -89,13 +89,9 @@ function rearrangeElements(tries) {
 }
 
 export const setTranslations = async (language) => {
-  let file = window.location.pathname.split("/").pop().slice(0, -5) || "index";
-  await import("./script.js").then(({ globalTranslations }) =>
-    globalTranslations(language)
-  );
-  await import(`./modules/${file}/languages/${language}.js`)
-    .catch(() => import(`./modules/index/languages/${language}.js`))
-    .then(({ translations }) => {
+  await import("./script.js").then(({ globalLang }) => globalLang(language));
+  await import(`./modules/index/languages/${language}.js`).then(
+    ({ translations }) => {
       if (contentArray?.length >= 1)
         import("./modules/index/overwriteBtns.js").then(
           ({ numberBtnsOverwrite }) => numberBtnsOverwrite(language)
@@ -111,7 +107,8 @@ export const setTranslations = async (language) => {
       firstPageBtnSeeAll.value = translations.seeAll;
       firstPageBtnSeePrev.value = translations.seePrev;
       firstPageBtnHideAll.value = translations.hideAll;
-    });
+    }
+  );
 };
 
 const setLanguage = (language) => {

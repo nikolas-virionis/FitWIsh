@@ -25,7 +25,7 @@ let colorDownload = "#1F3B4D",
 
 window.addEventListener("load", () => {
   if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
-  eval(sessionStorage.getItem("language"))();
+  setLanguage(sessionStorage.getItem("language"));
   sessionStorage.getItem("theme") == "light"
     ? themeTypeLight()
     : themeTypeDark();

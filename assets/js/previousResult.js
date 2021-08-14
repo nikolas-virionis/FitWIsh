@@ -31,11 +31,11 @@ window.addEventListener("load", () => {
       .querySelectorAll(".nationBtns")
       .forEach((btn) =>
         btn.addEventListener("click", (e) =>
-          eval(
+          setLanguage(
             nations[
               [...document.querySelectorAll(".nationBtns")].indexOf(e.target)
             ]
-          )()
+          )
         )
       );
   }
@@ -52,7 +52,7 @@ window.addEventListener("load", () => {
       );
     });
   if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
-  eval(sessionStorage.getItem("language"))();
+  setLanguage(sessionStorage.getItem("language"));
   sessionStorage.getItem("theme") == "light"
     ? themeTypeLight()
     : themeTypeDark();

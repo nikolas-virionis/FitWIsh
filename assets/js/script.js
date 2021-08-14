@@ -14,7 +14,7 @@ const closeNav = () => (myLeftSidenav.style.width = "0");
 const closeRightNav = () =>
   (document.getElementById("myRightSidenav").style.width = "0");
 
-export const globalTranslations = async (lang) => {
+export const globalLang = async (lang) => {
   language = lang;
   await import(`./modules/global/languages/${lang}.js`).then(
     ({ translations }) => {

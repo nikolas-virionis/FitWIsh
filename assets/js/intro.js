@@ -1,16 +1,7 @@
-let { contentArray } = await import("./modules/index/overwriteBtns.js");
 export const setTranslations = async (language) => {
-  let file = window.location.pathname.split("/").pop().slice(0, -5) || "index";
-  await import("./script.js").then(({ globalTranslations }) =>
-    globalTranslations(language)
-  );
-  await import(`./modules/${file}/languages/${language}.js`)
-    .catch(() => import(`./modules/index/languages/${language}.js`))
-    .then(({ translations }) => {
-      if (contentArray?.length >= 1)
-        import("./modules/index/overwriteBtns.js").then(
-          ({ numberBtnsOverwrite }) => numberBtnsOverwrite(language)
-        );
+  await import("./script.js").then(({ globalLang }) => globalLang(language));
+  await import(`./modules/intro/languages/${language}.js`).then(
+    ({ translations }) => {
       let introTxt = document.querySelectorAll(".planTxt");
       for (let element of introTxt)
         element.style.fontSize = translations.planTxtFontSize;
@@ -21,7 +12,8 @@ export const setTranslations = async (language) => {
       idBadHabits.innerHTML = translations.BadHabits;
       idPlanMsg.innerHTML = translations.PlanMsg;
       idGoodHabits.innerHTML = translations.GoodHabits;
-    });
+    }
+  );
 };
 
 const setLanguage = (language) => {

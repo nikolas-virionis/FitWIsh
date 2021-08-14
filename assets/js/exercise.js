@@ -1,57 +1,19 @@
-function english() {
-  import("./modules/global/language.js").then(({ english: defaultEnglish }) =>
-    defaultEnglish()
+export const setTranslations = async (language) => {
+  await import("./script.js").then(({ globalLang }) => globalLang(language));
+  await import(`./modules/exercise/languages/${language}.js`).then(
+    ({ translations }) => {
+      headingObjInputIdXercise.innerHTML = translations.exercise;
+      colorChangeIdNoneXercise.value = translations.none;
+      colorChangeIdLowXercise.value = translations.low;
+      colorChangeIdMidXercise.value = translations.mid;
+      colorChangeIdHighXercise.value = translations.high;
+    }
   );
-  document.getElementById("headingObjInputIdXercise").innerHTML =
-    "High intensity exercise frequency:";
-  document.getElementById("colorChangeIdNoneXercise").value = "None";
-  document.getElementById("colorChangeIdLowXercise").value = "1-2 times a week";
-  document.getElementById("colorChangeIdMidXercise").value = "3-4 times a week";
-  document.getElementById("colorChangeIdHighXercise").value =
-    "5 or more times a week";
-}
-function português() {
-  import("./modules/global/language.js").then(
-    ({ português: defaultPortuguês }) => defaultPortuguês()
-  );
-  document.getElementById("headingObjInputIdXercise").innerHTML =
-    "Frequência de exercício de alta intensidade:";
-  document.getElementById("colorChangeIdNoneXercise").value = "Nenhuma";
-  document.getElementById("colorChangeIdLowXercise").value =
-    "1-2 vezes por semana";
-  document.getElementById("colorChangeIdMidXercise").value =
-    "3-4 vezes por semana";
-  document.getElementById("colorChangeIdHighXercise").value =
-    "5 ou mais vezes por semana";
-}
-function français() {
-  import("./modules/global/language.js").then(({ français: defaultFrançais }) =>
-    defaultFrançais()
-  );
-  document.getElementById("headingObjInputIdXercise").innerHTML =
-    "Fréquence d'exercice à haute intensité:";
-  document.getElementById("colorChangeIdNoneXercise").value = "Aucun";
-  document.getElementById("colorChangeIdLowXercise").value =
-    "1 à 2 fois par semaine";
-  document.getElementById("colorChangeIdMidXercise").value =
-    "3 à 4 fois par semaine";
-  document.getElementById("colorChangeIdHighXercise").value =
-    "5 fois ou plus par semaine";
-}
-function español() {
-  import("./modules/global/language.js").then(({ español: defaultEspañol }) =>
-    defaultEspañol()
-  );
-  document.getElementById("headingObjInputIdXercise").innerHTML =
-    "Frecuencia de ejercicio de alta intensidad:";
-  document.getElementById("colorChangeIdNoneXercise").value = "Ninguno";
-  document.getElementById("colorChangeIdLowXercise").value =
-    "1-2 veces por semana";
-  document.getElementById("colorChangeIdMidXercise").value =
-    "3-4 veces por semana";
-  document.getElementById("colorChangeIdHighXercise").value =
-    "5 o más veces por semana";
-}
+};
+const setLanguage = (language) => {
+  sessionStorage.setItem("language", language);
+  setTranslations(language);
+};
 function themeTypeLight() {
   import("./modules/global/theme.js").then(({ themeTypeLight: defaultLight }) =>
     defaultLight()
@@ -90,11 +52,11 @@ window.addEventListener("load", () => {
       .querySelectorAll(".nationBtns")
       .forEach((btn) =>
         btn.addEventListener("click", (e) =>
-          eval(
+          setLanguage(
             nations[
               [...document.querySelectorAll(".nationBtns")].indexOf(e.target)
             ]
-          )()
+          )
         )
       );
   }
@@ -123,7 +85,7 @@ window.addEventListener("load", () => {
           : "High"
       }Xercise`
     ).style.backgroundColor = "#7395AE";
-  eval(sessionStorage.getItem("language"))();
+  setLanguage(sessionStorage.getItem("language"));
   sessionStorage.getItem("theme") == "light"
     ? themeTypeLight()
     : themeTypeDark();

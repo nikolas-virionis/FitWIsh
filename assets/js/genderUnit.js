@@ -100,11 +100,11 @@ window.addEventListener("load", () => {
       .querySelectorAll(".nationBtns")
       .forEach((btn) =>
         btn.addEventListener("click", (e) =>
-          eval(
+          setLanguage(
             nations[
               [...document.querySelectorAll(".nationBtns")].indexOf(e.target)
             ]
-          )()
+          )
         )
       );
   }
@@ -131,7 +131,7 @@ window.addEventListener("load", () => {
     document.getElementById(
       `colorChangeId${getUnit().charAt(0).toUpperCase() + getUnit().slice(1)}`
     ).style.backgroundColor = "#7395AE";
-  eval(sessionStorage.getItem("language"))();
+  setLanguage(sessionStorage.getItem("language"));
   sessionStorage.getItem("theme") == "light"
     ? themeTypeLight()
     : themeTypeDark();

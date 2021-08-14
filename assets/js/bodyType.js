@@ -1,46 +1,20 @@
-function english() {
-  import("./modules/global/language.js").then(({ english: defaultEnglish }) =>
-    defaultEnglish()
+export const setTranslations = async (language) => {
+  await import("./script.js").then(({ globalLang }) => globalLang(language));
+  await import(`./modules/bodyType/languages/${language}.js`).then(
+    ({ translations }) => {
+      headingObjInputIdBodyType.innerHTML = translations.bodyType;
+      colorChangeIdNoIdea.value = translations.noIdea;
+      colorChangeIdEcto.value = translations.ecto;
+      colorChangeIdMeso.value = translations.meso;
+      colorChangeIdEndo.value = translations.endo;
+    }
   );
-  document.getElementById("headingObjInputIdBodyType").innerHTML = "Body Type";
-  document.getElementById("colorChangeIdNoIdea").value = "No idea";
-  document.getElementById("colorChangeIdEcto").value = "Ectomorph";
-  document.getElementById("colorChangeIdMeso").value = "Mesomorph";
-  document.getElementById("colorChangeIdEndo").value = "Endomorph";
-}
-function português() {
-  import("./modules/global/language.js").then(
-    ({ português: defaultPortuguês }) => defaultPortuguês()
-  );
-  document.getElementById("headingObjInputIdBodyType").innerHTML =
-    "Tipo Corporal";
-  document.getElementById("colorChangeIdNoIdea").value = "Sem ideia";
-  document.getElementById("colorChangeIdEcto").value = "Ectomorfo";
-  document.getElementById("colorChangeIdMeso").value = "Mesomorfo";
-  document.getElementById("colorChangeIdEndo").value = "Endomorfo";
-}
-function français() {
-  import("./modules/global/language.js").then(({ français: defaultFrançais }) =>
-    defaultFrançais()
-  );
-  document.getElementById("headingObjInputIdBodyType").innerHTML =
-    "Type de corps";
-  document.getElementById("colorChangeIdNoIdea").value = "Aucune idée";
-  document.getElementById("colorChangeIdEcto").value = "Ectomorphe";
-  document.getElementById("colorChangeIdMeso").value = "Mesomorphe";
-  document.getElementById("colorChangeIdEndo").value = "Endomorphe";
-}
-function español() {
-  import("./modules/global/language.js").then(({ español: defaultEspañol }) =>
-    defaultEspañol()
-  );
-  document.getElementById("headingObjInputIdBodyType").innerHTML =
-    "Tipo de cuerpo";
-  document.getElementById("colorChangeIdNoIdea").value = "Ni idea";
-  document.getElementById("colorChangeIdEcto").value = "Ectomorfo";
-  document.getElementById("colorChangeIdMeso").value = "Mesomorfo";
-  document.getElementById("colorChangeIdEndo").value = "Endomorfo";
-}
+};
+
+const setLanguage = (language) => {
+  sessionStorage.setItem("language", language);
+  setTranslations(language);
+};
 function themeTypeLight() {
   import("./modules/global/theme.js").then(({ themeTypeLight: defaultLight }) =>
     defaultLight()
@@ -63,11 +37,11 @@ window.addEventListener("load", () => {
       .querySelectorAll(".nationBtns")
       .forEach((btn) =>
         btn.addEventListener("click", (e) =>
-          eval(
+          setLanguage(
             nations[
               [...document.querySelectorAll(".nationBtns")].indexOf(e.target)
             ]
-          )()
+          )
         )
       );
   }
@@ -90,7 +64,7 @@ window.addEventListener("load", () => {
         getBodyType().charAt(0).toUpperCase() + getBodyType().slice(1)
       }`
     ).style.backgroundColor = "#7395AE";
-  eval(sessionStorage.getItem("language"))();
+  setLanguage(sessionStorage.getItem("language"));
   sessionStorage.getItem("theme") == "light"
     ? themeTypeLight()
     : themeTypeDark();

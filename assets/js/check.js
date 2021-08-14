@@ -1,40 +1,24 @@
-function english() {
-  import("./modules/global/language.js").then(({ english: defaultEnglish }) =>
-    defaultEnglish()
+export const setTranslations = async (language) => {
+  await import("./script.js").then(({ globalLang }) => globalLang(language));
+  await import(`./modules/check/languages/${language}.js`).then(
+    ({ translations }) => {
+      headingObjInputIdCheck.innerHTML =
+        "<i>Are you sure you want to seethe results?<h5> The data inputted cannot be changed after this</h5></i>";
+      colorChangeIdCheckNo.value = "No";
+      colorChangeIdCheckYes.value = "Yes";
+    }
   );
-  headingObjInputIdCheck.innerHTML =
-    "<i>Are you sure you want to seethe results?<h5> The data inputted cannot be changed after this</h5></i>";
-  colorChangeIdCheckNo.value = "No";
-  colorChangeIdCheckYes.value = "Yes";
-}
-function português() {
-  import("./modules/global/language.js").then(
-    ({ português: defaultPortuguês }) => defaultPortuguês()
-  );
-  headingObjInputIdCheck.innerHTML =
-    "<i> Tem certeza de que deseja ver os resultados? <h5> Os dados inseridos não podem ser alterados depois disso </h5> </i>";
-  colorChangeIdCheckNo.value = "Não";
-  colorChangeIdCheckYes.value = "Sim";
-}
-function français() {
-  import("./modules/global/language.js").then(({ français: defaultFrançais }) =>
-    defaultFrançais()
-  );
-  headingObjInputIdCheck.innerHTML =
-    "<i>Êtes-vous sûr de vouloir voir les résultats ?<h5> Les données saisies ne peuvent pas être modifiées après cela</h5></i>";
-  colorChangeIdCheckNo.value = "Non";
-  colorChangeIdCheckYes.value = "Oui";
-}
+};
+const setLanguage = (language) => {
+  sessionStorage.setItem("language", language);
+  setTranslations(language);
+};
 
-function español() {
-  import("./modules/global/language.js").then(({ español: defaultEspañol }) =>
-    defaultEspañol()
-  );
-  headingObjInputIdCheck.innerHTML =
-    "<i> ¿Está seguro de que desea ver los resultados? <h5> Los datos ingresados no se pueden cambiar después de esto </h5> </i>";
-  colorChangeIdCheckNo.value = "No";
-  colorChangeIdCheckYes.value = "Sí";
-}
+// const setTheme = (theme) => {
+//   sessionStorage.setItem("theme", theme);
+//   colorSwitch(theme);
+// };
+
 function themeTypeLight() {
   import("./modules/global/theme.js").then(({ themeTypeLight: defaultLight }) =>
     defaultLight()
@@ -53,11 +37,11 @@ window.addEventListener("load", () => {
       .querySelectorAll(".nationBtns")
       .forEach((btn) =>
         btn.addEventListener("click", (e) =>
-          eval(
+          setLanguage(
             nations[
               [...document.querySelectorAll(".nationBtns")].indexOf(e.target)
             ]
-          )()
+          )
         )
       );
   }
@@ -74,7 +58,7 @@ window.addEventListener("load", () => {
       );
     });
   if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
-  eval(sessionStorage.getItem("language"))();
+  setLanguage(sessionStorage.getItem("language"));
   sessionStorage.getItem("theme") == "light"
     ? themeTypeLight()
     : themeTypeDark();

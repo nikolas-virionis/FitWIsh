@@ -1,84 +1,30 @@
 const { getUnit } = await import("./modules/global/fieldGetter.js");
-function english() {
-  import("./modules/global/language.js").then(({ english: defaultEnglish }) =>
-    defaultEnglish()
+export const setTranslations = async (language) => {
+  await import("./script.js").then(({ globalLang }) => globalLang(language));
+  await import(`./modules/data/languages/${language}.js`).then(
+    ({ translations }) => {
+      weightMetric.placeholder = translations.weightMetricPlaceholder;
+      heightMetric.placeholder = translations.heightMetricPlaceholder;
+      weightImperial.placeholder = translations.weightImperialPlaceholder;
+      heightImperial.placeholder = translations.heightImperialPlaceholder;
+      headingTextInputIdWeightMetric.innerHTML =
+        headingTextInputIdWeightImperial.innerHTML = translations.weight;
+      headingTextInputIdHeightMetric.innerHTML =
+        headingTextInputIdHeightImperial.innerHTML = translations.height;
+      if (getUnit() == "metric") {
+        weightMetric.title = labels[0].title = translations.weightMetric;
+        heightMetric.title = labels[1].title = translations.heightMetric;
+      } else {
+        weightImperial.title = labels[0].title = translations.weightImperial;
+        heightImperial.title = labels[1].title = translations.heightImperial;
+      }
+    }
   );
-  weightMetric.placeholder = "Example: 80.5";
-  heightMetric.placeholder = "Example: 1.85";
-  weightImperial.placeholder = "Example: 200.5";
-  heightImperial.placeholder = "Example: 70";
-  headingTextInputIdWeightMetric.innerHTML =
-    headingTextInputIdWeightImperial.innerHTML = "Weight";
-  headingTextInputIdHeightMetric.innerHTML =
-    headingTextInputIdHeightImperial.innerHTML = "Height";
-  if (getUnit() == "metric") {
-    weightMetric.title = labels[0].title = "Unit: kilograms (kg)";
-    heightMetric.title = labels[1].title = "Unit: meters (m)";
-  } else {
-    weightMetric.title = labels[0].title = "Unit: pounds (lbs)";
-    heightMetric.title = labels[1].title = "Unit: inches (in)";
-  }
-}
-function português() {
-  import("./modules/global/language.js").then(
-    ({ português: defaultPortuguês }) => defaultPortuguês()
-  );
-  weightMetric.placeholder = "Exemplo: 80.5";
-  heightMetric.placeholder = "Exemplo: 1.85";
-  weightImperial.placeholder = "Exemplo: 200.5";
-  heightImperial.placeholder = "Exemplo: 70";
-  headingTextInputIdWeightMetric.innerHTML =
-    headingTextInputIdWeightImperial.innerHTML = "Peso";
-  headingTextInputIdHeightMetric.innerHTML =
-    headingTextInputIdHeightImperial.innerHTML = "Altura";
-  if (getUnit() == "metric") {
-    weightMetric.title = labels[0].title = "Unidade: kilogramas (kg)";
-    heightMetric.title = labels[1].title = "Unidade: metros (m)";
-  } else {
-    weightMetric.title = labels[0].title = "Unidade: libras (lbs)";
-    heightMetric.title = labels[1].title = "Unidade: polegadas (in)";
-  }
-}
-function français() {
-  import("./modules/global/language.js").then(({ français: defaultFrançais }) =>
-    defaultFrançais()
-  );
-  weightMetric.placeholder = "Exemple: 80.5";
-  heightMetric.placeholder = "Exemple: 1.85";
-  weightImperial.placeholder = "Exemple: 200.5";
-  heightImperial.placeholder = "Exemple: 70";
-  headingTextInputIdWeightMetric.innerHTML =
-    headingTextInputIdWeightImperial.innerHTML = "Poids";
-  headingTextInputIdHeightMetric.innerHTML =
-    headingTextInputIdHeightImperial.innerHTML = "Hauteur";
-  if (getUnit() == "metric") {
-    weightMetric.title = labels[0].title = "Unité: kilogrammes (kg)";
-    heightMetric.title = labels[1].title = "Unité: mètres (m)";
-  } else {
-    weightMetric.title = labels[0].title = "Unité: livres sterling (lbs)";
-    heightMetric.title = labels[1].title = "Unité: pouces (in)";
-  }
-}
-function español() {
-  import("./modules/global/language.js").then(({ español: defaultEspañol }) =>
-    defaultEspañol()
-  );
-  weightMetric.placeholder = "Ejemplo: 80.5";
-  heightMetric.placeholder = "Ejemplo: 1.85";
-  weightImperial.placeholder = "Ejemplo: 200.5";
-  heightImperial.placeholder = "Ejemplo: 70";
-  headingTextInputIdWeightMetric.innerHTML =
-    headingTextInputIdWeightImperial.innerHTML = "Peso";
-  headingTextInputIdHeightMetric.innerHTML =
-    headingTextInputIdHeightImperial.innerHTML = "Altura";
-  if (getUnit() == "metric") {
-    weightMetric.title = labels[0].title = "Unidad: kilogramos (kg)";
-    heightMetric.title = labels[1].title = "Unidad: metros (m)";
-  } else {
-    weightMetric.title = labels[0].title = "Unidad: libras (lbs)";
-    heightMetric.title = labels[1].title = "Unidad: pulgadas (in)";
-  }
-}
+};
+const setLanguage = (language) => {
+  sessionStorage.setItem("language", language);
+  setTranslations(language);
+};
 function themeTypeLight() {
   import("./modules/global/theme.js").then(({ themeTypeLight: defaultLight }) =>
     defaultLight()
@@ -101,11 +47,11 @@ window.addEventListener("load", () => {
       .querySelectorAll(".nationBtns")
       .forEach((btn) =>
         btn.addEventListener("click", (e) =>
-          eval(
+          setLanguage(
             nations[
               [...document.querySelectorAll(".nationBtns")].indexOf(e.target)
             ]
-          )()
+          )
         )
       );
   }
@@ -157,7 +103,7 @@ window.addEventListener("load", () => {
         sessionStorage.getItem(element)
       ))
   );
-  eval(sessionStorage.getItem("language"))();
+  setLanguage(sessionStorage.getItem("language"));
   sessionStorage.getItem("theme") == "light"
     ? themeTypeLight()
     : themeTypeDark();

@@ -1,43 +1,18 @@
-function english() {
-  import("./modules/global/language.js").then(({ english: defaultEnglish }) =>
-    defaultEnglish()
+export const setTranslations = async (language) => {
+  await import("./script.js").then(({ globalLang }) => globalLang(language));
+  await import(`./modules/contact/languages/${language}.js`).then(
+    ({ translations }) => {
+      idContactH2.style.marginLeft = translations.contactH2MarginLeft;
+      idContactH2.innerHTML = translations.contactH2;
+      idContactIntro.innerHTML = translations.contactIntro;
+      idContactHeading.innerHTML = translations.contactHeading;
+    }
   );
-  idContactH2.style.marginLeft = "37.5%";
-  idContactH2.innerHTML = "How to Contact Us";
-  idContactIntro.innerHTML =
-    "We would love to hear from our users about possible feedback about what you experienced while using our service. To contact Us directly access the link to our CTO's email below, and to have more information on us access his LinkedIn link below.";
-  idContactHeading.innerHTML = "Contact";
-}
-function português() {
-  import("./modules/global/language.js").then(
-    ({ português: defaultPortuguês }) => defaultPortuguês()
-  );
-  idContactH2.style.marginLeft = "30.5%";
-  idContactH2.innerHTML = "Como entrar em contato conosco";
-  idContactIntro.innerHTML =
-    "Gostaríamos muito de ouvir de nossos usuários sobre possíveis comentários sobre o que você experimentou ao usar nosso serviço. Para entrar em contato conosco diretamente, acesse o link para o e-mail de nosso CTO abaixo, e para obter mais informações sobre nós acesse seu link do LinkedIn abaixo.";
-  idContactHeading.innerHTML = "Contato";
-}
-function français() {
-  import("./modules/global/language.js").then(({ français: defaultFrançais }) =>
-    defaultFrançais()
-  );
-  idContactH2.style.marginLeft = "34.5%";
-  idContactH2.innerHTML = "Comment nous contacter";
-  idContactIntro.innerHTML =
-    "Nous serions ravis d'entendre nos utilisateurs sur d'éventuels commentaires sur ce que vous avez vécu lors de l'utilisation de notre service. Pour nous contacter, accédez directement au lien vers l'e-mail de notre CTO ci-dessous, et pour avoir plus d'informations sur nous, accédez à son lien LinkedIn ci-dessous.";
-  idContactHeading.innerHTML = "Contact";
-}
-function español() {
-  import("./modules/global/language.js").then(({ español: defaultEspañol }) =>
-    defaultEspañol()
-  );
-  idContactH2.style.marginLeft = "32.5%";
-  idContactH2.innerHTML = "Como contactar con nosotros";
-  idContactHeading.innerHTML = "Contacto";
-  idContactIntro.innerHTML =
-    "Nos encantaría saber de nuestros usuarios sobre posibles comentarios sobre lo que experimentó al utilizar nuestro servicio. Para contactarnos acceda directamente al enlace al correo electrónico de nuestro CTO a continuación, y para tener más información sobre nosotros acceda a su enlace de LinkedIn a continuación.";
-}
+};
+const setLanguage = (language) => {
+  sessionStorage.setItem("language", language);
+  setTranslations(language);
+};
 function themeTypeLight() {
   import("./modules/global/theme.js").then(({ themeTypeLight: defaultLight }) =>
     defaultLight()
@@ -66,11 +41,11 @@ window.addEventListener("load", () => {
       .querySelectorAll(".nationBtns")
       .forEach((btn) =>
         btn.addEventListener("click", (e) =>
-          eval(
+          setLanguage(
             nations[
               [...document.querySelectorAll(".nationBtns")].indexOf(e.target)
             ]
-          )()
+          )
         )
       );
   }
@@ -87,7 +62,7 @@ window.addEventListener("load", () => {
       );
     });
   if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
-  eval(sessionStorage.getItem("language"))();
+  setLanguage(sessionStorage.getItem("language"));
   sessionStorage.getItem("theme") == "light"
     ? themeTypeLight()
     : themeTypeDark();
