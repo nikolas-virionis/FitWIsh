@@ -230,6 +230,7 @@ export function getSuggestedBodyFat() {
       else if (getGoal() == "muscle")
         idealBodyFatPercentage = ((12 + 2 * 14) / 3).toFixed(1);
     }
+    idealBodyFatPercentage = Number(idealBodyFatPercentage);
     if (getGoal() == "bulking")
       suggestedBodyFat = ((3 * goalTopBodyFat + goalBaseBodyFat) / 4).toFixed(
         1
@@ -269,6 +270,7 @@ export function getSuggestedBodyFat() {
       else if (getGoal() == "muscle")
         idealBodyFatPercentage = ((15 + 2 * 17) / 3).toFixed(1);
     }
+    idealBodyFatPercentage = Number(idealBodyFatPercentage);
     if (getGoal() == "bulking")
       suggestedBodyFat = ((3 * goalTopBodyFat + goalBaseBodyFat) / 4).toFixed(
         1
@@ -308,6 +310,7 @@ export function getSuggestedBodyFat() {
       else if (getGoal() == "muscle")
         idealBodyFatPercentage = ((18 + 2 * 20) / 3).toFixed(1);
     }
+    idealBodyFatPercentage = Number(idealBodyFatPercentage);
     if (getGoal() == "bulking")
       suggestedBodyFat = ((3 * goalTopBodyFat + goalBaseBodyFat) / 4).toFixed(
         1
@@ -347,6 +350,7 @@ export function getSuggestedBodyFat() {
       else if (getGoal() == "muscle")
         idealBodyFatPercentage = ((21 + 2 * 23) / 3).toFixed(1);
     }
+    idealBodyFatPercentage = Number(idealBodyFatPercentage);
     if (getGoal() == "bulking")
       suggestedBodyFat = ((3 * goalTopBodyFat + goalBaseBodyFat) / 4).toFixed(
         1
@@ -386,6 +390,7 @@ export function getSuggestedBodyFat() {
       else if (getGoal() == "muscle")
         idealBodyFatPercentage = ((24 + 2 * 26) / 3).toFixed(1);
     }
+    idealBodyFatPercentage = Number(idealBodyFatPercentage);
     if (getGoal() == "bulking")
       suggestedBodyFat = ((3 * goalTopBodyFat + goalBaseBodyFat) / 4).toFixed(
         1
@@ -425,6 +430,7 @@ export function getSuggestedBodyFat() {
       else if (getGoal() == "muscle")
         idealBodyFatPercentage = ((27 + 2 * 29) / 3).toFixed(1);
     }
+    idealBodyFatPercentage = Number(idealBodyFatPercentage);
     if (getGoal() == "bulking")
       suggestedBodyFat = ((3 * goalTopBodyFat + goalBaseBodyFat) / 4).toFixed(
         1
@@ -464,6 +470,7 @@ export function getSuggestedBodyFat() {
       else if (getGoal() == "muscle")
         idealBodyFatPercentage = ((30 + 2 * 35) / 3).toFixed(1);
     }
+    idealBodyFatPercentage = Number(idealBodyFatPercentage);
     if (getGoal() == "bulking")
       suggestedBodyFat = ((3 * goalTopBodyFat + goalBaseBodyFat) / 4).toFixed(
         1
@@ -503,6 +510,7 @@ export function getSuggestedBodyFat() {
       else if (getGoal() == "muscle")
         idealBodyFatPercentage = ((36 + 2 * 40) / 3).toFixed(1);
     }
+    idealBodyFatPercentage = Number(idealBodyFatPercentage);
     if (getGoal() == "bulking")
       suggestedBodyFat = ((3 * goalTopBodyFat + goalBaseBodyFat) / 4).toFixed(
         1
@@ -542,6 +550,7 @@ export function getSuggestedBodyFat() {
       else if (getGoal() == "muscle")
         idealBodyFatPercentage = ((50 + 2 * 50) / 3).toFixed(1);
     }
+    idealBodyFatPercentage = Number(idealBodyFatPercentage);
     if (getGoal() == "bulking")
       suggestedBodyFat = ((3 * goalTopBodyFat + goalBaseBodyFat) / 4).toFixed(
         1

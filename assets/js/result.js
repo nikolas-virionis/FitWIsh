@@ -104,15 +104,16 @@ window.addEventListener("load", () => {
 // all processing
 async function result() {
   idFooter.style.display = "none";
-  await import("./modules/result/units.js").then(({ metric, imperial }) =>
-    getUnit() == "metric" ? metric() : imperial()
-  );
   await import("./modules/result/variableSetters.js").then(
     ({ getSuggestedBodyFat, getBodyFat }) => {
       getSuggestedBodyFat();
       getBodyFat();
     }
   );
+  await import("./modules/result/units.js").then(({ metric, imperial }) =>
+    getUnit() == "metric" ? metric() : imperial()
+  );
+
   await import("./modules/result/downloadInfo.js").then(
     ({ setDownloadableFileData }) => setDownloadableFileData()
   );

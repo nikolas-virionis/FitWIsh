@@ -27,6 +27,7 @@ const setTheme = (theme) => {
 };
 
 window.addEventListener("load", () => {
+  // debugger;
   if (document.querySelectorAll(".nationBtns")) {
     let nations = ["english", "português", "français", "español"];
     document
@@ -41,7 +42,6 @@ window.addEventListener("load", () => {
         )
       );
   }
-
   if (document.querySelectorAll(".listnav"))
     document.querySelectorAll(".listnav").forEach((element) => {
       element.addEventListener("click", (e) =>
