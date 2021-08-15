@@ -134,7 +134,6 @@ export async function setIdealWeight(lbs, lb, weight, height) {
     idealWeightMsgBmiState = "";
     advicedWeight = "";
   }
-  console.log(idealBodyFatPercentage, typeof idealBodyFatPercentage);
   idealBodyFat = (idealBodyFatPercentage * idealWeight).toFixed(1);
   if (language == "english") {
     idealWeightMsg = `Your ideal weight is, approximately, <big style='font-family: Kaushan Script, cursive;' >${

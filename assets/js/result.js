@@ -15,19 +15,6 @@ export {
   resultBeginning,
   weightManagementProgramFinalResult,
 };
-// global import
-let getters = import("./modules/global/fieldGetter.js");
-// //variable getters
-const { getEmail } = await getters;
-const { getAge } = await getters;
-const { getBodyType } = await getters;
-const { getCheat } = await getters;
-const { getExercise } = await getters;
-const { getGender } = await getters;
-const { getUnit } = await getters;
-const { getGoal } = await getters;
-const { getHealthy } = await getters;
-const { getMeals } = await getters;
 
 export const setTranslations = async (language) => {
   await import("./script.js").then(({ globalLang }) => globalLang(language));
@@ -103,6 +90,7 @@ window.addEventListener("load", () => {
 // result function
 // all processing
 async function result() {
+  const { getUnit } = await import("./modules/global/fieldGetter.js");
   idFooter.style.display = "none";
   await import("./modules/result/variableSetters.js").then(
     ({ getSuggestedBodyFat, getBodyFat }) => {
@@ -117,16 +105,32 @@ async function result() {
   await import("./modules/result/downloadInfo.js").then(
     ({ setDownloadableFileData }) => setDownloadableFileData()
   );
-  storage();
   resultTransition();
+  storage();
+  // sessionStorage.clear();
 }
 export async function sendEmail() {
+  const {
+    getEmail,
+    getAge,
+    getBodyType,
+    getCheat,
+    getExercise,
+    getGender,
+    getUnit,
+    getGoal,
+    getHealthy,
+    getMeals,
+  } = await import("./modules/global/fieldGetter.js");
   let { weight, height, bmi_state } = await import("./modules/result/units.js");
-  let { translations } = await import(
+  let { translations: goals } = await import(
     `./modules/goal/languages/${language}.js`
   );
   let { translations: genders } = await import(
     `./modules/genderUnit/languages/${language}.js`
+  );
+  let { translations: bodyTypes } = await import(
+    `./modules/bodyType/languages/${language}.js`
   );
   let { idealBodyFatPercentage, bodyFatPercentage } = await import(
     "./modules/result/variableSetters.js"
@@ -141,12 +145,8 @@ export async function sendEmail() {
     addup6 = "kcal \n\n\n\n";
     message = `Hi, this is just a way for you to have all the main data summed up saved in your email inbox.\n\n Gender: ${
       genders[getGender()]
-    }\n\n Goal: ${translations[getGoal()]}\n\nBody type: ${
-      getBodyType() == "ecto"
-        ? "Ectomorph"
-        : getBodyType() == "meso"
-        ? "Mesomorph"
-        : "Endomorph"
+    }\n\n Goal: ${goals[getGoal()]}\n\nBody type: ${
+      bodyTypes[getBodyType()]
     }\n\n Age: ${getAge()}\n\n Current Weight: ${
       getUnit() == "metric"
         ? `${weight}kg \n\n`
@@ -204,12 +204,8 @@ export async function sendEmail() {
     addup6 = "kcal \n\n\n\n";
     message = `Olá, esta é apenas uma forma de guardar todos os dados principais na sua caixa de entrada de email.\n\n Gênero: ${
       genders[getGender()]
-    }\n\n Objetivo: ${translations[getGoal()]}\n\nTipo de Corpo: ${
-      getBodyType() == "ecto"
-        ? "Ectomorfo"
-        : getBodyType() == "meso"
-        ? "Mesomorfo"
-        : "Endomorfo"
+    }\n\n Objetivo: ${goals[getGoal()]}\n\nTipo de Corpo: ${
+      bodyTypes[getBodyType()]
     }\n\n Idade: ${getAge()}\n\n Peso Atual: ${
       getUnit() == "metric"
         ? `${weight}kg \n\n`
@@ -265,12 +261,8 @@ export async function sendEmail() {
     addup6 = "kcal \n\n\n\n";
     message = `Bonjour, c'est juste un moyen pour vous d'avoir toutes les données principales résumées enregistrées dans votre boîte de réception.\n\nGenre: ${
       genders[getGender()]
-    }\n\n Objectif: ${translations[getGoal()]}\n\nType de corps: ${
-      getBodyType() == "ecto"
-        ? "Ectomorphe"
-        : getBodyType() == "meso"
-        ? "Mésomorphe"
-        : "Endomorphe"
+    }\n\n Objectif: ${goals[getGoal()]}\n\nType de corps: ${
+      bodyTypes[getBodyType()]
     }\n\n Âge: ${getAge()}\n\n Poids actuel: ${
       getUnit() == "metric"
         ? `${weight}kg \n\n`
@@ -329,12 +321,8 @@ export async function sendEmail() {
     addup6 = "kcal \n\n\n\n";
     message = `Hola, esta es solo una manera de tener todos los datos principales resumidos guardados en la bandeja de entrada de su correo electrónico.\n\nGénero: ${
       genders[getGender()]
-    }\n\n Objetivo: ${translations[getGoal()]}\n\nTipo de Cuerpo: ${
-      getBodyType() == "ecto"
-        ? "Ectomorfo"
-        : getBodyType() == "meso"
-        ? "Mesomorfo"
-        : "Endomorfo"
+    }\n\n Objetivo: ${goals[getGoal()]}\n\nTipo de Cuerpo: ${
+      bodyTypes[getBodyType()]
     }\n\n Edad: ${getAge()}\n\n Peso Actual: ${
       getUnit() == "metric"
         ? `${weight}kg \n\n`
