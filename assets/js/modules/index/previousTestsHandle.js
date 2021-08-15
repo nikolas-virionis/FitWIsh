@@ -1,4 +1,5 @@
-let { contentArray } = await import("./iniciateIndexLang.js");
+let { contentArray } = await import("./overwriteBtns.js");
+let language = sessionStorage.getItem("language");
 export const showPrevTestResult = (resultTry) => {
   sessionStorage.setItem("resultTry", JSON.stringify(resultTry));
   window.location.href = "previousResult.html";
@@ -41,12 +42,13 @@ export const overwriteTest2 = (testToBeOverwritten) => {
   }
 };
 export const overwriteTest = () =>
-  import("./iniciateIndexLang.js").then(({ triesMade }) =>
+  import("./overwriteBtns.js").then(({ triesMade }) =>
     triesMade == 1 ? overwriteTest2(1) : seeAllTests(true)
   );
 
 export function deleteTests() {
   let deletePrevTests;
+  console.log(language);
   if (language == "english")
     deletePrevTests = confirm("Are you sure you want to delete all the tests?");
   else if (language == "português")

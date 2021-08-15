@@ -16,7 +16,7 @@ const { getCurrentBody } = await getters;
 const { getGoalBody } = await getters;
 const { getMeals } = await getters;
 const { getEmotion } = await getters;
-export function checkAllAnswers() {
+export async function checkAllAnswers() {
   let answers =
     getGender() &&
     getUnit() &&
@@ -35,6 +35,7 @@ export function checkAllAnswers() {
     getCurrentBody() &&
     getGoalBody();
   if (answers) window.location.href = "check.html";
+  let { language } = await import("../../script.js");
   if (!getName()) {
     if (language == "english")
       alert(

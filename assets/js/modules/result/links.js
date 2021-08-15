@@ -1,5 +1,5 @@
 export const setLinks = () =>
-  import("../global/language.js").then(({ language }) => [
+  import("../../script.js").then(({ language }) => [
     `<a class="finallink" href="https://www.webmd.com/diet/healthtool-food-calorie-counter" target="_blank" >${
       language == "português"
         ? "Link a uma ferramenta de saúde alimentar completa"

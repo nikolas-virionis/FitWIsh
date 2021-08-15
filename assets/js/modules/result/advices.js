@@ -1,6 +1,7 @@
 let { weight } = await import("./units.js");
 
 let getters = await import("../global/fieldGetter.js");
+let { language } = await import("../../script.js");
 // //variable getters
 const { getAge } = await getters;
 const { getBodyType } = await getters;

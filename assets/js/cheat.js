@@ -1,97 +1,51 @@
-function english() {
-  import("./modules/global/language.js").then(({ english: defaultEnglish }) =>
-    defaultEnglish()
+export const setTranslations = async (language) => {
+  await import("./script.js").then(({ globalLang }) => globalLang(language));
+  await import(`./modules/cheat/languages/${language}.js`).then(
+    ({ translations }) => {
+      headingObjInputIdCheat.innerHTML = translations.cheat;
+      colorChangeIdNoneCheat.value = translations.none;
+      colorChangeIdLowCheat.value = translations.low;
+      colorChangeIdMidCheat.value = translations.mid;
+      colorChangeIdHighCheat.value = translations.high;
+    }
   );
-  document.getElementById("headingObjInputIdCheat").innerHTML =
-    "Cheat meals days frequency:";
-  document.getElementById("colorChangeIdNoneCheat").value = "None";
-  document.getElementById("colorChangeIdLowCheat").value = "1-2 times a week";
-  document.getElementById("colorChangeIdMidCheat").value = "3-4 times a week";
-  document.getElementById("colorChangeIdHighCheat").value =
-    "5 or more times a week";
-}
-function português() {
-  import("./modules/global/language.js").then(
-    ({ português: defaultPortuguês }) => defaultPortuguês()
-  );
-  document.getElementById("headingObjInputIdCheat").innerHTML =
-    "Frequência de dias com comidas não saudáveis:";
-  document.getElementById("colorChangeIdNoneCheat").value = "Nenhuma";
-  document.getElementById("colorChangeIdLowCheat").value =
-    "1-2 vezes por semana";
-  document.getElementById("colorChangeIdMidCheat").value =
-    "3-4 vezes por semana";
-  document.getElementById("colorChangeIdHighCheat").value =
-    "5 ou mais vezes por semana";
-}
-function français() {
-  import("./modules/global/language.js").then(({ français: defaultFrançais }) =>
-    defaultFrançais()
-  );
-  document.getElementById("headingObjInputIdCheat").innerHTML =
-    "Fréquence des jours de repas non sains:";
-  document.getElementById("colorChangeIdNoneCheat").value = "Aucun";
-  document.getElementById("colorChangeIdLowCheat").value =
-    "1 à 2 fois par semaine";
-  document.getElementById("colorChangeIdMidCheat").value =
-    "3 à 4 fois par semaine";
-  document.getElementById("colorChangeIdHighCheat").value =
-    "5 fois ou plus par semaine";
-}
-function español() {
-  import("./modules/global/language.js").then(({ español: defaultEspañol }) =>
-    defaultEspañol()
-  );
-  document.getElementById("headingObjInputIdCheat").innerHTML =
-    "Frecuencia de días de comidas no saludables:";
-  document.getElementById("colorChangeIdNoneCheat").value = "Ninguno";
-  document.getElementById("colorChangeIdLowCheat").value =
-    "1-2 veces por semana";
-  document.getElementById("colorChangeIdMidCheat").value =
-    "3-4 veces por semana";
-  document.getElementById("colorChangeIdHighCheat").value =
-    "5 o más veces por semana";
-}
-function themeTypeLight() {
-  import("./modules/global/theme.js").then(({ themeTypeLight: defaultLight }) =>
-    defaultLight()
-  );
-  for (let el of document.querySelectorAll(".headingObjInputId"))
-    el.style.backgroundColor = "#D0FEFE";
-}
-function themeTypeDark() {
-  import("./modules/global/theme.js").then(({ themeTypeDark: defaultDark }) =>
-    defaultDark()
-  );
-  for (let el of document.querySelectorAll(".headingObjInputId"))
-    el.style.backgroundColor = "#9DBCD4";
-}
+};
+const setLanguage = (language) => {
+  sessionStorage.setItem("language", language);
+  setTranslations(language);
+};
+export const setThemes = async (theme) => {
+  await import("./script.js").then(({ globalTheme }) => globalTheme(theme));
+  await import(`./modules/cheat/themes/${theme}.js`).then(({ colorSwitch }) => {
+    for (let el of document.querySelectorAll(".headingObjInputId"))
+      el.style.backgroundColor = colorSwitch.elementsColor;
+  });
+};
+const setTheme = (theme) => {
+  sessionStorage.setItem("theme", theme);
+  setThemes(theme);
+};
 
 window.addEventListener("load", () => {
+  // debugger;
   if (document.querySelectorAll(".nationBtns")) {
     let nations = ["english", "português", "français", "español"];
     document
       .querySelectorAll(".nationBtns")
       .forEach((btn) =>
         btn.addEventListener("click", (e) =>
-          eval(
+          setLanguage(
             nations[
               [...document.querySelectorAll(".nationBtns")].indexOf(e.target)
             ]
-          )()
+          )
         )
       );
   }
-
   if (document.querySelectorAll(".listnav"))
     document.querySelectorAll(".listnav").forEach((element) => {
       element.addEventListener("click", (e) =>
-        eval(
-          `themeType${
-            e.target.id.slice(0, -11).charAt(0).toUpperCase() +
-            e.target.id.slice(1, -11)
-          }`
-        )()
+        setTheme(e.target.id.slice(0, -11))
       );
     });
   if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
@@ -107,10 +61,8 @@ window.addEventListener("load", () => {
           : "High"
       }Cheat`
     ).style.backgroundColor = "#7395AE";
-  eval(sessionStorage.getItem("language"))();
-  sessionStorage.getItem("theme") == "light"
-    ? themeTypeLight()
-    : themeTypeDark();
+  setLanguage(sessionStorage.getItem("language"));
+  setTheme(sessionStorage.getItem("theme"));
 });
 
 function hoverOutColorChangeFunc(hoveredOutId) {
@@ -128,6 +80,7 @@ const setCheat = (cheat) =>
   sessionStorage.setItem("cheat", JSON.stringify(cheat));
 const { getCheat } = await import("./modules/global/fieldGetter.js");
 
+let { buttons } = await import("./script.js");
 buttons.forEach((button) => {
   button.addEventListener("click", (e) =>
     setCheat(

@@ -9,14 +9,16 @@ const { getGoal } = await getters;
 
 export async function setIdealWeight(lbs, lb, weight, height) {
   let { bmi_state } = await import("./units.js");
-  let { idealBodyFatPercentage } = await import("./variableSetters.js");
   let { bodyFatPercentage } = await import("./variableSetters.js");
+  let { language } = await import("../../script.js");
   let idealWeightMsg;
   let idealWeightDistance;
   let advicedWeight;
   let idealWeightMsgPunctuation;
   let idealWeightMsgBmiState;
   let idealBodyFat;
+  let { idealBodyFatPercentage } = await import("./variableSetters.js");
+  idealBodyFatPercentage = Number(idealBodyFatPercentage);
   if (getGender() == "male") {
     if (getBodyType() == "ecto") {
       baseIdealWeight = 18.5 * height ** 2;
@@ -49,6 +51,7 @@ export async function setIdealWeight(lbs, lb, weight, height) {
     idealWeight = ((baseIdealWeight + topIdealWeight) / 2).toFixed(1);
   else if (getGoal() == "muscle")
     idealWeight = ((baseIdealWeight + 2 * topIdealWeight) / 3).toFixed(1);
+  idealWeight = Number(idealWeight);
   if (
     getGoal() == "bulking" ||
     getGoal() == "cutting" ||

@@ -1,29 +1,13 @@
-let contentArray = JSON.parse(localStorage.getItem("contentArray")) ?? [];
-const english = () =>
-  import("./modules/global/language.js").then(({ english: defaultEnglish }) =>
-    defaultEnglish()
-  );
-const português = () =>
-  import("./modules/global/language.js").then(
-    ({ português: defaultPortuguês }) => defaultPortuguês()
-  );
-const français = () =>
-  import("./modules/global/language.js").then(({ français: defaultFrançais }) =>
-    defaultFrançais()
-  );
-const español = () =>
-  import("./modules/global/language.js").then(({ español: defaultEspañol }) =>
-    defaultEspañol()
-  );
-const themeTypeLight = () =>
-  import("./modules/global/theme.js").then(({ themeTypeLight: defaultLight }) =>
-    defaultLight()
-  );
-const themeTypeDark = () =>
-  import("./modules/global/theme.js").then(({ themeTypeDark: defaultDark }) =>
-    defaultDark()
-  );
-
+let contentArray = JSON.parse(localStorage.getItem("contentArray")) ?? [],
+  resultBeginning2;
+const setLanguage = async (language) => {
+  sessionStorage.setItem("language", language);
+  await import("./script.js").then(({ globalLang }) => globalLang(language));
+};
+const setTheme = async (theme) => {
+  sessionStorage.setItem("theme", theme);
+  await import("./script.js").then(({ globalTheme }) => globalTheme(theme));
+};
 window.addEventListener("load", () => {
   if (document.querySelectorAll(".nationBtns")) {
     let nations = ["english", "português", "français", "español"];
@@ -31,11 +15,11 @@ window.addEventListener("load", () => {
       .querySelectorAll(".nationBtns")
       .forEach((btn) =>
         btn.addEventListener("click", (e) =>
-          eval(
+          setLanguage(
             nations[
               [...document.querySelectorAll(".nationBtns")].indexOf(e.target)
             ]
-          )()
+          )
         )
       );
   }
@@ -43,19 +27,12 @@ window.addEventListener("load", () => {
   if (document.querySelectorAll(".listnav"))
     document.querySelectorAll(".listnav").forEach((element) => {
       element.addEventListener("click", (e) =>
-        eval(
-          `themeType${
-            e.target.id.slice(0, -11).charAt(0).toUpperCase() +
-            e.target.id.slice(1, -11)
-          }`
-        )()
+        setTheme(e.target.id.slice(0, -11))
       );
     });
   if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
-  eval(sessionStorage.getItem("language"))();
-  sessionStorage.getItem("theme") == "light"
-    ? themeTypeLight()
-    : themeTypeDark();
+  setLanguage(sessionStorage.getItem("language"));
+  setTheme(sessionStorage.getItem("theme"));
   let resultTry = JSON.parse(sessionStorage.getItem("resultTry")) - 1;
   let lang = contentArray[resultTry].language;
   if (lang == "english")

@@ -18,6 +18,7 @@ export async function setDownloadableFileData() {
   let { backgroundColorDownload, colorDownload } = await import(
     "../../result.js"
   );
+  let { language } = await import("../../script.js");
   const { getName, getEmotion } = await import("../global/fieldGetter.js");
   const {
     setBodyTypeAdvice,

@@ -1,73 +1,47 @@
-function english() {
-  import("./modules/global/language.js").then(({ english: defaultEnglish }) =>
-    defaultEnglish()
+export const setTranslations = async (language) => {
+  await import("./script.js").then(({ globalLang }) => globalLang(language));
+  await import(`./modules/bodyType/languages/${language}.js`).then(
+    ({ translations }) => {
+      headingObjInputIdBodyType.innerHTML = translations.bodyType;
+      colorChangeIdNoIdea.value = translations.noIdea;
+      colorChangeIdEcto.value = translations.ecto;
+      colorChangeIdMeso.value = translations.meso;
+      colorChangeIdEndo.value = translations.endo;
+    }
   );
-  document.getElementById("headingObjInputIdBodyType").innerHTML = "Body Type";
-  document.getElementById("colorChangeIdNoIdea").value = "No idea";
-  document.getElementById("colorChangeIdEcto").value = "Ectomorph";
-  document.getElementById("colorChangeIdMeso").value = "Mesomorph";
-  document.getElementById("colorChangeIdEndo").value = "Endomorph";
-}
-function português() {
-  import("./modules/global/language.js").then(
-    ({ português: defaultPortuguês }) => defaultPortuguês()
+};
+const setLanguage = (language) => {
+  sessionStorage.setItem("language", language);
+  setTranslations(language);
+};
+export const setThemes = async (theme) => {
+  await import("./script.js").then(({ globalTheme }) => globalTheme(theme));
+  await import(`./modules/bodyType/themes/${theme}.js`).then(
+    ({ colorSwitch }) => {
+      for (let el of document.querySelectorAll(".headingObjInputId"))
+        el.style.backgroundColor = colorSwitch.elementsColor;
+    }
   );
-  document.getElementById("headingObjInputIdBodyType").innerHTML =
-    "Tipo Corporal";
-  document.getElementById("colorChangeIdNoIdea").value = "Sem ideia";
-  document.getElementById("colorChangeIdEcto").value = "Ectomorfo";
-  document.getElementById("colorChangeIdMeso").value = "Mesomorfo";
-  document.getElementById("colorChangeIdEndo").value = "Endomorfo";
-}
-function français() {
-  import("./modules/global/language.js").then(({ français: defaultFrançais }) =>
-    defaultFrançais()
-  );
-  document.getElementById("headingObjInputIdBodyType").innerHTML =
-    "Type de corps";
-  document.getElementById("colorChangeIdNoIdea").value = "Aucune idée";
-  document.getElementById("colorChangeIdEcto").value = "Ectomorphe";
-  document.getElementById("colorChangeIdMeso").value = "Mesomorphe";
-  document.getElementById("colorChangeIdEndo").value = "Endomorphe";
-}
-function español() {
-  import("./modules/global/language.js").then(({ español: defaultEspañol }) =>
-    defaultEspañol()
-  );
-  document.getElementById("headingObjInputIdBodyType").innerHTML =
-    "Tipo de cuerpo";
-  document.getElementById("colorChangeIdNoIdea").value = "Ni idea";
-  document.getElementById("colorChangeIdEcto").value = "Ectomorfo";
-  document.getElementById("colorChangeIdMeso").value = "Mesomorfo";
-  document.getElementById("colorChangeIdEndo").value = "Endomorfo";
-}
-function themeTypeLight() {
-  import("./modules/global/theme.js").then(({ themeTypeLight: defaultLight }) =>
-    defaultLight()
-  );
-  for (let el of document.querySelectorAll(".headingObjInputId"))
-    el.style.backgroundColor = "#D0FEFE";
-}
-function themeTypeDark() {
-  import("./modules/global/theme.js").then(({ themeTypeDark: defaultDark }) =>
-    defaultDark()
-  );
-  for (let el of document.querySelectorAll(".headingObjInputId"))
-    el.style.backgroundColor = "#9DBCD4";
-}
-
-window.addEventListener("load", () => {
+};
+const setTheme = (theme) => {
+  sessionStorage.setItem("theme", theme);
+  setThemes(theme);
+};
+window.addEventListener("load", async () => {
+  const { getBodyType } = await import("./modules/global/fieldGetter.js");
+  let { buttons } = await import("./script.js");
+  if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
   if (document.querySelectorAll(".nationBtns")) {
     let nations = ["english", "português", "français", "español"];
     document
       .querySelectorAll(".nationBtns")
       .forEach((btn) =>
         btn.addEventListener("click", (e) =>
-          eval(
+          setLanguage(
             nations[
               [...document.querySelectorAll(".nationBtns")].indexOf(e.target)
             ]
-          )()
+          )
         )
       );
   }
@@ -75,25 +49,18 @@ window.addEventListener("load", () => {
   if (document.querySelectorAll(".listnav"))
     document.querySelectorAll(".listnav").forEach((element) => {
       element.addEventListener("click", (e) =>
-        eval(
-          `themeType${
-            e.target.id.slice(0, -11).charAt(0).toUpperCase() +
-            e.target.id.slice(1, -11)
-          }`
-        )()
+        setTheme(e.target.id.slice(0, -11))
       );
     });
-  if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
   if (getBodyType())
     document.getElementById(
       `colorChangeId${
         getBodyType().charAt(0).toUpperCase() + getBodyType().slice(1)
       }`
     ).style.backgroundColor = "#7395AE";
-  eval(sessionStorage.getItem("language"))();
-  sessionStorage.getItem("theme") == "light"
-    ? themeTypeLight()
-    : themeTypeDark();
+  setLanguage(sessionStorage.getItem("language"));
+  setTheme(sessionStorage.getItem("theme"));
+  const { getSiblings } = await import("./script.js");
   for (let button of buttons) {
     button.addEventListener(`click`, (e) => {
       let element = e.target;
@@ -103,7 +70,8 @@ window.addEventListener("load", () => {
   }
 });
 
-function hoverOutColorChangeFunc(hoveredOutId) {
+async function hoverOutColorChangeFunc(hoveredOutId) {
+  const { getBodyType } = await import("./modules/global/fieldGetter.js");
   document.getElementById(hoveredOutId).style.backgroundColor = "teal";
   if (getBodyType() == "ecto")
     colorChangeIdEcto.style.backgroundColor = "#7395AE";
@@ -114,9 +82,8 @@ function hoverOutColorChangeFunc(hoveredOutId) {
 }
 
 // body type
-const bodyType = (bodytype) => sessionStorage.setItem("bodytype", bodytype);
-const { getBodyType } = await import("./modules/global/fieldGetter.js");
-function nop() {
+async function nop() {
+  let { language } = await import("./script.js");
   sessionStorage.removeItem("bodytype");
   if (language == "english")
     alert(
@@ -136,6 +103,8 @@ function nop() {
     );
 }
 
+const bodyType = (bodytype) => sessionStorage.setItem("bodytype", bodytype);
+let { buttons } = await import("./script.js");
 buttons.forEach((button) => {
   button.addEventListener("click", (e) =>
     e.target.id.endsWith("NoIdea")

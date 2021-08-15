@@ -1,3 +1,4 @@
+let { language } = await import("../../script.js");
 export function getBodyTypeAdvantageAdviceEcto(bodyTypeAdvantage) {
   if (language == "english") {
     if (bodyTypeAdvantage == 2)

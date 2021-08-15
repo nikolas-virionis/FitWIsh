@@ -1,6 +1,6 @@
 export async function sendConfirm() {
   let redirectemail;
-  let { language } = await import("../global/language.js");
+  let { language } = await import("../../script.js");
   if (language == "english")
     redirectemail = confirm(
       "Are you sure you want to receive a main result email?"
