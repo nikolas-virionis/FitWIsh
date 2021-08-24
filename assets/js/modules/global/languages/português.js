@@ -12,7 +12,7 @@ export const translations = {
   loginPage: "Login",
   genderUnitPage: "Gênero/Unidade",
   goalPage: "Objetivo",
-  dataPage: "Peso/Alturat",
+  dataPage: "Peso/Altura",
   bodyTypePage: "Tipo Corporal",
   imagePage: "Avaliação da Gordura Corporal",
   exercisePage: "Avaliação de Exercícios",

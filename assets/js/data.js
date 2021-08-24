@@ -61,19 +61,19 @@ window.addEventListener("load", () => {
     });
   if (!JSON.parse(sessionStorage.getItem("first"))) window.location.href = "/";
   if (!sessionStorage.getItem("unit")) {
-    if (language == "english")
+    if (sessionStorage.getItem("language") == "english")
       alert(
         "In order to access the height and weight insertion page, choosing an unit of choice is necessary"
       );
-    else if (language == "português")
+    else if (sessionStorage.getItem("language") == "português")
       alert(
         "Para acessar a página de inserção de altura e peso, é necessário escolher uma unidade de escolha"
       );
-    else if (language == "français")
+    else if (sessionStorage.getItem("language") == "français")
       alert(
         "Afin d'accéder à la page d'insertion de la taille et du poids, le choix d'une unité de choix est nécessaire"
       );
-    else if (language == "español")
+    else if (sessionStorage.getItem("language") == "español")
       alert(
         "Para acceder a la página de inserción de altura y peso, es necesario elegir una unidad de elección"
       );
