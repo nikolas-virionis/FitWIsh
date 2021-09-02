@@ -13,7 +13,7 @@ export const translations = {
   hideAll: `Ocultar todas las pruebas anteriores`,
 };
 
-export const iniciate = {
+export const initiate = {
   sameName: {
     firstPageH13rd: `Detectamos que ya ha realizado nuestra prueba dos veces, una vez como ${contentArray[0]?.inputName} hecho en ${contentArray[0]?.day}, y una vez como ${contentArray[1]?.inputName} hecho en ${contentArray[1]?.day}. Elija lo que le gustaría hacer a continuación`,
     firstPageBtn1stTry: `Ver la prueba de ${contentArray[0]?.inputName}`,
