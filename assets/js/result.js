@@ -16,6 +16,7 @@ export {
   weightManagementProgramFinalResult,
 };
 
+
 export const setTranslations = async (language) => {
   await import("./script.js").then(({ globalLang }) => globalLang(language));
   await import(`./modules/result/languages/${language}.js`).then(
