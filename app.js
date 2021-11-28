@@ -1,41 +1,33 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+import express from "express";
+import {dirname} from "path";
+import {fileURLToPath} from "url";
+const __dirname = dirname(fileURLToPath(import.meta.url));
+import path from "path";
+import cookieParser from "cookie-parser";
+import logger from "morgan";
+import fs from "fs";
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+import indexRouter from "./routes/index.js";
 
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
 
-app.use(logger('dev'));
+app.use(logger("dev"));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use("/", indexRouter);
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+app.get("/:page", (req, res) => {
+    let pagePath = path.resolve(__dirname, "public", `${req.params.page}.html`);
+
+    if (fs.existsSync(pagePath)) {
+        res.sendFile(pagePath);
+    } else {
+        res.status(404).sendFile("public/pag-404.html", {root: __dirname});
+    }
 });
-
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
-
-module.exports = app;
+export default app;
