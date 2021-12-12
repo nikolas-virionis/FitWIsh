@@ -3,8 +3,8 @@ package br.com.sptech.fitwish.util;
 public enum LanguageEnum {
     ENGLISH("English", "english", 1),
     PORTUGUESE("Português", "portugues", 2),
-    SPANISH("Español", "espanol", 3),
-    FRENCH("Français", "francais", 4);
+    FRENCH("Français", "francais", 3),
+    SPANISH("Español", "espanol", 4);
 
     private LanguageEnum(String language, String objName, Integer code) {
         this.language = language;

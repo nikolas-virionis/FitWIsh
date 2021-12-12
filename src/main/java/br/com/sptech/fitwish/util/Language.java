@@ -9,7 +9,7 @@ public class Language {
 
     public static void setLanguage(String langName) {
         for (LanguageEnum lang : LanguageEnum.values()) {
-            if (langName == lang.getObjName()) {
+            if (langName.equals(lang.getObjName())) {
                 language = lang;
                 break;
             }
