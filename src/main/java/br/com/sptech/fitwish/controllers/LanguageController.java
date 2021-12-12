@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.sptech.fitwish.util.FormattedLanguage;
 import br.com.sptech.fitwish.util.Language;
-import br.com.sptech.fitwish.util.Response;
+// import br.com.sptech.fitwish.util.Response;
 
 @RestController
 @RequestMapping("/language")

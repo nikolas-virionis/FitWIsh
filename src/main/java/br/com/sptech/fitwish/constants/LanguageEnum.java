@@ -1,4 +1,4 @@
-package br.com.sptech.fitwish.util;
+package br.com.sptech.fitwish.constants;
 
 public enum LanguageEnum {
     ENGLISH("English", "english", 1),

@@ -1,5 +1,7 @@
 package br.com.sptech.fitwish.util;
 
+import br.com.sptech.fitwish.constants.LanguageEnum;
+
 public class Language {
     private static LanguageEnum language;
 
