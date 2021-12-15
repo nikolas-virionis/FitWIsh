@@ -3,14 +3,14 @@ package br.com.sptech.fitwish.constants.pages.themes;
 public enum IndexEnum {
     LIGHT("#1F3B4D"), DARK("azure");
 
-    private String colorPallete;
+    private String colorSwitch;
 
-    public String getColorPallete() {
-        return colorPallete;
+    public String getColorSwitch() {
+        return colorSwitch;
     }
 
-    private IndexEnum(String colorPallete) {
-        this.colorPallete = colorPallete;
+    private IndexEnum(String colorSwitch) {
+        this.colorSwitch = colorSwitch;
     }
 
 }

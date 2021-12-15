@@ -1,16 +1,40 @@
 package br.com.sptech.fitwish.constants.pages.themes;
 
 public enum IntroEnum {
-    LIGHT("#1F3B4D"), DARK("azure");
+    LIGHT("blue", "red", "darkgreen"), DARK("cyan", "white", "gold");
 
-    private String colorPallete;
+    private String plan;
+    private String bad;
+    private String good;
 
-    public String getColorPallete() {
-        return colorPallete;
+    private IntroEnum(String plan, String bad, String good) {
+        this.plan = plan;
+        this.bad = bad;
+        this.good = good;
     }
 
-    private IntroEnum(String colorPallete) {
-        this.colorPallete = colorPallete;
+    public String getPlan() {
+        return plan;
+    }
+
+    public void setPlan(String plan) {
+        this.plan = plan;
+    }
+
+    public String getBad() {
+        return bad;
+    }
+
+    public void setBad(String bad) {
+        this.bad = bad;
+    }
+
+    public String getGood() {
+        return good;
+    }
+
+    public void setGood(String good) {
+        this.good = good;
     }
 
 }

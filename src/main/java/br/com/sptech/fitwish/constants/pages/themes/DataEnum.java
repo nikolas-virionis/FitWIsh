@@ -1,16 +1,20 @@
 package br.com.sptech.fitwish.constants.pages.themes;
 
 public enum DataEnum {
-    LIGHT("#1F3B4D"), DARK("azure");
+    LIGHT("#1F3B4D"), DARK("#DDD");
 
-    private String colorPallete;
+    private String colorSwitch;
 
-    public String getColorPallete() {
-        return colorPallete;
+    private DataEnum(String colorSwitch) {
+        this.colorSwitch = colorSwitch;
     }
 
-    private DataEnum(String colorPallete) {
-        this.colorPallete = colorPallete;
+    public String getColorSwitch() {
+        return colorSwitch;
+    }
+
+    public void setColorSwitch(String colorSwitch) {
+        this.colorSwitch = colorSwitch;
     }
 
 }
