@@ -1,62 +1,61 @@
 package br.com.sptech.fitwish.constants.pages.languages;
 
 public enum ContactEnum {
-    ENGLISH("1em", "40%", "Who are we?",
-            "Well, we are FitWish, a new startup with the goal to, as our Name says, fulfill your wish in the fitness sector, we don't charge for your first diagnosis because we believe that wellness shouldn't have more hurdles than it already does. Therefore by committing to this quick quiz you will have a sort of guidance towards achieving your goal in this fitness field.",
-            "About",
-            "We at FitWish acknowledge the effort put into getting your body the way you want it to be, and because of that, we appreciate your valuable decision to stand your ground and act upon what you should, your health."),
-    PORTUGUESE("1em", "37%", "Quem somos nós?",
-            "Pois bem, somos a FitWish, uma nova startup com o objetivo de, como nosso nome diz, cumprir o seu desejo no setor fitness Não cobramos pelo seu primeiro diagnóstico porque acreditamos que o bem-estar não deve ter mais obstáculos do que já tem. Portanto, ao se comprometer com este teste rápido, você terá uma espécie de orientação para atingir seu objetivo neste campo fitness.",
-            "Sobre",
-            "Nós da FitWish reconhecemos o esforço feito para deixar seu corpo do jeito que você deseja e, por isso, apreciamos sua valiosa decisão de defender sua posição e agir de acordo com o que você deve, sua saúde."),
-    FRENCH("0.9em", "38.75%", "Qui sommes nous?",
-            "Eh bien, nous sommes FitWish, une nouvelle startup avec pour objectif, comme notre nom l'indique, de réaliser votre souhait dans le secteur du fitness, nous ne facturons pas votre premier diagnostic car nous pensons que le bien-être ne devrait pas avoir plus d'obstacles qu'il ne le fait déjà. Est-ce que. Par conséquent, en vous engageant à ce quiz rapide, vous aurez une sorte de conseils pour atteindre votre objectif dans ce domaine du fitness.",
-            "À propos",
-            "Chez FitWish, nous reconnaissons l'effort déployé pour que votre corps soit tel que vous le souhaitez, et pour cette raison, nous apprécions votre précieuse décision de défendre votre position et d'agir en fonction de ce que vous devriez, votre santé."),
-    SPANISH("1em", "33.5%", "Quienes somos nosotros?",
-            "Bueno, somos FitWish, una nueva startup con el objetivo de, como dice nuestro Nombre, cumplir tu deseo en el sector del fitness, no cobramos por tu primer diagnóstico porque creemos que el bienestar no debería tener más obstáculos de los que ya tiene. hace. Por lo tanto, al comprometerse con este cuestionario rápido, tendrá una especie de guía para lograr su objetivo en este campo del fitness.",
-            "Sobre",
-            "En FitWish reconocemos el esfuerzo realizado para lograr que su cuerpo esté de la manera que desea que sea, y por eso, apreciamos su valiosa decisión de defender su posición y actuar de acuerdo con lo que debe, su salud.");
+    ENGLISH("37.5%", "How to Contact Us",
+            "We would love to hear from our users about possible feedback about what you experienced while using our service. To contact Us directly access the link to our CTO's email below, and to have more information on us access his LinkedIn link below.",
+            "Contact"),
+    PORTUGUESE("30.5%", "Como entrar em contato conosco",
+            "Gostaríamos muito de ouvir de nossos usuários sobre possíveis comentários sobre o que você experimentou ao usar nosso serviço. Para entrar em contato conosco diretamente, acesse o link para o e-mail de nosso CTO abaixo, e para obter mais informações sobre nós acesse seu link do LinkedIn abaixo.",
+            "Contato"),
+    FRENCH("34.5%", "Comment nous contacter",
+            "Nous serions ravis d'entendre nos utilisateurs sur d'éventuels commentaires sur ce que vous avez vécu lors de l'utilisation de notre service. Pour nous contacter, accédez directement au lien vers l'e-mail de notre CTO ci-dessous, et pour avoir plus d'informations sur nous, accédez à son lien LinkedIn ci-dessous.",
+            "Contact"),
+    SPANISH("32.5%", "Como contactar con nosotros",
+            "Nos encantaría saber de nuestros usuarios sobre posibles comentarios sobre lo que experimentó al utilizar nuestro servicio. Para contactarnos acceda directamente al enlace al correo electrónico de nuestro CTO a continuación, y para tener más información sobre nosotros acceda a su enlace de LinkedIn a continuación.",
+            "Contacto");
 
-    private String txtLeftFontSize;
     private String h2MarginLeft;
     private String h2;
-    private String txtLeft;
+    private String intro;
     private String heading;
-    private String txtRight;
 
-    private ContactEnum(String txtLeftFontSize, String h2MarginLeft, String h2, String txtLeft, String heading,
-            String txtRight) {
-        this.txtLeftFontSize = txtLeftFontSize;
+    private ContactEnum(String h2MarginLeft, String h2, String intro, String heading) {
         this.h2MarginLeft = h2MarginLeft;
         this.h2 = h2;
-        this.txtLeft = txtLeft;
+        this.intro = intro;
         this.heading = heading;
-        this.txtRight = txtRight;
-    }
-
-    public String getTxtLeftFontSize() {
-        return txtLeftFontSize;
     }
 
     public String getH2MarginLeft() {
         return h2MarginLeft;
     }
 
+    public void setH2MarginLeft(String h2MarginLeft) {
+        this.h2MarginLeft = h2MarginLeft;
+    }
+
     public String getH2() {
         return h2;
     }
 
-    public String getTxtLeft() {
-        return txtLeft;
+    public void setH2(String h2) {
+        this.h2 = h2;
+    }
+
+    public String getIntro() {
+        return intro;
+    }
+
+    public void setIntro(String intro) {
+        this.intro = intro;
     }
 
     public String getHeading() {
         return heading;
     }
 
-    public String getTxtRight() {
-        return txtRight;
+    public void setHeading(String heading) {
+        this.heading = heading;
     }
 
 }
