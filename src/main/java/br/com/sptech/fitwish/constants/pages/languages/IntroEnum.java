@@ -1,62 +1,106 @@
 package br.com.sptech.fitwish.constants.pages.languages;
 
 public enum IntroEnum {
-    ENGLISH("1em", "40%", "Who are we?",
-            "Well, we are FitWish, a new startup with the goal to, as our Name says, fulfill your wish in the fitness sector, we don't charge for your first diagnosis because we believe that wellness shouldn't have more hurdles than it already does. Therefore by committing to this quick quiz you will have a sort of guidance towards achieving your goal in this fitness field.",
-            "About",
-            "We at FitWish acknowledge the effort put into getting your body the way you want it to be, and because of that, we appreciate your valuable decision to stand your ground and act upon what you should, your health."),
-    PORTUGUESE("1em", "37%", "Quem somos nós?",
-            "Pois bem, somos a FitWish, uma nova startup com o objetivo de, como nosso nome diz, cumprir o seu desejo no setor fitness Não cobramos pelo seu primeiro diagnóstico porque acreditamos que o bem-estar não deve ter mais obstáculos do que já tem. Portanto, ao se comprometer com este teste rápido, você terá uma espécie de orientação para atingir seu objetivo neste campo fitness.",
-            "Sobre",
-            "Nós da FitWish reconhecemos o esforço feito para deixar seu corpo do jeito que você deseja e, por isso, apreciamos sua valiosa decisão de defender sua posição e agir de acordo com o que você deve, sua saúde."),
-    FRENCH("0.9em", "38.75%", "Qui sommes nous?",
-            "Eh bien, nous sommes FitWish, une nouvelle startup avec pour objectif, comme notre nom l'indique, de réaliser votre souhait dans le secteur du fitness, nous ne facturons pas votre premier diagnostic car nous pensons que le bien-être ne devrait pas avoir plus d'obstacles qu'il ne le fait déjà. Est-ce que. Par conséquent, en vous engageant à ce quiz rapide, vous aurez une sorte de conseils pour atteindre votre objectif dans ce domaine du fitness.",
-            "À propos",
-            "Chez FitWish, nous reconnaissons l'effort déployé pour que votre corps soit tel que vous le souhaitez, et pour cette raison, nous apprécions votre précieuse décision de défendre votre position et d'agir en fonction de ce que vous devriez, votre santé."),
-    SPANISH("1em", "33.5%", "Quienes somos nosotros?",
-            "Bueno, somos FitWish, una nueva startup con el objetivo de, como dice nuestro Nombre, cumplir tu deseo en el sector del fitness, no cobramos por tu primer diagnóstico porque creemos que el bienestar no debería tener más obstáculos de los que ya tiene. hace. Por lo tanto, al comprometerse con este cuestionario rápido, tendrá una especie de guía para lograr su objetivo en este campo del fitness.",
-            "Sobre",
-            "En FitWish reconocemos el esfuerzo realizado para lograr que su cuerpo esté de la manera que desea que sea, y por eso, apreciamos su valiosa decisión de defender su posición y actuar de acuerdo con lo que debe, su salud.");
+    ENGLISH("2.2vw", "43%", "auto", "Our Plan:", "23%",
+            "You might be struggling with your current health state, disliking the situation but not entirely committed to change it",
+            "But now you started a path in which you take ownership of yourself, and I am going to help you out",
+            "Sooner than you'd expect, you'll be used to looking just as good as you want, and healthier too!"),
+    PORTUGUESE("2.1vw", "41.5%", "auto", "Nosso Plano:", "19.1%",
+            "Você pode estar tendo dificuldades e decepções com seu atual estado de saúde, não gostando da situação mas não completamente comprometido a mudar",
+            "Mas agora você começou um caminho no qual você tomou responsabilidade sobre você mesmo, e eu vou te ajudar",
+            "Antes do que você pode esperar, você já estará aconstumado a ter a aparência que você quiser, e também mais saudável!"),
+    FRENCH("2.2vw", "41.75%", "auto", "Notre Plan:", "21.05%",
+            "Vous avez peut-être des difficultés avec votre état de santé actuel, vous n'aimez pas la situation, mais vous n'êtes pas entièrement déterminé à la changer",
+            "Mais maintenant tu as commencé un chemin dans lequel tu prends possession de toi-même, et je vais t'aider",
+            "Plus tôt que prévu, vous serez habitué à avoir l'air aussi beau que vous le souhaitez, et en meilleure santé aussi!"),
+    SPANISH("2.2vw", "41%", "2.55%", "Nuestro Plan:", "17.9%",
+            "Es posible que esté luchando con su estado de salud actual, no le guste la situación, pero no esté completamente comprometido a cambiarla.Es posible que esté luchando con su estado de salud actual, no le guste la situación, pero no esté completamente comprometido a cambiarla.",
+            "Pero ahora iniciaste un camino en el que te apropiaste de ti mismo, y yo te voy a ayudar",
+            "¡Antes de lo que esperabas, estarás acostumbrado a verte tan bien como quieras y más saludable también!");
 
-    private String txtLeftFontSize;
-    private String h2MarginLeft;
-    private String h2;
-    private String txtLeft;
-    private String heading;
-    private String txtRight;
+    private String planTxtFontSize;
+    private String planMarginLeft;
+    private String planMarginRight;
+    private String plan;
+    private String checkImgMarginLeft;
+    private String badHabits;
+    private String planMsg;
+    private String goodHabits;
 
-    private IntroEnum(String txtLeftFontSize, String h2MarginLeft, String h2, String txtLeft, String heading,
-            String txtRight) {
-        this.txtLeftFontSize = txtLeftFontSize;
-        this.h2MarginLeft = h2MarginLeft;
-        this.h2 = h2;
-        this.txtLeft = txtLeft;
-        this.heading = heading;
-        this.txtRight = txtRight;
+    private IntroEnum(String planTxtFontSize, String planMarginLeft, String planMarginRight, String plan,
+            String checkImgMarginLeft, String badHabits, String planMsg, String goodHabits) {
+        this.planTxtFontSize = planTxtFontSize;
+        this.planMarginLeft = planMarginLeft;
+        this.planMarginRight = planMarginRight;
+        this.plan = plan;
+        this.checkImgMarginLeft = checkImgMarginLeft;
+        this.badHabits = badHabits;
+        this.planMsg = planMsg;
+        this.goodHabits = goodHabits;
     }
 
-    public String getTxtLeftFontSize() {
-        return txtLeftFontSize;
+    public String getPlanTxtFontSize() {
+        return planTxtFontSize;
     }
 
-    public String getH2MarginLeft() {
-        return h2MarginLeft;
+    public void setPlanTxtFontSize(String planTxtFontSize) {
+        this.planTxtFontSize = planTxtFontSize;
     }
 
-    public String getH2() {
-        return h2;
+    public String getPlanMarginLeft() {
+        return planMarginLeft;
     }
 
-    public String getTxtLeft() {
-        return txtLeft;
+    public void setPlanMarginLeft(String planMarginLeft) {
+        this.planMarginLeft = planMarginLeft;
     }
 
-    public String getHeading() {
-        return heading;
+    public String getPlanMarginRight() {
+        return planMarginRight;
     }
 
-    public String getTxtRight() {
-        return txtRight;
+    public void setPlanMarginRight(String planMarginRight) {
+        this.planMarginRight = planMarginRight;
+    }
+
+    public String getPlan() {
+        return plan;
+    }
+
+    public void setPlan(String plan) {
+        this.plan = plan;
+    }
+
+    public String getCheckImgMarginLeft() {
+        return checkImgMarginLeft;
+    }
+
+    public void setCheckImgMarginLeft(String checkImgMarginLeft) {
+        this.checkImgMarginLeft = checkImgMarginLeft;
+    }
+
+    public String getBadHabits() {
+        return badHabits;
+    }
+
+    public void setBadHabits(String badHabits) {
+        this.badHabits = badHabits;
+    }
+
+    public String getPlanMsg() {
+        return planMsg;
+    }
+
+    public void setPlanMsg(String planMsg) {
+        this.planMsg = planMsg;
+    }
+
+    public String getGoodHabits() {
+        return goodHabits;
+    }
+
+    public void setGoodHabits(String goodHabits) {
+        this.goodHabits = goodHabits;
     }
 
 }

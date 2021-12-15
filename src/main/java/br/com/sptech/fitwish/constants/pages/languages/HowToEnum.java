@@ -1,62 +1,75 @@
 package br.com.sptech.fitwish.constants.pages.languages;
 
 public enum HowToEnum {
-    ENGLISH("1em", "40%", "Who are we?",
-            "Well, we are FitWish, a new startup with the goal to, as our Name says, fulfill your wish in the fitness sector, we don't charge for your first diagnosis because we believe that wellness shouldn't have more hurdles than it already does. Therefore by committing to this quick quiz you will have a sort of guidance towards achieving your goal in this fitness field.",
-            "About",
-            "We at FitWish acknowledge the effort put into getting your body the way you want it to be, and because of that, we appreciate your valuable decision to stand your ground and act upon what you should, your health."),
-    PORTUGUESE("1em", "37%", "Quem somos nós?",
-            "Pois bem, somos a FitWish, uma nova startup com o objetivo de, como nosso nome diz, cumprir o seu desejo no setor fitness Não cobramos pelo seu primeiro diagnóstico porque acreditamos que o bem-estar não deve ter mais obstáculos do que já tem. Portanto, ao se comprometer com este teste rápido, você terá uma espécie de orientação para atingir seu objetivo neste campo fitness.",
-            "Sobre",
-            "Nós da FitWish reconhecemos o esforço feito para deixar seu corpo do jeito que você deseja e, por isso, apreciamos sua valiosa decisão de defender sua posição e agir de acordo com o que você deve, sua saúde."),
-    FRENCH("0.9em", "38.75%", "Qui sommes nous?",
-            "Eh bien, nous sommes FitWish, une nouvelle startup avec pour objectif, comme notre nom l'indique, de réaliser votre souhait dans le secteur du fitness, nous ne facturons pas votre premier diagnostic car nous pensons que le bien-être ne devrait pas avoir plus d'obstacles qu'il ne le fait déjà. Est-ce que. Par conséquent, en vous engageant à ce quiz rapide, vous aurez une sorte de conseils pour atteindre votre objectif dans ce domaine du fitness.",
-            "À propos",
-            "Chez FitWish, nous reconnaissons l'effort déployé pour que votre corps soit tel que vous le souhaitez, et pour cette raison, nous apprécions votre précieuse décision de défendre votre position et d'agir en fonction de ce que vous devriez, votre santé."),
-    SPANISH("1em", "33.5%", "Quienes somos nosotros?",
-            "Bueno, somos FitWish, una nueva startup con el objetivo de, como dice nuestro Nombre, cumplir tu deseo en el sector del fitness, no cobramos por tu primer diagnóstico porque creemos que el bienestar no debería tener más obstáculos de los que ya tiene. hace. Por lo tanto, al comprometerse con este cuestionario rápido, tendrá una especie de guía para lograr su objetivo en este campo del fitness.",
-            "Sobre",
-            "En FitWish reconocemos el esfuerzo realizado para lograr que su cuerpo esté de la manera que desea que sea, y por eso, apreciamos su valiosa decisión de defender su posición y actuar de acuerdo con lo que debe, su salud.");
+    ENGLISH("What you will do", "What we will do",
+            "First, if you haven't already, check the theme and language that you prefer in the three bar button on the left. Then answer the test... candidly, yes, I know, its harsh but this is crucial for this to be as helpful as it can to you, then in some time from now you can repeat this test and compare the numbers.",
+            "Well, we are going to evaluate you in a comprehensive way and tell you the distance to your goals in your path to them, then you can come back to this very site and redo the test, having up to two previous test results stored locally and safely in your computer.",
+            "How it Works"),
+    PORTUGUESE("O que você vai fazer", "O que nós vamos fazer",
+            "Primeiro, se ainda não o fez, verifique o tema e o idioma de sua preferência no botão de três barras à esquerda. Então responda o teste ... francamente, sim, eu sei, é duro, mas isso é crucial para ser o mais útil possível para você, então em algum tempo você pode repetir este teste e comparar os números.",
+            "Bem, vamos avaliá-lo de uma forma compreensiva e dizer-lhe a distância de seus objetivos em seu caminho até eles, então você pode voltar a este mesmo site e refazer o teste, tendo até dois resultados de testes anteriores armazenados localmente e com segurança em seu computador.",
+            "Como Funciona"),
+    FRENCH("Que vas tu faire", "Qu'allons nous faire",
+            "Tout d'abord, si vous ne l'avez pas déjà fait, vérifiez le thème et la langue que vous préférez dans le bouton à trois barres sur la gauche. Alors répondez au test ... franchement, oui, je sais, c'est dur, mais c'est crucial pour que cela vous soit aussi utile que possible, puis dans un certain temps, vous pourrez répéter ce test et comparer les chiffres.",
+            "Eh bien, nous allons vous évaluer de manière complète et vous indiquer la distance qui vous sépare de vos objectifs sur votre chemin vers eux, puis vous pouvez revenir sur ce site même et refaire le test, en ayant jusqu'à deux résultats de test précédents stockés localement et en toute sécurité dans votre ordinateur.",
+            "Comment ça fonctionne"),
+    SPANISH("Qué harás", "Lo que haremos",
+            "Primero, si aún no lo ha hecho, marque el tema y el idioma que prefiera en el botón de tres barras a la izquierda. Luego responda la prueba ... con franqueza, sí, lo sé, es duro, pero esto es crucial para que esto sea lo más útil posible para usted, luego, en algún momento a partir de ahora, puede repetir esta prueba y comparar los números.",
+            "Bueno, lo evaluaremos de manera integral y le diremos la distancia a sus objetivos en su camino hacia ellos, luego puede regresar a este mismo sitio y rehacer la prueba, teniendo hasta dos resultados de pruebas anteriores almacenados localmente y de forma segura en su computadora.",
+            "Cómo funciona");
 
-    private String txtLeftFontSize;
-    private String h2MarginLeft;
     private String h2;
-    private String txtLeft;
+    private String h3;
+    private String txt1;
+    private String txt2;
     private String heading;
-    private String txtRight;
 
-    private HowToEnum(String txtLeftFontSize, String h2MarginLeft, String h2, String txtLeft, String heading,
-            String txtRight) {
-        this.txtLeftFontSize = txtLeftFontSize;
-        this.h2MarginLeft = h2MarginLeft;
+    private HowToEnum(String h2, String h3, String txt1, String txt2, String heading) {
         this.h2 = h2;
-        this.txtLeft = txtLeft;
+        this.h3 = h3;
+        this.txt1 = txt1;
+        this.txt2 = txt2;
         this.heading = heading;
-        this.txtRight = txtRight;
-    }
-
-    public String getTxtLeftFontSize() {
-        return txtLeftFontSize;
-    }
-
-    public String getH2MarginLeft() {
-        return h2MarginLeft;
     }
 
     public String getH2() {
         return h2;
     }
 
-    public String getTxtLeft() {
-        return txtLeft;
+    public void setH2(String h2) {
+        this.h2 = h2;
+    }
+
+    public String getH3() {
+        return h3;
+    }
+
+    public void setH3(String h3) {
+        this.h3 = h3;
+    }
+
+    public String getTxt1() {
+        return txt1;
+    }
+
+    public void setTxt1(String txt1) {
+        this.txt1 = txt1;
+    }
+
+    public String getTxt2() {
+        return txt2;
+    }
+
+    public void setTxt2(String txt2) {
+        this.txt2 = txt2;
     }
 
     public String getHeading() {
         return heading;
     }
 
-    public String getTxtRight() {
-        return txtRight;
+    public void setHeading(String heading) {
+        this.heading = heading;
     }
 
 }

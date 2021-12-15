@@ -12,14 +12,14 @@ public enum ExerciseEnum {
             "5 o mas veces por semana");
 
     private String exercise;
-    private String nonde;
+    private String none;
     private String low;
     private String mid;
     private String high;
 
-    private ExerciseEnum(String exercise, String nonde, String low, String mid, String high) {
+    private ExerciseEnum(String exercise, String none, String low, String mid, String high) {
         this.exercise = exercise;
-        this.nonde = nonde;
+        this.none = none;
         this.low = low;
         this.mid = mid;
         this.high = high;
@@ -34,11 +34,11 @@ public enum ExerciseEnum {
     }
 
     public String getNonde() {
-        return nonde;
+        return none;
     }
 
-    public void setNonde(String nonde) {
-        this.nonde = nonde;
+    public void setNonde(String none) {
+        this.none = none;
     }
 
     public String getLow() {
